@@ -1,6 +1,6 @@
 {
   "name": "measure-ui",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -17,10 +17,12 @@
     "type": "git",
     "url": "https://github.com/zxhfighter/measure.git"
   },
-  "authors": [{
-    "name": "zxhfighter",
-    "url": "https://zxhfighter.github.io/"
-  }],
+  "authors": [
+    {
+      "name": "zxhfighter",
+      "url": "https://zxhfighter.github.io/"
+    }
+  ],
   "dependencies": {
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
