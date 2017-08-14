@@ -2,6 +2,8 @@ import {Directive, Input, TemplateRef, ElementRef, OnInit, NgModule} from '@angu
 import {UIControl} from '../control';
 const prefix = UIControl.uiPrefix;
 
+declare var Prism: any;
+
 @Directive({
     selector: `[${prefix}Code]`
 })

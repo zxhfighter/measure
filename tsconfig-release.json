@@ -20,5 +20,9 @@
     },
     "include": [
         "src/app/component/**/*"
-    ]
+    ],
+    "angularCompilerOptions": {
+        "genDir": "aot",
+        "skipMetadataEmit": false
+    }
 }

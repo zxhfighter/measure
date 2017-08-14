@@ -1,0 +1,102 @@
+.ui-control {
+  font-family: 'PingFang SC', 'STHeiti', 'SimHei', 'Microsoft YAHEI', '微软雅黑', 'Verdana Regular', Helvetica, Arial, '宋体', SimSun, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  color: #666;
+}
+.ui-corner {
+  border-radius: 5px;
+}
+.ui-disabled {
+  color: #999 !important;
+  background-color: #f1f1f1 !important;
+  cursor: not-allowed !important;
+}
+.ui-disabled:hover {
+  box-shadow: none !important;
+}
+.ui-button {
+  display: inline-block;
+  padding: 0 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.ui-button-primary {
+  background-color: #3685ff;
+  color: #fff;
+}
+.ui-button-primary:hover {
+  background-color: #0366ff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.ui-button-secondary {
+  background-color: #fff;
+  color: #3685ff;
+  border: 1px solid #86B6FF;
+}
+.ui-button-secondary:hover {
+  border-color: #3685ff;
+}
+.ui-button-normal {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+}
+.ui-button-normal:hover {
+  color: #333;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.ui-button-grey {
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.ui-button-grey:hover {
+  background-color: #f7f7f7;
+  color: #333;
+}
+.ui-button-size-sm {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 5px;
+}
+.ui-button-size-md {
+  width: 94px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 10px;
+}
+.ui-button-size-lg {
+  width: 130px;
+  height: 42px;
+  line-height: 42px;
+}
+.ui-button-size-auto {
+  padding: 5px 20px;
+}
+.ui-buttongroup .buttongroup-item {
+  float: left;
+}
+.ui-buttongroup .buttongroup-item .ui-button {
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-radius: 0;
+}
+.ui-buttongroup .buttongroup-item-first .ui-button {
+  border-left-color: #dbdbdb;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.ui-buttongroup .buttongroup-item-last .ui-button {
+  border-right-color: #dbdbdb;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.ui-buttongroup .buttongroup-item-selected .ui-button {
+  background: #3685ff;
+  color: #fff;
+}
