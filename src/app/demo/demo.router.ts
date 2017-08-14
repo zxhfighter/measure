@@ -7,7 +7,7 @@ import {ButtongroupDemo} from './buttongroup/buttongroup.demo';
 
 const routes: Routes = [
     {
-        path: '',  
+        path: 'demo',  
         component: DemoComponent,
         children: [
             {path: '', pathMatch: 'full', redirectTo: 'button'},
