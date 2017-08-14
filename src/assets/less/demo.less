@@ -1,0 +1,83 @@
+@header-height: 60px;
+@aside-width: 150px;
+
+*:focus {
+    outline: none;
+}
+
+body {
+    background: #fffdee;
+}
+
+.demo-app {
+
+    .app-header {
+        position: fixed;
+        height: @header-height;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background-color: #036380;
+
+        .logo {
+            font-size: 28px;
+            color: #fff;
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-style: italic;
+        }
+    }
+
+    .app-body {
+        padding-top: @header-height;
+
+        .app-aside {
+            position: fixed;
+            top: @header-height;
+            bottom: 0;
+            width: @aside-width;
+            background: #e6e2af;
+
+            .app-aside-list {
+                padding: 0;
+                margin: 0;
+
+                .list-item {
+                    height: 38px;
+                    line-height: 38px;
+                    padding-left: 20px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    color: @brand-primary;
+
+                    &:hover,
+                    &.active {
+                        background-color: #fffdee;
+                    }
+                }
+            }
+        }
+
+        .app-content {
+            margin-left: @aside-width;
+            padding: 20px;
+
+            .main-title {
+                margin-top: 0;
+                font-size: 24px;
+                color: @brand-primary;
+            }
+
+            .section-title {
+                font-size: 16px;
+                color: @brand-primary;
+                font-style: italic;
+            }
+        }
+    }
+
+    .app-footer {
+
+    }
+}

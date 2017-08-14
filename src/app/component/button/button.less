@@ -1,0 +1,91 @@
+// --- layout ---
+.@{prefix}-button {
+    display: inline-block;
+    padding: 0 20px;
+    border-radius: @border-radius;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+}
+
+// --- presentation ---
+.ui-button-primary {
+    background-color: @brand-primary;
+    color: #fff;
+
+    &:hover {
+        background-color: darken(@brand-primary, 10%);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    }
+}
+
+.ui-button-secondary {
+    background-color: #fff;
+    color: @brand-primary;
+    border: 1px solid @brand-secondary;
+
+    &:hover {
+        border-color: @brand-primary;
+    }
+}
+
+.ui-button-normal {
+    background-color: #fff;
+    border: 1px solid @border-color;
+
+    &:hover {
+        color: @text-color-highlight;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+    }
+}
+
+.ui-button-grey {
+    background-color: #f1f1f1;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+
+    &:hover {
+        background-color: #f7f7f7;
+        color: @text-color-highlight;
+    }
+}
+
+// --- size ---
+
+// extra small
+.ui-button-size-xs {
+    
+}
+
+// small
+.ui-button-size-sm {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 5px;
+}
+
+// medium
+.ui-button-size-md {
+    width: 94px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+}
+
+// large
+.ui-button-size-lg {
+    width: 130px;
+    height: 42px;
+    line-height: 42px;
+}
+
+// auto-size
+.ui-button-size-auto {
+    padding: 5px 20px;
+}
+
+// extra-large
+.ui-button-size-xl {
+    
+}
+

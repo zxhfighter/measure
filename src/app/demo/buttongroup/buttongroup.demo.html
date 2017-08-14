@@ -1,0 +1,92 @@
+<h1 class="main-title">button group</h1>
+
+<section>
+    <h3 class="section-title">radio button group(default)</h3>
+
+    <div>
+       <ui-buttongroup [datasource]="data" (change)="onChange1($event)"></ui-buttongroup>
+    </div>
+
+    <div class="code">
+<pre><code uiCode class="language-markup">&lt;ui-buttongroup [datasource]="data"&gt;&lt;/ui-buttongroup&gt;
+</code></pre>
+    </div>
+
+    <h3 class="section-title">radio button group with value</h3>
+    
+    <div>
+        <ui-buttongroup [datasource]="data" [value]="3"></ui-buttongroup>
+    </div>
+
+    <div class="code">
+<pre><code uiCode class="language-markup">&lt;ui-buttongroup [datasource]="data" [value]="3"&gt;&lt;/ui-buttongroup&gt;
+</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">checkbox button group</h3>
+
+    <div>
+       <ui-buttongroup [datasource]="data" type="checkbox"></ui-buttongroup>
+    </div>
+
+    <div class="code">
+<pre><code uiCode class="language-markup">&lt;ui-buttongroup [datasource]="data" type="checkbox"&gt;&lt;/ui-buttongroup&gt;
+</code></pre>
+    </div>
+
+    <h3 class="section-title">checkbox button group with value</h3>
+    
+    <div>
+        <ui-buttongroup [datasource]="data" type="checkbox" [value]="[1, 3]"></ui-buttongroup>
+    </div>
+
+    <div class="code">
+<pre><code uiCode class="language-markup">&lt;ui-buttongroup [datasource]="data" type="checkbox" [value]="[1, 3]"&gt;&lt;/ui-buttongroup&gt;
+</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">use within forms</h3>
+
+    <p class="section-desc">
+        When use with forms, you can use ngModel instead of value.
+    </p>
+
+    <form #frm="ngForm">
+        <ui-buttongroup name="btngroup" [datasource]="data" type="checkbox" [ngModel]="[1, 3]"></ui-buttongroup>
+    </form>
+
+    <div>
+        form value is: {{frm.value | json}}
+    </div>
+
+    <div class="code">
+<pre><code uiCode class="language-markup" ngNonBindable>&lt;form #frm="ngForm"&gt;
+    &lt;ui-buttongroup name="btngroup" [datasource]="data" type="checkbox" [ngModel]="[1, 3]"&gt;&lt;/ui-buttongroup&gt;
+&lt;/form&gt;
+
+&lt;div&gt;
+    form value is: {{frm.value | json}}
+&lt;/div&gt;
+</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">disable all button</h3>
+
+    <div>
+        <ui-buttongroup [datasource]="data" [disabled]="true"></ui-buttongroup>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">disable some of the button</h3>
+
+    <div>
+        <ui-buttongroup [datasource]="disabledData"></ui-buttongroup>
+    </div>
+</section>

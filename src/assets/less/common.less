@@ -1,0 +1,20 @@
+.@{prefix}-control {
+    font-family: @font-family-base;
+    font-size: @font-size-base;
+    box-sizing: border-box;
+    color: @text-color;
+}
+
+.@{prefix}-corner {
+    border-radius: 5px;
+}
+
+.@{prefix}-disabled {
+    color: @disabled-color !important;
+    background-color: @disabled-background !important;
+    cursor: not-allowed !important;
+
+    &:hover {
+        box-shadow: none !important;
+    }
+}

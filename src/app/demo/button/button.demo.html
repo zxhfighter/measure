@@ -1,0 +1,76 @@
+<h1 class="main-title">button</h1>
+
+<section>
+    <h3 class="section-title">types of button</h3>
+
+    <div>
+        <ui-button type="primary" (click)="onClick()">primary button</ui-button>
+        <ui-button type="secondary" (click)="onClick()">secondary button</ui-button>
+        <ui-button type="normal" (click)="onClick()">normal button</ui-button>
+        <ui-button type="grey" (click)="onClick()">special button</ui-button>
+        <ui-button type="custom" (click)="onClick()">custom button</ui-button>
+    </div>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup">&lt;ui-button type="primary" (click)="onClick()"&gt;primary button&lt;/ui-button&gt;
+&lt;ui-button type="secondary" (click)="onClick()"&gt;secondary button&lt;/ui-button&gt;
+&lt;ui-button type="normal" (click)="onClick()"&gt;normal button&lt;/ui-button&gt;
+&lt;ui-button type="grey" (click)="onClick()"&gt;special button&lt;/ui-button&gt;
+&lt;ui-button type="custom" (click)="onClick()"&gt;custom button&lt;/ui-button&gt;</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">disable button</h3>
+
+    <div>
+        <ui-button [disabled]="true" (click)="onClick()">disabled button</ui-button>
+    </div>
+
+    <pre><code uiCode class="language-markup">&lt;ui-button [disabled]="true" (click)="onClick()"&gt;置灰按钮&lt;/ui-button&gt;
+</code></pre>
+</section>
+
+
+<section>
+    <h3 class="section-title">sizes of button</h3>
+
+    <div>
+        <ui-button size="sm" (click)="onClick()">80 X 30</ui-button>
+        <ui-button size="md" (click)="onClick()">94 X 36</ui-button>
+        <ui-button size="lg" (click)="onClick()">130 X 42</ui-button>
+        <ui-button size="auto" (click)="onClick()">padding 5px 20px</ui-button>
+        <ui-button size="custom" (click)="onClick()">custom size</ui-button>
+    </div>
+
+    <div class="code">
+<pre><code uiCode class="language-markup">&lt;ui-button size="sm" (click)="onClick()"&gt;80 X 30&lt;/ui-button&gt;
+&lt;ui-button size="md" (click)="onClick()"&gt;94 X 36&lt;/ui-button&gt;
+&lt;ui-button size="lg" (click)="onClick()"&gt;130 X 42&lt;/ui-button&gt;
+&lt;ui-button size="auto" (click)="onClick()"&gt;padding 5px 20px&lt;/ui-button&gt;
+&lt;ui-button size="custom" (click)="onClick()"&gt;custom size&lt;/ui-button&gt;
+</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3>icons of button</h3>
+
+    <div>
+        <ui-button (click)="onClick()"><i class="fa fa-spinner"></i></ui-button>
+        <ui-button (click)="onClick()"><i class="fa fa-spinner"></i> icon before</ui-button>
+        <ui-button (click)="onClick()">icon after <i class="fa fa-spinner"></i></ui-button>
+        <ui-button (click)="onClick()"><i class="fa fa-spinner"></i> icon before and after <i class="fa fa-spinner"></i></ui-button>
+    </div>
+
+    <div class="code">
+<pre><code uiCode class="language-markup">&lt;ui-button (click)="onClick()"&gt;&lt;i class="fa fa-spinner"&gt;&lt;/i&gt;&lt;/ui-button&gt;
+&lt;ui-button (click)="onClick()"&gt;&lt;i class="fa fa-spinner"&gt;&lt;/i&gt; icon before&lt;/ui-button&gt;
+&lt;ui-button (click)="onClick()"&gt;icon after &lt;i class="fa fa-spinner"&gt;&lt;/i&gt;&lt;/ui-button&gt;
+&lt;ui-button (click)="onClick()"&gt;&lt;i class="fa fa-spinner"&gt;&lt;/i&gt; icon before and after &lt;i class="fa fa-spinner"&gt;&lt;/i&gt;&lt;/ui-button&gt;
+</code></pre>
+    </div>
+</section>
+
+
+{{ clicks }} count

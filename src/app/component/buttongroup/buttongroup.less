@@ -1,0 +1,38 @@
+// --- layout ---
+.@{prefix}-buttongroup {
+    
+    .buttongroup-item {
+        float: left;
+
+        .@{prefix}-button {
+            border-right-color: transparent;
+            border-left-color: transparent;
+            border-radius: 0;
+        }
+
+        &-first {
+            .@{prefix}-button {
+                border-left-color: @border-color;
+                
+                border-top-left-radius: @border-radius;
+                border-bottom-left-radius: @border-radius;
+            }
+        }
+
+        &-last {
+            .@{prefix}-button {
+                border-right-color: @border-color;
+
+                border-top-right-radius: @border-radius;
+                border-bottom-right-radius: @border-radius;
+            }
+        }
+
+        &-selected {
+            .@{prefix}-button {
+                background: @brand-primary;
+                color: #fff;
+            }
+        }
+    }
+}

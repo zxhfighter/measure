@@ -1,3 +1,3 @@
-# 度量衡组件库
+# measure ui
 
-基于 angular 的企业组件库。
+An enterprise ui library based on Angular.
