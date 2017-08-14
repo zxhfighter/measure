@@ -5,13 +5,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --deploy-url .",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-css": "rm -rf asset && gulp",
     "build-component": "ngc -p tsconfig-release.json",
-    "publish": "npm publish"
+    "publish": "npm publish",
+    "clean": "rm -rf aot && rm -rf asset && rm -rf component && rm -rf dist",
+    "docs": "cp -rf dist/* docs/"
   },
   "repository": {
     "type": "git",
