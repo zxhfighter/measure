@@ -27,6 +27,29 @@ body {
             text-decoration: none;
             font-style: italic;
         }
+
+        .main-menu {
+            position: absolute;
+            left: 200px;
+            top: 0;
+            list-style: none;
+
+            &-item {
+                list-style: none;
+                float: left;
+                height: @header-height;
+                line-height: @header-height;
+                padding: 0 20px;
+                color: #fffdee;
+                cursor: pointer;
+                font-size: 16px;
+
+                &:hover,
+                &.active, {
+                    background: darken(@brand-primary, 5%);
+                }
+            }
+        }
     }
 
     .app-body {
@@ -89,10 +112,30 @@ body {
                     top: 0;
                 }
             }
+
+            .section-desc {
+                padding: 5px 0;
+            }
+        }
+    }
+
+    .app-body-collapse {
+        .app-aside {
+            display: none;
+        }
+
+        .app-content {
+            margin-left: 0;
         }
     }
 
     .app-footer {
 
     }
+}
+
+// docs
+.docs-page {
+    width: 960px;
+    margin: 0 auto;
 }

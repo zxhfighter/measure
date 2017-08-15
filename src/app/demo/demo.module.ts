@@ -8,6 +8,7 @@ import {ButtonDemo} from './button/button.demo';
 import {ButtongroupDemo} from './buttongroup/buttongroup.demo';
 import {CheckboxDemo} from './checkbox/checkbox.demo';
 import {BoxGroupDemo} from './boxgroup/boxgroup.demo';
+import {DocsComponent} from './docs/docs.component';
 
 import {UICodeHighLightModule} from '../component/codehighlight';
 import {UIButtonModule} from '../component/button';
@@ -31,7 +32,8 @@ import {UIBoxGroupModule} from '../component/boxgroup';
         ButtonDemo,
         ButtongroupDemo,
         CheckboxDemo,
-        BoxGroupDemo
+        BoxGroupDemo,
+        DocsComponent
     ],
     providers: [],
     exports: []

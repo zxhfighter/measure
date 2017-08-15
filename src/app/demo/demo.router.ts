@@ -6,17 +6,20 @@ import {ButtonDemo} from './button/button.demo';
 import {ButtongroupDemo} from './buttongroup/buttongroup.demo';
 import {CheckboxDemo} from './checkbox/checkbox.demo';
 import {BoxGroupDemo} from './boxgroup/boxgroup.demo';
+import {DocsComponent} from './docs/docs.component';
 
 const routes: Routes = [
     {
         path: 'demo',  
         component: DemoComponent,
         children: [
-            {path: '', pathMatch: 'full', redirectTo: 'button'},
-            {path: 'button', component: ButtonDemo},
-            {path: 'buttongroup', component: ButtongroupDemo},
-            {path: 'checkbox', component: CheckboxDemo},
-            {path: 'boxgroup', component: BoxGroupDemo},
+            {path: '', pathMatch: 'full', redirectTo: 'components/button'},
+            {path: 'components', redirectTo: 'components/button'},
+            {path: 'components/button', component: ButtonDemo},
+            {path: 'components/buttongroup', component: ButtongroupDemo},
+            {path: 'components/checkbox', component: CheckboxDemo},
+            {path: 'components/boxgroup', component: BoxGroupDemo},
+            {path: 'docs', component: DocsComponent}
         ]
     }
 ];

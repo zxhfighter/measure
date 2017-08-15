@@ -1,0 +1,82 @@
+<div class="docs-page">
+    <h1 class="main-title">How to use</h1>
+    
+    <section>
+        <h3 class="section-title">Install</h3>
+    
+        <div>
+            <pre><code uiCode class="language-markup">$ npm install --save measure-ui</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h3 class="section-title">Usage</h3>
+    
+        <div>
+<pre><code uiCode class="language-typescript" ngNonBindable>import &#x7B;UIButtonModule&#x7D; from &#x27;measure-ui&#x27;;
+
+@NgModule(&#x7B;
+    // ...
+    imports: [
+    // ...
+    UIButtonModule
+    ]
+&#x7D;)
+export class AppModule &#x7B;&#x7D;
+</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h3 class="section-title">Styles</h3>
+    
+        <div class="section-desc">
+            You can use the default theme, just import the following css file.
+        </div>
+
+        <div>
+<pre><code uiCode class="language-typescript" ngNonBindable>@import "../node_modules/measure-ui/asset/style/measure.min.css";
+</code></pre>
+        </div>
+
+        <div class="section-desc">
+            Or You can customize the theme, when you use less.
+        </div>
+
+        <div>
+<pre><code uiCode class="language-typescript" ngNonBindable>/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/measure-ui/asset/style/component.less";
+
+// your theme variables
+@brand-primary: #f0f;
+</code></pre>
+        </div>
+
+        <div class="section-desc">
+            The available variables can be find in <code>node_modules/measure-ui/asset/style/variable.less</code>.
+        </div>
+    </section>
+
+    <section>
+        <h3 class="section-title">Use with angular-cli</h3>
+    
+        <div class="section-desc">
+            In <code>.angular-cli.json</code>，you can add themes in the <code>app.styles</code> property.
+        </div>
+
+        <div>
+<pre><code uiCode class="language-typescript" ngNonBindable>&#x7B;
+  "apps": [
+    &#x7B;
+      "styles": [
+        "styles.less",
+        "../node_modules/measure-ui/asset/style/theme/bootstrap/theme.css"
+        // or "../node_modules/measure-ui/asset/style/theme/bootstrap/theme.less"
+      ]
+    &#x7D;
+  ]
+&#x7D;            
+</code></pre>
+        </div>       
+    </section>
+</div>

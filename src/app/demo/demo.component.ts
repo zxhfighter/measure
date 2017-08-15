@@ -1,7 +1,9 @@
 import {
-    Component, Input, Output, EventEmitter, 
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy
+    Component, Input, Output, EventEmitter,
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit
 } from '@angular/core';
+
+import {Router, NavigationEnd} from '@angular/router';
 
 @Component({
     selector: 'demo',
@@ -11,12 +13,18 @@ import {
 })
 export class DemoComponent implements OnInit {
     name = 'ComponentName';
-
-    constructor() {
-
+    isDocs = false;
+    constructor(private router: Router) {
+        
     }
 
     ngOnInit() {
-
+        this.router.events.subscribe(
+            val => {
+                if (val instanceof NavigationEnd) {
+                    this.isDocs = val.urlAfterRedirects.indexOf('/demo/docs') > -1;
+                }
+            }
+        )
     }
 }

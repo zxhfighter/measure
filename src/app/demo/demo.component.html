@@ -1,15 +1,20 @@
 <div class="demo-app">
     <div class="app-header">
         <a href="javascript:;" class="logo"> MEASURE UI </a>
+
+        <ul class="main-menu clearfix">
+            <li class="main-menu-item" routerLinkActive="active" [routerLink]="['/demo/docs']">docs</li>
+            <li class="main-menu-item" routerLinkActive="active" [routerLink]="['/demo/components']">components</li>
+        </ul>
     </div>
 
-    <div class="app-body">
+    <div class="app-body" [class.app-body-collapse]="isDocs">
         <aside class="app-aside">
             <ul class="app-aside-list">
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/demo/button']">button</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/demo/buttongroup']">button group</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/demo/checkbox']">checkbox</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/demo/boxgroup']">boxgroup</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/demo/components/button']">button</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/demo/components/buttongroup']">button group</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/demo/components/checkbox']">checkbox</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/demo/components/boxgroup']">boxgroup</li>
             </ul>
         </aside>
 
