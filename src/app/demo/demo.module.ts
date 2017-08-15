@@ -6,10 +6,14 @@ import {demoRouterModule} from './demo.router';
 import {DemoComponent} from './demo.component';
 import {ButtonDemo} from './button/button.demo';
 import {ButtongroupDemo} from './buttongroup/buttongroup.demo';
+import {CheckboxDemo} from './checkbox/checkbox.demo';
+import {BoxGroupDemo} from './boxgroup/boxgroup.demo';
 
 import {UICodeHighLightModule} from '../component/codehighlight';
 import {UIButtonModule} from '../component/button';
 import {UIButtonGroupModule} from '../component/buttongroup';
+import {UICheckboxModule} from '../component/checkbox';
+import {UIBoxGroupModule} from '../component/boxgroup';
 
 @NgModule({
     imports: [
@@ -18,12 +22,16 @@ import {UIButtonGroupModule} from '../component/buttongroup';
         UICodeHighLightModule,
         UIButtonModule,
         UIButtonGroupModule,
+        UICheckboxModule,
+        UIBoxGroupModule,
         FormsModule
     ],
     declarations: [
         DemoComponent,
         ButtonDemo,
-        ButtongroupDemo
+        ButtongroupDemo,
+        CheckboxDemo,
+        BoxGroupDemo
     ],
     providers: [],
     exports: []

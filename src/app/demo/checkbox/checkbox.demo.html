@@ -1,0 +1,90 @@
+<h1 class="main-title">checkbox</h1>
+
+<section>
+    <h3 class="section-title">checkbox with label</h3>
+
+    <div>
+        <ui-checkbox label="agree"></ui-checkbox>
+    </div>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup">&lt;ui-checkbox label="agree"&gt;&lt;/ui-checkbox&gt;</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">checkbox disabled</h3>
+
+    <div>
+        <ui-checkbox [disabled]="true" label="agree"></ui-checkbox>
+    </div>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup">&lt;ui-checkbox [disabled]="true" label="agree"&gt;&lt;/ui-checkbox&gt;</code></pre>
+    </div>
+</section>
+
+
+<section>
+    <h3 class="section-title">checkbox checked</h3>
+
+    <div>
+        <ui-checkbox [checked]="true" label="agree"></ui-checkbox>
+    </div>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup">&lt;ui-checkbox [checked]="true" label="agree"&gt;&lt;/ui-checkbox&gt;</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">checkbox with value</h3>
+
+    <div>
+        <ui-checkbox #chk1 [checked]="false" value="apple" label="苹果"></ui-checkbox>
+        <ui-checkbox #chk2 [checked]="true" value="balala" label="香蕉"></ui-checkbox>
+        <span>you selected: {{chk1.checked ? '苹果' : ''}} {{ chk2.checked ? '香蕉' : '' }} </span>
+    </div>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>&lt;ui-checkbox #chk1 [checked]="false" value="apple" label="苹果"&gt;&lt;/ui-checkbox&gt;
+&lt;ui-checkbox #chk2 [checked]="true" value="balala" label="香蕉"&gt;&lt;/ui-checkbox&gt;
+&lt;span&gt;you selected: {{chk1.checked ? '苹果' : ''}} {{ chk2.checked ? '香蕉' : '' }} &lt;/span&gt;</code></pre>
+    </div>    
+</section>
+
+<section>
+    <h3 class="section-title">checkbox within forms</h3>
+
+    <div>
+        <form #form="ngForm">
+            <ui-checkbox name="apple" [(ngModel)]="checkObj.apple" value="apple" label="apple"></ui-checkbox>
+            <ui-checkbox name="balala" [(ngModel)]="checkObj.balala" value="balala" label="balala"></ui-checkbox>
+        </form>
+        <div>
+            form value is: {{ form.value | json }}
+        </div>
+    </div>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>&lt;form #form="ngForm"&gt;
+    &lt;ui-checkbox name="apple" [(ngModel)]="checkObj.apple" value="apple" label="apple"&gt;&lt;/ui-checkbox&gt;
+    &lt;ui-checkbox name="balala" [(ngModel)]="checkObj.balala" value="balala" label="balala"&gt;&lt;/ui-checkbox&gt;
+&lt;/form&gt;
+&lt;div&gt;
+    form value is: {{ form.value | json }}
+&lt;/div&gt;</code></pre>
+    </div>    
+</section>
+
+<section>
+    <h3 class="section-title">checkbox event</h3>
+
+    <div>
+        <ui-checkbox label="agree" (check)="onChange($event)"></ui-checkbox>
+    </div>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup">&lt;ui-checkbox label="agree" (check)="onChange($event)"&gt;&lt;/ui-checkbox&gt;</code></pre>
+    </div>
+</section>
