@@ -6,11 +6,12 @@ import {ButtonDemo} from './button/button.demo';
 import {ButtongroupDemo} from './buttongroup/buttongroup.demo';
 import {CheckboxDemo} from './checkbox/checkbox.demo';
 import {BoxGroupDemo} from './boxgroup/boxgroup.demo';
+import {AccordionDemo} from './accordion/accordion.demo';
 import {DocsComponent} from './docs/docs.component';
 
 const routes: Routes = [
     {
-        path: 'demo',  
+        path: 'demo',
         component: DemoComponent,
         children: [
             {path: '', pathMatch: 'full', redirectTo: 'components/button'},
@@ -19,6 +20,7 @@ const routes: Routes = [
             {path: 'components/buttongroup', component: ButtongroupDemo},
             {path: 'components/checkbox', component: CheckboxDemo},
             {path: 'components/boxgroup', component: BoxGroupDemo},
+            {path: 'components/accordion', component: AccordionDemo},
             {path: 'docs', component: DocsComponent}
         ]
     }

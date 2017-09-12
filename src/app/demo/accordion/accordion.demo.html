@@ -1,0 +1,31 @@
+<h1 class="main-title">accordion</h1>
+
+<section>
+    <h3 class="section-title">common Accordion</h3>
+    <div>
+        <ui-accordion [datasource]="panels"></ui-accordion>
+    </div>
+    <div class="code">
+        <pre><code uiCode class="language-markup">&lt;ui-accordion [datasource]="panels"&gt;&lt;/ui-accordion&gt;</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">全部可折叠</h3>
+    <div>
+        <ui-accordion [datasource]="panels" [collapsible]="collapsible"></ui-accordion>
+    </div>
+    <div class="code">
+        <pre><code uiCode class="language-markup">&lt;ui-accordion [datasource]="panels"  [collapsible]="collapsible"&gt;&lt;/ui-accordion&gt;</code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">Hover Open</h3>
+    <div>
+        <ui-accordion [datasource]="panels" [hoverable]="hoverable"></ui-accordion>
+    </div>
+    <div class="code">
+        <pre><code uiCode class="language-markup">&lt;ui-accordion [datasource]="panels"  [hoverable]="hoverable"&gt;&lt;/ui-accordion&gt;</code></pre>
+    </div>
+</section>

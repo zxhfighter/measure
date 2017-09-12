@@ -1,0 +1,68 @@
+// --- variable ---
+@ui-accordion-panel-bottom-margin: .2em;
+@ui-accordion-panel-padding: 1em;
+@ui-accordion-panel-header-padding: .5em .5em .5em 2em;
+@ui-accordion-panel-header-icon-right-padding: .5em 2em .5em .5em;
+@ui-accordion-panel-header-icon-spacing: 1em;
+@ui-accordion-panel-header-border-radius: 0;
+
+// --- layout ---
+.@{prefix}-accordion {
+    display: block;
+}
+
+.@{prefix}-accordion-panel {
+    margin-bottom: @ui-accordion-panel-bottom-margin;
+}
+
+.@{prefix}-accordion-header {
+    cursor: pointer;
+    padding: @ui-accordion-panel-header-padding;
+    position: relative;
+    border-radius: @ui-accordion-panel-header-border-radius;
+}
+
+.@{prefix}-accordion-header-icon {
+    position: absolute;
+    left: @ui-accordion-panel-header-icon-spacing;
+    top: 50%;
+    margin-top: -.5em;
+}
+
+.@{prefix}-accordion-icon-right {
+    .@{prefix}-accordion-header {
+        padding: @ui-accordion-panel-header-icon-right-padding;
+    }
+    .@{prefix}-accordion-header-icon {
+        left: auto;
+        right: @ui-accordion-panel-header-icon-spacing;
+    }
+}
+
+.@{prefix}-accordion-content {
+    padding: @ui-accordion-panel-padding;
+    display: none;
+}
+
+.@{prefix}-accordion-panel-active {
+    .@{prefix}-accordion-content {
+        display: block;
+    }
+}
+
+// --- presentation ---
+@ui-palette-color: #666;
+@ui-accordion-header-background: #F6F6F6;
+@ui-accordion-header-hover-background: #FBFBFB;
+@ui-accordion-header-color: #F6F6F6;
+@ui-accordion-header-border: 1px solid #ddd;
+
+.@{prefix}-accordion-header {
+    border: @ui-accordion-header-border;
+    background: @ui-accordion-header-background;
+    color: @ui-palette-color;
+    &:hover {
+        background: @ui-accordion-header-hover-background;
+    }
+}
+
