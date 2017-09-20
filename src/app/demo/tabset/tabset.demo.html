@@ -1,0 +1,64 @@
+<h1 class="main-title">tabset</h1>
+
+<section>
+    <h3 class="section-title">static tab</h3>
+    <div>
+        <ui-tabset>
+            <ui-tab title="First tab">
+                1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Quibusdam magni quia ut harum facilis, ullam deleniti porro
+                dignissimos quasi at molestiae sapiente natus, neque voluptatum
+                ad consequuntur cupiditate nemo sunt.
+            </ui-tab>
+            <ui-tab title="Second tab">
+                2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Quibusdam magni quia ut harum facilis, ullam deleniti porro
+                dignissimos quasi at molestiae sapiente natus, neque voluptatum
+                ad consequuntur cupiditate nemo sunt.
+            </ui-tab>
+        </ui-tabset>
+    </div>
+    <div class="code">
+        <pre><code uiCode class="language-markup">
+&lt;ui-tabset&gt;
+    &lt;ui-tab title="First tab"&gt;
+        1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Quibusdam magni quia ut harum facilis, ullam deleniti porro
+        dignissimos quasi at molestiae sapiente natus, neque voluptatum
+        ad consequuntur cupiditate nemo sunt.
+    &lt;/ui-tab&gt;
+    &lt;ui-tab title="Second tab"&gt;
+        2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Quibusdam magni quia ut harum facilis, ullam deleniti porro
+        dignissimos quasi at molestiae sapiente natus, neque voluptatum
+        ad consequuntur cupiditate nemo sunt.
+    &lt;/ui-tab&gt;
+&lt;/ui-tabset&gt;
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">dynamic tab</h3>
+    <div>
+        <ui-tabset>
+            <ui-tab
+             *ngFor="let tab of tabs"
+             [title]="tab.title">
+            {{ tab.content }}
+            </ui-tab>
+        </ui-tabset>
+    </div>
+    <div class="code">
+        <pre><code uiCode class="language-markup">
+&lt;ui-tabset&gt;
+    &lt;ui-tab
+     *ngFor="let tab of tabs"
+     [title]="tab.title"&gt;
+         &#123; &#123;tab.content&#125;&#125;
+    &lt;/ui-tab&gt;
+&lt;/ui-tabset&gt;
+        </code></pre>
+    </div>
+</section>
+

@@ -7,6 +7,7 @@ import {ButtongroupDemo} from './buttongroup/buttongroup.demo';
 import {CheckboxDemo} from './checkbox/checkbox.demo';
 import {BoxGroupDemo} from './boxgroup/boxgroup.demo';
 import {AccordionDemo} from './accordion/accordion.demo';
+import {TabsetDemo} from './tabset/tabset.demo';
 import {DocsComponent} from './docs/docs.component';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
             {path: 'components/checkbox', component: CheckboxDemo},
             {path: 'components/boxgroup', component: BoxGroupDemo},
             {path: 'components/accordion', component: AccordionDemo},
+            {path: 'components/tabset', component: TabsetDemo},
             {path: 'docs', component: DocsComponent}
         ]
     }

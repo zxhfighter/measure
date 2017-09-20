@@ -10,6 +10,7 @@ import {CheckboxDemo} from './checkbox/checkbox.demo';
 import {BoxGroupDemo} from './boxgroup/boxgroup.demo';
 import {DocsComponent} from './docs/docs.component';
 import {AccordionDemo} from './accordion/accordion.demo';
+import {TabsetDemo} from './tabset/tabset.demo';
 
 import {UICodeHighLightModule} from '../component/codehighlight';
 import {UIButtonModule} from '../component/button';
@@ -17,6 +18,7 @@ import {UIButtonGroupModule} from '../component/buttongroup';
 import {UICheckboxModule} from '../component/checkbox';
 import {UIBoxGroupModule} from '../component/boxgroup';
 import {UIAccordionModule} from '../component/accordion';
+import {UITabsetModule} from '../component/tabset';
 
 @NgModule({
     imports: [
@@ -28,6 +30,7 @@ import {UIAccordionModule} from '../component/accordion';
         UICheckboxModule,
         UIBoxGroupModule,
         UIAccordionModule,
+        UITabsetModule,
         FormsModule
     ],
     declarations: [
@@ -37,7 +40,8 @@ import {UIAccordionModule} from '../component/accordion';
         CheckboxDemo,
         BoxGroupDemo,
         DocsComponent,
-        AccordionDemo
+        AccordionDemo,
+        TabsetDemo
     ],
     providers: [],
     exports: []

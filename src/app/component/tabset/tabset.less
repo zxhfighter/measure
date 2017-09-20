@@ -1,0 +1,47 @@
+/*******************************
+           UI Tabset
+*******************************/
+
+// --- variable ---
+@prefix: ui;
+@brand-primary: #036380;
+@ui-tab-text-color: #000;
+@ui-tab-text-active-color: #fff;
+
+.@{prefix}-tabset {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    margin: 1rem 0;
+    min-height: 2.85714286em;
+    cursor: pointer;
+    margin: 0 -1px;
+
+    &:after {
+        content: '';
+        display: block;
+        height: 0px;
+        clear: both;
+        visibility: hidden;
+    }
+
+    .item {
+        color: @ui-tab-text-color;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-top: 2px solid transparent;
+        border-bottom: none;
+        padding: .92857143em 1.42857143em;
+        text-decoration: none;
+
+        &.active {
+            border-top-width: 1px;
+            border-color: @brand-primary;
+            margin-bottom: -1px;
+            box-shadow: none;
+            border-radius: .28571429rem .28571429rem 0 0!important;
+            color: @ui-tab-text-active-color;
+            background-color: @brand-primary;
+        }
+    }
+}
