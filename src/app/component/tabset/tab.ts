@@ -1,5 +1,5 @@
 /**
- * @file tabset component
+ * @file tab component
  * @author wangfengjiao(wangfengjiao01@baidu.com)
  */
 
