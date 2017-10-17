@@ -1,0 +1,19 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es2015", "dom"
+        ],
+        "experimentalDecorators": true,
+        "outDir": "dist/packages",
+        "moduleResolution": "node",
+        "noUnusedParameters": true,
+        "strictNullChecks": true,
+        "skipLibCheck": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    }
+}
