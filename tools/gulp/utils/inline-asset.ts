@@ -4,6 +4,7 @@ import {sync as glob} from 'glob';
 
 export function inlineAssetForDirectory(folderPath: string) {
     glob(join(folderPath, '**/*.js')).forEach(filePath => inlineAsset(filePath));
+    glob(join(folderPath, '**/*.json')).forEach(filePath => inlineAsset(filePath));
 }
 
 export function inlineAsset(filePath: string) {
@@ -21,15 +22,18 @@ export function inlineAsset(filePath: string) {
 }
 
 function inlineTemplate(fileContent: string, filePath: string) {
-    return fileContent.replace(/templateUrl:\s*'([^']+?\.html)'/g, (_match, templateUrl) => {
+    return fileContent.replace(/['"]?templateUrl['"]?:\s*['"]([^']+?\.html)['"]/g, (_match, templateUrl) => {
         const templatePath = join(dirname(filePath), templateUrl);
         const templateContent = loadResourceFile(templatePath);
-        return `template: "${templateContent}"`;
+
+        return filePath.includes('.json')
+            ? `"template": "${templateContent}"`
+            : `template: "${templateContent}"`;
     });
 }
 
 function inlineStyles(fileContent: string, filePath: string) {
-    return fileContent.replace(/styleUrls:\s*(\[[\s\S]*?])/gm, (_match, styleUrlsValue) => {
+    return fileContent.replace(/['"]?styleUrls['"]?:\s*(\[[\s\S]*?])/gm, (_match, styleUrlsValue) => {
         // The RegExp matches the array of external style files. This is a string right now and
         // can to be parsed using the `eval` method. The value looks like "['AAA.css', 'BBB.css']"
         const styleUrls = eval(styleUrlsValue) as string[];
@@ -37,7 +41,9 @@ function inlineStyles(fileContent: string, filePath: string) {
             .map(url => join(dirname(filePath), url.replace('.less', '.css')))
             .map(path => loadResourceFile(path));
 
-        return `styles: ["${styleContents.join(' ')}"]`;
+        return filePath.includes('.json')
+            ? `"styles": ["${styleContents.join(' ')}"]`
+            : `styles: ["${styleContents.join(' ')}"]`;
     });
 }
 

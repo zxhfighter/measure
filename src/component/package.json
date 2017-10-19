@@ -1,5 +1,7 @@
 {
-    "name": "@angular/material",
+    "name": "xdesign",
     "version": "0.0.1",
-    "description": "Hahaha"
+    "description": "Hahaha",
+    "main": "./bundle/xdesign.umd.js",
+    "module": "./index.js"
 }

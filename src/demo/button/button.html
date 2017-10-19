@@ -1,0 +1,42 @@
+<h3>基本状态</h3>
+
+{{ counter }}
+
+<button x-button theme="primary" (click)="onClick()">白字主色调</button>
+<button x-button theme="default" (click)="onClick()">白底黑字带边框</button>
+<button x-button theme="neutral" (click)="onClick()">灰底黑字</button>
+<button x-button theme="transparent" (click)="onClick()">透明底黑字</button>
+<button x-button disabled (click)="onClick()">置灰按钮</button>
+<button x-button theme="yellow" (click)="onClick()">自定义颜色主题</button>
+
+
+
+<h3>基础大小</h3>
+
+<button x-button [size]="size">默认宽度</button>
+<button x-button size="sm">默认宽度</button>
+<button x-button>默认宽度</button>
+<button x-button size="lg">默认宽度</button>
+
+<button type="button" (click)="changeSize()">第一个按钮变大</button>
+
+<h3>链接按钮</h3>
+
+<a x-button size="xs" href="http://www.baidu.com" target="_blank">链接按钮</a>
+<a x-button size="sm" href="http://www.baidu.com" target="_blank">链接按钮</a>
+<a x-button href="http://www.baidu.com" target="_blank">链接按钮</a>
+<a x-button size="lg" href="http://www.baidu.com" target="_blank">链接按钮</a>
+
+<h3>图标按钮</h3>
+
+<button x-button>
+    <i class="fa fa-bug"></i> 图像上传
+</button>
+
+<button x-button>
+    图像下载 <i class="fa fa-book"></i>
+</button>
+
+<button x-button>
+    <i class="fa fa-crop"></i>
+</button>

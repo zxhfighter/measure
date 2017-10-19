@@ -5,6 +5,8 @@
 /ldist
 /tmp
 /out-tsc
+/aot
+/docs/dist
 
 # dependencies
 /node_modules

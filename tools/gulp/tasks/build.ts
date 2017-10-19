@@ -3,6 +3,7 @@ import {spawnSync} from 'child_process';
 import {resolve, join} from 'path';
 import {sequenceTask} from '../utils/sequence-task';
 import {inlineAssetForDirectory} from '../utils/inline-asset';
+import {config} from '../utils/config';
 
 const rollup = require('rollup');
 const rollupNodeResolutionPlugin = require('rollup-plugin-node-resolve');
@@ -11,15 +12,6 @@ const less = require('gulp-less');
 const LessAutoprefix = require('less-plugin-autoprefix');
 const autoprefixPlugin = new LessAutoprefix({browsers: ['last 2 versions']});
 const gulpCleanCss = require('gulp-clean-css');
-
-const config = {
-    moduleName: 'xdesign',
-    dist: resolve('./dist/packages'),
-    componentPath: resolve('./src/component'),
-    umdPath: resolve('./dist/packages/bundle'),
-    entry: resolve('./dist/packages/index.js'),
-    tsconfigPath: resolve('./src/component/tsconfig.json')
-};
 
 const htmlMinifierOptions = {
     collapseWhitespace: true,
@@ -33,7 +25,8 @@ task('build', sequenceTask(
     'build:aot',
     'build:assets',
     'build:inline-assets',
-    'build:bundle'
+    'build:bundle',
+    'build:package'
 ));
 
 /**

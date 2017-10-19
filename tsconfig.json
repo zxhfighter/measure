@@ -15,5 +15,11 @@
         "typeRoots": [
             "node_modules/@types"
         ]
-    }
+    },
+    "exclude": [
+        "scafford/**/*.ts",
+        "tools/**/*.ts",
+        "aot/**/*.ts",
+        "src/demo/main-aot.ts"
+    ]
 }

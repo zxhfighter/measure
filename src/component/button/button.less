@@ -1,7 +1,73 @@
-.ui-button {
-    color: #f00;
-    box-shadow: 1px 1px 1px #ccc;
-    animation: abc 1s ease;
+@prefix: x;
+@border-radius: 0px;
+
+// --- layout ---
+.@{prefix}-button {
+    border-radius: @border-radius;
+    user-select: none;
+    padding: 0 20px;
     box-sizing: border-box;
-    display: flex;
+    cursor: pointer;
+}
+
+// themes
+.@{prefix}-button-theme-primary {
+    color: #fff;
+    background-color: #3998FC;
+    border-color: #3998FC;
+}
+
+.@{prefix}-button-theme-default {
+    background-color: #fff;
+    border-color: #dbdbdb;
+}
+
+.@{prefix}-button-theme-neutral {
+    background-color: #eee;
+    border-color: #eee;
+}
+
+.@{prefix}-button-theme-transparent {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.@{prefix}-button-theme-yellow {
+    background-color: #ff0;
+    color: #000;
+    border-color: #ff0;
+}
+
+// sizes
+.@{prefix}-button-size-lg {
+    height: 42px;
+    font-size: 18px;
+}
+
+.@{prefix}-button-size-default {
+    height: 36px;
+    font-size: 14px;
+}
+
+.@{prefix}-button-size-sm {
+    height: 32px;
+    font-size: 14px;
+}
+
+.@{prefix}-button-size-xs {
+    height: 28px;
+    font-size: 12px;
+}
+
+// disabled
+.@{prefix}-button[disabled] {
+    background-color: #eee;
+    color: #b8b8b8;
+    // pointer-events: none;
+    cursor: not-allowed;
+
+    &:active {
+        box-shadow: none;
+        color: #f00;
+    }
 }

@@ -4,7 +4,7 @@
         "declaration": true,
         "emitDecoratorMetadata": true,
         "sourceMap": true,
-        "importHelpers": false,
+        "importHelpers": true,
         "baseUrl": ".",
         "rootDir": ".",
         "module": "es2015",

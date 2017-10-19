@@ -1,30 +1,78 @@
 import {
-    Component, Input, Output, EventEmitter, NgModule,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, HostBinding
+    Component, Input, ElementRef, SimpleChanges, AfterViewInit,
+    OnChanges, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
+import {ButtonConfig} from './button.config';
+
+/** default button theme types */
+export type BUTTON_THEME = 'primary' | 'default' | 'neutral' | 'transparent' | string;
+
+/** default button size types */
+export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
+
+/**
+ * Button Component
+ */
 @Component({
-    selector: 'ui-button',
+    selector: 'button[x-button], a[x-button]',
     templateUrl: './button.html',
     styleUrls: ['./button.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    preserveWhitespaces: false
+    preserveWhitespaces: false,
+    host: {
+        'attr.disabled': 'this.disabled || null'
+    },
+    exportAs: 'XButton'
 })
-export class UIButtonComponent implements OnInit {
-    name = 'ComponentName';
+export class ButtonComponent implements OnChanges, AfterViewInit {
+
+    /** button theme, there four default themes: 'primary' | 'default' | 'neutral' | 'transparent' */
+    @Input() theme: BUTTON_THEME = 'default';
+
+    /** button size, there four default sizes: lg */
+    @Input() size: BUTTON_SIZE = 'default';
+
+    /** button disabled state */
     @Input() disabled = false;
-    @Input() size: 'lg'|'sm'|'xs' = 'sm';
 
-    @HostBinding('attr.disabled') get () {
-        return this.disabled || null;
+    constructor(private el: ElementRef, private _config: ButtonConfig) {
+        Object.assign(this, _config);
     }
 
-    constructor() {
-
+    ngOnChanges(changes: SimpleChanges) {
+        // refresh class list
+        if (changes['theme'] || changes['size']) {
+            this.setClass();
+        }
     }
 
-    ngOnInit() {
+    ngAfterViewInit() {
+        // init class list
+        this.setClass();
+    }
 
+    /**
+     * set host element classes
+     * @docs-private
+     */
+    setClass() {
+        const nativeEl = this.el.nativeElement;
+        nativeEl.className = this.getClassName();
+    }
+
+    /**
+     * get host element classes, depends on the theme and size.
+     * @return {string} class names
+     * @docs-private
+     */
+    getClassName() {
+        return [
+            'x-widght',
+            'x-button',
+            `x-button-theme-${this.theme || 'default'}`,
+            `x-button-size-${this.size || 'default'}`
+        ].join(' ');
     }
 }
