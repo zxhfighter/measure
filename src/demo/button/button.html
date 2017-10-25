@@ -1,6 +1,8 @@
 <h3>基本状态</h3>
 
-{{ counter }}
+<div>
+You clicked: {{ counter }} times
+</div>
 
 <button x-button theme="primary" (click)="onClick()">白字主色调</button>
 <button x-button theme="default" (click)="onClick()">白底黑字带边框</button>
@@ -13,12 +15,14 @@
 
 <h3>基础大小</h3>
 
-<button x-button [size]="size">默认宽度</button>
+<button x-button [size]="size">{{buttonText}}</button>
 <button x-button size="sm">默认宽度</button>
 <button x-button>默认宽度</button>
 <button x-button size="lg">默认宽度</button>
 
-<button type="button" (click)="changeSize()">第一个按钮变大</button>
+<button type="button" (click)="changeSize()">改变第一个按钮大小</button>
+<button type="button" (click)="changeText()">改变第一个按钮文本</button>
+
 
 <h3>链接按钮</h3>
 
@@ -37,6 +41,6 @@
     图像下载 <i class="fa fa-book"></i>
 </button>
 
-<button x-button>
-    <i class="fa fa-crop"></i>
+<button x-button theme="icon">
+    <i class="iconfont icon-bianji"></i>
 </button>

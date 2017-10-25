@@ -24,7 +24,7 @@ module.exports = webpackMerge(webpackCommonConfig, {
                     'style-loader',
                     'css-loader'
                 ],
-                include: [helper.root('app/src/asset/css')]
+                include: [helper.root('src/asset/less')]
             },
 
             {
@@ -34,7 +34,7 @@ module.exports = webpackMerge(webpackCommonConfig, {
                     'css-loader',
                     'less-loader'
                 ],
-                include: [helper.root('app/src/asset/css')]
+                include: [helper.root('src/asset/less')]
             }
         ]
     },

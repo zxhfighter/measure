@@ -68,7 +68,7 @@ module.exports = {
                     'to-string-loader',
                     'css-loader'
                 ],
-                exclude: [helper.root('app/src/asset/css')]
+                exclude: [helper.root('src/asset/less')]
             },
 
             {
@@ -78,7 +78,7 @@ module.exports = {
                     'css-loader',
                     'less-loader'
                 ],
-                exclude: [helper.root('app/src/asset/css')]
+                exclude: [helper.root('src/asset/less')]
             },
 
             {

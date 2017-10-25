@@ -12,7 +12,7 @@
     "build:demo:aot": "gulp build:demo",
     "lint": "tslint -p . -e scafford",
     "clean": "gulp clean",
-    "tar": "cd dist/packages/ && tar -czf xdesign.tar.gz *",
+    "component": "gulp generate:component",
     "docs": "gulp docs"
   },
   "keywords": [],

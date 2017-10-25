@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import '../asset/less/index.less';
+
 
 @Component({
     selector: 'app-root',

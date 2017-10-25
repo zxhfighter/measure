@@ -10,5 +10,5 @@ export class ButtonConfig {
     theme: string = 'primary';
 
     /** button default size */
-    size: string = 'lg';
+    size: string = 'default';
 }

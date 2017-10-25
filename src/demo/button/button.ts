@@ -14,12 +14,13 @@ export function getButtonConfig(): ButtonConfig {
     templateUrl: './button.html',
     styleUrls: ['./button.less'],
     encapsulation: ViewEncapsulation.Emulated,
-    changeDetection: ChangeDetectionStrategy.Default,
-    providers: [{provide: ButtonConfig, useFactory: getButtonConfig}]
+    changeDetection: ChangeDetectionStrategy.Default
+    // providers: [{provide: ButtonConfig, useFactory: getButtonConfig}]
 })
 export class DemoButton implements OnInit {
     name = 'ComponentName';
     counter = 0;
+    buttonText = '默认文本';
 
     size = 'xs';
     constructor() {
@@ -35,6 +36,10 @@ export class DemoButton implements OnInit {
     }
 
     changeSize() {
-        this.size = 'lg';
+        this.size = this.size === 'lg' ? 'xs' : 'lg';
+    }
+
+    changeText() {
+        this.buttonText = '变变变：' + Math.floor(Math.random() * 100);
     }
 }

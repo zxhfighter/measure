@@ -69,10 +69,10 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
      */
     getClassName() {
         return [
-            'x-widght',
+            'x-widget',
             'x-button',
-            `x-button-theme-${this.theme || 'default'}`,
-            `x-button-size-${this.size || 'default'}`
+            `x-button-size-${this.size || 'default'}`,
+            `x-button-theme-${this.theme || 'default'}`
         ].join(' ');
     }
 }

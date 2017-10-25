@@ -1,4 +1,41 @@
-.ui-breadcrumb {
+@import "../../asset/less/dev";
+
+.@{prefix}-breadcrumb {
     display: block;
-    color: #f00;
+}
+
+.@{prefix}-breadcrumb-list {
+    .list-reset();
+
+    .@{prefix}-breadcrumb-item {
+        .list-reset();
+        float: left;
+
+        .@{prefix}-breadcrumb-text {
+            color: @brand-primary;
+            text-decoration: none;
+
+            &:hover {
+                color: lighten(@brand-primary, 10%);
+            }
+
+            &.last {
+                color: inherit;
+            }
+
+            &.no-clickable {
+                color: inherit;
+                pointer-events: none;
+            }
+        }
+
+        .@{prefix}-breadcrumb-split {
+            margin: 0 3px;
+
+            .iconfont {
+                font-size: 12px;
+                color: @text-color;
+            }
+        }
+    }
 }
