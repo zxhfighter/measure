@@ -65,6 +65,7 @@
     "gulp-less": "^3.3.2",
     "gulp-markdown": "^1.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
     "gulp-template": "^4.0.0",
     "gulp-transform": "^3.0.5",
     "highlight.js": "^9.12.0",

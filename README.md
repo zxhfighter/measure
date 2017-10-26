@@ -27,7 +27,7 @@ $ gulp generate:component --name your-component
 A `your-component` folder will be created in `src/component`, and the contents are:
 
 ```bash
-.
+your-component
 ├── index.ts
 ├── public.api.ts
 ├── your-component.config.ts
@@ -43,7 +43,17 @@ and it will add your component entry to `src/component/index.ts`.
 
 You can then write a demo to test your component in `src/demo`.
 
-A scafford tool will be provided soon.
+When you use `gulp generate:component --name your-component`, a folder will be generated in `src/demo` too.
+
+```bash
+your-component
+├── index.ts
+├── your-component.html
+├── your-component.less
+└── your-component.ts
+```
+
+But you will still config the `src/demo/app.router.ts` and `src/demo/app.module.ts`.
 
 ## build
 

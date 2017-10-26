@@ -1,6 +1,5 @@
 import {
-    Component, Input, Output, EventEmitter,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy
+    Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
 import {BreadcrumbItem} from '../../component/breadcrumb';
@@ -9,7 +8,7 @@ import {BreadcrumbItem} from '../../component/breadcrumb';
     selector: 'demo-breadcrumb',
     templateUrl: './breadcrumb.html',
     styleUrls: ['./breadcrumb.less'],
-    encapsulation: ViewEncapsulation.Emulated,
+    preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
 export class DemoBreadcrumb implements OnInit {

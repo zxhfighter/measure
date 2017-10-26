@@ -4,8 +4,8 @@
  */
 
 import {Routes} from '@angular/router';
-import {DemoButton} from './button/button';
-import {DemoBreadcrumb} from './breadcrumb/breadcrumb';
+import {DemoButton} from './button';
+import {DemoBreadcrumb} from './breadcrumb';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},

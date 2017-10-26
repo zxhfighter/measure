@@ -9,8 +9,8 @@ import {
   BreadcrumbModule
 } from '../component';
 
-import {DemoButton} from './button/button';
-import {DemoBreadcrumb} from './breadcrumb/breadcrumb';
+import {DemoButton} from './button';
+import {DemoBreadcrumb} from './breadcrumb';
 import {appRoutes} from './app.router';
 
 @NgModule({
