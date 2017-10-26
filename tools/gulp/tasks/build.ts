@@ -7,6 +7,7 @@ import {config} from '../utils/config';
 
 const rollup = require('rollup');
 const rollupNodeResolutionPlugin = require('rollup-plugin-node-resolve');
+const rollupCommonjsPlugin = require('rollup-plugin-commonjs');
 const htmlmin = require('gulp-htmlmin');
 const less = require('gulp-less');
 const LessAutoprefix = require('less-plugin-autoprefix');
@@ -88,7 +89,8 @@ task('build:bundle', async () => {
             '@angular/common'
         ],
         plugins: [
-            rollupNodeResolutionPlugin()
+            rollupNodeResolutionPlugin(),
+            rollupCommonjsPlugin()
         ]
     };
 
