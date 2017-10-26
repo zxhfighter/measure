@@ -21,6 +21,7 @@ export class DemoButton implements OnInit {
     name = 'ComponentName';
     counter = 0;
     buttonText = '默认文本';
+    isDisabled = false;
 
     size = 'xs';
     constructor() {
@@ -41,5 +42,10 @@ export class DemoButton implements OnInit {
 
     changeText() {
         this.buttonText = '变变变：' + Math.floor(Math.random() * 100);
+    }
+
+    changeDisabled() {
+        this.isDisabled = !this.isDisabled;
+        console.log('in changeDisabled: ', this.isDisabled);
     }
 }

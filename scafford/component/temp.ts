@@ -4,11 +4,15 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'ui-<%= name %>',
+    selector: 'x-<%= name %>',
     templateUrl: './<%= name %>.html',
     styleUrls: ['./<%= name %>.less'],
-    encapsulation: ViewEncapsulation.Emulated,
-    changeDetection: ChangeDetectionStrategy.Default
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    preserveWhitespaces: false,
+    host: {
+        'class': 'x-widget x-<%= name %>'
+    }
 })
 export class <%= upperName %>Component implements OnInit {
     constructor() {

@@ -1,8 +1,9 @@
 import {
     Component, Input, ElementRef, SimpleChanges, AfterViewInit,
-    OnChanges, ViewEncapsulation, ChangeDetectionStrategy
+    OnChanges, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 
+import {coerceBooleanProperty} from '../util/coerce';
 import {ButtonConfig} from './button.config';
 
 /** default button theme types */
@@ -15,16 +16,16 @@ export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
  * Button Component
  */
 @Component({
-    selector: 'button[x-button], a[x-button]',
+    selector: 'button[x-button]',
     templateUrl: './button.html',
     styleUrls: ['./button.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'attr.disabled': 'this.disabled || null'
+        '[disabled]': 'disabled || null'
     },
-    exportAs: 'XButton'
+    exportAs: 'xButton'
 })
 export class ButtonComponent implements OnChanges, AfterViewInit {
 
@@ -34,10 +35,23 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
     /** button size, there four default sizes: lg */
     @Input() size: BUTTON_SIZE = 'default';
 
-    /** button disabled state */
-    @Input() disabled = false;
+    private _disabled = false;
 
-    constructor(private el: ElementRef, private _config: ButtonConfig) {
+    /** button disabled state */
+    @Input() get disabled() {
+        return this._disabled;
+    }
+
+    set disabled(value: any) {
+        console.log(value);
+        this._disabled = coerceBooleanProperty(value);
+    }
+
+    constructor(
+        private el: ElementRef,
+        private _config: ButtonConfig,
+        private cd: ChangeDetectorRef
+    ) {
         Object.assign(this, _config);
     }
 
@@ -45,6 +59,11 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
         // refresh class list
         if (changes['theme'] || changes['size']) {
             this.setClass();
+        }
+
+        if (changes['disabled']) {
+            console.log(changes['disabled']);
+            this.disabled = coerceBooleanProperty(changes['disabled'].currentValue);
         }
     }
 
@@ -74,5 +93,29 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
             `x-button-size-${this.size || 'default'}`,
             `x-button-theme-${this.theme || 'default'}`
         ].join(' ');
+    }
+}
+
+@Component({
+    selector: 'a[x-button]',
+    templateUrl: './button.html',
+    styleUrls: ['./button.less'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    preserveWhitespaces: false,
+    host: {
+        '[attr.tabindex]': 'disabled ? -1 : 0',
+        '[attr.disabled]': 'disabled || null',
+        '(click)': '_haltDisabledEvents($event)',
+    },
+    exportAs: 'xButton, xAnchor'
+})
+export class ButtonAnchorComponent extends ButtonComponent {
+
+    _haltDisabledEvents(event: Event) {
+        if (this.disabled) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+        }
     }
 }

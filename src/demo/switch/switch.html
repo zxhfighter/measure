@@ -1,0 +1,29 @@
+<h3>Switch demo</h3>
+
+<x-switch></x-switch>
+
+<h3>default checked</h3>
+
+<x-switch [checked]="checked"></x-switch>
+<div>
+    <button x-button (click)="onChange()">Change checked state</button>
+</div>
+
+
+<h3>default checked, disabled</h3>
+
+<x-switch [checked]="true" [disabled]="disabled"></x-switch>
+<div>
+    <button x-button (click)="onChangeDisabled()">Change disabled state</button>
+</div>
+
+<h3>default unchecked, disabled</h3>
+
+<x-switch disabled></x-switch>
+
+<h3>small swicth component</h3>
+
+<x-switch styleClass="x-widget-small"></x-switch>
+<x-switch styleClass="x-widget-small" [checked]="true"></x-switch>
+<x-switch styleClass="x-widget-small" [checked]="true" disabled></x-switch>
+<x-switch styleClass="x-widget-small" disabled></x-switch>

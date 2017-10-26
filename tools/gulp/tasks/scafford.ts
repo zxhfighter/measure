@@ -52,17 +52,17 @@ task(':demo:update:html', () => {
                 .appendChild(this.createElement('li'));
 
             li.setAttribute('class', 'list-item');
-            li.setAttribute('routerlinkactive', 'active');
+            li.setAttribute('routerLinkActive', 'active');
 
             // 写成 [routerLink] 会报错，因此在下边用 gulp-replace 替换成 [routerLink]
-            li.setAttribute('routerlink', `['/${name}']`);
+            li.setAttribute('routerLink', `['/${name}']`);
             li.appendChild(this.createTextNode(name));
 
             return this;
         }))
         .pipe(replace('<html><head></head><body>', ''))
         .pipe(replace('</body></html>', ''))
-        .pipe(replace('routerlink=', '[routerlink]='))
+        .pipe(replace('routerLink=', '[routerLink]='))
         .pipe(dest(config.demoPath));
 });
 

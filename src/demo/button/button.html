@@ -4,13 +4,16 @@
 You clicked: {{ counter }} times
 </div>
 
-<button x-button theme="primary" (click)="onClick()">白字主色调</button>
+<button x-button theme="primary" (click)="onClick()" [disabled]="isDisabled">白字主色调</button>
 <button x-button theme="default" (click)="onClick()">白底黑字带边框</button>
 <button x-button theme="neutral" (click)="onClick()">灰底黑字</button>
 <button x-button theme="transparent" (click)="onClick()">透明底黑字</button>
 <button x-button disabled (click)="onClick()">置灰按钮</button>
 <button x-button theme="yellow" (click)="onClick()">自定义颜色主题</button>
 
+<p>
+    <button x-button theme="default" (click)="changeDisabled()">置灰第一个按钮</button>
+</p>
 
 
 <h3>基础大小</h3>
@@ -20,16 +23,30 @@ You clicked: {{ counter }} times
 <button x-button>默认宽度</button>
 <button x-button size="lg">默认宽度</button>
 
-<button type="button" (click)="changeSize()">改变第一个按钮大小</button>
-<button type="button" (click)="changeText()">改变第一个按钮文本</button>
+<p>
+    <button x-button theme="default" (click)="changeSize()">改变第一个按钮大小</button>
+    <button x-button theme="default" (click)="changeText()">改变第一个按钮文本</button>
+    <button x-button theme="default" (click)="changeText()">改变第一个按钮文本</button>
+</p>
+
 
 
 <h3>链接按钮</h3>
 
+<p>
 <a x-button size="xs" href="http://www.baidu.com" target="_blank">链接按钮</a>
 <a x-button size="sm" href="http://www.baidu.com" target="_blank">链接按钮</a>
 <a x-button href="http://www.baidu.com" target="_blank">链接按钮</a>
 <a x-button size="lg" href="http://www.baidu.com" target="_blank">链接按钮</a>
+</p>
+
+<p>
+    <a [disabled]="isDisabled" x-button size="xs" href="http://www.baidu.com" target="_blank">链接按钮</a>
+    <a disabled x-button size="sm" href="http://www.baidu.com" target="_blank">链接按钮</a>
+    <a x-button href="http://www.baidu.com" target="_blank">链接按钮</a>
+    <a x-button size="lg" href="http://www.baidu.com" target="_blank">链接按钮</a>
+</p>
+
 
 <h3>图标按钮</h3>
 
