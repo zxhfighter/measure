@@ -43,7 +43,6 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
     }
 
     set disabled(value: any) {
-        console.log(value);
         this._disabled = coerceBooleanProperty(value);
     }
 
@@ -62,7 +61,6 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
         }
 
         if (changes['disabled']) {
-            console.log(changes['disabled']);
             this.disabled = coerceBooleanProperty(changes['disabled'].currentValue);
         }
     }

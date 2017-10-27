@@ -1,63 +1,68 @@
-<h3>基本状态</h3>
+<h1 class="main-title">button</h1>
 
-<div>
-You clicked: {{ counter }} times
-</div>
+<section>
+    <h3 class="section-title">Usage</h3>
 
-<button x-button theme="primary" (click)="onClick()" [disabled]="isDisabled">白字主色调</button>
-<button x-button theme="default" (click)="onClick()">白底黑字带边框</button>
-<button x-button theme="neutral" (click)="onClick()">灰底黑字</button>
-<button x-button theme="transparent" (click)="onClick()">透明底黑字</button>
-<button x-button disabled (click)="onClick()">置灰按钮</button>
-<button x-button theme="yellow" (click)="onClick()">自定义颜色主题</button>
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;ButtonModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
 
-<p>
-    <button x-button theme="default" (click)="changeDisabled()">置灰第一个按钮</button>
-</p>
+<section>
+    <h3 class="section-title">Themes</h3>
 
+    <p>
+        You clicked: {{ counter }} times
+    </p>
+    <p>
+        <button x-button theme="primary" (click)="onClick()" [disabled]="isDisabled">primary theme</button>
+        <button x-button theme="default" (click)="onClick()">default theme</button>
+        <button x-button theme="neutral" (click)="onClick()">neutral theme</button>
+        <button x-button theme="transparent" (click)="onClick()">transparent theme</button>
+        <button x-button disabled (click)="onClick()">disabled button</button>
+        <button x-button theme="yellow" (click)="onClick()">custom theme</button>
+    </p>
 
-<h3>基础大小</h3>
+    <p>
+        <button x-button theme="default" (click)="changeDisabled()">disable the first button</button>
+    </p>
+</section>
 
-<button x-button [size]="size">{{buttonText}}</button>
-<button x-button size="sm">默认宽度</button>
-<button x-button>默认宽度</button>
-<button x-button size="lg">默认宽度</button>
+<section>
+    <h3 class="section-title">Sizes</h3>
 
-<p>
-    <button x-button theme="default" (click)="changeSize()">改变第一个按钮大小</button>
-    <button x-button theme="default" (click)="changeText()">改变第一个按钮文本</button>
-    <button x-button theme="default" (click)="changeText()">改变第一个按钮文本</button>
-</p>
+    <p>
+        <button x-button [size]="size">{{buttonText}}</button>
+        <button x-button size="sm">small height = 32px</button>
+        <button x-button>default height = 36px</button>
+        <button x-button size="lg">large height = 42px</button>
+    </p>
 
+    <p>
+        <button x-button theme="default" (click)="changeSize()">change first button size</button>
+        <button x-button theme="default" (click)="changeText()">change first button text</button>
+    </p>
+</section>
 
+<section>
+    <h3 class="section-title">Link Buttons</h3>
 
-<h3>链接按钮</h3>
+    <p>
+        <a [disabled]="isDisabled" x-button size="xs" href="http://www.baidu.com" target="_blank">Link Button</a>
+        <a disabled x-button size="sm" href="http://www.baidu.com" target="_blank">Link Button</a>
+        <a x-button href="http://www.baidu.com" target="_blank">Link Button</a>
+        <a x-button size="lg" href="http://www.baidu.com" target="_blank">Link Button</a>
+    </p>
+</section>
 
-<p>
-<a x-button size="xs" href="http://www.baidu.com" target="_blank">链接按钮</a>
-<a x-button size="sm" href="http://www.baidu.com" target="_blank">链接按钮</a>
-<a x-button href="http://www.baidu.com" target="_blank">链接按钮</a>
-<a x-button size="lg" href="http://www.baidu.com" target="_blank">链接按钮</a>
-</p>
+<section>
+    <h3 class="section-title">Button with icons</h3>
 
-<p>
-    <a [disabled]="isDisabled" x-button size="xs" href="http://www.baidu.com" target="_blank">链接按钮</a>
-    <a disabled x-button size="sm" href="http://www.baidu.com" target="_blank">链接按钮</a>
-    <a x-button href="http://www.baidu.com" target="_blank">链接按钮</a>
-    <a x-button size="lg" href="http://www.baidu.com" target="_blank">链接按钮</a>
-</p>
-
-
-<h3>图标按钮</h3>
-
-<button x-button>
-    <i class="fa fa-bug"></i> 图像上传
-</button>
-
-<button x-button>
-    图像下载 <i class="fa fa-book"></i>
-</button>
-
-<button x-button theme="icon">
-    <i class="iconfont icon-bianji"></i>
-</button>
+    <p>
+        <button x-button><i class="fa fa-bug"></i> Upload Image</button>
+        <button x-button>Download Image <i class="fa fa-book"></i></button>
+        <button x-button theme="icon"><i class="iconfont icon-bianji"></i></button>
+    </p>
+</section>

@@ -1,0 +1,143 @@
+@import "../../../node_modules/bootstrap-less/bootstrap/index.less";
+
+@header-height: 60px;
+@aside-width: 150px;
+
+*:focus {
+    outline: none;
+}
+
+body {
+    background: #fffdee;
+}
+
+.demo-app {
+
+    .app-header {
+        position: fixed;
+        height: @header-height;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background-color: @brand-primary;
+
+        .logo {
+            font-size: 28px;
+            color: #fff;
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        .main-menu {
+            position: absolute;
+            left: 200px;
+            top: 0;
+            list-style: none;
+
+            &-item {
+                list-style: none;
+                float: left;
+                height: @header-height;
+                line-height: @header-height;
+                padding: 0 20px;
+                color: #fffdee;
+                cursor: pointer;
+                font-size: 16px;
+
+                &:hover,
+                &.active, {
+                    background: darken(@brand-primary, 5%);
+                }
+            }
+        }
+    }
+
+    .app-body {
+        padding-top: @header-height;
+
+        .app-aside {
+            position: fixed;
+            top: @header-height;
+            bottom: 0;
+            width: @aside-width;
+            background: #e6e2af;
+
+            .app-aside-list {
+                padding: 0;
+                margin: 0;
+
+                .list-item {
+                    height: 38px;
+                    line-height: 38px;
+                    padding-left: 20px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    color: @brand-primary;
+
+                    &:hover,
+                    &.active {
+                        background-color: #fffdee;
+                    }
+                }
+            }
+        }
+
+        .app-content {
+            margin-left: @aside-width;
+            padding: 20px;
+
+            .main-title {
+                margin-top: 0;
+                font-size: 24px;
+                color: @brand-primary;
+            }
+
+            .section-title {
+                font-size: 16px;
+                color: @brand-primary;
+                font-style: italic;
+                margin: 50px 0 10px 0;
+                padding: 5px 0;
+                padding-left: 20px;
+                position: relative;
+
+                &:before {
+                    position: absolute;
+                    content: ' ';
+                    display: block;
+                    width: 4px;
+                    height: 100%;
+                    background-color: @brand-primary;
+                    left: 0;
+                    top: 0;
+                }
+            }
+
+            .section-desc {
+                padding: 5px 0;
+            }
+        }
+    }
+
+    .app-body-collapse {
+        .app-aside {
+            display: none;
+        }
+
+        .app-content {
+            margin-left: 0;
+        }
+    }
+
+    .app-footer {
+
+    }
+}
+
+// docs
+.docs-page {
+    width: 960px;
+    margin: 0 auto;
+}

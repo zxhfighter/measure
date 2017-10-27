@@ -1,7 +1,29 @@
-<ul class="app-aside-list">
-    <li class="list-item" routerLinkActive="active" [routerLink]="['/button']">button</li>
-    <li class="list-item" routerLinkActive="active" [routerLink]="['/breadcrumb']">breadcrumb</li>
-    <li class="list-item" routerLinkActive="active" [routerLink]="['/switch']">switch</li>
-</ul>
+<div class="demo-app">
+    <div class="app-header">
+        <a href="javascript:;" class="logo"> X Design </a>
 
-<router-outlet></router-outlet>
+        <ul class="main-menu clearfix">
+            <li class="main-menu-item" routerLinkActive="active" [routerLink]="['/demo/docs']">guides</li>
+            <li class="main-menu-item" routerLinkActive="active" [routerLink]="['/demo/components']">components</li>
+            <li class="main-menu-item" routerLinkActive="active" [routerLink]="['/demo/api']">apis</li>
+        </ul>
+    </div>
+
+    <div class="app-body">
+        <aside class="app-aside">
+            <ul class="app-aside-list">
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/button']">button</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/breadcrumb']">breadcrumb</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/switch']">switch</li>
+            </ul>
+        </aside>
+
+        <div class="app-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+    <div class="app-footer">
+
+    </div>
+</div>
