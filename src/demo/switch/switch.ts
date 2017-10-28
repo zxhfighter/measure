@@ -13,7 +13,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class DemoSwitch implements OnInit {
 
-    checked = false;
+    checked = true;
     disabled = true;
 
     form: FormGroup;

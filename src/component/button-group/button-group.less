@@ -1,0 +1,53 @@
+@import "../../asset/less/dev";
+
+// button-toggle
+.@{prefix}-button-toggle {
+    display: inline-block;
+    border-radius: @border-radius;
+    user-select: none;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+
+    background-color: #fff;
+    cursor: pointer;
+
+    // &:hover {
+    //     background-color: #f7f7f7;
+    //     color: @text-color-dark;
+    // }
+
+    &-checked {
+        background-color: #e7e7e7;
+        color: @text-color-dark;
+    }
+
+    &-disabled {
+        color: #b8b8b8;
+        background-color: #eee;
+
+        &:hover {
+            cursor: not-allowed;
+
+            color: #b8b8b8;
+            background-color: #eee;
+        }
+    }
+}
+
+// button-group
+.@{prefix}-button-group {
+    display: block;
+
+    .clearfix();
+
+    .x-button-toggle {
+        float: left;
+        margin: 0;
+        margin-left: -1px;
+    }
+}

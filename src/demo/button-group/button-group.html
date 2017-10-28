@@ -1,0 +1,68 @@
+<h1 class="main-title">button group</h1>
+
+<!-- <x-button-toggle><i class="fa fa-apple"></i>苹果</x-button-toggle> -->
+
+<!-- <x-button-toggle><i class="fa fa-car"></i>橘子</x-button-toggle> -->
+
+<p>
+    <x-button-toggle value="apple" [disabled]="isDisabled">苹果
+        <i class="fa fa-apple"></i>
+    </x-button-toggle>
+</p>
+
+
+<p>
+    <x-button-group type="radio">
+        <x-button-toggle value="apple" [disabled]="isDisabled">苹果
+            <i class="fa fa-apple"></i>
+        </x-button-toggle>
+        <x-button-toggle value="book" [disabled]="isDisabled">书
+            <i class="fa fa-book"></i>
+        </x-button-toggle>
+        <x-button-toggle value="dog" [disabled]="isDisabled">🐶
+            <i class="fa fa-flash"></i>
+        </x-button-toggle>
+    </x-button-group>
+</p>
+
+<p>
+    <x-button-group type="checkbox">
+        <x-button-toggle value="apple" [disabled]="isDisabled">苹果
+            <i class="fa fa-apple"></i>
+        </x-button-toggle>
+        <x-button-toggle value="book" [disabled]="isDisabled">书
+            <i class="fa fa-book"></i>
+        </x-button-toggle>
+        <x-button-toggle value="dog" [disabled]="isDisabled">🐶
+            <i class="fa fa-flash"></i>
+        </x-button-toggle>
+    </x-button-group>
+</p>
+
+<form #form="ngForm">
+    <x-button-group [ngModel]="['book']" name="group" type="checkbox">
+        <x-button-toggle value="apple">苹果
+            <i class="fa fa-apple"></i>
+        </x-button-toggle>
+        <x-button-toggle value="book">书
+            <i class="fa fa-book"></i>
+        </x-button-toggle>
+        <x-button-toggle disabled value="dog">🐶
+            <i class="fa fa-flash"></i>
+        </x-button-toggle>
+    </x-button-group>
+
+    <x-button-group ngModel name="radioGroup" type="radio">
+        <x-button-toggle value="apple">苹果
+            <i class="fa fa-apple"></i>
+        </x-button-toggle>
+        <x-button-toggle disabled value="book">书
+            <i class="fa fa-book"></i>
+        </x-button-toggle>
+        <x-button-toggle value="dog">🐶
+            <i class="fa fa-flash"></i>
+        </x-button-toggle>
+    </x-button-group>
+</form>
+
+{{ form.value | json }}
