@@ -5,12 +5,16 @@ import {
 
 import {coerceBooleanProperty} from '../util/coerce';
 import {ButtonConfig} from './button.config';
+import {mixinDisabled, CanDisable} from '../core/mixinDisabled';
 
 /** default button theme types */
 export type BUTTON_THEME = 'primary' | 'default' | 'neutral' | 'transparent' | string;
 
 /** default button size types */
 export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
+
+export class ButtonBase {}
+export const _ButtonBase = mixinDisabled(ButtonBase);
 
 /**
  * Button Component
@@ -22,12 +26,15 @@ export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    inputs: ['disabled'],
     host: {
         '[disabled]': 'disabled || null'
     },
     exportAs: 'xButton'
 })
-export class ButtonComponent implements OnChanges, AfterViewInit {
+export class ButtonComponent
+    extends _ButtonBase
+    implements CanDisable, OnChanges, AfterViewInit {
 
     /** button theme, there four default themes: 'primary' | 'default' | 'neutral' | 'transparent' */
     @Input() theme: BUTTON_THEME = 'default';
@@ -35,22 +42,12 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
     /** button size, there four default sizes: lg */
     @Input() size: BUTTON_SIZE = 'default';
 
-    private _disabled = false;
-
-    /** button disabled state */
-    @Input() get disabled() {
-        return this._disabled;
-    }
-
-    set disabled(value: any) {
-        this._disabled = coerceBooleanProperty(value);
-    }
-
     constructor(
         private el: ElementRef,
         private _config: ButtonConfig,
         private cd: ChangeDetectorRef
     ) {
+        super();
         Object.assign(this, _config);
     }
 
@@ -101,6 +98,7 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    inputs: ['disabled'],
     host: {
         '[attr.tabindex]': 'disabled ? -1 : 0',
         '[attr.disabled]': 'disabled || null',

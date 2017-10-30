@@ -8,7 +8,8 @@ import {
   ButtonModule,
   BreadcrumbModule,
   SwitchModule,
-  ButtonGroupModule
+  ButtonGroupModule,
+  BoxGroupModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -19,6 +20,7 @@ import {DemoButton} from './button';
 import {DemoBreadcrumb} from './breadcrumb';
 import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
+import {DemoBoxGroup} from './box-group';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {DemoButtonGroup} from './button-group';
     DemoButton,
     DemoBreadcrumb,
     DemoSwitch,
-    DemoButtonGroup
+    DemoButtonGroup,
+    DemoBoxGroup
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import {DemoButtonGroup} from './button-group';
     BreadcrumbModule,
     SwitchModule,
     ButtonGroupModule,
+    BoxGroupModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],

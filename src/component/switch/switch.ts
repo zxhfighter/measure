@@ -6,6 +6,7 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {coerceBooleanProperty} from '../util/coerce';
+import {CanDisable, mixinDisabled} from '../core/mixinDisabled';
 
 /*
  * Provider Expression that allows x-switch to register as a ControlValueAccessor.
@@ -18,6 +19,9 @@ const SWITCH_VALUE_ACCESSOR = {
     multi: true
 };
 
+export class SwitchBase {}
+export const _SwitchBase = mixinDisabled(SwitchBase);
+
 @Component({
     selector: 'x-switch',
     templateUrl: './switch.html',
@@ -26,29 +30,19 @@ const SWITCH_VALUE_ACCESSOR = {
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     providers: [SWITCH_VALUE_ACCESSOR],
+    inputs: ['disabled'],
     host: {
         'class': 'x-widget x-switch'
     }
 })
 export class SwitchComponent
-    implements  AfterViewInit, OnChanges, ControlValueAccessor {
+    extends _SwitchBase
+    implements CanDisable, AfterViewInit, OnChanges, ControlValueAccessor {
 
     /**
      * Whether the switch is checked
      */
     @Input() checked = false;
-
-    private _disabled = false;
-    @Input() get disabled() {
-        return this._disabled;
-    }
-
-    /**
-     * Whether the switch is disabled
-     */
-    set disabled(value: any) {
-        this._disabled = coerceBooleanProperty(value);
-    }
 
     /**
      * Extra style classes to provide custom themes, e.g. 'class-1 class-2'
@@ -60,7 +54,9 @@ export class SwitchComponent
      */
     @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private el: ElementRef, private cd: ChangeDetectorRef) {}
+    constructor(private el: ElementRef, private cd: ChangeDetectorRef) {
+        super();
+    }
 
     ngOnChanges(changes: SimpleChanges) {
 

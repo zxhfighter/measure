@@ -62,7 +62,8 @@ task(':demo:update:html', () => {
         }))
         .pipe(replace('<html><head></head><body>', ''))
         .pipe(replace('</body></html>', ''))
-        .pipe(replace('routerLink=', '[routerLink]='))
+        .pipe(replace('routerlinkactive', 'routerLinkActive'))
+        .pipe(replace('routerlink=', '[routerLink]='))
         .pipe(dest(config.demoPath));
 });
 

@@ -24,4 +24,16 @@ export class DemoButtonGroup implements OnInit {
     changeDisabled() {
         this.isDisabled = !this.isDisabled;
     }
+
+    onSingleToggle(checked: boolean) {
+        alert(`toggled: ${checked}`);
+    }
+
+    onRadioButtonGroupChanged(event: any) {
+        console.log(event);
+    }
+
+    onCheckboxButtonGroupChanged(event: any) {
+        console.log(event);
+    }
 }

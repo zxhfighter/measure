@@ -8,11 +8,13 @@ import {DemoButton} from './button';
 import {DemoBreadcrumb} from './breadcrumb';
 import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
+import {DemoBoxGroup} from './box-group';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
     {path: 'button', component: DemoButton},
     {path: 'breadcrumb', component: DemoBreadcrumb},
     {path: 'switch', component: DemoSwitch},
-    {path: 'button-group', component: DemoButtonGroup}
+    {path: 'button-group', component: DemoButtonGroup},
+    {path: 'box-group', component: DemoBoxGroup}
 ];

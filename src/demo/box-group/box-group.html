@@ -1,0 +1,61 @@
+<h1 class="main-title">BoxGroup demo</h1>
+
+<!-- <section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">Single checkbox</h3>
+
+    <p>
+        <x-checkbox>北斗</x-checkbox>
+        <x-checkbox>秋实</x-checkbox>
+        <x-checkbox disabled>DSP</x-checkbox>
+        <x-checkbox [disabled]="true" [checked]="true">SSP</x-checkbox>
+        <x-checkbox [disabled]="false">MSP</x-checkbox>
+    </p>
+</section>
+
+
+<section>
+    <h3 class="section-title">Single checkbox</h3>
+
+    <p>
+        <x-checkbox type="radio">北斗</x-checkbox>
+        <x-checkbox type="radio">秋实</x-checkbox>
+        <x-checkbox type="radio" disabled>SSP</x-checkbox>
+        <x-checkbox type="radio" [disabled]="true" [checked]="true">秋实</x-checkbox>
+    </p>
+</section>-->
+
+<section>
+    <h3 class="section-title">box checkbox group</h3>
+
+    <p>
+        <x-boxgroup type="checkbox">
+            <x-checkbox value="b">北斗</x-checkbox>
+            <x-checkbox value="p">秋实</x-checkbox>
+            <x-checkbox value="s" disabled>SSP</x-checkbox>
+            <x-checkbox value="qqq" [disabled]="true" [checked]="true">秋实</x-checkbox>
+        </x-boxgroup>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">box radio group</h3>
+
+    <p>
+        <x-boxgroup type="radio">
+            <x-checkbox value="1">北斗</x-checkbox>
+            <x-checkbox value="x">秋实</x-checkbox>
+            <x-checkbox value="ssp" disabled>SSP</x-checkbox>
+            <x-checkbox value="qiushi" [disabled]="true" [checked]="true">秋实</x-checkbox>
+        </x-boxgroup>
+    </p>
+</section>

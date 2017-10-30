@@ -1,0 +1,105 @@
+@import "../../asset/less/dev";
+
+.x-checkbox {
+    display: inline-block;
+    position: relative;
+
+    .x-checkbox-label {
+        padding-left: 20px;
+        cursor: pointer;
+
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border: 1px solid @text-color;
+            background-color: #fff;
+        }
+    }
+}
+
+.x-checkbox.x-checkbox-checked {
+
+    .x-checkbox-label {
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0.2em;
+            left: 0.18em;
+            width: 0.66em;
+            height: 0.4em;
+            border: 0.11em solid @text-color;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+.x-checkbox.x-checkbox-disabled {
+    .x-checkbox-label {
+        &:before {
+            border-color: #dbdbdb;
+            background-color: #eee;
+        }
+    }
+
+    &.x-checkbox-checked {
+        .x-checkbox-label {
+            &:after {
+                border-color: #b8b8b8;
+            }
+        }
+    }
+}
+
+// radio
+
+.x-checkbox-radio {
+    .x-checkbox-label {
+        &:before {
+            border-radius: 16px;
+        }
+    }
+}
+
+.x-checkbox-radio.x-checkbox-checked {
+    .x-checkbox-label {
+        &:after {
+            border: none;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            left: 4px;
+            top: 4px;
+            background-color: @text-color-dark;
+        }
+    }
+}
+
+.x-checkbox-radio.x-checkbox-disabled {
+    .x-checkbox-label {
+        &:before {
+            border-color: #dbdbdb;
+            background-color: #eee;
+        }
+    }
+
+    &.x-checkbox-checked {
+        .x-checkbox-label {
+            &:after {
+                background-color: #b8b8b8;
+            }
+        }
+    }
+}
+
+.x-box-group {
+    display: block;
+    color: #f00;
+}

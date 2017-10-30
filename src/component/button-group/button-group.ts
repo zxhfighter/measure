@@ -6,8 +6,14 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {coerceBooleanProperty} from '../util/coerce';
+import {mixinDisabled, CanDisable} from '../core/mixinDisabled';
+import {mixinValue, CanValue} from '../core/mixinValue';
 
 export type BUTTON_GROUP_TYPE = 'radio' | 'checkbox';
+export interface ValueType {
+    currentValue: any;
+    value: any;
+}
 
 /*
  * Provider Expression that allows x-switch to register as a ControlValueAccessor.
@@ -20,6 +26,11 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
     multi: true
 };
 
+// Boilerplate for applying mixins to MatButton.
+/** @docs-private */
+export class ButtonGroupBase {}
+export const _ButtonGroupBase = mixinDisabled(ButtonGroupBase);
+
 /**
  * Button Component
  */
@@ -31,62 +42,43 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     providers: [BUTTONGROUP_VALUE_ACCESSOR],
+    inputs: ['disabled'],
     host: {
         'class': 'x-widget x-button-group'
     },
     exportAs: 'xButtonGroup'
 })
-export class ButtonGroupComponent implements OnChanges, AfterViewInit, ControlValueAccessor {
+export class ButtonGroupComponent
+    extends _ButtonGroupBase
+    implements CanDisable, ControlValueAccessor, OnChanges {
 
-    @Output() change: EventEmitter<any[]> = new EventEmitter<any[]>();
-
-    _value: any[] = [];
-
-    @Input() get value() {
-        return this._value;
-    }
-
-    set value(value: any[]) {
-        if (value) {
-            this._value = value;
-        }
-    }
+    @Output() change: EventEmitter<ValueType> = new EventEmitter<ValueType>();
 
     _type: BUTTON_GROUP_TYPE;
-
-    @Input() get type() {
-        return this._type;
-    }
-
+    @Input() get type() {return this._type;}
     set type(value: any) {
         if (value) {
             this._type = value;
         }
     }
 
-    private _disabled = false;
-
-    /** button disabled state */
-    @Input() get disabled() {
-        return this._disabled;
-    }
-
-    set disabled(value: any) {
-        this._disabled = coerceBooleanProperty(value);
+    private _value: any;
+    @Input() get value() {return this._value;}
+    set value(value: any) {
+        this._value = value;
     }
 
     @ContentChildren(forwardRef(() => ButtonToggleComponent))
     _buttonList: QueryList<ButtonToggleComponent>;
 
-
-    constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {}
-
-    ngOnChanges() {
-
+    constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {
+        super();
     }
 
-    ngAfterViewInit() {
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['value']) {
 
+        }
     }
 
     select(value: any) {
@@ -95,7 +87,10 @@ export class ButtonGroupComponent implements OnChanges, AfterViewInit, ControlVa
                 item.checked = item.value === value;
             });
             this.value = [value];
-            this.change.emit(this.value);
+            this.change.emit({
+                currentValue: value,
+                value: this.value
+            });
             this._markForCheck();
         }
         else if (this.type === 'checkbox') {
@@ -105,7 +100,10 @@ export class ButtonGroupComponent implements OnChanges, AfterViewInit, ControlVa
                 button.checked = !button.checked;
                 button.checked ? valueSet.add(value) : valueSet.delete(value);
                 this.value = Array.from(valueSet);
-                this.change.emit(this.value);
+                this.change.emit({
+                    currentValue: value,
+                    value: this.value
+                });
                 this._markForCheck();
             }
         }
@@ -145,6 +143,10 @@ export class ButtonGroupComponent implements OnChanges, AfterViewInit, ControlVa
     writeValue(value: any[]) {
         if (value) {
             this.value = value;
+
+            this.value.forEach(item => {
+                this.select(item);
+            });
         }
     }
 
@@ -173,6 +175,10 @@ export class ButtonGroupComponent implements OnChanges, AfterViewInit, ControlVa
     }
 }
 
+/**
+ * A single toggle button
+ * like checkbox , it has a associated value and can be checked and disabled
+ */
 @Component({
     selector: 'x-button-toggle',
     template: `
@@ -182,61 +188,67 @@ export class ButtonGroupComponent implements OnChanges, AfterViewInit, ControlVa
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    inputs: ['disabled'],
     host: {
         'class': 'x-widget x-button-toggle',
         '[class.x-button-toggle-checked]': 'checked',
         '[class.x-button-toggle-disabled]': 'disabled',
-        '(click)': 'onClick()'
+        '(click)': 'onToggle()'
     },
     exportAs: 'xButtonToggle'
 })
-export class ButtonToggleComponent {
+export class ButtonToggleComponent
+    extends _ButtonGroupBase implements CanDisable {
 
+    /** toggle event, emit a boolean value */
+    @Output() toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    /** toggle button's value, can be any type */
     @Input() value = '';
+
+    /** Whether toggle button is checked */
     @Input() checked = false;
 
+    /**
+     * Whether toggle button is single, not wrapped by an button group component
+     * @docs-private
+     */
+    _isSingleButton = true;
 
-    _isSingleSelector = true;
+    /**
+     * Reference to the wrapped parent button group component
+     * @docs-private
+     */
     buttonGroup: ButtonGroupComponent;
 
-    _disabled = false;
+    /**
+     * Creates an instance of ButtonToggleComponent.
+     * @param {ButtonGroupComponent?} buttonGroup - the optional wrapped parent button group component
+     */
+    constructor(@Optional() buttonGroup: ButtonGroupComponent) {
+        super();
 
-    get disabled() {
-        return this._disabled;
-    }
-
-    @Input()
-    set disabled(value: any) {
-        this._disabled = coerceBooleanProperty(value);
-    }
-
-    constructor( @Optional() buttonGroup: ButtonGroupComponent) {
         this.buttonGroup = buttonGroup;
-
-        if (buttonGroup) {
-            this._isSingleSelector = false;
-        }
-        else {
-            this._isSingleSelector = true;
-        }
+        this._isSingleButton = !this.buttonGroup;
     }
 
-    onClick() {
-        if (this.disabled) {
-            return;
-        }
+    /**
+     * Toggle event
+     *
+     * @docs-private
+     */
+    onToggle() {
+        if (this.disabled) {return;}
 
-        if (!this._isSingleSelector) {
-            const groupType = this.buttonGroup && this.buttonGroup.type;
-            if (groupType === 'checkbox') {
-                this.buttonGroup.select(this.value);
-            }
-            else if (groupType === 'radio') {
-                this.buttonGroup.select(this.value);
-            }
+        // if not a single toggle button, tell the parent button group component
+        // to toggle proper buttons according to type
+        if (!this._isSingleButton) {
+            this.buttonGroup.select(this.value);
         }
+        // if a single toggle button, just emit the toggle event
         else {
             this.checked = !this.checked;
+            this.toggle.emit(this.checked);
         }
     }
 }

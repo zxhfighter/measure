@@ -29,18 +29,10 @@ export type BreadcrumbItem = {
         'class': 'x-widget x-breadcrumb'
     }
 })
-export class BreadcrumbComponent implements OnInit {
+export class BreadcrumbComponent {
 
     /** breadcrumb datasource */
     @Input() datasource: BreadcrumbItem[] = [];
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
 
     trackByText(item: BreadcrumbItem) {
         return item.text;
