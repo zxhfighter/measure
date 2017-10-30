@@ -1,6 +1,6 @@
 <h1 class="main-title">BoxGroup demo</h1>
 
-<!-- <section>
+<section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
@@ -14,7 +14,7 @@ import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
     <h3 class="section-title">Single checkbox</h3>
 
     <p>
-        <x-checkbox>北斗</x-checkbox>
+        <x-checkbox (check)="onSingleCheck($event)">北斗</x-checkbox>
         <x-checkbox>秋实</x-checkbox>
         <x-checkbox disabled>DSP</x-checkbox>
         <x-checkbox [disabled]="true" [checked]="true">SSP</x-checkbox>
@@ -32,17 +32,17 @@ import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
         <x-checkbox type="radio" disabled>SSP</x-checkbox>
         <x-checkbox type="radio" [disabled]="true" [checked]="true">秋实</x-checkbox>
     </p>
-</section>-->
+</section>
 
 <section>
-    <h3 class="section-title">box checkbox group</h3>
+    <h3 class="section-title">checkbox box group</h3>
 
     <p>
-        <x-boxgroup type="checkbox">
+        <x-boxgroup type="checkbox" (change)="onCheckboxGroupChange($event)">
             <x-checkbox value="b">北斗</x-checkbox>
             <x-checkbox value="p">秋实</x-checkbox>
             <x-checkbox value="s" disabled>SSP</x-checkbox>
-            <x-checkbox value="qqq" [disabled]="true" [checked]="true">秋实</x-checkbox>
+            <x-checkbox value="qqq" [disabled]="true">秋实</x-checkbox>
         </x-boxgroup>
     </p>
 </section>
@@ -51,11 +51,86 @@ import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
     <h3 class="section-title">box radio group</h3>
 
     <p>
-        <x-boxgroup type="radio">
+        <x-boxgroup type="radio" (change)="onRadioGroupChange($event)">
             <x-checkbox value="1">北斗</x-checkbox>
             <x-checkbox value="x">秋实</x-checkbox>
             <x-checkbox value="ssp" disabled>SSP</x-checkbox>
-            <x-checkbox value="qiushi" [disabled]="true" [checked]="true">秋实</x-checkbox>
+            <x-checkbox value="qiushi" [disabled]="true">秋实</x-checkbox>
         </x-boxgroup>
     </p>
+</section>
+
+<section>
+    <h3 class="section-title">using within forms</h3>
+
+    <form #frm="ngForm">
+
+        <p>
+            <x-boxgroup type="radio" name="radioBox" [ngModel]="['ssp']" (change)="onRadioGroupChange($event)">
+                <x-checkbox value="1">北斗</x-checkbox>
+                <x-checkbox value="x">秋实</x-checkbox>
+                <x-checkbox value="ssp" disabled>SSP</x-checkbox>
+                <x-checkbox value="qiushi" [disabled]="true">秋实</x-checkbox>
+            </x-boxgroup>
+        </p>
+
+        <p>
+            <x-boxgroup type="checkbox" name="checkboxBox" [ngModel]="['b', 's']" (change)="onCheckboxGroupChange($event)">
+                <x-checkbox value="b">北斗</x-checkbox>
+                <x-checkbox value="p">秋实</x-checkbox>
+                <x-checkbox value="s" disabled>SSP</x-checkbox>
+                <x-checkbox value="qqq" [disabled]="true">秋实</x-checkbox>
+            </x-boxgroup>
+        </p>
+
+        <p>
+            {{ frm.value | json }}
+        </p>
+
+        <p>
+            <x-boxgroup disabled type="radio" name="radioBoxDisabled" [ngModel]="['ssp']" (change)="onRadioGroupChange($event)">
+                <x-checkbox value="1">北斗</x-checkbox>
+                <x-checkbox value="x">秋实</x-checkbox>
+                <x-checkbox value="ssp" disabled>SSP</x-checkbox>
+                <x-checkbox value="qiushi" [disabled]="true">秋实</x-checkbox>
+            </x-boxgroup>
+        </p>
+
+        <p>
+            <x-boxgroup [disabled]="true" type="checkbox" name="checkboxBoxDisabled" [ngModel]="['b', 's']" (change)="onCheckboxGroupChange($event)">
+                <x-checkbox value="b">北斗</x-checkbox>
+                <x-checkbox value="p">秋实</x-checkbox>
+                <x-checkbox value="s" disabled>SSP</x-checkbox>
+                <x-checkbox value="qqq" [disabled]="true">秋实</x-checkbox>
+            </x-boxgroup>
+        </p>
+
+    </form>
+</section>
+
+<section>
+    <h3 class="section-title">using within reactive forms</h3>
+
+    <form [formGroup]="form">
+
+        <p>
+            <x-boxgroup type="radio" formControlName="radioBox" (change)="onRadioGroupChange($event)">
+                <x-checkbox value="1">北斗</x-checkbox>
+                <x-checkbox value="x">秋实</x-checkbox>
+                <x-checkbox value="ssp" disabled>SSP</x-checkbox>
+                <x-checkbox value="qiushi" [disabled]="true">秋实</x-checkbox>
+            </x-boxgroup>
+        </p>
+
+        <p>
+            <x-boxgroup type="checkbox" formControlName="checkboxBox" (change)="onCheckboxGroupChange($event)">
+                <x-checkbox value="b">北斗</x-checkbox>
+                <x-checkbox value="p">秋实</x-checkbox>
+                <x-checkbox value="s" disabled>SSP</x-checkbox>
+                <x-checkbox value="qqq" [disabled]="true">秋实</x-checkbox>
+            </x-boxgroup>
+        </p>
+
+        {{ form.value | json }}
+    </form>
 </section>

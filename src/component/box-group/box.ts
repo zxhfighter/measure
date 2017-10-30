@@ -1,28 +1,17 @@
 import {
-    Component, Input, Output, EventEmitter, Optional,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
+    Component, Input, Output, EventEmitter, Optional, OnInit, ViewEncapsulation,
+    ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 
 import {coerceBooleanProperty} from '../util/coerce';
-
 import {BoxGroupComponent} from './box-group';
 
+/**
+ * A single checkbox or radiobox
+ */
 @Component({
     selector: 'x-checkbox',
-    template: `
-        <label class="x-checkbox-label">
-            <input
-                #checkbox
-                name="{{uuid}}"
-                type="{{type}}"
-                class="visually-hidden"
-                [checked]="checked"
-                [disabled]="disabled"
-                (change)="onChange(checkbox.checked)">
-
-            <ng-content></ng-content>
-        </label>
-    `,
+    templateUrl: './box.html',
     styleUrls: ['./box-group.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,10 +23,12 @@ import {BoxGroupComponent} from './box-group';
         '[class.x-checkbox-radio]': 'type == "radio"'
     }
 })
-export class CheckboxComponent implements OnInit {
-    name = 'jjj';
-    // @Input() type: 'checkbox'|'radio' = 'checkbox';
+export class InputBoxComponent implements OnInit {
 
+    /** When the box's checked state change, emit a change event */
+    @Output() check: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    /** box type: checkbox or radio */
     private _type: 'checkbox'|'radio' = 'checkbox';
     @Input() get type() {return this._type;}
     set type(value: any) {
@@ -47,60 +38,58 @@ export class CheckboxComponent implements OnInit {
         }
     }
 
+    /** input name, used to group radio inputs */
     private _uuid: string = Math.random().toString(16).slice(2, 8);
-
-    @Input() get uuid() {
-        return this._uuid;
-    }
+    @Input() get uuid() {return this._uuid;}
     set uuid(value: any) {
         this._uuid = value;
         this.cd.markForCheck();
     }
 
-    @Input() checked = false;
+    /** disabled state */
     private _disabled = false;
-
-    @Input() get disabled() {
-        return this._disabled;
-    }
-
+    @Input() get disabled() {return this._disabled;}
     set disabled(value: any) {
         this._disabled = coerceBooleanProperty(value);
     }
 
+    /** Whether the box is checked */
+    @Input() checked = false;
+
+    /** box value */
     @Input() value: any;
 
-    // _uuid = Math.random().toString(16).slice(2, 8);
-
+    /** if using within boxgroup, the parent boxgroup component */
     _parentBox: BoxGroupComponent;
 
-    constructor(@Optional() parentBox: BoxGroupComponent, private cd: ChangeDetectorRef) {
-
-        console.log('child constructor');
-
+    constructor(@Optional() parentBox: BoxGroupComponent, private cd: ChangeDetectorRef ) {
         this._parentBox = parentBox;
-
-        if (this._parentBox) {
-            console.log('parent type is: ', this._parentBox.type);
-        }
     }
 
     ngOnInit() {
+        // if using within boxgroup, set child box type and name
         if (this._parentBox) {
             this.type = this._parentBox.type;
             this.uuid = this._parentBox._uuid;
         }
     }
 
-    onChange(checked: boolean) {
-
+    onChange(checked: boolean, event: Event) {
         if (this.disabled) {
             return;
         }
 
-        // this.checked = checked;
+        if (this._parentBox) {
+            this._parentBox.select(this.value);
+        }
+        else {
+            this.checked = checked;
+            this.check.emit(checked);
+        }
 
-        this._parentBox.select(this.value);
         this.cd.markForCheck();
+
+        event.stopImmediatePropagation();
+        event.stopPropagation();
     }
 }

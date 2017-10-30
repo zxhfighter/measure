@@ -1,0 +1,12 @@
+<label class="x-checkbox-label">
+    <input
+        #checkbox
+        name="{{uuid}}"
+        type="{{type}}"
+        class="visually-hidden"
+        [checked]="checked"
+        [disabled]="disabled"
+        (change)="onChange(checkbox.checked, $event)">
+
+    <ng-content></ng-content>
+</label>

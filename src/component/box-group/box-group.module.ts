@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {CheckboxComponent} from './checkbox';
+import {InputBoxComponent} from './box';
 import {BoxGroupComponent} from './box-group';
 
 @NgModule({
@@ -9,11 +9,11 @@ import {BoxGroupComponent} from './box-group';
         CommonModule
     ],
     declarations: [
-        CheckboxComponent,
+        InputBoxComponent,
         BoxGroupComponent
     ],
     exports: [
-        CheckboxComponent,
+        InputBoxComponent,
         BoxGroupComponent
     ]
 })

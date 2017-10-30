@@ -9,9 +9,15 @@ import {coerceBooleanProperty} from '../util/coerce';
 import {mixinDisabled, CanDisable} from '../core/mixinDisabled';
 import {mixinValue, CanValue} from '../core/mixinValue';
 
+/** toggle button group types */
 export type BUTTON_GROUP_TYPE = 'radio' | 'checkbox';
-export interface ValueType {
+
+/** toggle button value type */
+export interface ButtonGroupValue {
+    /** current toggle button value */
     currentValue: any;
+
+    /** all toogled button value, this is usually an array */
     value: any;
 }
 
@@ -49,11 +55,15 @@ export const _ButtonGroupBase = mixinDisabled(ButtonGroupBase);
     exportAs: 'xButtonGroup'
 })
 export class ButtonGroupComponent
-    extends _ButtonGroupBase
-    implements CanDisable, ControlValueAccessor, OnChanges {
+    extends _ButtonGroupBase implements CanDisable, ControlValueAccessor {
 
-    @Output() change: EventEmitter<ValueType> = new EventEmitter<ValueType>();
+    /** button group change event */
+    @Output() change: EventEmitter<ButtonGroupValue> = new EventEmitter<ButtonGroupValue>();
 
+    /**
+     * button group type, can be 'radio' or 'checkbox'
+     * @docs-private
+     */
     _type: BUTTON_GROUP_TYPE;
     @Input() get type() {return this._type;}
     set type(value: any) {
@@ -62,12 +72,19 @@ export class ButtonGroupComponent
         }
     }
 
+    /**
+     * button group value, can be any type
+     * @docs-private
+     */
     private _value: any;
     @Input() get value() {return this._value;}
     set value(value: any) {
         this._value = value;
     }
 
+    /**
+     * button toggle children
+     */
     @ContentChildren(forwardRef(() => ButtonToggleComponent))
     _buttonList: QueryList<ButtonToggleComponent>;
 
@@ -75,12 +92,12 @@ export class ButtonGroupComponent
         super();
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes['value']) {
-
-        }
-    }
-
+    /**
+     * set children toggle button checked state
+     *
+     * @param {any} value - current toggle button value
+     * @docs-private
+     */
     select(value: any) {
         if (this.type === 'radio') {
             this._buttonList.forEach(item => {
@@ -144,6 +161,7 @@ export class ButtonGroupComponent
         if (value) {
             this.value = value;
 
+            // when init, set children toggle button state
             this.value.forEach(item => {
                 this.select(item);
             });
