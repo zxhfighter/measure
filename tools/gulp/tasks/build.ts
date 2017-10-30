@@ -7,6 +7,7 @@ import {config} from '../utils/config';
 
 const rollup = require('rollup');
 const rollupNodeResolutionPlugin = require('rollup-plugin-node-resolve');
+const rollupCommonjsPlugin = require('rollup-plugin-commonjs');
 const htmlmin = require('gulp-htmlmin');
 const less = require('gulp-less');
 const LessAutoprefix = require('less-plugin-autoprefix');
@@ -85,10 +86,14 @@ task('build:bundle', async () => {
         input: config.entry,
         external: [
             '@angular/core',
-            '@angular/common'
+            '@angular/common',
+            '@angular/forms',
+            '@angular/router',
+            '@angular/http'
         ],
         plugins: [
-            rollupNodeResolutionPlugin()
+            rollupNodeResolutionPlugin(),
+            rollupCommonjsPlugin()
         ]
     };
 
@@ -98,7 +103,10 @@ task('build:bundle', async () => {
         name: config.moduleName,
         globals: {
             '@angular/core': 'ng.core',
-            '@angular/common': 'ng.common'
+            '@angular/common': 'ng.common',
+            '@angular/forms': 'ng.forms',
+            '@angular/router': 'ng.router',
+            '@angular/http': 'ng.http'
         },
         file: join(config.umdPath, `${config.moduleName}.umd.js`),
         banner: '/** Hello */',

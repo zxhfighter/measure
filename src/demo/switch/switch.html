@@ -1,0 +1,96 @@
+<h1 class="main-title">Switch demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;SwitchModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+
+<section>
+    <h3 class="section-title">Default</h3>
+
+    <p>
+        <x-switch></x-switch>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">default checked</h3>
+
+    <p>
+        <x-switch [checked]="checked"></x-switch>
+    </p>
+
+    <p>
+        <button x-button (click)="onChange()">Change checked state</button>
+    </p>
+
+</section>
+
+<section>
+    <h3 class="section-title">default checked, disabled</h3>
+
+    <p>
+        <x-switch [checked]="true" [disabled]="disabled"></x-switch>
+    </p>
+
+    <p>
+        <button x-button (click)="onChangeDisabled()">Change disabled state</button>
+    </p>
+</section>
+
+
+<section>
+    <h3 class="section-title">default unchecked, disabled</h3>
+
+    <p>
+        <x-switch disabled></x-switch>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">small swicth component</h3>
+
+    <p>
+        <x-switch styleClass="x-widget-small"></x-switch>
+    </p>
+
+    <p>
+        <x-switch styleClass="x-widget-small" [checked]="true"></x-switch>
+    </p>
+
+    <p>
+        <x-switch styleClass="x-widget-small" [checked]="true" disabled></x-switch>
+    </p>
+
+    <p>
+        <x-switch styleClass="x-widget-small" disabled></x-switch>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">Used within forms</h3>
+
+    <form #frm="ngForm">
+        <x-switch [ngModel]="false" name="isChecked"></x-switch>
+        <p>
+            {{ frm.value | json }}
+        </p>
+    </form>
+</section>
+
+<section>
+    <h3 class="section-title">Used within reactive forms</h3>
+
+    <form [formGroup]="form">
+        <x-switch formControlName="isChecked"></x-switch>
+        <p>
+            {{ form.value | json }}
+        </p>
+    </form>
+</section>

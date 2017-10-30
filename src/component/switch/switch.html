@@ -1,0 +1,11 @@
+<label [class.x-widget-disabled]="disabled">
+    <div class="x-switch-outer" [class.checked]="checked">
+        <div class="x-switch-inner"></div>
+    </div>
+    <input #checkbox
+        name="chk"
+        type="checkbox"
+        class="visually-hidden"
+        [checked]="checked"
+        (change)="onChange(checkbox.checked)">
+</label>

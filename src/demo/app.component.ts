@@ -8,4 +8,5 @@ import '../asset/less/index.less';
 })
 export class AppComponent {
     title = 'app';
+    isDocs = false;
 }

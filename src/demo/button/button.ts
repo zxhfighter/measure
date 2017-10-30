@@ -20,7 +20,8 @@ export function getButtonConfig(): ButtonConfig {
 export class DemoButton implements OnInit {
     name = 'ComponentName';
     counter = 0;
-    buttonText = '默认文本';
+    buttonText = 'xs height 28px';
+    isDisabled = false;
 
     size = 'xs';
     constructor() {
@@ -40,6 +41,10 @@ export class DemoButton implements OnInit {
     }
 
     changeText() {
-        this.buttonText = '变变变：' + Math.floor(Math.random() * 100);
+        this.buttonText = 'xs height: ' + Math.floor(Math.random() * 100);
+    }
+
+    changeDisabled() {
+        this.isDisabled = !this.isDisabled;
     }
 }

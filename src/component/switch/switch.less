@@ -1,0 +1,77 @@
+@import "../../asset/less/dev";
+
+.x-switch {
+    display: inline-block;
+
+    & > label {
+        display: block;
+        cursor: pointer;
+
+        &.x-widget-disabled {
+            pointer-events: none;
+            cursor: not-allowed;
+
+            .x-switch-outer {
+                background-color: #dbdbdb;
+
+                .x-switch-inner {
+                    background-color: #b8b8b8;
+                }
+
+                &.checked {
+                    background-color: #C3E0FE;
+                }
+            }
+        }
+    }
+
+    .x-switch-outer {
+        position: relative;
+        width: 50px;
+        height: 24px;
+        border-radius: 24px;
+        background-color: #bbb;
+        transition: background-color 300ms ease-in;
+
+        .x-switch-inner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            top: 2px;
+            left: 2px;
+            background-color: #fff;
+            transition: left 300ms ease-in;
+        }
+
+        &.checked {
+            background-color: @brand-primary;
+
+            .x-switch-inner {
+                left: 28px;
+            }
+        }
+    }
+}
+
+.x-widget-small {
+    .x-switch-outer {
+        width: 38px;
+        height: 18px;
+        border-radius: 18px;
+
+        .x-switch-inner {
+            width: 14px;
+            height: 14px;
+            border-radius: 14px;
+            top: 2px;
+            left: 2px;
+        }
+
+        &.checked {
+            .x-switch-inner {
+                left: 22px;
+            }
+        }
+    }
+}

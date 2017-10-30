@@ -17,6 +17,7 @@
 }
 
 a.@{prefix}-button {
+    display: inline-block;
     color: @brand-primary;
     background: none;
     border: none;
@@ -33,20 +34,32 @@ a.@{prefix}-button {
     height: 42px;
     font-size: 18px;
 }
+a.@{prefix}-button-size-lg {
+    line-height: 42px;
+}
 
 .@{prefix}-button-size-default {
     height: 36px;
     font-size: 14px;
+}
+a.@{prefix}-button-size-default {
+    line-height: 36px;
 }
 
 .@{prefix}-button-size-sm {
     height: 32px;
     font-size: 14px;
 }
+a.@{prefix}-button-size-sm {
+    line-height: 32px;
+}
 
 .@{prefix}-button-size-xs {
     height: 28px;
     font-size: 12px;
+}
+a.@{prefix}-button-size-xs {
+    line-height: 28px;
 }
 
 // themes
@@ -143,7 +156,7 @@ a.@{prefix}-button {
 
 
 // disabled
-.@{prefix}-button[disabled] {
+.@{prefix}-button:disabled {
     background-color: #eee;
     color: #b8b8b8;
     border: 1px solid transparent;
@@ -151,5 +164,16 @@ a.@{prefix}-button {
 
     &:active {
         box-shadow: none;
+    }
+}
+
+a.@{prefix}-button[disabled] {
+    background-color: #eee;
+    color: #b8b8b8;
+    cursor: not-allowed;
+
+    &:hover,
+    &:active {
+        background-color: #eee;
     }
 }
