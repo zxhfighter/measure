@@ -5,3 +5,4 @@ import './tasks/scafford';
 import './tasks/package';
 import './tasks/serve';
 import './tasks/docs';
+import './tasks/lint';
