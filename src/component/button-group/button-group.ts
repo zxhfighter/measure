@@ -8,6 +8,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {coerceBooleanProperty} from '../util/coerce';
 import {mixinDisabled, CanDisable} from '../core/mixinDisabled';
 import {mixinValue, CanValue} from '../core/mixinValue';
+import {OnChange} from '../core/decorators';
 
 /** toggle button group types */
 export type BUTTON_GROUP_TYPE = 'radio' | 'checkbox';
@@ -64,29 +65,22 @@ export class ButtonGroupComponent
      * button group type, can be 'radio' or 'checkbox'
      * @docs-private
      */
-    _type: BUTTON_GROUP_TYPE;
-    @Input() get type() {return this._type;}
-    set type(value: any) {
-        if (value) {
-            this._type = value;
-        }
-    }
+    @OnChange()
+    @Input() type: BUTTON_GROUP_TYPE = 'checkbox';
 
     /**
      * button group value, can be any type
      * @docs-private
      */
-    private _value: any;
-    @Input() get value() {return this._value;}
-    set value(value: any) {
-        this._value = value;
-    }
+    @OnChange()
+    @Input() value: any;
 
     /**
      * button toggle children
      */
-    @ContentChildren(forwardRef(() => ButtonToggleComponent))
-    _buttonList: QueryList<ButtonToggleComponent>;
+    @ContentChildren(
+        forwardRef(() => ButtonToggleComponent)
+    ) _buttonList: QueryList<ButtonToggleComponent>;
 
     constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {
         super();

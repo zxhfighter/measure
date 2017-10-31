@@ -1,10 +1,15 @@
 import {
-    Component, Input, Output, EventEmitter, Optional, OnInit, ViewEncapsulation,
-    ChangeDetectionStrategy, ChangeDetectorRef
+    Component, Input, Output, EventEmitter, Optional, OnInit,
+    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 
 import {coerceBooleanProperty} from '../util/coerce';
 import {BoxGroupComponent} from './box-group';
+import {uuid as getUUID} from '../util/uuid';
+import {OnChange} from '../core/decorators';
+
+/** box type: radio or checkbox */
+export type BOX_TYPE = 'radio' | 'checkbox';
 
 /**
  * A single checkbox or radiobox
@@ -25,33 +30,20 @@ import {BoxGroupComponent} from './box-group';
 })
 export class InputBoxComponent implements OnInit {
 
-    /** When the box's checked state change, emit a change event */
-    @Output() check: EventEmitter<boolean> = new EventEmitter<boolean>();
+    /** When the box's checked state change, emit a change event with a boolean value */
+    @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    /** box type: checkbox or radio */
-    private _type: 'checkbox'|'radio' = 'checkbox';
-    @Input() get type() {return this._type;}
-    set type(value: any) {
-        if (value) {
-            this._type = value;
-            this.cd.markForCheck();
-        }
-    }
+    /** box type: either 'checkbox' or 'radio' */
+    @OnChange()
+    @Input() type: BOX_TYPE = 'checkbox';
 
     /** input name, used to group radio inputs */
-    private _uuid: string = Math.random().toString(16).slice(2, 8);
-    @Input() get uuid() {return this._uuid;}
-    set uuid(value: any) {
-        this._uuid = value;
-        this.cd.markForCheck();
-    }
+    @OnChange()
+    @Input() uuid = getUUID();
 
-    /** disabled state */
-    private _disabled = false;
-    @Input() get disabled() {return this._disabled;}
-    set disabled(value: any) {
-        this._disabled = coerceBooleanProperty(value);
-    }
+    /** Whether the box is disabled */
+    @OnChange(true)
+    @Input() disabled = false;
 
     /** Whether the box is checked */
     @Input() checked = false;
@@ -62,18 +54,36 @@ export class InputBoxComponent implements OnInit {
     /** if using within boxgroup, the parent boxgroup component */
     _parentBox: BoxGroupComponent;
 
-    constructor(@Optional() parentBox: BoxGroupComponent, private cd: ChangeDetectorRef ) {
+    /**
+     * box component constructor
+     *
+     * @param {BoxGroupComponent?} parentBox - find parent box group component and inject it
+     * @param {ChangeDetectorRef} cd - component change detector
+     */
+    constructor(@Optional() parentBox: BoxGroupComponent, private cd: ChangeDetectorRef) {
         this._parentBox = parentBox;
     }
 
     ngOnInit() {
+        // when child onInit, it can get parent and parent binded properties
         // if using within boxgroup, set child box type and name
         if (this._parentBox) {
-            this.type = this._parentBox.type;
-            this.uuid = this._parentBox._uuid;
+            this.type = (this._parentBox.type as BOX_TYPE);
+            this.uuid = this._parentBox.uuid;
+            this.disabled = this._parentBox.disabled;
+
+            const value = (this._parentBox.value || []) as any[];
+            this.checked = value.indexOf(this.value) !== -1;
         }
     }
 
+    /**
+     * input checked change event
+     *
+     * @param {boolean} checked - whether the input is checked
+     * @param {Event} event - original change event, to prevent input default change event
+     * @docs-private
+     */
     onChange(checked: boolean, event: Event) {
         if (this.disabled) {
             return;
@@ -84,12 +94,25 @@ export class InputBoxComponent implements OnInit {
         }
         else {
             this.checked = checked;
-            this.check.emit(checked);
+            this.change.emit(checked);
         }
 
-        this.cd.markForCheck();
+        this.preventCheckboxDefaultEvent(event);
+    }
 
-        event.stopImmediatePropagation();
-        event.stopPropagation();
+    /**
+     * Prevent default change event
+     *
+     * @param {Event} event - original change event, to prevent input default change event
+     * @docs-private
+     */
+    preventCheckboxDefaultEvent(event: Event) {
+        if (event.stopPropagation) {
+            event.stopImmediatePropagation();
+            event.stopPropagation();
+        }
+        else {
+            event.returnValue = false;
+        }
     }
 }

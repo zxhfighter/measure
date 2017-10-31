@@ -22,6 +22,9 @@ import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
 import {DemoBoxGroup} from './box-group';
 
+import {DemoXXX} from './test-component/app';
+import {ChildComponent, ParentComponent} from './test-component/test';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,10 @@ import {DemoBoxGroup} from './box-group';
     DemoBreadcrumb,
     DemoSwitch,
     DemoButtonGroup,
-    DemoBoxGroup
+    DemoBoxGroup,
+    ChildComponent,
+    ParentComponent,
+    DemoXXX
   ],
   imports: [
     BrowserModule,

@@ -7,17 +7,19 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {InputBoxComponent} from './box';
 import {coerceBooleanProperty} from '../util/coerce';
+import {uuid as getUUID} from '../util/uuid';
+import {OnChange} from '../core/decorators';
 
 /** box group type */
 export type BOX_GROUP_TYPE = 'radio' | 'checkbox';
 
 /** box group value type */
 export interface BoxGroupValue {
-    /** current box value */
+    /** current changed box value */
     currentValue: any;
 
-    /** all box group value, this is usually an array */
-    value: any;
+    /** all box group value, usually an array */
+    value: any[];
 }
 
 /*
@@ -25,13 +27,15 @@ export interface BoxGroupValue {
  * This allows it to support [(ngModel)].
  * @docs-private
  */
-const BUTTONGROUP_VALUE_ACCESSOR = {
+const BOXGROUP_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => BoxGroupComponent),
     multi: true
 };
 
-
+/**
+ * box group component
+ */
 @Component({
     selector: 'x-boxgroup',
     templateUrl: './box-group.html',
@@ -39,57 +43,55 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    providers: [BUTTONGROUP_VALUE_ACCESSOR],
+    providers: [BOXGROUP_VALUE_ACCESSOR],
     host: {
         'class': 'x-widget x-boxgroup',
         '[class.x-boxgroup-disabled]': 'disabled'
     }
 })
-export class BoxGroupComponent implements ControlValueAccessor, AfterViewInit {
+export class BoxGroupComponent implements ControlValueAccessor {
 
     /** when box group checked value change, emit a change event */
     @Output() change: EventEmitter<BoxGroupValue> = new EventEmitter<BoxGroupValue>();
 
-    /** box group type, 'checkbox' or 'radio' */
-    private _type: BOX_GROUP_TYPE = 'checkbox';
-    @Input() get type() {return this._type};
-    set type(value: any) {
-        if (value) {
-            this._type = value;
-        }
-    }
+    /** box group type, either 'checkbox' or 'radio' */
+    @OnChange()
+    @Input() type = 'checkbox';
 
     /** Whether the box group is disabled */
-    private _disabled: boolean = false;
-    @Input() get disabled() {return this._disabled};
-    set disabled(value: any) {
-        this._disabled = coerceBooleanProperty(value);
-
-        if (this._boxList) {
-            this._boxList.forEach(item => {
-                item.disabled = this._disabled;
-            });
-        }
-    }
+    @OnChange(true)
+    @Input() disabled = false;
+    disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /** the value associated with the box group */
-    private _value: any;
-    @Input() get value() {return this._value};
-    set value(value: any) {
-        this._value = value;
-    }
+    @OnChange()
+    @Input() value: any;
 
     /** the unique name of the box group */
-    _uuid = Math.random().toString(16).slice(2, 8);
-    get uuid() {return this._uuid;}
-    set uuid(value: any) {this._uuid = value};
+    @OnChange()
+    @Input() uuid = getUUID();
 
     /** children box components */
     @ContentChildren(forwardRef(() => InputBoxComponent)) _boxList: QueryList<InputBoxComponent>;
 
-    constructor(private cd: ChangeDetectorRef) {}
+    constructor(private cd: ChangeDetectorRef) {
 
-    /** select some value, according to the type, change sub box component behavior */
+        // listen to disabled property, and update sub child disabled state
+        this.disabledChange.subscribe(disabled => {
+            if (this._boxList) {
+                this._boxList.forEach(box => {
+                    box.disabled = disabled;
+                });
+            }
+        });
+    }
+
+    /**
+     * select some value, according to the type, change sub box component behavior
+     *
+     * @param {any} value - box value
+     * @docs-private
+     */
     select(value: any) {
 
         if (!this._boxList) {
@@ -107,11 +109,13 @@ export class BoxGroupComponent implements ControlValueAccessor, AfterViewInit {
             });
         }
         else if (this.type === 'checkbox') {
-            const button = this._boxList.find(v => v.value === value);
+            const box = this._boxList.find(v => v.value === value);
+
+            // de-duplicate value items
             const valueSet = new Set(this.value);
-            if (button) {
-                button.checked = !button.checked;
-                button.checked ? valueSet.add(value) : valueSet.delete(value);
+            if (box) {
+                box.checked = !box.checked;
+                box.checked ? valueSet.add(value) : valueSet.delete(value);
                 this.value = Array.from(valueSet);
                 this.change.emit({
                     currentValue: value,
@@ -121,28 +125,6 @@ export class BoxGroupComponent implements ControlValueAccessor, AfterViewInit {
         }
 
         this._markForCheck();
-    }
-
-    ngAfterViewInit() {
-
-        console.log('xxx');
-
-        if (this.value && this.value.length) {
-            setTimeout(() => {
-                // when init, set children toggle button state
-                this.value.forEach(item => {
-                    this.select(item);
-                });
-            }, 100);
-        }
-
-        if (this.disabled) {
-            setTimeout(() => {
-                this._boxList.forEach(item => {
-                    item.disabled = this._disabled;
-                });
-            }, 100);
-        }
     }
 
     /**

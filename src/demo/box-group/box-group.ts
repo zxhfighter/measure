@@ -12,6 +12,8 @@ import {FormGroup, FormBuilder} from '@angular/forms';
 })
 export class DemoBoxGroup implements OnInit {
 
+    singleDisabled = false;
+
     form: FormGroup;
 
     constructor(private fb: FormBuilder) {
@@ -39,5 +41,9 @@ export class DemoBoxGroup implements OnInit {
 
     onRadioGroupChange(event: any) {
         console.log(event);
+    }
+
+    changeSingleDisabled() {
+        this.singleDisabled = !this.singleDisabled;
     }
 }

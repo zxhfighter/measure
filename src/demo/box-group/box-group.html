@@ -14,11 +14,12 @@ import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
     <h3 class="section-title">Single checkbox</h3>
 
     <p>
-        <x-checkbox (check)="onSingleCheck($event)">北斗</x-checkbox>
+        <x-checkbox (change)="onSingleCheck($event)">北斗</x-checkbox>
         <x-checkbox>秋实</x-checkbox>
         <x-checkbox disabled>DSP</x-checkbox>
-        <x-checkbox [disabled]="true" [checked]="true">SSP</x-checkbox>
-        <x-checkbox [disabled]="false">MSP</x-checkbox>
+        <x-checkbox [disabled]="true" [checked]="singleDisabled">SSP</x-checkbox>
+        <x-checkbox [disabled]="singleDisabled">MSP</x-checkbox>
+        <button type="button" (click)="changeSingleDisabled()">change disabled</button>
     </p>
 </section>
 
