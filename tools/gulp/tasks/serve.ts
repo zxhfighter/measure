@@ -70,6 +70,8 @@ task('build:demo', (cb?: Function) => {
         buildConfig = require(devConfigPath);
     }
 
+    buildConfig.output.publicPath = 'measure';
+
     webpack(buildConfig, (err: any, stats: any) => {
         if (err) {
             console.log('webpack', err);
