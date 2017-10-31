@@ -25,7 +25,7 @@ module.exports = {
     },
 
     output: {
-        path: helper.root('dist/packages/devapp'),
+        path: helper.root('docs'),
         filename: '[name].[hash:6].js'
     },
 

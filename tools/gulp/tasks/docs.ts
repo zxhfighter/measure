@@ -8,7 +8,7 @@ const transform = require('gulp-transform');
 const hljs = require('highlight.js');
 const dom = require('gulp-dom');
 
-const apiDocsPackage = require('../../../docs/config');
+const apiDocsPackage = require('../../docs/config');
 
 // HTML tags in the markdown generated files that should receive a .docs-markdown-${tagName} class
 // for styling purposes.
@@ -51,7 +51,7 @@ task('md-docs', () => {
             }
         }))
         .pipe(dom(createTagNameAliaser('docs-markdown')))
-        .pipe(dest('docs/dist/guides'));
+        .pipe(dest('dist/docs/guides'));
 });
 
 task('docs', sequenceTask(
