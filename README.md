@@ -1,5 +1,7 @@
 # xdesign
 
+[![Build Status](https://travis-ci.org/zxhfighter/measure.svg?branch=master)](https://travis-ci.org/zxhfighter/)
+
 [TOC]
 
 ## start
@@ -109,5 +111,3 @@ todo.
 ## ci
 
 todo.
-
-
