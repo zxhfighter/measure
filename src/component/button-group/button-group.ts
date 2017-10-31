@@ -6,8 +6,6 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {coerceBooleanProperty} from '../util/coerce';
-import {mixinDisabled, CanDisable} from '../core/mixinDisabled';
-import {mixinValue, CanValue} from '../core/mixinValue';
 import {OnChange} from '../core/decorators';
 
 /** toggle button group types */
@@ -33,11 +31,6 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
     multi: true
 };
 
-// Boilerplate for applying mixins to MatButton.
-/** @docs-private */
-export class ButtonGroupBase {}
-export const _ButtonGroupBase = mixinDisabled(ButtonGroupBase);
-
 /**
  * Button Component
  */
@@ -49,14 +42,12 @@ export const _ButtonGroupBase = mixinDisabled(ButtonGroupBase);
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     providers: [BUTTONGROUP_VALUE_ACCESSOR],
-    inputs: ['disabled'],
     host: {
         'class': 'x-widget x-button-group'
     },
     exportAs: 'xButtonGroup'
 })
-export class ButtonGroupComponent
-    extends _ButtonGroupBase implements CanDisable, ControlValueAccessor {
+export class ButtonGroupComponent implements ControlValueAccessor {
 
     /** button group change event */
     @Output() change: EventEmitter<ButtonGroupValue> = new EventEmitter<ButtonGroupValue>();
@@ -76,15 +67,19 @@ export class ButtonGroupComponent
     @Input() value: any;
 
     /**
+     * Whether the button group is disabled
+     */
+    @OnChange()
+    @Input() disabled = false;
+
+    /**
      * button toggle children
      */
     @ContentChildren(
         forwardRef(() => ButtonToggleComponent)
     ) _buttonList: QueryList<ButtonToggleComponent>;
 
-    constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {
-        super();
-    }
+    constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {}
 
     /**
      * set children toggle button checked state
@@ -200,7 +195,6 @@ export class ButtonGroupComponent
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    inputs: ['disabled'],
     host: {
         'class': 'x-widget x-button-toggle',
         '[class.x-button-toggle-checked]': 'checked',
@@ -209,8 +203,7 @@ export class ButtonGroupComponent
     },
     exportAs: 'xButtonToggle'
 })
-export class ButtonToggleComponent
-    extends _ButtonGroupBase implements CanDisable {
+export class ButtonToggleComponent {
 
     /** toggle event, emit a boolean value */
     @Output() toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -220,6 +213,10 @@ export class ButtonToggleComponent
 
     /** Whether toggle button is checked */
     @Input() checked = false;
+
+    /** Whether toggle button is disabled */
+    @OnChange(true)
+    @Input() disabled = false;
 
     /**
      * Whether toggle button is single, not wrapped by an button group component
@@ -238,7 +235,6 @@ export class ButtonToggleComponent
      * @param {ButtonGroupComponent?} buttonGroup - the optional wrapped parent button group component
      */
     constructor(@Optional() buttonGroup: ButtonGroupComponent) {
-        super();
 
         this.buttonGroup = buttonGroup;
         this._isSingleButton = !this.buttonGroup;

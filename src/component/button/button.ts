@@ -5,16 +5,13 @@ import {
 
 import {coerceBooleanProperty} from '../util/coerce';
 import {ButtonConfig} from './button.config';
-import {mixinDisabled, CanDisable} from '../core/mixinDisabled';
+import {OnChange} from '../core/decorators';
 
 /** default button theme types */
 export type BUTTON_THEME = 'primary' | 'default' | 'neutral' | 'transparent' | string;
 
 /** default button size types */
 export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
-
-export class ButtonBase {}
-export const _ButtonBase = mixinDisabled(ButtonBase);
 
 /**
  * Button Component
@@ -26,15 +23,12 @@ export const _ButtonBase = mixinDisabled(ButtonBase);
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    inputs: ['disabled'],
     host: {
         '[disabled]': 'disabled || null'
     },
     exportAs: 'xButton'
 })
-export class ButtonComponent
-    extends _ButtonBase
-    implements CanDisable, OnChanges, AfterViewInit {
+export class ButtonComponent implements OnChanges, AfterViewInit {
 
     /** button theme, there four default themes: 'primary' | 'default' | 'neutral' | 'transparent' */
     @Input() theme: BUTTON_THEME = 'default';
@@ -42,12 +36,15 @@ export class ButtonComponent
     /** button size, there four default sizes: lg */
     @Input() size: BUTTON_SIZE = 'default';
 
+    /** Whether the button is disabled */
+    @OnChange(true)
+    @Input() disabled = false;
+
     constructor(
         private el: ElementRef,
         private _config: ButtonConfig,
         private cd: ChangeDetectorRef
     ) {
-        super();
         Object.assign(this, _config);
     }
 
@@ -98,7 +95,6 @@ export class ButtonComponent
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    inputs: ['disabled'],
     host: {
         '[attr.tabindex]': 'disabled ? -1 : 0',
         '[attr.disabled]': 'disabled || null',
@@ -108,6 +104,12 @@ export class ButtonComponent
 })
 export class ButtonAnchorComponent extends ButtonComponent {
 
+    /**
+     * prevent link button default event
+     *
+     * @param {Event} event - click event
+     * @docs-private
+     */
     _haltDisabledEvents(event: Event) {
         if (this.disabled) {
             event.preventDefault();
