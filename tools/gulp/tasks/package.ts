@@ -5,11 +5,16 @@ import {sequenceTask} from '../utils/sequence-task';
 
 import {config} from '../utils/config';
 
-task('build:package', sequenceTask('copy-package'));
+task('build:package', sequenceTask('copy-package', 'copy-readme'));
 
 task('copy-package', () => {
     const packageFilePath = join(config.componentPath, '../../package.json');
     return src(packageFilePath).pipe(dest(config.dist));
+});
+
+task('copy-readme', () => {
+    const readmeFilePath = join(config.componentPath, '../../README.md');
+    return src(readmeFilePath).pipe(dest(config.dist));
 });
 
 task('gzip', (cb?: Function) => {

@@ -40,9 +40,9 @@ task(':demo:update:html', () => {
     const name = yargs.argv.name;
     const appHtml = join(config.demoPath, 'app.component.html');
 
-    console.log(`生成完毕后，您还需要更新
+    console.log(`生成完毕后，您还需要更新如下文件：
         ${yellow('src/demo/app.module.ts')}
-        和 ${yellow('src/demo/app.router.ts')}`
+        ${yellow('src/demo/app.router.ts')}`
     );
 
     return src(appHtml)
@@ -64,6 +64,7 @@ task(':demo:update:html', () => {
         .pipe(replace('</body></html>', ''))
         .pipe(replace('routerlinkactive', 'routerLinkActive'))
         .pipe(replace('routerlink=', '[routerLink]='))
+        .pipe(replace('[routerlink]=', '[routerLink]='))
         .pipe(dest(config.demoPath));
 });
 

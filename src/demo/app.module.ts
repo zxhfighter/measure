@@ -9,7 +9,8 @@ import {
   BreadcrumbModule,
   SwitchModule,
   ButtonGroupModule,
-  BoxGroupModule
+  BoxGroupModule,
+  ChartModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -21,9 +22,7 @@ import {DemoBreadcrumb} from './breadcrumb';
 import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
 import {DemoBoxGroup} from './box-group';
-
-import {DemoXXX} from './test-component/app';
-import {ChildComponent, ParentComponent} from './test-component/test';
+import {DemoChart} from './chart';
 
 @NgModule({
   declarations: [
@@ -33,9 +32,7 @@ import {ChildComponent, ParentComponent} from './test-component/test';
     DemoSwitch,
     DemoButtonGroup,
     DemoBoxGroup,
-    ChildComponent,
-    ParentComponent,
-    DemoXXX
+    DemoChart
   ],
   imports: [
     BrowserModule,
@@ -47,6 +44,7 @@ import {ChildComponent, ParentComponent} from './test-component/test';
     SwitchModule,
     ButtonGroupModule,
     BoxGroupModule,
+    ChartModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],
