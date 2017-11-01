@@ -102,7 +102,7 @@
     "yargs": "^9.0.1"
   },
   "repository": {
-    "url": "git://todo.git",
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/zxhfighter/measure.git"
   }
 }

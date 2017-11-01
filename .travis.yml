@@ -1,4 +1,5 @@
 language: node_js
+
 sudo: false
 
 node_js:
@@ -18,3 +19,17 @@ cache:
   npm: true
   directories:
     - ./node_modules/
+
+before_deploy:
+  - cd dist/packages
+
+deploy:
+  provider: npm
+  email: 369749456@qq.com
+  api_key:
+    secure: sUYFe6j+sPCazofCJ0eBm74iS2g2h7aoq7MMp+jMt/3ljwuXJ4oT9wH61WVhyZCdr3iPQFMOwgdTh2XOLa/iTrxw1+FxvakrwrbqETUy0u4kIsegNvM/WJdeXgkzC5Ed2qjagK5vDLD/V1wcw6o40VHLc9Adc02P9pCa5dPQPo8vZhIOV9QkisLOo6PWxTeSu94duWtWR0sqDPFc5MUeLi1kzU7F+KuZ4khwdcJRf5UAR7bSzDlds37u/7Ewgg7wxXBsvO4jhmcll2vSpOFZGun+4UDsmc7bsI6t+wvLo7y4XgCuQplsJVu8LPhG+AH9h5l7RVq9fzQQF44PFxmWIoMLM0/rDI9rnIi93hxYZSI79sqy98T8Y4MebwjZCZV2jXB56xO2YZZ20wnNOyVhkfsMgFWB5heSxMVMe8frpWNKZVgzlvfzP0nHmM+TChNW4SvVva/QEjlHbE+EBuYTU1ExObTLrEbqZdB0JH+G2s0QQv4g4bUeHJ9yIdKkk0qgCrVs64wU/bkmsMHOQ5WeuUBXcSTEvrD6k+DwfxwbwLrDxfV21geqFh42Y0whEs90xLJUe/tPVQ2Jd2ip309QiRsOhffjtrw8UitBggaAe4NRC3B+R2BYbQO8/w9oZhmHaS2vHPcxuH7/9GhG8NKPSWzqzNSV7ycgcCc07vM4raI=
+  skip_cleanup: true
+  on:
+    repo: zxhfighter/measure
+    branch: master
+    tags: true
