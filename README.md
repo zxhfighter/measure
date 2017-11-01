@@ -98,16 +98,9 @@ guide docs will be in `docs/dist/guides`;
 
 ## test
 
-todo.
+doing.
 
 ## e2e
 
-todo.
+doing.
 
-## publish
-
-todo.
-
-## ci
-
-todo.
