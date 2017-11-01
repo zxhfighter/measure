@@ -1,8 +1,9 @@
 {
   "name": "xdesign",
   "version": "1.0.0",
-  "description": "xdesign",
-  "main": "index.js",
+  "description": "xdesign - A enterprize angular ui component library",
+  "main": "./bundle/xdesign.umd.js",
+  "module": "./index.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development gulp serve",

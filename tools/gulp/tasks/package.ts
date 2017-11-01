@@ -8,7 +8,7 @@ import {config} from '../utils/config';
 task('build:package', sequenceTask('copy-package'));
 
 task('copy-package', () => {
-    const packageFilePath = join(config.componentPath, 'package.json');
+    const packageFilePath = join(config.componentPath, '../../package.json');
     return src(packageFilePath).pipe(dest(config.dist));
 });
 
