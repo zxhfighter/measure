@@ -13,6 +13,7 @@ const less = require('gulp-less');
 const LessAutoprefix = require('less-plugin-autoprefix');
 const autoprefixPlugin = new LessAutoprefix({browsers: ['last 2 versions']});
 const gulpCleanCss = require('gulp-clean-css');
+const uglifyJS = require('uglify-js');
 
 const htmlMinifierOptions = {
     collapseWhitespace: true,
@@ -27,6 +28,7 @@ task('build', sequenceTask(
     'build:assets',
     'build:inline-assets',
     'build:bundle',
+    'build:uglify',
     'build:package'
 ));
 
@@ -109,7 +111,7 @@ task('build:bundle', async () => {
             '@angular/http': 'ng.http'
         },
         file: join(config.umdPath, `${config.moduleName}.umd.js`),
-        banner: '/** Hello */',
+        banner: `/** Copyright (c) BAIDU INC. */`,
         sourcemap: true
     };
 
@@ -117,4 +119,13 @@ task('build:bundle', async () => {
     const {code, map} = await bundle.generate(outputOptions);
 
     await bundle.write(outputOptions);
+});
+
+task('build:uglify', (cb?: Function) => {
+    const uglifyPath = resolve('./node_modules/.bin/uglifyjs');
+    const umdFile = join(config.umdPath, `${config.moduleName}.umd.js`);
+    const umdMiniFile = join(config.umdPath, `${config.moduleName}.umd.min.js`);
+    const childProcess = spawnSync(uglifyPath, ['-c', '-m', '--source-map', '-o',  umdMiniFile, '--', umdFile]);
+
+    cb && cb();
 });

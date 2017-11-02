@@ -4,3 +4,4 @@ export * from './switch/index';
 export * from './button-group/index';
 export * from './box-group/index';
 export * from './chart/index';
+export * from './code-highlighter/index';

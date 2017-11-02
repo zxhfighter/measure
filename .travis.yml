@@ -33,5 +33,3 @@ deploy:
     branches:
       - master
       - /^v\d+(\.\d+)+$/
-
-
