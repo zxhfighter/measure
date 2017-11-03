@@ -19,7 +19,6 @@ export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
 @Component({
     selector: 'button[x-button]',
     templateUrl: './button.html',
-    styleUrls: ['./button.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
@@ -91,7 +90,6 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
 @Component({
     selector: 'a[x-button]',
     templateUrl: './button.html',
-    styleUrls: ['./button.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,

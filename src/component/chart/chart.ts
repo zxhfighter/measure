@@ -6,7 +6,6 @@ import {
 @Component({
     selector: 'x-chart',
     templateUrl: './chart.html',
-    styleUrls: ['./chart.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,

@@ -24,7 +24,6 @@ export type BreadcrumbItem = {
 @Component({
     selector: 'x-breadcrumb',
     templateUrl: './breadcrumb.html',
-    styleUrls: ['./breadcrumb.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,

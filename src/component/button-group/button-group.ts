@@ -37,7 +37,6 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
 @Component({
     selector: 'x-button-group',
     templateUrl: './button-group.html',
-    styleUrls: ['./button-group.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
@@ -191,7 +190,6 @@ export class ButtonGroupComponent implements ControlValueAccessor {
     template: `
         <span class="x-button-inner"><ng-content></ng-content></span>
     `,
-    styleUrls: ['./button-group.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,

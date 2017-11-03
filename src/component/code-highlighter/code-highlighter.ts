@@ -6,7 +6,6 @@ import {
 @Component({
     selector: 'x-code-highlighter',
     templateUrl: './code-highlighter.html',
-    styleUrls: ['./code-highlighter.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,

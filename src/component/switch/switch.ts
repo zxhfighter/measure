@@ -22,7 +22,6 @@ const SWITCH_VALUE_ACCESSOR = {
 @Component({
     selector: 'x-switch',
     templateUrl: './switch.html',
-    styleUrls: ['./switch.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,

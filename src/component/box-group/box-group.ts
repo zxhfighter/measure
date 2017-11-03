@@ -39,7 +39,6 @@ const BOXGROUP_VALUE_ACCESSOR = {
 @Component({
     selector: 'x-boxgroup',
     templateUrl: './box-group.html',
-    styleUrls: ['./box-group.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,

@@ -17,7 +17,6 @@ export type BOX_TYPE = 'radio' | 'checkbox';
 @Component({
     selector: 'x-checkbox',
     templateUrl: './box.html',
-    styleUrls: ['./box-group.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
