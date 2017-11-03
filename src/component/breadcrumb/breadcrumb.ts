@@ -22,13 +22,13 @@ export type BreadcrumbItem = {
 };
 
 @Component({
-    selector: 'x-breadcrumb',
+    selector: 'nb-breadcrumb',
     templateUrl: './breadcrumb.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'x-widget x-breadcrumb'
+        'class': 'nb-widget nb-breadcrumb'
     }
 })
 export class BreadcrumbComponent {

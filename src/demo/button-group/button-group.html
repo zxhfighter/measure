@@ -14,21 +14,21 @@ import &#x7B;ToggleButtonModule&#x7D; from 'xdesign';
     <h3 class="section-title">Single Toggle Button</h3>
 
     <p>
-        <x-button-toggle value="apple" (toggle)="onSingleToggle($event)">苹果
+        <nb-button-toggle value="apple" (toggle)="onSingleToggle($event)">苹果
             <i class="fa fa-apple"></i>
-        </x-button-toggle>
+        </nb-button-toggle>
     </p>
 
     <p>
-        <x-button-toggle value="apple" [checked]="true">苹果
+        <nb-button-toggle value="apple" [checked]="true">苹果
             <i class="fa fa-apple"></i>
-        </x-button-toggle>
+        </nb-button-toggle>
     </p>
 
     <p>
-        <x-button-toggle value="apple" disabled>苹果
+        <nb-button-toggle value="apple" disabled>苹果
             <i class="fa fa-apple"></i>
-        </x-button-toggle>
+        </nb-button-toggle>
     </p>
 </section>
 
@@ -36,17 +36,17 @@ import &#x7B;ToggleButtonModule&#x7D; from 'xdesign';
     <h3 class="section-title">Radio Toggle Button</h3>
 
     <p>
-        <x-button-group type="radio" (change)="onRadioButtonGroupChanged($event)">
-            <x-button-toggle value="apple" [disabled]="isDisabled">苹果
+        <nb-button-group type="radio" (change)="onRadioButtonGroupChanged($event)">
+            <nb-button-toggle value="apple" [disabled]="isDisabled">苹果
                 <i class="fa fa-apple"></i>
-            </x-button-toggle>
-            <x-button-toggle value="book" [disabled]="isDisabled">书
+            </nb-button-toggle>
+            <nb-button-toggle value="book" [disabled]="isDisabled">书
                 <i class="fa fa-book"></i>
-            </x-button-toggle>
-            <x-button-toggle value="dog" [disabled]="isDisabled">🐶
+            </nb-button-toggle>
+            <nb-button-toggle value="dog" [disabled]="isDisabled">🐶
                 <i class="fa fa-flash"></i>
-            </x-button-toggle>
-        </x-button-group>
+            </nb-button-toggle>
+        </nb-button-group>
     </p>
 </section>
 
@@ -54,17 +54,17 @@ import &#x7B;ToggleButtonModule&#x7D; from 'xdesign';
     <h3 class="section-title">Checkbox Toggle Button</h3>
 
     <p>
-        <x-button-group type="checkbox" (change)="onCheckboxButtonGroupChanged($event)">
-            <x-button-toggle value="apple" [disabled]="isDisabled">苹果
+        <nb-button-group type="checkbox" (change)="onCheckboxButtonGroupChanged($event)">
+            <nb-button-toggle value="apple" [disabled]="isDisabled">苹果
                 <i class="fa fa-apple"></i>
-            </x-button-toggle>
-            <x-button-toggle value="book" [disabled]="isDisabled">书
+            </nb-button-toggle>
+            <nb-button-toggle value="book" [disabled]="isDisabled">书
                 <i class="fa fa-book"></i>
-            </x-button-toggle>
-            <x-button-toggle value="dog" [disabled]="isDisabled">🐶
+            </nb-button-toggle>
+            <nb-button-toggle value="dog" [disabled]="isDisabled">🐶
                 <i class="fa fa-flash"></i>
-            </x-button-toggle>
-        </x-button-group>
+            </nb-button-toggle>
+        </nb-button-group>
     </p>
 </section>
 
@@ -74,31 +74,31 @@ import &#x7B;ToggleButtonModule&#x7D; from 'xdesign';
 
     <form #form="ngForm">
         <p>
-            <x-button-group [ngModel]="['apple', 'dog']" name="group" type="checkbox">
-                <x-button-toggle value="apple">苹果
+            <nb-button-group [ngModel]="['apple', 'dog']" name="group" type="checkbox">
+                <nb-button-toggle value="apple">苹果
                     <i class="fa fa-apple"></i>
-                </x-button-toggle>
-                <x-button-toggle value="book">书
+                </nb-button-toggle>
+                <nb-button-toggle value="book">书
                     <i class="fa fa-book"></i>
-                </x-button-toggle>
-                <x-button-toggle value="dog">🐶
+                </nb-button-toggle>
+                <nb-button-toggle value="dog">🐶
                     <i class="fa fa-flash"></i>
-                </x-button-toggle>
-            </x-button-group>
+                </nb-button-toggle>
+            </nb-button-group>
         </p>
 
         <p>
-            <x-button-group [ngModel]="['book']" name="radioGroup" type="radio">
-                <x-button-toggle value="apple">苹果
+            <nb-button-group [ngModel]="['book']" name="radioGroup" type="radio">
+                <nb-button-toggle value="apple">苹果
                     <i class="fa fa-apple"></i>
-                </x-button-toggle>
-                <x-button-toggle value="book">书
+                </nb-button-toggle>
+                <nb-button-toggle value="book">书
                     <i class="fa fa-book"></i>
-                </x-button-toggle>
-                <x-button-toggle disabled value="dog">🐶
+                </nb-button-toggle>
+                <nb-button-toggle disabled value="dog">🐶
                     <i class="fa fa-flash"></i>
-                </x-button-toggle>
-            </x-button-group>
+                </nb-button-toggle>
+            </nb-button-group>
         </p>
     </form>
 

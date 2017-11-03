@@ -37,15 +37,15 @@ const BOXGROUP_VALUE_ACCESSOR = {
  * box group component
  */
 @Component({
-    selector: 'x-boxgroup',
+    selector: 'nb-boxgroup',
     templateUrl: './box-group.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     providers: [BOXGROUP_VALUE_ACCESSOR],
     host: {
-        'class': 'x-widget x-boxgroup',
-        '[class.x-boxgroup-disabled]': 'disabled'
+        'class': 'nb-widget nb-boxgroup',
+        '[class.nb-boxgroup-disabled]': 'disabled'
     }
 })
 export class BoxGroupComponent implements ControlValueAccessor {

@@ -1,8 +1,8 @@
-.x-checkbox {
+.@{prefix}-checkbox {
     display: inline-block;
     position: relative;
 
-    .x-checkbox-label {
+    .@{prefix}-checkbox-label {
         padding-left: 20px;
         cursor: pointer;
 
@@ -20,9 +20,9 @@
     }
 }
 
-.x-checkbox.x-checkbox-checked {
+.@{prefix}-checkbox.@{prefix}-checkbox-checked {
 
-    .x-checkbox-label {
+    .@{prefix}-checkbox-label {
         &:after {
             content: '';
             display: block;
@@ -39,16 +39,16 @@
     }
 }
 
-.x-checkbox.x-checkbox-disabled {
-    .x-checkbox-label {
+.@{prefix}-checkbox.@{prefix}-checkbox-disabled {
+    .@{prefix}-checkbox-label {
         &:before {
             border-color: #dbdbdb;
             background-color: #eee;
         }
     }
 
-    &.x-checkbox-checked {
-        .x-checkbox-label {
+    &.@{prefix}-checkbox-checked {
+        .@{prefix}-checkbox-label {
             &:after {
                 border-color: #b8b8b8;
             }
@@ -58,16 +58,16 @@
 
 // radio
 
-.x-checkbox-radio {
-    .x-checkbox-label {
+.@{prefix}-checkbox-radio {
+    .@{prefix}-checkbox-label {
         &:before {
             border-radius: 16px;
         }
     }
 }
 
-.x-checkbox-radio.x-checkbox-checked {
-    .x-checkbox-label {
+.@{prefix}-checkbox-radio.@{prefix}-checkbox-checked {
+    .@{prefix}-checkbox-label {
         &:after {
             border: none;
             width: 8px;
@@ -80,16 +80,16 @@
     }
 }
 
-.x-checkbox-radio.x-checkbox-disabled {
-    .x-checkbox-label {
+.@{prefix}-checkbox-radio.@{prefix}-checkbox-disabled {
+    .@{prefix}-checkbox-label {
         &:before {
             border-color: #dbdbdb;
             background-color: #eee;
         }
     }
 
-    &.x-checkbox-checked {
-        .x-checkbox-label {
+    &.@{prefix}-checkbox-checked {
+        .@{prefix}-checkbox-label {
             &:after {
                 background-color: #b8b8b8;
             }
@@ -97,7 +97,7 @@
     }
 }
 
-.x-box-group {
+.@{prefix}-box-group {
     display: block;
     color: #f00;
 }

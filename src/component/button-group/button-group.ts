@@ -21,7 +21,7 @@ export interface ButtonGroupValue {
 }
 
 /*
- * Provider Expression that allows x-switch to register as a ControlValueAccessor.
+ * Provider Expression that allows component to register as a ControlValueAccessor.
  * This allows it to support [(ngModel)].
  * @docs-private
  */
@@ -35,14 +35,14 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
  * Button Component
  */
 @Component({
-    selector: 'x-button-group',
+    selector: 'nb-button-group',
     templateUrl: './button-group.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     providers: [BUTTONGROUP_VALUE_ACCESSOR],
     host: {
-        'class': 'x-widget x-button-group'
+        'class': 'nb-widget nb-button-group'
     },
     exportAs: 'xButtonGroup'
 })
@@ -186,17 +186,17 @@ export class ButtonGroupComponent implements ControlValueAccessor {
  * like checkbox , it has a associated value and can be checked and disabled
  */
 @Component({
-    selector: 'x-button-toggle',
+    selector: 'nb-button-toggle',
     template: `
-        <span class="x-button-inner"><ng-content></ng-content></span>
+        <span class="nb-button-inner"><ng-content></ng-content></span>
     `,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'x-widget x-button-toggle',
-        '[class.x-button-toggle-checked]': 'checked',
-        '[class.x-button-toggle-disabled]': 'disabled',
+        'class': 'nb-widget nb-button-toggle',
+        '[class.nb-button-toggle-checked]': 'checked',
+        '[class.nb-button-toggle-disabled]': 'disabled',
         '(click)': 'onToggle()'
     },
     exportAs: 'xButtonToggle'

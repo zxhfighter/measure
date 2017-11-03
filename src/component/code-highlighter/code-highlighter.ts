@@ -4,13 +4,13 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'x-code-highlighter',
+    selector: 'nb-code-highlighter',
     templateUrl: './code-highlighter.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'x-widget x-code-highlighter'
+        'class': 'nb-widget nb-code-highlighter'
     }
 })
 export class CodeHighlighterComponent implements OnInit {

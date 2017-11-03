@@ -1,18 +1,18 @@
-.x-switch {
+.@{prefix}-switch {
     display: inline-block;
 
     & > label {
         display: block;
         cursor: pointer;
 
-        &.x-widget-disabled {
+        &.@{prefix}-widget-disabled {
             pointer-events: none;
             cursor: not-allowed;
 
-            .x-switch-outer {
+            .@{prefix}-switch-outer {
                 background-color: #dbdbdb;
 
-                .x-switch-inner {
+                .@{prefix}-switch-inner {
                     background-color: #b8b8b8;
                 }
 
@@ -23,7 +23,7 @@
         }
     }
 
-    .x-switch-outer {
+    .@{prefix}-switch-outer {
         position: relative;
         width: 50px;
         height: 24px;
@@ -31,7 +31,7 @@
         background-color: #bbb;
         transition: background-color 300ms ease-in;
 
-        .x-switch-inner {
+        .@{prefix}-switch-inner {
             position: absolute;
             width: 20px;
             height: 20px;
@@ -45,20 +45,20 @@
         &.checked {
             background-color: @brand-primary;
 
-            .x-switch-inner {
+            .@{prefix}-switch-inner {
                 left: 28px;
             }
         }
     }
 }
 
-.x-widget-small {
-    .x-switch-outer {
+.@{prefix}-widget-small {
+    .@{prefix}-switch-outer {
         width: 38px;
         height: 18px;
         border-radius: 18px;
 
-        .x-switch-inner {
+        .@{prefix}-switch-inner {
             width: 14px;
             height: 14px;
             border-radius: 14px;
@@ -67,7 +67,7 @@
         }
 
         &.checked {
-            .x-switch-inner {
+            .@{prefix}-switch-inner {
                 left: 22px;
             }
         }

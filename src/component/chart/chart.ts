@@ -4,13 +4,13 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'x-chart',
+    selector: 'nb-chart',
     templateUrl: './chart.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'x-widget x-chart'
+        'class': 'nb-widget nb-chart'
     }
 })
 export class ChartComponent implements OnInit {

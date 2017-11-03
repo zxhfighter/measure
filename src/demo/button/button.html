@@ -14,11 +14,11 @@ import &#x7B;ButtonModule&#x7D; from 'xdesign';
     <h3 class="section-title">Button Group</h3>
 
     <p>
-        <x-button-group>
-            <button theme="default" x-button>苹果</button>
-            <button theme="default" x-button>橘子</button>
-            <button theme="default" x-button>梨子</button>
-        </x-button-group>
+        <nb-button-group>
+            <button theme="default" nb-button>苹果</button>
+            <button theme="default" nb-button>橘子</button>
+            <button theme="default" nb-button>梨子</button>
+        </nb-button-group>
     </p>
 </section>
 
@@ -29,16 +29,16 @@ import &#x7B;ButtonModule&#x7D; from 'xdesign';
         You clicked: {{ counter }} times
     </p>
     <p>
-        <button x-button theme="primary" (click)="onClick()" [disabled]="isDisabled">primary theme</button>
-        <button x-button theme="default" (click)="onClick()">default theme</button>
-        <button x-button theme="neutral" (click)="onClick()">neutral theme</button>
-        <button x-button theme="transparent" (click)="onClick()">transparent theme</button>
-        <button x-button disabled (click)="onClick()">disabled button</button>
-        <button x-button theme="yellow" (click)="onClick()">custom theme</button>
+        <button nb-button theme="primary" (click)="onClick()" [disabled]="isDisabled">primary theme</button>
+        <button nb-button theme="default" (click)="onClick()">default theme</button>
+        <button nb-button theme="neutral" (click)="onClick()">neutral theme</button>
+        <button nb-button theme="transparent" (click)="onClick()">transparent theme</button>
+        <button nb-button disabled (click)="onClick()">disabled button</button>
+        <button nb-button theme="yellow" (click)="onClick()">custom theme</button>
     </p>
 
     <p>
-        <button x-button theme="default" (click)="changeDisabled()">disable the first button</button>
+        <button nb-button theme="default" (click)="changeDisabled()">disable the first button</button>
     </p>
 </section>
 
@@ -46,15 +46,15 @@ import &#x7B;ButtonModule&#x7D; from 'xdesign';
     <h3 class="section-title">Sizes</h3>
 
     <p>
-        <button x-button [size]="size">{{buttonText}}</button>
-        <button x-button size="sm">small height = 32px</button>
-        <button x-button>default height = 36px</button>
-        <button x-button size="lg">large height = 42px</button>
+        <button nb-button [size]="size">{{buttonText}}</button>
+        <button nb-button size="sm">small height = 32px</button>
+        <button nb-button>default height = 36px</button>
+        <button nb-button size="lg">large height = 42px</button>
     </p>
 
     <p>
-        <button x-button theme="default" (click)="changeSize()">change first button size</button>
-        <button x-button theme="default" (click)="changeText()">change first button text</button>
+        <button nb-button theme="default" (click)="changeSize()">change first button size</button>
+        <button nb-button theme="default" (click)="changeText()">change first button text</button>
     </p>
 </section>
 
@@ -62,10 +62,10 @@ import &#x7B;ButtonModule&#x7D; from 'xdesign';
     <h3 class="section-title">Link Buttons</h3>
 
     <p>
-        <a [disabled]="isDisabled" x-button size="xs" href="http://www.baidu.com" target="_blank">Link Button</a>
-        <a disabled x-button size="sm" href="http://www.baidu.com" target="_blank">Link Button</a>
-        <a x-button href="http://www.baidu.com" target="_blank">Link Button</a>
-        <a x-button size="lg" href="http://www.baidu.com" target="_blank">Link Button</a>
+        <a [disabled]="isDisabled" nb-button size="xs" href="http://www.baidu.com" target="_blank">Link Button</a>
+        <a disabled nb-button size="sm" href="http://www.baidu.com" target="_blank">Link Button</a>
+        <a nb-button href="http://www.baidu.com" target="_blank">Link Button</a>
+        <a nb-button size="lg" href="http://www.baidu.com" target="_blank">Link Button</a>
     </p>
 </section>
 
@@ -73,8 +73,8 @@ import &#x7B;ButtonModule&#x7D; from 'xdesign';
     <h3 class="section-title">Button with icons</h3>
 
     <p>
-        <button x-button><i class="fa fa-bug"></i> Upload Image</button>
-        <button x-button>Download Image <i class="fa fa-book"></i></button>
-        <button x-button theme="icon"><i class="iconfont icon-bianji"></i></button>
+        <button nb-button><i class="fa fa-bug"></i> Upload Image</button>
+        <button nb-button>Download Image <i class="fa fa-book"></i></button>
+        <button nb-button theme="icon"><i class="iconfont icon-bianji"></i></button>
     </p>
 </section>

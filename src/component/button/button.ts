@@ -17,7 +17,7 @@ export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
  * Button Component
  */
 @Component({
-    selector: 'button[x-button]',
+    selector: 'button[nb-button]',
     templateUrl: './button.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -79,16 +79,16 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
      */
     getClassName() {
         return [
-            'x-widget',
-            'x-button',
-            `x-button-size-${this.size || 'default'}`,
-            `x-button-theme-${this.theme || 'default'}`
+            'nb-widget',
+            'nb-button',
+            `nb-button-size-${this.size || 'default'}`,
+            `nb-button-theme-${this.theme || 'default'}`
         ].join(' ');
     }
 }
 
 @Component({
-    selector: 'a[x-button]',
+    selector: 'a[nb-button]',
     templateUrl: './button.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
