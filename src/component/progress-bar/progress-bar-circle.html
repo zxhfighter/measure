@@ -1,0 +1,6 @@
+<svg class="svg" [attr.width]="radius * 2" [attr.height]="radius * 2">
+    <circle [attr.cx]="radius" [attr.cy]="radius" [attr.r]="radius" class="svg-back-circle"></circle>
+    <path [attr.d]="circlePath" class="svg-front-circle"></path>
+</svg>
+
+<div *ngIf="showProgressText" class="progress-text">{{progressText}}</div>
