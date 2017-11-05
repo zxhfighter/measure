@@ -10,6 +10,9 @@ import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
 import {DemoBoxGroup} from './box-group';
 import {DemoChart} from './chart';
+import {DemoProgressBar} from './progress-bar';
+import {DemoSpinner} from './spinner';
+import {DemoCarousel} from './carousel';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -18,5 +21,8 @@ export const appRoutes: Routes = [
     {path: 'switch', component: DemoSwitch},
     {path: 'button-group', component: DemoButtonGroup},
     {path: 'box-group', component: DemoBoxGroup},
-    {path: 'chart', component: DemoChart}
+    {path: 'chart', component: DemoChart},
+    {path: 'progress-bar', component: DemoProgressBar},
+    {path: 'spinner', component: DemoSpinner},
+    {path: 'carousel', component: DemoCarousel}
 ];

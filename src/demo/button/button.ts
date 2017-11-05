@@ -14,8 +14,8 @@ export function getButtonConfig(): ButtonConfig {
     templateUrl: './button.html',
     styleUrls: ['./button.less'],
     encapsulation: ViewEncapsulation.Emulated,
-    changeDetection: ChangeDetectionStrategy.Default
-    // providers: [{provide: ButtonConfig, useFactory: getButtonConfig}]
+    changeDetection: ChangeDetectionStrategy.Default,
+    providers: [{provide: ButtonConfig, useFactory: getButtonConfig}]
 })
 export class DemoButton implements OnInit {
     name = 'ComponentName';

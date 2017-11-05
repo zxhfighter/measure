@@ -3,7 +3,10 @@ import {spawnSync} from 'child_process';
 import {resolve, join} from 'path';
 import {sequenceTask} from '../utils/sequence-task';
 import {inlineAssetForDirectory} from '../utils/inline-asset';
+import {copyTask} from '../utils/task_helpers';
 import {config} from '../utils/config';
+import {readFileSync, writeFileSync} from 'fs';
+import {sync as glob} from 'glob';
 
 const rollup = require('rollup');
 const rollupNodeResolutionPlugin = require('rollup-plugin-node-resolve');
@@ -13,7 +16,12 @@ const less = require('gulp-less');
 const LessAutoprefix = require('less-plugin-autoprefix');
 const autoprefixPlugin = new LessAutoprefix({browsers: ['last 2 versions']});
 const gulpCleanCss = require('gulp-clean-css');
+const uglifyJS = require('uglify-js');
+const replace = require('gulp-replace');
 
+/**
+ * options for htmlmin
+ */
 const htmlMinifierOptions = {
     collapseWhitespace: true,
     removeComments: true,
@@ -21,64 +29,113 @@ const htmlMinifierOptions = {
     removeAttributeQuotes: false
 };
 
+/**
+ * default build task
+ */
 task('build', sequenceTask(
     'clean',
     'build:aot',
     'build:assets',
     'build:inline-assets',
     'build:bundle',
+    'build:uglify',
     'build:package'
 ));
 
 /**
- * 使用 ngc 进行 AOT 编译
+ * using ngc for component AOT compile
  */
 task('build:aot', () => {
     const ngcPath = resolve('./node_modules/.bin/ngc');
-    const childProcess = spawnSync(ngcPath, ['-p', config.tsconfigPath]);
-
-    if (childProcess.stdout.toString()) {
-        console.log('success');
-        console.log(childProcess.stdout.toString());
-    }
-
-    if (childProcess.stderr.toString()) {
-        console.log('error');
-        console.log(childProcess.stderr.toString());
-    }
+    spawnSync(ngcPath, ['-p', config.tsconfigPath]);
 });
 
 /**
- * 替换 AOT 编译后组件中的 templateUrl 和 styleUrls 资源
+ * replace aot-compiled component's templateUrl to template, and styleUrls to styles
  */
 task('build:inline-assets', () => {
     inlineAssetForDirectory(config.dist);
 });
 
 /**
- * 处理资源
+ * process static assets, including html、less(css)、font and so on
  */
-task('build:assets', sequenceTask(['build:assets:html', 'build:assets:less']));
+task('build:assets', sequenceTask([
+    'build:minify:html',
+    'build:copy:assetless',
+    'build:copy:font',
+    'build:copy:componentless',
+    'build:compile:less',
+], 'build:less:replacepath'));
 
-// 处理 HTML 资源
-task('build:assets:html', () => {
+/**
+ * minify component html and copy them to the dist folder
+ */
+task('build:minify:html', () => {
     return src(join(config.componentPath, '**/*.html'))
         .pipe(htmlmin(htmlMinifierOptions))
         .pipe(dest(config.dist));
 });
 
-// 处理 LESS 资源
-task('build:assets:less', () => {
-    return src(join(config.componentPath, '**/*.less'))
+/**
+ * copy asset less files to dist asset folder
+ */
+task('build:copy:assetless', copyTask(
+    join(config.componentPath, '../asset/**/*.less'),
+    join(config.dist, 'asset')
+));
+
+/**
+ * copy component less files to dist component folder
+ */
+task('build:copy:componentless', copyTask(
+    join(config.componentPath, '**/*.less'),
+    join(config.dist, 'asset/less/component')
+));
+
+/**
+ * fix some relative urls problem
+ */
+task('build:less:replacepath', (cb?: Function) => {
+
+    // replace relative urls in component.less
+    const componentLessFile = join(config.componentPath, '../asset/less/component.less');
+    let content = readFileSync(componentLessFile, 'utf-8');
+    content = content.replace(/\.\.\/\.\./g, '.');
+    writeFileSync(join(config.dist, 'asset/less/component.less'), content, 'utf-8');
+
+    // replace some font relative urls in built theme css files
+    glob(join(config.dist, 'asset/css/theme/**/index.css')).forEach(filePath => {
+        let cssContent = readFileSync(filePath, 'utf-8');
+        cssContent = cssContent.replace(/theme\/font/g, '../../../font');
+        writeFileSync(filePath, cssContent, 'utf-8');
+    });
+
+    cb && cb();
+});
+
+/**
+ * copy fonts from src to dist
+ */
+task('build:copy:font', copyTask(
+    join(config.componentPath, '../asset/font/**'),
+    join(config.dist, 'asset/font')
+));
+
+/**
+ * using gulp-less to compile less files to dist asset/css folder
+ */
+task('build:compile:less', () => {
+    return src(join(config.componentPath, '../asset/less/**/*.less'))
         .pipe(less({
             plugins: [autoprefixPlugin]
         }))
         .pipe(gulpCleanCss())
-        .pipe(dest(config.dist));
+        .pipe(dest(join(config.dist, 'asset/css')));
 });
 
 /**
- * 打包成 UMD 格式，便于 plnkr 和 System.js 等引用
+ * using rollup to generate an umd lib file, that can be used by System.js and Plunker
  */
 task('build:bundle', async () => {
     const inputOptions = {
@@ -109,7 +166,7 @@ task('build:bundle', async () => {
             '@angular/http': 'ng.http'
         },
         file: join(config.umdPath, `${config.moduleName}.umd.js`),
-        banner: '/** Hello */',
+        banner: `/** Copyright (c) BAIDU INC. */`,
         sourcemap: true
     };
 
@@ -117,4 +174,16 @@ task('build:bundle', async () => {
     const {code, map} = await bundle.generate(outputOptions);
 
     await bundle.write(outputOptions);
+});
+
+/**
+ * using uglify-js to minify umd lib file
+ */
+task('build:uglify', (cb?: Function) => {
+    const uglifyPath = resolve('./node_modules/.bin/uglifyjs');
+    const umdFile = join(config.umdPath, `${config.moduleName}.umd.js`);
+    const umdMiniFile = join(config.umdPath, `${config.moduleName}.umd.min.js`);
+    const childProcess = spawnSync(uglifyPath, ['-c', '-m', '--source-map', '-o',  umdMiniFile, '--', umdFile]);
+
+    cb && cb();
 });

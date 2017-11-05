@@ -6,6 +6,8 @@ import {config} from '../utils/config';
 import {sequenceTask} from '../utils/sequence-task';
 import {tsBuildTask, copyTask} from '../utils/task_helpers';
 
+import {readFileSync, writeFileSync} from 'fs';
+
 const serve = require('browser-sync');
 const webpack = require('webpack');
 const webpackDevMiddelware = require('webpack-dev-middleware');
@@ -63,14 +65,14 @@ task(':serve', () => {
     // serve.watch(root + '/index.html').on('change', serve.reload);
 });
 
-task('build:demo', (cb?: Function) => {
+task('build:demo', sequenceTask('build:demo:webpack', 'build:replace:basehref'));
+
+task('build:demo:webpack', (cb?: Function) => {
     let buildConfig = require(prodConfigPath);
 
     if (helper.isDev()) {
         buildConfig = require(devConfigPath);
     }
-
-    buildConfig.output.publicPath = 'measure';
 
     webpack(buildConfig, (err: any, stats: any) => {
         if (err) {
@@ -84,4 +86,11 @@ task('build:demo', (cb?: Function) => {
 
         cb && cb();
     });
+});
+
+task('build:replace:basehref', () => {
+    const docsIndex = join(config.appPath, '../docs/index.html');
+    let indexContent = readFileSync(docsIndex, 'utf-8');
+    indexContent = indexContent.replace('base href="/"', 'base href="/measure/"');
+    writeFileSync(docsIndex, indexContent, 'utf-8');
 });

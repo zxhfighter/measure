@@ -15,7 +15,7 @@ export function inlineAsset(filePath: string) {
 
     let fileContent = readFileSync(filePath, 'utf-8');
     fileContent = inlineTemplate(fileContent, filePath);
-    fileContent = inlineStyles(fileContent, filePath);
+    // fileContent = inlineStyles(fileContent, filePath);
     fileContent = removeModuleId(fileContent);
 
     writeFileSync(filePath, fileContent, 'utf-8');

@@ -9,7 +9,7 @@ import {coerceBooleanProperty} from '../util/coerce';
 import {OnChange} from '../core/decorators';
 
 /*
- * Provider Expression that allows x-switch to register as a ControlValueAccessor.
+ * Provider Expression that allows component to register as a ControlValueAccessor.
  * This allows it to support [(ngModel)].
  * @docs-private
  */
@@ -20,15 +20,14 @@ const SWITCH_VALUE_ACCESSOR = {
 };
 
 @Component({
-    selector: 'x-switch',
+    selector: 'nb-switch',
     templateUrl: './switch.html',
-    styleUrls: ['./switch.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     providers: [SWITCH_VALUE_ACCESSOR],
     host: {
-        'class': 'x-widget x-switch'
+        'class': 'nb-widget nb-switch'
     }
 })
 export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAccessor {

@@ -15,7 +15,7 @@ import &#x7B;SwitchModule&#x7D; from 'xdesign';
     <h3 class="section-title">Default</h3>
 
     <p>
-        <x-switch></x-switch>
+        <nb-switch></nb-switch>
     </p>
 </section>
 
@@ -23,11 +23,11 @@ import &#x7B;SwitchModule&#x7D; from 'xdesign';
     <h3 class="section-title">default checked</h3>
 
     <p>
-        <x-switch [checked]="checked"></x-switch>
+        <nb-switch [checked]="checked"></nb-switch>
     </p>
 
     <p>
-        <button x-button (click)="onChange()">Change checked state</button>
+        <button nb-button (click)="onChange()">Change checked state</button>
     </p>
 
 </section>
@@ -36,12 +36,12 @@ import &#x7B;SwitchModule&#x7D; from 'xdesign';
     <h3 class="section-title">default checked, disabled</h3>
 
     <p>
-        <x-switch [checked]="true" [disabled]="disabled"></x-switch>
-        <x-switch [disabled]="disabled"></x-switch>
+        <nb-switch [checked]="true" [disabled]="disabled"></nb-switch>
+        <nb-switch [disabled]="disabled"></nb-switch>
     </p>
 
     <p>
-        <button x-button (click)="onChangeDisabled()">Change disabled state</button>
+        <button nb-button (click)="onChangeDisabled()">Change disabled state</button>
     </p>
 </section>
 
@@ -50,7 +50,7 @@ import &#x7B;SwitchModule&#x7D; from 'xdesign';
     <h3 class="section-title">default unchecked, disabled</h3>
 
     <p>
-        <x-switch disabled></x-switch>
+        <nb-switch disabled></nb-switch>
     </p>
 </section>
 
@@ -58,19 +58,19 @@ import &#x7B;SwitchModule&#x7D; from 'xdesign';
     <h3 class="section-title">small swicth component</h3>
 
     <p>
-        <x-switch styleClass="x-widget-small"></x-switch>
+        <nb-switch styleClass="nb-widget-small"></nb-switch>
     </p>
 
     <p>
-        <x-switch styleClass="x-widget-small" [checked]="true"></x-switch>
+        <nb-switch styleClass="nb-widget-small" [checked]="true"></nb-switch>
     </p>
 
     <p>
-        <x-switch styleClass="x-widget-small" [checked]="true" disabled></x-switch>
+        <nb-switch styleClass="nb-widget-small" [checked]="true" disabled></nb-switch>
     </p>
 
     <p>
-        <x-switch styleClass="x-widget-small" disabled></x-switch>
+        <nb-switch styleClass="nb-widget-small" disabled></nb-switch>
     </p>
 </section>
 
@@ -78,7 +78,7 @@ import &#x7B;SwitchModule&#x7D; from 'xdesign';
     <h3 class="section-title">Used within forms</h3>
 
     <form #frm="ngForm">
-        <x-switch [ngModel]="false" name="isChecked"></x-switch>
+        <nb-switch [ngModel]="false" name="isChecked"></nb-switch>
         <p>
             {{ frm.value | json }}
         </p>
@@ -89,7 +89,7 @@ import &#x7B;SwitchModule&#x7D; from 'xdesign';
     <h3 class="section-title">Used within reactive forms</h3>
 
     <form [formGroup]="form">
-        <x-switch formControlName="isChecked"></x-switch>
+        <nb-switch formControlName="isChecked"></nb-switch>
         <p>
             {{ form.value | json }}
         </p>

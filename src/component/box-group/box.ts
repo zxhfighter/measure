@@ -15,17 +15,16 @@ export type BOX_TYPE = 'radio' | 'checkbox';
  * A single checkbox or radiobox
  */
 @Component({
-    selector: 'x-checkbox',
+    selector: 'nb-checkbox',
     templateUrl: './box.html',
-    styleUrls: ['./box-group.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'x-widget x-checkbox',
-        '[class.x-checkbox-disabled]': 'disabled',
-        '[class.x-checkbox-checked]': 'checked',
-        '[class.x-checkbox-radio]': 'type == "radio"'
+        'class': 'nb-widget nb-checkbox',
+        '[class.nb-checkbox-disabled]': 'disabled',
+        '[class.nb-checkbox-checked]': 'checked',
+        '[class.nb-checkbox-radio]': 'type == "radio"'
     }
 })
 export class InputBoxComponent implements OnInit {

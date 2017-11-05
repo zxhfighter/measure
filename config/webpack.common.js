@@ -16,8 +16,6 @@ const helper = require('./helper');
 const isAOT = helper.isAOT();
 const isBuild = helper.isBuild();
 
-console.log('isAOT', isAOT);
-
 module.exports = {
     entry: {
         app: isAOT ? [helper.root('src/demo/main-aot.ts')] : [helper.root('src/demo/main.ts')],

@@ -1,0 +1,41 @@
+<table class="bar-table">
+    <tr class="bar-row">
+        <td class="bar-val-col">
+            <div class="bar-outer">
+                <div
+                    class="bar-inner"
+                    [style.width.%]="percent"
+                    [class.bar-inner-success] = "isSuccess"
+                    [class.bar-inner-error] = "isError">
+                </div>
+            </div>
+        </td>
+        <td class="bar-text-col" *ngIf="showProgressText">
+            <div class="bar-text">
+                <div *ngIf="isSuccess" class="bar-text-success">
+                    {{ successText }}
+                </div>
+                <div *ngIf="isError" class="bar-text-error">
+                    {{ errorText }}
+                </div>
+                <div *ngIf="!isSuccess && !isError">
+                    {{ percent }}%
+                </div>
+            </div>
+        </td>
+
+        <td class="bar-operation-col" *ngIf="showOperation">
+            <div class="bar-operations"
+                [class.bar-operation-success] = "isSuccess"
+                [class.bar-operation-error] = "isError">
+                <div class="bar-operation-delete" (click)="onClose()">
+                    <i class="iconfont icon-close"></i>
+                </div>
+                <div class="bar-operation-refresh" (click)="onRefresh()">
+                    <i class="iconfont icon-refresh"></i>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+

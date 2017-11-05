@@ -4,14 +4,13 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'x-<%= name %>',
+    selector: 'nb-<%= name %>',
     templateUrl: './<%= name %>.html',
-    styleUrls: ['./<%= name %>.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'x-widget x-<%= name %>'
+        'class': 'nb-widget nb-<%= name %>'
     }
 })
 export class <%= upperName %>Component implements OnInit {

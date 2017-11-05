@@ -13,16 +13,27 @@ const yargs = require('yargs');
 const dom = require('gulp-dom');
 const yellow = chalk.default.yellow;
 
-// gulp generate:component --name your-button
+/**
+ * quickly generate a component:
+ *
+ * gulp generate:component --name your-button
+ */
 task('generate:component', sequenceTask(
     'generate:component:copy',
     'generate:component:update',
+    'generate:componentless:update',
     'generate:demo',
     ':demo:update:html'
 ));
 
+/**
+ * copy component template files and replace component name
+ */
 task('generate:component:copy', copyAndReplace(config.scaffordPath, config.componentPath));
 
+/**
+ * update component entry index.ts
+ */
 task('generate:component:update', () => {
     const name = yargs.argv.name;
     const entry = join(config.componentPath, 'index.ts');
@@ -34,13 +45,33 @@ task('generate:component:update', () => {
     writeFileSync(entry, indexContent, 'utf-8');
 });
 
+/**
+ * update component less entry file
+ */
+task('generate:componentless:update', () => {
+    const name = yargs.argv.name;
+    const entry = join(config.componentPath, '../asset/less/component.less');
+
+    let content = readFileSync(entry, 'utf-8');
+    content += `@import "../../component/${name}/${name}.less";`;
+    content += '\n';
+
+    writeFileSync(entry, content, 'utf-8');
+});
+
+/**
+ * copy demo template files and replace component name
+ */
 task('generate:demo', copyAndReplace(config.scaffordDemoPath, config.demoPath));
 
+/**
+ * update demo app root html
+ */
 task(':demo:update:html', () => {
     const name = yargs.argv.name;
     const appHtml = join(config.demoPath, 'app.component.html');
 
-    console.log(`生成完毕后，您还需要更新如下文件：
+    console.log(`There more two step, modify the follwing files to run the demo：
         ${yellow('src/demo/app.module.ts')}
         ${yellow('src/demo/app.router.ts')}`
     );
@@ -68,22 +99,21 @@ task(':demo:update:html', () => {
         .pipe(dest(config.demoPath));
 });
 
-// there are no ts -> ast -> ts
-task(':demo:update:warn', () => {
-
-});
-
-task(':demo:update:router', () => {
-
-});
-
-function copyAndReplace(scaffordPath: string, destPath: string) {
+/**
+ *
+ * copy files from sourcePath to destPath and replace placeholders
+ *
+ * @param {string} sourcePath - sources path
+ * @param {string} destPath - dest path
+ * @return {Function}
+ */
+function copyAndReplace(sourcePath: string, destPath: string) {
 
     return () => {
         const name = yargs.argv.name;
         const destDir = join(destPath, name);
 
-        return src(scaffordPath)
+        return src(sourcePath)
             .pipe(template({
                 name,
                 upperName: captilizeName(name)
@@ -95,6 +125,12 @@ function copyAndReplace(scaffordPath: string, destPath: string) {
     }
 }
 
+/**
+ * convert kerba-type name to pascal-type name, i.e. combo-select to ComboSelect
+ *
+ * @param {string} name - origin var name
+ * @return {string} pascal-type name
+ */
 function captilizeName(name: string) {
     return name
         .split('-')

@@ -1,25 +1,25 @@
-<ul class="x-breadcrumb-list clearfix">
-    <li class="x-breadcrumb-item"
+<ul class="nb-breadcrumb-list clearfix">
+    <li class="nb-breadcrumb-item"
         *ngFor="let item of datasource; last as isLast; trackBy: trackByText">
         <ng-container *ngIf="item.href">
-            <a class="x-breadcrumb-text"
+            <a class="nb-breadcrumb-text"
                 [class.last]="isLast"
                 href="{{item.href}}"
                 target="_blank">{{item.text}}</a>
         </ng-container>
 
         <ng-container *ngIf="item.path && !item.href">
-            <a class="x-breadcrumb-text"
+            <a class="nb-breadcrumb-text"
                 [class.last]="isLast"
                 [routerLink]="[item.path]">{{item.text}}</a>
         </ng-container>
 
         <ng-container *ngIf="isLast || (!item.path && !item.href)">
-            <span class="x-breadcrumb-text no-clickable"
+            <span class="nb-breadcrumb-text no-clickable"
                 [class.last]="isLast">{{item.text}}</span>
         </ng-container>
 
-        <span class="x-breadcrumb-split" *ngIf="!isLast">
+        <span class="nb-breadcrumb-split" *ngIf="!isLast">
             <i class="iconfont icon-zhixiangyou1"></i>
         </span>
     </li>

@@ -52,4 +52,3 @@ function execTsLintTask(...flags: string[]) {
   const tsNodeOptions = ['-O', '{"module": "commonjs"}'];
   return execNodeTask('ts-node', [...tsNodeOptions, tslintBinPath, ...tsLintBaseFlags, ...flags]);
 }
-

@@ -1,0 +1,68 @@
+<h1 class="main-title">Spinner demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;SpinnerModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">Spinner first demo</h3>
+
+    <p>
+        <nb-spinner></nb-spinner>
+    </p>
+</section>
+
+
+<section>
+    <h3 class="section-title">disabled</h3>
+
+    <p>
+        <nb-spinner disabled [value]="7"></nb-spinner>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">max and min value</h3>
+
+    <p>
+        <nb-spinner [minValue]="0" [maxValue]="5"></nb-spinner>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">step</h3>
+
+    <p>
+        <nb-spinner [step]="3"></nb-spinner>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">in forms</h3>
+
+    <form #frm="ngForm">
+        <nb-spinner [ngModel]="11" name="spinner" [step]="3"></nb-spinner>
+    </form>
+
+    <p>
+        {{ frm.value | json }}
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">in reactive forms</h3>
+
+    <form [formGroup]="form">
+        <nb-spinner formControlName="spinner" [step]="3"></nb-spinner>
+    </form>
+
+    <p>
+        {{ form.value | json }}
+    </p>
+</section>

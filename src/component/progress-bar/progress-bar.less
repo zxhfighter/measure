@@ -1,0 +1,132 @@
+@progressbar-height: 4px;
+@progressbar-background: #dbdbdb;
+@progressbar-color: #666;
+@progressbar-color-success: #5BC49F;
+@progressbar-color-error: #FE5B5B;
+@progressbar-background: #dbdbdb;
+@progressbar-background-hover: #f7f7f7;
+
+@progressbar-circle-ring-width: 20;
+
+.@{prefix}-progress-bar {
+    display: block;
+    padding: 16px 8px;
+
+    .clearfix();
+
+    .bar-outer {
+        overflow: hidden;
+        position: relative;
+        height: 4px;
+        background-color: @progressbar-background;
+        vertical-align: middle;
+
+        .bar-inner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: @progressbar-color;
+            transition: width ease-in-out 500ms;
+
+            &-success {
+                background-color: @progressbar-color-success;
+            }
+
+            &-error {
+                background-color: @progressbar-color-error;
+            }
+        }
+    }
+
+    &:hover {
+        background-color: @progressbar-background-hover;
+
+        .bar-operation-success .bar-operation-delete,
+        .bar-operation-error .bar-operation-refresh {
+            display: block;
+        }
+    }
+
+    .bar-table {
+        width: 100%;
+    }
+
+    .bar-val-col {
+        width: auto;
+    }
+    .bar-text-col {
+        padding-left: 10px;
+        width: 40px;
+
+        .bar-text-success {
+            color: @progressbar-color-success;
+        }
+
+        .bar-text-error {
+            color: @progressbar-color-error;
+        }
+    }
+
+    .bar-operation-col {
+        width: 40px;
+        text-align: center;
+
+        .bar-operation-delete,
+        .bar-operation-refresh {
+            cursor: pointer;
+            display: none;
+        }
+    }
+}
+
+// circle progress bar
+.@{prefix}-progress-bar-circle {
+    display: inline-block;
+    position: relative;
+
+    .svg {
+        display: block;
+        overflow: visible;
+
+        .svg-back-circle {
+            fill: none;
+            stroke: #dbdbdb;
+            stroke-width: @progressbar-circle-ring-width;
+        }
+
+        .svg-front-circle {
+            fill: none;
+            stroke: #FF4081;
+            stroke-width: @progressbar-circle-ring-width;
+        }
+    }
+
+    .progress-text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        white-space: nowrap;
+    }
+
+    &.success {
+        .progress-text {
+            color: @progressbar-color-success;
+        }
+
+        .svg-front-circle {
+            stroke: @progressbar-color-success;
+        }
+    }
+
+    &.error {
+        .progress-text {
+            color: @progressbar-color-error;
+        }
+
+        .svg-front-circle {
+            stroke: @progressbar-color-error;
+        }
+    }
+}
