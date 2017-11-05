@@ -1,23 +1,23 @@
-import {task} from 'gulp';
-import {config} from '../utils/config';
-import {sequenceTask} from '../utils/sequence-task';
-import {execNodeTask} from '../utils/task_helpers';
-import {join} from 'path';
+import { task } from 'gulp';
+import { config } from '../utils/config';
+import { sequenceTask } from '../utils/sequence-task';
+import { execNodeTask } from '../utils/task_helpers';
+import { join } from 'path';
 import chalk from 'chalk';
 
 const madge = require('madge');
 const resolveBin = require('resolve-bin');
 const stylesGlob = '+(tools|src)/**/!(*.bundle).+(css|less)';
-const tsLintBaseFlags =[
-    '-c', 'tslint.json',
-    '--project', './tsconfig.json',
-    '-e', 'scafford'
+const tsLintBaseFlags = [
+  '-c', 'tslint.json',
+  '--project', './tsconfig.json',
+  '-e', 'scafford'
 ];
 
 task('lint', sequenceTask('tslint', 'stylelint', 'madge'));
 
 task('stylelint', execNodeTask(
-  'stylelint', [stylesGlob, '--config', 'stylelint-config.json', '--syntax', 'scss']
+  'stylelint', [stylesGlob, '--config', '.stylelintrc', '--syntax', 'less']
 ));
 
 task('tslint', execTsLintTask());

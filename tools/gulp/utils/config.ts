@@ -1,6 +1,7 @@
 import {resolve} from 'path';
 
 export const config = {
+    projectPath: resolve('.'),
     appPath: resolve('./src'),
     moduleName: 'xdesign',
     dist: resolve('./dist/packages'),
@@ -11,6 +12,6 @@ export const config = {
     tsconfigPath: resolve('./src/component/tsconfig.json'),
     scaffordPath: resolve('./scafford/component/**/*.**'),
     scaffordDemoPath: resolve('./scafford/demo/**/*.**'),
-    devAppOutPath: resolve('./dist/packages/devapp'),
+    devAppOutPath: resolve('./dist/devapp'),
     webpackConfigPath: resolve('./config')
 };

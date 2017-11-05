@@ -13,6 +13,7 @@
     "build": "gulp build && npm run build:demo:aot",
     "build:demo:aot": "gulp build:demo",
     "lint": "gulp lint",
+    "e2e": "gulp e2e",
     "clean": "gulp clean",
     "component": "gulp generate:component",
     "docs": "gulp docs"
@@ -73,6 +74,7 @@
     "gulp-replace": "^0.6.1",
     "gulp-template": "^4.0.0",
     "gulp-transform": "^3.0.5",
+    "gulp-connect": "^5.0.0",
     "highlight.js": "^9.12.0",
     "html-webpack-plugin": "^2.30.1",
     "html-withimg-loader": "^0.1.16",
@@ -94,6 +96,7 @@
     "less-loader": "^4.0.5",
     "less-plugin-autoprefix": "^1.5.1",
     "madge": "^2.2.0",
+    "protractor": "^5.2.0",
     "ng-router-loader": "^2.1.0",
     "ngc-webpack": "^3.2.2",
     "resolve-bin": "^0.4.0",

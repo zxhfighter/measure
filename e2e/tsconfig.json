@@ -1,0 +1,22 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "outDir": "../dist/e2e",
+        "baseUrl": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": false,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es2016",
+            "dom"
+        ],
+        "types": [
+            "jasmine",
+            "node"
+        ]
+    }
+}
