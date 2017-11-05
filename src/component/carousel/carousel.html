@@ -1,0 +1,46 @@
+<div class="image-container" [style.width.px]="width">
+
+    <div class="image-container-inner" [style.width.px]="width * 3" [style.left.px]="leftPos">
+        <div class="image-item" *ngFor="let image of datasource">
+            <ng-container *ngIf="image.link">
+                <a href="{{image.link}}" target="_blank">
+                    <img class="image" src="{{image.imageUrl}}" alt="{{image.title}}" [style.width.px]="width">
+                </a>
+            </ng-container>
+
+            <ng-container *ngIf="!image.link">
+                <img class="image" src="{{image.imageUrl}}" alt="{{image.title}}" [style.width.px]="width">
+            </ng-container>
+        </div>
+    </div>
+
+    <div *ngIf="showTitle" class="image-titles-background">
+        <div class="image-titles">
+            <div class="image-title"
+                *ngFor="let image of datasource; index as idx"
+                [class.active]="idx == activeIndex"
+                (click)="navigate(idx)">
+                {{ image.title }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="activeIndex != 0" class="left-arrow" (click)="prev()">
+    <i class="iconfont icon-arrow-left"></i>
+</div>
+<div *ngIf="activeIndex != datasource.length - 1" class="right-arrow" (click)="next()">
+    <i class="iconfont icon-arrow-right"></i>
+</div>
+
+<div *ngIf="!showTitle" class="navigator-items">
+    <div class="navigator-item"
+        *ngFor="let image of datasource; index as idx"
+        [class.active]="idx == activeIndex"
+        (click)="navigate(idx)">
+    </div>
+</div>
+
+<div class="navigator-text">
+    {{ activeIndex + 1 }}/{{ datasource.length }}
+</div>
