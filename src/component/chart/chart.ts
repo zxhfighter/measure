@@ -4,8 +4,6 @@ import {
 } from '@angular/core';
 import * as echarts from 'echarts';
 
-declare type echarts = any;
-
 import {OnChange} from '../core/decorators';
 
 @Component({
