@@ -1,0 +1,16 @@
+<input #ipt
+    class="nb-spinner-input"
+    type="text"
+    [value]="value"
+    [disabled]="disabled"
+    (keyup)="onInputKeyup($event.keyCode)"
+    (input)="onInputCheck(ipt.value, ipt)">
+
+<div class="nb-spinner-button">
+    <button class="nb-spinner-button-up" (click)="up()">
+        <i class="iconfont icon-arrow-up"></i>
+    </button>
+    <button class="nb-spinner-button-down" (click)="down()">
+        <i class="iconfont icon-arrow-down"></i>
+    </button>
+</div>

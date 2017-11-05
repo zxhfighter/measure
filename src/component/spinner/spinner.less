@@ -1,0 +1,84 @@
+@spinner-height: 36px;
+@spinner-width: 109px;
+
+.@{prefix}-spinner {
+    position: relative;
+    display: inline-block;
+    width: @spinner-width;
+    height: @spinner-height;
+
+    .@{prefix}-spinner-input {
+        width: 100%;
+        height: @spinner-height;
+        padding-left: 10px;
+        padding-right: 30px;
+        border: 1px solid #dbdbdb;
+    }
+
+    .@{prefix}-spinner-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+
+        &-up,
+        &-down {
+            position: absolute;
+            width: 28px;
+            height: 17px;
+            line-height: 17px;
+            border-radius: 0;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-right-width: 0;
+
+            &:hover {
+                color: @text-color-dark;
+                background-color: #f7f7f7;
+            }
+
+            .iconfont {
+                font-size: 12px;
+            }
+        }
+
+        &-up {
+            top: 1px;
+            right: 1px;
+
+            &:hover {
+                border-bottom-width: 1px
+            }
+        }
+
+        &-down {
+            top: 50%;
+            right: 1px;
+
+            &:hover {
+                border-top-width: 1px
+            }
+        }
+    }
+
+    &:hover:not(.@{prefix}-spinner-disabled) {
+        .@{prefix}-spinner-input {
+            border-color: #999;
+        }
+    }
+}
+
+.@{prefix}-spinner-disabled {
+    cursor: not-allowed;
+
+    .@{prefix}-spinner-input {
+        background-color: #f7f7f7;
+        cursor: not-allowed;
+    }
+
+    .@{prefix}-spinner-button-up,
+    .@{prefix}-spinner-button-down {
+        background-color: #f7f7f7;
+        pointer-events: none;
+    }
+}

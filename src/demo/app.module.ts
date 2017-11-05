@@ -11,7 +11,8 @@ import {
   ButtonGroupModule,
   BoxGroupModule,
   ChartModule,
-  ProgressBarModule
+  ProgressBarModule,
+  SpinnerModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -25,6 +26,7 @@ import {DemoButtonGroup} from './button-group';
 import {DemoBoxGroup} from './box-group';
 import {DemoChart} from './chart';
 import {DemoProgressBar} from './progress-bar';
+import {DemoSpinner} from './spinner';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import {DemoProgressBar} from './progress-bar';
     DemoButtonGroup,
     DemoBoxGroup,
     DemoChart,
-    DemoProgressBar
+    DemoProgressBar,
+    DemoSpinner
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import {DemoProgressBar} from './progress-bar';
     BoxGroupModule,
     ChartModule,
     ProgressBarModule,
+    SpinnerModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],
