@@ -14,6 +14,7 @@ import {DemoProgressBar} from './progress-bar';
 import {DemoSpinner} from './spinner';
 import {DemoCarousel} from './carousel';
 import {DemoTabs} from './tabs';
+import {DemoStep} from './step';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -26,5 +27,6 @@ export const appRoutes: Routes = [
     {path: 'progress-bar', component: DemoProgressBar},
     {path: 'spinner', component: DemoSpinner},
     {path: 'carousel', component: DemoCarousel},
-    {path: 'tabs', component: DemoTabs}
+    {path: 'tabs', component: DemoTabs},
+    {path: 'step', component: DemoStep}
 ];

@@ -1,0 +1,97 @@
+.@{prefix}-step {
+    display: block;
+    color: #f00;
+}
+
+.@{prefix}-step-vertical {
+    .@{prefix}-step-item {
+        &:after {
+            display: block;
+            height: 60px;
+            width: 1px;
+            margin: 10px 0 10px 15px;
+        }
+    }
+
+    .@{prefix}-step-item-small {
+        &:after {
+            display: block;
+            height: 40px;
+            width: 1px;
+            margin: 10px 0 10px 10px;
+        }
+    }
+}
+
+// step item
+.@{prefix}-step-item {
+    &-title {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 15px;
+        color: #fff;
+        background-color: #dbdbdb;
+        text-align: center;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    &-content {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &.active {
+        .@{prefix}-step-item-title {
+            background-color: #666;
+        }
+    }
+
+    &.success {
+        .@{prefix}-step-item-title {
+            background-color: transparent;
+            border: 1px solid @brand-success;
+            color: @brand-success;
+
+            .icon-check {
+                font-weight: 600;
+            }
+        }
+
+        &:after {
+            background-color: #666;
+        }
+    }
+
+    &:after {
+        content: '';
+        display: inline-block;
+        width: 120px;
+        height: 1px;
+        background-color: #dbdbdb;
+        vertical-align: middle;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    &:last-of-type {
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.@{prefix}-step-item-small {
+    .@{prefix}-step-item-title {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 10px;
+    }
+
+    &:after {
+        width: 60px;
+    }
+}
