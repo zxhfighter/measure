@@ -15,7 +15,8 @@ import {
   SpinnerModule,
   CarouselModule,
   TabsModule,
-  StepModule
+  StepModule,
+  TooltipModule,
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -33,6 +34,7 @@ import {DemoSpinner} from './spinner';
 import {DemoCarousel} from './carousel';
 import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
+import {DemoTooltip} from './tooltip';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import {DemoStep} from './step';
     DemoSpinner,
     DemoCarousel,
     DemoTabs,
-    DemoStep
+    DemoStep,
+    DemoTooltip
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import {DemoStep} from './step';
     CarouselModule,
     TabsModule,
     StepModule,
+    TooltipModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],
