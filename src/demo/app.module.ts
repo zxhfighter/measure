@@ -14,7 +14,10 @@ import {
   ProgressBarModule,
   SpinnerModule,
   CarouselModule,
-  InputModule
+  InputModule,
+  TabsModule,
+  StepModule,
+  TooltipModule,
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -31,6 +34,9 @@ import {DemoProgressBar} from './progress-bar';
 import {DemoSpinner} from './spinner';
 import {DemoCarousel} from './carousel';
 import {DemoInput} from './input';
+import {DemoTabs} from './tabs';
+import {DemoStep} from './step';
+import {DemoTooltip} from './tooltip';
 
 @NgModule({
   declarations: [
@@ -44,7 +50,10 @@ import {DemoInput} from './input';
     DemoProgressBar,
     DemoSpinner,
     DemoCarousel,
-    DemoInput
+    DemoInput,
+    DemoTabs,
+    DemoStep,
+    DemoTooltip
   ],
   imports: [
     BrowserModule,
@@ -61,6 +70,9 @@ import {DemoInput} from './input';
     SpinnerModule,
     CarouselModule,
     InputModule,
+    TabsModule,
+    StepModule,
+    TooltipModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],

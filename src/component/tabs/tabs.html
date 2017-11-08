@@ -1,0 +1,13 @@
+<div class="nb-tabs nb-tabs-{{size}}" 
+    [class.nb-tabs-underline]="underline"
+    [class.nb-tabs-splitline]="splitline">
+    <a *ngFor="let tab of tabs"
+     class="item"
+     [class.active]="tab.active"
+     [class.disabled]="tab.disabled"
+     (click)="setActive(tab)">
+        {{ tab.title }}
+    </a>
+</div>
+<ng-content></ng-content>
+
