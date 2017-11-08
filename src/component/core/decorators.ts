@@ -5,7 +5,7 @@ import {coerceBooleanProperty} from '../util/coerce';
  *
  * @param {boolean?} isBooleanProperty - whether the property is a boolean property like disabled
  */
-export function OnChange(isBooleanProperty?: boolean): any {
+export function OnChange(isBooleanProperty?: boolean, force?: boolean): any {
     const sufix = 'Change';
 
     return function OnChangeHandler(target: any, propertyKey: string): void {
@@ -18,7 +18,7 @@ export function OnChange(isBooleanProperty?: boolean): any {
                 const prevValue = this[_key];
                 this[_key] = isBooleanProperty ? coerceBooleanProperty(value) : value;
 
-                if (prevValue !== value && this[propertyKey + sufix]) {
+                if ((prevValue !== value || force) && this[propertyKey + sufix]) {
                     this[propertyKey + sufix].emit(value);
                 }
             }

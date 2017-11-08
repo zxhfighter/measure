@@ -9,3 +9,4 @@ export * from './progress-bar/index';
 export * from './spinner/index';
 export * from './carousel/index';
 export * from './step/index';
+export * from './table/index';
