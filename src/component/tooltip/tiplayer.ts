@@ -10,7 +10,6 @@ import {
     AfterViewInit,
     ElementRef,
     TemplateRef,
-    OnChanges,
     ChangeDetectorRef
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
@@ -28,7 +27,7 @@ import { PositionStrategy } from './position.strategy';
     }
 })
 
-export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnChanges {
+export class TiplayerComponent implements AfterContentInit, AfterViewInit {
 
     private _title: string;
     private _content: string | TemplateRef<any>;
