@@ -1,0 +1,72 @@
+<h1 class="main-title">Input demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;InputModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">Input base state demo</h3>
+
+    <div>
+        <p>
+            <input nb-input type="text" theme="default" placeholder="请输入文字" [disabled]="isDisabled">
+            常态
+        </p>
+        <p>
+            <input nb-input type="text" theme="default" placeholder="请输入文字" disabled>
+            不可用
+        </p>
+        <p>
+            <input nb-input type="text" theme="error" placeholder="请输入文字">
+            警告提示
+        </p>
+        <p>
+            <button nb-button theme="default" (click)="changeDisabled()">disable the first input</button>
+        </p>
+    </div>
+
+    <h3 class="section-title">Input size</h3>
+    <div>
+        <p>
+            <input nb-input type="text" size="default" placeholder="width: 210px height: 36px">
+            width: 210px height: 36px
+        </p>
+        <p>
+            <input nb-input type="text" size="long-high" placeholder="width: 300px height: 42px">
+            width: 300px height: 42px
+        </p>
+        <p>
+            <input nb-input type="text" size="long-middle" placeholder="width: 300px height: 32px">
+            width: 300px height: 32px
+        </p>
+        <p>
+            <input nb-input type="text" size="long-low" placeholder="width: 300px height: 28px">
+            width: 300px height: 28px
+        </p>
+        <p>
+            <input nb-input type="text" size="short-high" placeholder="width: 140px height: 42px">
+            width: 140px height: 42px
+        </p>
+        <p>
+            <input nb-input type="text" size="short-middle" placeholder="width: 140px height: 32px">
+            width: 140px height: 32px
+        </p>
+        <p>
+            <input nb-input type="text" size="short-low" placeholder="width: 140px height: 28px">
+            width: 140px height: 28px
+        </p>
+        <p>
+            <input nb-input type="text" [size]="size" placeholder="width: 140px height: 28px">
+            width: 140px height: 28px
+        </p>
+        <p>
+            <button nb-button theme="default" (click)="changeSize()">change last button size</button>
+        </p>
+    </div>
+</section>

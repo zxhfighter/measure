@@ -1,0 +1,88 @@
+// --- layout ---
+.@{prefix}-input {
+    
+    padding: 0 10px;
+    color: #666;
+    border-radius: @border-radius;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+
+    &:hover {
+        border-color: darken(#dbdbdb, 25%);
+    }
+
+    &:focus {
+        color: #333;
+    }
+}
+
+// sizes
+.@{prefix}-input-size-default {
+    width: 210px;
+    height: 36px;
+}
+
+.@{prefix}-input-size-long-high {
+    width: 300px;
+    height: 42px;
+}
+
+.@{prefix}-input-size-long-middle {
+    width: 300px;
+    height: 32px;
+}
+
+.@{prefix}-input-size-long-low {
+    width: 300px;
+    height: 28px;
+}
+
+.@{prefix}-input-size-short-high {
+    width: 140px;
+    height: 42px;
+}
+
+.@{prefix}-input-size-short-middle {
+    width: 140px;
+    height: 32px;
+}
+
+.@{prefix}-input-size-short-low {
+    width: 140px;
+    height: 28px;
+}
+
+// themes
+.@{prefix}-input-theme-default {
+    color: #666;
+    background-color: #fff;
+    border-color: #dbdbdb;
+    
+    &:hover {
+        border-color: darken(#dbdbdb, 25%);
+    }
+
+    &:focus {
+        color: #333;
+    }
+}
+
+.@{prefix}-input-theme-error {
+    color: #666;
+    background-color: #fff;
+    border-color: #fe5b5b;
+
+    &:focus {
+        color: #333;
+    }
+}
+
+
+// disabled
+.@{prefix}-input:disabled {
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+    color: #b8b8b8;
+    background-color: #f7f7f7;
+    opacity: 0.7;
+}
