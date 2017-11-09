@@ -11,7 +11,7 @@ import {
 })
 export class DemoTextarea implements OnInit {
 
-    isDisabled: false;
+    isDisabled = false;
 
     constructor() {
 
