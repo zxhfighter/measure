@@ -15,10 +15,12 @@ import {
   SpinnerModule,
   CarouselModule,
   InputModule,
+  TableModule,
   TabsModule,
   StepModule,
   TooltipModule,
-  TextareaModule
+  TextareaModule,
+  TooltipModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -36,6 +38,7 @@ import {DemoCarousel} from './carousel';
 import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
+import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoTextarea} from './textarea';
 
@@ -52,6 +55,7 @@ import {DemoTextarea} from './textarea';
     DemoSpinner,
     DemoCarousel,
     DemoInput,
+    DemoTable,
     DemoTabs,
     DemoStep,
     DemoTooltip,
@@ -74,6 +78,7 @@ import {DemoTextarea} from './textarea';
     InputModule,
     TabsModule,
     StepModule,
+    TableModule,
     TooltipModule,
     TextareaModule,
     RouterModule.forRoot(appRoutes, {useHash: true})

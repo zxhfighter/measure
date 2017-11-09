@@ -11,5 +11,6 @@ export * from './carousel/index';
 export * from './input/index';
 export * from './tabs/index';
 export * from './step/index';
+export * from './table/index';
 export * from './tooltip/index';
 export * from './textarea/index';

@@ -16,6 +16,7 @@ import {DemoCarousel} from './carousel';
 import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
+import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoTextarea} from './textarea';
 
@@ -34,5 +35,8 @@ export const appRoutes: Routes = [
     {path: 'tabs', component: DemoTabs},
     {path: 'step', component: DemoStep},
     {path: 'tooltip', component: DemoTooltip},
-    {path: 'textarea', component: DemoTextarea}
+    {path: 'textarea', component: DemoTextarea},
+    {path: 'table', component: DemoTable},
+    {path: 'tabs', component: DemoTabs},
+    {path: 'tooltip', component: DemoTooltip}
 ];

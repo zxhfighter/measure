@@ -11,10 +11,12 @@ import {
     EmbeddedViewRef,
     ViewContainerRef,
     ComponentRef,
+    Injector,
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
 
+import { OnChange } from '../core/decorators';
 import { TiplayerComponent } from './tiplayer';
 import { ConnectionPosition } from './position';
 import { PositionStrategy } from './position.strategy';
@@ -34,7 +36,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     private leaveListener: Function;
     private tiplayerInstance: TiplayerComponent | null;
 
-    @Input() nbTooltip: string = '';
+    @Input() nbTooltip: string | TemplateRef<any> = '';
 
     /**
      * 提示框位置信息，默认为目标元素的底部
@@ -43,6 +45,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
      */
     @Input() placement: string = 'bottom';
 
+    @OnChange(true)
+    @Input() embedded: boolean = false;
     /**
      * 提示框的触发事件类型
      * 可选值为 'click' | 'hover'
@@ -50,10 +54,25 @@ export class TooltipDirective implements OnInit, OnDestroy {
      */
     @Input() trigger: string = 'hover';
 
+    /**
+     * 是否有箭头
+     *
+     */
+    @OnChange(true)
+    @Input() hasArrow: boolean = false;
+
+    /**
+     * 提示框的触发事件类型
+     * 可选值为 'click' | 'hover'
+     *
+     */
+    @Input() nbTooltipTheme: string = 'default';
+
     constructor(
         private el: ElementRef,
         private _renderer: Renderer2,
         private _viewContainerRef: ViewContainerRef,
+        private _injector: Injector,
         private componentFactoryResolver: ComponentFactoryResolver) {
     }
 
@@ -104,16 +123,31 @@ export class TooltipDirective implements OnInit, OnDestroy {
      *
      */
     createTiplayer() {
+        let contentRef;
+        let contentRootNodes;
+        if (this.nbTooltip instanceof TemplateRef) {
+            contentRef = this._viewContainerRef.createEmbeddedView(<TemplateRef<any>>this.nbTooltip);
+            contentRootNodes = [contentRef.rootNodes];
+        }
+        else {
+            contentRef = this._renderer.createText(`${this.nbTooltip}`);
+            contentRootNodes = [[contentRef]];
+        }
         let windowFactory =
-            this.componentFactoryResolver.resolveComponentFactory<TiplayerComponent>(TiplayerComponent);
+        this.componentFactoryResolver.resolveComponentFactory<TiplayerComponent>(TiplayerComponent);
         let componentRef =
-            this._viewContainerRef.createComponent(windowFactory);
-        let tiplayerRootNode = this.getComponentRootNode(componentRef);
-        window.document.body.appendChild(tiplayerRootNode);
+            this._viewContainerRef.createComponent(windowFactory, 0, this._injector, contentRootNodes);
+
+        if (!this.embedded) {
+            let tiplayerRootNode = this.getComponentRootNode(componentRef);
+            window.document.body.appendChild(tiplayerRootNode);
+        }
 
         this.tiplayerInstance = componentRef.instance;
-        this.tiplayerInstance.content = this.nbTooltip;
         this.tiplayerInstance.placement = this.placement;
+        this.tiplayerInstance.hasArrow = this.hasArrow;
+        this.tiplayerInstance.embedded = this.embedded;
+        this.tiplayerInstance.nbTooltipTheme = this.nbTooltipTheme;
 
         let originPos = this.getOriginPosition();
         let overlayPos = this.getOverlayPosition();
@@ -150,7 +184,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         }
 
         if (seconedPlacement == null) {
-            if (firstPlacement === 'top' || firstPlacement === 'bottom') { 
+            if (firstPlacement === 'top' || firstPlacement === 'bottom') {
                 horizontal = 'center';
             }
             else {
@@ -213,7 +247,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         }
 
         if (seconedPlacement == null) {
-            if (firstPlacement === 'top' || firstPlacement === 'bottom') { 
+            if (firstPlacement === 'top' || firstPlacement === 'bottom') {
                 horizontal = 'center';
             }
             else {
@@ -254,8 +288,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
             this.tiplayerInstance = null;
         }
         this.clickListener();
-        this.leaveListener();
-        this.leaveListener();
+        if (this.leaveListener) {
+            this.leaveListener();
+        }
     }
 
     handleBodyInteraction() {
