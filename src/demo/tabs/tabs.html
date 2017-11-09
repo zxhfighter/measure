@@ -1,0 +1,118 @@
+<h1 class="main-title">Tabs demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;TabsModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">default tab</h3>
+
+    <p>
+        <nb-tabs underline>
+            <nb-tab title="选中状态"></nb-tab>
+            <nb-tab title="默认状态"></nb-tab>
+            <nb-tab title="悬浮状态"></nb-tab>
+            <nb-tab title="按下状态"></nb-tab>
+            <nb-tab title="不可点击" disabled></nb-tab>
+        </nb-tabs>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">large size tab</h3>
+
+    <p>
+        <nb-tabs size="large" underline>
+            <nb-tab title="选中状态"></nb-tab>
+            <nb-tab title="默认状态"></nb-tab>
+            <nb-tab title="悬浮状态"></nb-tab>
+            <nb-tab title="按下状态"></nb-tab>
+            <nb-tab title="不可点击" disabled></nb-tab>
+        </nb-tabs>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">no underline tab</h3>
+
+    <p>
+        <nb-tabs>
+            <nb-tab title="选中状态"></nb-tab>
+            <nb-tab title="默认状态"></nb-tab>
+            <nb-tab title="悬浮状态"></nb-tab>
+            <nb-tab title="按下状态"></nb-tab>
+            <nb-tab title="不可点击" disabled></nb-tab>
+        </nb-tabs>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">splitline tab</h3>
+
+    <p>
+        <nb-tabs splitline>
+            <nb-tab title="选中状态"></nb-tab>
+            <nb-tab title="默认状态"></nb-tab>
+            <nb-tab title="悬浮状态"></nb-tab>
+            <nb-tab title="按下状态"></nb-tab>
+            <nb-tab title="不可点击" disabled></nb-tab>
+        </nb-tabs>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">nested tab</h3>
+
+    <p>
+        <nb-tabs size="large" underline>
+            <nb-tab title="选中状态">
+                <nb-tabs splitline>
+                    <nb-tab
+                     *ngFor="let tab of tabsSelected"
+                     [title]="tab.title" 
+                     [active]="tab.active">
+                    {{ tab.content }}
+                    </nb-tab>
+                </nb-tabs>
+            </nb-tab>
+            <nb-tab title="默认状态">
+                <nb-tabs splitline>
+                    <nb-tab
+                     *ngFor="let tab of tabsDefault"
+                     [title]="tab.title"
+                     [active]="tab.active">
+                    {{ tab.content }}
+                    </nb-tab>
+                </nb-tabs>
+            </nb-tab>
+            <nb-tab title="悬浮状态">
+                <nb-tabs splitline>
+                    <nb-tab
+                     *ngFor="let tab of tabsHover"
+                     [title]="tab.title"
+                     [active]="tab.active">
+                    {{ tab.content }}
+                    </nb-tab>
+                </nb-tabs>
+            </nb-tab>
+            <nb-tab title="按下状态">
+                <nb-tabs splitline>
+                    <nb-tab
+                     *ngFor="let tab of tabsPress"
+                     [title]="tab.title"
+                     [active]="tab.active">
+                    {{ tab.content }}
+                    </nb-tab>
+                </nb-tabs>
+            </nb-tab>
+            <nb-tab title="不可点击" disabled>
+            </nb-tab>
+        </nb-tabs>
+    </p>
+</section>

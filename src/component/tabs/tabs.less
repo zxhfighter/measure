@@ -1,0 +1,80 @@
+// --- layout ---
+@line-color: #e7e7e7;
+
+.@{prefix}-tabs {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    cursor: pointer;
+
+    .item {
+        color: @text-color-dark;
+        border-bottom: 2px solid transparent;
+        padding: 0.5em 0;
+        text-decoration: none;
+        cursor: pointer;
+        margin: 0 1em -1px;
+
+        &.active {
+            border-color: @text-color-dark;
+        }
+
+        &.disabled {
+            border-color: transparent;
+            cursor: default;
+            color: @text-color-light;
+
+            &:hover {
+                border-color: transparent;
+            }
+        }
+
+        &:hover {
+            border-color: @text-color-light;
+        }
+    }
+}
+
+.@{prefix}-tab {
+    display: none;
+    padding: 1em;
+
+    &.active {
+        display: block;
+    }
+}
+
+// --- size ---
+.@{prefix}-tabs-defalt {
+    .item {
+        font-size: 14px;
+    }
+}
+
+.@{prefix}-tabs-large {
+    .item {
+        font-size: 16px;
+    }
+}
+
+// --- variants ---
+.@{prefix}-tabs-underline {
+    border-bottom: 1px solid @line-color;
+}
+
+.@{prefix}-tabs-splitline {
+    .item {
+        display: flex;
+
+        &::after {
+            content: '|';
+            width: 1px;
+            height: 0;
+            clear: both;
+            position: relative;
+            left: 1em;
+            color: @line-color;
+        }
+    }
+}
+

@@ -13,8 +13,10 @@ import {DemoChart} from './chart';
 import {DemoProgressBar} from './progress-bar';
 import {DemoSpinner} from './spinner';
 import {DemoCarousel} from './carousel';
+import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
 import {DemoTable} from './table';
+import {DemoTooltip} from './tooltip';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -28,5 +30,7 @@ export const appRoutes: Routes = [
     {path: 'spinner', component: DemoSpinner},
     {path: 'carousel', component: DemoCarousel},
     {path: 'step', component: DemoStep},
-    {path: 'table', component: DemoTable}
+    {path: 'table', component: DemoTable},
+    {path: 'tabs', component: DemoTabs},
+    {path: 'tooltip', component: DemoTooltip}
 ];
