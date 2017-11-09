@@ -11,6 +11,9 @@ import {
     ElementRef,
     TemplateRef,
     OnChanges,
+    OnDestroy,
+    Output,
+    EventEmitter,
     ChangeDetectorRef
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
@@ -28,13 +31,19 @@ import { PositionStrategy } from './position.strategy';
     }
 })
 
-export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnChanges {
+export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnDestroy {
 
     private _title: string;
     private _content: string | TemplateRef<any>;
     private visibility: boolean = true;
     private positionStrategy: PositionStrategy;
     _placement: string;
+
+    hasArrow: boolean;
+    embedded: boolean;
+
+    // @Input() _visibility: boolean = true;
+
     firstPlacement: string;
     @Input() set placement(data) {
         this._placement = data;
@@ -44,7 +53,7 @@ export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnCha
     get placement(): string {
         return this._placement;
     }
-    
+
     @Input() set title(data) {
         this._title = data;
     }
@@ -61,10 +70,14 @@ export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnCha
         return this._content;
     }
 
+    @Input() nbTooltipTheme: string;
+
+    @Output() close: EventEmitter<number> = new EventEmitter<number>();
+
     constructor(
         private el: ElementRef,
         private cdRef: ChangeDetectorRef
-    ) { }
+    ) {}
 
     ngAfterContentInit() {
         this.positionStrategy.apply();
@@ -88,6 +101,10 @@ export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnCha
             this.visibility = false;
             this.cdRef.markForCheck();
         }, 0);
+    }
+
+    ngOnDestroy() {
+        this.el.nativeElement.remove();
     }
 
     isVisible(): boolean {

@@ -15,14 +15,14 @@ import {
   SpinnerModule,
   CarouselModule,
   InputModule,
+  TableModule,
   TabsModule,
   StepModule,
-  TooltipModule,
+  TooltipModule
 } from '../component';
 
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.router';
-
 
 import {DemoButton} from './button';
 import {DemoBreadcrumb} from './breadcrumb';
@@ -36,6 +36,7 @@ import {DemoCarousel} from './carousel';
 import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
+import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 
 @NgModule({
@@ -51,6 +52,7 @@ import {DemoTooltip} from './tooltip';
     DemoSpinner,
     DemoCarousel,
     DemoInput,
+    DemoTable,
     DemoTabs,
     DemoStep,
     DemoTooltip
@@ -72,6 +74,7 @@ import {DemoTooltip} from './tooltip';
     InputModule,
     TabsModule,
     StepModule,
+    TableModule,
     TooltipModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],

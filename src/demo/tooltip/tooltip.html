@@ -14,65 +14,123 @@ import &#x7B;TooltipModule&#x7D; from 'xdesign';
     <h3 class="section-title">multiple directions</h3>
 
     <p>
-        <button nb-button 
+        <button nb-button
             nbTooltip="Tooltip on top"
             placement="top"
-            trigger="click">
+            trigger="click" hasArrow>
             Tooltip on top
         </button>
-        <button nb-button 
+        <button nb-button
             nbTooltip="Tooltip on top-left"
             placement="top-left"
-            trigger="click">
+            trigger="click" hasArrow>
             Tooltip on top-left
         </button>
-        <button nb-button 
+        <button nb-button
             nbTooltip="Tooltip on top-right"
             placement="top-right"
-            trigger="click">
+            trigger="click" hasArrow>
             Tooltip on top-right
         </button>
         <br>
         <br>
-        <button nb-button 
+        <button nb-button
             nbTooltip="Tooltip on bottom"
             placement="bottom"
-            trigger="click">
+            trigger="click" hasArrow>
             Tooltip on bottom
         </button>
-        <button nb-button 
+        <button nb-button
             nbTooltip="Tooltip on bottom-left"
             placement="bottom-left"
-            trigger="click">
+            trigger="click" hasArrow>
             Tooltip on bottom-left
         </button>
-        <button nb-button 
+        <button nb-button
             nbTooltip="Tooltip on bottom-right"
             placement="bottom-right"
-            trigger="click">
+            trigger="click" hasArrow>
             Tooltip on bottom-right
         </button>
         <br>
         <br>
-        <button nb-button 
+        <button nb-button
             nbTooltip="Tooltip on left"
             placement="left"
-            trigger="click">
+            trigger="click" hasArrow>
             Tooltip on left
         </button>
-        <button nb-button 
+        <button nb-button
             nbTooltip="Tooltip on right"
             placement="right"
-            trigger="click">
+            trigger="click" hasArrow>
             Tooltip on right
         </button>
     </p>
 </section>
 
 <section>
-    <h3 class="section-title">advanced Tooltip</h3>
+    <h3 class="section-title">multiple themes</h3>
 
     <p>
-        
+        <ng-template #tipContent>
+            <span>高级带图标多行提示</span>
+            <p>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》</p>
+        </ng-template>
+        <button nb-button
+            [nbTooltip]="tipContent"
+            placement="top"
+            nbTooltipTheme="pink"
+            trigger="click">
+            theme pink
+        </button>
+        <button nb-button
+            [nbTooltip]="tipContent"
+            placement="top"
+            nbTooltipTheme="yellow"
+            trigger="click">
+            theme yellow
+        </button>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">support any arbitrary HTML, Angular bindings and even directives</h3>
+
+    <p>
+        <ng-template #tipAttention>
+            <p>帮助内容提示弹窗控件多行显示情况</p>
+            <a class="nb-breadcrumb-text"
+                href="javascript:void(0)"
+                (click)="onIknowthat()">
+                我知道了
+            </a>
+        </ng-template>
+        <button nb-button
+            [nbTooltip]="tipAttention"
+            placement="top"
+            nbTooltipTheme="white"
+            trigger="click" hasArrow>
+            customize content
+        </button>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">embedded style</h3>
+
+    <p>
+        <ng-template #tipContentEmbedded>
+            <span>高级带图标多行提示</span>
+            <p>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》</p>
+        </ng-template>
+        <button nb-button
+            [nbTooltip]="tipContentEmbedded"
+            placement="top"
+            nbTooltipTheme="pink"
+            embedded
+            trigger="click">
+            embedded style
+        </button>
     </p>
 </section>

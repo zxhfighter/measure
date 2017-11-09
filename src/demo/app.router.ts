@@ -16,6 +16,7 @@ import {DemoCarousel} from './carousel';
 import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
+import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 
 export const appRoutes: Routes = [
@@ -32,5 +33,7 @@ export const appRoutes: Routes = [
     {path: 'input', component: DemoInput},
     {path: 'tabs', component: DemoTabs},
     {path: 'step', component: DemoStep},
+    {path: 'table', component: DemoTable},
+    {path: 'tabs', component: DemoTabs},
     {path: 'tooltip', component: DemoTooltip}
 ];
