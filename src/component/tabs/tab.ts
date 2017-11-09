@@ -19,22 +19,16 @@ import { OnChange } from '../core/decorators';
         '[class.active]': 'active',
     }
 })
-export class TabComponent implements OnInit {
+export class TabComponent {
     @Input() title: string;
-    @Input() disabled: string | boolean;
-    name: string;
+
+    @OnChange(true)
+    @Input() disabled: boolean = false;
 
     @OnChange(true)
     @Input() active: boolean = false;
 
-    constructor() { }
-
-    ngOnInit() {
-        this.disabled = typeof this.disabled !== 'undefined';
-    }
-
-    setActive(): void {
-        this.active = true;
+    constructor() {
     }
 }
 

@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy
+    Component, Output, EventEmitter,  OnInit, ChangeDetectionStrategy
 } from '@angular/core';
 
 @Component({
@@ -11,11 +11,17 @@ import {
 })
 export class DemoTooltip implements OnInit {
 
+    @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     constructor() {
 
     }
 
     ngOnInit() {
 
+    }
+
+    onIknowthat() {
+        this.close.emit();
     }
 }
