@@ -12,3 +12,4 @@ export * from './input/index';
 export * from './tabs/index';
 export * from './step/index';
 export * from './tooltip/index';
+export * from './textarea/index';
