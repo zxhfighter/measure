@@ -18,6 +18,8 @@ import {
   TableModule,
   TabsModule,
   StepModule,
+  TooltipModule,
+  TextareaModule,
   TooltipModule
 } from '../component';
 
@@ -38,6 +40,7 @@ import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
+import {DemoTextarea} from './textarea';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,8 @@ import {DemoTooltip} from './tooltip';
     DemoTable,
     DemoTabs,
     DemoStep,
-    DemoTooltip
+    DemoTooltip,
+    DemoTextarea
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import {DemoTooltip} from './tooltip';
     StepModule,
     TableModule,
     TooltipModule,
+    TextareaModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],
