@@ -1,4 +1,52 @@
+// --- layout ---
 .@{prefix}-textarea {
-    display: block;
-    color: #f00;
+    width: 300px;
+    height: 150px;
+    padding: 8px 10px;
+    color: #666;
+    border-radius: @border-radius;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+
+    &:hover {
+        border-color: darken(#dbdbdb, 25%);
+    }
+
+    &:focus {
+        color: #333;
+    }
+}
+
+// themes
+.@{prefix}-textarea-theme-default {
+    color: #666;
+    background-color: #fff;
+    border-color: #dbdbdb;
+    
+    &:hover {
+        border-color: darken(#dbdbdb, 25%);
+    }
+
+    &:focus {
+        color: #333;
+    }
+}
+
+.@{prefix}-textarea-theme-error {
+    color: #666;
+    background-color: #fff;
+    border-color: #fe5b5b;
+
+    &:focus {
+        color: #333;
+    }
+}
+
+// disabled
+.@{prefix}-textarea:disabled {
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+    color: #b8b8b8;
+    background-color: #f7f7f7;
+    opacity: 0.7;
 }

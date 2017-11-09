@@ -11,11 +11,17 @@ import {
 })
 export class DemoTextarea implements OnInit {
 
+    isDisabled: false;
+
     constructor() {
 
     }
 
     ngOnInit() {
 
+    }
+
+    changeDisabled() {
+        this.isDisabled = !this.isDisabled;
     }
 }

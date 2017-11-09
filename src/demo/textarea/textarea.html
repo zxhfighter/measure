@@ -14,6 +14,21 @@ import &#x7B;TextareaModule&#x7D; from 'xdesign';
     <h3 class="section-title">Textarea first demo</h3>
 
     <p>
-        <nb-textarea></nb-textarea>
+        <textarea nb-textarea theme="default" placeholder="请输入文字"></textarea>
+    </p>
+
+    <h3 class="section-title">Themes</h3>
+    
+    <p>
+        <textarea nb-textarea theme="default" placeholder="default theme" [disabled]="isDisabled"></textarea>
+    </p>
+    <p>
+        <textarea nb-textarea theme="default" placeholder="disabled theme" disabled></textarea>
+    </p>
+    <p>
+        <textarea nb-textarea theme="error" placeholder="error theme"></textarea>
+    </p>
+    <p>
+        <button nb-button theme="default" (click)="changeDisabled()">disable the first textarea</button>
     </p>
 </section>
