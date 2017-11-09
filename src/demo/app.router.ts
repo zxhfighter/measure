@@ -15,6 +15,7 @@ import {DemoSpinner} from './spinner';
 import {DemoCarousel} from './carousel';
 import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
+import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 
 export const appRoutes: Routes = [
@@ -28,7 +29,8 @@ export const appRoutes: Routes = [
     {path: 'progress-bar', component: DemoProgressBar},
     {path: 'spinner', component: DemoSpinner},
     {path: 'carousel', component: DemoCarousel},
-    {path: 'tabs', component: DemoTabs},
     {path: 'step', component: DemoStep},
+    {path: 'table', component: DemoTable},
+    {path: 'tabs', component: DemoTabs},
     {path: 'tooltip', component: DemoTooltip}
 ];

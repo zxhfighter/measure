@@ -10,4 +10,5 @@ export * from './spinner/index';
 export * from './carousel/index';
 export * from './tabs/index';
 export * from './step/index';
+export * from './table/index';
 export * from './tooltip/index';

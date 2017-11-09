@@ -1,0 +1,566 @@
+<h1 class="main-title">Table demo</h1>
+
+<!-- <section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;TableModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">normal table</h3>
+
+    <table nb-table #nbTable1 [datasource]="datasource">
+        <thead nb-thead>
+            <tr nb-row>
+                <th field="name">
+                    <span class="first-td">姓名</span>
+                </th>
+                <th field="status">
+                    <span>状态</span>
+                </th>
+                <th field="phone">手机号</th>
+                <th field="school">
+                    大学
+                </th>
+                <th field="height">身高</th>
+                <th nb-th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody nb-tbody>
+            <tr nb-row *ngFor="let item of nbTable1.datasource">
+                <td nb-td>
+                    <span class="first-td">{{item.name}}</span>
+                </td>
+                <td>
+                    <ng-container [ngSwitch]="item.status">
+                        <ng-template [ngSwitchCase]="0">
+                            <span class="status-waiting">{{item.statusText}}</span>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="1">
+                            <span class="status-error">{{item.statusText}}</span>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="2">
+                            <span class="status-done">{{item.statusText}}</span>
+                        </ng-template>
+                    </ng-container>
+                </td>
+                <td nb-td>{{item.phone}}</td>
+                <td nb-td>{{item.school}}</td>
+                <td nb-td>{{item.height}}</td>
+                <td nb-td>
+                    <a href="javascript:;">查看</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">编辑</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+<section>
+    <h3 class="section-title">Table with checkbox</h3>
+
+    <table nb-table #nbTable2 [datasource]="datasource">
+        <thead nb-thead>
+            <tr nb-row>
+                <th nb-th>
+                    <div class="first-td">
+                        <nb-checkbox [checked]="isAllChecked" (change)="toggleAllChecked($event)"></nb-checkbox>
+                    </div>
+                </th>
+                <th field="name">
+                    <span>姓名</span>
+                </th>
+                <th field="status">
+                    <span>状态</span>
+                </th>
+                <th field="phone">手机号</th>
+                <th field="school">大学</th>
+                <th field="height">身高</th>
+                <th nb-th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody nb-tbody>
+            <tr nb-row *ngFor="let item of nbTable2.datasource">
+                <td nb-td>
+                    <div class="first-td">
+                        <nb-checkbox [checked]="item.checked" (change)="checkIsAllChecked($event, item)"></nb-checkbox>
+                    </div>
+                </td>
+                <td nb-td>{{item.name}}</td>
+                <td>
+                    <ng-container [ngSwitch]="item.status">
+                        <ng-template [ngSwitchCase]="0">
+                            <span class="status-waiting">{{item.statusText}}</span>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="1">
+                            <span class="status-error">{{item.statusText}}</span>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="2">
+                            <span class="status-done">{{item.statusText}}</span>
+                        </ng-template>
+                    </ng-container>
+                </td>
+                <td nb-td>{{item.phone}}</td>
+                <td nb-td>{{item.school}}</td>
+                <td nb-td>{{item.height}}</td>
+                <td nb-td>
+                    <a href="javascript:;">查看</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">编辑</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h3 class="section-title">Table With Tips, Filters and Sortable</h3>
+
+    <table nb-table #nbTable [datasource]="datasource" (sort)="onSort($event)" order="asc" orderBy="height">
+        <thead nb-thead>
+            <tr nb-row>
+                <th nb-th>
+                    <div class="first-td">
+                        <nb-checkbox [checked]="isAllChecked" (change)="toggleAllChecked($event)"></nb-checkbox>
+                    </div>
+                </th>
+                <th field="name" tipable filterable sortable #nameHead="nbTH" (filter)="onFilter(name.value, $event)">
+                    <span>姓名</span>
+                    <div class="tip-content">
+                        <b style="color:red">H</b>ello,
+                        <b style="color:green">W</b>orld.
+                    </div>
+
+                    <div nb-table-filter class="filter-content">
+                        <div>
+                            <label for="heroName">姓名：</label>
+                            <input #name type="text" name="heroName" value="">
+                        </div>
+                    </div>
+                </th>
+                <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)">
+                    <span>状态</span>
+
+                    <div nb-table-filter class="filter-content">
+                        <div>
+                            <div>
+                                <nb-boxgroup type="checkbox" #chk>
+                                    <nb-checkbox value="0">审核中</nb-checkbox>
+                                    <nb-checkbox value="2">审核通过</nb-checkbox>
+                                    <nb-checkbox value="1">审核拒绝</nb-checkbox>
+                                </nb-boxgroup>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th field="phone" sortable>手机号</th>
+                <th field="school" sortable filterable #schoolHead="nbTH" [showFilterButton]="false" (filter)="onFilter(name.value, $event)">
+                    大学
+
+                    <div nb-table-filter class="filter-content">
+                        <ul>
+                            <li (click)="onSingleFilter('ALL', schoolHead)">ALL</li>
+                            <li (click)="onSingleFilter('CBB', schoolHead)">CBB</li>
+                            <li (click)="onSingleFilter('CMU', schoolHead)">CMU</li>
+                            <li (click)="onSingleFilter('CSU', schoolHead)">CSU</li>
+                        </ul>
+                    </div>
+                </th>
+                <th field="height" sortable>身高</th>
+                <th nb-th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody nb-tbody>
+            <tr nb-row *ngFor="let item of nbTable.datasource">
+                <td nb-td>
+                    <div class="first-td">
+                        <nb-checkbox [checked]="item.checked" (change)="checkIsAllChecked($event, item)"></nb-checkbox>
+                    </div>
+                </td>
+                <td nb-td>{{item.name}}</td>
+                <td>
+                    <ng-container [ngSwitch]="item.status">
+                        <ng-template [ngSwitchCase]="0">
+                            <span class="status-waiting">{{item.statusText}}</span>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="1">
+                            <span class="status-error">{{item.statusText}}</span>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="2">
+                            <span class="status-done">{{item.statusText}}</span>
+                        </ng-template>
+                    </ng-container>
+                </td>
+                <td nb-td>{{item.phone}}</td>
+                <td nb-td>{{item.school}}</td>
+                <td nb-td>{{item.height}}</td>
+                <td nb-td>
+                    <a href="javascript:;">查看</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">编辑</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section> -->
+
+<!-- <section>
+    <h3 class="section-title">Table Column Width Resizable</h3>
+
+    <table nb-table resizable #nbTable [datasource]="datasource" (sort)="onSort($event)" order="asc" orderBy="height">
+        <thead nb-thead>
+            <tr nb-row>
+                <th nb-th>
+                    <div class="first-td">
+                        <nb-checkbox [checked]="isAllChecked" (change)="toggleAllChecked($event)"></nb-checkbox>
+                    </div>
+                </th>
+                <th field="name" tipable filterable sortable #nameHead="nbTH" (filter)="onFilter(name.value, $event)">
+                    <span>姓名</span>
+                    <div class="tip-content">
+                        <b style="color:red">H</b>ello,
+                        <b style="color:green">W</b>orld.
+                    </div>
+
+                    <div nb-table-filter class="filter-content">
+                        <div>
+                            <label for="heroName">姓名：</label>
+                            <input #name type="text" name="heroName" value="">
+                        </div>
+                    </div>
+                </th>
+                <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)">
+                    <span>状态</span>
+
+                    <div nb-table-filter class="filter-content">
+                        <div>
+                            <div>
+                                <nb-boxgroup type="checkbox" #chk>
+                                    <nb-checkbox value="0">审核中</nb-checkbox>
+                                    <nb-checkbox value="2">审核通过</nb-checkbox>
+                                    <nb-checkbox value="1">审核拒绝</nb-checkbox>
+                                </nb-boxgroup>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th field="phone" sortable>手机号</th>
+                <th field="school" sortable filterable #schoolHead="nbTH" [showFilterButton]="false" (filter)="onFilter(name.value, $event)">
+                    大学
+
+                    <div nb-table-filter class="filter-content">
+                        <ul>
+                            <li (click)="onSingleFilter('ALL', schoolHead)">ALL</li>
+                            <li (click)="onSingleFilter('CBB', schoolHead)">CBB</li>
+                            <li (click)="onSingleFilter('CMU', schoolHead)">CMU</li>
+                            <li (click)="onSingleFilter('CSU', schoolHead)">CSU</li>
+                        </ul>
+                    </div>
+                </th>
+                <th field="height" sortable>身高</th>
+                <th nb-th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody nb-tbody>
+            <tr nb-row *ngFor="let item of nbTable.datasource">
+                <td nb-td>
+                    <div class="first-td">
+                        <nb-checkbox [checked]="item.checked" (change)="checkIsAllChecked($event, item)"></nb-checkbox>
+                    </div>
+                </td>
+                <td nb-td>{{item.name}}</td>
+                <td>
+                    <ng-container [ngSwitch]="item.status">
+                        <ng-template [ngSwitchCase]="0">
+                            <span class="status-waiting">{{item.statusText}}</span>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="1">
+                            <span class="status-error">{{item.statusText}}</span>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="2">
+                            <span class="status-done">{{item.statusText}}</span>
+                        </ng-template>
+                    </ng-container>
+                </td>
+                <td nb-td>{{item.phone}}</td>
+                <td nb-td>{{item.school}}</td>
+                <td nb-td>{{item.height}}</td>
+                <td nb-td>
+                    <a href="javascript:;">查看</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">编辑</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section> -->
+
+<!-- <section>
+    <h3 class="section-title">Fix header</h3>
+
+    <div class="fix-table-container">
+        <div class="fix-table-head">
+            <table nb-table resizable #nbTable (sort)="onSort($event)" order="asc" orderBy="height">
+                <colgroup ngNonBindable>
+                    <col style="width:90px" />
+                    <col style="width:120px" />
+                    <col style="width:150px" />
+                    <col style="width:170px" />
+                    <col style="width:120px" />
+                    <col style="width:240px" />
+                    <col>
+                </colgroup>
+                <thead nb-thead>
+                    <tr nb-row>
+                        <th nb-th>
+                            <div class="first-td">
+                                <nb-checkbox [checked]="isAllChecked" (change)="toggleAllChecked($event)"></nb-checkbox>
+                            </div>
+                        </th>
+                        <th field="name" tipable filterable sortable #nameHead="nbTH" (filter)="onFilter(name.value, $event)">
+                            <span>姓名</span>
+                            <div class="tip-content">
+                                <b style="color:red">H</b>ello,
+                                <b style="color:green">W</b>orld.
+                            </div>
+
+                            <div nb-table-filter class="filter-content">
+                                <div>
+                                    <label for="heroName">姓名：</label>
+                                    <input #name type="text" name="heroName" value="">
+                                </div>
+                            </div>
+                        </th>
+                        <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)">
+                            <span>状态</span>
+
+                            <div nb-table-filter class="filter-content">
+                                <div>
+                                    <div>
+                                        <nb-boxgroup type="checkbox" #chk>
+                                            <nb-checkbox value="0">审核中</nb-checkbox>
+                                            <nb-checkbox value="2">审核通过</nb-checkbox>
+                                            <nb-checkbox value="1">审核拒绝</nb-checkbox>
+                                        </nb-boxgroup>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th field="phone" sortable>手机号</th>
+                        <th field="school" sortable filterable #schoolHead="nbTH" [showFilterButton]="false" (filter)="onFilter(name.value, $event)">
+                            大学
+
+                            <div nb-table-filter class="filter-content">
+                                <ul>
+                                    <li (click)="onSingleFilter('ALL', schoolHead)">ALL</li>
+                                    <li (click)="onSingleFilter('CBB', schoolHead)">CBB</li>
+                                    <li (click)="onSingleFilter('CMU', schoolHead)">CMU</li>
+                                    <li (click)="onSingleFilter('CSU', schoolHead)">CSU</li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th field="height" sortable>身高</th>
+                        <th nb-th>操作</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="fix-table-body">
+            <table nb-table #nbTable1 [datasource]="datasource">
+                <colgroup>
+                    <col style="width:90px" />
+                    <col style="width:120px" />
+                    <col style="width:150px" />
+                    <col style="width:170px" />
+                    <col style="width:120px" />
+                    <col style="width:240px" />
+                    <col>
+                </colgroup>
+                <tbody nb-tbody>
+                    <tr nb-row *ngFor="let item of nbTable1.datasource">
+                        <td nb-td>
+                            <div class="first-td">
+                                <nb-checkbox [checked]="item.checked" (change)="checkIsAllChecked($event, item)"></nb-checkbox>
+                            </div>
+                        </td>
+                        <td nb-td>{{item.name}}</td>
+                        <td>
+                            <ng-container [ngSwitch]="item.status">
+                                <ng-template [ngSwitchCase]="0">
+                                    <span class="status-waiting">{{item.statusText}}</span>
+                                </ng-template>
+
+                                <ng-template [ngSwitchCase]="1">
+                                    <span class="status-error">{{item.statusText}}</span>
+                                </ng-template>
+
+                                <ng-template [ngSwitchCase]="2">
+                                    <span class="status-done">{{item.statusText}}</span>
+                                </ng-template>
+                            </ng-container>
+                        </td>
+                        <td nb-td>{{item.phone}}</td>
+                        <td nb-td>{{item.school}}</td>
+                        <td nb-td>{{item.height}}</td>
+                        <td nb-td>
+                            <a href="javascript:;">查看</a>
+                            <span class="splitter"></span>
+                            <a href="javascript:;">编辑</a>
+                            <span class="splitter"></span>
+                            <a href="javascript:;">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section> -->
+
+<section>
+    <h3 class="section-title">Fix Column</h3>
+
+    <div class="fix-table-container">
+        <div class="fix-table-head">
+            <table nb-table resizable #nbTable (sort)="onSort($event)" order="asc" orderBy="height">
+                <colgroup ngNonBindable>
+                    <col style="position: absolute;left:0;width:90px" />
+                    <col style="width:120px" />
+                    <col style="width:150px" />
+                    <col style="width:170px" />
+                    <col style="width:120px" />
+                    <col style="width:240px" />
+                    <col>
+                </colgroup>
+                <thead nb-thead>
+                    <tr nb-row>
+                        <th nb-th>
+                            <div class="first-td">
+                                <nb-checkbox [checked]="isAllChecked" (change)="toggleAllChecked($event)"></nb-checkbox>
+                            </div>
+                        </th>
+                        <th field="name" tipable filterable sortable #nameHead="nbTH" (filter)="onFilter(name.value, $event)">
+                            <span>姓名</span>
+                            <div class="tip-content">
+                                <b style="color:red">H</b>ello,
+                                <b style="color:green">W</b>orld.
+                            </div>
+
+                            <div nb-table-filter class="filter-content">
+                                <div>
+                                    <label for="heroName">姓名：</label>
+                                    <input #name type="text" name="heroName" value="">
+                                </div>
+                            </div>
+                        </th>
+                        <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)">
+                            <span>状态</span>
+
+                            <div nb-table-filter class="filter-content">
+                                <div>
+                                    <div>
+                                        <nb-boxgroup type="checkbox" #chk>
+                                            <nb-checkbox value="0">审核中</nb-checkbox>
+                                            <nb-checkbox value="2">审核通过</nb-checkbox>
+                                            <nb-checkbox value="1">审核拒绝</nb-checkbox>
+                                        </nb-boxgroup>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th field="phone" sortable>手机号</th>
+                        <th field="school" sortable filterable #schoolHead="nbTH" [showFilterButton]="false" (filter)="onFilter(name.value, $event)">
+                            大学
+
+                            <div nb-table-filter class="filter-content">
+                                <ul>
+                                    <li (click)="onSingleFilter('ALL', schoolHead)">ALL</li>
+                                    <li (click)="onSingleFilter('CBB', schoolHead)">CBB</li>
+                                    <li (click)="onSingleFilter('CMU', schoolHead)">CMU</li>
+                                    <li (click)="onSingleFilter('CSU', schoolHead)">CSU</li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th field="height" sortable>身高</th>
+                        <th nb-th>操作</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="fix-table-body">
+            <table nb-table #nbTable1 [datasource]="datasource">
+                <colgroup>
+                    <col style="position: absolute;left: 0;width:90px" />
+                    <col style="width:120px" />
+                    <col style="width:150px" />
+                    <col style="width:170px" />
+                    <col style="width:120px" />
+                    <col style="width:240px" />
+                    <col>
+                </colgroup>
+                <tbody nb-tbody>
+                    <tr nb-row *ngFor="let item of nbTable1.datasource">
+                        <td nb-td>
+                            <div class="first-td">
+                                <nb-checkbox [checked]="item.checked" (change)="checkIsAllChecked($event, item)"></nb-checkbox>
+                            </div>
+                        </td>
+                        <td nb-td>{{item.name}}</td>
+                        <td>
+                            <ng-container [ngSwitch]="item.status">
+                                <ng-template [ngSwitchCase]="0">
+                                    <span class="status-waiting">{{item.statusText}}</span>
+                                </ng-template>
+
+                                <ng-template [ngSwitchCase]="1">
+                                    <span class="status-error">{{item.statusText}}</span>
+                                </ng-template>
+
+                                <ng-template [ngSwitchCase]="2">
+                                    <span class="status-done">{{item.statusText}}</span>
+                                </ng-template>
+                            </ng-container>
+                        </td>
+                        <td nb-td>{{item.phone}}</td>
+                        <td nb-td>{{item.school}}</td>
+                        <td nb-td>{{item.height}}</td>
+                        <td nb-td>
+                            <a href="javascript:;">查看</a>
+                            <span class="splitter"></span>
+                            <a href="javascript:;">编辑</a>
+                            <span class="splitter"></span>
+                            <a href="javascript:;">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
