@@ -83,6 +83,7 @@ import {DemoTextLine} from './text-line';
     TableModule,
     TooltipModule,
     TextareaModule,
+    TextLineModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],
