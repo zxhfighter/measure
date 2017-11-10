@@ -19,6 +19,7 @@ import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoTextarea} from './textarea';
+import {DemoTextLine} from './text-line';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -38,5 +39,6 @@ export const appRoutes: Routes = [
     {path: 'textarea', component: DemoTextarea},
     {path: 'table', component: DemoTable},
     {path: 'tabs', component: DemoTabs},
-    {path: 'tooltip', component: DemoTooltip}
+    {path: 'tooltip', component: DemoTooltip},
+    {path: 'text-line', component: DemoTextLine}
 ];

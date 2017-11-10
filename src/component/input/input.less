@@ -7,7 +7,7 @@
     background-color: #fff;
 
     &:hover {
-        border-color: darken(#dbdbdb, 25%);
+        border-color: darken(#dbdbdb, 20%);
     }
 
     &:focus {
@@ -58,7 +58,7 @@
     border-color: #dbdbdb;
     
     &:hover {
-        border-color: darken(#dbdbdb, 25%);
+        border-color: darken(#dbdbdb, 20%);
     }
 
     &:focus {
@@ -69,13 +69,27 @@
 .@{prefix}-input-theme-error {
     color: #666;
     background-color: #fff;
-    border-color: #fe5b5b;
+    border-color: @brand-danger;
+
+    &:hover {
+        border-color: darken(@brand-danger, 20%);
+    }
 
     &:focus {
         color: #333;
     }
 }
 
+.@{prefix}-input-theme-transparent {
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        border-color: transparent;
+    }
+}
 
 // disabled
 .@{prefix}-input:disabled {

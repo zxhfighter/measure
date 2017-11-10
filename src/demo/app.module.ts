@@ -20,7 +20,7 @@ import {
   StepModule,
   TooltipModule,
   TextareaModule,
-  TooltipModule
+  TextLineModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -41,6 +41,7 @@ import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoTextarea} from './textarea';
+import {DemoTextLine} from './text-line';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {DemoTextarea} from './textarea';
     DemoTabs,
     DemoStep,
     DemoTooltip,
-    DemoTextarea
+    DemoTextarea,
+    DemoTextLine
   ],
   imports: [
     BrowserModule,

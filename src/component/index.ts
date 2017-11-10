@@ -14,3 +14,4 @@ export * from './step/index';
 export * from './table/index';
 export * from './tooltip/index';
 export * from './textarea/index';
+export * from './text-line/index';
