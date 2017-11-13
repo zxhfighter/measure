@@ -1,5 +1,4 @@
 // --- layout ---
-@line-color: #e7e7e7;
 
 .@{prefix}-tabs {
     display: flex;
@@ -47,19 +46,19 @@
 // --- size ---
 .@{prefix}-tabs-defalt {
     .item {
-        font-size: 14px;
+        font-size: @font-size-base;
     }
 }
 
 .@{prefix}-tabs-large {
     .item {
-        font-size: 16px;
+        font-size: @font-size-large;
     }
 }
 
 // --- variants ---
 .@{prefix}-tabs-underline {
-    border-bottom: 1px solid @line-color;
+    border-bottom: 1px solid @split-lint-color;
 }
 
 .@{prefix}-tabs-splitline {
@@ -73,7 +72,7 @@
             clear: both;
             position: relative;
             left: 1em;
-            color: @line-color;
+            color: @split-lint-color;
         }
     }
 }
