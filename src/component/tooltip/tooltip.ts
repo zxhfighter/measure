@@ -94,7 +94,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         if (!this.tiplayerInstance) {
             this.createTiplayer();
         }
-        else {
+        if (this.tiplayerInstance) {
             this.tiplayerInstance.show();
         }
     }
@@ -287,7 +287,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
         if (this.tiplayerInstance) {
             this.tiplayerInstance = null;
         }
-        this.clickListener();
+        if (this.clickListener) {
+            this.clickListener();
+        }
         if (this.leaveListener) {
             this.leaveListener();
         }

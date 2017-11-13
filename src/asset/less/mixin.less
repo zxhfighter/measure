@@ -5,12 +5,12 @@
 }
 
 .clearfix() {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
         content: " "; // 1
         display: table; // 2
     }
-    &:after {
+    &::after {
         clear: both;
     }
 }
@@ -32,4 +32,101 @@
 
 .visually-hidden {
     .visually-hidden();
+}
+
+/**
+ * Usage
+ * .arrow(size, color, direction, border-size, border-color);
+ *
+ * Size is the with of the arrow
+ * Color is the color of the arrow (plain color required)
+ * Direction is the orientation of the arrow (top, right, bottom, left)
+ * Border-size is the width of the border if there is one (optional; default "0")
+ * Border-color is the color of the border if there is one (optional; default "inherit")
+ *
+ */
+.arrow(@size, @color, @direction, @border-size: 0, @border-color: inherit) {
+    @m-size: @size + (@border-size * 2);
+    position: absolute;
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+    &::after {
+        border: @size solid transparent;
+    }
+    &::before {
+        border: @m-size solid transparent;
+    }
+}
+
+.arrow(@size, @color, @direction, @border-size: 0, @border-color: inherit)
+    when (@direction = top) {
+    @m-size: @size + (@border-size * 2);
+    &::after {
+        bottom: 100%;
+        left: 0;
+        margin-left: -@size;
+        border-bottom-color: @color;
+    }
+    &::before {
+        bottom: 100%;
+        left: 0;
+        margin-left: -@m-size;
+        border-bottom-color: @border-color;
+    }
+}
+
+.arrow(@size, @color, @direction, @border-size: 0, @border-color: inherit)
+    when (@direction = bottom) {
+    @m-size: @size + (@border-size * 2);
+    &::after {
+        top: 100%;
+        left: 0;
+        margin-left: -@size;
+        border-top-color: @color;
+    }
+    &::before {
+        top: 100%;
+        left: 0;
+        margin-left: -@m-size;
+        border-top-color: @border-color;
+    }
+}
+
+.arrow(@size, @color, @direction, @border-size: 0, @border-color: inherit)
+    when (@direction = right) {
+    @m-size: @size + (@border-size * 2);
+    &::after {
+        left: 100%;
+        top: 0;
+        margin-top: -@size;
+        border-left-color: @color;
+    }
+    &::before {
+        left: 100%;
+        top: 0;
+        margin-top: -@m-size;
+        border-left-color: @border-color;
+    }
+}
+
+.arrow(@size, @color, @direction, @border-size: 0, @border-color: inherit)
+    when (@direction = left) {
+    @m-size: @size + (@border-size * 2);
+    &::after {
+        right: 100%;
+        top: 0;
+        margin-top: -@size;
+        border-right-color: @color;
+    }
+    &::before {
+        right: 100%;
+        top: 0;
+        margin-top: -@m-size;
+        border-right-color: @border-color;
+    }
 }
