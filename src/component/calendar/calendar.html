@@ -1,0 +1,75 @@
+<div class="nb-calendar-header" [class.disabled]="disabled">
+    <table class="nb-calendar-header-table">
+        <tr>
+            <td class="month-col">
+                <div class="last-month"  title="last month" (click)="onLast()">
+                    <i class="iconfont icon-arrow-left"></i>
+                </div>
+            </td>
+            <td class="year-month-col">
+                <div *ngIf="mode == 'calendar'" class="year-month-col-content">
+                    <div class="year-select" (click)="onShowYearPanel()">
+                        <span class="year-text">{{month.getFullYear()}}</span>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                    <div class="month-select" (click)="onShowMonthPanel()">
+                        <span class="month-text">{{month.getMonth() + 1}}</span>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="year-month-text" *ngIf="mode != 'calendar'" (click)="onReturnCalendar()">
+                    {{ yearMonthText }}
+                </div>
+            </td>
+            <td class="month-col">
+                <div class="next-month" title="next month" (click)="onNext()">
+                    <i class="iconfont icon-arrow-right"></i>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="mode == 'calendar'" class="nb-calendar-month-view-panel">
+    <nb-month-view
+        [disabled]="disabled"
+        [multiple]="multiple"
+        [startDate]="startDate"
+        [endDate]="endDate"
+        [value]="value"
+        [month]="month"
+        (select)="onSelectDate($event)">
+    </nb-month-view>
+</div>
+
+<div *ngIf="mode == 'year'" class="nb-calendar-year-select-panel">
+    <table class="calendar-year-table">
+        <tr *ngFor="let decade of yearArray">
+            <td
+                *ngFor="let year of decade"
+                (click)="onSelectYear(year)"
+                class="calendar-year-table-td"
+                [class.current-year]="isCurrentYear(year)">
+                <div class="inner-text">
+                    {{ year }}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="mode === 'month'" class="nb-calendar-month-select-panel">
+    <table class="calendar-month-table">
+        <tr *ngFor="let item of monthArray">
+            <td
+                *ngFor="let innerItem of item"
+                (click)="onSelectMonth(innerItem)"
+                class="calendar-month-table-td"
+                [class.current-month]="isCurrentMonth(innerItem)">
+                <div class="inner-text">
+                    {{ innerItem }}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

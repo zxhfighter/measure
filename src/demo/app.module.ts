@@ -17,7 +17,8 @@ import {
   TableModule,
   TabsModule,
   StepModule,
-  TooltipModule
+  TooltipModule,
+  CalendarModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -36,6 +37,7 @@ import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
+import {DemoCalendar} from './calendar';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {DemoTooltip} from './tooltip';
     DemoTable,
     DemoTabs,
     DemoStep,
-    DemoTooltip
+    DemoTooltip,
+    DemoCalendar
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ import {DemoTooltip} from './tooltip';
     StepModule,
     TableModule,
     TooltipModule,
+    CalendarModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],
