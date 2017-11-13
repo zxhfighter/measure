@@ -1,0 +1,80 @@
+// --- layout ---
+.@{prefix}-text-line {
+    display: inline-block;
+    width: 300px;
+    height: 140px;
+    color: #666;
+    border-radius: @border-radius;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+
+    &:hover {
+        border-color: darken(#dbdbdb, 20%);
+    }
+
+    &:focus {
+        color: #333;
+    }
+}
+
+.@{prefix}-text-line-order,
+.@{prefix}-text-line-content {
+    float: left;
+    height: 138px;
+    border: 0 none;
+    line-height: 26px;
+    resize: none;
+}
+
+.@{prefix}-text-line-order {
+    width: 36px;
+    text-align: center;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.@{prefix}-text-line-content {
+    width: 262px;
+    padding: 0 10px;
+}
+
+// themes
+.@{prefix}-text-line-default {
+    color: #666;
+    background-color: #fff;
+    border-color: #dbdbdb;
+    
+    &:hover {
+        border-color: darken(#dbdbdb, 20%);
+    }
+
+    &:focus {
+        color: #333;
+    }
+}
+
+.@{prefix}-text-line-error {
+    color: #666;
+    background-color: #fff;
+    border-color: @brand-danger;
+    
+    &:hover {
+        border-color: darken(@brand-danger, 20%);
+    }
+
+    &:focus {
+        color: #333;
+    }
+}
+
+// disabled
+.@{prefix}-text-line-disabled {
+    border: 1px solid #ccc;
+    color: #b8b8b8;
+    background-color: #f7f7f7;
+    opacity: 0.7;
+
+    textarea {
+        cursor: not-allowed;
+    }
+}

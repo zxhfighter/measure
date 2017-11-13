@@ -16,4 +16,36 @@ import &#x7B;TextLineModule&#x7D; from 'xdesign';
     <p>
         <nb-text-line></nb-text-line>
     </p>
+    <p>
+        <nb-text-line class="nb-text-line-error"></nb-text-line>
+    </p>
+
+    <h3 class="section-title">TextLine disabled</h3>
+    <p>
+        <nb-text-line disabled></nb-text-line>
+    </p>
+
+    <h3 class="section-title">TextLine init with value</h3>
+    <p>
+        <nb-text-line [value]="value"></nb-text-line>
+    </p>
+    <p>
+        <nb-text-line disabled [value]="value"></nb-text-line>
+    </p>
+
+    <h3 class="section-title">TextLine for form</h3>
+    <form #frm="ngForm">
+        <nb-text-line [ngModel]="value" name="textline"></nb-text-line>
+    </form>
+    <p>
+        {{ frm.value | json }}
+    </p>
+
+    <h3 class="section-title">TextLine for reactive form</h3>
+    <form [formGroup]="form">
+        <nb-text-line formControlName="textline"></nb-text-line>
+    </form>
+    <p>
+        {{ form.value | json }}
+    </p>
 </section>

@@ -1,0 +1,10 @@
+<textarea #txtOrder class="nb-text-line-order" disabled></textarea>
+<textarea
+    #txtContent
+    class="nb-text-line-content"
+    placeholder="请在此输入"
+    [disabled]="disabled"
+    [value]="value"
+    (scroll)="scrollHandler($event, txtOrder)"
+    (keyup)="onInputKeyup($event, txtOrder)">
+</textarea>
