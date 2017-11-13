@@ -1,8 +1,6 @@
-.@{prefix}-tooltip {
-    display: block;
-    color: #f00;
-}
 
+@tiplayer-bgcolor-default: rgba(red(@nb-gray-1), green(@nb-gray-1), blue(@nb-gray-1), 0.8);
+@tiplayer-box-shadow: rgba(red(@nb-black), green(@nb-black), blue(@nb-black), 0.2);
 
 .@{prefix}-tiplayer {
 
@@ -15,11 +13,10 @@
     left: 0;
     top: 0;
     max-width: 276px;
-    // width: 250px;
-    background: rgba(51, 51, 51, 0.8);
-    box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.2);
+    background: @tiplayer-bgcolor-default;
+    box-shadow: 0 -1px 4px 0 @tiplayer-box-shadow;
     border-radius: 1px;
-    color: #fff;
+    color: @nb-white;
 
     &-top {
         margin-top: -8px;
@@ -39,15 +36,6 @@
         border-width: 8px;
     }
 
-    &-title {
-        padding: 8px 14px;
-        margin: 0;
-        font-size: 14px;
-        background-color: #f7f7f7;
-        border-bottom: 1px solid #ebebeb;
-        border-radius: 5px 5px 0 0;
-    }
-
     &-content {
         padding: 9px 14px;
     }
@@ -58,7 +46,7 @@
         left: 50%;
         margin-left: -9px;
         border-bottom-width: 0;
-        border-top-color: rgba(51, 51, 51, 0.8);
+        border-top-color: @tiplayer-bgcolor-default;
         bottom: -8px;
     }
 }
@@ -68,17 +56,9 @@
         left: 50%;
         margin-left: -9px;
         border-top-width: 0;
-        border-bottom-color: #999999;
-        border-bottom-color: rgba(51, 51, 51, 0.8);
+        border-bottom-color: @nb-gray-3;
+        border-bottom-color: @tiplayer-bgcolor-default;
         top: -8px;
-
-        // &::after {
-        //     content: '';
-        //     top: 1px;
-        //     margin-left: -8px;
-        //     border-top-width: 0;
-        //     border-bottom-color: #fff;
-        // }
     }
 }
 
@@ -87,16 +67,8 @@
         top: 50%;
         margin-top: -9px;
         border-left-width: 0;
-        border-right-color: rgba(51, 51, 51, 0.8);
+        border-right-color: @tiplayer-bgcolor-default;
         left: -8px;
-
-        // &::after {
-        //     content: '';
-        //     left: 1px;
-        //     bottom: -8px;
-        //     border-left-width: 0;
-        //     border-right-color: #fff;
-        // }
     }
 }
 
@@ -105,16 +77,8 @@
         top: 50%;
         margin-top: -9px;
         border-right-width: 0;
-        border-left-color: rgba(51, 51, 51, 0.8);
+        border-left-color: @tiplayer-bgcolor-default;
         right: -8px;
-
-        // &::after {
-        //     content: '';
-        //     right: 1px;
-        //     bottom: -8px;
-        //     border-right-width: 0;
-        //     border-left-color: #fff;
-        // }
     }
 }
 
@@ -151,18 +115,18 @@
 // --- presentation ---
 
 .@{prefix}-tiplayer-theme-pink {
-    background: #ffeeee;
-    color: @text-color;
+    background: @nb-red-10;
+    color: @text-color-normal;
 }
 
 .@{prefix}-tiplayer-theme-yellow {
-    background: #fef4e6;
-    color: @text-color;
+    background: @nb-yellow-10;
+    color: @text-color-normal;
 }
 
 .@{prefix}-tiplayer-theme-white {
-    background: #fff;
-    color: @text-color;
+    background: @nb-white;
+    color: @text-color-normal;
 
     .@{prefix}-tiplayer-arrow {
         border-top-color: rgba(0, 0, 0, 0.1);
@@ -186,7 +150,7 @@
                 bottom: 1px;
                 margin-left: -8px;
                 border-bottom-width: 0;
-                border-top-color: #fff;
+                border-top-color: @nb-white;
             }
         }
     }
@@ -199,7 +163,7 @@
                 top: 1px;
                 margin-left: -8px;
                 border-top-width: 0;
-                border-bottom-color: #fff;
+                border-bottom-color: @nb-white;
             }
         }
     }
@@ -212,7 +176,7 @@
                 left: 1px;
                 bottom: -8px;
                 border-left-width: 0;
-                border-right-color: #fff;
+                border-right-color: @nb-white;
             }
         }
     }
@@ -225,7 +189,7 @@
                 right: 1px;
                 bottom: -8px;
                 border-right-width: 0;
-                border-left-color: #fff;
+                border-left-color: @nb-white;
             }
         }
     }

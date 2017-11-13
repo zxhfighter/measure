@@ -1,27 +1,52 @@
+@import './palette.less';
+
 @prefix: nb;
 
-// @brand-primary: #3685ff;
-@brand-primary: #3998FC;
-@brand-secondary: #86B6FF;
-@brand-danger: #FF5B5B;
-@brand-success: #5bc49f;;
+@brand-primary: @nb-blue;                 // #3998fc
+@brand-danger: @nb-red;                   // #FF5B5B;
+@brand-success: @nb-green;;               // #5bc49f
+@brand-warning: @nb-yellow;;              // #5bc49f
+@brand-info: @nb-blue;                    // #3998fc
 
+/* Text colors */
+@text-color-dark: @nb-gray-1;             // #333
+@text-color-normal: @nb-gray-2;           // #666
+@text-color-light: @nb-gray-3;            // #999
+@text-color-lighter: @nb-gray-4;          // #b8b8b8
+
+/* Link colors */
+@link-color-dark: @nb-blue;               // #3998fc
+@link-color-active: @nb-blue-1;           // #2e7aca
+@link-color-hover: @nb-blue-2;            // #3389e3
+
+@link-color-normal: @text-color-normal;   // #666
+@link-color-light: @text-color-light;     // #999
+@link-color-lighter: @text-color-lighter; // #b8b8b8
+
+/* Border color */
+@border-color: @nb-gray-5;                // #dbdbdb;
+
+@split-lint-color: @nb-gray-6;            // #e7e7e7
+
+/* Border-radius size */
+@border-radius: 0;
+@border-radius-small: 1px;
+
+// Disabled colors
+@disabled-color: @nb-gray-3;              // #999
+@disabled-background: @nb-gray-8;         // #f7f7f7
+
+/* Font */
 @font-family-base: 'PingFang SC', 'STHeiti', 'SimHei', 'Microsoft YAHEI', '微软雅黑', 'Verdana Regular', Helvetica, Arial, '宋体', SimSun, sans-serif;
 @font-size-base: 14px;
-
-@text-color-light: #999;
-@text-color: #666;
-@text-color-dark: #333;
-
-// disabled colors
-@disabled-color: #999;
-@disabled-background: #f1f1f1;
+@font-size-small: 12px;
+@font-size-large: 16px;
+@line-height-base: 1.428571429;          // 20/14
 
 
-// component border color
-@border-color: #dbdbdb;
 
-// border-radius size
-@border-radius: 0;
 
-@font-size: 14px;
+
+
+
+
