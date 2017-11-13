@@ -17,6 +17,7 @@ import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
+import {DemoPage} from './page';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -32,5 +33,6 @@ export const appRoutes: Routes = [
     {path: 'step', component: DemoStep},
     {path: 'table', component: DemoTable},
     {path: 'tabs', component: DemoTabs},
-    {path: 'tooltip', component: DemoTooltip}
+    {path: 'tooltip', component: DemoTooltip},
+    {path: 'page', component: DemoPage}
 ];

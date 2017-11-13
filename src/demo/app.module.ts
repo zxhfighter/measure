@@ -17,7 +17,8 @@ import {
   TableModule,
   TabsModule,
   StepModule,
-  TooltipModule
+  TooltipModule,
+  PageModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -36,6 +37,7 @@ import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
+import {DemoPage} from './page';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {DemoTooltip} from './tooltip';
     DemoTable,
     DemoTabs,
     DemoStep,
-    DemoTooltip
+    DemoTooltip,
+    DemoPage
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ import {DemoTooltip} from './tooltip';
     TabsModule,
     StepModule,
     TableModule,
+    PageModule,
     TooltipModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],

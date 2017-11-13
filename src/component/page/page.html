@@ -1,0 +1,47 @@
+<div class="nb-page">
+    <div class="page-turn">
+        <span (click)="jumpTo(-2)" *ngIf="currrentIndex !== 1">上一页</span>
+        <template *ngIf="pageSize < 7">
+            <span (click)="jumpTo(index+1)" v-for="index in pageSize"
+                [ngClass]="{'turn-on': index + 1 === currrentIndex}"
+                track-by="index">{{index+1}}</span>
+        </template>
+
+        <template *ngIf="pageSize >= 7 && currrentIndex < 4">
+            <span v-for="index in 4" *ngIf="index < 5" (click)="jumpTo(index+1)"
+                [ngClass]="{'turn-on': index + 1 === currrentIndex}"
+                track-by="index">{{index+1}}</span>
+            <em>...</em>
+            <span (click)="jumpTo(pageSize)">{{pageSize}}</span>
+        </template>
+
+        <template *ngIf="pageSize >= 7 && currrentIndex > 3 && currrentIndex < pageSize - 2">
+            <span (click)="jumpTo(1)">1</span>
+            <em>...</em>
+            <span (click)="jumpTo(--currrentIndex)">{{+currrentIndex-1}}</span>
+            <span (click)="jumpTo(currrentIndex)" class="turn-on">{{currrentIndex}}</span>
+            <span (click)="jumpTo(++currrentIndex)">{{+currrentIndex+1}}</span>
+            <em>...</em>
+            <span (click)="jumpTo(pageSize)">{{pageSize}}</span>
+        </template>
+
+        <template *ngIf="pageSize >= 7 && currrentIndex > pageSize-3">
+            <span (click)="jumpTo(1)">1</span>
+            <em>...</em>
+            <span (click)="jumpTo(pageSize-3)"
+                [ngClass]="{'turn-on': pageSize - 3 === currrentIndex}">{{pageSize-3}}</span>
+            <span (click)="jumpTo(pageSize-2)"
+                [ngClass]="{'turn-on': pageSize - 2 === currrentIndex}">{{pageSize-2}}</span>
+            <span (click)="jumpTo(pageSize-1)"
+                [ngClass]="{'turn-on': pageSize - 1 === currrentIndex}">{{pageSize-1}}</span>
+            <span (click)="jumpTo(pageSize)"
+                [ngClass]="{'turn-on': pageSize === currrentIndex}">{{pageSize}}</span>
+        </template>
+
+        <span (click)="jumpTo(-1)" *ngIf="currrentIndex !== pageSize">下一页</span>
+        <em class="go-page">去第</em>
+        <input type="text" class="form-control" v-model.number="currrentIndex">
+        <em class="go-page">页</em>
+        <button (click)="jumpTo(currrentIndex)" type="button" class="btn btn-important">确定</button>
+    </div>
+</div>
