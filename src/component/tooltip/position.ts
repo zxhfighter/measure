@@ -1,4 +1,4 @@
-export type HorizontalConnectionPos = 'start' | 'center' | 'end';
+export type HorizontalConnectionPos = 'left' | 'center' | 'right';
 
 export type VerticalConnectionPos = 'top' | 'center' | 'bottom';
 

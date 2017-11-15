@@ -25,7 +25,7 @@ export class PositionStrategy {
         this.withFallbackPosition(_targetPos, _overlayPos);
     }
 
-    apply(): void {
+    apply(): ConnectionPositionPair {
         const targetRect = this._targetEl.getBoundingClientRect();
         const overlayRect = this._overlayEl.getBoundingClientRect();
 
@@ -46,7 +46,7 @@ export class PositionStrategy {
 
                 // 保存当前位置，以防重新计算
                 this._lastConnectedPosition = pos;
-                return;
+                return pos;
             }
             else if (!fallbackPoint || fallbackPoint.visibleArea < overlayPoint.visibleArea) {
                 fallbackPoint = overlayPoint;
@@ -57,6 +57,7 @@ export class PositionStrategy {
         // If none of the preferred positions were in the viewport, take the one
         // with the largest visible area.
         this._setElementPosition(this._overlayEl, fallbackPoint!);
+        return this._preferredPositions[0];
     }
 
     private _getTargetConnectionPoint(targetRect: ClientRect, pos: ConnectionPositionPair): Point {
@@ -64,17 +65,17 @@ export class PositionStrategy {
         const targetEndX = targetRect.right;
 
         let x: number;
-        if (pos.targetX == 'center') {
+        if (pos.targetX === 'center') {
             x = targetStartX + (targetRect.width / 2);
         } else {
-            x = pos.targetX == 'start' ? targetStartX : targetEndX;
+            x = pos.targetX === 'left' ? targetStartX : targetEndX;
         }
 
         let y: number;
-        if (pos.targetY == 'center') {
+        if (pos.targetY === 'center') {
             y = targetRect.top + (targetRect.height / 2);
         } else {
-            y = pos.targetY == 'top' ? targetRect.top : targetRect.bottom;
+            y = pos.targetY === 'top' ? targetRect.top : targetRect.bottom;
         }
 
         return { x, y };
@@ -87,20 +88,20 @@ export class PositionStrategy {
         pos: ConnectionPositionPair): OverlayPoint {
 
         let overlayStartX: number;
-        if (pos.overlayX == 'center') {
+        if (pos.overlayX === 'center') {
             overlayStartX = -overlayRect.width / 2;
         }
-        else if (pos.overlayX === 'start') {
+        else if (pos.overlayX === 'left') {
             overlayStartX = 0;
         } else {
             overlayStartX = -overlayRect.width;
         }
 
         let overlayStartY: number;
-        if (pos.overlayY == 'center') {
+        if (pos.overlayY === 'center') {
             overlayStartY = -overlayRect.height / 2;
         } else {
-            overlayStartY = pos.overlayY == 'top' ? 0 : -overlayRect.height;
+            overlayStartY = pos.overlayY === 'top' ? 0 : -overlayRect.height;
         }
 
         // overlay的坐标
