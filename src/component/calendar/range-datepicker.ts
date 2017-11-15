@@ -1,13 +1,24 @@
 import {
     Component, Input, Output, EventEmitter, Renderer2, OnDestroy, ViewChild, ElementRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, forwardRef
 } from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {Moment} from 'moment';
 import * as moment from 'moment';
 
 import {OnChange} from '../core/decorators';
 
+/*
+ * Provider Expression that allows component to register as a ControlValueAccessor.
+ * This allows it to support [(ngModel)].
+ * @docs-private
+ */
+const RANGEDATEPICKER_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => RangeDatePickerComponent),
+    multi: true
+};
 
 /**
  * range datepicker value interface
@@ -34,6 +45,7 @@ export interface QuickLinkValue {
     templateUrl: './range-datepicker.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [RANGEDATEPICKER_VALUE_ACCESSOR],
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-rangedatepicker',
@@ -42,13 +54,23 @@ export interface QuickLinkValue {
     },
     exportAs: 'nbRangeDatePicker'
 })
-export class RangeDatePickerComponent implements OnDestroy {
+export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor {
 
     /** range datepicker change event, emit a `RangeDatePickerValue` value */
     @Output() change: EventEmitter<RangeDatePickerValue> = new EventEmitter<RangeDatePickerValue>();
 
     /** range datepicker value */
-    @Input() value: RangeDatePickerValue = {
+    @Input()
+    get value() {return this._value;}
+    set value(newValue: any) {
+
+        if (newValue) {
+            this._value = newValue;
+            this._startDate = newValue.startDate;
+            this._endDate = newValue.endDate;
+        }
+    }
+    private _value: RangeDatePickerValue = {
         startDate: new Date(),
         endDate: new Date()
     };
@@ -240,6 +262,8 @@ export class RangeDatePickerComponent implements OnDestroy {
     onConfirm() {
         this.change.emit(this.value);
         this._showPanel = false;
+
+        this._markForCheck();
     }
 
     /**
@@ -248,5 +272,67 @@ export class RangeDatePickerComponent implements OnDestroy {
      */
     onCancel() {
         this._showPanel = false;
+    }
+
+    /**
+     * The method to be called in order to update ngModel.
+     * Now `ngModel` binding is not supported in multiple selection mode.
+     */
+    private _onModelChange: Function;
+
+    /**
+     * Registers a callback that will be triggered when the value has changed.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On change callback function.
+     */
+    registerOnChange(fn: Function) {
+        this._onModelChange = fn;
+    }
+
+    /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
+    private _onTouch: Function;
+
+    /**
+     * Registers a callback that will be triggered when the control has been touched.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On touch callback function.
+     */
+    registerOnTouched(fn: Function) {
+        this._onTouch = fn;
+    }
+
+    /**
+     * Sets the model value. Implemented as part of ControlValueAccessor.
+     * @param {any} value - value to be set to the model.
+     */
+    writeValue(value: any) {
+        if (value) {
+            this.value = value;
+            this.cd.markForCheck();
+        }
+    }
+
+    /**
+     * Toggles the disabled state of the component. Implemented as part of ControlValueAccessor.
+     * @param {boolean} isDisabled - Whether the component should be disabled.
+     */
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+    }
+
+    /**
+     * update form model value and mark for check
+     * @docs-private
+     */
+    _markForCheck() {
+        if (this._onModelChange) {
+            this._onModelChange(this.value);
+        }
+
+        if (this._onTouch) {
+            this._onTouch(this.value);
+        }
+
+        this.cd.markForCheck();
     }
 }

@@ -48,3 +48,25 @@ import &#x7B;CalendarModule&#x7D; from 'xdesign';
         your selected: {{ abc.value.startDate | date: "yyyy-MM-dd" }} ~ {{ abc.value.endDate | date: "yyyy-MM-dd" }}
     </p>
 </section>
+
+<section>
+    <h3 class="section-title">Date picker within forms</h3>
+    <form #frm="ngForm">
+        <nb-datepicker name="date" [ngModel]="selectedDate"></nb-datepicker>
+    </form>
+
+    <p>
+        {{ frm.value | json }}
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">Range Date picker within forms</h3>
+    <form #frm1="ngForm">
+        <nb-range-datepicker name="rangeDate" [ngModel]="rangeValue"></nb-range-datepicker>
+    </form>
+
+    <p>
+        {{ frm1.value | json }}
+    </p>
+</section>

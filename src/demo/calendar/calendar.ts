@@ -16,6 +16,11 @@ export class DemoCalendar implements OnInit {
     startDate = new Date();
     endDate = moment().add(7, 'd').toDate();
 
+    rangeValue = {
+        startDate: moment().add(1, 'd').toDate(),
+        endDate: moment().add(7, 'd').toDate()
+    };
+
     monthes = [
         1,2,3,4,5,6,7,8,9,10,11,12
     ];
