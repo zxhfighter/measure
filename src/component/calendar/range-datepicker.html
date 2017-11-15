@@ -1,5 +1,6 @@
 <div class="nb-rangedatepicker-input-area">
     <input
+        #input
         readonly
         type="text"
         class="nb-rangedatepicker-input"
@@ -8,7 +9,7 @@
         [disabled]="disabled">
 </div>
 
-<div class="nb-rangedatepicker-calendar-panel" *ngIf="_showPanel">
+<div #panel class="nb-rangedatepicker-calendar-panel" [class.hide]="!_showPanel">
     <div class="nb-rangedatepicker-quicklinks">
         <div
             *ngFor="let quicklink of quickLinks"

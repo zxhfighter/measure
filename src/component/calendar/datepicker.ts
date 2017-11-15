@@ -62,7 +62,7 @@ export class DatePickerComponent implements OnInit, OnDestroy {
         // listen document click
         this._documentClickListener = this.render.listen('document', 'click', () => {
             this._showPanel = false;
-            // this.cd.markForCheck();
+            this.cd.markForCheck();
         });
     }
 

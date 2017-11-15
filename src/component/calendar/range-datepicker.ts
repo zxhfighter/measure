@@ -1,5 +1,5 @@
 import {
-    Component, Input, Output, EventEmitter, Renderer2, OnDestroy,
+    Component, Input, Output, EventEmitter, Renderer2, OnDestroy, ViewChild, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 
@@ -119,7 +119,10 @@ export class RangeDatePickerComponent implements OnDestroy {
     /** the end date(the max date of the two dates) */
     _endDate: Date | null;
 
-    constructor(private render: Renderer2, private cd: ChangeDetectorRef) {
+    @ViewChild('input') _input: ElementRef;
+    @ViewChild('panel') _panel: ElementRef;
+
+    constructor(private render: Renderer2, private cd: ChangeDetectorRef, private el: ElementRef) {
 
         // listen document click
         this._documentClickListener = this.render.listen('document', 'click', () => {
@@ -137,10 +140,30 @@ export class RangeDatePickerComponent implements OnDestroy {
 
     onShowCalendar() {
         this._showPanel = true;
+        this._setPanelPosition();
     }
 
     onHideCalendar() {
         this._showPanel = false;
+    }
+
+    _setPanelPosition() {
+        try {
+            const panel = this._panel.nativeElement as HTMLElement;
+            const windowHeight = window.innerHeight;
+            const rect = (this.el.nativeElement as HTMLElement).getBoundingClientRect();
+
+            this.render.setStyle(panel, 'opacity', 0);
+            setTimeout(() => {
+                const panelRec = panel.getBoundingClientRect();
+                const up = rect.top > windowHeight / 2;
+                this.render.setStyle(panel, 'top', (up ? -panelRec.height : 38) + 'px');
+                this.render.setStyle(panel, 'opacity', 1);
+            }, 100)
+        }
+        catch(e) {
+            throw new Error('it only works in browser');
+        }
     }
 
     onSelectStartDate(date: Date) {
