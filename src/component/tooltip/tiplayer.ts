@@ -27,7 +27,9 @@ import { PositionStrategy } from './position.strategy';
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'nbTiplayer',
     host: {
-        'class': 'nb-widget'
+        'class': 'nb-widget',
+        '(mouseenter)': 'this.onMouseEnter()',
+        '(mouseleave)': 'this.onMouseLeave()'
     }
 })
 
@@ -37,12 +39,17 @@ export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnDes
     private _content: string | TemplateRef<any>;
     private visibility: boolean = true;
     private positionStrategy: PositionStrategy;
+    private delay: number = 300;
+    /** The timeout ID of any current timer set to show the tooltip */
+    _showTimeoutId: number;
+
+    /** The timeout ID of any current timer set to hide the tooltip */
+    _hideTimeoutId: number;
+
     _placement: string;
 
     hasArrow: boolean;
     embedded: boolean;
-
-    // @Input() _visibility: boolean = true;
 
     firstPlacement: string;
     @Input() set placement(data) {
@@ -90,17 +97,34 @@ export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnDes
     }
 
     show() {
-        setTimeout(() => {
+        if (this._hideTimeoutId) {
+            clearTimeout(this._hideTimeoutId);
+        }
+        this._showTimeoutId = window.setTimeout(() => {
             this.visibility = true;
             this.cdRef.markForCheck();
-        }, 0);
+        }, this.delay);
     }
 
     hide() {
-        setTimeout(() => {
+        if (this._showTimeoutId) {
+            clearTimeout(this._showTimeoutId);
+        }
+
+        this._hideTimeoutId = window.setTimeout(() => {
             this.visibility = false;
             this.cdRef.markForCheck();
-        }, 0);
+        }, this.delay);
+    }
+
+    onMouseEnter() {
+        if (this._hideTimeoutId) {
+            clearTimeout(this._hideTimeoutId);
+        }
+    }
+
+    onMouseLeave() {
+        this.hide();
     }
 
     ngOnDestroy() {
@@ -115,7 +139,7 @@ export class TiplayerComponent implements AfterContentInit, AfterViewInit, OnDes
         targetRef: ElementRef,
         originPos: ConnectionPosition,
         overlayPos: ConnectionPosition) {
-        this.positionStrategy = new PositionStrategy(targetRef, this.el, originPos, overlayPos)
+        this.positionStrategy = new PositionStrategy(targetRef, this.el, originPos, overlayPos);
         this.positionStrategy.apply();
     }
 }

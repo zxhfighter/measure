@@ -34,6 +34,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
     private clickListener: Function;
     private enterListener: Function;
     private leaveListener: Function;
+    private focusListener: Function;
+    private blurListener: Function;
     private tiplayerInstance: TiplayerComponent | null;
 
     @Input() nbTooltip: string | TemplateRef<any> = '';
@@ -88,13 +90,19 @@ export class TooltipDirective implements OnInit, OnDestroy {
             this.clickListener =
                 this._renderer.listen(this.el.nativeElement, 'click', (e) => this.handleHostClick(e));
         }
+        if (this.trigger === 'focus') {
+            this.focusListener =
+                this._renderer.listen(this.el.nativeElement, 'focus', () => this.open());
+            this.blurListener =
+                this._renderer.listen(this.el.nativeElement, 'blur', () => this.close());
+        }
     }
 
     open() {
         if (!this.tiplayerInstance) {
             this.createTiplayer();
         }
-        else {
+        if (this.tiplayerInstance) {
             this.tiplayerInstance.show();
         }
     }
@@ -287,14 +295,23 @@ export class TooltipDirective implements OnInit, OnDestroy {
         if (this.tiplayerInstance) {
             this.tiplayerInstance = null;
         }
-        this.clickListener();
-        if (this.leaveListener) {
+        if (this.trigger === 'click') {
+            this.clickListener();
+        }
+        if (this.trigger === 'hover') {
+            this.enterListener();
             this.leaveListener();
+        }
+        if (this.trigger === 'focus') {
+            this.focusListener();
+            this.blurListener();
         }
     }
 
     handleBodyInteraction() {
-        this.close();
+        if (this.trigger === 'click') {
+            this.close();
+        }
     }
 
     getInvalidplacementError(position: string) {

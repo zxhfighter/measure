@@ -1,3 +1,65 @@
 button[nb-button] {
     margin: 0 1em;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    width: 700px;
+    height: 240px;
+
+    button[nb-button] {
+        margin: 0;
+        width: 130px;
+    }
+
+    .item-top-left {
+        grid-row: 1;
+        grid-column: 2;
+    }
+    .item-top-center {
+        grid-row: 1;
+        grid-column: 3;
+    }
+    .item-top-right {
+        grid-row: 1;
+        grid-column: 4;
+    }
+    .item-bottom-left {
+        grid-row: 5;
+        grid-column: 2;
+    }
+    .item-bottom-center {
+        grid-row: 5;
+        grid-column: 3;
+    }
+    .item-bottom-right {
+        grid-row: 5;
+        grid-column: 4;
+    }
+    .item-left-top {
+        grid-row: 2;
+        grid-column: 1;
+    }
+    .item-left-center {
+        grid-row: 3;
+        grid-column: 1;
+    }
+    .item-left-bottom {
+        grid-row: 4;
+        grid-column: 1;
+    }
+    .item-right-top {
+        grid-row: 2;
+        grid-column: 5;
+    }
+    .item-right-center {
+        grid-row: 3;
+        grid-column: 5;
+    }
+    .item-right-bottom {
+        grid-row: 4;
+        grid-column: 5;
+    }
+}
