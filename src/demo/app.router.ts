@@ -18,6 +18,8 @@ import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoCalendar} from './calendar';
+import {DemoToast} from './toast';
+import {DemoSelect} from './select';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -34,5 +36,7 @@ export const appRoutes: Routes = [
     {path: 'table', component: DemoTable},
     {path: 'tabs', component: DemoTabs},
     {path: 'tooltip', component: DemoTooltip},
-    {path: 'calendar', component: DemoCalendar}
+    {path: 'calendar', component: DemoCalendar},
+    {path: 'toast', component: DemoToast},
+    {path: 'select', component: DemoSelect}
 ];

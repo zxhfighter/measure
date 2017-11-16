@@ -82,7 +82,6 @@ export class ToastItemComponent implements OnInit, OnDestroy {
     private _startEraseTimeout() {
         if (this.options.duration > 0) {
             this._clearEraseTimeout();
-            console.log(this.options.duration);
             this.timer = window.setTimeout(() => this._destroy(), this.options.duration);
             this.cd.markForCheck();
         }
