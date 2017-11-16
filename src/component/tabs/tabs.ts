@@ -1,7 +1,7 @@
 import {
     Component, Input, ElementRef, Output, EventEmitter,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy,
-    ContentChildren, QueryList, AfterContentInit
+    ContentChildren, QueryList, AfterContentInit, AfterViewInit, ChangeDetectorRef
 } from '@angular/core';
 import { TabComponent } from './tab';
 import { OnChange } from '../core/decorators';
@@ -28,16 +28,21 @@ export class TabsComponent implements AfterContentInit {
     @OnChange(true)
     @Input() splitline: boolean = false;
 
-    constructor() {
-    }
-
     @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
+
+    constructor(
+        private cdRef: ChangeDetectorRef
+    ) {
+    }
 
     ngAfterContentInit(): void {
         /** whether one of tabs is active or not, if not, activate first tab */
         let activeTab = this.tabs.filter(item => item.active === true);
         if (activeTab.length === 0) {
-            this.tabs.toArray()[0].active = true;
+            setTimeout(() => {
+                this.tabs.toArray()[0].active = true;
+                this.cdRef.markForCheck();
+            });
         }
     }
 

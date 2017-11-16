@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -21,7 +22,11 @@ import {
   TooltipModule,
   TextareaModule,
   TextLineModule,
-  SearchBoxModule
+  SearchBoxModule,
+  CalendarModule,
+  ToastModule,
+  ToastService,
+  SelectModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -44,6 +49,10 @@ import {DemoTooltip} from './tooltip';
 import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
+import {DemoCalendar} from './calendar';
+import { DemoToast } from './toast';
+import { DemoSelect } from './select';
+
 
 @NgModule({
   declarations: [
@@ -64,11 +73,15 @@ import {DemoSearchBox} from './search-box';
     DemoTooltip,
     DemoTextarea,
     DemoTextLine,
-    DemoSearchBox
+    DemoSearchBox,
+    DemoCalendar,
+    DemoToast,
+    DemoSelect
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     ButtonModule.forRoot(),
@@ -88,9 +101,12 @@ import {DemoSearchBox} from './search-box';
     TextareaModule,
     TextLineModule,
     SearchBoxModule,
+    CalendarModule,
+    ToastModule,
+    SelectModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
-  providers: [],
+  providers: [ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

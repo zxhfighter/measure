@@ -1,0 +1,31 @@
+<table class="nb-month-view-table">
+    <thead class="nb-month-view-head">
+        <tr>
+            <th
+                class="nb-month-view-cell nb-month-view-th"
+                *ngFor="let weekName of _weekNames">
+                <span class="nb-month-view-th-inner">{{ weekName }}</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody class="nb-month-view-body">
+        <tr *ngFor="let week of _weeks">
+            <td
+                *ngFor="let day of week.days"
+                class="nb-month-view-cell nb-month-view-td"
+                [class.today]="day.isCurrent"
+                [class.selected]="day.isSelected"
+                [class.last-month]="day.isLastMonth"
+                [class.next-month]="day.isNextMonth"
+                [class.disabled]="day.disabled || disabled"
+                (click)="onClick(day)"
+                (mouseover)="onMouseOver(day)"
+                title="{{day.title}}">
+                <span class="nb-month-view-td-inner">
+                    {{ day.text }}
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
