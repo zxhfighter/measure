@@ -158,6 +158,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         this.tiplayerInstance.hasArrow = this.hasArrow;
         this.tiplayerInstance.embedded = this.embedded;
         this.tiplayerInstance.nbTooltipTheme = this.nbTooltipTheme;
+        this.tiplayerInstance.trigger = this.trigger;
 
         let originPos = this.getOriginPosition();
         let overlayPos = this.getOverlayPosition();
