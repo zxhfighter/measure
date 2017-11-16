@@ -1,0 +1,13 @@
+<div class="nb-select-options"
+     [style.left]="styles.left ? styles.left : ''"
+     [style.top]="styles.top ? styles.top : ''"
+     [style.bottom]="styles.bottom ? styles.bottom : ''">
+    <div class="nb-select-option" *ngFor="let item of datasource;">
+        <div class="nb-select-option-lable"
+             [ngClass]="{'active': item.value === value}"
+             (click)="onSelectOption($event, item)"
+             [attr.value]="item.value">
+            {{item.label}}
+        </div>
+    </div>
+</div>

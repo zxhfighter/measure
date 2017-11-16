@@ -1,0 +1,49 @@
+.@{prefix}-select {
+    display: block;
+    position: relative;
+
+    &-label {
+        color: @text-color-dark;
+    }
+
+    &-icon {
+        color: @text-color-dark;
+        margin-left: 10px;
+    }
+
+    &-options {
+        min-width: 110px;
+        max-height: 280px;
+        overflow-y: auto;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        background-color: #fff;
+        border: 1px solid #e7e7e7;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+        margin: 3px 0;
+    }
+
+    &-option {
+        height: 36px;
+        line-height: 36px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        color: @text-color;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f7f7f7;
+        }
+
+        &-lable {
+            padding: 0 10px;
+        }
+    }
+
+    .active {
+        background-color: #f7f7f7;
+    }
+}
