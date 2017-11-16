@@ -20,7 +20,8 @@ import {
   StepModule,
   TooltipModule,
   TextareaModule,
-  TextLineModule
+  TextLineModule,
+  SearchBoxModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -42,6 +43,7 @@ import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
+import {DemoSearchBox} from './search-box';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import {DemoTextLine} from './text-line';
     DemoStep,
     DemoTooltip,
     DemoTextarea,
-    DemoTextLine
+    DemoTextLine,
+    DemoSearchBox
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ import {DemoTextLine} from './text-line';
     TooltipModule,
     TextareaModule,
     TextLineModule,
+    SearchBoxModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],

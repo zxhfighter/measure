@@ -1,0 +1,115 @@
+.@{prefix}-search-box {
+    position: relative;
+    display: inline-block;
+    width: 210px;
+    height: 36px;
+    border: 0 none;
+    background-color: #fff;
+}
+
+.@{prefix}-search-box-disabled {
+    border-color: #ccc;
+}
+
+.@{prefix}-search-box:not(.nb-search-box-disabled) {
+    position: relative;
+    display: inline-block;
+    width: 210px;
+    height: 36px;
+    border: 0 none;
+    background-color: #fff;
+
+    &:hover {
+        input {
+            border-color: darken(#dbdbdb, 20%);
+        }
+    }
+}
+
+.@{prefix}-search-box-ico {
+    input {
+        padding-right: 50px;
+    }
+}
+
+.@{prefix}-search-box-btn {
+    input {
+        padding-right: 90px;
+    }
+}
+
+.@{prefix}-search-box-operate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    line-height: 36px;
+}
+
+.@{prefix}-search-box-icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    // btn style reset
+    button.@{prefix}-button-theme-transparent {
+        outline: none;
+        pointer-events: auto;
+        color: #666;
+        padding: 0 10px 0 0;
+        border: none;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+    }
+
+    // btn style reset
+    button.@{prefix}-button-theme-primary {
+        pointer-events: auto;
+
+        &:disabled {
+            padding: 0;
+            background-color: transparent;
+
+            .@{prefix}-button-inner {
+                display: inline-block;
+                width: 70px;
+                height: 34px;
+                background-color: #eee;
+            }
+        }
+    }
+}
+
+.@{prefix}-search-box-suggestion-layer {
+    position: absolute;
+    top: 37px;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    border: 1px solid #eee;
+    background-color: #fff;
+
+    .@{prefix}-search-box-suggestion-list {
+        padding: 0;
+        margin: 0;
+    }
+
+    .@{prefix}-search-box-suggestion-item {
+        padding: 0 10px;
+        line-height: 36px;
+        list-style: none;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #eee;
+        }
+    }
+}
+
+.@{prefix}-search-box-suggestion-layer-top {
+    top: -111px;
+}
