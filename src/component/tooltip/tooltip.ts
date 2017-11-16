@@ -23,6 +23,7 @@ import { PositionStrategy } from './position.strategy';
 
 @Directive({
     selector: '[nbTooltip]',
+    exportAs: 'nbTooltip',
     host: {
         '(body:click)': 'this.handleBodyInteraction()'
     }
@@ -34,6 +35,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
     private clickListener: Function;
     private enterListener: Function;
     private leaveListener: Function;
+    private focusListener: Function;
+    private blurListener: Function;
     private tiplayerInstance: TiplayerComponent | null;
 
     @Input() nbTooltip: string | TemplateRef<any> = '';
@@ -88,13 +91,19 @@ export class TooltipDirective implements OnInit, OnDestroy {
             this.clickListener =
                 this._renderer.listen(this.el.nativeElement, 'click', (e) => this.handleHostClick(e));
         }
+        if (this.trigger === 'focus') {
+            this.focusListener =
+                this._renderer.listen(this.el.nativeElement, 'focus', () => this.open());
+            this.blurListener =
+                this._renderer.listen(this.el.nativeElement, 'blur', () => this.close());
+        }
     }
 
     open() {
         if (!this.tiplayerInstance) {
             this.createTiplayer();
         }
-        else {
+        if (this.tiplayerInstance) {
             this.tiplayerInstance.show();
         }
     }
@@ -123,6 +132,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
      *
      */
     createTiplayer() {
+        // TODO 考虑全局共用tiplayer，性能更好
         let contentRef;
         let contentRootNodes;
         if (this.nbTooltip instanceof TemplateRef) {
@@ -148,6 +158,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         this.tiplayerInstance.hasArrow = this.hasArrow;
         this.tiplayerInstance.embedded = this.embedded;
         this.tiplayerInstance.nbTooltipTheme = this.nbTooltipTheme;
+        this.tiplayerInstance.trigger = this.trigger;
 
         let originPos = this.getOriginPosition();
         let overlayPos = this.getOverlayPosition();
@@ -155,8 +166,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }
 
     getOriginPosition(): ConnectionPosition {
-        let firstPlacement = this.placement.split('-')[0];
-        let seconedPlacement = this.placement.split('-')[1];
+        let [firstPlacement, seconedPlacement] = this.placement.split('-');
         let horizontal;
         let vertical;
         if (firstPlacement === 'top' || firstPlacement === 'bottom') {
@@ -164,19 +174,19 @@ export class TooltipDirective implements OnInit, OnDestroy {
         }
 
         if (firstPlacement === 'left') {
-            horizontal = 'start';
+            horizontal = 'left';
         }
 
         if (firstPlacement === 'right') {
-            horizontal = 'end';
+            horizontal = 'right';
         }
 
         if (seconedPlacement === 'left') {
-            horizontal = 'start';
+            horizontal = 'left';
         }
 
         if (seconedPlacement === 'right') {
-            horizontal = 'end';
+            horizontal = 'right';
         }
 
         if (seconedPlacement === 'top' || seconedPlacement === 'bottom') {
@@ -200,23 +210,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
             horizontal: horizontal,
             vertical: vertical
         };
-
-        // if (this.placement === 'top' || this.placement === 'bottom') {
-        //     return { horizontal: 'center', vertical: this.placement };
-        // }
-
-        // if (this.placement === 'left') {
-        //     return { horizontal: 'start', vertical: 'center' };
-        // }
-
-        // if (this.placement === 'right') {
-        //     return { horizontal: 'end', vertical: 'center' };
-        // }
     }
 
     getOverlayPosition(): ConnectionPosition {
-        let firstPlacement = this.placement.split('-')[0];
-        let seconedPlacement = this.placement.split('-')[1];
+        let [firstPlacement, seconedPlacement] = this.placement.split('-');
         let horizontal;
         let vertical;
         if (firstPlacement === 'top') {
@@ -227,19 +224,19 @@ export class TooltipDirective implements OnInit, OnDestroy {
         }
 
         if (firstPlacement === 'left') {
-            horizontal = 'end';
+            horizontal = 'right';
         }
 
         if (firstPlacement === 'right') {
-            horizontal = 'start';
+            horizontal = 'left';
         }
 
         if (seconedPlacement === 'left') {
-            horizontal = 'start';
+            horizontal = 'left';
         }
 
         if (seconedPlacement === 'right') {
-            horizontal = 'end';
+            horizontal = 'right';
         }
 
         if (seconedPlacement === 'top' || seconedPlacement === 'bottom') {
@@ -263,38 +260,29 @@ export class TooltipDirective implements OnInit, OnDestroy {
             horizontal: horizontal,
             vertical: vertical
         };
-
-        // if (this.placement === 'top') {
-        //     return { horizontal: 'center', vertical: 'bottom' };
-        // }
-
-        // if (this.placement === 'bottom') {
-        //     return { horizontal: 'center', vertical: 'top' };
-        // }
-
-        // if (this.placement === 'left') {
-        //     return { horizontal: 'end', vertical: 'center' };
-        // }
-
-        // if (this.placement === 'right') {
-        //     return { horizontal: 'start', vertical: 'center' };
-        // }
-
-        // throw this.getInvalidplacementError(this.placement);
     }
 
     ngOnDestroy() {
         if (this.tiplayerInstance) {
             this.tiplayerInstance = null;
         }
-        this.clickListener();
-        if (this.leaveListener) {
+        if (this.trigger === 'click') {
+            this.clickListener();
+        }
+        if (this.trigger === 'hover') {
+            this.enterListener();
             this.leaveListener();
+        }
+        if (this.trigger === 'focus') {
+            this.focusListener();
+            this.blurListener();
         }
     }
 
     handleBodyInteraction() {
-        this.close();
+        if (this.trigger === 'click') {
+            this.close();
+        }
     }
 
     getInvalidplacementError(position: string) {

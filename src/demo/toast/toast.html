@@ -1,0 +1,23 @@
+<h1 class="main-title">Toast demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;ToastModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">Toast first demo</h3>
+
+    <p>
+        <button nb-button theme="default" (click)="showToast('all')">全部</button>
+        <button nb-button theme="default" (click)="showToast('success')">成功</button>
+        <button nb-button theme="default" (click)="showToast('warn')">警告</button>
+        <button nb-button theme="default" (click)="showToast('info')">提醒</button>
+        <button nb-button theme="default" (click)="showToast('error')">错误</button>
+    </p>
+</section>

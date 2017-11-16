@@ -1,0 +1,72 @@
+<h1 class="main-title">Calendar demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;CalendarModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">Month View Panel</h3>
+    <nb-month-view [value]="endDate" [month]="selectedDate"></nb-month-view>
+
+    <nb-month-view [value]="endDate" [month]="selectedDate" disabled></nb-month-view>
+</section>
+
+<section>
+    <h3 class="section-title">Month View Panel - Range Selection</h3>
+    <nb-month-view [multiple]="true"></nb-month-view>
+
+    <nb-month-view [multiple]="true" [startDate]="startDate" [endDate]="endDate"></nb-month-view>
+    <nb-month-view [startDate]="startDate" [endDate]="endDate"></nb-month-view>
+    <nb-month-view [startDate]="startDate" [endDate]="endDate" disabled></nb-month-view>
+</section>
+
+<section>
+    <h3 class="section-title">Calendar</h3>
+    <nb-calendar></nb-calendar>
+
+    <nb-calendar disabled></nb-calendar>
+</section>
+
+<section>
+    <h3 class="section-title">Date Picker</h3>
+    <nb-datepicker [value]="selectedDate"></nb-datepicker>
+    <nb-datepicker [value]="selectedDate" disabled></nb-datepicker>
+</section>
+
+<section>
+    <h3 class="section-title">Range Date Picker</h3>
+    <nb-range-datepicker #abc="nbRangeDatePicker"></nb-range-datepicker>
+    <nb-range-datepicker #abc="nbRangeDatePicker" disabled></nb-range-datepicker>
+
+    <p>
+        your selected: {{ abc.value.startDate | date: "yyyy-MM-dd" }} ~ {{ abc.value.endDate | date: "yyyy-MM-dd" }}
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">Date picker within forms</h3>
+    <form #frm="ngForm">
+        <nb-datepicker name="date" [ngModel]="selectedDate"></nb-datepicker>
+    </form>
+
+    <p>
+        {{ frm.value | json }}
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">Range Date picker within forms</h3>
+    <form #frm1="ngForm">
+        <nb-range-datepicker name="rangeDate" [ngModel]="rangeValue"></nb-range-datepicker>
+    </form>
+
+    <p>
+        {{ frm1.value | json }}
+    </p>
+</section>

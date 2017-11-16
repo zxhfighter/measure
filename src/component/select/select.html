@@ -1,0 +1,10 @@
+<button nb-button theme="default" (click)="onToggle($event)" #button>
+    <span class="nb-select-label">{{selectedData.label}}</span>
+    <i class="nb-select-icon fa {{icon}}"></i>
+</button>
+<nb-select-options *ngIf="expanded"
+                   (onChange)="onSelectedOption($event)"
+                   [styles]="styles"
+                   [value]="value"
+                   [data]="datasource">
+</nb-select-options>

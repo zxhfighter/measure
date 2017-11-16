@@ -28,6 +28,9 @@ export class TabComponent {
     @OnChange(true)
     @Input() active: boolean = false;
 
+    @OnChange(true)
+    @Input() tipable: boolean = false;
+
     constructor() {
     }
 }

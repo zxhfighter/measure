@@ -1,0 +1,56 @@
+.@{prefix}-month-view {
+    .@{prefix}-month-view-table {
+        .@{prefix}-month-view-cell {
+            width: 36px;
+            height: 36px;
+            text-align: center;
+            user-select: none;
+            font-family: HelveticaNeue;
+        }
+
+        .@{prefix}-month-view-th {
+            color: #999;
+            background-color: #f7f7f7;
+            font-weight: normal;
+        }
+
+        .@{prefix}-month-view-td {
+            cursor: pointer;
+            background-color: #fff;
+
+            .@{prefix}-month-view-td-inner {
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                padding: 8px 0;
+            }
+
+            &.today {
+                font-weight: 600;
+                color: @brand-primary;
+            }
+
+            &.selected {
+                background-color: #C3E0FE;
+
+                &:hover:not(.disabled) {
+                    background-color: #AFD5FD;
+                }
+            }
+
+            &.last-month,
+            &.next-month {
+                color: #B8B8B8;
+            }
+
+            &.disabled {
+                color: #B8B8B8;
+                cursor: not-allowed;
+            }
+
+            &:hover:not(.disabled) {
+                background-color: #E8F2FE;
+            }
+        }
+    }
+}

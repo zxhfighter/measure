@@ -1,0 +1,45 @@
+@nb-datepicker-input-height: 36px;
+
+.@{prefix}-datepicker {
+    display: inline-block;
+    position: relative;
+
+    .@{prefix}-datepicker-input-area {
+        position: relative;
+        width: 210px;
+
+        .@{prefix}-datepicker-input {
+            width: 100%;
+            height: @nb-datepicker-input-height;
+            padding: 0 24px 0 10px;
+            background-color: #eee;
+            border: none;
+            cursor: pointer;
+
+            &.disabled {
+                background-color: #eee;
+                color: #b8b8b8;
+                cursor: not-allowed;
+            }
+        }
+
+        &:after {
+            .iconfont;
+            content: "\e61c";
+            position: absolute;
+            right: 10px;
+            top: 9px;
+        }
+
+        &.disabled:after {
+            color: #b8b8b8;
+        }
+    }
+
+    .@{prefix}-datepicker-calendar-panel {
+        position: absolute;
+        left: 0;
+        top: @nb-datepicker-input-height;
+        z-index: 101;
+    }
+}

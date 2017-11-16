@@ -1,0 +1,45 @@
+<h1 class="main-title">Select demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;SelectModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">默认样式</h3>
+
+    <div>
+        <nb-select [datasource]="selectData"
+                   (onChange)="selectedData1 = $event">
+        </nb-select>
+    </div>
+    <div class="code">
+        <pre *ngIf="selectedData1">{{selectedData1|json}}</pre>
+    </div>
+
+    <h3 class="section-title">自定义内容</h3>
+    <div>
+        <nb-select [datasource]="selectData"
+                   (onChange)="selectedData2 = $event"
+                   [defaultLabel]="'自定义内容'">
+        </nb-select>
+    </div>
+    <div class="code">
+        <pre *ngIf="selectedData2">{{selectedData2|json}}</pre>
+    </div>
+
+    <h3 class="section-title">设置默认值</h3>
+    <div>
+        <nb-select [datasource]="selectData"
+                   [(ngModel)]="selectedData3">
+        </nb-select>
+    </div>
+    <div class="code">
+        <pre *ngIf="selectedData3.value">{{selectedData3|json}}</pre>
+    </div>
+</section>

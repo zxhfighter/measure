@@ -1,0 +1,40 @@
+<div class="nb-rangedatepicker-input-area">
+    <input
+        #input
+        readonly
+        type="text"
+        class="nb-rangedatepicker-input"
+        (focus)="onShowCalendar()"
+        [ngModel]="valueText"
+        [disabled]="disabled">
+</div>
+
+<div #panel class="nb-rangedatepicker-calendar-panel" [class.hide]="!_showPanel">
+    <div class="nb-rangedatepicker-quicklinks">
+        <div
+            *ngFor="let quicklink of quickLinks"
+            class="nb-rangedatepicker-quicklink"
+            (click)="onClickQuickLink(quicklink)">
+            {{ quicklink.text }}
+        </div>
+    </div>
+    <div class="nb-rangedatepicker-calendars">
+        <nb-calendar
+            [value]="value.startDate"
+            [startDate]="_startDate"
+            [endDate]="_endDate"
+            (select)="onSelectStartDate($event)">
+        </nb-calendar>
+        <nb-calendar
+            [value]="value.endDate"
+            [startDate]="_startDate"
+            [endDate]="_endDate"
+            (select)="onSelectEndDate($event)">
+        </nb-calendar>
+    </div>
+
+    <div class="nb-rangedatepicker-buttons">
+        <button (click)="onConfirm()" nb-button theme="primary" size="xs" type="button">确定</button>
+        <button (click)="onCancel()"  nb-button theme="default" size="xs" type="button">取消</button>
+    </div>
+</div>

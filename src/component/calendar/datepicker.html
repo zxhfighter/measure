@@ -1,0 +1,19 @@
+<div class="nb-datepicker-input-area" [class.disabled]="disabled">
+    <input
+        #input
+        readonly
+        type="text"
+        class="nb-datepicker-input"
+        [class.disabled]="disabled"
+        (focus)="onShowCalendar()"
+        [ngModel]="valueText"
+        [disabled]="disabled">
+</div>
+
+<div #panel class="nb-datepicker-calendar-panel" [class.hide]="!_showPanel">
+    <nb-calendar
+        [disabled]="disabled"
+        [value]="value"
+        (select)="onSelectDate($event)">
+    </nb-calendar>
+</div>
