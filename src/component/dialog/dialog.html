@@ -1,0 +1,16 @@
+<div class="nb-dialog" [class.hidden]="!visiblity">
+    <div class="nb-dialog-header">
+        <h4 class="nb-dialog-title">{{title}}</h4>
+        <button *ngIf="closable"
+            type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="nb-dialog-body">
+        <ng-content></ng-content>
+    </div>
+    <div class="nb-dialog-footer nb-dialog-footer-left">
+        <button nb-button (click)="confirm()">确定</button>
+        <button theme="default" nb-button (click)="close()">取消</button>
+    </div>
+</div>

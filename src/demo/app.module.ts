@@ -26,7 +26,8 @@ import {
   CalendarModule,
   ToastModule,
   ToastService,
-  SelectModule
+  SelectModule,
+  DialogModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -52,6 +53,7 @@ import {DemoSearchBox} from './search-box';
 import {DemoCalendar} from './calendar';
 import { DemoToast } from './toast';
 import { DemoSelect } from './select';
+import { DemoDialog } from './dialog';
 
 
 @NgModule({
@@ -76,7 +78,8 @@ import { DemoSelect } from './select';
     DemoSearchBox,
     DemoCalendar,
     DemoToast,
-    DemoSelect
+    DemoSelect,
+    DemoDialog
   ],
   imports: [
     BrowserModule,
@@ -104,6 +107,7 @@ import { DemoSelect } from './select';
     CalendarModule,
     ToastModule,
     SelectModule,
+    DialogModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],
