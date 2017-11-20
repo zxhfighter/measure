@@ -1,14 +1,29 @@
 import {
-    Component, Input, Output, EventEmitter, OnInit, 
-    ViewEncapsulation, ChangeDetectionStrategy, ElementRef
+    Component,
+    Input,
+    Output,
+    EventEmitter,
+    OnInit,
+    ViewEncapsulation,
+    ChangeDetectionStrategy,
+    OnDestroy,
+    ElementRef,
+    NgZone
 } from '@angular/core';
-import { OnChange } from '../core/decorators';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { merge } from 'rxjs/observable/merge';
+import { auditTime } from 'rxjs/operators';
 
 /** default search-box theme types */
 export type SEARCH_TYPE = 'ico' | 'btn' | string;
 
 /** default search-box is not suggest search */
 export type IS_SUGGESTION = 'true' | 'false';
+
+/** Time in ms to throttle the resize|scroll events by default. */
+export const DEFAULT_DELAY_TIME = 50;
 
 @Component({
     selector: 'nb-search-box',
@@ -23,55 +38,66 @@ export type IS_SUGGESTION = 'true' | 'false';
         '[class.nb-search-box-btn]': 'type == "btn"'
     }
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, OnDestroy {
 
     /** search-box type: either 'ico' or 'btn' */
-    @OnChange()
     @Input() type: SEARCH_TYPE = 'ico';
 
     /** Whether the search-box is suggest search: either true or false */
-    @OnChange()
     @Input() isSuggestion: IS_SUGGESTION = 'false';
 
     /** search-box default placeholder */
     @Input() placeholder: string = '按关键词搜索';
 
     /** Whether the search-box is disabled  */
-    @OnChange(true)
     @Input() disabled = false;
 
     /** search-box value */
-    @OnChange()
     @Input() searchValue: string = '';
 
     /** search event */
-    @OnChange()
     @Output() onSearch = new EventEmitter();
 
     /** search-box suggest search value */
-    @OnChange()
     @Input() suggestionValue: Array<string> = [];
 
     /** suggest search event */
-    @OnChange()
     @Output() onSearchSuggestion = new EventEmitter();
 
     /** init suggest search region is not open */
     private isOpen: boolean = false;
 
+    /** Stream of viewport change|scroll events. */
+    _change: Observable<Event>;
+
+    /** Subscription to viewport resize|scroll events. */
+    _resizeSubscription = Subscription.EMPTY;
+
     constructor(
-        private el: ElementRef
-    ) { }
+        private el: ElementRef,
+        private ngZone: NgZone
+    ) {
+        this._change = ngZone.runOutsideAngular(() => {
+            return merge<Event>(fromEvent(window, 'resize'), fromEvent(window, 'scroll'));
+        });
+    }
 
     ngOnInit() {
         if (this.isSuggestion !== 'false') {
-            window.addEventListener('scroll', () => {
-                this.positionSuggestionLayer(this);
-            });
-            window.addEventListener('resize', () => {
-                this.positionSuggestionLayer(this);
-            });
+            this._resizeSubscription = this.change().subscribe(() => this.positionSuggestionLayer(this));
         }
+    }
+
+    ngOnDestroy() {
+        this._resizeSubscription.unsubscribe();
+    }
+
+    /**
+     * Returns a stream that emits whenever the size of the viewport change|scroll.
+     * @param throttle Time in milliseconds to throttle the stream.
+     */
+    change(throttleTime: number = DEFAULT_DELAY_TIME): Observable<Event> {
+        return throttleTime > 0 ? this._change.pipe(auditTime(throttleTime)) : this._change;
     }
 
     /** position suggestion layer */
@@ -85,7 +111,7 @@ export class SearchBoxComponent implements OnInit {
             let pos = window.scrollY + window.innerHeight - self.el.nativeElement.offsetTop - 156 > 0
                 ? 'bottom' : 'top';
             elLayer[0].className = 'nb-search-box-suggestion-layer' + ' ' + 'nb-search-box-suggestion-layer-' + pos;
-        }   
+        }
     }
 
     /** listen keyword input in search-box */

@@ -1,0 +1,66 @@
+@mask-background: rgba(red(@nb-gray-1), green(@nb-gray-1), blue(@nb-gray-1), 0.5);
+
+.@{prefix}-dialog {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 101;
+    left: 50%;
+    top: 50%;
+    padding: 20px;
+    min-width: 280px;
+    min-height: 210px;
+    transform: translate(-50%, -50%);
+    background: @nb-white;
+    box-shadow: 0 1px 4px 0;
+
+    &-header {
+        margin-bottom: 20px;
+
+        .close {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+        }
+    }
+
+    &-body {
+        flex-grow: 1;
+    }
+
+    &-footer-left {
+        button[nb-button] {
+            margin-right: 20px;
+        }
+    }
+
+    &-footer-right {
+        text-align: right;
+        button[nb-button] {
+            margin-left: 20px;
+        }
+    }
+
+    &-footer-center {
+        text-align: center;
+        button[nb-button] {
+            margin: 0 10px;
+        }
+    }
+
+    &-title {
+        margin: 0;
+    }
+}
+
+.@{prefix}-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: @mask-background;
+}

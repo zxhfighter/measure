@@ -25,6 +25,7 @@ import {DemoCalendar} from './calendar';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoRegion} from './region';
+import {DemoDialog} from './dialog';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -51,5 +52,6 @@ export const appRoutes: Routes = [
     {path: 'toast', component: DemoToast},
     {path: 'select', component: DemoSelect},
     {path: 'calendar', component: DemoCalendar},
-    {path: 'region', component: DemoRegion}
+    {path: 'region', component: DemoRegion},
+    {path: 'dialog', component: DemoDialog}
 ];
