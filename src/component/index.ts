@@ -20,4 +20,5 @@ export * from './search-box/index';
 export * from './calendar/index';
 export * from './toast/index';
 export * from './select/index';
+export * from './region/index';
 export * from './dialog/index';

@@ -24,6 +24,7 @@ export type BOX_TYPE = 'radio' | 'checkbox';
         'class': 'nb-widget nb-checkbox',
         '[class.nb-checkbox-disabled]': 'disabled',
         '[class.nb-checkbox-checked]': 'checked',
+        '[class.nb-checkbox-intermediate]': 'intermediate',
         '[class.nb-checkbox-radio]': 'type == "radio"'
     }
 })
@@ -45,7 +46,12 @@ export class InputBoxComponent implements OnInit {
     @Input() disabled = false;
 
     /** Whether the box is checked */
+    @OnChange(true)
     @Input() checked = false;
+
+    /** Whether the box is intermediate */
+    @OnChange(true)
+    @Input() intermediate = false;
 
     /** box value */
     @Input() value: any;
@@ -93,6 +99,7 @@ export class InputBoxComponent implements OnInit {
         }
         else {
             this.checked = checked;
+            this.intermediate = false;
             this.change.emit(checked);
         }
 

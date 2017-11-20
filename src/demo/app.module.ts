@@ -24,10 +24,11 @@ import {
   TextareaModule,
   TextLineModule,
   SearchBoxModule,
-  CalendarModule,
   ToastModule,
   ToastService,
   SelectModule,
+  CalendarModule,
+  RegionModule,
   DialogModule
 } from '../component';
 
@@ -53,9 +54,10 @@ import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
 import {DemoCalendar} from './calendar';
-import { DemoToast } from './toast';
-import { DemoSelect } from './select';
-import { DemoDialog } from './dialog';
+import {DemoToast} from './toast';
+import {DemoSelect} from './select';
+import {DemoRegion} from './region';
+import {DemoDialog} from './dialog';
 
 
 @NgModule({
@@ -82,6 +84,8 @@ import { DemoDialog } from './dialog';
     DemoCalendar,
     DemoToast,
     DemoSelect,
+    DemoCalendar,
+    DemoRegion,
     DemoDialog
   ],
   imports: [
@@ -111,6 +115,7 @@ import { DemoDialog } from './dialog';
     CalendarModule,
     ToastModule,
     SelectModule,
+    RegionModule,
     DialogModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],

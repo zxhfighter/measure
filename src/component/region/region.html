@@ -1,0 +1,71 @@
+<div class="nb-region-section" *ngFor="let rootItem of datasource">
+
+    <div class="nb-region-section-title">
+        <nb-checkbox
+            [value]="rootItem.id"
+            [disabled]="disabled || rootItem.disabled"
+            [checked]="rootItem.selected"
+            [intermediate]="rootItem.intermediate"
+            (change)="onToggleNode(rootItem, $event)">
+            {{rootItem.label}}
+        </nb-checkbox>
+    </div>
+
+    <div *ngIf="rootItem.children" class="nb-region-section-content">
+        <div *ngFor="let district of rootItem.children" class="nb-region-district">
+            <div class="nb-region-district-title">
+                <nb-checkbox
+                    [value]="district.id"
+                    [disabled]="disabled || district.disabled"
+                    [checked]="district.selected"
+                    [intermediate]="district.intermediate"
+                    (change)="onToggleNode(district, $event)">
+                    {{district.label}}
+                </nb-checkbox>
+            </div>
+
+            <div *ngIf="district.children" class="nb-region-district-content">
+                <div *ngFor="let province of district.children" class="nb-region-province">
+                    <div class="nb-region-province-title" (mouseover)="onShowCity(province)" (mouseout)="onHideCity(province)">
+                        <nb-checkbox
+                            [value]="province.id"
+                            [disabled]="disabled || province.disabled"
+                            [checked]="province.selected"
+                            [intermediate]="province.intermediate"
+                            (change)="onToggleNode(province, $event)">
+                            {{province.label}}
+                            <ng-container *ngIf="province.children">
+                                <span class="province-count">({{ getSelectedCount(province.children) }}/{{ province.children.length }})</span>
+                            </ng-container>
+                        </nb-checkbox>
+                    </div>
+
+                    <div
+                        *ngIf="province.children"
+                        class="nb-region-city-panel"
+                        [class.hide]="!province.showCity"
+                        (mouseover)="onOverPanel(province)"
+                        (mouseout)="onLeavePanel(province)">
+
+                        <div class="nb-region-city-table">
+                            <ng-container *ngFor="let rowIndex of province.cityRows">
+                                <div class="nb-region-city-row">
+                                    <div *ngFor="let city of province.children.slice(rowIndex * 3, rowIndex * 3 + 3)" class="nb-region-city-cell">
+                                        <nb-checkbox
+                                            [value]="city.id"
+                                            [disabled]="disabled || city.disabled"
+                                            [checked]="city.selected"
+                                            [intermediate]="city.intermediate"
+                                            (change)="onToggleNode(city, $event)">
+                                            {{city.label}}
+                                        </nb-checkbox>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
