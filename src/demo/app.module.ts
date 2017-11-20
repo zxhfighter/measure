@@ -20,7 +20,7 @@ import {
   TabsModule,
   StepModule,
   TooltipModule,
-  PageModule
+  PageModule,
   TextareaModule,
   TextLineModule,
   SearchBoxModule,
@@ -75,7 +75,7 @@ import { DemoDialog } from './dialog';
     DemoTabs,
     DemoStep,
     DemoTooltip,
-    DemoPage
+    DemoPage,
     DemoTextarea,
     DemoTextLine,
     DemoSearchBox,

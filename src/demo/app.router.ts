@@ -46,7 +46,7 @@ export const appRoutes: Routes = [
     {path: 'table', component: DemoTable},
     {path: 'tabs', component: DemoTabs},
     {path: 'tooltip', component: DemoTooltip},
-    {path: 'page', component: DemoPage}
+    {path: 'page', component: DemoPage},
     {path: 'text-line', component: DemoTextLine},
     {path: 'search-box', component: DemoSearchBox},
     {path: 'calendar', component: DemoCalendar},
