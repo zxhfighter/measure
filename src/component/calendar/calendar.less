@@ -1,0 +1,107 @@
+.@{prefix}-calendar {
+    display: inline-block;
+    background: #FFFFFF;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .20);
+    border-radius: 1px;
+
+    .@{prefix}-calendar-header {
+        width: 252px;
+
+        &.disabled {
+            pointer-events: none;
+            color: #b8b8b8;
+        }
+
+        .@{prefix}-calendar-header-table {
+            width: 100%;
+            min-height: 34px;
+
+            .month-col {
+                width: 15%;
+                text-align: center;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #f7f7f7;
+                }
+
+                &:active {
+                    background-color: #e7e7e7;
+                }
+
+                &.disabled {
+                    pointer-events: none;
+                }
+            }
+
+            .year-month-col {
+                width: 70%;
+
+                .year-month-col-content {
+                    text-align: center;
+                }
+
+                .year-month-select-base {
+                    display: inline-block;
+                    padding: 5px 10px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #f7f7f7;
+                    }
+
+                    &:active {
+                        background-color: #e7e7e7;
+                    }
+
+                    .iconfont {
+                        margin-left: 5px;
+                    }
+                }
+
+                .year-select {
+                    .year-month-select-base;
+                }
+
+                .month-select {
+                    .year-month-select-base;
+                }
+
+                .year-month-text {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .calendar-year-table,
+    .calendar-month-table {
+        width: 100%;
+    }
+
+    .calendar-year-table-td,
+    .calendar-month-table-td {
+        text-align: center;
+        width: 54px;
+        height: 54px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f7f7f7;
+        }
+
+        &:active {
+            background-color: #e7e7e7;
+        }
+
+        .inner-text {
+            padding: 25px 0;
+        }
+    }
+
+    .current-year,
+    .current-month {
+        color: @brand-primary;
+        font-weight: 600;
+    }
+}

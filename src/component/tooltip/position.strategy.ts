@@ -13,6 +13,7 @@ export class PositionStrategy {
     private _targetEl: HTMLElement;
     private _overlayEl: HTMLElement;
     private _preferredPositions: ConnectionPositionPair[] = [];
+    private _lastOverlayRect: ClientRect;
     private _lastConnectedPosition: ConnectionPositionPair;
 
     constructor(
@@ -23,11 +24,30 @@ export class PositionStrategy {
         this._targetEl = this._targetRef.nativeElement;
         this._overlayEl = this._overlaytRef.nativeElement.children[0];
         this.withFallbackPosition(_targetPos, _overlayPos);
+        this._lastConnectedPosition = this.withFallbackPosition[0];
     }
 
-    apply(): void {
+    apply(callback: Function) {
+        let lastConnectedPosition = this.position();
+        // 定位改变后执行回调函数 - 重新设置定位属性以渲染页面
+        if (lastConnectedPosition !== this._lastConnectedPosition
+            && typeof callback === 'function'
+        ) {
+            this._lastConnectedPosition = lastConnectedPosition;
+            callback(lastConnectedPosition);
+        }
+        return lastConnectedPosition;
+    }
+
+    position(): ConnectionPositionPair {
         const targetRect = this._targetEl.getBoundingClientRect();
-        const overlayRect = this._overlayEl.getBoundingClientRect();
+        let overlayRect = this._overlayEl.getBoundingClientRect();
+
+        if (overlayRect.width === 0
+            && overlayRect.height === 0
+            && typeof this._lastOverlayRect !== 'undefined') {
+                overlayRect = this._lastOverlayRect;
+        }
 
         // 获取浏览器可视区域边界
         const viewportRect = this.getViewportRect();
@@ -44,9 +64,9 @@ export class PositionStrategy {
             if (overlayPoint.fitsInViewport) {
                 this._setElementPosition(this._overlayEl, overlayPoint);
 
-                // 保存当前位置，以防重新计算
-                this._lastConnectedPosition = pos;
-                return;
+                // 保存当前位置，以防隐藏后无法获取真实宽高和位置
+                this._lastOverlayRect = overlayRect;
+                return pos;
             }
             else if (!fallbackPoint || fallbackPoint.visibleArea < overlayPoint.visibleArea) {
                 fallbackPoint = overlayPoint;
@@ -57,6 +77,8 @@ export class PositionStrategy {
         // If none of the preferred positions were in the viewport, take the one
         // with the largest visible area.
         this._setElementPosition(this._overlayEl, fallbackPoint!);
+        this._lastOverlayRect = overlayRect;
+        return fallbackPosition!;
     }
 
     private _getTargetConnectionPoint(targetRect: ClientRect, pos: ConnectionPositionPair): Point {
@@ -64,17 +86,17 @@ export class PositionStrategy {
         const targetEndX = targetRect.right;
 
         let x: number;
-        if (pos.targetX == 'center') {
+        if (pos.targetX === 'center') {
             x = targetStartX + (targetRect.width / 2);
         } else {
-            x = pos.targetX == 'start' ? targetStartX : targetEndX;
+            x = pos.targetX === 'left' ? targetStartX : targetEndX;
         }
 
         let y: number;
-        if (pos.targetY == 'center') {
+        if (pos.targetY === 'center') {
             y = targetRect.top + (targetRect.height / 2);
         } else {
-            y = pos.targetY == 'top' ? targetRect.top : targetRect.bottom;
+            y = pos.targetY === 'top' ? targetRect.top : targetRect.bottom;
         }
 
         return { x, y };
@@ -87,20 +109,20 @@ export class PositionStrategy {
         pos: ConnectionPositionPair): OverlayPoint {
 
         let overlayStartX: number;
-        if (pos.overlayX == 'center') {
+        if (pos.overlayX === 'center') {
             overlayStartX = -overlayRect.width / 2;
         }
-        else if (pos.overlayX === 'start') {
+        else if (pos.overlayX === 'left') {
             overlayStartX = 0;
         } else {
             overlayStartX = -overlayRect.width;
         }
 
         let overlayStartY: number;
-        if (pos.overlayY == 'center') {
+        if (pos.overlayY === 'center') {
             overlayStartY = -overlayRect.height / 2;
         } else {
-            overlayStartY = pos.overlayY == 'top' ? 0 : -overlayRect.height;
+            overlayStartY = pos.overlayY === 'top' ? 0 : -overlayRect.height;
         }
 
         // overlay的坐标

@@ -1,0 +1,80 @@
+<h1 class="main-title">SearchBox demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;SearchBoxModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">SearchBox first demo</h3>
+
+    <p>
+        <nb-search-box></nb-search-box>
+    </p>
+
+    <h3 class="section-title">SearchBox init with set placeholder</h3>
+    
+    <p>
+        <nb-search-box placeholder="type = 'ico' 常态"></nb-search-box>
+    </p>
+
+    <h3 class="section-title">SearchBox init with search value</h3>
+
+    <p>
+        <nb-search-box [searchValue]="searchValue" (onSearch)="search($event)"></nb-search-box>
+    </p>
+
+    <h3 class="section-title">SearchBox suggest search</h3>
+    
+    <p>
+        <nb-search-box 
+            placeholder="联想搜索" 
+            isSuggestion 
+            (onSearchSuggestion)="searchSuggestion($event)"
+            [suggestionValue]="suggestionValue"
+            (onSearch)="search($event)">
+        </nb-search-box>
+    </p>
+
+    <p>
+        <nb-search-box 
+            placeholder="联想搜索"
+            isSuggestion="true"
+            (onSearchSuggestion)="searchSuggestion($event)"
+            [suggestionValue]="suggestionValue"
+            (onSearch)="search($event)">
+        </nb-search-box>
+    </p>
+
+    <h3 class="section-title">SearchBox no suggest search</h3>
+    
+    <p>
+        <nb-search-box placeholder="不联想搜索" (onSearch)="search($event)"></nb-search-box>
+    </p>
+    <p>
+        <nb-search-box placeholder="不联想搜索"  isRelate="false" (onSearch)="search($event)"></nb-search-box>
+    </p>
+
+    <h3 class="section-title">SearchBox themes and states</h3>
+
+    <p>
+        <nb-search-box placeholder="type = 'ico' 常态"></nb-search-box>
+    </p>
+
+    <p>
+        <nb-search-box placeholder="type = 'ico' 禁用" disabled></nb-search-box>
+    </p>
+
+    <p>
+        <nb-search-box placeholder="type = 'btn' 常态" type="btn"></nb-search-box>
+    </p>
+
+    <p>
+        <nb-search-box placeholder="type = 'btn' 禁用" type="btn" disabled></nb-search-box>
+    </p>
+</section>

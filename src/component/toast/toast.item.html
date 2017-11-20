@@ -1,0 +1,11 @@
+<div class="nb-toast-container" [@enterLeave]="toast.state">
+    <div class="nb-toast-content" [ngClass]="'nb-toast-' + toast.type">
+        <ng-container [ngSwitch]="toast.type">
+            <i *ngSwitchCase="'success'" class="icon fa fa-check-circle-o"></i>
+            <i *ngSwitchCase="'warn'" class="icon fa fa-info-circle"></i>
+            <i *ngSwitchCase="'info'" class="icon fa fa-info-circle"></i>
+            <i *ngSwitchCase="'error'" class="icon fa fa-times-circle-o"></i>
+        </ng-container>
+        <div class="nb-toast-message">{{toast.content}}</div>
+    </div>
+</div>
