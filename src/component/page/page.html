@@ -1,6 +1,19 @@
 <div class="nb-page">
     <div class="page-turn">
         <span>共{{pageSize.length * count}}条</span>
+        <span>每页条数</span>
+        <!-- <select name="select">
+            <option [value]="item" *ngFor="let item of list">{{item}}</option>
+        </select> -->
+        <nb-select [datasource]="selectData"
+            (onChange)="selectedData1 = $event">
+        </nb-select>
+        <!-- <nb-select-options *ngIf="expanded"
+            (onChange)="onSelectedOption($event)"
+            [styles]="styles"
+            [value]="value"
+            [data]="datasource">
+        </nb-select-options> -->
         <ng-container *ngIf="pageSize.length < 7">
             <span (click)="jumpTo(i+1)" *ngFor="let item of pageSize; index as i"
                 [ngClass]="{'turn-on': i + 1 === currrentIndex}">{{i+1}}</span>
