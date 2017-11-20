@@ -24,6 +24,7 @@ import {DemoSearchBox} from './search-box';
 import {DemoCalendar} from './calendar';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
+import {DemoRegion} from './region';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -48,5 +49,7 @@ export const appRoutes: Routes = [
     {path: 'search-box', component: DemoSearchBox},
     {path: 'calendar', component: DemoCalendar},
     {path: 'toast', component: DemoToast},
-    {path: 'select', component: DemoSelect}
+    {path: 'select', component: DemoSelect},
+    {path: 'calendar', component: DemoCalendar},
+    {path: 'region', component: DemoRegion}
 ];

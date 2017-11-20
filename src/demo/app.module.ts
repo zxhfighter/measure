@@ -23,10 +23,11 @@ import {
   TextareaModule,
   TextLineModule,
   SearchBoxModule,
-  CalendarModule,
   ToastModule,
   ToastService,
-  SelectModule
+  SelectModule,
+  CalendarModule,
+  RegionModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -50,9 +51,9 @@ import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
 import {DemoCalendar} from './calendar';
-import { DemoToast } from './toast';
-import { DemoSelect } from './select';
-
+import {DemoToast} from './toast';
+import {DemoSelect} from './select';
+import {DemoRegion} from './region';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,9 @@ import { DemoSelect } from './select';
     DemoSearchBox,
     DemoCalendar,
     DemoToast,
-    DemoSelect
+    DemoSelect,
+    DemoCalendar,
+    DemoRegion
   ],
   imports: [
     BrowserModule,
@@ -104,6 +107,7 @@ import { DemoSelect } from './select';
     CalendarModule,
     ToastModule,
     SelectModule,
+    RegionModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],

@@ -1,5 +1,5 @@
 .@{prefix}-checkbox {
-    display: inline-block;
+    // display: inline-block;
     position: relative;
 
     .@{prefix}-checkbox-label {
@@ -11,7 +11,7 @@
             display: block;
             position: absolute;
             left: 0;
-            top: 0;
+            top: 2px;
             width: 16px;
             height: 16px;
             border: 1px solid @text-color;
@@ -27,8 +27,8 @@
             content: '';
             display: block;
             position: absolute;
-            top: 0.2em;
-            left: 0.18em;
+            top: 5px;
+            left: 3px;
             width: 0.66em;
             height: 0.4em;
             border: 0.11em solid @text-color;
@@ -39,7 +39,35 @@
     }
 }
 
+.@{prefix}-checkbox.@{prefix}-checkbox-intermediate {
+
+    .@{prefix}-checkbox-label {
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 8px;
+            left: 4px;
+            width: 8px;
+            height: 2px;
+            background-color: @text-color;
+        }
+    }
+
+    &.@{prefix}-checkbox-disabled {
+        .@{prefix}-checkbox-label {
+            &:after {
+                background-color: #B8B8B8;
+            }
+        }
+    }
+}
+
+
 .@{prefix}-checkbox.@{prefix}-checkbox-disabled {
+    color: #999;
+    cursor: not-allowed;
+
     .@{prefix}-checkbox-label {
         &:before {
             border-color: #dbdbdb;
