@@ -781,12 +781,12 @@ export class TableRowComponent {
 export class TableTdComponent {}
 
 
-@Directive({
-    selector: 'nb-table-filter',
-    host: {'class': 'nb-table-filter'},
-    exportAs: 'nbTableFilter'
-})
-export class TableFilterComponent {
-    filterField: string;
-    filterValue: any;
-}
+// @Directive({
+//     selector: 'nb-table-filter',
+//     host: {'class': 'nb-table-filter'},
+//     exportAs: 'nbTableFilter'
+// })
+// export class TableFilterComponent {
+//     filterField: string;
+//     filterValue: any;
+// }
