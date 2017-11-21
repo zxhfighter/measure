@@ -6,6 +6,7 @@
             <option [value]="item" *ngFor="let item of list">{{item}}</option>
         </select> -->
         <nb-select [datasource]="selectData"
+            [defaultLabel]="count"
             (onChange)="setCount($event)">
         </nb-select>
         <!-- <nb-select-options *ngIf="expanded"

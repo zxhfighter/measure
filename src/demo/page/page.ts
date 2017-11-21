@@ -17,7 +17,7 @@ export class DemoPage implements OnInit {
     // 一共多少条
     total = 302;
     // 可选择的每页显示条数
-    list = [10, 20];
+    list = [10, 20, 30];
 
     constructor() {
 
