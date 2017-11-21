@@ -28,7 +28,8 @@ import {
   SelectModule,
   CalendarModule,
   RegionModule,
-  DialogModule
+  DialogModule,
+  CodeHighlighterModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -56,7 +57,7 @@ import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
-
+import {DemoCodeHighlighter} from './code-highlighter';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import {DemoDialog} from './dialog';
     DemoSelect,
     DemoCalendar,
     DemoRegion,
-    DemoDialog
+    DemoDialog,
+    DemoCodeHighlighter
   ],
   imports: [
     BrowserModule,
@@ -113,6 +115,7 @@ import {DemoDialog} from './dialog';
     SelectModule,
     RegionModule,
     DialogModule,
+    CodeHighlighterModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],

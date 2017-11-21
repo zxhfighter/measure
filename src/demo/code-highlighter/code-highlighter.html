@@ -1,0 +1,34 @@
+<h1 class="main-title">CodeHighlighter demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;CodeHighlighterModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">TypeScirpt with linenumbers</h3>
+
+    <nb-code-highlighter language="typescript" linenumbers [rawCode]="jsCode">
+
+    </nb-code-highlighter>
+</section>
+
+<section>
+    <h3 class="section-title">HTML with linenumbers</h3>
+
+    <nb-code-highlighter language="markup" linenumbers [rawCode]="htmlCode">
+    </nb-code-highlighter>
+</section>
+
+
+<section>
+    <h3 class="section-less">LESS with linenumbers</h3>
+
+    <nb-code-highlighter language="less" linenumbers [rawCode]="lessCode">
+    </nb-code-highlighter>
+</section>

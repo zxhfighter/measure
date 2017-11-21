@@ -26,6 +26,7 @@ import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
+import {DemoCodeHighlighter} from './code-highlighter';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -53,5 +54,6 @@ export const appRoutes: Routes = [
     {path: 'select', component: DemoSelect},
     {path: 'calendar', component: DemoCalendar},
     {path: 'region', component: DemoRegion},
-    {path: 'dialog', component: DemoDialog}
+    {path: 'dialog', component: DemoDialog},
+    {path: 'code-highlighter', component: DemoCodeHighlighter}
 ];
