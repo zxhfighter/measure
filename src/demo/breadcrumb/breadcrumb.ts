@@ -1,46 +1,13 @@
-import {
-    Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy
-} from '@angular/core';
-
-import {BreadcrumbItem} from '../../component/breadcrumb';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'demo-breadcrumb',
     templateUrl: './breadcrumb.html',
-    styleUrls: ['./breadcrumb.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    styleUrls: ['./breadcrumb.less']
 })
-export class DemoBreadcrumb implements OnInit {
-    name = 'ComponentName';
-
-    data1: BreadcrumbItem[] = [
-        {text: 'One', href: 'http://www.huxiu.com'},
-        {text: 'Two', href: 'http://www.baidu.com'},
-        {text: 'Three'}
-    ];
-
-    data2: BreadcrumbItem[] = [
-        {text: 'One', path: '/button'},
-        {text: 'Two', path: '/breadcrumb'},
-        {text: 'Three'}
-    ];
-
-    data3: BreadcrumbItem[] = [
-        {text: 'One'}
-    ];
-
-    data4: BreadcrumbItem[] = [
-        {text: 'One'},
-        {text: 'Two'},
-        {text: 'Three'}
-    ];
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
+export class DemoBreadcrumb {
+    // theme sources
+    tsCode: string = require('!!raw-loader!./href/breadcrumb-href.ts');
+    htmlCode: string = require('!!raw-loader!./href/breadcrumb-href.html');
+    lessCode: string = require('!!raw-loader!./href/breadcrumb-href.less');
 }

@@ -37,7 +37,6 @@ import {AppComponent} from './app.component';
 import {appRoutes} from './app.router';
 
 // import {DemoButton} from './button';
-import {DemoBreadcrumb} from './breadcrumb';
 import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
 import {DemoBoxGroup} from './box-group';
@@ -63,15 +62,16 @@ import {DemoCodeBox} from './code-box';
 
 
 import {ButtonDemoModule} from './button';
+import {BreadcrumbDemoModule} from './breadcrumb';
 
 const demoModules = [
-  ButtonDemoModule
+    ButtonDemoModule,
+    BreadcrumbDemoModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoBreadcrumb,
     DemoSwitch,
     DemoButtonGroup,
     DemoBoxGroup,
