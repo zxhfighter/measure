@@ -1,10 +1,6 @@
-import {
-    Component, Input, Output, EventEmitter,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy
-} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {ButtonConfig} from '../../component/button';
-
 export function getButtonConfig(): ButtonConfig {
     return Object.assign(new ButtonConfig, { theme: 'yellow' });
 }
@@ -13,38 +9,27 @@ export function getButtonConfig(): ButtonConfig {
     selector: 'demo-button',
     templateUrl: './button.html',
     styleUrls: ['./button.less'],
-    encapsulation: ViewEncapsulation.Emulated,
-    changeDetection: ChangeDetectionStrategy.Default,
     providers: [{provide: ButtonConfig, useFactory: getButtonConfig}]
 })
-export class DemoButton implements OnInit {
-    name = 'ComponentName';
-    counter = 0;
-    buttonText = 'xs height 28px';
-    isDisabled = false;
+export class DemoButton {
 
-    size = 'xs';
-    constructor() {
+    // theme sources
+    tsCode: string = require('!!raw-loader!./themes/button-theme.ts');
+    htmlCode: string = require('!!raw-loader!./themes/button-theme.html');
+    lessCode: string = require('!!raw-loader!./themes/button-theme.less');
 
-    }
+    // size sources
+    tsCodeSize: string = require('!!raw-loader!./size/button-size.ts');
+    htmlCodeSize: string = require('!!raw-loader!./size/button-size.html');
+    lessCodeSize: string = require('!!raw-loader!./size/button-size.less');
 
-    ngOnInit() {
+    // link sources
+    tsCodeLink: string = require('!!raw-loader!./link/button-link.ts');
+    htmlCodeLink: string = require('!!raw-loader!./link/button-link.html');
+    lessCodeLink: string = require('!!raw-loader!./link/button-link.less');
 
-    }
-
-    onClick() {
-        this.counter = this.counter + 1;
-    }
-
-    changeSize() {
-        this.size = this.size === 'lg' ? 'xs' : 'lg';
-    }
-
-    changeText() {
-        this.buttonText = 'xs height: ' + Math.floor(Math.random() * 100);
-    }
-
-    changeDisabled() {
-        this.isDisabled = !this.isDisabled;
-    }
+    // icon sources
+    tsCodeIcon: string = require('!!raw-loader!./icon/button-icon.ts');
+    htmlCodeIcon: string = require('!!raw-loader!./icon/button-icon.html');
+    lessCodeIcon: string = require('!!raw-loader!./icon/button-icon.less');
 }

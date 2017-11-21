@@ -1,3 +1,2 @@
-<div class="nb-code-highlighter">
-    code-highlighter
-</div>
+<pre [class.line-numbers]="linenumbers"><code ngNonBindable #code [ngClass]="'language-' + language"></code></pre>
+<div #content class="hide"><ng-content></ng-content></div>
