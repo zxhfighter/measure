@@ -29,13 +29,14 @@ import {
   CalendarModule,
   RegionModule,
   DialogModule,
-  CodeHighlighterModule
+  CodeHighlighterModule,
+  CodeBoxModule
 } from '../component';
 
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.router';
 
-import {DemoButton} from './button';
+// import {DemoButton} from './button';
 import {DemoBreadcrumb} from './breadcrumb';
 import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
@@ -58,11 +59,18 @@ import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
 import {DemoCodeHighlighter} from './code-highlighter';
+import {DemoCodeBox} from './code-box';
+
+
+import {ButtonDemoModule} from './button';
+
+const demoModules = [
+  ButtonDemoModule
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoButton,
     DemoBreadcrumb,
     DemoSwitch,
     DemoButtonGroup,
@@ -85,7 +93,8 @@ import {DemoCodeHighlighter} from './code-highlighter';
     DemoCalendar,
     DemoRegion,
     DemoDialog,
-    DemoCodeHighlighter
+    DemoCodeHighlighter,
+    DemoCodeBox
   ],
   imports: [
     BrowserModule,
@@ -116,6 +125,10 @@ import {DemoCodeHighlighter} from './code-highlighter';
     RegionModule,
     DialogModule,
     CodeHighlighterModule,
+    CodeBoxModule,
+
+    // demos
+    ...demoModules,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],

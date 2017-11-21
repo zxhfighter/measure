@@ -14,7 +14,7 @@ import {OnChange} from '../core/decorators';
     templateUrl: './code-highlighter.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    preserveWhitespaces: false,
+    preserveWhitespaces: true,
     host: {
         'class': 'nb-widget nb-code-highlighter'
     },
