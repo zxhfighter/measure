@@ -1,12 +1,12 @@
 <div class="nb-page">
     <div class="page-turn">
-        <span>共{{pageSize.length * count}}条</span>
+        <span>共{{total}}条</span>
         <span>每页条数</span>
         <!-- <select name="select">
             <option [value]="item" *ngFor="let item of list">{{item}}</option>
         </select> -->
         <nb-select [datasource]="selectData"
-            (onChange)="selectedData1 = $event">
+            (onChange)="setCount($event)">
         </nb-select>
         <!-- <nb-select-options *ngIf="expanded"
             (onChange)="onSelectedOption($event)"
