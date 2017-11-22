@@ -37,7 +37,6 @@ import {
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.router';
 
-import {DemoProgressBar} from './progress-bar';
 import {DemoSpinner} from './spinner';
 import {DemoCarousel} from './carousel';
 import {DemoInput} from './input';
@@ -64,6 +63,7 @@ import {SwitchDemoModule} from './switch';
 import {ButtonGroupDemoModule} from './button-group';
 import {BoxGroupDemoModule} from './box-group';
 import {ChartDemoModule} from './chart';
+import {ProgressbarDemoModule} from './progress-bar';
 
 const demoModules = [
     ButtonDemoModule,
@@ -71,13 +71,13 @@ const demoModules = [
     SwitchDemoModule,
     ButtonGroupDemoModule,
     BoxGroupDemoModule,
-    ChartDemoModule
+    ChartDemoModule,
+    ProgressbarDemoModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoProgressBar,
     DemoSpinner,
     DemoCarousel,
     DemoInput,
