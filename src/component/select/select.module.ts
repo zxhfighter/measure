@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ButtonModule} from '../button';
-import {SelectComponent} from './select';
-import {SelectOptionsComponent} from './select.options';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from '../button';
+import { SelectComponent } from './select';
+import { SelectOptionsComponent } from './select.options';
 
 @NgModule({
     imports: [CommonModule, ButtonModule],
@@ -10,4 +10,4 @@ import {SelectOptionsComponent} from './select.options';
     exports: [SelectComponent],
     entryComponents: [SelectOptionsComponent]
 })
-export class SelectModule {}
+export class SelectModule { }
