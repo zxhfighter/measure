@@ -1,138 +1,52 @@
-<h1 class="main-title">BoxGroup demo</h1>
+<h1 class="main-title">nb-boxgroup, nb-checkbox</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Single checkbox</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-checkbox (change)="onSingleCheck($event)">北斗</nb-checkbox>
-        <nb-checkbox>秋实</nb-checkbox>
-        <nb-checkbox disabled>DSP</nb-checkbox>
-        <nb-checkbox [disabled]="true" [checked]="singleDisabled">SSP</nb-checkbox>
-        <nb-checkbox [disabled]="singleDisabled">MSP</nb-checkbox>
-        <nb-checkbox intermediate>秋实</nb-checkbox>
-        <button type="button" (click)="changeSingleDisabled()">change disabled</button>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Checkbox Basic</h3>
+    <p nb-codebox-desc>checkbox desc.</p>
 
+    <demo-checkbox></demo-checkbox>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">Single checkbox</h3>
+<nb-code-box [tsCode]="tsCodeRadio" [htmlCode]="htmlCodeRadio" [lessCode]="lessCodeRadio">
+    <h3 nb-codebox-title>Radiobox Basic</h3>
+    <p nb-codebox-desc>radiobox desc.</p>
 
-    <p>
-        <nb-checkbox type="radio">北斗</nb-checkbox>
-        <nb-checkbox type="radio">秋实</nb-checkbox>
-        <nb-checkbox type="radio" disabled>SSP</nb-checkbox>
-        <nb-checkbox type="radio" [disabled]="true" [checked]="true">秋实</nb-checkbox>
-    </p>
-</section>
+    <demo-radio></demo-radio>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">checkbox box group</h3>
+<nb-code-box [tsCode]="tsCodeCheckboxGroup" [htmlCode]="htmlCodeCheckboxGroup" [lessCode]="lessCodeCheckboxGroup">
+    <h3 nb-codebox-title>Checkbox Group Basic</h3>
+    <p nb-codebox-desc>checkbox group desc.</p>
 
-    <p>
-        <nb-boxgroup type="checkbox" (change)="onCheckboxGroupChange($event)">
-            <nb-checkbox value="b">北斗</nb-checkbox>
-            <nb-checkbox value="p">秋实</nb-checkbox>
-            <nb-checkbox value="s" disabled>SSP</nb-checkbox>
-            <nb-checkbox value="qqq" [disabled]="true">秋实</nb-checkbox>
-        </nb-boxgroup>
-    </p>
-</section>
+    <demo-checkbox-group></demo-checkbox-group>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">box radio group</h3>
+<nb-code-box [tsCode]="tsCodeRadioGroup" [htmlCode]="htmlCodeRadioGroup" [lessCode]="lessCodeRadioGroup">
+    <h3 nb-codebox-title>Radio Group Basic</h3>
+    <p nb-codebox-desc>radio group desc.</p>
 
-    <p>
-        <nb-boxgroup type="radio" (change)="onRadioGroupChange($event)">
-            <nb-checkbox value="1">北斗</nb-checkbox>
-            <nb-checkbox value="x">秋实</nb-checkbox>
-            <nb-checkbox value="ssp" disabled>SSP</nb-checkbox>
-            <nb-checkbox value="qiushi" [disabled]="true">秋实</nb-checkbox>
-        </nb-boxgroup>
-    </p>
-</section>
+    <demo-radio-group></demo-radio-group>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">using within forms</h3>
+<nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+    <h3 nb-codebox-title>box group with forms</h3>
+    <p nb-codebox-desc>box group with forms desc.</p>
 
-    <form #frm="ngForm">
-
-        <p>
-            <nb-boxgroup type="radio" name="radioBox" [ngModel]="['ssp']" (change)="onRadioGroupChange($event)">
-                <nb-checkbox value="1">北斗</nb-checkbox>
-                <nb-checkbox value="x">秋实</nb-checkbox>
-                <nb-checkbox value="ssp" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qiushi" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        <p>
-            <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="['b', 's']" (change)="onCheckboxGroupChange($event)">
-                <nb-checkbox value="b">北斗</nb-checkbox>
-                <nb-checkbox value="p">秋实</nb-checkbox>
-                <nb-checkbox value="s" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qqq" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        <p>
-            {{ frm.value | json }}
-        </p>
-
-        <p>
-            <nb-boxgroup disabled type="radio" name="radioBoxDisabled" [ngModel]="['ssp']" (change)="onRadioGroupChange($event)">
-                <nb-checkbox value="1">北斗</nb-checkbox>
-                <nb-checkbox value="x">秋实</nb-checkbox>
-                <nb-checkbox value="ssp" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qiushi" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        <p>
-            <nb-boxgroup [disabled]="true" type="checkbox" name="checkboxBoxDisabled" [ngModel]="['b', 's']" (change)="onCheckboxGroupChange($event)">
-                <nb-checkbox value="b">北斗</nb-checkbox>
-                <nb-checkbox value="p">秋实</nb-checkbox>
-                <nb-checkbox value="s" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qqq" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-    </form>
-</section>
-
-<section>
-    <h3 class="section-title">using within reactive forms</h3>
-
-    <form [formGroup]="form">
-
-        <p>
-            <nb-boxgroup type="radio" formControlName="radioBox" (change)="onRadioGroupChange($event)">
-                <nb-checkbox value="1">北斗</nb-checkbox>
-                <nb-checkbox value="x">秋实</nb-checkbox>
-                <nb-checkbox value="ssp" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qiushi" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        <p>
-            <nb-boxgroup type="checkbox" formControlName="checkboxBox" (change)="onCheckboxGroupChange($event)">
-                <nb-checkbox value="b">北斗</nb-checkbox>
-                <nb-checkbox value="p">秋实</nb-checkbox>
-                <nb-checkbox value="s" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qqq" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        {{ form.value | json }}
-    </form>
-</section>
+    <demo-boxgroup-form></demo-boxgroup-form>
+</nb-code-box>

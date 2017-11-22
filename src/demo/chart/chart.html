@@ -1,31 +1,24 @@
-<h1 class="main-title">Chart demo<h1 class="main-title">
+<h1 class="main-title">nb-chart</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;ChartModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;ChartModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Chart Demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-chart width="100%" height="600" [options]="options"></nb-chart>
-    </p>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Chart Basic</h3>
+    <p nb-codebox-desc>chart depends on echarts.</p>
 
-    <p>
-        <nb-chart width="100%" height="600" [options]="barOptions1"></nb-chart>
-    </p>
-
-    <p>
-        <nb-chart width="100%" height="600" [options]="barOptions2"></nb-chart>
-    </p>
-
-    <p>
-        <nb-chart width="100%" height="600" [options]="barOptions3"></nb-chart>
-    </p>
-</section>
+    <demo-chart-basic></demo-chart-basic>
+</nb-code-box>

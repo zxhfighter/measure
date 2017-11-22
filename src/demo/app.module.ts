@@ -29,21 +29,14 @@ import {
   SelectModule,
   CalendarModule,
   RegionModule,
-  DialogModule
+  DialogModule,
+  CodeHighlighterModule,
+  CodeBoxModule
 } from '../component';
 
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.router';
 
-import {DemoButton} from './button';
-import {DemoBreadcrumb} from './breadcrumb';
-import {DemoSwitch} from './switch';
-import {DemoButtonGroup} from './button-group';
-import {DemoBoxGroup} from './box-group';
-import {DemoChart} from './chart';
-import {DemoProgressBar} from './progress-bar';
-import {DemoSpinner} from './spinner';
-import {DemoCarousel} from './carousel';
 import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
@@ -58,20 +51,35 @@ import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
+import {DemoCodeHighlighter} from './code-highlighter';
+import {DemoCodeBox} from './code-box';
 
+
+import {ButtonDemoModule} from './button';
+import {BreadcrumbDemoModule} from './breadcrumb';
+import {SwitchDemoModule} from './switch';
+import {ButtonGroupDemoModule} from './button-group';
+import {BoxGroupDemoModule} from './box-group';
+import {ChartDemoModule} from './chart';
+import {ProgressbarDemoModule} from './progress-bar';
+import {SpinnerDemoModule} from './spinner';
+import {CarouselDemoModule} from './carousel';
+
+const demoModules = [
+    ButtonDemoModule,
+    BreadcrumbDemoModule,
+    SwitchDemoModule,
+    ButtonGroupDemoModule,
+    BoxGroupDemoModule,
+    ChartDemoModule,
+    ProgressbarDemoModule,
+    SpinnerDemoModule,
+    CarouselDemoModule
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoButton,
-    DemoBreadcrumb,
-    DemoSwitch,
-    DemoButtonGroup,
-    DemoBoxGroup,
-    DemoChart,
-    DemoProgressBar,
-    DemoSpinner,
-    DemoCarousel,
     DemoInput,
     DemoTable,
     DemoTabs,
@@ -86,7 +94,9 @@ import {DemoDialog} from './dialog';
     DemoSelect,
     DemoCalendar,
     DemoRegion,
-    DemoDialog
+    DemoDialog,
+    DemoCodeHighlighter,
+    DemoCodeBox
   ],
   imports: [
     BrowserModule,
@@ -117,6 +127,11 @@ import {DemoDialog} from './dialog';
     SelectModule,
     RegionModule,
     DialogModule,
+    CodeHighlighterModule,
+    CodeBoxModule,
+
+    // demos
+    ...demoModules,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],

@@ -18,8 +18,8 @@ export function OnChange(isBooleanProperty?: boolean, force?: boolean): any {
                 const prevValue = this[_key];
                 this[_key] = isBooleanProperty ? coerceBooleanProperty(value) : value;
 
-                if ((prevValue !== value || force) && this[propertyKey + sufix]) {
-                    this[propertyKey + sufix].emit(value);
+                if ((prevValue !== this[_key] || force) && this[propertyKey + sufix]) {
+                    this[propertyKey + sufix].emit(this[_key]);
                 }
             }
         });

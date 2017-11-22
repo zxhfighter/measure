@@ -1,7 +1,7 @@
 import {
     Component, Input, ElementRef, SimpleChanges, AfterViewInit, ContentChildren,
     OnChanges, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef,
-    QueryList, Renderer2, Optional, forwardRef, Output, EventEmitter
+    QueryList, Renderer2, Optional, forwardRef, Output, EventEmitter, AfterContentInit
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -46,7 +46,7 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
     },
     exportAs: 'xButtonGroup'
 })
-export class ButtonGroupComponent implements ControlValueAccessor {
+export class ButtonGroupComponent implements ControlValueAccessor, AfterContentInit {
 
     /** button group change event */
     @Output() change: EventEmitter<ButtonGroupValue> = new EventEmitter<ButtonGroupValue>();
@@ -68,8 +68,9 @@ export class ButtonGroupComponent implements ControlValueAccessor {
     /**
      * Whether the button group is disabled
      */
-    @OnChange()
+    @OnChange(true)
     @Input() disabled = false;
+    disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
      * button toggle children
@@ -78,7 +79,30 @@ export class ButtonGroupComponent implements ControlValueAccessor {
         forwardRef(() => ButtonToggleComponent)
     ) _buttonList: QueryList<ButtonToggleComponent>;
 
-    constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {}
+    constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {
+
+    }
+
+    ngOnInit() {
+        const self = this;
+        // listen to disabled property, and update sub child disabled state
+        self.disabledChange.subscribe(disabled => {
+            if (self._buttonList) {
+                self._buttonList.forEach(box => {
+                    box.disabled = box.disabled || disabled;
+                });
+            }
+        });
+    }
+
+    ngAfterContentInit() {
+        const self = this;
+        if (self._buttonList) {
+            self._buttonList.forEach(box => {
+                box.disabled = box.disabled || self.disabled;
+            });
+        }
+    }
 
     /**
      * set children toggle button checked state
@@ -210,6 +234,7 @@ export class ButtonToggleComponent {
     @Input() value = '';
 
     /** Whether toggle button is checked */
+    @OnChange(true)
     @Input() checked = false;
 
     /** Whether toggle button is disabled */

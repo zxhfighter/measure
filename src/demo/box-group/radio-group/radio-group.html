@@ -1,0 +1,59 @@
+<p>
+    basic radio box group:
+    <br>
+    <nb-boxgroup type="radio" #radioGroup>
+        <nb-checkbox value="apple">apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="lychee">lychee</nb-checkbox>
+    </nb-boxgroup>
+
+    {{ radioGroup.value | json }}
+</p>
+
+<p>
+    default checked:
+    <br>
+    <nb-boxgroup type="radio" [value]="['banana']" #radioGroup1>
+        <nb-checkbox value="apple">apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="lychee">lychee</nb-checkbox>
+    </nb-boxgroup>
+
+    {{ radioGroup1.value | json }}
+</p>
+
+
+<p>
+    change event(open console):
+    <br>
+    <nb-boxgroup type="radio" [value]="['banana']" (change)="onRadioGroupChange($event)">
+        <nb-checkbox value="apple">apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="lychee">lychee</nb-checkbox>
+    </nb-boxgroup>
+</p>
+
+<p>
+    disabled all items:
+    <br>
+    <nb-boxgroup type="radio" disabled [value]="['banana']">
+        <nb-checkbox value="apple">apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="lychee">lychee</nb-checkbox>
+    </nb-boxgroup>
+</p>
+
+<p>
+    disabled some of the items:
+    <br>
+    <nb-boxgroup type="radio" [value]="['banana']">
+        <nb-checkbox value="apple" disabled>apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon" disabled>lemon</nb-checkbox>
+        <nb-checkbox value="lychee">lychee</nb-checkbox>
+    </nb-boxgroup>
+</p>

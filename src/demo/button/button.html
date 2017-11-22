@@ -1,80 +1,45 @@
-<h1 class="main-title">button</h1>
+<h1 class="main-title">nb-button</h1>
+
+<p class="type-desc">
+    <span>type</span>: <span class="type-directive">Directive</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;ButtonModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;ButtonModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Button Group</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-button-group>
-            <button theme="default" nb-button>苹果</button>
-            <button theme="default" nb-button>橘子</button>
-            <button theme="default" nb-button>梨子</button>
-        </nb-button-group>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
+    <h3 nb-codebox-title>Button Theme</h3>
+    <p nb-codebox-desc>There are six default themes, and you can customize your theme, it's a piece of cake.</p>
 
-<section>
-    <h3 class="section-title">Themes</h3>
+    <demo-button-theme></demo-button-theme>
+</nb-code-box>
 
-    <p>
-        You clicked: {{ counter }} times
-    </p>
-    <p>
-        <button nb-button theme="primary" (click)="onClick()" [disabled]="isDisabled">primary theme</button>
-        <button nb-button theme="default" (click)="onClick()">default theme</button>
-        <button nb-button theme="neutral" (click)="onClick()">neutral theme</button>
-        <button nb-button theme="transparent" (click)="onClick()">transparent theme</button>
-        <button nb-button disabled (click)="onClick()">disabled button</button>
-        <button nb-button theme="yellow" (click)="onClick()">custom theme</button>
-    </p>
+<nb-code-box [tsCode]="tsCodeSize" [htmlCode]="htmlCodeSize" [lessCode]="lessCodeSize">
+    <h3 nb-codebox-title>Button Size</h3>
+    <p nb-codebox-desc>There are four default sizes, and you can customize your size, it's a piece of cake.</p>
 
-    <p>
-        <button nb-button theme="default" (click)="changeDisabled()">disable the first button</button>
-    </p>
-</section>
+    <demo-button-size></demo-button-size>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">Sizes</h3>
+<nb-code-box [tsCode]="tsCodeLink" [htmlCode]="htmlCodeLink" [lessCode]="lessCodeLink">
+    <h3 nb-codebox-title>Link Button</h3>
+    <p nb-codebox-desc>You can use nb-button with &lt;a&gt;</p>
 
-    <p>
-        <button nb-button [size]="size">{{buttonText}}</button>
-        <button nb-button size="sm">small height = 32px</button>
-        <button nb-button>default height = 36px</button>
-        <button nb-button size="lg">large height = 42px</button>
-    </p>
+    <demo-button-link></demo-button-link>
+</nb-code-box>
 
-    <p>
-        <button nb-button theme="default" (click)="changeSize()">change first button size</button>
-        <button nb-button theme="default" (click)="changeText()">change first button text</button>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeIcon" [htmlCode]="htmlCodeIcon" [lessCode]="lessCodeIcon">
+    <h3 nb-codebox-title>Button with icons</h3>
+    <p nb-codebox-desc>you can use third-party icons like font-awesome, or use lib icons.</p>
 
-<section>
-    <h3 class="section-title">Link Buttons</h3>
-
-    <p>
-        <a [disabled]="isDisabled" nb-button size="xs" href="http://www.baidu.com" target="_blank">Link Button</a>
-        <a disabled nb-button size="sm" href="http://www.baidu.com" target="_blank">Link Button</a>
-        <a nb-button href="http://www.baidu.com" target="_blank">Link Button</a>
-        <a nb-button size="lg" href="http://www.baidu.com" target="_blank">Link Button</a>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">Button with icons</h3>
-
-    <p>
-        <button nb-button><i class="fa fa-bug"></i> Upload Image</button>
-        <button nb-button>Download Image <i class="fa fa-book"></i></button>
-        <button nb-button theme="icon"><i class="iconfont icon-bianji"></i></button>
-    </p>
-</section>
+    <demo-button-icon></demo-button-icon>
+</nb-code-box>

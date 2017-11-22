@@ -1,4 +1,7 @@
 @import "../../../node_modules/bootstrap-less/bootstrap/index.less";
+@import "../../../node_modules/prismjs/themes/prism.css";
+@import "../../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
+
 @import "./dev.less";
 @import "./common.less";
 @import "./font.less";
@@ -15,7 +18,7 @@
 }
 
 body {
-    background: #fffdee;
+    background: #f6f6f6;
 }
 
 .demo-app {
@@ -26,7 +29,7 @@ body {
         left: 0;
         right: 0;
         z-index: 100;
-        background-color: @brand-primary;
+        background-color: #001133;
 
         .logo {
             font-size: 28px;
@@ -70,7 +73,7 @@ body {
             bottom: 0;
             width: @aside-width;
             overflow: scroll;
-            background: #e6e2af;
+            background: #f1f1f1;
 
             .app-aside-list {
                 padding: 0;
@@ -102,6 +105,21 @@ body {
                 color: @brand-primary;
             }
 
+            .type-desc {
+                .type-directive {
+                    display: inline-block;
+                    padding: 5px 8px;
+                    background-color: #bb9600;
+                    color: #fff;
+                    border-radius: 2px;
+                }
+
+                .type-component {
+                    .type-directive;
+                    background-color: #960;
+                }
+            }
+
             .section-title {
                 font-size: 16px;
                 color: @brand-primary;
@@ -125,6 +143,10 @@ body {
 
             .section-desc {
                 padding: 5px 0;
+            }
+
+            .nb-codebox {
+                margin-top: 30px;
             }
         }
     }

@@ -1,68 +1,31 @@
-<h1 class="main-title">Spinner demo</h1>
+<h1 class="main-title">nb-spinner</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;SpinnerModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;SpinnerModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Spinner first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-spinner></nb-spinner>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Spinner Basic</h3>
+    <p nb-codebox-desc>spinner desc.</p>
 
+    <demo-spinner-basic></demo-spinner-basic>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">disabled</h3>
+<nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+    <h3 nb-codebox-title>Spinner with Forms</h3>
+    <p nb-codebox-desc>spinner desc.</p>
 
-    <p>
-        <nb-spinner disabled [value]="7"></nb-spinner>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">max and min value</h3>
-
-    <p>
-        <nb-spinner [minValue]="0" [maxValue]="5"></nb-spinner>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">step</h3>
-
-    <p>
-        <nb-spinner [step]="3"></nb-spinner>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">in forms</h3>
-
-    <form #frm="ngForm">
-        <nb-spinner [ngModel]="11" name="spinner" [step]="3"></nb-spinner>
-    </form>
-
-    <p>
-        {{ frm.value | json }}
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">in reactive forms</h3>
-
-    <form [formGroup]="form">
-        <nb-spinner formControlName="spinner" [step]="3"></nb-spinner>
-    </form>
-
-    <p>
-        {{ form.value | json }}
-    </p>
-</section>
+    <demo-spinner-form></demo-spinner-form>
+</nb-code-box>

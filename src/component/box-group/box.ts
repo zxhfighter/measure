@@ -52,6 +52,7 @@ export class InputBoxComponent implements OnInit {
     /** Whether the box is intermediate */
     @OnChange(true)
     @Input() intermediate = false;
+    intermediateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /** box value */
     @Input() value: any;
@@ -67,6 +68,12 @@ export class InputBoxComponent implements OnInit {
      */
     constructor(@Optional() parentBox: BoxGroupComponent, private cd: ChangeDetectorRef) {
         this._parentBox = parentBox;
+
+        this.intermediateChange.subscribe(
+            (v: boolean) => {
+                v && (this.checked = false);
+            }
+        );
     }
 
     ngOnInit() {
@@ -75,7 +82,7 @@ export class InputBoxComponent implements OnInit {
         if (this._parentBox) {
             this.type = (this._parentBox.type as BOX_TYPE);
             this.uuid = this._parentBox.uuid;
-            this.disabled = this._parentBox.disabled;
+            this.disabled = this.disabled || this._parentBox.disabled;
 
             const value = (this._parentBox.value || []) as any[];
             this.checked = value.indexOf(this.value) !== -1;
