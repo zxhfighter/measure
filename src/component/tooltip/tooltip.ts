@@ -8,15 +8,16 @@ import {
     ElementRef,
     TemplateRef,
     Renderer2,
-    EmbeddedViewRef,
     ViewContainerRef,
     ComponentRef,
     Injector,
+    NgZone,
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
 
 import { OnChange } from '../core/decorators';
+import { OverlayService } from '../util/overlay.service';
 import { TiplayerComponent } from './tiplayer';
 import { ConnectionPosition } from './position';
 import { PositionStrategy } from './position.strategy';
@@ -31,28 +32,26 @@ import { PositionStrategy } from './position.strategy';
 
 export class TooltipDirective implements OnInit, OnDestroy {
 
-    private _content: string;
-    private clickListener: Function;
-    private enterListener: Function;
-    private leaveListener: Function;
-    private focusListener: Function;
-    private blurListener: Function;
-    private tiplayerInstance: TiplayerComponent | null;
-
     @Input() nbTooltip: string | TemplateRef<any> = '';
 
     /**
      * 提示框位置信息，默认为目标元素的底部
-     * 可选值为 'top' | 'bottom' | 'left' | 'right'
+     * 可选值为 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |
+     * 'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'
      *
      */
     @Input() placement: string = 'bottom';
 
+    /**
+     * 浮层模式还是嵌入模式
+     *
+     */
     @OnChange(true)
     @Input() embedded: boolean = false;
+
     /**
      * 提示框的触发事件类型
-     * 可选值为 'click' | 'hover'
+     * 可选值为 'click' | 'hover' | 'focus'
      *
      */
     @Input() trigger: string = 'hover';
@@ -65,18 +64,37 @@ export class TooltipDirective implements OnInit, OnDestroy {
     @Input() hasArrow: boolean = false;
 
     /**
-     * 提示框的触发事件类型
-     * 可选值为 'click' | 'hover'
+     * 提示框主题色
+     * 可选值为 'default' | white' | 'pink' | 'yellow'
+     * 默认是灰色
      *
      */
     @Input() nbTooltipTheme: string = 'default';
+
+    private _content: string;
+    private clickListener: Function;
+    private enterListener: Function;
+    private leaveListener: Function;
+    private focusListener: Function;
+    private blurListener: Function;
+    private tiplayerInstance: TiplayerComponent | null;
+    private overlayService: OverlayService<TiplayerComponent>;
 
     constructor(
         private el: ElementRef,
         private _renderer: Renderer2,
         private _viewContainerRef: ViewContainerRef,
         private _injector: Injector,
+        private ngZone: NgZone,
         private componentFactoryResolver: ComponentFactoryResolver) {
+
+        this.overlayService = new OverlayService<TiplayerComponent>(
+            TiplayerComponent,
+            _injector,
+            _viewContainerRef,
+            _renderer,
+            componentFactoryResolver,
+            ngZone);
     }
 
     ngOnInit() {
@@ -128,138 +146,24 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }
 
     /**
-     * 创建提示层
+     * Opens an element’s tooltip. This is considered a “manual” triggering of the tooltip.
+     * The context is an optional value to be injected into the tooltip template when it is created.
      *
      */
     createTiplayer() {
-        // TODO 考虑全局共用tiplayer，性能更好
-        let contentRef;
-        let contentRootNodes;
-        if (this.nbTooltip instanceof TemplateRef) {
-            contentRef = this._viewContainerRef.createEmbeddedView(<TemplateRef<any>>this.nbTooltip);
-            contentRootNodes = [contentRef.rootNodes];
-        }
-        else {
-            contentRef = this._renderer.createText(`${this.nbTooltip}`);
-            contentRootNodes = [[contentRef]];
-        }
-        let windowFactory =
-        this.componentFactoryResolver.resolveComponentFactory<TiplayerComponent>(TiplayerComponent);
-        let componentRef =
-            this._viewContainerRef.createComponent(windowFactory, 0, this._injector, contentRootNodes);
-
-        if (!this.embedded) {
-            let tiplayerRootNode = this.getComponentRootNode(componentRef);
-            window.document.body.appendChild(tiplayerRootNode);
-        }
+        let componentRef = this.overlayService.open(
+            this.nbTooltip, this.el, this.placement, !this.embedded);
 
         this.tiplayerInstance = componentRef.instance;
-        this.tiplayerInstance.placement = this.placement;
-        this.tiplayerInstance.hasArrow = this.hasArrow;
-        this.tiplayerInstance.embedded = this.embedded;
-        this.tiplayerInstance.nbTooltipTheme = this.nbTooltipTheme;
-        this.tiplayerInstance.trigger = this.trigger;
 
-        let originPos = this.getOriginPosition();
-        let overlayPos = this.getOverlayPosition();
-        componentRef.instance.attachTo(this.el, originPos, overlayPos);
-    }
-
-    getOriginPosition(): ConnectionPosition {
-        let [firstPlacement, seconedPlacement] = this.placement.split('-');
-        let horizontal;
-        let vertical;
-        if (firstPlacement === 'top' || firstPlacement === 'bottom') {
-            vertical = firstPlacement;
-        }
-
-        if (firstPlacement === 'left') {
-            horizontal = 'left';
-        }
-
-        if (firstPlacement === 'right') {
-            horizontal = 'right';
-        }
-
-        if (seconedPlacement === 'left') {
-            horizontal = 'left';
-        }
-
-        if (seconedPlacement === 'right') {
-            horizontal = 'right';
-        }
-
-        if (seconedPlacement === 'top' || seconedPlacement === 'bottom') {
-            vertical = seconedPlacement;
-        }
-
-        if (seconedPlacement == null) {
-            if (firstPlacement === 'top' || firstPlacement === 'bottom') {
-                horizontal = 'center';
-            }
-            else {
-                vertical = 'center';
-            }
-        }
-
-        if (typeof horizontal === 'undefined' || typeof vertical === 'undefined') {
-            throw this.getInvalidplacementError(this.placement);
-        }
-
-        return {
-            horizontal: horizontal,
-            vertical: vertical
+        const config = {
+            trigger: this.trigger,
+            hasArrow: this.hasArrow,
+            embedded: this.embedded,
+            placement: this.placement,
+            nbTooltipTheme: this.nbTooltipTheme
         };
-    }
-
-    getOverlayPosition(): ConnectionPosition {
-        let [firstPlacement, seconedPlacement] = this.placement.split('-');
-        let horizontal;
-        let vertical;
-        if (firstPlacement === 'top') {
-            vertical = 'bottom';
-        }
-        if (firstPlacement === 'bottom') {
-            vertical = 'top';
-        }
-
-        if (firstPlacement === 'left') {
-            horizontal = 'right';
-        }
-
-        if (firstPlacement === 'right') {
-            horizontal = 'left';
-        }
-
-        if (seconedPlacement === 'left') {
-            horizontal = 'left';
-        }
-
-        if (seconedPlacement === 'right') {
-            horizontal = 'right';
-        }
-
-        if (seconedPlacement === 'top' || seconedPlacement === 'bottom') {
-            vertical = seconedPlacement;
-        }
-
-        if (seconedPlacement == null) {
-            if (firstPlacement === 'top' || firstPlacement === 'bottom') {
-                horizontal = 'center';
-            }
-            else {
-                vertical = 'center';
-            }
-        }
-
-        if (typeof horizontal === 'undefined' || typeof vertical === 'undefined') {
-            throw this.getInvalidplacementError(this.placement);
-        }
-
-        return {
-            horizontal: horizontal,
-            vertical: vertical
-        };
+        Object.keys(config).forEach(key => this.tiplayerInstance![key] = config[key]);
     }
 
     ngOnDestroy() {
@@ -283,13 +187,5 @@ export class TooltipDirective implements OnInit, OnDestroy {
         if (this.trigger === 'click') {
             this.close();
         }
-    }
-
-    getInvalidplacementError(position: string) {
-        return Error(`Tooltip position "${position}" is invalid.`);
-    }
-
-    getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
-        return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     }
 }
