@@ -29,4 +29,9 @@ export class DemoCarousel {
     tsCodeTitle: string = require('!!raw-loader!./title/carousel-title.ts');
     htmlCodeTitle: string = require('!!raw-loader!./title/carousel-title.html');
     lessCodeTitle: string = require('!!raw-loader!./title/carousel-title.less');
+
+    // basic source
+    tsCodeArrow: string = require('!!raw-loader!./arrow/carousel-arrow.ts');
+    htmlCodeArrow: string = require('!!raw-loader!./arrow/carousel-arrow.html');
+    lessCodeArrow: string = require('!!raw-loader!./arrow/carousel-arrow.less');
 }
