@@ -20,7 +20,7 @@ import { OnChange } from '../core/decorators';
 import { OverlayService } from '../util/overlay.service';
 import { TiplayerComponent } from './tiplayer';
 import { ConnectionPosition, Placement } from '../util/position';
-import { PositionStrategy } from './position.strategy';
+import { PositionStrategy } from '../util/position.strategy';
 
 @Directive({
     selector: '[nbTooltip]',
@@ -121,9 +121,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         if (!this.tiplayerInstance) {
             this.createTiplayer();
         }
-        // if (this.tiplayerInstance) {
-            this.tiplayerInstance!.show();
-        // }
+        this.tiplayerInstance!.show();
     }
 
     hide() {

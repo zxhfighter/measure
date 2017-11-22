@@ -17,7 +17,7 @@ import { SelectConfig, OptionsStyles } from './select.config';
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false
 })
-export class SelectOptionsComponent implements OnInit, AfterViewChecked, AfterViewInit {
+export class SelectOptionsComponent implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
     @Input() data: SelectConfig[] = [];
     @Input() datasource: SelectConfig[] = [];
     @Input() value: number;
@@ -66,5 +66,9 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked, AfterVi
     onSelectOption(e: Event, data: SelectConfig) {
         e.stopPropagation();
         this.onChange.emit(data);
+    }
+
+    ngOnDestroy() {
+        this.el.nativeElement.remove();
     }
 }

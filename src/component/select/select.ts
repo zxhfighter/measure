@@ -186,5 +186,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     ngOnDestroy() {
         this.unbindEvents();
+        if (this.overlayInstance) {
+            this.overlayInstance = null;
+        }
     }
 }
