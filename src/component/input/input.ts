@@ -11,7 +11,7 @@ import {OnChange} from '../core/decorators';
 export type INPUT_THEME = 'default' | 'error' | 'transparent' | string;
 
 /** default input size types */
-export type INPUT_SIZE = 
+export type INPUT_SIZE =
 'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
 
 @Component({
@@ -26,7 +26,7 @@ export type INPUT_SIZE =
     exportAs: 'xInput'
 })
 export class InputComponent implements OnChanges, AfterViewInit {
-    
+
     /** input theme, there four default themes: 'default' */
     @Input() theme: INPUT_THEME = 'default';
 
