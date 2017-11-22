@@ -36,8 +36,8 @@ export class PageComponent implements OnInit {
     currrentIndex = 1;
     lastIndex = 1;
 
-    protected selectedData1: SelectConfig;
-    protected selectData: SelectConfig[] = [
+    selectedData1: SelectConfig;
+    selectData: SelectConfig[] = [
         {
             label: '10',
             value: 10
