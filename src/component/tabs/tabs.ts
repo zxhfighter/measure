@@ -36,6 +36,9 @@ export class TabsComponent implements AfterContentInit {
     }
 
     ngAfterContentInit(): void {
+        if (this.tabs.length === 0) {
+            return ;
+        }
         /** whether one of tabs is active or not, if not, activate first tab */
         let activeTab = this.tabs.filter(item => item.active === true);
         if (activeTab.length === 0) {
