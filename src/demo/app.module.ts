@@ -39,7 +39,6 @@ import {appRoutes} from './app.router';
 
 import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
-import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoPage} from './page';
@@ -64,6 +63,7 @@ import {ChartDemoModule} from './chart';
 import {ProgressbarDemoModule} from './progress-bar';
 import {SpinnerDemoModule} from './spinner';
 import {CarouselDemoModule} from './carousel';
+import {StepDemoModule} from './step';
 
 const demoModules = [
     ButtonDemoModule,
@@ -74,7 +74,8 @@ const demoModules = [
     ChartDemoModule,
     ProgressbarDemoModule,
     SpinnerDemoModule,
-    CarouselDemoModule
+    CarouselDemoModule,
+    StepDemoModule
 ];
 
 @NgModule({
@@ -83,7 +84,6 @@ const demoModules = [
     DemoInput,
     DemoTable,
     DemoTabs,
-    DemoStep,
     DemoTooltip,
     DemoPage,
     DemoTextarea,
