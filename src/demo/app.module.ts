@@ -47,7 +47,6 @@ import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
-import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
@@ -64,6 +63,7 @@ import {SpinnerDemoModule} from './spinner';
 import {CarouselDemoModule} from './carousel';
 import {StepDemoModule} from './step';
 import {CalendarDemoModule} from './calendar';
+import {RegionDemoModule} from './region';
 
 const demoModules = [
     ButtonDemoModule,
@@ -76,7 +76,8 @@ const demoModules = [
     SpinnerDemoModule,
     CarouselDemoModule,
     StepDemoModule,
-    CalendarDemoModule
+    CalendarDemoModule,
+    RegionDemoModule
 ];
 
 @NgModule({
@@ -92,7 +93,6 @@ const demoModules = [
     DemoSearchBox,
     DemoToast,
     DemoSelect,
-    DemoRegion,
     DemoDialog,
     DemoCodeHighlighter,
     DemoCodeBox
