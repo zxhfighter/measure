@@ -22,13 +22,13 @@
 
 <div class="nb-codebox-source" *ngIf="showSource">
     <nb-tabs underline>
-        <nb-tab title="HTML" *ngIf="htmlCode.length">
+        <nb-tab title="HTML" *ngIf="htmlCode && htmlCode.length">
             <nb-code-highlighter linenumbers language="markup" [rawCode]="htmlCode"></nb-code-highlighter>
         </nb-tab>
-        <nb-tab title="TS" *ngIf="tsCode.length">
+        <nb-tab title="TS" *ngIf="tsCode && tsCode.length">
             <nb-code-highlighter linenumbers language="typescript" [rawCode]="tsCode"></nb-code-highlighter>
         </nb-tab>
-        <nb-tab title="LESS" *ngIf="lessCode.length">
+        <nb-tab title="LESS" *ngIf="lessCode && lessCode.length">
             <nb-code-highlighter linenumbers language="less" [rawCode]="lessCode"></nb-code-highlighter>
         </nb-tab>
     </nb-tabs>

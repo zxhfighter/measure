@@ -1,0 +1,29 @@
+<p>
+    normal: <br>
+    <nb-checkbox>Apple</nb-checkbox>
+</p>
+
+<p>
+    default checked: <br>
+    <nb-checkbox checked>Apple</nb-checkbox>
+</p>
+
+<p>
+    intermediate: <br>
+    <nb-checkbox intermediate>Apple</nb-checkbox>
+</p>
+
+<p>
+    disabled: <br>
+    <nb-checkbox disabled>Apple</nb-checkbox>
+    <nb-checkbox checked disabled>Apple</nb-checkbox>
+    <nb-checkbox intermediate disabled>Apple</nb-checkbox>
+</p>
+
+<p>
+    simple linkage: <br>
+    <nb-checkbox [checked]="allChecked" [intermediate]="intermediate" (change)="onToggleAll($event)">All</nb-checkbox>:
+    <nb-checkbox [checked]="appleChecked" value="apple" (change)="onToggleBox('appleChecked', $event)">Apple</nb-checkbox>
+    <nb-checkbox [checked]="bananaChecked" value="banana" (change)="onToggleBox('bananaChecked', $event)">Banana</nb-checkbox>
+    <nb-checkbox [checked]="orangeChecked" value="orange" (change)="onToggleBox('orangeChecked', $event)">Orange</nb-checkbox>
+</p>
