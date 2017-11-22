@@ -35,18 +35,19 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
     /**
      * Whether the switch is checked
      */
-    @Input() checked = false;
+    @OnChange(true)
+    @Input() checked: boolean = false;
 
     /**
      * Extra style classes to provide custom themes, e.g. 'class-1 class-2'
      */
-    @Input() styleClass = '';
+    @Input() styleClass: string = '';
 
     /**
      * Whether the switch is disabled
      */
     @OnChange(true)
-    @Input() disabled = false;
+    @Input() disabled: boolean = false;
 
     /**
      * Event emitted when the switch value changes
@@ -84,7 +85,7 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
      * Dispatch change event with current value
      * @docs-private
      */
-    onChange(checked: boolean) {
+    onChange(checked: boolean, event: Event) {
         if (this.disabled) {
             return;
         }
@@ -93,6 +94,9 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
         this.change.emit(checked);
 
         this._markForCheck();
+
+        event.stopPropagation();
+        event.stopImmediatePropagation();
     }
 
     /**

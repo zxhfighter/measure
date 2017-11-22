@@ -1,0 +1,85 @@
+<p>
+    toggle event:
+    <nb-button-toggle value="apple" (toggle)="onSingleToggle($event)">
+        Apple <i class="fa fa-apple"></i>
+    </nb-button-toggle>
+    {{ text }}
+</p>
+
+<p>
+    default checked:
+    <nb-button-toggle value="apple" checked>
+        Apple <i class="fa fa-apple"></i>
+    </nb-button-toggle>
+</p>
+
+<p>
+    disabled:
+    <nb-button-toggle value="apple" disabled>
+        Apple <i class="fa fa-apple"></i>
+    </nb-button-toggle>
+</p>
+
+<p>
+    Radio Button Group(Single):
+    <nb-button-group type="radio" (change)="onRadioButtonGroupChanged($event)">
+        <nb-button-toggle value="apple">
+           Apple <i class="fa fa-apple"></i>
+        </nb-button-toggle>
+        <nb-button-toggle value="book">
+           Book <i class="fa fa-book"></i>
+        </nb-button-toggle>
+        <nb-button-toggle value="flash">
+           Flash <i class="fa fa-flash"></i>
+        </nb-button-toggle>
+    </nb-button-group>
+
+    {{ radioText }}
+</p>
+
+<p>
+    Checkbox Button Group(Multiple):
+    <nb-button-group type="checkbox" (change)="onCheckboxButtonGroupChanged($event)">
+        <nb-button-toggle value="apple">
+            Apple <i class="fa fa-apple"></i>
+        </nb-button-toggle>
+        <nb-button-toggle value="book">
+            Book <i class="fa fa-book"></i>
+        </nb-button-toggle>
+        <nb-button-toggle value="flash">
+            Flash <i class="fa fa-flash"></i>
+        </nb-button-toggle>
+    </nb-button-group>
+
+    {{ checkboxText }}
+</p>
+
+<p>
+    disabled all button group:
+    <nb-button-group disabled type="checkbox">
+        <nb-button-toggle value="apple">
+            Apple <i class="fa fa-apple"></i>
+        </nb-button-toggle>
+        <nb-button-toggle value="book">
+            Book <i class="fa fa-book"></i>
+        </nb-button-toggle>
+        <nb-button-toggle value="flash">
+            Flash <i class="fa fa-flash"></i>
+        </nb-button-toggle>
+    </nb-button-group>
+</p>
+
+<p>
+    disabled some of the button group:
+    <nb-button-group type="checkbox">
+        <nb-button-toggle value="apple" disabled>
+            Apple <i class="fa fa-apple"></i>
+        </nb-button-toggle>
+        <nb-button-toggle value="book" >
+            Book <i class="fa fa-book"></i>
+        </nb-button-toggle>
+        <nb-button-toggle value="flash">
+            Flash <i class="fa fa-flash"></i>
+        </nb-button-toggle>
+    </nb-button-group>
+</p>

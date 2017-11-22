@@ -1,39 +1,20 @@
-import {
-    Component, OnInit, ChangeDetectionStrategy
-} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
     selector: 'demo-button-group',
     templateUrl: './button-group.html',
     styleUrls: ['./button-group.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    preserveWhitespaces: false
 })
-export class DemoButtonGroup implements OnInit {
+export class DemoButtonGroup {
 
-    isDisabled = false;
+    // basic source
+    tsCodeBasic: string = require('!!raw-loader!./basic/button-group-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/button-group-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/button-group-basic.less');
 
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
-
-    changeDisabled() {
-        this.isDisabled = !this.isDisabled;
-    }
-
-    onSingleToggle(checked: boolean) {
-        alert(`toggled: ${checked}`);
-    }
-
-    onRadioButtonGroupChanged(event: any) {
-        console.log(event);
-    }
-
-    onCheckboxButtonGroupChanged(event: any) {
-        console.log(event);
-    }
+    // form source
+    tsCodeForm: string = require('!!raw-loader!./form/button-group-form.ts');
+    htmlCodeForm: string = require('!!raw-loader!./form/button-group-form.html');
+    lessCodeForm: string = require('!!raw-loader!./form/button-group-form.less');
 }
