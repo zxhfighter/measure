@@ -22,3 +22,5 @@ export * from './toast/index';
 export * from './select/index';
 export * from './region/index';
 export * from './dialog/index';
+export * from './code-highlighter/index';
+export * from './code-box/index';

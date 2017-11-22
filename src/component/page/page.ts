@@ -16,11 +16,20 @@ import {SelectConfig} from "../select/select.config";
 })
 export class PageComponent implements OnInit {
     // 每页20条
-    count = 20;
+    // count = 20;
+    @Input() count = 20;
+    // 总条数
+    @Input() total;
+    // 可选择的每页显示条数,
+    // 可选填参数
+    @Input('value') list;
+
+    @Output() pageChange: EventEmitter<Object> = new EventEmitter();
     // 页数
-    pageSize = [1,2,3,4,5,6,7,8,9,10,11];
+    pageSize = [];
+    // pageSize = [1,2,3,4,5,6,7,8,9,10,11];
     // 每页显示条数可选列表
-    list = [10, 20, 30, 50, 100];
+    
     // 前4页
     firstPages = [1,2,3,4];
     // 当前页
@@ -52,7 +61,24 @@ export class PageComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        if (this.list && this.list.length > 0) {
+            this.selectData = [];
+            for(let i = 0; i < this.list.length; i++) {
+                this.selectData.push({
+                    label: this.list[i],
+                    value: this.list[i]
+                });
+            }
+        }
+        
+        this.setPage();
+    }
+    setPage() {
+        this.pageSize = [];
+        let pageCount = Math.ceil(this.total / this.count);
+        for (let i = 1; i <= pageCount; i++) {
+            this.pageSize.push(i);
+        }
     }
     jumpTo (index: number) {
         if (this.currrentIndex > 0 && this.currrentIndex < this.pageSize.length + 1) {
@@ -67,6 +93,17 @@ export class PageComponent implements OnInit {
         } else {
             this.currrentIndex = this.lastIndex;
         }
+        this.pageChange.emit({
+            currrentIndex: this.currrentIndex,
+            count: this.count});
         // this.$dispatch('pageChange', this.currrentIndex - 1);
+    }
+    setCount(event) {
+        this.count = event.value;
+        this.currrentIndex = 1;
+        this.pageChange.emit({
+            currrentIndex: this.currrentIndex,
+            count: this.count});
+        this.setPage();
     }
 }

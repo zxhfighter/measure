@@ -1,4 +1,7 @@
 @import "../../../node_modules/bootstrap-less/bootstrap/index.less";
+@import "../../../node_modules/prismjs/themes/prism.css";
+@import "../../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
+
 @import "./dev.less";
 @import "./common.less";
 @import "./font.less";
@@ -100,6 +103,21 @@ body {
                 margin-top: 0;
                 font-size: 24px;
                 color: @brand-primary;
+            }
+
+            .type-desc {
+                .type-directive {
+                    display: inline-block;
+                    padding: 5px 8px;
+                    background-color: #bb9600;
+                    color: #fff;
+                    border-radius: 2px;
+                }
+
+                .type-component {
+                    .type-directive;
+                    background-color: #960;
+                }
             }
 
             .section-title {

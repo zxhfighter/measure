@@ -59,7 +59,7 @@ export class OverlayService<T> {
         });
     }
 
-    open(content: string | TemplateRef<any>,
+    createOverlay(content: string | TemplateRef<any>,
         originElement: ElementRef,
         placement: string,
         appendToBody?: boolean,
@@ -83,7 +83,7 @@ export class OverlayService<T> {
         this.seconedPlacement = seconedPlacement;
         this.overlayComponent = this._windowRef.instance;
 
-        this.overlayComponent.afterViewInit.subscribe(() => this.updatePosition());
+        this.overlayComponent.needReposition.subscribe(() => this.updatePosition());
 
         let originPos = this.getOriginPosition(placement);
         let overlayPos = this.getOverlayPosition(placement);
@@ -92,10 +92,11 @@ export class OverlayService<T> {
         return this._windowRef;
     }
 
-    openExistingComponent(overlayComponent: any,
+    createOverlayFromExistingComponent(overlayComponent: any,
         originElement: ElementRef,
         placement: string,
         appendToBody?: boolean) {
+
         if (appendToBody) {
             window.document.body.appendChild(overlayComponent.el.nativeElement);
         }
@@ -106,15 +107,13 @@ export class OverlayService<T> {
         this.firstPlacement = firstPlacement;
         this.seconedPlacement = seconedPlacement;
         this.overlayComponent = overlayComponent;
-        this._windowRef = overlayComponent;
-
-        // this.overlayComponent.afterViewInit.subscribe(() => this.updatePosition());
+        this.overlayComponent.needReposition.subscribe(() => this.updatePosition());
 
         let originPos = this.getOriginPosition(placement);
         let overlayPos = this.getOverlayPosition(placement);
         this.attachTo(originElement, originPos, overlayPos);
 
-        return this._windowRef;
+        return this.overlayComponent;
     }
 
     /**
@@ -129,6 +128,7 @@ export class OverlayService<T> {
         targetRef: ElementRef,
         originPos: ConnectionPosition,
         overlayPos: ConnectionPosition) {
+
         this.positionStrategy = new PositionStrategy(targetRef, this.overlayComponent.el, originPos, overlayPos);
         this.originPos = originPos;
         this.overlayPos = overlayPos;
@@ -137,7 +137,6 @@ export class OverlayService<T> {
         this.positionStrategy.withFallbackPosition(origin.fallback, overlay.fallback);
         this._resizeSubscription.unsubscribe();
         this._resizeSubscription = this.change().subscribe(() => this.updatePosition());
-
     }
 
     updatePosition() {

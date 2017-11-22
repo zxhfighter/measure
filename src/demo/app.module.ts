@@ -29,14 +29,15 @@ import {
   SelectModule,
   CalendarModule,
   RegionModule,
-  DialogModule
+  DialogModule,
+  CodeHighlighterModule,
+  CodeBoxModule
 } from '../component';
 
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.router';
 
-import {DemoButton} from './button';
-import {DemoBreadcrumb} from './breadcrumb';
+// import {DemoButton} from './button';
 import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
 import {DemoBoxGroup} from './box-group';
@@ -58,13 +59,21 @@ import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
+import {DemoCodeHighlighter} from './code-highlighter';
+import {DemoCodeBox} from './code-box';
 
+
+import {ButtonDemoModule} from './button';
+import {BreadcrumbDemoModule} from './breadcrumb';
+
+const demoModules = [
+    ButtonDemoModule,
+    BreadcrumbDemoModule
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoButton,
-    DemoBreadcrumb,
     DemoSwitch,
     DemoButtonGroup,
     DemoBoxGroup,
@@ -86,7 +95,9 @@ import {DemoDialog} from './dialog';
     DemoSelect,
     DemoCalendar,
     DemoRegion,
-    DemoDialog
+    DemoDialog,
+    DemoCodeHighlighter,
+    DemoCodeBox
   ],
   imports: [
     BrowserModule,
@@ -117,6 +128,11 @@ import {DemoDialog} from './dialog';
     SelectModule,
     RegionModule,
     DialogModule,
+    CodeHighlighterModule,
+    CodeBoxModule,
+
+    // demos
+    ...demoModules,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],

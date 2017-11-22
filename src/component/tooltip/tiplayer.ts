@@ -1,3 +1,9 @@
+/**
+ *
+ * 作为overlay的内容组件要注意两个问题：
+ * - 构造函数constructor中要声明el属性，用于overlay.service.ts中将当前内容append到body中
+ * - 需要重新定位的时候，将needReposition事件emit出去
+ */
 import {
     NgModule,
     Input,
@@ -24,7 +30,6 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'nbTiplayer',
     host: {
-        // 'class': 'nb-widget',
         '(mouseenter)': 'this.onMouseEnter()',
         '(mouseleave)': 'this.onMouseLeave()'
     }
@@ -57,7 +62,7 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
         return this._placement;
     }
 
-    @Output() afterViewInit: EventEmitter<Object> = new EventEmitter();
+    @Output() needReposition: EventEmitter<Object> = new EventEmitter();
 
     private _delay: number = 200;
     /** The timeout ID of any current timer set to show the tooltip */
@@ -72,7 +77,7 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        this.afterViewInit.emit();
+        this.needReposition.emit();
     }
 
     show() {

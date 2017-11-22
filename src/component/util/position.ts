@@ -2,6 +2,9 @@ export type HorizontalConnectionPos = 'left' | 'center' | 'right';
 
 export type VerticalConnectionPos = 'top' | 'center' | 'bottom';
 
+export type Placement = 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |
+'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom';
+
 export interface ConnectionPosition {
   horizontal: HorizontalConnectionPos;
   vertical: VerticalConnectionPos;

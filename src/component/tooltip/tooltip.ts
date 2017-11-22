@@ -19,7 +19,7 @@ import {
 import { OnChange } from '../core/decorators';
 import { OverlayService } from '../util/overlay.service';
 import { TiplayerComponent } from './tiplayer';
-import { ConnectionPosition } from './position';
+import { ConnectionPosition, Placement } from '../util/position';
 import { PositionStrategy } from './position.strategy';
 
 @Directive({
@@ -40,7 +40,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
      * 'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'
      *
      */
-    @Input() placement: string = 'bottom';
+    @Input() placement: Placement = 'bottom';
 
     /**
      * 浮层模式还是嵌入模式
@@ -82,17 +82,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
     constructor(
         private el: ElementRef,
-        private _renderer: Renderer2,
-        private _viewContainerRef: ViewContainerRef,
-        private _injector: Injector,
+        private renderer: Renderer2,
+        private viewContainerRef: ViewContainerRef,
+        private injector: Injector,
         private ngZone: NgZone,
         private componentFactoryResolver: ComponentFactoryResolver) {
 
         this.overlayService = new OverlayService<TiplayerComponent>(
             TiplayerComponent,
-            _injector,
-            _viewContainerRef,
-            _renderer,
+            injector,
+            viewContainerRef,
+            renderer,
             componentFactoryResolver,
             ngZone);
     }
@@ -101,39 +101,39 @@ export class TooltipDirective implements OnInit, OnDestroy {
         // 绑定事件
         if (this.trigger === 'hover') {
             this.enterListener =
-                this._renderer.listen(this.el.nativeElement, 'mouseenter', () => this.open());
+                this.renderer.listen(this.el.nativeElement, 'mouseenter', () => this.show());
             this.leaveListener =
-                this._renderer.listen(this.el.nativeElement, 'mouseleave', () => this.close());
+                this.renderer.listen(this.el.nativeElement, 'mouseleave', () => this.hide());
         }
         if (this.trigger === 'click') {
             this.clickListener =
-                this._renderer.listen(this.el.nativeElement, 'click', (e) => this.handleHostClick(e));
+                this.renderer.listen(this.el.nativeElement, 'click', (e) => this.handleHostClick(e));
         }
         if (this.trigger === 'focus') {
             this.focusListener =
-                this._renderer.listen(this.el.nativeElement, 'focus', () => this.open());
+                this.renderer.listen(this.el.nativeElement, 'focus', () => this.show());
             this.blurListener =
-                this._renderer.listen(this.el.nativeElement, 'blur', () => this.close());
+                this.renderer.listen(this.el.nativeElement, 'blur', () => this.hide());
         }
     }
 
-    open() {
+    show() {
         if (!this.tiplayerInstance) {
             this.createTiplayer();
         }
-        if (this.tiplayerInstance) {
-            this.tiplayerInstance.show();
-        }
+        // if (this.tiplayerInstance) {
+            this.tiplayerInstance!.show();
+        // }
     }
 
-    close() {
+    hide() {
         if (this.tiplayerInstance) {
             this.tiplayerInstance.hide();
         }
     }
 
     toggle() {
-        this.isTooltipVisible() ? this.close() : this.open();
+        this.isTooltipVisible() ? this.hide() : this.show();
     }
 
     isTooltipVisible(): boolean {
@@ -151,7 +151,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
      *
      */
     createTiplayer() {
-        let componentRef = this.overlayService.open(
+        let componentRef = this.overlayService.createOverlay(
             this.nbTooltip, this.el, this.placement, !this.embedded);
 
         this.tiplayerInstance = componentRef.instance;
@@ -185,7 +185,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
     handleBodyInteraction() {
         if (this.trigger === 'click') {
-            this.close();
+            this.hide();
         }
     }
 }

@@ -1,9 +1,13 @@
 import {
-    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef
+    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2, ElementRef,
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef,
+    ViewContainerRef, Injector, NgZone, ComponentFactoryResolver, TemplateRef
 } from '@angular/core';
 import {SelectConfig, OptionsStyles} from './select.config';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
+import { SelectOptionsComponent } from './select.options';
+import { OverlayService } from '../util/overlay.service';
+import { Placement } from '../util/position';
 
 @Component({
     selector: 'nb-select',
@@ -23,6 +27,7 @@ import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
     @ViewChild('button') button;
+    @ViewChild('overlay') overlay: SelectOptionsComponent;
     @Input() datasource: SelectConfig[] = [];
     @Input() defaultLabel: string;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
@@ -38,9 +43,27 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     protected documentClickListener: Function;
     protected onModelChange: Function = () => {};
     protected onModelTouched: Function = () => {};
+    protected overlayInstance: SelectOptionsComponent | null;
+    protected overlayService: OverlayService<SelectOptionsComponent>;
 
-    constructor(protected renderer: Renderer2,
-                protected cd: ChangeDetectorRef) {
+    placement: Placement = 'bottom-left';
+
+    constructor(
+        private el: ElementRef,
+        private renderer: Renderer2,
+        private viewContainerRef: ViewContainerRef,
+        private injector: Injector,
+        private ngZone: NgZone,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private cd: ChangeDetectorRef) {
+
+        this.overlayService = new OverlayService<SelectOptionsComponent>(
+            SelectOptionsComponent,
+            injector,
+            viewContainerRef,
+            renderer,
+            componentFactoryResolver,
+            ngZone);
     }
 
     ngOnInit() {
@@ -52,12 +75,39 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
         this.changeState();
         if (this.expanded) {
-            this.setOptionsStyle();
             this.bindEvents();
         }
     }
 
+    show() {
+        if (!this.overlayInstance) {
+            this.createOverlay();
+        }
+        this.overlayInstance!.show();
+    }
+
+    hide() {
+        if (this.overlayInstance) {
+            this.overlayInstance.hide();
+        }
+    }
+
+    toggleOverlay() {
+        this.isOverlayVisible() ? this.hide() : this.show();
+    }
+
+    isOverlayVisible(): boolean {
+        return !!this.overlayInstance && this.overlayInstance.visibility;
+    }
+
+    createOverlay() {
+        this.overlayInstance = this.overlayService.createOverlayFromExistingComponent(
+            this.overlay, this.button.el, this.placement, true);
+    }
+
     changeState() {
+        this.toggleOverlay();
+
         this.expanded = !this.expanded;
         this.icon = this.expanded ? 'fa-angle-up' : 'fa-angle-down';
         this.cd.markForCheck();
@@ -82,9 +132,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     }
 
     bindEvents() {
-        if (!this.windowResizeListener) {
-            this.windowResizeListener = this.renderer.listen('window', 'resize', () => this.setOptionsStyle());
-        }
 
         if (!this.documentClickListener) {
             this.documentClickListener = this.renderer.listen('document', 'click', () => {
@@ -109,11 +156,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         }
     }
 
-    setOptionsStyle() {
-        this.styles = this.getComputedStyle();
-        this.cd.markForCheck();
-    }
-
     setSelectedData() {
         this.datasource.forEach((data) => {
             if (data.value === this.value) {
@@ -121,25 +163,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
                 this.cd.markForCheck();
             }
         });
-    }
-
-    getComputedStyle() {
-        let styles: OptionsStyles = {};
-        let btnElement: HTMLElement = this.button.el.nativeElement;
-        let winInnerHeight: number = window.innerHeight;
-        let btnHeight: number = btnElement.offsetHeight;
-        let offsetTop: number = this._getTop(btnElement);
-        let offsetBottom: number = winInnerHeight - offsetTop - btnHeight;
-
-        styles.left = btnElement.offsetLeft + 'px';
-        if (offsetTop < offsetBottom + (btnHeight * 3)) {
-            styles.top = btnHeight + 'px';
-        }
-        else {
-            styles.bottom = btnHeight + 'px';
-        }
-
-        return styles;
     }
 
     writeValue(value: number) {
@@ -163,15 +186,5 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     ngOnDestroy() {
         this.unbindEvents();
-    }
-
-    protected _getTop(ele): number {
-        let offset = ele.offsetTop;
-
-        if (ele.offsetParent !== null) {
-            offset += this._getTop(ele.offsetParent);
-        }
-
-        return offset;
     }
 }

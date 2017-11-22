@@ -71,3 +71,23 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  * Need to import at least one locale-data with intl.
  */
 // import 'intl/locale-data/jsonp/en';
+
+import 'prismjs';
+
+// html support
+import 'prismjs/components/prism-markup.min.js';
+
+// javascript support
+import 'prismjs/components/prism-javascript.min.js';
+
+// typescript support
+import 'prismjs/components/prism-typescript.min.js';
+
+// css support
+import 'prismjs/components/prism-css.min.js';
+
+// less support
+import 'prismjs/components/prism-less.min.js';
+
+// show line numbers
+import 'prismjs/plugins/line-numbers/prism-line-numbers.min.js';

@@ -7,6 +7,7 @@ import {SelectOptionsComponent} from './select.options';
 @NgModule({
     imports: [CommonModule, ButtonModule],
     declarations: [SelectComponent, SelectOptionsComponent],
-    exports: [SelectComponent]
+    exports: [SelectComponent],
+    entryComponents: [SelectOptionsComponent]
 })
 export class SelectModule {}
