@@ -45,7 +45,6 @@ import {DemoPage} from './page';
 import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
-import {DemoCalendar} from './calendar';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoRegion} from './region';
@@ -64,6 +63,7 @@ import {ProgressbarDemoModule} from './progress-bar';
 import {SpinnerDemoModule} from './spinner';
 import {CarouselDemoModule} from './carousel';
 import {StepDemoModule} from './step';
+import {CalendarDemoModule} from './calendar';
 
 const demoModules = [
     ButtonDemoModule,
@@ -75,7 +75,8 @@ const demoModules = [
     ProgressbarDemoModule,
     SpinnerDemoModule,
     CarouselDemoModule,
-    StepDemoModule
+    StepDemoModule,
+    CalendarDemoModule
 ];
 
 @NgModule({
@@ -89,10 +90,8 @@ const demoModules = [
     DemoTextarea,
     DemoTextLine,
     DemoSearchBox,
-    DemoCalendar,
     DemoToast,
     DemoSelect,
-    DemoCalendar,
     DemoRegion,
     DemoDialog,
     DemoCodeHighlighter,
