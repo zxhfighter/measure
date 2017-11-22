@@ -1,62 +1,52 @@
-<h1 class="main-title">Carousel demo</h1>
+<h1 class="main-title">nb-carousel</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;CarouselModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;CarouselModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Carousel first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-carousel [width]="318"></nb-carousel>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Carousel Basic</h3>
+    <p nb-codebox-desc>carousel desc.</p>
 
+    <demo-carousel-basic></demo-carousel-basic>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">big size</h3>
+<nb-code-box [tsCode]="tsCodeAuto" [htmlCode]="htmlCodeAuto" [lessCode]="lessCodeAuto">
+    <h3 nb-codebox-title>Carousel Auto</h3>
+    <p nb-codebox-desc>carousel auto desc.</p>
 
-    <p>
-        <nb-carousel [width]="638" skin="big"></nb-carousel>
-    </p>
-</section>
+    <demo-carousel-auto></demo-carousel-auto>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">small size</h3>
+<nb-code-box [tsCode]="tsCodeLarge" [htmlCode]="htmlCodeLarge" [lessCode]="lessCodeLarge">
+    <h3 nb-codebox-title>Other Size Carousel</h3>
+    <p nb-codebox-desc>carousel size desc.</p>
 
-    <p>
-        <nb-carousel [width]="158" skin="small"></nb-carousel>
-    </p>
-</section>
+    <demo-carousel-large></demo-carousel-large>
+</nb-code-box>
 
+<nb-code-box [tsCode]="tsCodeTitle" [htmlCode]="htmlCodeTitle" [lessCode]="lessCodeTitle">
+    <h3 nb-codebox-title>title navigation</h3>
+    <p nb-codebox-desc>title navigation desc.</p>
 
-<section>
-    <h3 class="section-title">auto</h3>
+    <demo-carousel-title></demo-carousel-title>
+</nb-code-box>
 
-    <p>
-        <nb-carousel [width]="318" [auto]="true"></nb-carousel>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeArrow" [htmlCode]="htmlCodeArrow" [lessCode]="lessCodeArrow">
+    <h3 nb-codebox-title>arrow outside</h3>
+    <p nb-codebox-desc>arrow outside desc.</p>
 
-<section>
-    <h3 class="section-title">arrow outside</h3>
-
-    <p>
-        <nb-carousel [width]="318" skin="outside"></nb-carousel>
-    </p>
-</section>
-
-
-<section>
-    <h3 class="section-title">title navigation</h3>
-
-    <p>
-        <nb-carousel [width]="638" skin="big" [showTitle]="true"></nb-carousel>
-    </p>
-</section>
+    <demo-carousel-arrow></demo-carousel-arrow>
+</nb-code-box>

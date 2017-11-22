@@ -1,0 +1,13 @@
+<form #frm="ngForm">
+    <nb-spinner [ngModel]="11" name="spinner" [step]="3"></nb-spinner>
+</form>
+<p>
+    {{ frm.value | json }}
+</p>
+
+<form [formGroup]="form">
+    <nb-spinner formControlName="spinner" [step]="3"></nb-spinner>
+</form>
+<p>
+    {{ form.value | json }}
+</p>

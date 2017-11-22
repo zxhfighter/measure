@@ -1,59 +1,31 @@
-<h1 class="main-title">Region demo</h1>
+<h1 class="main-title">nb-region</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;RegionModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;RegionModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">normal region picker</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-region [datasource]="regionSource"></nb-region>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
+    <h3 nb-codebox-title>Region Basic</h3>
+    <p nb-codebox-desc>region basic desc.</p>
 
-<section>
-    <h3 class="section-title">default value</h3>
+    <demo-region-basic></demo-region-basic>
+</nb-code-box>
 
-    <p>
-        <nb-region [datasource]="regionSource1" [value]="regionValue"></nb-region>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+    <h3 nb-codebox-title>Region with forms</h3>
+    <p nb-codebox-desc>region form desc.</p>
 
-<section>
-    <h3 class="section-title">disabled</h3>
-
-    <p>
-        <nb-region [datasource]="regionSource2" [value]="regionValue" disabled></nb-region>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">within forms（using gather value）</h3>
-
-    <form #frm1="ngForm">
-        <nb-region name="region" [datasource]="regionSource3" [ngModel]="regionValue" gather></nb-region>
-
-        <p>
-            {{ frm1.value | json }}
-        </p>
-    </form>
-</section>
-
-<section>
-    <h3 class="section-title">within forms（not using gather value）</h3>
-
-    <form #frm2="ngForm">
-        <nb-region name="region" [datasource]="regionSource4" [ngModel]="regionValue"></nb-region>
-
-        <p>
-            {{ frm2.value | json }}
-        </p>
-    </form>
-</section>
+    <demo-region-form></demo-region-form>
+</nb-code-box>

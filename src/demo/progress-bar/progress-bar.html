@@ -1,70 +1,31 @@
-<h1 class="main-title">ProgressBar demo<h1 class="main-title">
+<h1 class="main-title">nb-progress-bar, nb-progress-bar-circle</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;ProgressBarModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;ProgressBarModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">default progress bar</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-progress-bar [value]="value" [isSuccess]="isSuccess"></nb-progress-bar>
-    </p>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Progress Bar Basic</h3>
+    <p nb-codebox-desc>progress bar desc.</p>
 
-    <p>
-        <nb-progress-bar [value]="value1" [isError]="isError"></nb-progress-bar>
-    </p>
+    <demo-progress-bar-basic></demo-progress-bar-basic>
+</nb-code-box>
 
-    <p>
-        <nb-progress-bar [value]="100"></nb-progress-bar>
-    </p>
+<nb-code-box [tsCode]="tsCodeCircular" [htmlCode]="htmlCodeCircular" [lessCode]="lessCodeCircular">
+    <h3 nb-codebox-title>Progress Circular Bar Basic</h3>
+    <p nb-codebox-desc>progress circular bar desc.</p>
 
-    <p>
-        <nb-progress-bar [value]="100" [isSuccess]="true"></nb-progress-bar>
-    </p>
-
-    <p>
-        <nb-progress-bar [value]="50" [isError]="true"></nb-progress-bar>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">progress bar with text</h3>
-
-    <p>
-        <nb-progress-bar [showProgressText]="true" [value]="value"></nb-progress-bar>
-    </p>
-
-    <p>
-        <nb-progress-bar [showProgressText]="true" [value]="value1"></nb-progress-bar>
-    </p>
-
-    <p>
-        <nb-progress-bar [showProgressText]="true" [value]="100"></nb-progress-bar>
-    </p>
-
-    <p>
-        <nb-progress-bar [showOperation]="true" [showProgressText]="true" [value]="100" [isSuccess]="true" (close)="onClose()"></nb-progress-bar>
-    </p>
-
-    <p>
-        <nb-progress-bar [showOperation]="true" [showProgressText]="true" [value]="50" [isError]="true" (refresh)="onRefresh()"></nb-progress-bar>
-    </p>
-</section>
-
-
-<section>
-    <h3 class="section-title">circluar progress bar</h3>
-
-    <p>
-        <nb-progress-bar-circle [showProgressText]="true" [radius]="100" [percent]="value" [isSuccess]="isSuccess"></nb-progress-bar-circle>
-        <nb-progress-bar-circle [showProgressText]="true" [radius]="50" [percent]="value1" [isError]="isError"></nb-progress-bar-circle>
-        <nb-progress-bar-circle [radius]="20" [percent]="value" [isSuccess]="isSuccess"></nb-progress-bar-circle>
-    </p>
-</section>
+    <demo-progress-bar-circular></demo-progress-bar-circular>
+</nb-code-box>

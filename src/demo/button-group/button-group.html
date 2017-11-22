@@ -1,108 +1,30 @@
-<h1 class="main-title">button group</h1>
-
+<h1 class="main-title">nb-button-group, nb-button-toggle</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;ToggleButtonModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;ToggleButtonModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Single Toggle Button</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-button-toggle value="apple" (toggle)="onSingleToggle($event)">苹果
-            <i class="fa fa-apple"></i>
-        </nb-button-toggle>
-    </p>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Toggle Button Basic</h3>
+    <p nb-codebox-desc>toggle button basic examples.</p>
 
-    <p>
-        <nb-button-toggle value="apple" [checked]="true">苹果
-            <i class="fa fa-apple"></i>
-        </nb-button-toggle>
-    </p>
+    <demo-button-group-basic></demo-button-group-basic>
+</nb-code-box>
 
-    <p>
-        <nb-button-toggle value="apple" disabled>苹果
-            <i class="fa fa-apple"></i>
-        </nb-button-toggle>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+    <h3 nb-codebox-title>Toggle Button Group with (Reactive)Forms</h3>
+    <p nb-codebox-desc>toggle button group form examples.</p>
 
-<section>
-    <h3 class="section-title">Radio Toggle Button</h3>
-
-    <p>
-        <nb-button-group type="radio" (change)="onRadioButtonGroupChanged($event)">
-            <nb-button-toggle value="apple" [disabled]="isDisabled">苹果
-                <i class="fa fa-apple"></i>
-            </nb-button-toggle>
-            <nb-button-toggle value="book" [disabled]="isDisabled">书
-                <i class="fa fa-book"></i>
-            </nb-button-toggle>
-            <nb-button-toggle value="dog" [disabled]="isDisabled">🐶
-                <i class="fa fa-flash"></i>
-            </nb-button-toggle>
-        </nb-button-group>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">Checkbox Toggle Button</h3>
-
-    <p>
-        <nb-button-group type="checkbox" (change)="onCheckboxButtonGroupChanged($event)">
-            <nb-button-toggle value="apple" [disabled]="isDisabled">苹果
-                <i class="fa fa-apple"></i>
-            </nb-button-toggle>
-            <nb-button-toggle value="book" [disabled]="isDisabled">书
-                <i class="fa fa-book"></i>
-            </nb-button-toggle>
-            <nb-button-toggle value="dog" [disabled]="isDisabled">🐶
-                <i class="fa fa-flash"></i>
-            </nb-button-toggle>
-        </nb-button-group>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">Using With Forms</h3>
-    <p>Why not use checkbox group or radio group?</p>
-
-    <form #form="ngForm">
-        <p>
-            <nb-button-group [ngModel]="['apple', 'dog']" name="group" type="checkbox">
-                <nb-button-toggle value="apple">苹果
-                    <i class="fa fa-apple"></i>
-                </nb-button-toggle>
-                <nb-button-toggle value="book">书
-                    <i class="fa fa-book"></i>
-                </nb-button-toggle>
-                <nb-button-toggle value="dog">🐶
-                    <i class="fa fa-flash"></i>
-                </nb-button-toggle>
-            </nb-button-group>
-        </p>
-
-        <p>
-            <nb-button-group [ngModel]="['book']" name="radioGroup" type="radio">
-                <nb-button-toggle value="apple">苹果
-                    <i class="fa fa-apple"></i>
-                </nb-button-toggle>
-                <nb-button-toggle value="book">书
-                    <i class="fa fa-book"></i>
-                </nb-button-toggle>
-                <nb-button-toggle disabled value="dog">🐶
-                    <i class="fa fa-flash"></i>
-                </nb-button-toggle>
-            </nb-button-group>
-        </p>
-    </form>
-
-    <p>
-        {{ form.value | json }}
-    </p>
-</section>
+    <demo-button-group-form></demo-button-group-form>
+</nb-code-box>
