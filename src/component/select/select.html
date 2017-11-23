@@ -2,7 +2,8 @@
     <span class="nb-select-label">{{selectedData.label}}</span>
     <i class="nb-select-icon fa {{icon}}"></i>
 </button>
-<nb-select-options *ngIf="expanded"
+
+<nb-select-options #overlay
                    (onChange)="onSelectedOption($event)"
                    [styles]="styles"
                    [value]="value"
