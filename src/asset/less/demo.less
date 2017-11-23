@@ -176,3 +176,88 @@ label {
     font-weight: normal;
     margin: 0;
 }
+
+// docs
+.docs-api {
+    &-type {
+        font-size: 18px;
+        color: #333;
+    }
+
+    &-class-name {
+        font-size: 16px;
+    }
+
+    &-class-description {
+
+    }
+
+    .docs-table-desc {
+
+    }
+
+    .docs-table {
+        width: 100%;
+
+        .docs-row {
+            border-bottom: 1px solid @table-row-bottom-color;
+
+            &:nth-child(2n) {
+                background-color: @table-row-even;
+            }
+
+            &:nth-child(2n+1) {
+                background-color: @table-row-odd;
+            }
+
+            .docs-td:first-of-type {
+                padding-left: 10px;
+            }
+        }
+
+        .docs-td {
+            padding: 13px 0;
+            height: 2em;
+            text-align: left;
+
+            &-name {
+                width: 15%;
+                font-family: monospace;
+            }
+
+            &-type {
+                width: 15%;
+                font-family: monospace;
+            }
+
+            &-default {
+                width: 15%;
+                font-family: monospace;
+            }
+
+            &-desc {
+                width: 55%;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+                & > p {
+                    margin: 0;
+                }
+            }
+        }
+
+        .docs-input-marker {
+            background: #329e6f;
+            display: inline-block;
+            color: #fff;
+            border-radius: 10px;
+            padding: 2px 5px;
+            font-size: 12px;
+        }
+
+        .docs-property-name {
+            margin: 0;
+            padding-left: 5px;
+            font-size: 16px;
+        }
+    }
+}

@@ -29,15 +29,24 @@ export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
 })
 export class ButtonComponent implements OnChanges, AfterViewInit {
 
-    /** button theme, there four default themes: 'primary' | 'default' | 'neutral' | 'transparent' */
+    /**
+     * button theme, there four default themes: 'primary' | 'default' | 'neutral' | 'transparent'
+     * @default default
+     */
     @Input() theme: BUTTON_THEME = 'default';
 
-    /** button size, there four default sizes: lg */
+    /**
+     * button size, there four default sizes: lg
+     * @default default
+     */
     @Input() size: BUTTON_SIZE = 'default';
 
-    /** Whether the button is disabled */
+    /**
+     * Whether the button is disabled
+     * @default false
+     */
     @OnChange(true)
-    @Input() disabled = false;
+    @Input() disabled: boolean = false;
 
     constructor(
         private el: ElementRef,
