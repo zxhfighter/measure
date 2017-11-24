@@ -21,6 +21,9 @@ export type BreadcrumbItem = {
     href?: string;
 };
 
+/**
+ * Breadcrumb Component
+ */
 @Component({
     selector: 'nb-breadcrumb',
     templateUrl: './breadcrumb.html',
@@ -33,7 +36,10 @@ export type BreadcrumbItem = {
 })
 export class BreadcrumbComponent {
 
-    /** breadcrumb datasource */
+    /**
+     * breadcrumb datasource, each item contains a `text`、`path`（optional）、`href`（optional）property
+     * @default []
+     */
     @Input() datasource: BreadcrumbItem[] = [];
 
     /**

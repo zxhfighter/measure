@@ -19,6 +19,9 @@ const SWITCH_VALUE_ACCESSOR = {
     multi: true
 };
 
+/**
+ * Switch Component
+ */
 @Component({
     selector: 'nb-switch',
     templateUrl: './switch.html',
@@ -34,23 +37,26 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
 
     /**
      * Whether the switch is checked
+     * @default false
      */
     @OnChange(true)
     @Input() checked: boolean = false;
 
     /**
      * Extra style classes to provide custom themes, e.g. 'class-1 class-2'
+     * @default ''
      */
     @Input() styleClass: string = '';
 
     /**
      * Whether the switch is disabled
+     * @default false
      */
     @OnChange(true)
     @Input() disabled: boolean = false;
 
     /**
-     * Event emitted when the switch value changes
+     * Event emitted when the switch value changes, emits the checked `boolean` value
      */
     @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
 

@@ -32,7 +32,7 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
 };
 
 /**
- * Button Component
+ * Button Group Component
  */
 @Component({
     selector: 'nb-button-group',
@@ -48,25 +48,25 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
 })
 export class ButtonGroupComponent implements ControlValueAccessor, AfterContentInit {
 
-    /** button group change event */
+    /** button group change event, emit the `ButtonGroupValue`, which with the `currentValue` and `value` property */
     @Output() change: EventEmitter<ButtonGroupValue> = new EventEmitter<ButtonGroupValue>();
 
     /**
-     * button group type, can be 'radio' or 'checkbox'
-     * @docs-private
+     * button group type, either 'radio' or 'checkbox'
+     * @default checkbox
      */
     @OnChange()
-    @Input() type: BUTTON_GROUP_TYPE = 'checkbox';
+    @Input() type: 'radio' | 'checkbox' = 'checkbox';
 
     /**
      * button group value, can be any type
-     * @docs-private
      */
     @OnChange()
     @Input() value: any;
 
     /**
      * Whether the button group is disabled
+     * @default false
      */
     @OnChange(true)
     @Input() disabled = false;
@@ -206,8 +206,8 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
 }
 
 /**
- * A single toggle button
- * like checkbox , it has a associated value and can be checked and disabled
+ * A single toggle button, usually used in `nb-button-group`
+ * like checkbox, it has a associated value and can be checked and disabled
  */
 @Component({
     selector: 'nb-button-toggle',
@@ -230,22 +230,31 @@ export class ButtonToggleComponent {
     /** toggle event, emit a boolean value */
     @Output() toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    /** toggle button's value, can be any type */
-    @Input() value = '';
+    /**
+     * toggle button's value, can be any type
+     * @default ''
+     */
+    @Input() value: any = '';
 
-    /** Whether toggle button is checked */
+    /**
+     * Whether toggle button is checked
+     * @default false
+     */
     @OnChange(true)
-    @Input() checked = false;
+    @Input() checked: boolean = false;
 
-    /** Whether toggle button is disabled */
+    /**
+     * Whether toggle button is disabled
+     * @default false
+     */
     @OnChange(true)
-    @Input() disabled = false;
+    @Input() disabled: boolean = false;
 
     /**
      * Whether toggle button is single, not wrapped by an button group component
      * @docs-private
      */
-    _isSingleButton = true;
+    _isSingleButton: boolean = true;
 
     /**
      * Reference to the wrapped parent button group component

@@ -28,3 +28,181 @@
 
     <demo-button-group-form></demo-button-group-form>
 </nb-code-box>
+
+<h3 class="section-title">API</h3>
+
+
+<div class="docs-api">
+
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>nb-button-group</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Button Group Component
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    change
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;ButtonGroupValue&gt;
+            </td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>button group change event, emit the
+                    <code>ButtonGroupValue</code>, which with the
+                    <code>currentValue</code> and
+                    <code>value</code> property</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    type
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">'radio' | 'checkbox'</td>
+            <td class="docs-td docs-td-default">checkbox</td>
+            <td class="docs-td docs-td-desc">
+                <p>button group type, either &#39;radio&#39; or &#39;checkbox&#39;</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    value
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">any</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>button group value, can be any type</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the button group is disabled</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <p class="docs-property-name">
+                    disabledChange
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;boolean&gt;
+            </td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc"></td>
+        </tr>
+    </table>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>nb-button-toggle</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">A single toggle button, usually used in <code>nb-button-group</code> like checkbox, it has a associated value and can be checked
+        and disabled
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    toggle
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;boolean&gt;
+            </td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>toggle event, emit a boolean value</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    value
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">any</td>
+            <td class="docs-td docs-td-default">''</td>
+            <td class="docs-td docs-td-desc">
+                <p>toggle button&#39;s value, can be any type</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    checked
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether toggle button is checked</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether toggle button is disabled</p>
+            </td>
+        </tr>
+    </table>
+</div>

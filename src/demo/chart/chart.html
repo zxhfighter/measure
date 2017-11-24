@@ -22,3 +22,86 @@
 
     <demo-chart-basic></demo-chart-basic>
 </nb-code-box>
+
+<h3 class="section-title">API</h3>
+
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>nb-chart</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Chart Component, depends on <a href="http://echarts.baidu.com/">Echarts</a>
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    width
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number | string</td>
+            <td class="docs-td docs-td-default">600</td>
+            <td class="docs-td docs-td-desc">
+                <p>chart width, can be a number(400) or a percent(30%)</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    height
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number | string</td>
+            <td class="docs-td docs-td-default">400</td>
+            <td class="docs-td docs-td-desc">
+                <p>chart height, can be a number(400) or a percent(30%)</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    chartTitle
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">''</td>
+            <td class="docs-td docs-td-desc">
+                <p>chart title</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    options
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">any</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>chart options, see
+                    <a href="http://echarts.baidu.com/option.html">echarts options</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>

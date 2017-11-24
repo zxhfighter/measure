@@ -6,6 +6,9 @@ import * as echarts from 'echarts';
 
 import {OnChange} from '../core/decorators';
 
+/**
+ * Chart Component, depends on [Echarts](http://echarts.baidu.com/)
+ */
 @Component({
     selector: 'nb-chart',
     templateUrl: './chart.html',
@@ -18,22 +21,36 @@ import {OnChange} from '../core/decorators';
 })
 export class ChartComponent implements AfterViewInit, OnDestroy {
 
-    /** chart default width */
+    /**
+     * chart width, can be a number(400) or a percent(30%)
+     * @default 600
+     */
     @Input() width: number | string = 600;
 
-    /** chart default height */
+    /**
+     * chart height, can be a number(400) or a percent(30%)
+     * @default 400
+     */
     @Input() height: number | string = 400;
 
-    /** chart title */
+    /**
+     * chart title
+     * @default ''
+     */
     @Input() chartTitle: string = '';
 
-    /** chart options */
+    /**
+     * chart options, see [echarts options](http://echarts.baidu.com/option.html)
+     */
     @OnChange()
     @Input() options: any;
 
     @ViewChild('chartContainer') _chartContainer: ElementRef;
 
-    /** callback when chart options change */
+    /**
+     * callback when chart options change
+     * @docs-private
+     */
     optionsChange: EventEmitter<any> = new EventEmitter<any>();
 
     /**

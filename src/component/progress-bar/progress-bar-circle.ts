@@ -7,7 +7,7 @@ import {describeArc, polarToCartesian} from '../util/svg';
 import {OnChange} from '../core/decorators';
 
 /**
- * Circle progress bar
+ * Circular Progress Bar Component
  */
 @Component({
     selector: 'nb-progress-bar-circle',
@@ -23,27 +23,52 @@ import {OnChange} from '../core/decorators';
 })
 export class ProgressBarCircleComponent {
 
-    /** circle size */
+    /**
+     * circle radius(in pixels)
+     * @default 124
+     */
     @Input() radius: number = 124;
 
-    /** progress bar percentage, 0~100 */
+    /**
+     * progress bar percentage, 0~100
+     * @default 0
+     */
     @OnChange()
-    @Input() percent: number;
+    @Input() percent: number = 0;
+
+    /**
+     * @docs-private
+     */
     percentChange: EventEmitter<number> = new EventEmitter<number>();
 
-    /** Whether the progress is successful  */
+    /**
+     * Whether the progress is in success
+     * @default false
+     */
     @Input() isSuccess: boolean = false;
 
-    /** success hint text */
+    /**
+     * success text when done
+     * @default 完成
+     */
     @Input() successText: string = '完成';
 
-    /** Whether the progress is error  */
+    /**
+     * Whether the progress is in error
+     * @default false
+     */
     @Input() isError: boolean = false;
 
-    /** error hint text */
+    /**
+     * error text when in error
+     * @default 错误
+     */
     @Input() errorText: string = '错误';
 
-    /** Whether show progress text */
+    /**
+     * Whether show progress text
+     * @default false
+     */
     @Input() showProgressText: boolean = false;
 
     /**
@@ -64,6 +89,7 @@ export class ProgressBarCircleComponent {
 
     /**
      * current percentage path's d string
+     * @docs-private
      */
     circlePath = 'M 0 0';
 
