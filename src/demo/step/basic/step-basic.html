@@ -1,0 +1,19 @@
+<nb-step [value]="currentStep">
+    <nb-step-item [value]="1">
+        1: get an elephant
+        <a href="http://www.baidu.com" target="_blank">view details</a>
+    </nb-step-item>
+
+    <nb-step-item [value]="2">
+        2: open the fridge door
+    </nb-step-item>
+
+    <nb-step-item [value]="3">
+        3: close the door
+    </nb-step-item>
+</nb-step>
+
+<p>
+    <button theme="default" nb-button type="button" (click)="prev()">上一步</button>
+    <button theme="default" nb-button type="button" (click)="next()">下一步</button>
+</p>

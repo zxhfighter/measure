@@ -1,10 +1,10 @@
-<dt class="docs-api-method-name">{$ method.name $} {%- if method.isDeprecated -%} <strong class="deprecated">Deprecated</strong> {%- endif -%}</dt>
-<dd class="docs-api-method-detail">
+<dt class="docs-method-name">{$ method.name $} {%- if method.isDeprecated -%} <strong class="deprecated">Deprecated</strong> {%- endif -%}</dt>
+<dd class="docs-method-detail">
     <dl>
-        <dt class="docs-api-method-desc-label">Description</dt>
-        <dd class="docs-api-method-desc-content">{$ method.description | marked $}</dd>
+        <dt class="docs-method-desc-label">Description</dt>
+        <dd class="docs-method-desc-content">{$ method.description | marked $}</dd>
         {%- if method.params.length -%}
-        <dt class="docs-api-method-param-label">Parameters</dt>
+        <dt class="docs-method-param-label">Parameters</dt>
         <dd>
             {% for parameter in method.params %}
             <div class="parameter-item">
@@ -16,7 +16,7 @@
         </dd>
         {%- endif -%}
         {%- if method.showReturns -%}
-        <dt class="docs-api-method-return-label">Returns</dt>
+        <dt class="docs-method-return-label">Returns</dt>
         <dd>
             {$ method.returnType $}
             <div class="desc">{$ method.returns.description | marked $}</div>

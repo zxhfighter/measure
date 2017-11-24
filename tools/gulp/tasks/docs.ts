@@ -34,7 +34,9 @@ const MARKDOWN_TAGS_TO_CLASS_ALIAS = [
 
 task('api-docs', () => {
     const docs = new Dgeni([apiDocsPackage]);
-    return docs.generate();
+    return docs.generate().then(function(docs: any) {
+        console.log(docs.length, 'docs generated');
+    });
 });
 
 task('md-docs', () => {
@@ -55,8 +57,8 @@ task('md-docs', () => {
 });
 
 task('docs', sequenceTask(
-    'api-docs',
-    'md-docs'
+    'api-docs'
+    // 'md-docs'
 ));
 
 /**

@@ -38,63 +38,61 @@ import {
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.router';
 
-// import {DemoButton} from './button';
-import {DemoSwitch} from './switch';
-import {DemoButtonGroup} from './button-group';
-import {DemoBoxGroup} from './box-group';
-import {DemoChart} from './chart';
-import {DemoProgressBar} from './progress-bar';
-import {DemoSpinner} from './spinner';
-import {DemoCarousel} from './carousel';
 import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
-import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoPage} from './page';
 import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
-import {DemoCalendar} from './calendar';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
-import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
 import {DemoChips} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
 import {ButtonDemoModule} from './button';
 import {BreadcrumbDemoModule} from './breadcrumb';
+import {SwitchDemoModule} from './switch';
+import {ButtonGroupDemoModule} from './button-group';
+import {BoxGroupDemoModule} from './box-group';
+import {ChartDemoModule} from './chart';
+import {ProgressbarDemoModule} from './progress-bar';
+import {SpinnerDemoModule} from './spinner';
+import {CarouselDemoModule} from './carousel';
+import {StepDemoModule} from './step';
+import {CalendarDemoModule} from './calendar';
+import {RegionDemoModule} from './region';
 
 const demoModules = [
     ButtonDemoModule,
-    BreadcrumbDemoModule
+    BreadcrumbDemoModule,
+    SwitchDemoModule,
+    ButtonGroupDemoModule,
+    BoxGroupDemoModule,
+    ChartDemoModule,
+    ProgressbarDemoModule,
+    SpinnerDemoModule,
+    CarouselDemoModule,
+    StepDemoModule,
+    CalendarDemoModule,
+    RegionDemoModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoSwitch,
-    DemoButtonGroup,
-    DemoBoxGroup,
-    DemoChart,
-    DemoProgressBar,
-    DemoSpinner,
-    DemoCarousel,
     DemoInput,
     DemoTable,
     DemoTabs,
-    DemoStep,
     DemoTooltip,
     DemoPage,
     DemoTextarea,
     DemoTextLine,
     DemoSearchBox,
-    DemoCalendar,
     DemoToast,
     DemoSelect,
-    DemoCalendar,
-    DemoRegion,
     DemoDialog,
     DemoChips,
     DemoCodeHighlighter,

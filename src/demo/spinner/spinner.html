@@ -1,68 +1,144 @@
-<h1 class="main-title">Spinner demo</h1>
+<h1 class="main-title">nb-spinner</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;SpinnerModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;SpinnerModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Spinner first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-spinner></nb-spinner>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Spinner Basic</h3>
+    <p nb-codebox-desc>spinner desc.</p>
+
+    <demo-spinner-basic></demo-spinner-basic>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+    <h3 nb-codebox-title>Spinner with Forms</h3>
+    <p nb-codebox-desc>spinner desc.</p>
+
+    <demo-spinner-form></demo-spinner-form>
+</nb-code-box>
+
+<h3 class="section-title">API</h3>
+
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>nb-spinner</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Spinner Input Component
     </p>
-</section>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
 
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    change
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;number&gt;
+            </td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>the event emitted when input value changes</p>
+            </td>
+        </tr>
 
-<section>
-    <h3 class="section-title">disabled</h3>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    value
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default">0</td>
+            <td class="docs-td docs-td-desc">
+                <p>Spinner value</p>
+            </td>
+        </tr>
 
-    <p>
-        <nb-spinner disabled [value]="7"></nb-spinner>
-    </p>
-</section>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    step
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default">1</td>
+            <td class="docs-td docs-td-desc">
+                <p>Spinner step value, default to 1</p>
+            </td>
+        </tr>
 
-<section>
-    <h3 class="section-title">max and min value</h3>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    minValue
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>Spinner max value</p>
+            </td>
+        </tr>
 
-    <p>
-        <nb-spinner [minValue]="0" [maxValue]="5"></nb-spinner>
-    </p>
-</section>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    maxValue
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>Spinner min value</p>
+            </td>
+        </tr>
 
-<section>
-    <h3 class="section-title">step</h3>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the spinner is disabled</p>
+            </td>
+        </tr>
 
-    <p>
-        <nb-spinner [step]="3"></nb-spinner>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">in forms</h3>
-
-    <form #frm="ngForm">
-        <nb-spinner [ngModel]="11" name="spinner" [step]="3"></nb-spinner>
-    </form>
-
-    <p>
-        {{ frm.value | json }}
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">in reactive forms</h3>
-
-    <form [formGroup]="form">
-        <nb-spinner formControlName="spinner" [step]="3"></nb-spinner>
-    </form>
-
-    <p>
-        {{ form.value | json }}
-    </p>
-</section>
+    </table>
+</div>

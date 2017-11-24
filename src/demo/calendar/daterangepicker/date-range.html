@@ -1,0 +1,6 @@
+<nb-range-datepicker #abc="nbRangeDatePicker"></nb-range-datepicker>
+<nb-range-datepicker disabled></nb-range-datepicker>
+
+<p>
+    your selected: {{ abc.value.startDate | date: "yyyy-MM-dd" }} ~ {{ abc.value.endDate | date: "yyyy-MM-dd" }}
+</p>

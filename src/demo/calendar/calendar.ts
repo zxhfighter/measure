@@ -8,60 +8,27 @@ import * as moment from 'moment';
     selector: 'demo-calendar',
     templateUrl: './calendar.html',
     styleUrls: ['./calendar.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    preserveWhitespaces: false
 })
-export class DemoCalendar implements OnInit {
+export class DemoCalendar {
 
-    startDate = new Date();
-    endDate = moment().add(7, 'd').toDate();
+    // theme sources
+    tsCode: string = require('!!raw-loader!./monthview/monthview.ts');
+    htmlCode: string = require('!!raw-loader!./monthview/monthview.html');
+    lessCode: string = require('!!raw-loader!./monthview/monthview.less');
 
-    rangeValue = {
-        startDate: moment().add(1, 'd').toDate(),
-        endDate: moment().add(7, 'd').toDate()
-    };
+    // theme sources
+    tsCodeCalendar: string = require('!!raw-loader!./calendar/calendar.ts');
+    htmlCodeCalendar: string = require('!!raw-loader!./calendar/calendar.html');
+    lessCodeCalendar: string = require('!!raw-loader!./calendar/calendar.less');
 
-    monthes = [
-        1,2,3,4,5,6,7,8,9,10,11,12
-    ];
+    // theme sources
+    tsCodeDate: string = require('!!raw-loader!./datepicker/datepicker.ts');
+    htmlCodeDate: string = require('!!raw-loader!./datepicker/datepicker.html');
+    lessCodeDate: string = require('!!raw-loader!./datepicker/datepicker.less');
 
-    _month: number = new Date().getMonth() + 1;
-    get month() {return this._month;}
-    set month(v: any) {
-        this._month = v;
-        this.selectedDate = new Date(this.year, this.month - 1, 1);
-    }
-
-    _year: number = new Date().getFullYear();
-    get year() {
-        return this._year;
-    }
-    set year(value: any) {
-        this._year = value;
-
-        this.selectedDate = new Date(this.year, this.month - 1, 1);
-    }
-
-    selectedDate: Date = moment().add(1, 'month').toDate();
-
-    years = (
-       function() {
-           const date = new Date();
-           let year = date.getFullYear();
-
-           let years: number[] = [];
-           for (let i = 0; i < 10; i++) {
-               years.push(year--);
-           }
-           return years;
-       }
-    )();
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
+    // theme sources
+    tsCodeRange: string = require('!!raw-loader!./daterangepicker/date-range.ts');
+    htmlCodeRange: string = require('!!raw-loader!./daterangepicker/date-range.html');
+    lessCodeRange: string = require('!!raw-loader!./daterangepicker/date-range.less');
 }

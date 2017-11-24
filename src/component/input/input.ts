@@ -15,7 +15,7 @@ export type INPUT_SIZE =
 'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
 
 @Component({
-    selector: '[nb-input]',
+    selector: 'input[nb-input]',
     templateUrl: './input.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,

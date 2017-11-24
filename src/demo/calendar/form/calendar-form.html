@@ -1,0 +1,15 @@
+<form #frm="ngForm">
+    <nb-datepicker name="date" [ngModel]="selectedDate"></nb-datepicker>
+</form>
+
+<p>
+    {{ frm.value | json }}
+</p>
+
+<form #frm1="ngForm">
+    <nb-range-datepicker name="rangeDate" [ngModel]="rangeValue"></nb-range-datepicker>
+</form>
+
+<p>
+    {{ frm1.value | json }}
+</p>

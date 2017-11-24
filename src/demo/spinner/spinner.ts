@@ -2,29 +2,21 @@ import {
     Component, OnInit, ChangeDetectionStrategy
 } from '@angular/core';
 
-import {FormBuilder, FormGroup} from '@angular/forms';
-
 @Component({
     selector: 'demo-spinner',
     templateUrl: './spinner.html',
     styleUrls: ['./spinner.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    preserveWhitespaces: false
 })
-export class DemoSpinner implements OnInit {
+export class DemoSpinner {
 
-    form: FormGroup;
+    // basic source
+    tsCodeBasic: string = require('!!raw-loader!./basic/spinner-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/spinner-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/spinner-basic.less');
 
-
-    constructor(private fb: FormBuilder) {
-
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({
-            spinner: [
-                {value: 11, disabled: false}
-            ]
-        });
-    }
+    // form source
+    tsCodeForm: string = require('!!raw-loader!./form/spinner-form.ts');
+    htmlCodeForm: string = require('!!raw-loader!./form/spinner-form.html');
+    lessCodeForm: string = require('!!raw-loader!./form/spinner-form.less');
 }

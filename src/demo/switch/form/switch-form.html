@@ -1,0 +1,7 @@
+<form #form1="ngForm">
+    forms: <nb-switch [ngModel]="false" name="switch1"></nb-switch> {{ form1.value | json }}
+</form>
+
+<form [formGroup]="form">
+    reactive forms: <nb-switch formControlName="switch2"></nb-switch> {{ form.value | json }}
+</form>
