@@ -30,31 +30,50 @@ export type BOX_TYPE = 'radio' | 'checkbox';
 })
 export class InputBoxComponent implements OnInit {
 
-    /** When the box's checked state change, emit a change event with a boolean value */
+    /** When the box state change, emit a change event with a boolean value */
     @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    /** box type: either 'checkbox' or 'radio' */
+    /**
+     * box type: either 'checkbox' or 'radio'
+     * @default checkbox
+     */
     @OnChange()
-    @Input() type: BOX_TYPE = 'checkbox';
+    @Input() type: 'radio' | 'checkbox' = 'checkbox';
 
-    /** input name, used to group radio inputs */
+    /**
+     * input name, used to group radio inputs
+     * @docs-private
+     */
     @OnChange()
-    @Input() uuid = getUUID();
+    @Input() uuid: string = getUUID();
 
-    /** Whether the box is disabled */
+    /**
+     * Whether the box is disabled
+     * @default false
+     */
     @OnChange(true)
-    @Input() disabled = false;
+    @Input() disabled: boolean = false;
 
-    /** Whether the box is checked */
+    /**
+     * Whether the box is checked
+     * @default false
+     */
     @OnChange(true)
-    @Input() checked = false;
+    @Input() checked: boolean = false;
 
-    /** Whether the box is intermediate */
+    /**
+     * Whether the box is intermediate
+     * @default false
+     */
     @OnChange(true)
-    @Input() intermediate = false;
+    @Input() intermediate: boolean = false;
+
+    /**
+     * @docs-private
+     */
     intermediateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    /** box value */
+    /** box value, can be any type */
     @Input() value: any;
 
     /** if using within boxgroup, the parent boxgroup component */

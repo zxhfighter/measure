@@ -34,7 +34,7 @@ const BOXGROUP_VALUE_ACCESSOR = {
 };
 
 /**
- * box group component
+ * Box Group Component
  */
 @Component({
     selector: 'nb-boxgroup',
@@ -50,25 +50,43 @@ const BOXGROUP_VALUE_ACCESSOR = {
 })
 export class BoxGroupComponent implements ControlValueAccessor {
 
-    /** when box group checked value change, emit a change event */
+    /**
+     * when box group value change, emit a change event with the `BoxGroupValue`, which contains
+     * the `currentValue` and `value` property
+     */
     @Output() change: EventEmitter<BoxGroupValue> = new EventEmitter<BoxGroupValue>();
 
-    /** box group type, either 'checkbox' or 'radio' */
+    /**
+     * box group type, either 'checkbox' or 'radio'
+     * @default checkbox
+     */
     @OnChange()
-    @Input() type = 'checkbox';
+    @Input() type: 'radio' | 'checkbox' = 'checkbox';
 
-    /** Whether the box group is disabled */
+    /**
+     * Whether the box group is disabled
+     * @default false
+     */
     @OnChange(true)
-    @Input() disabled = false;
+    @Input() disabled: boolean = false;
+
+    /**
+     * @docs-private
+     */
     disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    /** the value associated with the box group */
+    /**
+     * the value associated with the box group
+     */
     @OnChange()
     @Input() value: any;
 
-    /** the unique name of the box group */
+    /**
+     * the unique name of the box group
+     * @docs-private
+     */
     @OnChange()
-    @Input() uuid = getUUID();
+    @Input() uuid: string = getUUID();
 
     /** children box components */
     @ContentChildren(forwardRef(() => InputBoxComponent)) _boxList: QueryList<InputBoxComponent>;
