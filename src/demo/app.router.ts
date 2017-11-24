@@ -18,6 +18,7 @@ import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
+import {DemoPage} from './page';
 import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
@@ -27,6 +28,8 @@ import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
 import {DemoChips} from './chips';
+import {DemoCodeHighlighter} from './code-highlighter';
+import {DemoCodeBox} from './code-box';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -47,6 +50,7 @@ export const appRoutes: Routes = [
     {path: 'table', component: DemoTable},
     {path: 'tabs', component: DemoTabs},
     {path: 'tooltip', component: DemoTooltip},
+    {path: 'page', component: DemoPage},
     {path: 'text-line', component: DemoTextLine},
     {path: 'search-box', component: DemoSearchBox},
     {path: 'calendar', component: DemoCalendar},
@@ -55,5 +59,7 @@ export const appRoutes: Routes = [
     {path: 'calendar', component: DemoCalendar},
     {path: 'region', component: DemoRegion},
     {path: 'dialog', component: DemoDialog},
-    {path: 'chips', component: DemoChips}
+    {path: 'chips', component: DemoChips},
+    {path: 'code-highlighter', component: DemoCodeHighlighter},
+    {path: 'code-box', component: DemoCodeBox}
 ];

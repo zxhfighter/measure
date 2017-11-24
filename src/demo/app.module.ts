@@ -20,6 +20,7 @@ import {
   TabsModule,
   StepModule,
   TooltipModule,
+  PageModule,
   TextareaModule,
   TextLineModule,
   SearchBoxModule,
@@ -29,14 +30,15 @@ import {
   CalendarModule,
   RegionModule,
   DialogModule,
-  ChipsModule
+  ChipsModule,
+  CodeHighlighterModule,
+  CodeBoxModule
 } from '../component';
 
 import {AppComponent} from './app.component';
 import {appRoutes} from './app.router';
 
-import {DemoButton} from './button';
-import {DemoBreadcrumb} from './breadcrumb';
+// import {DemoButton} from './button';
 import {DemoSwitch} from './switch';
 import {DemoButtonGroup} from './button-group';
 import {DemoBoxGroup} from './box-group';
@@ -49,6 +51,7 @@ import {DemoTabs} from './tabs';
 import {DemoStep} from './step';
 import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
+import {DemoPage} from './page';
 import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
@@ -58,12 +61,19 @@ import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
 import {DemoChips} from './chips';
+import {DemoCodeHighlighter} from './code-highlighter';
+import {DemoCodeBox} from './code-box';
+import {ButtonDemoModule} from './button';
+import {BreadcrumbDemoModule} from './breadcrumb';
+
+const demoModules = [
+    ButtonDemoModule,
+    BreadcrumbDemoModule
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoButton,
-    DemoBreadcrumb,
     DemoSwitch,
     DemoButtonGroup,
     DemoBoxGroup,
@@ -76,6 +86,7 @@ import {DemoChips} from './chips';
     DemoTabs,
     DemoStep,
     DemoTooltip,
+    DemoPage,
     DemoTextarea,
     DemoTextLine,
     DemoSearchBox,
@@ -85,7 +96,9 @@ import {DemoChips} from './chips';
     DemoCalendar,
     DemoRegion,
     DemoDialog,
-    DemoChips
+    DemoChips,
+    DemoCodeHighlighter,
+    DemoCodeBox
   ],
   imports: [
     BrowserModule,
@@ -106,6 +119,7 @@ import {DemoChips} from './chips';
     TabsModule,
     StepModule,
     TableModule,
+    PageModule,
     TooltipModule,
     TextareaModule,
     TextLineModule,
@@ -116,6 +130,11 @@ import {DemoChips} from './chips';
     RegionModule,
     DialogModule,
     ChipsModule,
+    CodeHighlighterModule,
+    CodeBoxModule,
+
+    // demos
+    ...demoModules,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],

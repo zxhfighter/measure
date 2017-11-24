@@ -11,7 +11,8 @@ import {
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-<%= name %>'
-    }
+    },
+    exportAs: 'nb<%= upperName %>'
 })
 export class <%= upperName %>Component implements OnInit {
     constructor() {

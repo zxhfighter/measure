@@ -33,6 +33,7 @@
     "core-js": "^2.5.1",
     "echarts": "^3.7.2",
     "moment": "^2.19.1",
+    "prismjs": "^1.8.4",
     "rxjs": "^5.5.2",
     "tslib": "^1.8.0",
     "zone.js": "^0.8.18"
@@ -101,6 +102,7 @@
     "ng-router-loader": "^2.1.0",
     "ngc-webpack": "^3.2.2",
     "protractor": "^5.2.0",
+    "raw-loader": "^0.5.1",
     "resolve-bin": "^0.4.0",
     "rollup": "^0.50.0",
     "rollup-plugin-commonjs": "^8.2.1",

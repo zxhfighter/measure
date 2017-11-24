@@ -81,7 +81,7 @@ module.exports = {
 
             {
                 test: /\.(htm|html)$/,
-                loader: 'html-withimg-loader'
+                loader: 'html-withimg-loader?min=false'
             },
 
             {
