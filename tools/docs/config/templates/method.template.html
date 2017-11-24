@@ -1,26 +1,28 @@
-<dt class="docs-method-name">{$ method.name $} {%- if method.isDeprecated -%} <strong class="deprecated">Deprecated</strong> {%- endif -%}</dt>
-<dd class="docs-method-detail">
-    <dl>
-        <dt class="docs-method-desc-label">Description</dt>
-        <dd class="docs-method-desc-content">{$ method.description | marked $}</dd>
+<tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        {$ method.name $}() {%- if method.isDeprecated -%} <strong class="deprecated">Deprecated</strong> {%- endif -%}
+    </td>
+
+    <td class="docs-td docs-td-param">
         {%- if method.params.length -%}
-        <dt class="docs-method-param-label">Parameters</dt>
-        <dd>
             {% for parameter in method.params %}
             <div class="parameter-item">
                 {$ parameter.name $}{%- if parameter.isOptional -%}<span class="optional">?</span> {%- endif -%}
-                <span class="type">{$ parameter.type $}</span>
-                <div class="desc">{$ parameter.description | marked $}</div>
+                <span class="type">: {$ parameter.type $}</span>
+                <div class="desc"> - {$ parameter.description | marked $}</div>
             </div>
             {% endfor %}
-        </dd>
         {%- endif -%}
+    </td>
+
+    <td class="docs-td docs-td-type">
         {%- if method.showReturns -%}
-        <dt class="docs-method-return-label">Returns</dt>
-        <dd>
-            {$ method.returnType $}
-            <div class="desc">{$ method.returns.description | marked $}</div>
-        </dd>
+        <span class="type">{$ method.returnType $}</span>
+        <div class="desc">{$ method.returns.description | marked $}</div>
         {%- endif -%}
-    </dl>
-</dd>
+    </td>
+
+    <td class="docs-td docs-td-desc">
+        {$ method.description | marked $}
+    </td>
+</tr>
