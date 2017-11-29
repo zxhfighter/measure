@@ -49,7 +49,7 @@ import {DemoSearchBox} from './search-box';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoDialog} from './dialog';
-import {DemoChips} from './chips';
+import {ChipsDemoModule} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
 import {ButtonDemoModule} from './button';
@@ -77,7 +77,8 @@ const demoModules = [
     CarouselDemoModule,
     StepDemoModule,
     CalendarDemoModule,
-    RegionDemoModule
+    RegionDemoModule,
+    ChipsDemoModule
 ];
 
 @NgModule({
@@ -94,7 +95,6 @@ const demoModules = [
     DemoToast,
     DemoSelect,
     DemoDialog,
-    DemoChips,
     DemoCodeHighlighter,
     DemoCodeBox
   ],

@@ -10,7 +10,6 @@ import {
     changeDetection: ChangeDetectionStrategy.Default
 })
 export class DemoChips implements OnInit {
-
     constructor() {
 
     }

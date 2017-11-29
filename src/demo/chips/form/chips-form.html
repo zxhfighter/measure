@@ -1,0 +1,14 @@
+<p>Template-driven form</p>
+<form #frm="ngForm">
+    <nb-chips [ngModel]="chipsArray"  name="chips"></nb-chips>
+</form>
+<p>
+    {{ frm.value | json }}
+</p>
+<p>Model-driven form</p>
+<form [formGroup]="form">
+    <nb-chips formControlName="chips" ></nb-chips>
+</form>
+<p>
+    {{ form.value | json }}
+</p>
