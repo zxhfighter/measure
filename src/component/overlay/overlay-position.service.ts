@@ -12,7 +12,7 @@ import {
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
-import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from './position';
+import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from '../util/position';
 import { PositionStrategy } from '../util/position.strategy';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
