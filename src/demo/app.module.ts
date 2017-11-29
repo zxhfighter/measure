@@ -115,7 +115,7 @@ import {DemoTree} from './tree';
     SelectModule,
     RegionModule,
     DialogModule,
-    TreeModule
+    TreeModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],
