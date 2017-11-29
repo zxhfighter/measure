@@ -183,7 +183,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
     ngOnInit() {
         // cache all datasource
-        this.allDatasource = [...this.datasource];
+        this.allDatasource = [...this.datasource || []];
     }
 
     ngAfterContentInit() {

@@ -39,7 +39,6 @@ import {appRoutes} from './app.router';
 
 import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
-import {DemoTable} from './table';
 import {DemoTooltip} from './tooltip';
 import {DemoPage} from './page';
 import {DemoTextarea} from './textarea';
@@ -64,6 +63,7 @@ import {StepDemoModule} from './step';
 import {CalendarDemoModule} from './calendar';
 import {RegionDemoModule} from './region';
 import {CardDemoModule} from './card';
+import {TableDemoModule} from './table';
 
 const demoModules = [
     ButtonDemoModule,
@@ -78,14 +78,14 @@ const demoModules = [
     StepDemoModule,
     CalendarDemoModule,
     RegionDemoModule,
-    CardDemoModule
+    CardDemoModule,
+    TableDemoModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoInput,
-    DemoTable,
     DemoTabs,
     DemoTooltip,
     DemoPage,

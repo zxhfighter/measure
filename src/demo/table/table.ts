@@ -13,6 +13,11 @@ import {genStr, genNum} from '../util/random';
 })
 export class DemoTable implements OnInit {
 
+    // basic source
+    tsCodeBasic: string = require('!!raw-loader!./basic/table-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/table-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/table-basic.less');
+
     isAllChecked = false;
 
     allDatasource: any[] = [
