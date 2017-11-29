@@ -32,7 +32,8 @@ import {
   DialogModule,
   ChipsModule,
   CodeHighlighterModule,
-  CodeBoxModule
+  CodeBoxModule,
+  TreeModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -64,6 +65,7 @@ import {CarouselDemoModule} from './carousel';
 import {StepDemoModule} from './step';
 import {CalendarDemoModule} from './calendar';
 import {RegionDemoModule} from './region';
+import {DemoTree} from './tree';
 
 const demoModules = [
     ButtonDemoModule,
@@ -96,7 +98,9 @@ const demoModules = [
     DemoSelect,
     DemoDialog,
     DemoCodeHighlighter,
-    DemoCodeBox
+    DemoCodeBox,
+    DemoDialog,
+    DemoTree
   ],
   imports: [
     BrowserModule,
@@ -130,7 +134,7 @@ const demoModules = [
     ChipsModule,
     CodeHighlighterModule,
     CodeBoxModule,
-
+    TreeModule,
     // demos
     ...demoModules,
     RouterModule.forRoot(appRoutes, {useHash: true})

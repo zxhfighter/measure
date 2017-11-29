@@ -30,6 +30,7 @@ import {DemoDialog} from './dialog';
 import {DemoChips} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
+import {DemoTree} from './tree';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -61,5 +62,6 @@ export const appRoutes: Routes = [
     {path: 'dialog', component: DemoDialog},
     {path: 'chips', component: DemoChips},
     {path: 'code-highlighter', component: DemoCodeHighlighter},
-    {path: 'code-box', component: DemoCodeBox}
+    {path: 'code-box', component: DemoCodeBox},
+    {path: 'tree', component: DemoTree}
 ];
