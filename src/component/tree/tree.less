@@ -1,0 +1,92 @@
+.@{prefix}-tree {
+    display: block;
+    position: relative;
+    width: 200px;
+}
+
+.@{prefix}-tree-node-list {
+    width: 100%;
+    padding: 0 0 0 15px;
+}
+
+.@{prefix}-tree-node {
+    width: 100%;
+    list-style: none;
+}
+
+.@{prefix}-tree-content {
+    width: 100%;
+
+    span {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.@{prefix}-tree-content {
+    height: 36px;
+    line-height: 36px;
+}
+
+.@{prefix}-tree-no-child {
+    margin-left: 15px;
+}
+
+.@{prefix}-tree-selectable .@{prefix}-tree-content::before, 
+.@{prefix}-tree-selectable .@{prefix}-tree-content::after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    height: 36px;
+    cursor: pointer;
+}
+
+.@{prefix}-tree-selectable .@{prefix}-tree-content:hover::before {
+    background-color: #f7f7f7;
+}
+
+.@{prefix}-tree-selectable .@{prefix}-tree-content:active::before {
+    background-color: #e7e7e7;
+}
+
+.@{prefix}-tree-selectable .@{prefix}-tree-content:hover,
+// 展开|折叠箭头
+.@{prefix}-tree-node-toggle {
+    cursor: pointer;
+}
+
+.@{prefix}-tree-selectable .@{prefix}-tree-node-unselectable:hover,
+.@{prefix}-tree-node-unselectable:hover::before {
+    cursor: not-allowed;
+}
+
+.@{prefix}-tree-content .@{prefix}-tree-node-selection-candidate-icon,
+.@{prefix}-tree-content .@{prefix}-tree-node-selection-selected-icon {
+    display: none;
+}
+
+.@{prefix}-tree-mode-candidate .@{prefix}-tree-content:hover .@{prefix}-tree-node-selection-candidate-icon,
+.@{prefix}-tree-mode-selected .@{prefix}-tree-content:hover .@{prefix}-tree-node-selection-selected-icon {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+}
+
+// 已选择
+.@{prefix}-tree-selectable .@{prefix}-tree-node-selected,
+// 不可选择
+.@{prefix}-tree-selectable .@{prefix}-tree-node-unselectable {
+    color: #999;
+}
+
+// selected模式
+.@{prefix}-tree-mode-selected .@{prefix}-tree-content {
+    display: none;
+}
+
+.@{prefix}-tree-mode-selected .@{prefix}-tree-node-selected {
+    display: inline-block;
+    color: #666;
+}

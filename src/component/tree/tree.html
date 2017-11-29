@@ -1,0 +1,7 @@
+<ul 
+    class="nb-tree-node-list" 
+    [ngClass]="{'nb-tree-selectable':selectionMode}"
+    [class.nb-tree-mode-candidate]="selectionMode==='candidate'"
+    [class.nb-tree-mode-selected]="selectionMode==='selected'">
+    <nb-tree-node *ngFor="let node of treeData" [node]="node"></nb-tree-node>
+</ul>

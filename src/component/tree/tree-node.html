@@ -1,0 +1,31 @@
+<li [ngClass]="['nb-tree-node', node.styleClass || '']">
+    <div 
+        class="nb-tree-content"
+        [ngClass]="{'nb-tree-node-selected': node.isSelected, 'nb-tree-node-unselectable': !node.selectable}"
+        (click)="onNodeClick($event)">
+        <span 
+            *ngIf="node.children && node.children.length" 
+            class="nb-tree-node-toggle iconfont" 
+            [ngClass]="{'icon-arrow-down': node.isExpanded, 'icon-arrow-right': !node.isExpanded}"
+            (click)="toggle($event)">
+        </span>
+        <span [ngClass]="{'nb-tree-no-child': !node.children}">{{node.name}}</span>
+        <span
+            *ngIf="node.selectable"
+            class="nb-tree-node-selection-candidate-icon iconfont"
+            [ngClass]="{'icon-jiantouyou': !node.isSelected, 'icon-duigou2': node.isSelected}">
+        </span>
+        <span
+            *ngIf="node.selectable"
+            class="nb-tree-node-selection-selected-icon iconfont icon-close">
+        </span>
+    </div>
+    <ul 
+        class="nb-tree-node-list"
+        [style.display]="node.isExpanded ? 'block' : 'none'">
+        <nb-tree-node 
+            *ngFor="let childNode of node.children" 
+            [node]="childNode">
+        </nb-tree-node>
+    </ul>
+</li>
