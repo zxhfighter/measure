@@ -26,3 +26,4 @@ export * from './chips/index';
 export * from './code-highlighter/index';
 export * from './code-box/index';
 export * from './tree/index';
+export * from './overlay/index';

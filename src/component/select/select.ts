@@ -1,12 +1,11 @@
 import {
     Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef,
-    ViewContainerRef, Injector, NgZone, ComponentFactoryResolver, TemplateRef
 } from '@angular/core';
-import {SelectConfig, OptionsStyles} from './select.config';
-import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
+import { SelectConfig, OptionsStyles } from './select.config';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SelectOptionsComponent } from './select.options';
-import { OverlayService } from '../util/overlay.service';
+import { OverlayComponent } from '../overlay';
 import { Placement } from '../util/position';
 
 @Component({
@@ -27,7 +26,7 @@ import { Placement } from '../util/position';
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
     @ViewChild('button') button;
-    @ViewChild('overlay') overlay: SelectOptionsComponent;
+    @ViewChild('overlay') overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
     @Input() defaultLabel: string;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
@@ -39,35 +38,21 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     protected icon: string = 'fa-angle-down';
     protected selectedData: SelectConfig;
     protected styles: OptionsStyles;
-    protected windowResizeListener: Function;
-    protected documentClickListener: Function;
-    protected onModelChange: Function = () => {};
-    protected onModelTouched: Function = () => {};
-    protected overlayInstance: SelectOptionsComponent | null;
-    protected overlayService: OverlayService<SelectOptionsComponent>;
+    protected windowResizeListener: Function | null;
+    protected documentClickListener: Function | null;
+    protected onModelChange: Function = () => { };
+    protected onModelTouched: Function = () => { };
 
     placement: Placement = 'bottom-left';
 
     constructor(
-        private el: ElementRef,
         private renderer: Renderer2,
-        private viewContainerRef: ViewContainerRef,
-        private injector: Injector,
-        private ngZone: NgZone,
-        private componentFactoryResolver: ComponentFactoryResolver,
         private cd: ChangeDetectorRef) {
-
-        this.overlayService = new OverlayService<SelectOptionsComponent>(
-            SelectOptionsComponent,
-            injector,
-            viewContainerRef,
-            renderer,
-            componentFactoryResolver,
-            ngZone);
     }
 
     ngOnInit() {
-        this.selectedData = {value: null, label: this.defaultLabel || '请选择'};
+        this.selectedData = { value: null, label: this.defaultLabel || '请选择' };
+        this.overlay.origin = this.button;
     }
 
     onToggle(e) {
@@ -80,29 +65,15 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     }
 
     show() {
-        if (!this.overlayInstance) {
-            this.createOverlay();
-        }
-        this.overlayInstance!.show();
+        this.overlay.show();
     }
 
     hide() {
-        if (this.overlayInstance) {
-            this.overlayInstance.hide();
-        }
+        this.overlay.hide();
     }
 
     toggleOverlay() {
-        this.isOverlayVisible() ? this.hide() : this.show();
-    }
-
-    isOverlayVisible(): boolean {
-        return !!this.overlayInstance && this.overlayInstance.visibility;
-    }
-
-    createOverlay() {
-        this.overlayInstance = this.overlayService.createOverlayFromExistingComponent(
-            this.overlay, this.button.el, this.placement, true);
+        this.overlay.isVisible() ? this.hide() : this.show();
     }
 
     changeState() {
@@ -186,8 +157,5 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     ngOnDestroy() {
         this.unbindEvents();
-        if (this.overlayInstance) {
-            this.overlayInstance = null;
-        }
     }
 }
