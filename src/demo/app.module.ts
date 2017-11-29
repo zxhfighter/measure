@@ -31,6 +31,7 @@ import {
   CalendarModule,
   RegionModule,
   DialogModule,
+  ChipsModule,
   CodeHighlighterModule,
   CodeBoxModule
 } from '../component';
@@ -49,10 +50,9 @@ import {DemoSearchBox} from './search-box';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoDialog} from './dialog';
+import {ChipsDemoModule} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
-
-
 import {ButtonDemoModule} from './button';
 import {BreadcrumbDemoModule} from './breadcrumb';
 import {SwitchDemoModule} from './switch';
@@ -78,7 +78,8 @@ const demoModules = [
     CarouselDemoModule,
     StepDemoModule,
     CalendarDemoModule,
-    RegionDemoModule
+    RegionDemoModule,
+    ChipsDemoModule
 ];
 
 @NgModule({
@@ -128,6 +129,7 @@ const demoModules = [
     SelectModule,
     RegionModule,
     DialogModule,
+    ChipsModule,
     CodeHighlighterModule,
     CodeBoxModule,
 
