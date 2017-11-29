@@ -51,7 +51,6 @@ import {DemoDialog} from './dialog';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
 
-
 import {ButtonDemoModule} from './button';
 import {BreadcrumbDemoModule} from './breadcrumb';
 import {SwitchDemoModule} from './switch';
@@ -64,6 +63,7 @@ import {CarouselDemoModule} from './carousel';
 import {StepDemoModule} from './step';
 import {CalendarDemoModule} from './calendar';
 import {RegionDemoModule} from './region';
+import {CardDemoModule} from './card';
 
 const demoModules = [
     ButtonDemoModule,
@@ -77,7 +77,8 @@ const demoModules = [
     CarouselDemoModule,
     StepDemoModule,
     CalendarDemoModule,
-    RegionDemoModule
+    RegionDemoModule,
+    CardDemoModule
 ];
 
 @NgModule({

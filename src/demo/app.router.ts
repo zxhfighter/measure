@@ -29,6 +29,7 @@ import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
+import {DemoCard} from './card';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -59,5 +60,6 @@ export const appRoutes: Routes = [
     {path: 'region', component: DemoRegion},
     {path: 'dialog', component: DemoDialog},
     {path: 'code-highlighter', component: DemoCodeHighlighter},
-    {path: 'code-box', component: DemoCodeBox}
+    {path: 'code-box', component: DemoCodeBox},
+    {path: 'card', component: DemoCard}
 ];
