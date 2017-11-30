@@ -1,4 +1,4 @@
-import {Input, Component, ViewEncapsulation} from '@angular/core';
+import { Input, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'demo-chips-basic',
@@ -7,7 +7,7 @@ import {Input, Component, ViewEncapsulation} from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class DemoChipsBasic {
-    chipsValue: Array<any> = ['hello', 'world'];
+    chipsValue: Array<any> = ['hello'];
     changeValue(v) {
     	console.log(v);
     }
