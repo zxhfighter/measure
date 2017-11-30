@@ -1,12 +1,16 @@
 import {
     Component, Input, Output, EventEmitter, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy,
-    forwardRef, ChangeDetectorRef
+    forwardRef, ChangeDetectorRef, ViewChild, ViewChildren,
+    QueryList, Renderer2
 } from '@angular/core';
 
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-
-import {OnChange} from '../core/decorators';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { OnChange } from '../core/decorators';
+import { ENTER, BACKSPACE } from '../core/keycodes';
+import { ListItemDirective } from './chips.directive';
+import { InputComponent } from '../../component/input';
+import { ElementDef } from '@angular/core/src/view';
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -24,85 +28,91 @@ const CHIPS_VALUE_ACCESSOR = {
     templateUrl: './chips.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [CHIPS_VALUE_ACCESSOR],
+    providers: [CHIPS_VALUE_ACCESSOR, ListItemDirective],
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-chips'
-        // '[class.nb-chips-disabled]': 'disabled',
     }
 })
-export class ChipsComponent implements OnInit, ControlValueAccessor {
+export class ChipsComponent implements ControlValueAccessor {
     /**
-     * The event emitted when input value changes
+     * The event emitted when chips value changes
      */
-    @Output() change: EventEmitter<number> = new EventEmitter<number>();
+    @Output() change: EventEmitter<string[]> = new EventEmitter<string[]>();
 
     /**
-     * Edited chips
+     * Default chips value
      * @default []
      */
-    @Input() value: Array<String> = [];
+    @Input() value: Array<string> = [];
 
     /**
-     * Whether the spinner is disabled
+     * Whether the chips is disabled
      * @default false
      */
     @Input() disabled: boolean = false;
 
+    /**
+     * 获取input输入框
+     */
+    @ViewChild('input') liInput: ElementRef;
+
+    /**
+     * 获取已输入的chips list
+     */
+    @ViewChildren(ListItemDirective) chipsLi: QueryList<ListItemDirective>;
+
     constructor(
         private el: ElementRef,
-        private _cd: ChangeDetectorRef
+        private _cd: ChangeDetectorRef,
+        private render: Renderer2
     ) {
-    }
-
-    ngOnInit() {
     }
 
     /**
      * Input event
-     * @param {String} k event type
-     * @param {String} v input value
+     * @param {number} k event type
+     * @param {string} v input value
      */
-    onInputValue(k, v) {
+    onInputValue(k: number, v: string) {
         if (this.disabled) {
             return;
         }
-        switch (k) {
-            case 'Enter':
-                if (!v) {
-                    event.target.value = '';
-                    break;
-                }
-                event.target.value = '';
-                this.value = this.value.concat(v);
-                this.change.emit(this.value);
-                this._markForCheck();
-                break;
-            case 'Backspace':
-                let chip = event.target.parentElement.previousSibling;
-                if (!event.target.value.length && chip.nodeName === 'LI') {
-                    chip.remove();
-                    this.value = this.value.slice(0, -1);
+        try {
+            const codeEl = this.liInput.nativeElement as HTMLElement;
+            switch (k) {
+                case ENTER:
+                    if (!v) {
+                        this.render.setProperty(codeEl, 'value', '');
+                        break;
+                    }
+                    this.render.setProperty(codeEl, 'value', '');
+                    this.value = this.value.concat(v);
                     this.change.emit(this.value);
                     this._markForCheck();
-                }
-                break;
+                    break;
+                case BACKSPACE:
+                    if (!v.length && this.chipsLi.length) {
+                        this.value = this.value.slice(0, -1);
+                        this.change.emit(this.value);
+                        this._markForCheck();
+                    }
+                    break;
+            }
+        } catch (error) {
+            throw new Error('only work in browser, see error: ' + error);
         }
     }
 
     /**
      * Delete chip event
-     * @param {String} v to delete value
+     * @param {string} v to delete value
      */
-    onDelChip(v) {
+    onDelChip(i: number) {
         if (this.disabled) {
             return;
         }
-        let target = event.target;
-        let sel = this.value.find((v, i) => return v + '' === target.previousSibling.data);
-        let index = this.value.indexOf(sel);
-        target.parentElement.remove();
-        this.value = this.value.slice(0, index).concat(this.value.slice(index + 1));
+        this.value = this.value.slice(0, i).concat(this.value.slice(i + 1));
         this.change.emit(this.value);
         this._markForCheck();
     }
@@ -111,8 +121,9 @@ export class ChipsComponent implements OnInit, ControlValueAccessor {
      * Imitate input focus event
      * @param {object} input input element
      */
-    inputFocus(input) {
-        input.el.nativeElement.focus()
+    inputFocus() {
+        const codeEl = this.liInput.nativeElement as HTMLElement;
+        codeEl.focus();
     }
 
     /**
