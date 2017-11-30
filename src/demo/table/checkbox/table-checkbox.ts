@@ -1,12 +1,13 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
-    selector: 'demo-table-basic',
-    templateUrl: './table-basic.html',
-    styleUrls: ['./table-basic.less'],
+    selector: 'demo-table-checkbox',
+    templateUrl: './table-checkbox.html',
+    styleUrls: ['./table-checkbox.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoTableBasic {
+export class DemoTableCheckbox {
+    isAllChecked = false;
 
     fields: any[] = [
         {
@@ -62,4 +63,29 @@ export class DemoTableBasic {
         {name: '巴巴', phone: '18566665558', status: 2, statusText: '审核通过', school: 'DEU', height: '168cm', checked: false},
         {name: '阿九', phone: '11566665559', status: 1, statusText: '审核拒绝', school: 'CBB', height: '158cm', checked: false}
     ];
+
+    toggleAllChecked(allChecked: boolean) {
+        let data = [...this.datasource];
+        data.forEach(v => {
+            v.checked = allChecked;
+        });
+        this.datasource = data;
+        this.isAllChecked = allChecked;
+    }
+
+    checkIsAllChecked(checked: boolean, item: any) {
+        item.checked = checked;
+        this.isAllChecked = this.datasource.every(v => v.checked);
+    }
+
+    onRowClick(event: MouseEvent, item: any) {
+
+        const target = event.target as HTMLElement;
+        if (target.tagName === 'LABEL' && target.classList.contains('nb-checkbox-label')) {
+            return;
+        }
+
+        item.checked = !item.checked;
+        this.isAllChecked = this.datasource.every(v => v.checked);
+    }
 }

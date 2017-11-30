@@ -1,0 +1,82 @@
+<h1 class="main-title">nb-chips</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
+<section>
+    <h3 class="section-title">Usage</h3>
+    <div class="code">
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;ChipsModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
+    </div>
+</section>
+<h3 class="section-title">Examples</h3>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Chips Basic</h3>
+    <p nb-codebox-desc>Chips desc.</p>
+    <demo-chips-basic></demo-chips-basic>
+</nb-code-box>
+<nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+    <h3 nb-codebox-title>chips with Forms</h3>
+    <p nb-codebox-desc>chips desc.</p>
+    <demo-chips-form></demo-chips-form>
+</nb-code-box>
+<h3 class="section-title">API</h3>
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+    <h4 class="docs-api-h4 docs-api-class-name">
+      <code>ChipsComponent</code> API Reference
+    </h4>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    change
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter
+                <!-- <number> -->
+            </td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>the event emitted when input value changes</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    value
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">Array
+                <!-- <String> -->
+            </td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">Chips value</td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">Whether the spinner is disabled</td>
+        </tr>
+    </table>
+</div>

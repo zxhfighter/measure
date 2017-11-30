@@ -18,6 +18,16 @@ export class DemoTable implements OnInit {
     htmlCodeBasic: string = require('!!raw-loader!./basic/table-basic.html');
     lessCodeBasic: string = require('!!raw-loader!./basic/table-basic.less');
 
+     // basic source
+     tsCodeCheckbox: string = require('!!raw-loader!./checkbox/table-checkbox.ts');
+     htmlCodeCheckbox: string = require('!!raw-loader!./checkbox/table-checkbox.html');
+     lessCodeCheckbox: string = require('!!raw-loader!./checkbox/table-checkbox.less');
+
+     // basic source
+     tsCodeSort: string = require('!!raw-loader!./sortable/table-sort.ts');
+     htmlCodeSort: string = require('!!raw-loader!./sortable/table-sort.html');
+     lessCodeSort: string = require('!!raw-loader!./sortable/table-sort.less');
+
     isAllChecked = false;
 
     allDatasource: any[] = [

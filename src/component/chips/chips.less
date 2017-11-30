@@ -1,0 +1,52 @@
+.@{prefix}-chips {
+    display: block;
+
+    &-wrap {
+    	width: 389px;
+    	min-height: 26px;
+	    border: 1px solid #dbdbdb;
+	    // padding: 5px;
+	    &:not(.@{prefix}-chips-disabled) {
+	    	li.@{prefix}-chips-label {
+	    		cursor: default;
+	    	}
+	    	&:hover {
+			    border-color: #a8a8a8;
+	    		cursor: text;
+		    }
+	    }
+	}
+
+	&-disabled {
+	    color: #b8b8b8;
+	    background-color: #f7f7f7;
+	    opacity: 0.7;
+	    &:hover {
+	    	cursor: not-allowed;
+	    }
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		li {
+	    	list-style-type: none;
+			display: inline-block;
+	    }
+	    li.@{prefix}-chips-label {
+		    background: #dbdbdb;
+		    height: 24px;
+		    margin-left: 5px;
+		    line-height: 24px;
+		    margin-top: 5px;
+		    padding: 0 5px;
+		    .fa-times {
+		    	margin-left: 10px;
+		    }
+	    }
+	}
+
+	.@{prefix}-input:disabled {
+		border: none;
+	}
+}

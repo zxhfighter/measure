@@ -6,32 +6,33 @@ import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {
-  ButtonModule,
-  BreadcrumbModule,
-  SwitchModule,
-  ButtonGroupModule,
-  BoxGroupModule,
-  ChartModule,
-  ProgressBarModule,
-  SpinnerModule,
-  CarouselModule,
-  InputModule,
-  TableModule,
-  TabsModule,
-  StepModule,
-  TooltipModule,
-  PageModule,
-  TextareaModule,
-  TextLineModule,
-  SearchBoxModule,
-  ToastModule,
-  ToastService,
-  SelectModule,
-  CalendarModule,
-  RegionModule,
-  DialogModule,
-  CodeHighlighterModule,
-  CodeBoxModule
+    ButtonModule,
+    BreadcrumbModule,
+    SwitchModule,
+    ButtonGroupModule,
+    BoxGroupModule,
+    ChartModule,
+    ProgressBarModule,
+    SpinnerModule,
+    CarouselModule,
+    InputModule,
+    TableModule,
+    TabsModule,
+    StepModule,
+    TooltipModule,
+    PageModule,
+    TextareaModule,
+    TextLineModule,
+    SearchBoxModule,
+    ToastModule,
+    ToastService,
+    SelectModule,
+    CalendarModule,
+    RegionModule,
+    DialogModule,
+    ChipsModule,
+    CodeHighlighterModule,
+    CodeBoxModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -47,6 +48,7 @@ import {DemoSearchBox} from './search-box';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoDialog} from './dialog';
+import {ChipsDemoModule} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
 
@@ -79,62 +81,64 @@ const demoModules = [
     CalendarDemoModule,
     RegionDemoModule,
     CardDemoModule,
-    TableDemoModule
+    TableDemoModule,
+    ChipsDemoModule
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DemoInput,
-    DemoTabs,
-    DemoTooltip,
-    DemoPage,
-    DemoTextarea,
-    DemoTextLine,
-    DemoSearchBox,
-    DemoToast,
-    DemoSelect,
-    DemoDialog,
-    DemoCodeHighlighter,
-    DemoCodeBox
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ButtonModule.forRoot(),
-    BreadcrumbModule,
-    SwitchModule,
-    ButtonGroupModule,
-    BoxGroupModule,
-    ChartModule,
-    ProgressBarModule,
-    SpinnerModule,
-    CarouselModule,
-    InputModule,
-    TabsModule,
-    StepModule,
-    TableModule,
-    PageModule,
-    TooltipModule,
-    TextareaModule,
-    TextLineModule,
-    SearchBoxModule,
-    CalendarModule,
-    ToastModule,
-    SelectModule,
-    RegionModule,
-    DialogModule,
-    CodeHighlighterModule,
-    CodeBoxModule,
+    declarations: [
+        AppComponent,
+        DemoInput,
+        DemoTabs,
+        DemoTooltip,
+        DemoPage,
+        DemoTextarea,
+        DemoTextLine,
+        DemoSearchBox,
+        DemoToast,
+        DemoSelect,
+        DemoDialog,
+        DemoCodeHighlighter,
+        DemoCodeBox
+    ],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ButtonModule.forRoot(),
+        BreadcrumbModule,
+        SwitchModule,
+        ButtonGroupModule,
+        BoxGroupModule,
+        ChartModule,
+        ProgressBarModule,
+        SpinnerModule,
+        CarouselModule,
+        InputModule,
+        TabsModule,
+        StepModule,
+        TableModule,
+        PageModule,
+        TooltipModule,
+        TextareaModule,
+        TextLineModule,
+        SearchBoxModule,
+        CalendarModule,
+        ToastModule,
+        SelectModule,
+        RegionModule,
+        DialogModule,
+        ChipsModule,
+        CodeHighlighterModule,
+        CodeBoxModule,
 
-    // demos
-    ...demoModules,
-    RouterModule.forRoot(appRoutes, {useHash: true})
-  ],
-  providers: [ToastService],
-  bootstrap: [AppComponent]
+        // demos
+        ...demoModules,
+        RouterModule.forRoot(appRoutes, {useHash: true})
+    ],
+    providers: [ToastService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

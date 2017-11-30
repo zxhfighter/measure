@@ -1,51 +1,87 @@
+<p class="table-desc">
+    main size(14px) table, usually used as main table in a page.
+</p>
 <table nb-table #nbTable1 [datasource]="datasource">
     <thead nb-thead>
         <tr nb-row>
-            <th field="name">
-                <span>姓名</span>
+            <th *ngFor="let field of fields" [field]="field.name">
+                <span class="field-title">{{field.title}}</span>
             </th>
-            <th field="status">
-                <span>状态</span>
-            </th>
-            <th field="phone">手机号</th>
-            <th field="school">
-                大学
-            </th>
-            <th field="height">身高</th>
-            <th nb-th>操作</th>
         </tr>
     </thead>
 
     <tbody nb-tbody>
         <tr nb-row *ngFor="let item of nbTable1.datasource">
-            <td nb-td>
-                <span>{{item.name}}</span>
-            </td>
-            <td nb-td>
-                <ng-container [ngSwitch]="item.status">
-                    <ng-template [ngSwitchCase]="0">
-                        <span class="status-waiting">{{item.statusText}}</span>
-                    </ng-template>
-
-                    <ng-template [ngSwitchCase]="1">
-                        <span class="status-error">{{item.statusText}}</span>
-                    </ng-template>
-
-                    <ng-template [ngSwitchCase]="2">
-                        <span class="status-done">{{item.statusText}}</span>
-                    </ng-template>
-                </ng-container>
-            </td>
-            <td nb-td>{{item.phone}}</td>
-            <td nb-td>{{item.school}}</td>
-            <td nb-td>{{item.height}}</td>
-            <td nb-td>
-                <a href="javascript:;">查看</a>
-                <span class="splitter"></span>
-                <a href="javascript:;">编辑</a>
-                <span class="splitter"></span>
-                <a href="javascript:;">删除</a>
-            </td>
+            <ng-container *ngTemplateOutlet="tableTds;context: {$implicit: item}"></ng-container>
         </tr>
     </tbody>
 </table>
+
+<p class="table-desc">
+    small size(14px) table, used in dialogs, forms and so on.
+</p>
+<table nb-table #nbTable2 [datasource]="datasource" theme="small">
+    <thead nb-thead>
+        <tr nb-row>
+            <th *ngFor="let field of fields" [field]="field.name">
+                <span class="field-title">{{field.title}}</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody nb-tbody>
+        <tr nb-row *ngFor="let item of nbTable2.datasource">
+            <ng-container *ngTemplateOutlet="tableTds;context: {$implicit: item}"></ng-container>
+        </tr>
+    </tbody>
+</table>
+
+<p class="table-desc">
+    small size(12px) table, used in dialogs, forms and so on.
+</p>
+<table nb-table bordered #nbTable3 [datasource]="datasource" theme="x-small">
+    <thead nb-thead>
+        <tr nb-row>
+            <th *ngFor="let field of fields" [field]="field.name">
+                <span class="field-title">{{field.title}}</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody nb-tbody>
+        <tr nb-row *ngFor="let item of nbTable3.datasource">
+            <ng-container *ngTemplateOutlet="tableTds;context: {$implicit: item}"></ng-container>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #tableTds let-item>
+    <td nb-td>
+        <span>{{item.name}}</span>
+    </td>
+    <td nb-td>
+        <ng-container [ngSwitch]="item.status">
+            <ng-template [ngSwitchCase]="0">
+                <span class="status-waiting">{{item.statusText}}</span>
+            </ng-template>
+
+            <ng-template [ngSwitchCase]="1">
+                <span class="status-error">{{item.statusText}}</span>
+            </ng-template>
+
+            <ng-template [ngSwitchCase]="2">
+                <span class="status-done">{{item.statusText}}</span>
+            </ng-template>
+        </ng-container>
+    </td>
+    <td nb-td>{{item.phone}}</td>
+    <td nb-td>{{item.school}}</td>
+    <td nb-td>{{item.height}}</td>
+    <td nb-td>
+        <a href="javascript:;">查看</a>
+        <span class="splitter"></span>
+        <a href="javascript:;">编辑</a>
+        <span class="splitter"></span>
+        <a href="javascript:;">删除</a>
+    </td>
+</ng-template>

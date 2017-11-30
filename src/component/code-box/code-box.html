@@ -1,37 +1,37 @@
-<div class="nb-codebox-title">
+<div class="nb-codebox-title" (click)="onToggleDemo()">
     <ng-content select="[nb-codebox-title]"></ng-content>
 
     <div class="toggle-view-source"
         nbTooltip="View Source"
         placement="left"
         hasArrow
-        (click)="onToggleViewSource()">
+        (click)="onToggleViewSource($event)">
         <i class="iconfont icon-arrow-left"></i>
         <i class="iconfont icon-arrow-right"></i>
     </div>
 
 </div>
 
-<div class="nb-codebox-content">
-    <ng-content></ng-content>
-</div>
+<ng-container *ngIf="_showDemo">
+    <div class="nb-codebox-content">
+        <ng-content></ng-content>
+    </div>
 
-<div class="nb-codebox-desc">
-    <ng-content select="[nb-codebox-desc]"></ng-content>
-</div>
+    <div class="nb-codebox-desc">
+        <ng-content select="[nb-codebox-desc]"></ng-content>
+    </div>
 
-<div class="nb-codebox-source" *ngIf="showSource">
-    <nb-tabs underline>
-        <nb-tab title="HTML" *ngIf="htmlCode && htmlCode.length">
-            <nb-code-highlighter linenumbers language="markup" [rawCode]="htmlCode"></nb-code-highlighter>
-        </nb-tab>
-        <nb-tab title="TS" *ngIf="tsCode && tsCode.length">
-            <nb-code-highlighter linenumbers language="typescript" [rawCode]="tsCode"></nb-code-highlighter>
-        </nb-tab>
-        <nb-tab title="LESS" *ngIf="lessCode && lessCode.length">
-            <nb-code-highlighter linenumbers language="less" [rawCode]="lessCode"></nb-code-highlighter>
-        </nb-tab>
-    </nb-tabs>
-</div>
-
-
+    <div class="nb-codebox-source" *ngIf="showSource">
+        <nb-tabs underline>
+            <nb-tab title="HTML" *ngIf="htmlCode && htmlCode.length">
+                <nb-code-highlighter linenumbers language="markup" [rawCode]="htmlCode"></nb-code-highlighter>
+            </nb-tab>
+            <nb-tab title="TS" *ngIf="tsCode && tsCode.length">
+                <nb-code-highlighter linenumbers language="typescript" [rawCode]="tsCode"></nb-code-highlighter>
+            </nb-tab>
+            <nb-tab title="LESS" *ngIf="lessCode && lessCode.length">
+                <nb-code-highlighter linenumbers language="less" [rawCode]="lessCode"></nb-code-highlighter>
+            </nb-tab>
+        </nb-tabs>
+    </div>
+</ng-container>

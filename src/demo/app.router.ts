@@ -27,6 +27,7 @@ import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
+import {DemoChips} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
 import {DemoCard} from './card';
@@ -59,6 +60,7 @@ export const appRoutes: Routes = [
     {path: 'calendar', component: DemoCalendar},
     {path: 'region', component: DemoRegion},
     {path: 'dialog', component: DemoDialog},
+    {path: 'chips', component: DemoChips},
     {path: 'code-highlighter', component: DemoCodeHighlighter},
     {path: 'code-box', component: DemoCodeBox},
     {path: 'card', component: DemoCard}
