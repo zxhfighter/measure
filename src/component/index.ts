@@ -25,3 +25,4 @@ export * from './dialog/index';
 export * from './chips/index';
 export * from './code-highlighter/index';
 export * from './code-box/index';
+export * from './overlay/index';
