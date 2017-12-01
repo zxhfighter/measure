@@ -45,4 +45,8 @@ export class DemoInput implements OnInit {
         let arrSize = ['long-high', 'long-middle', 'long-low', 'default', 'short-high', 'short-middle', 'short-low'];
         this.size = arrSize[Math.floor(Math.random() * 7)];
     }
+
+    onFocus(ipt) {
+        ipt.placeholder = '';
+    }
 }

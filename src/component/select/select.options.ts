@@ -1,11 +1,8 @@
 import {
     Component, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2, AfterViewChecked,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, AfterViewInit
 } from '@angular/core';
-import {Overlay} from '@angular/cdk/overlay';
-import {ComponentPortal} from '@angular/cdk/portal';
-import {SelectConfig, OptionsStyles} from './select.config';
-
+import { SelectConfig, OptionsStyles } from './select.config';
 
 @Component({
     selector: 'nb-select-options',
@@ -20,8 +17,12 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
     @Input() value: number;
     @Input() styles: SelectConfig[] = [];
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
+    @Output() needReposition: EventEmitter<Object> = new EventEmitter();
 
-    constructor(protected cd: ChangeDetectorRef) {
+    constructor(
+        protected cd: ChangeDetectorRef,
+        protected el: ElementRef
+    ) {
     }
 
     ngOnInit() {

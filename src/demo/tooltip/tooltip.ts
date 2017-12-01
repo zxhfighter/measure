@@ -32,7 +32,7 @@ export class DemoTooltip implements OnInit {
     showIsolateTip() {
         const isVisible = this.tooltip.isTooltipVisible();
         if (!isVisible) {
-            this.tooltip.open();
+            this.tooltip.show();
         }
     }
 }

@@ -1,31 +1,107 @@
-<h1 class="main-title">Chart demo<h1 class="main-title">
+<h1 class="main-title">nb-chart</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;ChartModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;ChartModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Chart Demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-chart width="100%" height="600" [options]="options"></nb-chart>
-    </p>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Chart Basic</h3>
+    <p nb-codebox-desc>chart depends on echarts.</p>
 
-    <p>
-        <nb-chart width="100%" height="600" [options]="barOptions1"></nb-chart>
-    </p>
+    <demo-chart-basic></demo-chart-basic>
+</nb-code-box>
 
-    <p>
-        <nb-chart width="100%" height="600" [options]="barOptions2"></nb-chart>
-    </p>
+<h3 class="section-title">API</h3>
 
-    <p>
-        <nb-chart width="100%" height="600" [options]="barOptions3"></nb-chart>
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>nb-chart</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Chart Component, depends on <a href="http://echarts.baidu.com/">Echarts</a>
     </p>
-</section>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    width
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number | string</td>
+            <td class="docs-td docs-td-default">600</td>
+            <td class="docs-td docs-td-desc">
+                <p>chart width, can be a number(400) or a percent(30%)</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    height
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number | string</td>
+            <td class="docs-td docs-td-default">400</td>
+            <td class="docs-td docs-td-desc">
+                <p>chart height, can be a number(400) or a percent(30%)</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    chartTitle
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">''</td>
+            <td class="docs-td docs-td-desc">
+                <p>chart title</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    options
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">any</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>chart options, see
+                    <a href="http://echarts.baidu.com/option.html">echarts options</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>

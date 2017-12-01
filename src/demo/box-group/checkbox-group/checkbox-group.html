@@ -1,0 +1,60 @@
+<p>
+    basic checkbox group:
+    <br>
+    <nb-boxgroup type="checkbox" #boxgroup>
+        <nb-checkbox value="apple">apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="orange">orange</nb-checkbox>
+    </nb-boxgroup>
+
+    {{ boxgroup.value | json }}
+</p>
+
+
+<p>
+    default value:
+    <br>
+    <nb-boxgroup type="checkbox" #boxgroup1 [value]="['apple', 'lemon']">
+        <nb-checkbox value="apple">apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="orange">orange</nb-checkbox>
+    </nb-boxgroup>
+
+    {{ boxgroup1.value | json }}
+</p>
+
+<p>
+    change event(open console):
+    <br>
+    <nb-boxgroup type="checkbox" [value]="['apple', 'lemon']" (change)="onCheckboxGroupChange($event)">
+        <nb-checkbox value="apple">apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="orange">orange</nb-checkbox>
+    </nb-boxgroup>
+</p>
+
+
+<p>
+    disabled all checkbox:
+    <br>
+    <nb-boxgroup type="checkbox" disabled [value]="['apple', 'lemon']">
+        <nb-checkbox value="apple">apple</nb-checkbox>
+        <nb-checkbox value="banana">banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="orange">orange</nb-checkbox>
+    </nb-boxgroup>
+</p>
+
+<p>
+    disabled some of them:
+    <br>
+    <nb-boxgroup type="checkbox" [value]="['apple', 'lemon']">
+        <nb-checkbox value="apple" disabled>apple</nb-checkbox>
+        <nb-checkbox value="banana" disabled>banana</nb-checkbox>
+        <nb-checkbox value="lemon">lemon</nb-checkbox>
+        <nb-checkbox value="orange">orange</nb-checkbox>
+    </nb-boxgroup>
+</p>

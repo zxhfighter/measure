@@ -1,4 +1,7 @@
 @import "../../../node_modules/bootstrap-less/bootstrap/index.less";
+@import "../../../node_modules/prismjs/themes/prism.css";
+@import "../../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
+
 @import "./dev.less";
 @import "./common.less";
 @import "./font.less";
@@ -15,7 +18,7 @@
 }
 
 body {
-    background: #fffdee;
+    background: #f6f6f6;
 }
 
 .demo-app {
@@ -26,7 +29,7 @@ body {
         left: 0;
         right: 0;
         z-index: 100;
-        background-color: @brand-primary;
+        background-color: #001133;
 
         .logo {
             font-size: 28px;
@@ -70,7 +73,7 @@ body {
             bottom: 0;
             width: @aside-width;
             overflow: scroll;
-            background: #e6e2af;
+            background: #f1f1f1;
 
             .app-aside-list {
                 padding: 0;
@@ -102,6 +105,21 @@ body {
                 color: @brand-primary;
             }
 
+            .type-desc {
+                .type-directive {
+                    display: inline-block;
+                    padding: 5px 8px;
+                    background-color: #bb9600;
+                    color: #fff;
+                    border-radius: 2px;
+                }
+
+                .type-component {
+                    .type-directive;
+                    background-color: #960;
+                }
+            }
+
             .section-title {
                 font-size: 16px;
                 color: @brand-primary;
@@ -125,6 +143,10 @@ body {
 
             .section-desc {
                 padding: 5px 0;
+            }
+
+            .nb-codebox {
+                margin-top: 30px;
             }
         }
     }
@@ -153,4 +175,96 @@ body {
 label {
     font-weight: normal;
     margin: 0;
+}
+
+// docs
+.docs-api {
+    &-type {
+        font-size: 18px;
+        color: #333;
+    }
+
+    &-class-name {
+        font-size: 16px;
+    }
+
+    &-class-description {
+
+    }
+
+    .docs-table-desc {
+        font-size: 16px;
+        border-bottom: 1px solid #e6e6e6;
+        padding-bottom: 10px;
+    }
+
+    .docs-table {
+        width: 100%;
+
+        .docs-row {
+            border-bottom: 1px solid @table-row-bottom-color;
+
+            &:nth-child(2n) {
+                background-color: @table-row-even;
+            }
+
+            &:nth-child(2n+1) {
+                background-color: @table-row-odd;
+            }
+
+            .docs-td:first-of-type {
+                padding-left: 10px;
+            }
+        }
+
+        .docs-td {
+            padding: 13px 0;
+            height: 2em;
+            text-align: left;
+
+            &-name {
+                width: 15%;
+                font-family: monospace;
+            }
+
+            &-type {
+                width: 15%;
+                font-family: monospace;
+            }
+
+            &-default {
+                width: 15%;
+                font-family: monospace;
+            }
+
+            &-desc {
+                width: 55%;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+                & > p {
+                    margin: 0;
+                }
+            }
+        }
+
+        .docs-input-marker {
+            background: #329e6f;
+            display: inline-block;
+            color: #fff;
+            border-radius: 10px;
+            padding: 2px 5px;
+            font-size: 12px;
+        }
+
+        .docs-output-marker {
+            .docs-input-marker;
+            background-color: #930;
+        }
+
+        .docs-property-name {
+            margin: 0;
+            padding-left: 5px;
+            font-size: 16px;
+        }
+    }
 }

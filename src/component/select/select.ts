@@ -1,9 +1,12 @@
 import {
-    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef
+    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2, ElementRef,
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef,
 } from '@angular/core';
-import {SelectConfig, OptionsStyles} from './select.config';
-import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
+import { SelectConfig, OptionsStyles } from './select.config';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { SelectOptionsComponent } from './select.options';
+import { OverlayComponent } from '../overlay';
+import { Placement } from '../util/position';
 
 @Component({
     selector: 'nb-select',
@@ -23,6 +26,7 @@ import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
     @ViewChild('button') button;
+    @ViewChild('overlay') overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
     @Input() defaultLabel: string;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
@@ -34,17 +38,21 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     protected icon: string = 'fa-angle-down';
     protected selectedData: SelectConfig;
     protected styles: OptionsStyles;
-    protected windowResizeListener: Function;
-    protected documentClickListener: Function;
-    protected onModelChange: Function = () => {};
-    protected onModelTouched: Function = () => {};
+    protected windowResizeListener: Function | null;
+    protected documentClickListener: Function | null;
+    protected onModelChange: Function = () => { };
+    protected onModelTouched: Function = () => { };
 
-    constructor(protected renderer: Renderer2,
-                protected cd: ChangeDetectorRef) {
+    placement: Placement = 'bottom-left';
+
+    constructor(
+        private renderer: Renderer2,
+        private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
-        this.selectedData = {value: null, label: this.defaultLabel || '请选择'};
+        this.selectedData = { value: null, label: this.defaultLabel || '请选择' };
+        this.overlay.origin = this.button;
     }
 
     onToggle(e) {
@@ -52,12 +60,25 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
         this.changeState();
         if (this.expanded) {
-            this.setOptionsStyle();
             this.bindEvents();
         }
     }
 
+    show() {
+        this.overlay.show();
+    }
+
+    hide() {
+        this.overlay.hide();
+    }
+
+    toggleOverlay() {
+        this.overlay.isVisible() ? this.hide() : this.show();
+    }
+
     changeState() {
+        this.toggleOverlay();
+
         this.expanded = !this.expanded;
         this.icon = this.expanded ? 'fa-angle-up' : 'fa-angle-down';
         this.cd.markForCheck();
@@ -82,9 +103,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     }
 
     bindEvents() {
-        if (!this.windowResizeListener) {
-            this.windowResizeListener = this.renderer.listen('window', 'resize', () => this.setOptionsStyle());
-        }
 
         if (!this.documentClickListener) {
             this.documentClickListener = this.renderer.listen('document', 'click', () => {
@@ -109,11 +127,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         }
     }
 
-    setOptionsStyle() {
-        this.styles = this.getComputedStyle();
-        this.cd.markForCheck();
-    }
-
     setSelectedData() {
         this.datasource.forEach((data) => {
             if (data.value === this.value) {
@@ -121,25 +134,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
                 this.cd.markForCheck();
             }
         });
-    }
-
-    getComputedStyle() {
-        let styles: OptionsStyles = {};
-        let btnElement: HTMLElement = this.button.el.nativeElement;
-        let winInnerHeight: number = window.innerHeight;
-        let btnHeight: number = btnElement.offsetHeight;
-        let offsetTop: number = this._getTop(btnElement);
-        let offsetBottom: number = winInnerHeight - offsetTop - btnHeight;
-
-        styles.left = btnElement.offsetLeft + 'px';
-        if (offsetTop < offsetBottom + (btnHeight * 3)) {
-            styles.top = btnHeight + 'px';
-        }
-        else {
-            styles.bottom = btnHeight + 'px';
-        }
-
-        return styles;
     }
 
     writeValue(value: number) {
@@ -163,15 +157,5 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     ngOnDestroy() {
         this.unbindEvents();
-    }
-
-    protected _getTop(ele): number {
-        let offset = ele.offsetTop;
-
-        if (ele.offsetParent !== null) {
-            offset += this._getTop(ele.offsetParent);
-        }
-
-        return offset;
     }
 }

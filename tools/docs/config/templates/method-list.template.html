@@ -1,8 +1,14 @@
 {%- if methodList.length -%}
-  <h5 class="docs-api-h5 docs-api-method-header">Methods</h5>
-  <dl>
+<h5 class="docs-table-desc">Methods</h5>
+<table class="docs-table docs-table-methods">
+  <tr class="docs-row docs-row-head">
+    <th class="docs-td docs-th docs-td-name">Name</th>
+    <th class="docs-td docs-th docs-td-param">Parameters</th>
+    <th class="docs-td docs-th docs-td-type">Return Type</th>
+    <th class="docs-td docs-th docs-td-desc">Description</th>
+  </tr>
   {% for m in methodList %}
     {$ method(m) $}
   {% endfor %}
-  </dl>
+</table>
 {%- endif -%}

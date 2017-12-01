@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 /**
- * Progress bar
+ * Progress Bar Component
  */
 @Component({
     selector: 'nb-progress-bar',
@@ -18,17 +18,22 @@ import {
 })
 export class ProgressBarComponent {
 
-    /** When the progressbar is close */
+    /**
+     * Emit a event with the current progress value when the progressbar is closed
+     */
     @Output() close: EventEmitter<number> = new EventEmitter<number>();
 
-    /** When the progressbar is refresh */
+    /** Emit a event when the progressbar is refreshed */
     @Output() refresh: EventEmitter<number> = new EventEmitter<number>();
 
-    /** current progress bar value */
+    /**
+     * Current progress bar value
+     * @default 0
+     */
     @Input() value: number = 0;
 
     /**
-     * compute percent
+     * Compute percent
      * @docs-private
      */
     get percent(): number {
@@ -38,25 +43,46 @@ export class ProgressBarComponent {
         return 0;
     }
 
-    /** progress bar max value */
+    /**
+     * Progress bar max value
+     * @default 100
+     */
     @Input() maxValue: number = 100;
 
-    /** Whether the progress is successful  */
+    /**
+     * Whether the progress is successful
+     * @default false
+     */
     @Input() isSuccess: boolean = false;
 
-    /** success hint text */
+    /**
+     * Success text when progress bar is done
+     * @default 完成
+     */
     @Input() successText: string = '完成';
 
-    /** Whether the progress is error  */
+    /**
+     * Whether the progress is error
+     * @default false
+     */
     @Input() isError: boolean = false;
 
-    /** error hint text */
+    /**
+     * Error text when progress bar is error
+     * @default false
+     */
     @Input() errorText: string = '错误';
 
-    /** Whether show progress text */
+    /**
+     * Whether show progress text
+     * @default false
+     */
     @Input() showProgressText: boolean = false;
 
-    /** Whether show operation */
+    /**
+     * Whether show operation buttons
+     * @default false
+     */
     @Input() showOperation: boolean = false;
 
     /**

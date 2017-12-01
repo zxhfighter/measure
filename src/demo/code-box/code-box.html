@@ -1,0 +1,32 @@
+<h1 class="main-title">nb-code-box</h1>
+
+<p class="type-desc">
+    <span>type</span>: <span class="type-component">Component</span>
+</p>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;CodeBoxModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">CodeBox first demo</h3>
+
+    <p>
+        <nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
+            <h3 nb-codebox-title>Basic Buttons</h3>
+            <p nb-codebox-desc>There are six default themes, and you can customize your theme, it's a piece of cake.</p>
+            <button nb-button theme="primary">primary theme</button>
+            <button nb-button theme="default">default theme</button>
+            <button nb-button theme="neutral">neutral theme</button>
+            <button nb-button theme="transparent">transparent theme</button>
+            <button nb-button disabled>disabled button</button>
+            <button nb-button theme="yellow">custom theme</button>
+        </nb-code-box>
+    </p>
+</section>

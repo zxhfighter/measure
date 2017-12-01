@@ -11,7 +11,7 @@ import { OnChange } from '../core/decorators';
 export type TEXTAREA_THEME = 'default' | 'error' | string;
 
 @Component({
-    selector: '[nb-textarea]',
+    selector: 'input[nb-textarea]',
     templateUrl: './textarea.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -30,30 +30,50 @@ export type BOX_TYPE = 'radio' | 'checkbox';
 })
 export class InputBoxComponent implements OnInit {
 
-    /** When the box's checked state change, emit a change event with a boolean value */
+    /** When the box state change, emit a change event with a boolean value */
     @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    /** box type: either 'checkbox' or 'radio' */
+    /**
+     * box type: either 'checkbox' or 'radio'
+     * @default checkbox
+     */
     @OnChange()
-    @Input() type: BOX_TYPE = 'checkbox';
+    @Input() type: 'radio' | 'checkbox' = 'checkbox';
 
-    /** input name, used to group radio inputs */
+    /**
+     * input name, used to group radio inputs
+     * @docs-private
+     */
     @OnChange()
-    @Input() uuid = getUUID();
+    @Input() uuid: string = getUUID();
 
-    /** Whether the box is disabled */
+    /**
+     * Whether the box is disabled
+     * @default false
+     */
     @OnChange(true)
-    @Input() disabled = false;
+    @Input() disabled: boolean = false;
 
-    /** Whether the box is checked */
+    /**
+     * Whether the box is checked
+     * @default false
+     */
     @OnChange(true)
-    @Input() checked = false;
+    @Input() checked: boolean = false;
 
-    /** Whether the box is intermediate */
+    /**
+     * Whether the box is intermediate
+     * @default false
+     */
     @OnChange(true)
-    @Input() intermediate = false;
+    @Input() intermediate: boolean = false;
 
-    /** box value */
+    /**
+     * @docs-private
+     */
+    intermediateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    /** box value, can be any type */
     @Input() value: any;
 
     /** if using within boxgroup, the parent boxgroup component */
@@ -67,6 +87,12 @@ export class InputBoxComponent implements OnInit {
      */
     constructor(@Optional() parentBox: BoxGroupComponent, private cd: ChangeDetectorRef) {
         this._parentBox = parentBox;
+
+        this.intermediateChange.subscribe(
+            (v: boolean) => {
+                v && (this.checked = false);
+            }
+        );
     }
 
     ngOnInit() {
@@ -75,7 +101,7 @@ export class InputBoxComponent implements OnInit {
         if (this._parentBox) {
             this.type = (this._parentBox.type as BOX_TYPE);
             this.uuid = this._parentBox.uuid;
-            this.disabled = this._parentBox.disabled;
+            this.disabled = this.disabled || this._parentBox.disabled;
 
             const value = (this._parentBox.value || []) as any[];
             this.checked = value.indexOf(this.value) !== -1;

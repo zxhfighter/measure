@@ -1,62 +1,266 @@
-<h1 class="main-title">Carousel demo</h1>
+<h1 class="main-title">nb-carousel</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;CarouselModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;CarouselModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Carousel first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-carousel [width]="318"></nb-carousel>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Carousel Basic</h3>
+    <p nb-codebox-desc>carousel desc.</p>
+
+    <demo-carousel-basic></demo-carousel-basic>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeAuto" [htmlCode]="htmlCodeAuto" [lessCode]="lessCodeAuto">
+    <h3 nb-codebox-title>Carousel Auto</h3>
+    <p nb-codebox-desc>carousel auto desc.</p>
+
+    <demo-carousel-auto></demo-carousel-auto>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeLarge" [htmlCode]="htmlCodeLarge" [lessCode]="lessCodeLarge">
+    <h3 nb-codebox-title>Other Size Carousel</h3>
+    <p nb-codebox-desc>carousel size desc.</p>
+
+    <demo-carousel-large></demo-carousel-large>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeTitle" [htmlCode]="htmlCodeTitle" [lessCode]="lessCodeTitle">
+    <h3 nb-codebox-title>title navigation</h3>
+    <p nb-codebox-desc>title navigation desc.</p>
+
+    <demo-carousel-title></demo-carousel-title>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeArrow" [htmlCode]="htmlCodeArrow" [lessCode]="lessCodeArrow">
+    <h3 nb-codebox-title>arrow outside</h3>
+    <p nb-codebox-desc>arrow outside desc.</p>
+
+    <demo-carousel-arrow></demo-carousel-arrow>
+</nb-code-box>
+
+<h3 class="section-title">API</h3>
+
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>CarouselComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Carousel Component
     </p>
-</section>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    auto
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the carousel can auto play</p>
+            </td>
+        </tr>
 
 
-<section>
-    <h3 class="section-title">big size</h3>
 
-    <p>
-        <nb-carousel [width]="638" skin="big"></nb-carousel>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">small size</h3>
-
-    <p>
-        <nb-carousel [width]="158" skin="small"></nb-carousel>
-    </p>
-</section>
-
-
-<section>
-    <h3 class="section-title">auto</h3>
-
-    <p>
-        <nb-carousel [width]="318" [auto]="true"></nb-carousel>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">arrow outside</h3>
-
-    <p>
-        <nb-carousel [width]="318" skin="outside"></nb-carousel>
-    </p>
-</section>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    interval
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default">3000</td>
+            <td class="docs-td docs-td-desc">
+                <p>The time interval(milliseconds) when auto play</p>
+            </td>
+        </tr>
 
 
-<section>
-    <h3 class="section-title">title navigation</h3>
 
-    <p>
-        <nb-carousel [width]="638" skin="big" [showTitle]="true"></nb-carousel>
-    </p>
-</section>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    showTitle
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the carousel show title navigation</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    width
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>carousel width, in pixels</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    datasource
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">CarouselItem[]</td>
+            <td class="docs-td docs-td-default">[]</td>
+            <td class="docs-td docs-td-desc">
+                <p>carousel datasource, each item with a
+                    <code>title</code>、
+                    <code>imageUrl</code>、
+                    <code>href</code>(optional) property</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    activeIndex
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default">0</td>
+            <td class="docs-td docs-td-desc">
+                <p>carousel active index</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    skin
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">''</td>
+            <td class="docs-td docs-td-desc">
+                <p>carousel custom style skin, will add a class
+                    <code>nb-carousel-skinName</code> to the host element</p>
+            </td>
+        </tr>
+
+
+
+    </table>
+
+
+    <h5 class="docs-table-desc">Methods</h5>
+    <table class="docs-table docs-table-methods">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th docs-td-name">Name</th>
+            <th class="docs-td docs-th docs-td-param">Parameters</th>
+            <th class="docs-td docs-th docs-td-type">Return Type</th>
+            <th class="docs-td docs-th docs-td-desc">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                navigate()</td>
+
+            <td class="docs-td docs-td-param">
+                <div class="parameter-item">
+                    idx
+                    <span class="type">: number</span>
+                    <span class="desc"> -
+                        <p>index</p>
+                    </span>
+                </div>
+            </td>
+
+            <td class="docs-td docs-td-type"></td>
+
+            <td class="docs-td docs-td-desc">
+                <p>navigate to specific index</p>
+
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                prev()</td>
+
+            <td class="docs-td docs-td-param"></td>
+
+            <td class="docs-td docs-td-type"></td>
+
+            <td class="docs-td docs-td-desc">
+                <p>navigate to prev item</p>
+
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                next()</td>
+
+            <td class="docs-td docs-td-param"></td>
+
+            <td class="docs-td docs-td-type"></td>
+
+            <td class="docs-td docs-td-desc">
+                <p>navigate to next item</p>
+
+            </td>
+        </tr>
+
+
+
+    </table>
+
+</div>

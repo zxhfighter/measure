@@ -1,0 +1,31 @@
+<form #form="ngForm">
+    <p>
+        <nb-button-group [ngModel]="['apple', 'flash']" name="group" type="checkbox">
+            <nb-button-toggle value="apple">
+                Apple <i class="fa fa-apple"></i>
+            </nb-button-toggle>
+            <nb-button-toggle value="book">
+                Book <i class="fa fa-book"></i>
+            </nb-button-toggle>
+            <nb-button-toggle value="flash">
+               Flash <i class="fa fa-flash"></i>
+            </nb-button-toggle>
+        </nb-button-group>
+    </p>
+
+    <p>
+        <nb-button-group [ngModel]="['book']" name="radioGroup" type="radio">
+            <nb-button-toggle value="apple">
+                Apple <i class="fa fa-apple"></i>
+            </nb-button-toggle>
+            <nb-button-toggle value="book">
+                Book <i class="fa fa-book"></i>
+            </nb-button-toggle>
+            <nb-button-toggle value="flash">
+                Flash <i class="fa fa-flash"></i>
+            </nb-button-toggle>
+        </nb-button-group>
+    </p>
+</form>
+
+{{ form.value | json }}

@@ -1,125 +1,43 @@
-<h1 class="main-title">Step demo</h1>
+<h1 class="main-title">nb-step</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;StepModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;StepModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Step first demo</h3>
+<nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
+    <h3 nb-codebox-title>Step Basic</h3>
+    <p nb-codebox-desc>step desc.</p>
 
-    <p>
-        <nb-step [value]="currentStep">
-            <nb-step-item [value]="1">
-                自定义文字01
-                <a href="http://www.baidu.com" target="_blank">查看详情</a>
-            </nb-step-item>
+    <demo-step-basic></demo-step-basic>
+</nb-code-box>
 
-            <nb-step-item [value]="2">
-                自定义文字02
-            </nb-step-item>
+<nb-code-box [tsCode]="tsCodeMulti" [htmlCode]="htmlCodeMulti" [lessCode]="lessCodeMulti">
+    <h3 nb-codebox-title>Multiline</h3>
+    <p nb-codebox-desc>step desc.</p>
 
-            <nb-step-item [value]="3">
-                自定义文字03
-            </nb-step-item>
-        </nb-step>
-    </p>
+    <demo-step-multi></demo-step-multi>
+</nb-code-box>
 
-    <p>
-        <button theme="default" nb-button type="button" (click)="prev()">上一步</button>
-        <button theme="default" nb-button type="button" (click)="next()">下一步</button>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeVert" [htmlCode]="htmlCodeVert" [lessCode]="lessCodeVert">
+    <h3 nb-codebox-title>Vertical</h3>
+    <p nb-codebox-desc>step desc.</p>
 
-<section>
-    <h3 class="section-title">Multiline</h3>
+    <demo-step-vertical></demo-step-vertical>
+</nb-code-box>
 
-    <p>
-        <nb-step [value]="2">
-            <nb-step-item [value]="1" [success]="true">
-                <p>自定义步骤一</p>
-                <p class="desc">填写信息，
-                    <a href="http://www.baidu.com" target="_blank">查看详情</a>
-                </p>
-            </nb-step-item>
+<nb-code-box [tsCode]="tsCodeSmall" [htmlCode]="htmlCodeSmall" [lessCode]="lessCodeSmall">
+    <h3 nb-codebox-title>Small Size</h3>
+    <p nb-codebox-desc>step desc.</p>
 
-            <nb-step-item [value]="2" [active]="true">
-                <p>自定义步骤二</p>
-                <p class="desc">验证身份</p>
-            </nb-step-item>
-
-            <nb-step-item [value]="3">
-                <p>自定义步骤三</p>
-                <p class="desc">注册成功</p>
-            </nb-step-item>
-        </nb-step>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">Small</h3>
-
-    <p>
-        <nb-step [value]="2">
-            <nb-step-item [value]="1" [success]="true" skin="small">
-                自定义步骤一
-                <a href="http://www.baidu.com" target="_blank">查看详情</a>
-            </nb-step-item>
-
-            <nb-step-item [value]="2" [active]="true" skin="small">
-                自定义步骤二
-            </nb-step-item>
-
-            <nb-step-item [value]="3" skin="small">
-                自定义步骤三
-            </nb-step-item>
-        </nb-step>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">Vertical</h3>
-
-    <p>
-        <nb-step skin="vertical" [value]="2">
-            <nb-step-item [value]="1" [success]="true">
-                自定义步骤一
-                <a href="http://www.baidu.com" target="_blank">查看详情</a>
-            </nb-step-item>
-
-            <nb-step-item [value]="2" [active]="true">
-                自定义步骤二
-            </nb-step-item>
-
-            <nb-step-item [value]="3">
-                自定义步骤三
-            </nb-step-item>
-        </nb-step>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">Vertical Small</h3>
-
-    <p>
-        <nb-step skin="vertical" [value]="2">
-            <nb-step-item [value]="1" [success]="true" skin="small">
-                自定义步骤一
-                <a href="http://www.baidu.com" target="_blank">查看详情</a>
-            </nb-step-item>
-
-            <nb-step-item [value]="2" [active]="true" skin="small">
-                自定义步骤二
-            </nb-step-item>
-
-            <nb-step-item [value]="3" skin="small">
-                自定义步骤三
-            </nb-step-item>
-        </nb-step>
-    </p>
-</section>
+    <demo-step-small></demo-step-small>
+</nb-code-box>

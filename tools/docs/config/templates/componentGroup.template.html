@@ -20,51 +20,43 @@
 {% endmacro %}
 
 <div class="docs-api">
-  <h2>{$ doc.name $} API reference</h2>
-
-  <p class="docs-api-module-import">
-    <code>
-      import {{$ doc.ngModule.name $}} from '@baidu/xdesign';
-    </code>
-  </p>
-
   {%- if doc.components.length -%}
-    <h2>Components</h2>
+    <h2 class="docs-api-type">Components</h2>
     {% for component in doc.components %}
       {$ class(component) $}
     {% endfor %}
   {%- endif -%}
 
   {%- if doc.directives.length -%}
-    <h2>Directives</h2>
+    <h2 class="docs-api-type">Directives</h2>
     {% for directive in doc.directives %}
       {$ class(directive) $}
     {% endfor %}
   {%- endif -%}
 
   {%- if doc.services.length -%}
-    <h2>Services</h2>
+    <h2 class="docs-api-type">Services</h2>
     {% for service in doc.services %}
       {$ class(service) $}
     {% endfor %}
   {%- endif -%}
 
   {%- if doc.additionalClasses.length -%}
-    <h2>Additional classes</h2>
+    <h2 class="docs-api-type">Additional classes</h2>
     {% for other in doc.additionalClasses %}
       {$ class(other) $}
     {% endfor %}
   {%- endif -%}
 
   {%- if doc.interfaceClasses.length -%}
-    <h2>Interface classes</h2>
+    <h2 class="docs-api-type">Interface classes</h2>
     {% for other in doc.interfaceClasses %}
       {$ class(other) $}
     {% endfor %}
   {%- endif -%}
 
   {%- if doc.typeClasses.length -%}
-    <h2>Type classes</h2>
+    <h2 class="docs-api-type">Type classes</h2>
     {% for other in doc.typeClasses %}
       {$ class(other) $}
     {% endfor %}

@@ -1,0 +1,22 @@
+<div *ngIf="_title" class="nb-card-head">
+    <h3 class="nb-card-head-title">
+        <ng-template [ngTemplateOutlet]="_title"></ng-template>
+    </h3>
+
+    <div class="nb-card-head-operation">
+
+        <ng-container *ngIf="disposable">
+            <i title="Close" class="iconfont icon-close" (click)="onDispose()"></i>
+        </ng-container>
+
+        <ng-template *ngIf="!disposable" [ngTemplateOutlet]="_operation"></ng-template>
+    </div>
+</div>
+
+<div class="nb-card-body">
+    <ng-template [ngTemplateOutlet]="_body"></ng-template>
+</div>
+
+<div *ngIf="_foot" class="nb-card-foot">
+    <ng-template [ngTemplateOutlet]="_foot"></ng-template>
+</div>

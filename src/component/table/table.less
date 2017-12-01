@@ -2,33 +2,32 @@
 @table-head-top-border-color: #fff;
 @table-color: #666;
 @table-body-color: #333;
-@table-row-odd: #fbfbfb;
+@table-row-odd: #fff;
 @table-row-even: #fff;
-@table-row-hover: #F5F9FF;
+@table-row-hover: #f7f7f7;
+@table-row-checked: #fcfcfc;
 @table-row-bottom-color: #eee;
 
 @table-row-height: 45px;
 @table-font-size: 14px;
 
+// main 14px table
 .@{prefix}-table {
     width: 100%;
     position: relative;
+    border-collapse: collapse;
 
     &-row {
         border-bottom: 1px solid @table-row-bottom-color;
 
-        &-even {
-            background-color: @table-row-even;
-        }
-
-        &-odd {
-            background-color: @table-row-odd;
+        .@{prefix}-table-td:first-of-type {
+            padding-left: 1.428em;
         }
     }
 
     &-head {
         .@{prefix}-table-row {
-
+            background-color: #fff;
         }
 
         .@{prefix}-table-th {
@@ -42,6 +41,10 @@
                 height: 100%;
                 cursor: col-resize;
                 z-index: 100;
+            }
+
+            &:hover {
+                background: @table-row-hover;
             }
 
             &:last-of-type {
@@ -58,19 +61,50 @@
         }
 
         .icon-filter {
+            margin-left: 8px;
+
             &.active {
                 color: @brand-primary;
             }
         }
+
+        .field-title-wrapper {
+            display: inline-block;
+        }
     }
 
     &-body {
+        .@{prefix}-table-row {
+            &:nth-child(2n) {
+                background-color: @table-row-even;
+            }
 
+            &:nth-child(2n+1) {
+                background-color: @table-row-odd;
+            }
+
+            &:hover {
+                background-color: @table-row-hover;
+            }
+
+            &-checked {
+                background-color: @table-row-checked !important;
+            }
+        }
     }
 
     &-td {
+        line-height: 2;
         padding: 13px 0;
-        height: 2em;
+
+        .splitter {
+            display: inline-block;
+            width: 2px;
+            height: 10px;
+            background-color: #e5e5e5;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
     }
 
     .table-resize-line {
@@ -80,6 +114,31 @@
         height: 100%;
         border-right: 1px dashed #999;
     }
+
+    &-bordered {
+        .@{prefix}-table-td {
+            border: 1px solid #eee;
+        }
+
+        .@{prefix}-table-td {
+            padding-left: 7px !important;
+        }
+    }
+}
+
+// small 14px table
+.@{prefix}-table-small {
+    .@{prefix}-table-td {
+        padding: 8px 0;
+    }
+}
+
+// small 12px table
+.@{prefix}-table-x-small {
+    font-size: 12px;
+    .@{prefix}-table-td {
+        padding: 8px 0;
+    }
 }
 
 .table-tip-panel {
@@ -88,7 +147,7 @@
     color: #333;
     padding: 10px;
     z-index: 11;
-    box-shadow: 0 1px 4px 0 rgba(0 ,0 ,0 , .2);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .2);
     border-radius: 1px;
     font-weight: normal;
 }
@@ -98,9 +157,10 @@
     background-color: #fff;
     padding: 15px;
     z-index: 10;
-    box-shadow: 0 1px 4px 0 rgba(0 ,0 ,0 , .2);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .2);
     border-radius: 1px;
     font-weight: normal;
+    width: max-content;
 
     .filter-content-button {
         margin-top: 10px;
@@ -119,7 +179,8 @@
     display: inline-block;
     position: relative;
     width: 12px;
-    height: 12px;
+    height: 16px;
+    margin-left: 8px;
     font-weight: normal;
     cursor: pointer;
 

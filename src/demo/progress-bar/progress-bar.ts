@@ -6,62 +6,17 @@ import {
     selector: 'demo-progress-bar',
     templateUrl: './progress-bar.html',
     styleUrls: ['./progress-bar.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    preserveWhitespaces: false
 })
-export class DemoProgressBar implements OnInit {
+export class DemoProgressBar {
 
-    value = 0;
-    value1 = 0;
+    // basic source
+    tsCodeBasic: string = require('!!raw-loader!./basic/progress-bar-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/progress-bar-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/progress-bar-basic.less');
 
-    t: any;
-    t1: any;
-
-    isError: boolean;
-    isSuccess: boolean;
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-        this.t = setInterval(() => {
-            if (this.value <= 100) {
-                this.value += 1;
-            }
-
-            if (this.value >= 100) {
-                this.isSuccess = true;
-                clearInterval(this.t);
-            }
-        }, 100);
-
-        this.t1 = setInterval(() => {
-
-            if (this.value1 <= 100) {
-                this.value1 += Math.floor(Math.random() * 10);
-            }
-
-            if (this.value1 >= 100) {
-                this.isError = true;
-                clearInterval(this.t1);
-            }
-        }, 1000);
-    }
-
-    ngOnDestroy() {
-        clearInterval(this.t);
-        clearInterval(this.t1);
-    }
-
-    ngAfterViewInit() {
-    }
-
-    onClose() {
-        alert('关闭进度条');
-    }
-
-    onRefresh() {
-        alert('刷新进度条');
-    }
+    // basic source
+    tsCodeCircular: string = require('!!raw-loader!./circular/progress-bar-circular.ts');
+    htmlCodeCircular: string = require('!!raw-loader!./circular/progress-bar-circular.html');
+    lessCodeCircular: string = require('!!raw-loader!./circular/progress-bar-circular.less');
 }

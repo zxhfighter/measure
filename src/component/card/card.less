@@ -1,0 +1,66 @@
+.@{prefix}-card {
+    display: block;
+
+    background: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .2);
+
+    &-head {
+        position: relative;
+
+        &-title {
+            margin: 0;
+            padding: 15px 0 15px 20px;
+            line-height: 1.875;
+            font-size: 16px;
+            color: @text-color-dark;
+            border-bottom: 1px solid #e7e7e7;
+        }
+
+        &-operation {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            .icon-close {
+                color: @text-color;
+                font-size: 16px;
+                cursor: pointer;
+
+                &:hover {
+                    color: @text-color-dark;
+                }
+            }
+        }
+    }
+
+    &-body {
+        padding: 20px;
+    }
+
+    &-foot {
+        padding: 0 20px 25px 20px;
+        .nb-button-theme-primary {
+            margin-right: 10px;
+        }
+    }
+}
+
+.@{prefix}-card-dialog {
+    .@{prefix}-card-head-title {
+        border-bottom: none;
+    }
+}
+
+.@{prefix}-card-form {
+    .@{prefix}-card-head {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-left: 0;
+        padding-right: 0;
+
+        &-title {
+            padding-left: 0;
+        }
+    }
+}

@@ -1,138 +1,250 @@
-<h1 class="main-title">BoxGroup demo</h1>
+<h1 class="main-title">nb-boxgroup, nb-checkbox</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;BoxGroupModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Single checkbox</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-checkbox (change)="onSingleCheck($event)">北斗</nb-checkbox>
-        <nb-checkbox>秋实</nb-checkbox>
-        <nb-checkbox disabled>DSP</nb-checkbox>
-        <nb-checkbox [disabled]="true" [checked]="singleDisabled">SSP</nb-checkbox>
-        <nb-checkbox [disabled]="singleDisabled">MSP</nb-checkbox>
-        <nb-checkbox intermediate>秋实</nb-checkbox>
-        <button type="button" (click)="changeSingleDisabled()">change disabled</button>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Checkbox Basic</h3>
+    <p nb-codebox-desc>checkbox desc.</p>
+
+    <demo-checkbox></demo-checkbox>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeRadio" [htmlCode]="htmlCodeRadio" [lessCode]="lessCodeRadio">
+    <h3 nb-codebox-title>Radiobox Basic</h3>
+    <p nb-codebox-desc>radiobox desc.</p>
+
+    <demo-radio></demo-radio>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeCheckboxGroup" [htmlCode]="htmlCodeCheckboxGroup" [lessCode]="lessCodeCheckboxGroup">
+    <h3 nb-codebox-title>Checkbox Group Basic</h3>
+    <p nb-codebox-desc>checkbox group desc.</p>
+
+    <demo-checkbox-group></demo-checkbox-group>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeRadioGroup" [htmlCode]="htmlCodeRadioGroup" [lessCode]="lessCodeRadioGroup">
+    <h3 nb-codebox-title>Radio Group Basic</h3>
+    <p nb-codebox-desc>radio group desc.</p>
+
+    <demo-radio-group></demo-radio-group>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+    <h3 nb-codebox-title>box group with forms</h3>
+    <p nb-codebox-desc>box group with forms desc.</p>
+
+    <demo-boxgroup-form></demo-boxgroup-form>
+</nb-code-box>
+
+<h3 class="section-title">API</h3>
+
+<div class="docs-api">
+
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>nb-checkbox</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">A single checkbox or radiobox
     </p>
-</section>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
 
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    change
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;boolean&gt;</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>When the box state change, emit a change event with a boolean value</p>
+            </td>
+        </tr>
 
-<section>
-    <h3 class="section-title">Single checkbox</h3>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    type
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">'radio' | 'checkbox'</td>
+            <td class="docs-td docs-td-default">checkbox</td>
+            <td class="docs-td docs-td-desc">
+                <p>box type: either &#39;checkbox&#39; or &#39;radio&#39;</p>
+            </td>
+        </tr>
 
-    <p>
-        <nb-checkbox type="radio">北斗</nb-checkbox>
-        <nb-checkbox type="radio">秋实</nb-checkbox>
-        <nb-checkbox type="radio" disabled>SSP</nb-checkbox>
-        <nb-checkbox type="radio" [disabled]="true" [checked]="true">秋实</nb-checkbox>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the box is disabled</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    checked
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the box is checked</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    intermediate
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the box is intermediate</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    value
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">any</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>box value, can be any type</p>
+            </td>
+        </tr>
+    </table>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>nb-boxgroup</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Box Group Component
     </p>
-</section>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
 
-<section>
-    <h3 class="section-title">checkbox box group</h3>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    change
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;BoxGroupValue&gt;
+            </td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>when box group value change, emit a change event with the
+                    <code>BoxGroupValue</code>, which contains the <code>currentValue</code> and <code>value</code> property
+                </p>
+            </td>
+        </tr>
 
-    <p>
-        <nb-boxgroup type="checkbox" (change)="onCheckboxGroupChange($event)">
-            <nb-checkbox value="b">北斗</nb-checkbox>
-            <nb-checkbox value="p">秋实</nb-checkbox>
-            <nb-checkbox value="s" disabled>SSP</nb-checkbox>
-            <nb-checkbox value="qqq" [disabled]="true">秋实</nb-checkbox>
-        </nb-boxgroup>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    type
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">'radio' | 'checkbox'</td>
+            <td class="docs-td docs-td-default">checkbox</td>
+            <td class="docs-td docs-td-desc">
+                <p>box group type, either &#39;checkbox&#39; or &#39;radio&#39;</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the box group is disabled</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    value
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">any</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>the value associated with the box group</p>
+            </td>
+        </tr>
+    </table>
+
+    <h2 class="docs-api-type">Interface classes</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>BoxGroupValue</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">box group value type
     </p>
-</section>
-
-<section>
-    <h3 class="section-title">box radio group</h3>
-
-    <p>
-        <nb-boxgroup type="radio" (change)="onRadioGroupChange($event)">
-            <nb-checkbox value="1">北斗</nb-checkbox>
-            <nb-checkbox value="x">秋实</nb-checkbox>
-            <nb-checkbox value="ssp" disabled>SSP</nb-checkbox>
-            <nb-checkbox value="qiushi" [disabled]="true">秋实</nb-checkbox>
-        </nb-boxgroup>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">using within forms</h3>
-
-    <form #frm="ngForm">
-
-        <p>
-            <nb-boxgroup type="radio" name="radioBox" [ngModel]="['ssp']" (change)="onRadioGroupChange($event)">
-                <nb-checkbox value="1">北斗</nb-checkbox>
-                <nb-checkbox value="x">秋实</nb-checkbox>
-                <nb-checkbox value="ssp" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qiushi" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        <p>
-            <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="['b', 's']" (change)="onCheckboxGroupChange($event)">
-                <nb-checkbox value="b">北斗</nb-checkbox>
-                <nb-checkbox value="p">秋实</nb-checkbox>
-                <nb-checkbox value="s" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qqq" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        <p>
-            {{ frm.value | json }}
-        </p>
-
-        <p>
-            <nb-boxgroup disabled type="radio" name="radioBoxDisabled" [ngModel]="['ssp']" (change)="onRadioGroupChange($event)">
-                <nb-checkbox value="1">北斗</nb-checkbox>
-                <nb-checkbox value="x">秋实</nb-checkbox>
-                <nb-checkbox value="ssp" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qiushi" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        <p>
-            <nb-boxgroup [disabled]="true" type="checkbox" name="checkboxBoxDisabled" [ngModel]="['b', 's']" (change)="onCheckboxGroupChange($event)">
-                <nb-checkbox value="b">北斗</nb-checkbox>
-                <nb-checkbox value="p">秋实</nb-checkbox>
-                <nb-checkbox value="s" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qqq" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-    </form>
-</section>
-
-<section>
-    <h3 class="section-title">using within reactive forms</h3>
-
-    <form [formGroup]="form">
-
-        <p>
-            <nb-boxgroup type="radio" formControlName="radioBox" (change)="onRadioGroupChange($event)">
-                <nb-checkbox value="1">北斗</nb-checkbox>
-                <nb-checkbox value="x">秋实</nb-checkbox>
-                <nb-checkbox value="ssp" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qiushi" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        <p>
-            <nb-boxgroup type="checkbox" formControlName="checkboxBox" (change)="onCheckboxGroupChange($event)">
-                <nb-checkbox value="b">北斗</nb-checkbox>
-                <nb-checkbox value="p">秋实</nb-checkbox>
-                <nb-checkbox value="s" disabled>SSP</nb-checkbox>
-                <nb-checkbox value="qqq" [disabled]="true">秋实</nb-checkbox>
-            </nb-boxgroup>
-        </p>
-
-        {{ form.value | json }}
-    </form>
-</section>
+</div>

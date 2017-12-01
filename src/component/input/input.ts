@@ -19,7 +19,7 @@ import {OnChange} from '../core/decorators';
 export type INPUT_THEME = 'default' | 'error' | 'transparent' | string;
 
 /** default input size types */
-export type INPUT_SIZE = 
+export type INPUT_SIZE =
 'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
 
 @Directive({
@@ -29,8 +29,9 @@ export type INPUT_SIZE =
         '[disabled]': 'disabled || null'
     }
 })
+
 export class InputDirective implements OnChanges, AfterViewInit {
-    
+
     /** input theme, there four default themes: 'default' */
     @Input() theme: INPUT_THEME = 'default';
 

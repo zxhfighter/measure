@@ -1,0 +1,62 @@
+<div class="nb-page">
+    <div class="page-turn">
+        <span>共{{total}}条</span>
+        <span>每页条数</span>
+        <!-- <select name="select">
+            <option [value]="item" *ngFor="let item of list">{{item}}</option>
+        </select> -->
+        <nb-select [datasource]="selectData"
+            [defaultLabel]="count"
+            (onChange)="setCount($event)">
+        </nb-select>
+        <!-- <nb-select-options *ngIf="expanded"
+            (onChange)="onSelectedOption($event)"
+            [styles]="styles"
+            [value]="value"
+            [data]="datasource">
+        </nb-select-options> -->
+        <ng-container *ngIf="pageSize.length < 7">
+            <span (click)="jumpTo(i+1)" *ngFor="let item of pageSize; index as i"
+                [ngClass]="{'turn-on': i + 1 === currrentIndex}">{{i+1}}</span>
+        </ng-container>
+
+        <ng-container *ngIf="pageSize.length >= 7 && currrentIndex < 4">
+            <ng-container *ngFor="let item of firstPages; index as i">
+                <span *ngIf="i < 5" (click)="jumpTo(i+1)"
+                    [ngClass]="{'turn-on': i + 1 === currrentIndex}">{{i+1}}</span>
+            </ng-container>
+
+            <em>...</em>
+            <span (click)="jumpTo(pageSize.length)">{{pageSize.length}}</span>
+        </ng-container>
+
+        <ng-container *ngIf="pageSize.length >= 7 && currrentIndex > 3 && currrentIndex < pageSize.length - 2">
+            <span (click)="jumpTo(1)">1</span>
+            <em>...</em>
+            <span (click)="jumpTo(--currrentIndex)">{{+currrentIndex-1}}</span>
+            <span (click)="jumpTo(currrentIndex)" class="turn-on">{{currrentIndex}}</span>
+            <span (click)="jumpTo(++currrentIndex)">{{+currrentIndex+1}}</span>
+            <em>...</em>
+            <span (click)="jumpTo(pageSize.length)">{{pageSize.length}}</span>
+        </ng-container>
+
+        <ng-container *ngIf="pageSize.length >= 7 && currrentIndex > pageSize.length-3">
+            <span (click)="jumpTo(1)">1</span>
+            <em>...</em>
+            <span (click)="jumpTo(pageSize.length-3)"
+                [ngClass]="{'turn-on': pageSize.length - 3 === currrentIndex}">{{pageSize.length-3}}</span>
+            <span (click)="jumpTo(pageSize.length-2)"
+                [ngClass]="{'turn-on': pageSize.length - 2 === currrentIndex}">{{pageSize.length-2}}</span>
+            <span (click)="jumpTo(pageSize.length-1)"
+                [ngClass]="{'turn-on': pageSize.length - 1 === currrentIndex}">{{pageSize.length-1}}</span>
+            <span (click)="jumpTo(pageSize.length)"
+                [ngClass]="{'turn-on': pageSize.length === currrentIndex}">{{pageSize.length}}</span>
+        </ng-container>
+        <span (click)="jumpTo(-2)" *ngIf="currrentIndex !== 1">&lt;</span>
+        <span (click)="jumpTo(-1)" *ngIf="currrentIndex !== pageSize.length">&gt;</span>
+        <!-- <em class="go-page">去第</em>
+        <input type="text" class="form-control" v-model.number="currrentIndex">
+        <em class="go-page">页</em>
+        <button (click)="jumpTo(currrentIndex)" type="button" class="btn btn-important">确定</button> -->
+    </div>
+</div>

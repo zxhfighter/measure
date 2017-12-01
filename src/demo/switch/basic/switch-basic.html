@@ -1,0 +1,23 @@
+<p>
+    change event:
+    <nb-switch (change)="onSwitchChange($event)"></nb-switch> {{ text }}
+</p>
+
+<p>
+    default checked:
+    <nb-switch [checked]="checked"></nb-switch>
+</p>
+
+<p>
+    disabled:
+    <nb-switch disabled></nb-switch>
+    <nb-switch [checked]="true" disabled></nb-switch>
+</p>
+
+<p>
+    custom size and theme:
+    <nb-switch styleClass="nb-switch-small"></nb-switch>
+    <nb-switch styleClass="nb-switch-small" disabled></nb-switch>
+    <nb-switch styleClass="nb-switch-small" checked></nb-switch>
+    <nb-switch styleClass="nb-switch-small" checked disabled></nb-switch>
+</p>

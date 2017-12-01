@@ -20,7 +20,7 @@ const SPINNER_VALUE_ACCESSOR = {
 };
 
 /**
- * A spinner input component
+ * Spinner Input Component
  */
 @Component({
     selector: 'nb-spinner',
@@ -36,21 +36,39 @@ const SPINNER_VALUE_ACCESSOR = {
 })
 export class SpinnerComponent implements ControlValueAccessor {
 
-    /** Spinner value */
+    /**
+     * the event emitted when input value changes
+     */
+    @Output() change: EventEmitter<number> = new EventEmitter<number>();
+
+    /**
+     * Spinner value
+     * @default 0
+     */
     @Input() value: number = 0;
 
-    /** Spinner step value, default to 1*/
+    /**
+     * Spinner step value, default to 1
+     * @default 1
+     */
     @Input() step: number = 1;
 
-    /** Spinner max value */
+    /**
+     * Spinner max value
+     */
     @Input() minValue: number;
 
-    /** Spinner min value */
+    /**
+     * Spinner min value
+     */
     @Input() maxValue: number;
 
-    /** Whether the spinner is disabled  */
+    /**
+     * Whether the spinner is disabled
+     * @default false
+     */
     @OnChange(true)
-    @Input() disabled = false;
+    @Input() disabled: boolean = false;
 
     constructor(private _cd: ChangeDetectorRef, private _render: Renderer2) {}
 
@@ -66,6 +84,7 @@ export class SpinnerComponent implements ControlValueAccessor {
         const nextValue = this.value + this.step;
         const isMaxValue = typeof this.maxValue === 'number' && nextValue > this.maxValue
         this.value = isMaxValue ? this.maxValue : this.value + this.step;
+        this.change.emit(this.value);
         this._markForCheck();
     }
 
@@ -81,6 +100,7 @@ export class SpinnerComponent implements ControlValueAccessor {
         const nextValue = this.value - this.step;
         const isMinValue = typeof this.minValue === 'number' && nextValue < this.minValue;
         this.value = isMinValue ? this.minValue : this.value - this.step;
+        this.change.emit(this.value);
         this._markForCheck();
     }
 
@@ -108,6 +128,8 @@ export class SpinnerComponent implements ControlValueAccessor {
         else {
             this.value = num;
         }
+
+        this.change.emit(this.value);
 
         this._markForCheck();
     }
