@@ -1,0 +1,102 @@
+<nb-card width="480" disposable>
+    <ng-template #title>
+        涨幅排行榜
+        <i class="iconfont icon-arrow-up"></i>
+    </ng-template>
+
+    <ng-template #body>
+        <ul>
+            <li>京东</li>
+            <li>百度</li>
+            <li>好未来</li>
+        </ul>
+    </ng-template>
+</nb-card>
+
+<nb-card width="600">
+    <ng-template #title>
+        跌幅排行榜
+        <i class="iconfont icon-arrow-down"></i>
+    </ng-template>
+
+    <ng-template #operation>
+        <a href="javascript:;">换一批</a>
+    </ng-template>
+
+    <ng-template #body>
+        <ul>
+            <li>特斯拉</li>
+            <li>苹果</li>
+            <li>迅雷</li>
+        </ul>
+    </ng-template>
+
+    <ng-template #foot>
+        <button nb-button size="sm" theme="primary">确认</button>
+        <button nb-button size="sm" theme="default">取消</button>
+    </ng-template>
+</nb-card>
+
+
+<nb-card width="300">
+    <ng-template #body>
+        <p class="info-icon"><i class="iconfont icon-success"></i></p>
+        <h3 class="info-title">创建条目成功</h3>
+        <p class="info-desc">恭喜你，你的资料已经提交成功</p>
+    </ng-template>
+
+    <ng-template #foot>
+        <div class="info-button">
+            <button nb-button size="sm" theme="default">知道了</button>
+        </div>
+    </ng-template>
+</nb-card>
+
+<nb-card width="443" theme="dialog" disposable>
+
+    <ng-template #title>
+        温馨提示
+    </ng-template>
+
+    <ng-template #body>
+        <p>莫听穿林打叶声</p>
+        <p>何妨吟啸且徐行</p>
+        <p>竹杖芒鞋轻胜马</p>
+        <p>谁怕？一蓑烟雨任平生</p>
+    </ng-template>
+
+    <ng-template #foot>
+        <div class="info-button">
+            <button nb-button size="sm" theme="primary">确定</button>
+            <button nb-button size="sm" theme="default">取消</button>
+        </div>
+    </ng-template>
+</nb-card>
+
+
+<nb-card width="443" theme="form" disposable>
+
+    <ng-template #title>
+        表单标题
+    </ng-template>
+
+    <ng-template #body>
+        <form class="nb-form">
+            <div class="nb-form-row">
+                <div class="nb-form-row-label">
+                    计划名称:
+                </div>
+                <div class="nb-form-row-content">
+                    <input type="text">
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #foot>
+        <div class="info-button">
+            <button nb-button size="sm" theme="primary">确定</button>
+            <button nb-button size="sm" theme="default">取消</button>
+        </div>
+    </ng-template>
+</nb-card>

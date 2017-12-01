@@ -1,0 +1,37 @@
+<table nb-table #nbTable1 [datasource]="datasource">
+    <thead nb-thead>
+        <tr nb-row>
+            <th nb-th style="width:50px"></th>
+            <th *ngFor="let field of fields" [field]="field.name">
+                <span class="field-title">{{field.title}}</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody nb-tbody>
+
+        <ng-template ngFor let-item [ngForOf]="nbTable1.datasource">
+            <tr nb-row>
+                <td nb-td>
+                    <i class="iconfont" [class.icon-plus]="!item.expand" [class.icon-minus]="item.expand" (click)="onToggle(item)"></i>
+                </td>
+                <td nb-td>{{item.name}}</td>
+                <td nb-td>{{item.age}}</td>
+                <td nb-td>{{item.address}}</td>
+
+                <td nb-td>
+                    <a href="javascript:;">查看</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">编辑</a>
+                    <span class="splitter"></span>
+                    <a href="javascript:;">删除</a>
+                </td>
+            </tr>
+
+            <tr nb-row *ngIf="item.expand">
+                <td nb-td></td>
+                <td nb-td colspan="4">{{item.description}}</td>
+            </tr>
+        </ng-template>
+    </tbody>
+</table>

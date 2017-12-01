@@ -21,6 +21,8 @@ export class CodeBoxComponent implements OnInit, AfterViewInit, AfterContentInit
     @Input() htmlCode: string = '';
     @Input() lessCode: string = '';
 
+    _showDemo = true;
+
     constructor() {
 
     }
@@ -37,7 +39,13 @@ export class CodeBoxComponent implements OnInit, AfterViewInit, AfterContentInit
 
     }
 
-    onToggleViewSource() {
+    onToggleDemo() {
+        this._showDemo = !this._showDemo;
+    }
+
+    onToggleViewSource(event: MouseEvent) {
         this.showSource = !this.showSource;
+
+        event.stopPropagation();
     }
 }

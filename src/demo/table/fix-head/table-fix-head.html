@@ -1,0 +1,67 @@
+<div class="fix-table-container">
+    <div class="fix-table-head">
+        <table nb-table #nbTable>
+
+            <colgroup ngNonBindable>
+                <col style="width:120px" />
+                <col style="width:150px" />
+                <col style="width:170px" />
+                <col style="width:120px" />
+                <col style="width:240px" />
+                <col>
+            </colgroup>
+
+            <thead nb-thead>
+                <tr nb-row>
+                    <th *ngFor="let field of fields" [field]="field.name">
+                        <span class="field-title">{{field.title}}</span>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="fix-table-body">
+        <table nb-table #nbTable1 [datasource]="datasource">
+            <colgroup>
+                <col style="width:120px" />
+                <col style="width:150px" />
+                <col style="width:170px" />
+                <col style="width:120px" />
+                <col style="width:240px" />
+                <col>
+            </colgroup>
+
+            <tbody nb-tbody>
+                <tr nb-row *ngFor="let item of nbTable1.datasource">
+                    <td nb-td>{{item.name}}</td>
+                    <td nb-td>
+                        <ng-container [ngSwitch]="item.status">
+                            <ng-template [ngSwitchCase]="0">
+                                <span class="status-waiting">{{item.statusText}}</span>
+                            </ng-template>
+
+                            <ng-template [ngSwitchCase]="1">
+                                <span class="status-error">{{item.statusText}}</span>
+                            </ng-template>
+
+                            <ng-template [ngSwitchCase]="2">
+                                <span class="status-done">{{item.statusText}}</span>
+                            </ng-template>
+                        </ng-container>
+                    </td>
+                    <td nb-td>{{item.phone}}</td>
+                    <td nb-td>{{item.school}}</td>
+                    <td nb-td>{{item.height}}</td>
+                    <td nb-td>
+                        <a href="javascript:;">查看</a>
+                        <span class="splitter"></span>
+                        <a href="javascript:;">编辑</a>
+                        <span class="splitter"></span>
+                        <a href="javascript:;">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -31,6 +31,7 @@ import {DemoChips} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
 import {DemoTree} from './tree';
+import {DemoCard} from './card';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -63,5 +64,6 @@ export const appRoutes: Routes = [
     {path: 'chips', component: DemoChips},
     {path: 'code-highlighter', component: DemoCodeHighlighter},
     {path: 'code-box', component: DemoCodeBox},
-    {path: 'tree', component: DemoTree}
+    {path: 'tree', component: DemoTree},
+    {path: 'card', component: DemoCard}
 ];

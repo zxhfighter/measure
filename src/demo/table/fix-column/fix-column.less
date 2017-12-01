@@ -1,0 +1,36 @@
+.fix-table-outer {
+    display: block;
+    position: relative;
+}
+
+.fix-table {
+    margin-left: 120px;
+    overflow-x: scroll;
+    overflow-y: visible;
+
+    .nb-table {
+        position: static;
+
+        .nb-table-body .nb-table-row,
+        .nb-table-head .nb-table-row {
+            .nb-table-td {
+                white-space: nowrap;
+
+                &:first-of-type {
+                    position: absolute;
+                    width: 120px;
+                    left: 0;
+                    top: auto;
+                    background-color: #fff;
+                    border-right: 1px solid #e7e7e7;
+                    border-top-width: 1px; /*only relevant for first row*/
+                    margin-top: 0px; /*compensate for top border*/
+                }
+            }
+
+            .nb-table-td:not(:first-of-type) {
+                padding: 13px 10px;
+            }
+        }
+    }
+}
