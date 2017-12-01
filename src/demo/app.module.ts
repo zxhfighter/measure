@@ -47,6 +47,7 @@ import {DemoPage} from './page';
 import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
+import {DemoTree} from './tree';
 import {DemoToast} from './toast';
 import {DemoSelect} from './select';
 import {DemoDialog} from './dialog';
@@ -66,7 +67,6 @@ import {CarouselDemoModule} from './carousel';
 import {StepDemoModule} from './step';
 import {CalendarDemoModule} from './calendar';
 import {RegionDemoModule} from './region';
-import {DemoTree} from './tree';
 import {CardDemoModule} from './card';
 import {TableDemoModule} from './table';
 
@@ -98,6 +98,7 @@ const demoModules = [
         DemoTextarea,
         DemoTextLine,
         DemoSearchBox,
+        DemoTree,
         DemoToast,
         DemoSelect,
         DemoDialog,
