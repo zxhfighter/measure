@@ -392,7 +392,7 @@ export class TableHeaderComponent {}
         </div>
 
         <ng-container *ngIf="tipable">
-            <i class="iconfont icon-question" (mouseover)="onShowTip($event)" (mouseout)="onHideTip()"></i>
+            <i class="iconfont icon-help" (mouseover)="onShowTip($event)" (mouseout)="onHideTip()"></i>
         </ng-container>
 
         <ng-container *ngIf="filterable">
