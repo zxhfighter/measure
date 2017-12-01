@@ -29,7 +29,7 @@ export type INPUT_SIZE =
         '[disabled]': 'disabled || null'
     }
 })
-export class InputComponent implements OnChanges, AfterViewInit {
+export class InputDirective implements OnChanges, AfterViewInit {
 
     /** input theme, there four default themes: 'default' */
     @Input() theme: INPUT_THEME = 'default';
