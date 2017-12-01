@@ -41,7 +41,7 @@ export class TreeComponent implements OnInit {
     /** private variable tree-list
      *  @docs-private
      */
-    private _treelist = [];
+    private _treeList = [];
 
     constructor() { }
 
@@ -55,7 +55,7 @@ export class TreeComponent implements OnInit {
     transferTreeToList(treeData: object[]) {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
-                this._treelist.push(node);
+                this._treeList.push(node);
                 if (node.children && node.children.length) {
                     this.transferTreeToList(node.children);
                 }
@@ -143,7 +143,7 @@ export class TreeComponent implements OnInit {
 
     /** get tree-node parent tree-node */
     getParent(treeNodeParent: TreeNodeParent) {
-        return this._treelist.find((node: TreeNode) => {
+        return this._treeList.find((node: TreeNode) => {
             return treeNodeParent.id === node.id;
         });
     }

@@ -27,6 +27,7 @@ import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
 import {DemoTree} from './tree';
+import {DemoSideBar} from './side-bar/';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -55,5 +56,6 @@ export const appRoutes: Routes = [
     {path: 'calendar', component: DemoCalendar},
     {path: 'region', component: DemoRegion},
     {path: 'dialog', component: DemoDialog},
-    {path: 'tree', component: DemoTree}
+    {path: 'tree', component: DemoTree},
+    {path: 'side-bar', component: DemoSideBar}
 ];

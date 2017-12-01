@@ -22,3 +22,4 @@ export * from './select/index';
 export * from './region/index';
 export * from './dialog/index';
 export * from './tree/index';
+export * from './side-bar/index';

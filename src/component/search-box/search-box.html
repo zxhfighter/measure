@@ -7,6 +7,8 @@
     [placeholder]="placeholder"
     [disabled]="disabled"
     [(ngModel)]="searchValue"
+    (focus)="onFocus(searchInput)"
+    (blur)="onBlur(searchInput)"
     (keyup)="onInputValue()">
 <div class="nb-search-box-operate">
     <div class="nb-search-box-icons">
@@ -15,7 +17,7 @@
             nb-button
             theme="transparent"
             class="nb-clear iconfont icon-close"
-            (click)="clearSearch()"
+            (click)="clearSearch(searchInput)"
             [disabled]="disabled">
             <i class="iconfont icon-close"></i>
         </button>

@@ -1,0 +1,10 @@
+<div class="nb-side-bar">
+    <nb-search-box 
+        placeholder="联想搜索" 
+        isSuggestion="true" 
+        (onSearchSuggestion)="searchSuggestion($event)" 
+        [suggestionValue]="suggestionValue"
+        (onSearch)="search($event)">
+    </nb-search-box>
+    <nb-tree [treeData]="data.tree"></nb-tree>
+</div>

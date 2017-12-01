@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { merge } from 'rxjs/observable/merge';
-import { auditTime } from 'rxjs/operators';
+import { auditTime, delay } from 'rxjs/operators';
 
 /** default search-box theme types */
 export type SEARCH_TYPE = 'ico' | 'btn' | string;
@@ -134,13 +134,20 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
             this.positionSuggestionLayer(this);
             this.onSearchSuggestion.emit(this.searchValue);
             this.isOpen = true;
+        } 
+        if (!this.searchValue) {
+            this.isOpen = false;
         }
     }
 
-    /** clear keyword in search-box */
-    clearSearch() {
+    /** 
+     * clear keyword in search-box 
+     * @param ipt
+     * */
+    clearSearch(ipt) {
         this.isOpen = false;
         this.searchValue = '';
+        ipt.placeholder = this.placeholder;
     }
 
     /** search use keyword event */
@@ -150,8 +157,29 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     }
 
     /** click select suggest search value */
-    selectSuggestionValue(suggestionItem) {
+    selectSuggestionValue(suggestionItem: string) {
         this.searchValue = suggestionItem;
         this.isOpen = false;
+    }
+
+    /**
+     * listen focus on input event
+     * @param ipt
+     */
+    onFocus(ipt) {
+        ipt.placeholder = '';
+    }
+
+    /**
+     * listen blur input event
+     * @param ipt
+     */
+    onBlur(ipt) {
+        let self = this;
+        if (!ipt.value) {
+            ipt.placeholder = this.placeholder;
+        }
+        // todo delay close
+        // this.isOpen = false;
     }
 }

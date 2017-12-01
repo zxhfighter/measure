@@ -29,7 +29,8 @@ import {
   CalendarModule,
   RegionModule,
   DialogModule,
-  TreeModule
+  TreeModule,
+  SideBarModule
 } from '../component';
 
 import {AppComponent} from './app.component';
@@ -58,6 +59,7 @@ import {DemoSelect} from './select';
 import {DemoRegion} from './region';
 import {DemoDialog} from './dialog';
 import {DemoTree} from './tree';
+import {DemoSideBar} from './side-bar/';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,8 @@ import {DemoTree} from './tree';
     DemoCalendar,
     DemoRegion,
     DemoDialog,
-    DemoTree
+    DemoTree,
+    DemoSideBar
   ],
   imports: [
     BrowserModule,
@@ -116,6 +119,7 @@ import {DemoTree} from './tree';
     RegionModule,
     DialogModule,
     TreeModule,
+    SideBarModule,
     RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [ToastService],
