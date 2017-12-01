@@ -10,6 +10,11 @@ import {DemoTable} from './table';
 import {DemoTableBasic} from './basic/table-basic';
 import {DemoTableCheckbox} from './checkbox/table-checkbox';
 import {DemoTableSort} from './sortable/table-sort';
+import {DemoTableResize} from './resize/table-resize';
+import {DemoTableFixHead} from './fix-head/table-fix-head';
+import {DemoTableFixColumn} from './fix-column/fix-column';
+import {DemoTableColSpan} from './colspan/table-colspan';
+import {DemoTableExpand} from './expand/table-expand';
 
 @NgModule({
     imports: [
@@ -23,7 +28,12 @@ import {DemoTableSort} from './sortable/table-sort';
         DemoTable,
         DemoTableBasic,
         DemoTableCheckbox,
-        DemoTableSort
+        DemoTableSort,
+        DemoTableResize,
+        DemoTableFixHead,
+        DemoTableFixColumn,
+        DemoTableColSpan,
+        DemoTableExpand
     ],
     providers: [],
     exports: []

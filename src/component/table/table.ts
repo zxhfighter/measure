@@ -1,7 +1,7 @@
 import {
     Component, Input, Output, EventEmitter, Directive, QueryList, ContentChildren, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef, AfterContentInit, ViewChild,
-    Renderer2, Optional, ChangeDetectorRef, AfterContentChecked
+    Renderer2, Optional, ChangeDetectorRef, AfterContentChecked, ContentChild
 } from '@angular/core';
 
 import {OnChange} from '../core/decorators';
@@ -607,11 +607,7 @@ export class TableHeaderItemComponent implements OnInit {
             return;
         }
 
-        // clearTimeout(self.t);
-
-        // self.t = setTimeout(function () {
-            self.showTip = false;
-        // }, 100);
+        self.showTip = false;
     }
 
     /**
