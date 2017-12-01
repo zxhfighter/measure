@@ -9,7 +9,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OnChange } from '../core/decorators';
 import { ENTER, BACKSPACE } from '../core/keycodes';
 import { ListItemDirective } from './chips.directive';
-import { InputComponent } from '../../component/input';
 import { ElementDef } from '@angular/core/src/view';
 
 /*
