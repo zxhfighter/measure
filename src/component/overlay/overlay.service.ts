@@ -92,6 +92,23 @@ export class OverlayService<T> {
         return this._windowRef;
     }
 
+    createDialog(
+        content: string | TemplateRef<any>,
+        context?: any): ComponentRef<T> {
+
+        if (!this._windowRef) {
+            this._contentRef = this._getContentRef(content, context);
+            this._windowRef =
+                this._viewContainerRef.createComponent(this._windowFactory, 0, this._injector, this._contentRef.nodes);
+        }
+
+        let overlayRootNode = this.getComponentRootNode(this._windowRef);
+        window.document.body.appendChild(overlayRootNode);
+        this.overlayComponent = this._windowRef.instance;
+
+        return this._windowRef;
+    }
+
     createOverlayFromExistingComponent(overlayComponent: any,
         originElement: ElementRef,
         placement: string,

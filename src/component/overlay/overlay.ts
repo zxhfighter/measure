@@ -98,10 +98,12 @@ export class OverlayComponent implements OnInit, AfterContentInit, OnDestroy {
         if (this.container === 'body') {
             window.document.querySelector(this.container)!.appendChild(this.el.nativeElement);
         }
-        let originPos = this.overlayPositionService.getOriginPosition(this.placement);
-        let overlayPos = this.overlayPositionService.getOverlayPosition(this.placement);
-        this.overlayPositionService.attachTo(this.origin.el, originPos, overlayPos);
-        this.overlayPositionService.updatePosition();
+        if (this.origin) {
+            let originPos = this.overlayPositionService.getOriginPosition(this.placement);
+            let overlayPos = this.overlayPositionService.getOverlayPosition(this.placement);
+            this.overlayPositionService.attachTo(this.origin.el, originPos, overlayPos);
+            this.overlayPositionService.updatePosition();
+        }
     }
 
     show() {
