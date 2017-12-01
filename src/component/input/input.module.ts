@@ -1,7 +1,7 @@
-import {NgModule, ModuleWithProviders} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {InputDirective} from './input';
-import {InputConfig} from './input.config';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { InputDirective } from './input';
+import { InputConfig } from './input.config';
 
 @NgModule({
     imports: [CommonModule],
@@ -11,6 +11,6 @@ import {InputConfig} from './input.config';
 })
 export class InputModule {
     static forRoot(): ModuleWithProviders {
-        return {ngModule: InputModule, providers: [InputConfig]};
+        return { ngModule: InputModule, providers: [InputConfig] };
     }
 }
