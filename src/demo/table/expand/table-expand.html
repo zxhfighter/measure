@@ -13,7 +13,7 @@
         <ng-template ngFor let-item [ngForOf]="nbTable1.datasource">
             <tr nb-row>
                 <td nb-td>
-                    <i class="iconfont" [class.icon-plus]="!item.expand" [class.icon-minus]="item.expand" (click)="onToggle(item)"></i>
+                    <i class="iconfont" [class.icon-right]="!item.expand" [class.icon-down]="item.expand" (click)="onToggle(item)"></i>
                 </td>
                 <td nb-td>{{item.name}}</td>
                 <td nb-td>{{item.age}}</td>
