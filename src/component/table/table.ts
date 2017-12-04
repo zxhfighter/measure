@@ -446,7 +446,10 @@ export class TableHeaderComponent {}
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
-        'class': 'nb-table-td nb-table-th'
+        'class': 'nb-table-td nb-table-th',
+        '[class.nb-table-td-left]': 'align == "left"',
+        '[class.nb-table-td-center]': 'align == "center"',
+        '[class.nb-table-td-right]': 'align == "right"'
     },
     exportAs: 'nbTH'
 })
@@ -485,6 +488,8 @@ export class TableHeaderItemComponent implements OnInit {
      * no need filter button to trigger the filter event
      */
     @Input() showFilterButton: boolean = true;
+
+    @Input() align: 'left' | 'center' | 'right' = 'left';
 
     /**
      * column order(sort) type, can be 'asc' or 'desc' or ''
@@ -787,14 +792,35 @@ export class TableRowComponent {
  */
 @Component({
     selector: 'td[nb-td]',
-    template: `<ng-content></ng-content>`,
-    host: {'class': 'nb-table-td'},
+    template: `
+        <div class="nb-table-td-wrapper">
+            <ng-content></ng-content>
+            <i title="edit" class="iconfont icon-edit" *ngIf="editable && !editing" (click)="onEdit()"></i>
+        </div>
+    `,
+    host: {
+        'class': 'nb-table-td',
+        '[class.nb-table-td-edit]': 'editable'
+    },
     preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'nbTd'
 })
-export class TableTdComponent {}
+export class TableTdComponent {
+
+    @Output() edit: EventEmitter<any> = new EventEmitter<any>();
+
+    @OnChange(true)
+    @Input() editable: boolean = false;
+
+    @Input() editing: boolean = false;
+
+    onEdit() {
+        this.editing = true;
+        this.edit.emit();
+    }
+}
 
 
 // @Directive({
