@@ -22,6 +22,7 @@ import {
     TooltipModule,
     OverlayModule,
     PageModule,
+    ScheduleModule,
     TextareaModule,
     TextLineModule,
     SearchBoxModule,
@@ -44,6 +45,7 @@ import {DemoInput} from './input';
 import {DemoTabs} from './tabs';
 import {DemoTooltip} from './tooltip';
 import {DemoPage} from './page';
+import {DemoSchedule} from './schedule';
 import {DemoTextarea} from './textarea';
 import {DemoTextLine} from './text-line';
 import {DemoSearchBox} from './search-box';
@@ -95,6 +97,7 @@ const demoModules = [
         DemoTabs,
         DemoTooltip,
         DemoPage,
+        DemoSchedule,
         DemoTextarea,
         DemoTextLine,
         DemoSearchBox,
@@ -125,6 +128,7 @@ const demoModules = [
         StepModule,
         TableModule,
         PageModule,
+        ScheduleModule,
         TooltipModule,
         OverlayModule,
         TextareaModule,
