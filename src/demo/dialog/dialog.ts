@@ -1,28 +1,76 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy, ViewChild
+    Component, OnInit, ChangeDetectionStrategy, ViewChild, Injector,
+    Renderer2, ComponentFactoryResolver, NgZone, AfterViewInit, ViewContainerRef
 } from '@angular/core';
 import { DialogComponent } from '../../component/dialog/dialog';
+import { AlertComponent } from '../../component/dialog/alert';
+import { DialogService } from '../../component/dialog/dialog.service';
+import { OverlayService } from '../../component/overlay/overlay.service';
 
 @Component({
     selector: 'demo-dialog',
     templateUrl: './dialog.html',
     styleUrls: ['./dialog.less'],
     preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
+    providers: [DialogService, OverlayService]
 })
-export class DemoDialog implements OnInit {
+export class DemoDialog implements OnInit, AfterViewInit {
 
-    @ViewChild(DialogComponent) dialog: DialogComponent;
+    @ViewChild('modalDialog') modalDialog: DialogComponent;
+    @ViewChild('unmodalDialog') unmodalDialog: DialogComponent;
+    @ViewChild('customFooterDialog') customFooterDialog: DialogComponent;
+    @ViewChild(AlertComponent) errorAlert: AlertComponent;
+    @ViewChild('infoAlert') infoAlert: AlertComponent;
+    @ViewChild('successAlert') successAlert: AlertComponent;
 
-    constructor() {
-
+    constructor(
+        private _renderer: Renderer2,
+        private viewContainerRef: ViewContainerRef,
+        private dialogService: DialogService<AlertComponent>) {
     }
 
     ngOnInit() {
-
     }
 
-    openDialog() {
-        this.dialog.show();
+    ngAfterViewInit() {
+    }
+
+    openModalDialog() {
+        this.modalDialog.open();
+    }
+
+    openUnmodalDialog() {
+        this.unmodalDialog.open();
+    }
+
+    openCustomFooterDialog() {
+        this.customFooterDialog.open();
+    }
+
+    close() {
+        this.customFooterDialog.close();
+    }
+
+    clickYes() {
+        this.customFooterDialog.close();
+    }
+
+    clickNo() {
+        this.customFooterDialog.close();
+    }
+
+    openSpecialDialog(type, content, title) {
+        this.dialogService[type](content, title);
+    }
+
+    openAlertError() {
+        this.errorAlert.open();
+    }
+    openAlertInfo() {
+        this.infoAlert.open();
+    }
+    openAlertSuccess() {
+        this.successAlert.open();
     }
 }

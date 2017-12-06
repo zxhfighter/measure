@@ -5,6 +5,14 @@
     <span class="type-directive">Directive</span>
 </p>
 
+<p class="type-desc">
+    <span>selector</span>: <code>button[nb-button]</code>, <code>a[nb-button]</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>xButton</code>
+</p>
+
 <section>
     <h3 class="section-title">Usage</h3>
 
@@ -18,30 +26,44 @@
 <h3 class="section-title">Examples</h3>
 
 <nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
-    <h3 nb-codebox-title>Button Theme</h3>
-    <p nb-codebox-desc>There are six default themes, and you can customize your theme, it's a piece of cake.</p>
+    <h3 nb-codebox-title>Themes</h3>
+    <div nb-codebox-desc>
+        <p>1.用于设置按钮的主题颜色，有四种内置的 <code>theme</code> 样式，分别是：primary, default, neutral, transparent。</p>
+        <p>2.如果没有显示指定，将使用默认的 default 样式。</p>
+        <p>3.如果设置了 <code>disabled</code> 属性，那么 disabled 样式会优先生效。</p>
+        <p>4.如果四种内置样式不符合你的需求，您还可以自定义主题，如上例，设置 <code>theme="yellow"</code>，会给按钮添加一个名为 <code>nb-button-theme-yellow</code> 的样式类。</p>
+    </div>
 
     <demo-button-theme></demo-button-theme>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeSize" [htmlCode]="htmlCodeSize" [lessCode]="lessCodeSize">
-    <h3 nb-codebox-title>Button Size</h3>
-    <p nb-codebox-desc>There are four default sizes, and you can customize your size, it's a piece of cake.</p>
+    <h3 nb-codebox-title>Sizes</h3>
+    <div nb-codebox-desc>
+        <p>1.用于设置按钮的尺寸大小，有四种内置的 <code>size</code> 尺寸，从小到大分别是：xs, sm, default, lg。</p>
+        <p>2.如果没有显示指定，将使用默认的 default 尺寸。</p>
+        <p>3.如果设置了 <code>disabled</code> 属性，那么 disabled 样式会优先生效。</p>
+        <p>4.如果四种内置尺寸不符合你的需求，您还可以自定义尺寸，如上例，设置 <code>size="xxl"</code>，会给按钮添加一个名为 <code>nb-button-size-xxl</code> 的尺寸样式类。</p>
+    </div>
 
     <demo-button-size></demo-button-size>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeLink" [htmlCode]="htmlCodeLink" [lessCode]="lessCodeLink">
     <h3 nb-codebox-title>Link Button</h3>
-    <p nb-codebox-desc>You can use nb-button with &lt;a&gt;</p>
+    <div nb-codebox-desc>
+        <p>您可以在 <code>&lt;a&gt;</code> 上添加 <code>nb-button</code> 属性，按钮呈现链接的形式。</p>
+    </div>
 
     <demo-button-link></demo-button-link>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeIcon" [htmlCode]="htmlCodeIcon" [lessCode]="lessCodeIcon">
     <h3 nb-codebox-title>Button with icons</h3>
-    <p nb-codebox-desc>you can use third-party icons like font-awesome, or use lib icons.</p>
-
+    <div nb-codebox-desc>
+        <p>1.由于按钮内容可以自定义，添加图标也很方便，可是使用内置的图标库，或者第三方的图标库，例如 <a href="http://fontawesome.io/icons/" target="_blank">fontawesome</a> 等。</p>
+        <p>2.可以结合 <code>theme</code> 和 <code>size</code> 来实现圆形的图标按钮。</p>
+    </div>
     <demo-button-icon></demo-button-icon>
 </nb-code-box>
 
@@ -91,7 +113,7 @@
             <td class="docs-td docs-td-type">string</td>
             <td class="docs-td docs-td-default">default</td>
             <td class="docs-td docs-td-desc">
-                <p>button size, there four default sizes: lg</p>
+                <p>button size, there four default sizes: 'xs' | 'sm' | 'default' | 'lg'</p>
             </td>
         </tr>
 

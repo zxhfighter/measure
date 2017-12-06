@@ -3,10 +3,10 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, forwardRef
 } from '@angular/core';
 
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import {OnChange} from '../core/decorators';
-import {UP_ARROW, DOWN_ARROW} from '../core/keycodes';
+import { OnChange } from '../core/decorators';
+import { UP_ARROW, DOWN_ARROW } from '../core/keycodes';
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -70,7 +70,7 @@ export class SpinnerComponent implements ControlValueAccessor {
     @OnChange(true)
     @Input() disabled: boolean = false;
 
-    constructor(private _cd: ChangeDetectorRef, private _render: Renderer2) {}
+    constructor(private _cd: ChangeDetectorRef, private _render: Renderer2) { }
 
     /**
      * add a step value
@@ -82,7 +82,7 @@ export class SpinnerComponent implements ControlValueAccessor {
         }
 
         const nextValue = this.value + this.step;
-        const isMaxValue = typeof this.maxValue === 'number' && nextValue > this.maxValue
+        const isMaxValue = typeof this.maxValue === 'number' && nextValue > this.maxValue;
         this.value = isMaxValue ? this.maxValue : this.value + this.step;
         this.change.emit(this.value);
         this._markForCheck();

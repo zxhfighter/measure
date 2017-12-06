@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {SwitchComponent} from './switch';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SwitchComponent } from './switch';
 
 @NgModule({
     imports: [
@@ -13,4 +13,4 @@ import {SwitchComponent} from './switch';
         SwitchComponent
     ]
 })
-export class SwitchModule {}
+export class SwitchModule { }

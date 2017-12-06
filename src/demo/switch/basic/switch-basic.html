@@ -5,9 +5,10 @@
 
 <p>
     default checked:
-    <nb-switch [checked]="checked"></nb-switch>
+    <nb-switch [checked]="checked" [disabled]="isDisabled"></nb-switch>
 </p>
-
+<button type="button" (click)="onChange()">change</button>
+<button type="button" (click)="onChangeDisable()">change disabled</button>
 <p>
     disabled:
     <nb-switch disabled></nb-switch>
@@ -16,8 +17,8 @@
 
 <p>
     custom size and theme:
-    <nb-switch styleClass="nb-switch-small"></nb-switch>
-    <nb-switch styleClass="nb-switch-small" disabled></nb-switch>
-    <nb-switch styleClass="nb-switch-small" checked></nb-switch>
-    <nb-switch styleClass="nb-switch-small" checked disabled></nb-switch>
+    <nb-switch theme="small"></nb-switch>
+    <nb-switch theme="small" disabled></nb-switch>
+    <nb-switch theme="small" checked></nb-switch>
+    <nb-switch theme="small" checked disabled></nb-switch>
 </p>

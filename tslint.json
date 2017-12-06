@@ -22,7 +22,7 @@
             4
         ],
         "linebreak-style": [
-            true, 
+            true,
             "LF"
         ],
         "max-line-length": [
@@ -30,7 +30,7 @@
             140
         ],
         "member-access": [
-            true, 
+            true,
             "no-public"
         ],
         "no-arg": true,
@@ -89,7 +89,6 @@
             "check-preblock"
         ],
 
-        // codelyzer rules
         "angular-whitespace": [
             true,
             "check-interpolation",
@@ -113,13 +112,13 @@
         "no-input-rename": true,
         "no-output-rename": true,
         "component-class-suffix": [
-            true, 
-            "Component", 
+            true,
+            "Component",
             "Demo"
         ],
         "directive-class-suffix": [
-            true, 
-            "Directive", 
+            true,
+            "Directive",
             "Demo"
         ],
         "use-life-cycle-interface": true,

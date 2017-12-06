@@ -4,7 +4,7 @@ import {
     ChangeDetectorRef
 } from '@angular/core';
 
-import {OnChange} from '../core/decorators';
+import { OnChange } from '../core/decorators';
 
 /**
  * Step component
@@ -87,7 +87,7 @@ export class StepComponent implements AfterViewInit {
     template: `
         <div class="nb-step-item-title">
             <ng-container *ngIf="success"><i class="iconfont icon-check"></i></ng-container>
-            <ng-container *ngIf="!success">{{value}}</ng-container>
+            <ng-container *ngIf="!success">{{ value }}</ng-container>
         </div>
         <div class="nb-step-item-content">
             <ng-content></ng-content>
@@ -103,7 +103,7 @@ export class StepComponent implements AfterViewInit {
         '[class.error]': 'error'
     }
 })
-export class StepItemComponent implements AfterViewInit {
+export class StepItemComponent implements AfterViewInit, OnInit {
 
     /**
      * step item value
@@ -113,7 +113,7 @@ export class StepItemComponent implements AfterViewInit {
     _success: boolean = false;
 
     /** Whether the step item is done success */
-    @Input() get success() {return this._success}
+    @Input() get success() { return this._success; }
     set success(value: any) {
         this._success = !!value;
         this._cd.markForCheck();

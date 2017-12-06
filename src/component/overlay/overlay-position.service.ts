@@ -7,26 +7,25 @@ import {
     EmbeddedViewRef,
     ViewContainerRef,
     Renderer2,
-    NgZone,
     ComponentRef,
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
-import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from '../util/position';
-import { PositionStrategy } from '../util/position.strategy';
+import { Placement, ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from '../util/position';
+import { PositionStrategy } from '../util/connected-position.strategy';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { auditTime } from 'rxjs/operators';
 import { merge } from 'rxjs/observable/merge';
-
-/** Time in ms to throttle the resize events by default. */
-export const DEFAULT_RESIZE_TIME = 20;
+import { ViewportRuler } from './scroll-strategy';
+import { OverlayComponent } from './overlay';
 
 export class ContentRef {
     constructor(public nodes: any[], public viewRef?: ViewRef, public componentRef?: ComponentRef<any>) { }
 }
 
+@Injectable()
 export class OverlayPositionService {
     private overlayComponent: any;
     private _contentRef: ContentRef | null;
@@ -34,51 +33,51 @@ export class OverlayPositionService {
     private originElement: ElementRef;
     originPos: ConnectionPosition;
     overlayPos: ConnectionPosition;
-    placement: string;
+    placement: Placement;
     firstPlacement: string;
     seconedPlacement: string;
 
     /** Subscription to viewport resize events. */
     _resizeSubscription = Subscription.EMPTY;
 
-    /** Stream of viewport change events. */
-    _change: Observable<Event>;
-
     constructor(
-        overlayRef: any,
-        ngZone: NgZone
-    ) {
-        this._change = ngZone.runOutsideAngular(() => {
-            return merge<Event>(fromEvent(window, 'resize'), fromEvent(window.document, 'scroll'));
-        });
-        this.overlayComponent = overlayRef;
+        private _viewportRuler: ViewportRuler) {
     }
 
-    /**
-     * Returns a stream that emits whenever the size of the viewport changes.
-     * @param throttle Time in milliseconds to throttle the stream.
-     */
-    change(throttleTime: number = DEFAULT_RESIZE_TIME): Observable<Event> {
-        return throttleTime > 0 ? this._change.pipe(auditTime(throttleTime)) : this._change;
+    setOverlayRef(overlayRef) {
+        this.overlayComponent = overlayRef;
+        return this;
     }
 
     attachTo(
         targetRef: ElementRef,
-        originPos: ConnectionPosition,
-        overlayPos: ConnectionPosition) {
+        placement: Placement) {
 
-        this.positionStrategy = new PositionStrategy(targetRef, this.overlayComponent.el, originPos, overlayPos);
-        this.originPos = originPos;
-        this.overlayPos = overlayPos;
+        this.splitPlacement(placement);
+        this.originPos = this.getOriginPosition();
+        this.overlayPos = this.getOverlayPosition();
+        this.positionStrategy = new PositionStrategy(targetRef, this.overlayComponent.el, this.originPos, this.overlayPos);
         const origin = this.getOrigin();
         const overlay = this.getOverlay();
         this.positionStrategy.withFallbackPosition(origin.fallback, overlay.fallback);
         this._resizeSubscription.unsubscribe();
-        this._resizeSubscription = this.change().subscribe(() => this.updatePosition());
+        this._resizeSubscription = this._viewportRuler.change().subscribe(() => this.reposition());
+        return this;
+    }
+
+    splitPlacement(placement: Placement) {
+        this.placement = placement;
+        let [firstPlacement, seconedPlacement] = this.placement.split('-');
+        this.firstPlacement = firstPlacement;
+        this.seconedPlacement = seconedPlacement;
     }
 
     updatePosition() {
         this.positionStrategy.apply(this.positionChangeHandler());
+    }
+
+    reposition() {
+        this.updatePosition();
     }
 
     positionChangeHandler() {
@@ -100,10 +99,12 @@ export class OverlayPositionService {
         }
     }
 
-    getOriginPosition(placement: string): ConnectionPosition {
-        let [firstPlacement, seconedPlacement] = placement.split('-');
+    getOriginPosition(): ConnectionPosition {
+
         let horizontal;
         let vertical;
+        const firstPlacement = this.firstPlacement;
+        const seconedPlacement = this.seconedPlacement;
         if (firstPlacement === 'top' || firstPlacement === 'bottom') {
             vertical = firstPlacement;
         }
@@ -138,7 +139,7 @@ export class OverlayPositionService {
         }
 
         if (typeof horizontal === 'undefined' || typeof vertical === 'undefined') {
-            throw this.getInvalidplacementError(placement);
+            throw this.getInvalidplacementError(this.placement);
         }
 
         return {
@@ -151,8 +152,9 @@ export class OverlayPositionService {
         return Error(`Tooltip position "${position}" is invalid.`);
     }
 
-    getOverlayPosition(placement: string): ConnectionPosition {
-        let [firstPlacement, seconedPlacement] = placement.split('-');
+    getOverlayPosition(): ConnectionPosition {
+        const firstPlacement = this.firstPlacement;
+        const seconedPlacement = this.seconedPlacement;
         let horizontal;
         let vertical;
         if (firstPlacement === 'top') {
@@ -192,7 +194,7 @@ export class OverlayPositionService {
         }
 
         if (typeof horizontal === 'undefined' || typeof vertical === 'undefined') {
-            throw this.getInvalidplacementError(placement);
+            throw this.getInvalidplacementError(this.placement);
         }
 
         return {
@@ -226,7 +228,7 @@ export class OverlayPositionService {
 
     /** Inverts an overlay position. */
     invertPosition(x: HorizontalConnectionPos, y: VerticalConnectionPos) {
-        if (this.overlayComponent.firstPlacement === 'top' || this.overlayComponent.firstPlacement === 'bottom') {
+        if (this.firstPlacement === 'top' || this.firstPlacement === 'bottom') {
             if (y === 'top') {
                 y = 'bottom';
             } else if (y === 'bottom') {
@@ -243,3 +245,16 @@ export class OverlayPositionService {
         return { x, y };
     }
 }
+
+// export function OVERLYA_POSITION_SERVICE_FACTORY(
+//     viewportRuler: ViewportRuler) {
+//     return new OverlayPositionService(viewportRuler);
+// }
+
+// /** @docs-private */
+// export const OVERLYA_POSITION_SERVICE_PROVIDER = {
+// // If there is already a ViewportRuler available, use that. Otherwise, provide a new one.
+// provide: OverlayPositionService,
+// deps: [ViewportRuler],
+// useFactory: OVERLYA_POSITION_SERVICE_FACTORY
+// };

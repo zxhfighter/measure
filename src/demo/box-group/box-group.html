@@ -4,6 +4,14 @@
     <span class="type-component">Component</span>
 </p>
 
+<p class="type-desc">
+    <span>selector</span>: <code>nb-boxgroup</code>，<code>nb-checkbox</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>xBoxGroup</code>，<code>xBox</code>
+</p>
+
 <section>
     <h3 class="section-title">Usage</h3>
 
@@ -18,35 +26,53 @@
 
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Checkbox Basic</h3>
-    <p nb-codebox-desc>checkbox desc.</p>
+    <div nb-codebox-desc>
+        <p>1.单个选择框为 <code>nb-checkbox</code>，默认为复选框，有 <code>checked</code>，<code>disabled</code>，<code>value</code>，<code>intermediate</code> 等属性。</p>
+        <p>2.<code>nb-checkbox</code> 一般和 <code>nb-boxgroup</code> 一起使用，用来表示一个选择组，可以是单选组（type="radio"），也可以是多选组（type="checkbox"，默认）。</p>
+        <p>3.<code>nb-boxgroup</code> 的 <code>value</code>属性为一个字符串或者数字数组（不论是不是单选组）。</p>
+        <p>4.<code>nb-checkbox</code> 可以通过 <code>theme</code> 属性来定制样式。</p>
+        <p>5.<code>nb-checkbox</code> 可以通过 <code>intermediate</code> 属性来设置部分选择的中间状态。</p>
+    </div>
 
     <demo-checkbox></demo-checkbox>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeRadio" [htmlCode]="htmlCodeRadio" [lessCode]="lessCodeRadio">
     <h3 nb-codebox-title>Radiobox Basic</h3>
-    <p nb-codebox-desc>radiobox desc.</p>
+    <div nb-codebox-desc>
+        <p>1. <code>nb-checkbox</code> 的 <code>type</code>属性设置成 'radio'，就变成了一个单选框。</p>
+        <p>2. 单个单选框使用没有意义，一般是用在 <code>nb-boxgroup</code> 内部，形成一个单选组。</p>
+    </div>
 
     <demo-radio></demo-radio>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeCheckboxGroup" [htmlCode]="htmlCodeCheckboxGroup" [lessCode]="lessCodeCheckboxGroup">
     <h3 nb-codebox-title>Checkbox Group Basic</h3>
-    <p nb-codebox-desc>checkbox group desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-boxgroup</code> 内部使用 <code>nb-checkbox</code> 形成一个选择组，可以是单选组（type="radio"），也可以是多选组（type="checkbox"，默认）。</p>
+        <p>2.<code>nb-boxgroup</code> 的 <code>value</code> 属性为字符串或者数字数组，对应的 <code>nb-checkbox</code> 的 <code>value</code> 也必须为字符串或者数字。</p>
+        <p>3    .<code>nb-boxgroup</code> 在值变更时会触发 <code>change</code> 事件，参数为包含 <code>currentValue</code> 和 <code>value</code> 的对象。</p>
+    </div>
 
     <demo-checkbox-group></demo-checkbox-group>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeRadioGroup" [htmlCode]="htmlCodeRadioGroup" [lessCode]="lessCodeRadioGroup">
     <h3 nb-codebox-title>Radio Group Basic</h3>
-    <p nb-codebox-desc>radio group desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-boxgroup</code> 设置属性 <code>type="radio"</code>，可以变成单选框组。</p>
+        <p>2.单选框组的 <code>value</code> 属性也需要以数组形式提供。</p>
+    </div>
 
     <demo-radio-group></demo-radio-group>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
     <h3 nb-codebox-title>box group with forms</h3>
-    <p nb-codebox-desc>box group with forms desc.</p>
+    <p nb-codebox-desc>
+        <code>nb-boxgroup</code> 可以和 Forms 和 ReactiveForms 无缝结合使用。
+    </p>
 
     <demo-boxgroup-form></demo-boxgroup-form>
 </nb-code-box>

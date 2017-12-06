@@ -3,7 +3,7 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, OnDestroy
 } from '@angular/core';
 
-import {OnChange} from '../core/decorators';
+import { OnChange } from '../core/decorators';
 
 /**
  * carousel item inteface
@@ -35,7 +35,7 @@ export interface CarouselItem {
         '(mouseout)': '_onMouseOut()'
     }
 })
-export class CarouselComponent implements AfterViewInit {
+export class CarouselComponent implements AfterViewInit, OnDestroy {
 
     /**
      * Whether the carousel can auto play
@@ -99,7 +99,7 @@ export class CarouselComponent implements AfterViewInit {
         private _el: ElementRef,
         private _render: Renderer2,
         private _cd: ChangeDetectorRef
-    ) {}
+    ) { }
 
     /**
      * navigate to specific index

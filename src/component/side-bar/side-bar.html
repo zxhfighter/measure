@@ -1,0 +1,51 @@
+<div
+    *ngIf="expanded"
+    class="nb-side-bar-content">
+    <div>
+        <span>{{data.title}}</span>
+        <button 
+            nb-button
+            theme="transparent"
+            class="nb-side-bar-fold iconfont icon-collapse" 
+            (click)="fold()">
+        </button>
+    </div>
+    <nb-search-box 
+        placeholder="联想搜索" 
+        isSuggestion="true" 
+        size="small"
+        (onSearchSuggestion)="searchSuggestion($event)" 
+        [suggestionValue]="suggestionValue"
+        (onClear)="clear($event)"
+        (onSearch)="search($event)">
+    </nb-search-box>
+    <a
+        *ngIf="root"
+        nb-button
+        class="nb-side-bar-root"
+        (click)="refreshTree()">
+        {{root}}
+    </a>
+    <nb-tree 
+        *ngIf="hasTreeData"
+        [treeData]="treeData" 
+        selectionMode="navigation" 
+        (onNodeSelect)="nodeSelect($event)">
+    </nb-tree>
+    <div 
+        *ngIf="!hasTreeData"
+        class="nb-side-bar-no-tree">暂无数据！</div>
+</div>
+
+<div 
+    *ngIf="!expanded"
+    class="nb-side-bar-content-collapse">
+    <div>
+        <button 
+            nb-button
+            theme="transparent"
+            class="nb-side-bar-fold iconfont icon-expansion" 
+            (click)="fold()">
+        </button>
+    </div>
+</div>

@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ButtonGroupComponent, ButtonToggleComponent} from './button-group';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonGroupComponent, ButtonToggleComponent } from './button-group';
 
 @NgModule({
     imports: [
@@ -15,4 +15,4 @@ import {ButtonGroupComponent, ButtonToggleComponent} from './button-group';
         ButtonToggleComponent
     ]
 })
-export class ButtonGroupModule {}
+export class ButtonGroupModule { }

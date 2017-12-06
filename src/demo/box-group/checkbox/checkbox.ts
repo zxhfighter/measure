@@ -41,6 +41,7 @@ export class DemoCheckbox {
             this.intermediate = false;
         }
         else {
+            this.allChecked = false;
             this.intermediate = true;
         }
     }

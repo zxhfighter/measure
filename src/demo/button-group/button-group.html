@@ -3,6 +3,15 @@
     <span>type</span>:
     <span class="type-component">Component</span>
 </p>
+
+<p class="type-desc">
+    <span>selector</span>: <code>nb-button-group</code>，<code>nb-button-toggle</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>xButtonGroup</code>，<code>xButtonToggle</code>
+</p>
+
 <section>
     <h3 class="section-title">Usage</h3>
 
@@ -17,14 +26,19 @@
 
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Toggle Button Basic</h3>
-    <p nb-codebox-desc>toggle button basic examples.</p>
+    <div nb-codebox-desc>
+        <p>1.单个 <code>nb-button-toggle</code> 类似 checkbox 和 switch，拥有 <code>checked</code>、<code>disabled</code>、<code>value</code>等属性，能够触发 <code>toggle</code> 事件。</p>
+        <p>2.更多的情况是，<code>nb-button-toggle</code> 作为 <code>nb-button-group</code> 组件的子组件，该组件有 <code>type</code>、<code>value</code>、<code>disabled</code> 等属性，能够触发 <code>change</code> 事件。</p>
+    </div>
 
     <demo-button-group-basic></demo-button-group-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
     <h3 nb-codebox-title>Toggle Button Group with (Reactive)Forms</h3>
-    <p nb-codebox-desc>toggle button group form examples.</p>
+    <p nb-codebox-desc>
+        <code>nb-button-group</code> 能够和 Forms 和 ReactiveForms 无缝结合使用。
+    </p>
 
     <demo-button-group-form></demo-button-group-form>
 </nb-code-box>

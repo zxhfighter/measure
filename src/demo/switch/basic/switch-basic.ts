@@ -9,8 +9,17 @@ import {Component, ViewEncapsulation} from '@angular/core';
 export class DemoSwitchBasic {
     text: string = '';
     checked: boolean = true;
+    isDisabled: boolean = false;
 
     onSwitchChange(checked: boolean) {
         this.text = checked ? 'checked' : 'unchecked';
+    }
+
+    onChange() {
+        this.checked = !this.checked;
+    }
+
+    onChangeDisable() {
+        this.isDisabled = !this.isDisabled;
     }
 }

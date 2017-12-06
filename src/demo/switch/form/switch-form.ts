@@ -15,7 +15,7 @@ export class DemoSwitchForm implements OnInit {
     ngOnInit() {
         this.form = this.fb.group({
             switch2: [
-                {value: true, disabled: false}
+                {value: true, disabled: true}
             ]
         });
     }

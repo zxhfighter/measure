@@ -1,10 +1,14 @@
 import {
     Component, Input, Output, EventEmitter, AfterViewInit, AfterContentInit, ElementRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, ContentChild,
+    ViewChild
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
 import { futimesSync } from 'fs';
 import { Event } from '@angular/router/src/events';
+import { DialogHeaderComponent } from './dialog-header';
+import { DialogBodyComponent } from './dialog-body';
+import { DialogFooterComponent } from './dialog-footer';
 
 @Component({
     selector: 'nb-dialog',
@@ -16,21 +20,30 @@ import { Event } from '@angular/router/src/events';
         'class': 'nb-widget'
     }
 })
+
 export class DialogComponent implements OnInit, AfterViewInit {
 
-    @Input() title: string = '标题';
+    @ViewChild('overlay') overlay;
+
+    @Input() overlayClass: string = '';
+    @Input() title: string = '';
 
     @Input() appendTo: any = 'body';
 
     @OnChange(true)
-    @Input() modal: boolean = true;
+    @Input() modalable: boolean = false;
 
     @OnChange(true)
     @Input() closable: boolean = true;
 
-    visiblity: boolean = false;
+    // visiblity: boolean = false;
     mask: HTMLElement | null;
     maskClickListener: Function;
+
+    @Output() openHandler: EventEmitter<Object> = new EventEmitter();
+    @Output() closeHandler: EventEmitter<Object> = new EventEmitter();
+    @Output() confirmEvent: EventEmitter<Object> = new EventEmitter();
+    @Output() cancelEvent: EventEmitter<Object> = new EventEmitter();
 
     constructor(
         private cdRef: ChangeDetectorRef,
@@ -39,32 +52,30 @@ export class DialogComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-
+        // this.overlay = document.createElement('nb-overlay');
+        // this.overlay.appendChild(this.el.nativeElement);
     }
 
     ngAfterViewInit() {
-        if (this.appendTo) {
-            if (this.appendTo === 'body') {
-                document.body.appendChild(this.el.nativeElement);
-            }
-            else {
-                this.appendTo.appendChild(this.el.nativeElement);
-            }
-        }
+        // this.overlay = document.createElement('nb-overlay');
+        // this.overlay.appendChild(this.el.nativeElement);
     }
 
-    show() {
-        this.visiblity = true;
-        this.cdRef.markForCheck();
+    open() {
+        // this.visiblity = true;
+        // this.cdRef.markForCheck();
+        this.overlay.show();
+        // this.openHandler.emit();
 
-        if (this.modal) {
+        if (this.modalable) {
             this.enableModality();
         }
     }
 
     close() {
-        this.visiblity = false;
-        this.cdRef.markForCheck();
+        this.overlay.hide();
+        // this.visiblity = false;
+        // this.cdRef.markForCheck();
 
         if (this.mask) {
             this.mask.remove();
@@ -73,6 +84,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
     }
 
     confirm() {
+        this.confirmEvent.emit();
         this.close();
     }
 
@@ -80,9 +92,6 @@ export class DialogComponent implements OnInit, AfterViewInit {
         if (!this.mask) {
             this.mask = document.createElement('div');
             this.mask.className = 'nb-mask';
-            this.maskClickListener = this.renderer.listen(this.mask, 'click', () => {
-                this.close();
-            });
             document.body.appendChild(this.mask);
         }
     }

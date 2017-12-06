@@ -14,14 +14,75 @@ import &#x7B;DialogModule&#x7D; from 'xdesign';
     <h3 class="section-title">Dialog first demo</h3>
 
     <p>
-        <button theme="default" nb-button (click)="openDialog()">打开模态对话框</button>
-        <nb-dialog>
-            <div class="filter-content">
-                <div>
-                    <label for="heroName">姓名：</label>
-                    <input #name type="text" name="heroName" value="">
+        <button theme="default" nb-button (click)="openModalDialog()">打开模态对话框</button>
+        <nb-dialog modalable closable #modalDialog>
+            <nb-dialog-header>打开模态对话框</nb-dialog-header>
+            <nb-dialog-body>
+                <div class="content-box">
+                    内容区
                 </div>
-            </div>
+            </nb-dialog-body>
         </nb-dialog>
     </p>
+    <p>
+        <button theme="default" nb-button (click)="openUnmodalDialog()">打开非模态对话框</button>
+        <nb-dialog closable #unmodalDialog>
+            <nb-dialog-header>
+                <i class="iconfont icon-calendar"></i>&nbsp;&nbsp;打开非模态对话框
+            </nb-dialog-header>
+            <nb-dialog-body>
+                <div class="filter-content">
+                    <div>
+                        <label for="heroName">姓名：</label>
+                        <input #name type="text" name="heroName" value="">
+                    </div>
+                </div>
+            </nb-dialog-body>
+        </nb-dialog>
+    </p>
+    <p>
+        <button theme="default" nb-button (click)="openCustomFooterDialog()">自定义Footer</button>
+        <nb-dialog #customFooterDialog>
+            <nb-dialog-header>
+                自定义Footer
+            </nb-dialog-header>
+            <nb-dialog-body>
+                <div class="filter-content">
+                    <div>
+                        <label for="heroName">姓名：</label>
+                        <input #name type="text" name="heroName" value="">
+                    </div>
+                </div>
+            </nb-dialog-body>
+            <nb-dialog-footer>
+                <button nb-button (click)="clickYes()">是</button>
+                <button nb-button (click)="clickNo()">否</button>
+                <button theme="default" nb-button (click)="close()">Cancel</button>
+            </nb-dialog-footer>
+        </nb-dialog>
+    </p>
+    <p>
+        <span>动态加载</span>
+        <button theme="default" nb-button
+            (click)="openSpecialDialog('info', 'you\'ve got a new message', 'Message')">
+            InfoBox
+        </button>
+        <button theme="default" nb-button
+            (click)="openSpecialDialog('error', 'you\'ve got an error', 'Error')">
+            ErrorBox
+        </button>
+        <button theme="default" nb-button
+            (click)="openSpecialDialog('success', 'Congratulations! Everything is ok!', 'Success')">
+            SuccessBox
+        </button>
+    </p>
+    <!-- <p>
+        <span>静态渲染</span>
+        <button theme="default" nb-button (click)="openAlertError()">InfoBox</button>
+        <nb-alert type="error" title="this is erro" content="this is content" #errorAlert><nb-alert>
+        <button theme="default" nb-button (click)="openAlertInfo()">InfoBox</button>
+        <nb-alert type="info" title="this is erro" content="this is content" #infoAlert></nb-alert>
+        <button theme="default" nb-button (click)="openAlertSuccess()">InfoBox</button>
+        <nb-alert type="success" title="this is erro" content="this is content" #successAlert></nb-alert>
+    </p> -->
 </section>

@@ -1,4 +1,4 @@
-import {coerceBooleanProperty} from '../util/coerce';
+import { coerceBooleanProperty } from '../util/coerce';
 
 /**
  * decorate input properties whit get and set method

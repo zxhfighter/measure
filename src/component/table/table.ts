@@ -1,11 +1,11 @@
 import {
     Component, Input, Output, EventEmitter, Directive, QueryList, ContentChildren, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef, AfterContentInit, ViewChild,
-    Renderer2, Optional, ChangeDetectorRef, AfterContentChecked, ContentChild
+    Renderer2, Optional, ChangeDetectorRef, AfterContentChecked, ContentChild, AfterViewInit
 } from '@angular/core';
 
-import {OnChange} from '../core/decorators';
-import {addClass} from '../util/dom';
+import { OnChange } from '../core/decorators';
+import { addClass } from '../util/dom';
 
 /** table order type */
 export type OrderType = 'asc' | 'desc' | '';
@@ -14,7 +14,7 @@ export type OrderType = 'asc' | 'desc' | '';
 export interface ElementPosition {
     left: number;
     top: number;
-};
+}
 
 /** table sort param interface */
 export interface SortParam {
@@ -23,7 +23,7 @@ export interface SortParam {
 
     /** sort type */
     order: OrderType;
-};
+}
 
 /** table filter param interface */
 export interface FilterParam {
@@ -51,7 +51,7 @@ export interface FilterParam {
     },
     exportAs: 'nbTable'
 })
-export class TableComponent implements OnInit, AfterContentInit {
+export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
 
     /** table sort event emitter */
     @Output() sort: EventEmitter<SortParam> = new EventEmitter<SortParam>();
@@ -115,7 +115,7 @@ export class TableComponent implements OnInit, AfterContentInit {
      * @docs-private
      */
     @ContentChildren(
-        forwardRef(() => TableHeaderItemComponent), {descendants: true}
+        forwardRef(() => TableHeaderItemComponent), { descendants: true }
     ) _headItems: QueryList<TableHeaderItemComponent>;
 
     /**
@@ -184,13 +184,12 @@ export class TableComponent implements OnInit, AfterContentInit {
         );
 
         self.orderByChange.subscribe((orderBy: string) => {
-                // emit sort param
-                self.sort.emit({
-                    order: self.order,
-                    orderBy: orderBy
-                });
-            }
-        )
+            // emit sort param
+            self.sort.emit({
+                order: self.order,
+                orderBy: orderBy
+            });
+        });
     }
 
     ngOnInit() {
@@ -376,9 +375,9 @@ export class TableComponent implements OnInit, AfterContentInit {
     preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {'class': 'nb-table-head'}
+    host: { 'class': 'nb-table-head' }
 })
-export class TableHeaderComponent {}
+export class TableHeaderComponent { }
 
 /**
  * table header item component
@@ -496,7 +495,7 @@ export class TableHeaderItemComponent implements OnInit {
      */
     private _order: OrderType;
 
-    @Input() get order() {return this._order;}
+    @Input() get order() { return this._order; }
     set order(value: any) {
         this._order = value;
         this._cd.markForCheck();
@@ -538,7 +537,7 @@ export class TableHeaderItemComponent implements OnInit {
      * @docs-private
      */
     private _showFilter: boolean;
-    get showFilter() {return this._showFilter;}
+    get showFilter() { return this._showFilter; }
     set showFilter(value: any) {
         this._showFilter = value;
         this._cd.markForCheck();
@@ -567,7 +566,7 @@ export class TableHeaderItemComponent implements OnInit {
         private _cd: ChangeDetectorRef,
         private _el: ElementRef,
         private _render: Renderer2
-    ) {}
+    ) { }
 
     ngOnInit() {
         if (this._table) {
@@ -761,10 +760,10 @@ export class TableHeaderItemComponent implements OnInit {
     preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {'class': 'nb-table-body'},
+    host: { 'class': 'nb-table-body' },
     exportAs: 'nbTableBody'
 })
-export class TableBodyComponent {}
+export class TableBodyComponent { }
 
 /**
  * table row component

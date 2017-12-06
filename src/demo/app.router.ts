@@ -32,7 +32,10 @@ import {DemoChips} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
 import {DemoTree} from './tree';
+import {DemoSideBar} from './side-bar/';
 import {DemoCard} from './card';
+import {DemoAccordion} from './accordion';
+import {DemoUploader} from './uploader';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -63,9 +66,13 @@ export const appRoutes: Routes = [
     {path: 'calendar', component: DemoCalendar},
     {path: 'region', component: DemoRegion},
     {path: 'dialog', component: DemoDialog},
+    {path: 'tree', component: DemoTree},
+    {path: 'side-bar', component: DemoSideBar},
     {path: 'chips', component: DemoChips},
     {path: 'code-highlighter', component: DemoCodeHighlighter},
     {path: 'code-box', component: DemoCodeBox},
     {path: 'tree', component: DemoTree},
-    {path: 'card', component: DemoCard}
+    {path: 'card', component: DemoCard},
+    {path: 'accordion', component: DemoAccordion},
+    {path: 'uploader', component: DemoUploader}
 ];

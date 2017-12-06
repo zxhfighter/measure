@@ -1,12 +1,12 @@
 import {
-    Component, Input, Output, EventEmitter, ElementRef, SimpleChanges,
-    ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit,
-    ChangeDetectorRef, forwardRef, OnChanges
+    Component, Input, Output, EventEmitter, ElementRef,
+    ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, forwardRef
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import {coerceBooleanProperty} from '../util/coerce';
-import {OnChange} from '../core/decorators';
+import { coerceBooleanProperty } from '../util/coerce';
+import { OnChange } from '../core/decorators';
+import { addClass } from '../util/dom';
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -31,9 +31,15 @@ const SWITCH_VALUE_ACCESSOR = {
     providers: [SWITCH_VALUE_ACCESSOR],
     host: {
         'class': 'nb-widget nb-switch'
-    }
+    },
+    exportAs: 'xSwitch'
 })
-export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAccessor {
+export class SwitchComponent implements AfterViewInit, ControlValueAccessor {
+
+    /**
+     * Event emitted when the switch value changes, emits the checked `boolean` value
+     */
+    @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
      * Whether the switch is checked
@@ -43,12 +49,6 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
     @Input() checked: boolean = false;
 
     /**
-     * Extra style classes to provide custom themes, e.g. 'class-1 class-2'
-     * @default ''
-     */
-    @Input() styleClass: string = '';
-
-    /**
      * Whether the switch is disabled
      * @default false
      */
@@ -56,34 +56,17 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
     @Input() disabled: boolean = false;
 
     /**
-     * Event emitted when the switch value changes, emits the checked `boolean` value
+     * Extra theme classes to provide custom themes, when theme is 'small', a `nb-switch-small` class will be added
+     * @default ''
      */
-    @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Input() theme: string = '';
 
-    constructor(private el: ElementRef, private cd: ChangeDetectorRef) {}
-
-    ngOnChanges(changes: SimpleChanges) {
-
-        // if checked value changes, update form model value and mark for check
-        if (changes['checked']) {
-            this.checked = changes['checked'].currentValue;
-            this._markForCheck();
-        }
-
-        // if disabled value changes, mark for check
-        if (changes['disabled']) {
-            this.disabled = changes['disabled'].currentValue;
-            this.cd.markForCheck();
-        }
-    }
+    constructor(private _el: ElementRef) { }
 
     ngAfterViewInit() {
-        const nativeEl = this.el.nativeElement;
-        const className = nativeEl.className;
-
-        // add custom classes
-        if (this.styleClass) {
-            nativeEl.className = className + ' ' + this.styleClass;
+        // add custom theme
+        if (this.theme) {
+            addClass(this._el.nativeElement, `nb-switch-${this.theme}`);
         }
     }
 
@@ -99,10 +82,11 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
         this.checked = checked;
         this.change.emit(checked);
 
-        this._markForCheck();
+        // update form model
+        this.updateFormModel();
 
+        // we have to stop checkbox's defualt change event
         event.stopPropagation();
-        event.stopImmediatePropagation();
     }
 
     /**
@@ -146,13 +130,13 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
      */
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
-        this.cd.markForCheck();
     }
 
     /**
      * update form model value and mark for check
+     * @docs-private
      */
-    _markForCheck() {
+    updateFormModel() {
         if (this._onModelChange) {
             this._onModelChange(this.checked);
         }
@@ -160,7 +144,5 @@ export class SwitchComponent implements AfterViewInit, OnChanges, ControlValueAc
         if (this._onTouch) {
             this._onTouch(this.checked);
         }
-
-        this.cd.markForCheck();
     }
 }
