@@ -57,8 +57,8 @@ task('md-docs', () => {
 });
 
 task('docs', sequenceTask(
-    'api-docs'
-    // 'md-docs'
+    'api-docs',
+    'md-docs'
 ));
 
 /**

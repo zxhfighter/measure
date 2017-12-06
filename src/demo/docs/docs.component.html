@@ -1,0 +1,32 @@
+<div class="docs-guide">
+
+<h1 id="-" class="docs-markdown-h1">快速上手</h1>
+    <p class="docs-markdown-p">One Design Angular Component Library 是一个基于最新 Angular 标准的组件库，能够帮助开发者快速构建企业级应用。</p>
+    <h2 id="-" class="docs-markdown-h2">安装</h2>
+    <pre class="docs-markdown-pre"><code class="lang-bash docs-markdown-code">$ npm install --save xdesign
+</code></pre>
+    <h2 id="-" class="docs-markdown-h2">引入组件模块</h2>
+    <p class="docs-markdown-p">导入组件所在的模块。</p>
+    <pre class="docs-markdown-pre"><code class="lang-ts docs-markdown-code"><span class="hljs-keyword">import</span> &#123; ButtonModule, TableModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'xdesign'</span>;
+
+<span class="hljs-meta">@NgModule</span>(&#123;
+    <span class="hljs-comment">// ...</span>
+    imports: [ButtonModule, TableModule]
+    <span class="hljs-comment">// ...</span>
+&#125;)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule &#123; &#125;
+</code></pre>
+    <h2 id="-" class="docs-markdown-h2">使用主题</h2>
+    <p class="docs-markdown-p">你可以使用组件库自带的主题，也可以引入其它自定义的主题。</p>
+    <p class="docs-markdown-p">例如在你的全局样式文件中，引入蓝色主题如下：</p>
+    <pre class="docs-markdown-pre"><code class="lang-css docs-markdown-code">@<span class="hljs-keyword">import</span> <span class="hljs-string">"node_modules/xdesign/css/theme/blue/index.css"</span>;
+</code></pre>
+    <p class="docs-markdown-p">另外，如果你的项目支持 LESS，你还可以定制你自己的样式主题。</p>
+    <pre class="docs-markdown-pre"><code class="lang-less docs-markdown-code"><span class="hljs-keyword">@import</span> <span class="hljs-string">"node_modules/xdesign/less/theme/blue/index.less"</span>;
+
+<span class="hljs-variable">@brand-primary:</span> <span class="hljs-number">#f00</span>;
+<span class="hljs-comment">// other variables</span>
+</code></pre>
+    <h2 id="-angular-cli" class="docs-markdown-h2">结合 Angular CLI</h2>
+    <p class="docs-markdown-p">推荐使用 Angular CLI 脚手架来搭建 Angular 项目。</p>
+</div>
