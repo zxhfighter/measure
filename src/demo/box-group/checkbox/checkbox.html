@@ -1,6 +1,6 @@
 <p>
     normal: <br>
-    <nb-checkbox>Apple</nb-checkbox>
+    <nb-checkbox>Apple <i class="fa fa-apple"></i></nb-checkbox>
 </p>
 
 <p>
@@ -26,4 +26,11 @@
     <nb-checkbox [checked]="appleChecked" value="apple" (change)="onToggleBox('appleChecked', $event)">Apple</nb-checkbox>
     <nb-checkbox [checked]="bananaChecked" value="banana" (change)="onToggleBox('bananaChecked', $event)">Banana</nb-checkbox>
     <nb-checkbox [checked]="orangeChecked" value="orange" (change)="onToggleBox('orangeChecked', $event)">Orange</nb-checkbox>
+</p>
+
+<p>
+    small size: <br>
+    <nb-checkbox theme="small">Apple</nb-checkbox>
+    <nb-checkbox theme="small" checked>Apple</nb-checkbox>
+    <nb-checkbox theme="small" intermediate>Apple</nb-checkbox>
 </p>

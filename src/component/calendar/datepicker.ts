@@ -2,13 +2,11 @@ import {
     Component, Input, Output, EventEmitter, Renderer2, OnDestroy, ViewChild, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, forwardRef
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import {Moment} from 'moment';
 import * as moment from 'moment';
-import {Element} from 'glob-stream';
 
-import {OnChange} from '../core/decorators';
+import { OnChange } from '../core/decorators';
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -78,7 +76,7 @@ export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAcces
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     ngOnDestroy() {
 
@@ -117,9 +115,9 @@ export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAcces
                 const up = rect.top > windowHeight / 2;
                 this.render.setStyle(panel, 'top', (up ? -panelRec.height : 38) + 'px');
                 this.render.setStyle(panel, 'opacity', 1);
-            }, 100)
+            }, 100);
         }
-        catch(e) {
+        catch (e) {
             throw new Error('it only works in browser');
         }
     }

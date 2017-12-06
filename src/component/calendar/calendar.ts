@@ -3,13 +3,12 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
-import {Moment} from 'moment';
 import * as moment from 'moment';
 
-import {OnChange} from '../core/decorators';
+import { OnChange } from '../core/decorators';
 
 /** calendar show mode */
-export type CalendarMode = 'calendar'|'year'|'month';
+export type CalendarMode = 'calendar' | 'year' | 'month';
 
 /**
  * Calendar Component
@@ -34,7 +33,7 @@ export class CalendarComponent {
      * calendar selected value
      */
     @Input()
-    get value() {return this._value;}
+    get value() { return this._value; }
     set value(v: any) {
         this._value = v;
         this.month = v;

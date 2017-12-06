@@ -1,15 +1,11 @@
 import {
-    Component, Input, ElementRef, SimpleChanges, AfterViewInit, ContentChildren,
-    OnChanges, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef,
-    QueryList, Renderer2, Optional, forwardRef, Output, EventEmitter, AfterContentInit
+    Component, Input, Output, ContentChildren, OnInit,
+    ViewEncapsulation, ChangeDetectionStrategy,
+    QueryList, Optional, forwardRef, EventEmitter, AfterContentInit
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import {coerceBooleanProperty} from '../util/coerce';
-import {OnChange} from '../core/decorators';
-
-/** toggle button group types */
-export type BUTTON_GROUP_TYPE = 'radio' | 'checkbox';
+import { OnChange } from '../core/decorators';
 
 /** toggle button value type */
 export interface ButtonGroupValue {
@@ -46,22 +42,23 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
     },
     exportAs: 'xButtonGroup'
 })
-export class ButtonGroupComponent implements ControlValueAccessor, AfterContentInit {
+export class ButtonGroupComponent implements ControlValueAccessor, AfterContentInit, OnInit {
 
-    /** button group change event, emit the `ButtonGroupValue`, which with the `currentValue` and `value` property */
+    /**
+     * button group change event, emit the `ButtonGroupValue`
+     * , which with the `currentValue` and `value` property
+     */
     @Output() change: EventEmitter<ButtonGroupValue> = new EventEmitter<ButtonGroupValue>();
 
     /**
      * button group type, either 'radio' or 'checkbox'
      * @default checkbox
      */
-    @OnChange()
     @Input() type: 'radio' | 'checkbox' = 'checkbox';
 
     /**
      * button group value, can be any type
      */
-    @OnChange()
     @Input() value: any;
 
     /**
@@ -70,6 +67,10 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
      */
     @OnChange(true)
     @Input() disabled = false;
+
+    /**
+     * @docs-private
+     */
     disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
@@ -79,16 +80,16 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
         forwardRef(() => ButtonToggleComponent)
     ) _buttonList: QueryList<ButtonToggleComponent>;
 
-    constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {
-
-    }
+    constructor() { }
 
     ngOnInit() {
         const self = this;
-        // listen to disabled property, and update sub child disabled state
+
+        // listen to disabled property, and update children disabled state
         self.disabledChange.subscribe(disabled => {
             if (self._buttonList) {
                 self._buttonList.forEach(box => {
+                    // if the button group is disabled, all buttons disabled too
                     box.disabled = box.disabled || disabled;
                 });
             }
@@ -97,6 +98,8 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
 
     ngAfterContentInit() {
         const self = this;
+
+        // init disabled state
         if (self._buttonList) {
             self._buttonList.forEach(box => {
                 box.disabled = box.disabled || self.disabled;
@@ -116,11 +119,6 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
                 item.checked = item.value === value;
             });
             this.value = [value];
-            this.change.emit({
-                currentValue: value,
-                value: this.value
-            });
-            this._markForCheck();
         }
         else if (this.type === 'checkbox') {
             const button = this._buttonList.find(v => v.value === value);
@@ -129,13 +127,14 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
                 button.checked = !button.checked;
                 button.checked ? valueSet.add(value) : valueSet.delete(value);
                 this.value = Array.from(valueSet);
-                this.change.emit({
-                    currentValue: value,
-                    value: this.value
-                });
-                this._markForCheck();
             }
         }
+
+        this.change.emit({
+            currentValue: value,
+            value: this.value
+        });
+        this._updateFormModel();
     }
 
     /**
@@ -186,27 +185,19 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
      */
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
-        this.cd.markForCheck();
     }
 
     /**
      * update form model value and mark for check
      */
-    _markForCheck() {
-        if (this._onModelChange) {
-            this._onModelChange(this.value);
-        }
-
-        if (this._onTouch) {
-            this._onTouch(this.value);
-        }
-
-        this.cd.markForCheck();
+    _updateFormModel() {
+        if (this._onModelChange) { this._onModelChange(this.value); }
+        if (this._onTouch) { this._onTouch(this.value); }
     }
 }
 
 /**
- * A single toggle button, usually used in `nb-button-group`
+ * A single toggle button, usually used in `nb-button-group`,
  * like checkbox, it has a associated value and can be checked and disabled
  */
 @Component({
@@ -266,7 +257,7 @@ export class ButtonToggleComponent {
      * Creates an instance of ButtonToggleComponent.
      * @param {ButtonGroupComponent?} buttonGroup - the optional wrapped parent button group component
      */
-    constructor(@Optional() buttonGroup: ButtonGroupComponent) {
+    constructor( @Optional() buttonGroup: ButtonGroupComponent) {
 
         this.buttonGroup = buttonGroup;
         this._isSingleButton = !this.buttonGroup;
@@ -278,7 +269,7 @@ export class ButtonToggleComponent {
      * @docs-private
      */
     onToggle() {
-        if (this.disabled) {return;}
+        if (this.disabled) { return; }
 
         // if not a single toggle button, tell the parent button group component
         // to toggle proper buttons according to type

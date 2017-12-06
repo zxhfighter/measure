@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import * as prism from 'prismjs';
-import {OnChange} from '../core/decorators';
+import { OnChange } from '../core/decorators';
 
 /**
  * Code Highlighter Component
@@ -44,7 +44,7 @@ export class CodeHighlighterComponent implements AfterViewInit {
     /** ng-content wrapper element */
     @ViewChild('content') _content: ElementRef;
 
-    constructor(private el: ElementRef, private render: Renderer2) {}
+    constructor(private el: ElementRef, private render: Renderer2) { }
 
     ngAfterViewInit() {
         this.highlight();
@@ -75,7 +75,7 @@ export class CodeHighlighterComponent implements AfterViewInit {
                 this.render.removeChild(contentEl.parentNode, contentEl);
             }
         }
-        catch(e) {
+        catch (e) {
             throw new Error('cannot highlight code, see error: ' + e);
         }
     }

@@ -4,10 +4,10 @@ import {
 } from '@angular/core';
 
 import * as moment from 'moment';
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 import 'moment/locale/zh-cn';
 
-import {OnChange} from '../core/decorators';
+import { OnChange } from '../core/decorators';
 
 /** day item cell type */
 export interface DayItem {
@@ -39,7 +39,7 @@ export interface DayItem {
 
 /** month weeks */
 export interface WeekItem {
-    days: Array<DayItem>
+    days: Array<DayItem>;
 }
 
 /** nullable date type */
@@ -85,7 +85,7 @@ export class MonthViewComponent implements OnInit {
      * monthview selected date(when the month view is not multiple)
      */
     @Input()
-    get value() {return this._value;}
+    get value() { return this._value; }
     set value(v: any) {
         this._value = v;
         this._month = v;
@@ -97,7 +97,7 @@ export class MonthViewComponent implements OnInit {
      * the selection start date in multiple mode
      */
     @Input()
-    get startDate() {return this._startDate;}
+    get startDate() { return this._startDate; }
     set startDate(newStartDate: any) {
         if (this._startDate !== newStartDate) {
             this._startDate = newStartDate;
@@ -110,7 +110,7 @@ export class MonthViewComponent implements OnInit {
      * the selection end date in multiple mode
      */
     @Input()
-    get endDate() {return this._endDate;}
+    get endDate() { return this._endDate; }
     set endDate(newEndDate: any) {
         if (this._endDate !== newEndDate) {
             this._endDate = newEndDate;
@@ -123,7 +123,7 @@ export class MonthViewComponent implements OnInit {
      * the current month of the selected date
      */
     @Input()
-    get month() {return this._month};
+    get month() { return this._month; }
     set month(v: any) {
         this._month = v;
         this._buildWeeks();
@@ -173,7 +173,7 @@ export class MonthViewComponent implements OnInit {
     /** the temp end date when mouse over */
     _tempEndDate: DateType;
 
-    constructor(private cd: ChangeDetectorRef) {}
+    constructor(private cd: ChangeDetectorRef) { }
 
     ngOnInit() {
         // set locale to zh-cn
@@ -311,7 +311,7 @@ export class MonthViewComponent implements OnInit {
      * @return {boolean} true if disabled
      */
     checkIsDisabled(date: Moment): boolean {
-        return this.disabledDates.some((d: string, idx: number) => {
+        return this.disabledDates.some((d: string) => {
             const disabledDate = moment(d);
             return date.isSame(disabledDate, 'day');
         });

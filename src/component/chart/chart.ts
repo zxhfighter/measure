@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import * as echarts from 'echarts';
 
-import {OnChange} from '../core/decorators';
+import { OnChange } from '../core/decorators';
 
 /**
  * Chart Component, depends on [Echarts](http://echarts.baidu.com/)
@@ -17,7 +17,8 @@ import {OnChange} from '../core/decorators';
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-chart'
-    }
+    },
+    exportAs: 'xChart'
 })
 export class ChartComponent implements AfterViewInit, OnDestroy {
 
@@ -45,13 +46,13 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     @OnChange()
     @Input() options: any;
 
-    @ViewChild('chartContainer') _chartContainer: ElementRef;
-
     /**
      * callback when chart options change
      * @docs-private
      */
     optionsChange: EventEmitter<any> = new EventEmitter<any>();
+
+    @ViewChild('chartContainer') _chartContainer: ElementRef;
 
     /**
      * chart instance

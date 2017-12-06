@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ChartComponent} from './chart';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChartComponent } from './chart';
 
 @NgModule({
     imports: [
@@ -13,4 +13,4 @@ import {ChartComponent} from './chart';
         ChartComponent
     ]
 })
-export class ChartModule {}
+export class ChartModule { }

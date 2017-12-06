@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {ButtonModule} from '../button';
+import { ButtonModule } from '../button';
 
 import {
     TableComponent,
@@ -26,4 +26,4 @@ const components = [
     declarations: [...components],
     exports: [...components]
 })
-export class TableModule {}
+export class TableModule { }

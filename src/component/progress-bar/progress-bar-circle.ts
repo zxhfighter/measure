@@ -3,8 +3,8 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
-import {describeArc, polarToCartesian} from '../util/svg';
-import {OnChange} from '../core/decorators';
+import { describeArc, polarToCartesian } from '../util/svg';
+import { OnChange } from '../core/decorators';
 
 /**
  * Circular Progress Bar Component
@@ -98,7 +98,7 @@ export class ProgressBarCircleComponent {
             (percent: number) => {
                 const r = this.radius;
 
-                let deg = Math.floor(percent / 100 * 360) ;
+                let deg = Math.floor(percent / 100 * 360);
                 if (deg > 359.9999) {
                     deg = 359.9999;
                 }

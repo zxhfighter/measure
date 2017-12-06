@@ -1,17 +1,12 @@
 import {
     Component, Input, Output, EventEmitter, ContentChildren, QueryList, forwardRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, ViewChildren,
-    AfterViewChecked, ChangeDetectorRef
+    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import {InputBoxComponent} from './box';
-import {coerceBooleanProperty} from '../util/coerce';
-import {uuid as getUUID} from '../util/uuid';
-import {OnChange} from '../core/decorators';
-
-/** box group type */
-export type BOX_GROUP_TYPE = 'radio' | 'checkbox';
+import { InputBoxComponent } from './box';
+import { uuid as getUUID } from '../util/uuid';
+import { OnChange } from '../core/decorators';
 
 /** box group value type */
 export interface BoxGroupValue {
@@ -46,7 +41,8 @@ const BOXGROUP_VALUE_ACCESSOR = {
     host: {
         'class': 'nb-widget nb-boxgroup',
         '[class.nb-boxgroup-disabled]': 'disabled'
-    }
+    },
+    exportAs: 'xBoxGroup'
 })
 export class BoxGroupComponent implements ControlValueAccessor {
 
@@ -91,7 +87,7 @@ export class BoxGroupComponent implements ControlValueAccessor {
     /** children box components */
     @ContentChildren(forwardRef(() => InputBoxComponent)) _boxList: QueryList<InputBoxComponent>;
 
-    constructor(private cd: ChangeDetectorRef) {
+    constructor() {
 
         // listen to disabled property, and update sub child disabled state
         this.disabledChange.subscribe(disabled => {
@@ -141,7 +137,7 @@ export class BoxGroupComponent implements ControlValueAccessor {
             }
         }
 
-        this._markForCheck();
+        this._updateFormModel();
     }
 
     /**
@@ -192,13 +188,12 @@ export class BoxGroupComponent implements ControlValueAccessor {
      */
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
-        this.cd.markForCheck();
     }
 
     /**
      * update form model value and mark for check
      */
-    _markForCheck() {
+    _updateFormModel() {
         if (this._onModelChange) {
             this._onModelChange(this.value);
         }
@@ -206,7 +201,5 @@ export class BoxGroupComponent implements ControlValueAccessor {
         if (this._onTouch) {
             this._onTouch(this.value);
         }
-
-        this.cd.markForCheck();
     }
 }

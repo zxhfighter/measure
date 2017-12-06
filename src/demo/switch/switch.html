@@ -5,6 +5,14 @@
     <span class="type-component">Component</span>
 </p>
 
+<p class="type-desc">
+    <span>selector</span>: <code>nb-switch</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>xSwitch</code>
+</p>
+
 <section>
     <h3 class="section-title">Usage</h3>
 
@@ -19,14 +27,17 @@
 
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Switch Basic</h3>
-    <p nb-codebox-desc>switch, like checkbox, can be checked or unchecked.</p>
+    <div nb-codebox-desc>
+        <p>1.switch 是 checkbox 的另外一种展现形式，有 <code>checked</code>，<code>disabled</code> 属性，选中情况变更时，会触发 <code>change</code> 事件。</p>
+        <p>2.switch 可以通过 <code>theme</code> 自定义样式，如果设置 <code>theme="small"</code>，会生成一个 <code>nb-switch-small</code> 的样式类。</p>
+    </div>
 
     <demo-switch-basic></demo-switch-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
     <h3 nb-codebox-title>Switch With (Reactive)Forms</h3>
-    <p nb-codebox-desc>switch can be used with forms and reactive forms.</p>
+    <p nb-codebox-desc>switch 能够和 Forms 以及 ReactiveForms 无缝使用。</p>
 
     <demo-switch-form></demo-switch-form>
 </nb-code-box>
@@ -71,13 +82,13 @@
                 <div class="docs-input-marker">
                     @Input()</div>
                 <p class="docs-property-name">
-                    styleClass
+                    theme
                 </p>
             </td>
             <td class="docs-td docs-td-type">string</td>
             <td class="docs-td docs-td-default">''</td>
             <td class="docs-td docs-td-desc">
-                <p>Extra style classes to provide custom themes, e.g. &#39;class-1 class-2&#39;</p>
+                <p>Extra theme classes to provide custom themes, i.e. when theme is 'small', a `nb-switch-small` class will be added</p>
             </td>
         </tr>
 

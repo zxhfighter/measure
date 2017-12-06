@@ -1,6 +1,5 @@
 import {
-    Component, Input, Output, EventEmitter,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy
+    Component, Input, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
 /**
@@ -32,7 +31,8 @@ export type BreadcrumbItem = {
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-breadcrumb'
-    }
+    },
+    exportAs: 'xBreadcrumb'
 })
 export class BreadcrumbComponent {
 

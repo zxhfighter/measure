@@ -1,12 +1,12 @@
 import {
-    Component, Input, Output, EventEmitter, Optional, OnInit,
-    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
+    Component, Input, Output, EventEmitter, Optional, OnInit, AfterViewInit,
+    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef
 } from '@angular/core';
 
-import {coerceBooleanProperty} from '../util/coerce';
-import {BoxGroupComponent} from './box-group';
-import {uuid as getUUID} from '../util/uuid';
-import {OnChange} from '../core/decorators';
+import { BoxGroupComponent } from './box-group';
+import { uuid as getUUID } from '../util/uuid';
+import { addClass } from '../util/dom';
+import { OnChange } from '../core/decorators';
 
 /** box type: radio or checkbox */
 export type BOX_TYPE = 'radio' | 'checkbox';
@@ -26,9 +26,10 @@ export type BOX_TYPE = 'radio' | 'checkbox';
         '[class.nb-checkbox-checked]': 'checked',
         '[class.nb-checkbox-intermediate]': 'intermediate',
         '[class.nb-checkbox-radio]': 'type == "radio"'
-    }
+    },
+    exportAs: 'xBox'
 })
-export class InputBoxComponent implements OnInit {
+export class InputBoxComponent implements OnInit, AfterViewInit {
 
     /** When the box state change, emit a change event with a boolean value */
     @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -69,6 +70,12 @@ export class InputBoxComponent implements OnInit {
     @Input() intermediate: boolean = false;
 
     /**
+     * extra theme class
+     * @default ''
+     */
+    @Input() theme: string = '';
+
+    /**
      * @docs-private
      */
     intermediateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -83,14 +90,16 @@ export class InputBoxComponent implements OnInit {
      * box component constructor
      *
      * @param {BoxGroupComponent?} parentBox - find parent box group component and inject it
-     * @param {ChangeDetectorRef} cd - component change detector
      */
-    constructor(@Optional() parentBox: BoxGroupComponent, private cd: ChangeDetectorRef) {
+    constructor( @Optional() parentBox: BoxGroupComponent, private _el: ElementRef) {
         this._parentBox = parentBox;
 
         this.intermediateChange.subscribe(
             (v: boolean) => {
-                v && (this.checked = false);
+                if (v) {
+                    // if in the intermediate state, checked is false
+                    this.checked = false;
+                }
             }
         );
     }
@@ -105,6 +114,12 @@ export class InputBoxComponent implements OnInit {
 
             const value = (this._parentBox.value || []) as any[];
             this.checked = value.indexOf(this.value) !== -1;
+        }
+    }
+
+    ngAfterViewInit() {
+        if (this.theme) {
+            addClass(this._el.nativeElement, `nb-checkbox-${this.theme}`);
         }
     }
 
@@ -140,7 +155,6 @@ export class InputBoxComponent implements OnInit {
      */
     preventCheckboxDefaultEvent(event: Event) {
         if (event.stopPropagation) {
-            event.stopImmediatePropagation();
             event.stopPropagation();
         }
         else {

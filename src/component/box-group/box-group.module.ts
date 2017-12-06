@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {InputBoxComponent} from './box';
-import {BoxGroupComponent} from './box-group';
+import { InputBoxComponent } from './box';
+import { BoxGroupComponent } from './box-group';
 
 @NgModule({
     imports: [
@@ -17,4 +17,4 @@ import {BoxGroupComponent} from './box-group';
         BoxGroupComponent
     ]
 })
-export class BoxGroupModule {}
+export class BoxGroupModule { }

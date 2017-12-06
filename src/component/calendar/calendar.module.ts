@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import {ButtonModule} from '../button/button.module';
+import { ButtonModule } from '../button/button.module';
 
-import {CalendarComponent} from './calendar';
-import {MonthViewComponent} from './month-view';
-import {DatePickerComponent} from './datepicker';
-import {RangeDatePickerComponent} from './range-datepicker';
+import { CalendarComponent } from './calendar';
+import { MonthViewComponent } from './month-view';
+import { DatePickerComponent } from './datepicker';
+import { RangeDatePickerComponent } from './range-datepicker';
 
 const components = [
     CalendarComponent,
@@ -21,4 +21,4 @@ const components = [
     declarations: [...components],
     exports: [...components]
 })
-export class CalendarModule {}
+export class CalendarModule { }

@@ -2,12 +2,12 @@ import {
     Component, Input, Output, EventEmitter, Renderer2, OnDestroy, ViewChild, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, forwardRef
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 import * as moment from 'moment';
 
-import {OnChange} from '../core/decorators';
+import { OnChange } from '../core/decorators';
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -24,18 +24,18 @@ const RANGEDATEPICKER_VALUE_ACCESSOR = {
  * range datepicker value interface
  */
 export interface RangeDatePickerValue {
-    startDate: Date,
-    endDate: Date,
-};
+    startDate: Date;
+    endDate: Date;
+}
 
 /**
  * quick linker value interface
  */
 export interface QuickLinkValue {
     text: string;
-    startDate: Date,
-    endDate: Date
-};
+    startDate: Date;
+    endDate: Date;
+}
 
 /**
  * Range DatePicker Component
@@ -61,7 +61,7 @@ export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor
 
     /** range datepicker value */
     @Input()
-    get value() {return this._value;}
+    get value() { return this._value; }
     set value(newValue: any) {
 
         if (newValue) {
@@ -126,7 +126,7 @@ export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor
             moment(this.value.startDate).format(this.formatter),
             ' ' + this.splitter + ' ',
             moment(this.value.endDate).format(this.formatter)
-        ].join('')
+        ].join('');
     }
 
     /** whether the panel is show */
@@ -181,9 +181,9 @@ export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor
                 const up = rect.top > windowHeight / 2;
                 this.render.setStyle(panel, 'top', (up ? -panelRec.height : 38) + 'px');
                 this.render.setStyle(panel, 'opacity', 1);
-            }, 100)
+            }, 100);
         }
-        catch(e) {
+        catch (e) {
             throw new Error('it only works in browser');
         }
     }
