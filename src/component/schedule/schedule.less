@@ -1,0 +1,65 @@
+.@{prefix}-schedule {
+    display: block;
+    color: #f00;
+    td {
+        width: 22px;
+        height: 22px;
+        border: 1px solid @nb-gray-6;
+        &:hover {
+            background-color: #daf3eb;
+        }
+    }
+    button {
+        width: 103%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
+        &:hover {
+            background-color: #daf3eb;
+        }
+        
+        // &:active {
+        //     background-color: #c4e0fe;
+        // }
+        // &:visited {
+        //     background-color: #c4e0fe;
+        // }
+    }
+    .selected {
+        background-color: #c4e0fe;
+    }
+    .hour-title {
+        margin-left: 10%;
+        span {
+            display: inline-block;
+            width: 46px;
+            color: @nb-gray-3;
+            text-align: center;
+        }
+    }
+    .week-title {
+        float: left;
+        width: 10%;
+        color: @nb-gray-3;
+        line-height: 22px;
+        text-align: center;
+        .week-item {
+            height: 22px;
+        }
+        svg {
+            margin: 0 0 3px -3px;
+        }
+        .checkbox {
+            display: inline-block;
+            margin-right: 7px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid @nb-gray-2;
+            vertical-align: middle;
+        } 
+    }
+    .table-con {
+        float: left;
+        width: 90%;
+    }
+}
