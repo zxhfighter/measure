@@ -31,3 +31,4 @@ export * from './card/index';
 export * from './overlay/index';
 export * from './accordion/index';
 export * from './uploader/index';
+export * from './transfer/index';

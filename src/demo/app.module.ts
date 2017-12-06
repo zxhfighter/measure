@@ -37,7 +37,8 @@ import {
     TreeModule,
     SideBarModule,
     AccordionModule,
-    UploaderModule
+    UploaderModule,
+    TransferModule
 } from '../component';
 
 import { AppComponent } from './app.component';
@@ -59,7 +60,8 @@ import { DemoCodeHighlighter } from './code-highlighter';
 import { DemoCodeBox } from './code-box';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
-import { DemoSideBar } from './side-bar/';
+import { DemoSideBar } from './side-bar';
+import { DemoTransfer } from './transfer';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -113,7 +115,8 @@ const demoModules = [
         DemoTree,
         DemoSideBar,
         DemoAccordion,
-        DemoUploader
+        DemoUploader,
+        DemoTransfer
     ],
     imports: [
         BrowserModule,
@@ -152,6 +155,7 @@ const demoModules = [
         SideBarModule,
         AccordionModule,
         UploaderModule,
+        TransferModule,
         // demos
         ...demoModules,
         RouterModule.forRoot(appRoutes, { useHash: true })
