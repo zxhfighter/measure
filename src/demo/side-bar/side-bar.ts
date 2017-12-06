@@ -23,4 +23,8 @@ export class DemoSideBar implements OnInit {
     ngOnInit() {
 
     }
+
+    onNavi(event) {
+        console.log(event);
+    }
 }

@@ -20,5 +20,6 @@ export interface TreeNode {
 export interface SiderBarModel {
     title?: string;
     expanded?: boolean;
+    root?: string;
     tree?: TreeNode[];
 }

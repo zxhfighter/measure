@@ -980,7 +980,7 @@ export const treeDataSelected = [
                 children: [
                     {
                         id: '0101',
-                        name: '北京',
+                        name: '从南极飞到北极南京到北京你的笑胜过那些美景',
                         selectable: true,
                         isExpanded: true,
                         isSelected: true,

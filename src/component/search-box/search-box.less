@@ -1,8 +1,7 @@
 .@{prefix}-search-box {
     position: relative;
     display: inline-block;
-    width: 210px;
-    height: 36px;
+    
     border: 0 none;
     background-color: #fff;
 }
@@ -14,8 +13,6 @@
 .@{prefix}-search-box:not(.nb-search-box-disabled) {
     position: relative;
     display: inline-block;
-    width: 210px;
-    height: 36px;
     border: 0 none;
     background-color: #fff;
 
@@ -45,7 +42,18 @@
     bottom: 0;
     left: 0;
     pointer-events: none;
+}
+
+.@{prefix}-search-box-size-defalut .@{prefix}-search-box-operate {
     line-height: 36px;
+}
+
+.@{prefix}-search-box-size-small .@{prefix}-search-box-operate {
+    line-height: 32px;
+}
+
+.@{prefix}-search-box-size-long .@{prefix}-search-box-operate {
+    line-height: 42px;
 }
 
 .@{prefix}-search-box-icons {

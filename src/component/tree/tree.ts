@@ -64,17 +64,20 @@ export class TreeComponent implements OnInit {
     }
 
     /** listen tree-node click event */
-    onNodeClick(event: MouseEvent, node: TreeNode) {
+    onNodeClick(node: TreeNode) {
         if (!node.selectable) {
             return;
         }
 
         switch (this.selectionMode) {
             case "candidate":
-                this.clickCandidate(event, node);
+                this.clickCandidate(node);
                 break;
             case "selected":
-                this.clickSelected(event, node);
+                this.clickSelected(node);
+                break;
+            case "navigation":
+                this.clickNavigation(node);
                 break;
             default:
                 return;
@@ -82,7 +85,7 @@ export class TreeComponent implements OnInit {
     }
 
     /** candidate mode click event handler */
-    clickCandidate(event: MouseEvent, node: TreeNode) {
+    clickCandidate(node: TreeNode) {
         if (!node.isSelected) {
             if (this.propagateSelectionDown) {
                 this.propagateDown(node, true);
@@ -90,12 +93,12 @@ export class TreeComponent implements OnInit {
             if (this.propagateSelectionUp) {
                 this.propagateUp(node, true);
             }
-            this.onNodeSelect.emit({ originalEvent: event, node: node });
+            this.onNodeSelect.emit(node);
         }
     }
 
     /** selected mode click event handler */
-    clickSelected(event: MouseEvent, node: TreeNode) {
+    clickSelected(node: TreeNode) {
         if (node.isSelected) {
             if (this.propagateSelectionDown) {
                 this.propagateDown(node, false);
@@ -103,8 +106,12 @@ export class TreeComponent implements OnInit {
             if (this.propagateSelectionUp) {
                 this.propagateUp(node, false);
             }
-            this.onNodeSelect.emit({ originalEvent: event, node: node });
+            this.onNodeSelect.emit(node);
         }
+    }
+
+    clickNavigation(node: TreeNode) {
+        this.onNodeSelect.emit(node);
     }
 
     /** select event downward propagate handler */

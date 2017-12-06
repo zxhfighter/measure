@@ -25,6 +25,9 @@ export type IS_SUGGESTION = 'true' | 'false';
 /** Time in ms to throttle the resize|scroll events by default. */
 export const DEFAULT_DELAY_TIME = 50;
 
+/** default search-box size types */
+export type SIZE = 'long' | 'default' | 'short' | string;
+
 @Component({
     selector: 'nb-search-box',
     templateUrl: './search-box.html',
@@ -45,6 +48,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     /** search-box type: either 'ico' or 'btn' */
     @Input() type: SEARCH_TYPE = 'ico';
 
+    /** search-box size, there four default size: 'default' */
+    @Input() size: SIZE = 'default';
+
     /** Whether the search-box is suggest search: either true or false */
     @Input() isSuggestion: IS_SUGGESTION = 'false';
 
@@ -59,6 +65,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     /** search event */
     @Output() onSearch = new EventEmitter();
+
+    /** clear search event */
+    @Output() onClear = new EventEmitter();
 
     /** search-box suggest search value */
     @Input() suggestionValue: Array<string> = [];
@@ -77,6 +86,10 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     _composing = false;
 
+    _sizeIpt = 'default';
+
+    _sizeBtn = 'default';
+
     constructor(
         private el: ElementRef,
         private ngZone: NgZone
@@ -90,11 +103,35 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         if (this.isSuggestion !== 'false') {
             this._resizeSubscription = this.change().subscribe(() => this.positionSuggestionLayer(this));
         }
+        switch (this.size) {
+            case 'small':
+                this._sizeIpt = 'short-middle';
+                this._sizeBtn = 'sm';
+                break;
+            case 'long':
+                this._sizeIpt = 'long-high';
+                this._sizeBtn = 'lg';
+                break;
+            default:
+                this._sizeIpt = 'default';
+                this._sizeBtn = 'default';
+        }
+        this.setClass();
     }
 
     ngOnDestroy() {
         this._resizeSubscription.unsubscribe();
     }
+
+    setClass() {
+        const nativeEl = this.el.nativeElement;
+        nativeEl.className = this.getClassName(nativeEl.className);
+    }
+
+    getClassName(className: string) {
+        return className + ' ' + `nb-search-box-size-${this.size || 'default'}`;
+    }
+
 
     /**
      * Returns a stream that emits whenever the size of the viewport change|scroll.
@@ -148,6 +185,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.isOpen = false;
         this.searchValue = '';
         ipt.placeholder = this.placeholder;
+        this.onClear.emit(this.searchValue);
     }
 
     /** search use keyword event */

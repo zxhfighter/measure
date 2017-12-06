@@ -1,5 +1,7 @@
 export const dataSideBar = {
     title: '世界国家目录',
+    expanded: false,
+    root: '全部国家',
     tree: [
         {
             id: '1',
@@ -954,6 +956,5 @@ export const dataSideBar = {
             collapsedIco: 'collapsed',
             styleClass: 'selfStyle'
         }
-    ],
-    expanded: true
+    ]
 };
