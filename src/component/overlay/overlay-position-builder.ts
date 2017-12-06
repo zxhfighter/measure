@@ -1,8 +1,7 @@
 import { ElementRef, Injectable } from '@angular/core';
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import { PositionStrategy } from '../util/position.strategy';
+import { PositionStrategy } from '../util/connected-position.strategy';
 import { GlobalPositionStrategy } from '../util/global-position.strategy';
-import { OverlayConnectionPosition, OriginConnectionPosition } from './connected-position';
 import { OverlayComponent } from './overlay';
 import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from '../util/position';
 
@@ -28,7 +27,7 @@ export class OverlayPositionBuilder {
         targetRef: ElementRef,
         overlayComponent: OverlayComponent,
         originPos: ConnectionPosition,
-        overlayPos: ConnectionPosition): PositionStrategy {
-            return new PositionStrategy(targetRef, overlayComponent.el, originPos, overlayPos);
+        overlayPos: ConnectionPosition): void {
+            // return new PositionStrategy(targetRef, overlayComponent.el, originPos, overlayPos);
     }
 }

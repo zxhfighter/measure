@@ -39,7 +39,6 @@ export class DialogComponent implements OnInit, AfterViewInit {
     // visiblity: boolean = false;
     mask: HTMLElement | null;
     maskClickListener: Function;
-    overlay: any;
 
     @Output() openHandler: EventEmitter<Object> = new EventEmitter();
     @Output() closeHandler: EventEmitter<Object> = new EventEmitter();

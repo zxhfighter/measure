@@ -17,9 +17,8 @@ import { Event } from '@angular/router/src/events';
     }
 })
 
-export class DialogBodyComponent implements OnInit, AfterViewInit {
+export class DialogBodyComponent {
     constructor() {
-
     }
 
 }

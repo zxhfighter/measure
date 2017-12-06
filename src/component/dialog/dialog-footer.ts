@@ -17,7 +17,7 @@ import { Event } from '@angular/router/src/events';
     }
 })
 
-export class DialogFooterComponent implements OnInit, AfterViewInit {
+export class DialogFooterComponent {
     constructor() {
 
     }

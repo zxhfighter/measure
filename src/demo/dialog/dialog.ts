@@ -1,17 +1,19 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy, ViewChild, Injector, ViewContainerRef,
-    Renderer2, ComponentFactoryResolver, NgZone, AfterViewInit
+    Component, OnInit, ChangeDetectionStrategy, ViewChild, Injector,
+    Renderer2, ComponentFactoryResolver, NgZone, AfterViewInit, ViewContainerRef
 } from '@angular/core';
 import { DialogComponent } from '../../component/dialog/dialog';
 import { AlertComponent } from '../../component/dialog/alert';
 import { DialogService } from '../../component/dialog/dialog.service';
+import { OverlayService } from '../../component/overlay/overlay.service';
 
 @Component({
     selector: 'demo-dialog',
     templateUrl: './dialog.html',
     styleUrls: ['./dialog.less'],
     preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
+    providers: [DialogService, OverlayService]
 })
 export class DemoDialog implements OnInit, AfterViewInit {
 
@@ -22,26 +24,13 @@ export class DemoDialog implements OnInit, AfterViewInit {
     @ViewChild('infoAlert') infoAlert: AlertComponent;
     @ViewChild('successAlert') successAlert: AlertComponent;
 
-    dialogService: DialogService<AlertComponent>;
-
     constructor(
-        private _injector: Injector,
-        private _viewContainerRef: ViewContainerRef,
         private _renderer: Renderer2,
-        componentFactoryResolver: ComponentFactoryResolver,
-        private ngZone: NgZone
-    ) {
-        this.dialogService = new DialogService(
-            _injector,
-            _viewContainerRef,
-            _renderer,
-            componentFactoryResolver,
-            ngZone
-        );
+        private viewContainerRef: ViewContainerRef,
+        private dialogService: DialogService<AlertComponent>) {
     }
 
     ngOnInit() {
-
     }
 
     ngAfterViewInit() {
@@ -67,7 +56,7 @@ export class DemoDialog implements OnInit, AfterViewInit {
         this.customFooterDialog.close();
     }
 
-    clickNO() {
+    clickNo() {
         this.customFooterDialog.close();
     }
 

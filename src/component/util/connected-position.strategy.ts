@@ -4,8 +4,9 @@ import {
     ConnectionPosition,
     ConnectionPositionPair
 } from './position';
-import { ElementRef } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
+// @Injectable()
 export class PositionStrategy {
 
     private _offsetX: number = 0;

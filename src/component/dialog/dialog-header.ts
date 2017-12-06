@@ -14,7 +14,7 @@ import { Event } from '@angular/router/src/events';
     preserveWhitespaces: false
 })
 
-export class DialogHeaderComponent implements OnInit, AfterViewInit {
+export class DialogHeaderComponent {
 
     @Input() closable: boolean;
 
