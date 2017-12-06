@@ -29,6 +29,7 @@ export * from './tree/index';
 export * from './side-bar/index';
 export * from './card/index';
 export * from './overlay/index';
+export * from './schedule/index';
 export * from './accordion/index';
 export * from './uploader/index';
 export * from './transfer/index';

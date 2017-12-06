@@ -22,6 +22,7 @@ import {
     TooltipModule,
     OverlayModule,
     PageModule,
+    ScheduleModule,
     TextareaModule,
     TextLineModule,
     SearchBoxModule,
@@ -44,20 +45,21 @@ import {
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
-import { DemoInput } from './input';
-import { DemoTabs } from './tabs';
-import { DemoTooltip } from './tooltip';
-import { DemoPage } from './page';
-import { DemoTextarea } from './textarea';
-import { DemoTextLine } from './text-line';
-import { DemoSearchBox } from './search-box';
-import { DemoTree } from './tree';
-import { DemoToast } from './toast';
-import { DemoSelect } from './select';
-import { DemoDialog } from './dialog';
-import { ChipsDemoModule } from './chips';
-import { DemoCodeHighlighter } from './code-highlighter';
-import { DemoCodeBox } from './code-box';
+import {DemoInput} from './input';
+import {DemoTabs} from './tabs';
+import {DemoTooltip} from './tooltip';
+import {DemoPage} from './page';
+import {DemoSchedule} from './schedule';
+import {DemoTextarea} from './textarea';
+import {DemoTextLine} from './text-line';
+import {DemoSearchBox} from './search-box';
+import {DemoTree} from './tree';
+import {DemoToast} from './toast';
+import {DemoSelect} from './select';
+import {DemoDialog} from './dialog';
+import {ChipsDemoModule} from './chips';
+import {DemoCodeHighlighter} from './code-highlighter';
+import {DemoCodeBox} from './code-box';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar';
@@ -103,6 +105,7 @@ const demoModules = [
         DemoTabs,
         DemoTooltip,
         DemoPage,
+        DemoSchedule,
         DemoTextarea,
         DemoTextLine,
         DemoSearchBox,
@@ -138,6 +141,7 @@ const demoModules = [
         StepModule,
         TableModule,
         PageModule,
+        ScheduleModule,
         TooltipModule,
         OverlayModule,
         TextareaModule,

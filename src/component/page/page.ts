@@ -17,26 +17,62 @@ import {SelectConfig} from "../select/select.config";
 export class PageComponent implements OnInit {
     // 每页20条
     // count = 20;
+    /**
+     * count per page
+     * @default default
+     */
     @Input() count = 20;
-    // 总条数
+    
+    /**
+     * total count
+     * @default default
+     */
     @Input() total;
+
     // 可选择的每页显示条数,
     // 可选填参数
+
+    /**
+     * page list selected
+     * @default default
+     */
     @Input('value') list;
 
+    /**
+     * when page change, emit a change event, which contains the currrentIndex and the count
+     * @default default
+     */
     @Output() pageChange: EventEmitter<Object> = new EventEmitter();
-    // 页数
+    
+    /**
+     * 页数
+     * @docs-private
+     */
     pageSize = [];
     // pageSize = [1,2,3,4,5,6,7,8,9,10,11];
     // 每页显示条数可选列表
     
-    // 前4页
+    /**
+     * 前4页
+     * @docs-private
+     */
     firstPages = [1,2,3,4];
-    // 当前页
+    /**
+     * 当前页
+     * @docs-private
+     */
     currrentIndex = 1;
+    /**
+     * 最后选择的页
+     * @docs-private
+     */
     lastIndex = 1;
 
-    selectedData1: SelectConfig;
+    // selectedData1: SelectConfig;
+    /**
+     * 可供选择的每页显示的条数
+     * @docs-private
+     */
     selectData: SelectConfig[] = [
         {
             label: '10',
@@ -73,6 +109,13 @@ export class PageComponent implements OnInit {
         
         this.setPage();
     }
+
+    /**
+     * set current page
+     *
+     * @param {any} value - box value
+     * @docs-private
+     */
     setPage() {
         this.pageSize = [];
         let pageCount = Math.ceil(this.total / this.count);
@@ -80,6 +123,13 @@ export class PageComponent implements OnInit {
             this.pageSize.push(i);
         }
     }
+
+    /**
+     * jump tp page num
+     *
+     * @param {number} index - page num
+     * @docs-private
+     */
     jumpTo (index: number) {
         if (this.currrentIndex > 0 && this.currrentIndex < this.pageSize.length + 1) {
             if (+index === -2 && this.currrentIndex !== 1) {
@@ -98,6 +148,13 @@ export class PageComponent implements OnInit {
             count: this.count});
         // this.$dispatch('pageChange', this.currrentIndex - 1);
     }
+
+    /**
+     * set current page count
+     *
+     * @param {object} event - page change event
+     * @docs-private
+     */
     setCount(event) {
         this.count = event.value;
         this.currrentIndex = 1;

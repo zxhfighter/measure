@@ -52,8 +52,8 @@
             <span (click)="jumpTo(pageSize.length)"
                 [ngClass]="{'turn-on': pageSize.length === currrentIndex}">{{pageSize.length}}</span>
         </ng-container>
-        <span (click)="jumpTo(-2)" *ngIf="currrentIndex !== 1">&lt;</span>
-        <span (click)="jumpTo(-1)" *ngIf="currrentIndex !== pageSize.length">&gt;</span>
+        <span class="arrow" (click)="jumpTo(-2)" *ngIf="currrentIndex !== 1">&lt;</span>
+        <span class="arrow" (click)="jumpTo(-1)" *ngIf="currrentIndex !== pageSize.length">&gt;</span>
         <!-- <em class="go-page">去第</em>
         <input type="text" class="form-control" v-model.number="currrentIndex">
         <em class="go-page">页</em>
