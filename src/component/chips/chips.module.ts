@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ChipsComponent} from './chips';
-import {InputModule} from '../input';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChipsComponent } from './chips';
+import { ListItemDirective } from './chips.directive';
 
 @NgModule({
-    imports: [CommonModule, InputModule],
-    declarations: [ChipsComponent],
+    imports: [CommonModule],
+    declarations: [ChipsComponent, ListItemDirective],
     exports: [ChipsComponent]
 })
 export class ChipsModule {}

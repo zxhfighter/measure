@@ -1,6 +1,14 @@
 import {
-    Component, Input, ViewEncapsulation, ChangeDetectionStrategy,
-    ElementRef, SimpleChanges, AfterViewInit, OnChanges, ChangeDetectorRef
+    Component,
+    Input,
+    Directive,
+    ViewEncapsulation,
+    ChangeDetectionStrategy,
+    ElementRef,
+    SimpleChanges,
+    AfterViewInit,
+    OnChanges,
+    ChangeDetectorRef
 } from '@angular/core';
 
 import {coerceBooleanProperty} from '../util/coerce';
@@ -14,18 +22,14 @@ export type INPUT_THEME = 'default' | 'error' | 'transparent' | string;
 export type INPUT_SIZE =
 'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
 
-@Component({
-    selector: 'input[nb-input]',
-    templateUrl: './input.html',
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    preserveWhitespaces: false,
+@Directive({
+    selector: '[nb-input]',
+    exportAs: 'nb-input',
     host: {
         '[disabled]': 'disabled || null'
-    },
-    exportAs: 'xInput'
+    }
 })
-export class InputComponent implements OnChanges, AfterViewInit {
+export class InputDirective implements OnChanges, AfterViewInit {
 
     /** input theme, there four default themes: 'default' */
     @Input() theme: INPUT_THEME = 'default';

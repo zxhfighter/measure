@@ -1,4 +1,4 @@
-import {Input, Component, ViewEncapsulation} from '@angular/core';
+import {Input, Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
     styleUrls: ['./chips-form.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoChipsForm {
+export class DemoChipsForm implements OnInit {
 
     form: FormGroup;
     chipsArray: Array<any> = ['hello','world'];

@@ -37,30 +37,46 @@ export interface CarouselItem {
 })
 export class CarouselComponent implements AfterViewInit {
 
-    /** Whether the carousel can auto play  */
+    /**
+     * Whether the carousel can auto play
+     * @default false
+     */
     @Input() auto: boolean = false;
 
-    /** The interval when auto play */
-    @Input() interval: number = 3;
+    /**
+     * The time interval(milliseconds) when auto play
+     * @default 3000
+     */
+    @Input() interval: number = 3000;
 
-    /** Whether the carousel show title navigation */
+    /**
+     * Whether the carousel show title navigation
+     * @default false
+     */
     @Input() showTitle: boolean = false;
 
-    /** carousel width */
+    /**
+     * carousel width, in pixels
+     */
     @OnChange()
     @Input() width: number;
 
-    /** carousel datasource */
-    @Input() datasource: CarouselItem[] = [
-        {title: 'apple', imageUrl: 'https://images.unsplash.com/reserve/bIdO4DDS4qwVF6pHN4qr__MG_1605.jpg?dpr=2&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'},
-        {title: 'people', imageUrl: 'https://images.unsplash.com/photo-1500440853933-3796d0182c96?dpr=2&auto=format&fit=crop&w=568&h=426&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'},
-        {title: 'star', imageUrl: 'https://images.unsplash.com/photo-1488485300416-de7f8f876d4b?dpr=2&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'}
-    ];
+    /**
+     * carousel datasource, each item with a `title`、`imageUrl`、`href`(optional) property
+     * @default []
+     */
+    @Input() datasource: CarouselItem[] = [];
 
-    /** carousel active index */
+    /**
+     * carousel active index
+     * @default 0
+     */
     @Input() activeIndex: number = 0;
 
-    /** carousel custom style skin */
+    /**
+     * carousel custom style skin, will add a class `nb-carousel-skinName` to the host element
+     * @default ''
+     */
     @Input() skin: string = '';
 
     /**
@@ -90,21 +106,21 @@ export class CarouselComponent implements AfterViewInit {
      *
      * @param {number} idx - index
      */
-    navigate(idx: number) {
+    navigate(idx: number): void {
         this.activeIndex = idx;
     }
 
     /**
      * navigate to prev item
      */
-    prev() {
+    prev(): void {
         this.activeIndex = this.activeIndex - 1;
     }
 
     /**
      * navigate to next item
      */
-    next() {
+    next(): void {
         this.activeIndex = this.activeIndex + 1;
     }
 
@@ -128,6 +144,9 @@ export class CarouselComponent implements AfterViewInit {
         this.poll();
     }
 
+    /**
+     * @docs-private
+     */
     poll() {
         const self = this;
 
@@ -142,7 +161,7 @@ export class CarouselComponent implements AfterViewInit {
 
                 self._cd.markForCheck();
 
-            }, self.interval * 1000);
+            }, self.interval);
         }
     }
 

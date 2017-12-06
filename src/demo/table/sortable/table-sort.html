@@ -1,0 +1,81 @@
+<table nb-table #nbTable [datasource]="datasource" (sort)="onSort($event)" order="asc" orderBy="height">
+    <thead nb-thead>
+        <tr nb-row>
+            <th field="name" tipable filterable sortable (filter)="onFilter(name.value, $event)">
+                <span class="field-title">姓名</span>
+                <div class="tip-content">
+                    <b style="color:red">H</b>ello,
+                    <b style="color:green">W</b>orld.
+                </div>
+
+                <div nb-table-filter class="filter-content">
+                    <div>
+                        <label for="heroName">姓名：</label>
+                        <input #name type="text" name="heroName" value="">
+                    </div>
+                </div>
+            </th>
+            <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)">
+                <span class="field-title">状态</span>
+
+                <div nb-table-filter class="filter-content">
+                    <div>
+                        <nb-boxgroup type="checkbox" #chk>
+                            <nb-checkbox value="0">审核中</nb-checkbox>
+                            <nb-checkbox value="2">审核通过</nb-checkbox>
+                            <nb-checkbox value="1">审核拒绝</nb-checkbox>
+                        </nb-boxgroup>
+                    </div>
+                </div>
+            </th>
+            <th field="phone" sortable>
+                <span class="field-title">手机号</span>
+            </th>
+            <th field="school" sortable filterable #schoolHead="nbTH" [showFilterButton]="false">
+                <span class="field-title">大学</span>
+
+                <div nb-table-filter class="filter-content">
+                    <ul class="filter-list">
+                        <li (click)="onSingleFilter('ALL', schoolHead)">ALL</li>
+                        <li (click)="onSingleFilter('CBB', schoolHead)">CBB</li>
+                        <li (click)="onSingleFilter('CMU', schoolHead)">CMU</li>
+                        <li (click)="onSingleFilter('CSU', schoolHead)">CSU</li>
+                    </ul>
+                </div>
+            </th>
+            <th field="height" sortable><span class="field-title">身高</span></th>
+            <th nb-th><span class="field-title">操作</span></th>
+        </tr>
+    </thead>
+
+    <tbody nb-tbody>
+        <tr nb-row *ngFor="let item of nbTable.datasource">
+            <td nb-td>{{item.name}}</td>
+            <td nb-td>
+                <ng-container [ngSwitch]="item.status">
+                    <ng-template [ngSwitchCase]="0">
+                        <span class="status-waiting">{{item.statusText}}</span>
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="1">
+                        <span class="status-error">{{item.statusText}}</span>
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="2">
+                        <span class="status-done">{{item.statusText}}</span>
+                    </ng-template>
+                </ng-container>
+            </td>
+            <td nb-td>{{item.phone}}</td>
+            <td nb-td>{{item.school}}</td>
+            <td nb-td>{{item.height}}</td>
+            <td nb-td>
+                <a href="javascript:;">查看</a>
+                <span class="splitter"></span>
+                <a href="javascript:;">编辑</a>
+                <span class="splitter"></span>
+                <a href="javascript:;">删除</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

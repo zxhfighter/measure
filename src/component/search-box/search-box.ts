@@ -35,7 +35,9 @@ export const DEFAULT_DELAY_TIME = 50;
         'class': 'nb-widget nb-search-box',
         '[class.nb-search-box-disabled]': 'disabled',
         '[class.nb-search-box-ico]': 'type == "ico"',
-        '[class.nb-search-box-btn]': 'type == "btn"'
+        '[class.nb-search-box-btn]': 'type == "btn"',
+        '(compositionstart)': '_compositionStart()',
+        '(compositionend)': '_compositionEnd($event.target.value)'
     }
 })
 export class SearchBoxComponent implements OnInit, OnDestroy {
@@ -65,13 +67,15 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     @Output() onSearchSuggestion = new EventEmitter();
 
     /** init suggest search region is not open */
-    private isOpen: boolean = false;
+    isOpen: boolean = false;
 
     /** Stream of viewport change|scroll events. */
     _change: Observable<Event>;
 
     /** Subscription to viewport resize|scroll events. */
     _resizeSubscription = Subscription.EMPTY;
+
+    _composing = false;
 
     constructor(
         private el: ElementRef,
@@ -114,9 +118,19 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         }
     }
 
+    // 处理compositionstart事件
+    _compositionStart(): void { 
+        this._composing = true; 
+    }
+    
+    // 处理compositionend事件
+    _compositionEnd(): void {
+        this._composing = false;
+    }
+
     /** listen keyword input in search-box */
     onInputValue() {
-        if (this.isSuggestion !== 'false' && this.searchValue) {
+        if (this.isSuggestion !== 'false' && this.searchValue && !this._composing) {
             this.positionSuggestionLayer(this);
             this.onSearchSuggestion.emit(this.searchValue);
             this.isOpen = true;

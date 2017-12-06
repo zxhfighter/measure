@@ -1,9 +1,9 @@
 <div class="nb-chips">
-	<div class="nb-chips-wrap" [class.nb-chips-disabled]="disabled" (click)="inputFocus(input)">
+	<div class="nb-chips-wrap" [class.nb-chips-disabled]="disabled" (click)="inputFocus()">
 	    <ul>
-	    	<li *ngFor="let chip of value" class="nb-chips-label">{{chip}}<i class="fa fa-times" (click)="onDelChip(chip)"></i></li>
+	    	<li *ngFor="let chip of value; let i=index" class="nb-chips-label">{{chip}}<i class="fa fa-times" (click)="onDelChip(i)"></i></li>
 	    	<li>
-	    		<input #input nb-input ngtype="text" theme="transparent" placeholder="请输入文字" (keydown)="onInputValue($event.key, $event.target.value.trim())" [disabled]="disabled">
+	    		<input #input placeholder="请输入文字" (keydown)="onInputValue($event.keyCode, $event.target.value.trim())" [disabled]="disabled">
 	    	</li>
 	    </ul>
     </div>

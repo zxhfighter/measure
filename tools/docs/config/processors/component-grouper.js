@@ -22,6 +22,7 @@ module.exports = function componentGrouper() {
         $runBefore: ['docs-processed'],
         $process: function(docs) {
             let groups = new Map();
+            let flagMap = {};
 
             docs.forEach(doc => {
                 let basePath = doc.fileInfo.basePath;
@@ -41,7 +42,10 @@ module.exports = function componentGrouper() {
                 }
 
                 if (doc.isComponent) {
-                    group.components.push(doc);
+                    if (!flagMap[doc.name]) {
+                        group.components.push(doc);
+                        flagMap[doc.name] = true;
+                    }
                 } else if (doc.isDirective) {
                     group.directives.push(doc);
                 } else if (doc.isService) {
@@ -61,27 +65,3 @@ module.exports = function componentGrouper() {
         }
     };
 };
-
-// 生成所有方法
-function genMethods(classDoc) {
-    return classDoc.members.filter(member => member.hasOwnProperty('parameters'));
-}
-
-// 生成所有属性
-function genProperties(classDoc) {
-    return classDoc.members.filter(member => !member.hasOwnProperty('parameters'));
-}
-
-function hasMemberDecorator(doc, decoratorName) {
-    return doc.docType == 'member' && hasDecorator(doc, decoratorName);
-}
-
-function hasClassDecorator(doc, decoratorName) {
-    return doc.docType == 'class' && hasDecorator(doc, decoratorName);
-}
-
-function hasDecorator(doc, decoratorName) {
-    return doc.decorators &&
-        doc.decorators.length &&
-        doc.decorators.some(d => d.name == decoratorName);
-}

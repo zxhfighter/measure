@@ -1,10 +1,11 @@
 import {
     Component, Input, Output, EventEmitter, Directive, QueryList, ContentChildren, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef, AfterContentInit, ViewChild,
-    Renderer2, Optional, ChangeDetectorRef, AfterContentChecked
+    Renderer2, Optional, ChangeDetectorRef, AfterContentChecked, ContentChild
 } from '@angular/core';
 
 import {OnChange} from '../core/decorators';
+import {addClass} from '../util/dom';
 
 /** table order type */
 export type OrderType = 'asc' | 'desc' | '';
@@ -44,6 +45,7 @@ export interface FilterParam {
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-table',
+        '[class.nb-table-bordered]': 'bordered',
         '(mousemove)': 'onMouseMove($event)',
         '(mouseup)': 'onMouseUp()'
     },
@@ -59,6 +61,9 @@ export class TableComponent implements OnInit, AfterContentInit {
 
     /** table filterd(sort、filterd) datasource */
     @Input() datasource: any[] = [];
+
+    @OnChange(true)
+    @Input() bordered: boolean = false;
 
     /**
      * table order state, can be '' or 'desc' or ''
@@ -97,6 +102,13 @@ export class TableComponent implements OnInit, AfterContentInit {
     /** Whether the table columns can be resizable */
     @OnChange(true)
     @Input() resizable: boolean = false;
+
+    /**
+     * the table extra theme, i.e. when theme is 'small', an extra class `nb-table-small`
+     * will be appended to the host className property
+     * @default ''
+     */
+    @Input() theme: string = '';
 
     /**
      * table head item children
@@ -183,7 +195,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
     ngOnInit() {
         // cache all datasource
-        this.allDatasource = [...this.datasource];
+        this.allDatasource = [...this.datasource || []];
     }
 
     ngAfterContentInit() {
@@ -345,11 +357,13 @@ export class TableComponent implements OnInit, AfterContentInit {
             }
         });
 
-        console.log(`origin widthes: `, colWidths);
-        console.log(`distance: `, distance);
-        console.log(`newer widthes: `, newColWidths);
-
         return newColWidths;
+    }
+
+    ngAfterViewInit() {
+        if (this.theme) {
+            addClass(this._el.nativeElement, `nb-table-${this.theme}`);
+        }
     }
 }
 
@@ -372,10 +386,13 @@ export class TableHeaderComponent {}
 @Component({
     selector: 'th[nb-th], th[field]',
     template: `
-        <ng-content></ng-content>
+
+        <div class="field-title-wrapper" (click)="onSort()">
+            <ng-content select=".field-title"></ng-content>
+        </div>
 
         <ng-container *ngIf="tipable">
-            <i class="iconfont icon-question" (mouseover)="onShowTip($event)" (mouseout)="onHideTip()"></i>
+            <i class="iconfont icon-help" (mouseover)="onShowTip($event)" (mouseout)="onHideTip()"></i>
         </ng-container>
 
         <ng-container *ngIf="filterable">
@@ -402,7 +419,7 @@ export class TableHeaderComponent {}
             <ng-content select=".tip-content"></ng-content>
         </ng-template>
 
-        <div #tipPanel class="table-tip-panel" [class.hide]="!showTip" (mouseover)="onClearTimer()" (mouseout)="onHideTip()">
+        <div #tipPanel class="table-tip-panel" [class.hide]="!showTip">
             <ng-container *ngTemplateOutlet="tip"></ng-container>
         </div>
 
@@ -428,7 +445,12 @@ export class TableHeaderComponent {}
     preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {'class': 'nb-table-td nb-table-th'},
+    host: {
+        'class': 'nb-table-td nb-table-th',
+        '[class.nb-table-td-left]': 'align == "left"',
+        '[class.nb-table-td-center]': 'align == "center"',
+        '[class.nb-table-td-right]': 'align == "right"'
+    },
     exportAs: 'nbTH'
 })
 export class TableHeaderItemComponent implements OnInit {
@@ -467,6 +489,8 @@ export class TableHeaderItemComponent implements OnInit {
      */
     @Input() showFilterButton: boolean = true;
 
+    @Input() align: 'left' | 'center' | 'right' = 'left';
+
     /**
      * column order(sort) type, can be 'asc' or 'desc' or ''
      */
@@ -492,7 +516,7 @@ export class TableHeaderItemComponent implements OnInit {
     /**
      * the timeout when the tip panel hide
      */
-    @Input() timeout = 200;
+    @Input() timeout: number = 200;
 
     /**
      * the index in the table columns
@@ -584,10 +608,11 @@ export class TableHeaderItemComponent implements OnInit {
      */
     onHideTip() {
         const self = this;
-        self.t = window.setTimeout(() => {
-            self.showTip = false;
-            self._cd.markForCheck();
-        }, self.timeout);
+        if (!self.showTip) {
+            return;
+        }
+
+        self.showTip = false;
     }
 
     /**
@@ -673,6 +698,10 @@ export class TableHeaderItemComponent implements OnInit {
      * @docs-private
      */
     onSort() {
+        if (!this.sortable) {
+            return;
+        }
+
         this.order = (!this.order || this.order === 'asc') ? 'desc' : 'asc';
 
         // update table current order and orderBy
@@ -712,6 +741,15 @@ export class TableHeaderItemComponent implements OnInit {
         // it's important here to prevent default copy behaviors
         return false;
     }
+
+    /**
+     * click head item, sort if possible
+     */
+    onHeadItemClick() {
+        if (this.sortable) {
+            this.onSort();
+        }
+    }
 }
 
 /**
@@ -726,23 +764,7 @@ export class TableHeaderItemComponent implements OnInit {
     host: {'class': 'nb-table-body'},
     exportAs: 'nbTableBody'
 })
-export class TableBodyComponent implements AfterContentChecked {
-
-    /**
-     * table row components
-     */
-    @ContentChildren(forwardRef(() => TableRowComponent)) _children: QueryList<TableRowComponent>;
-
-    ngAfterContentChecked() {
-
-        // todo: when sort  update row even property
-        setTimeout(() => {
-            this._children.forEach((v, idx) => {
-                v.even = !(idx % 2);
-            });
-        }, 100);
-    }
-}
+export class TableBodyComponent {}
 
 /**
  * table row component
@@ -755,15 +777,14 @@ export class TableBodyComponent implements AfterContentChecked {
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         'class': 'nb-table-row',
-        '[class.nb-table-row-even]': 'even',
-        '[class.nb-table-row-odd]': '!even'
+        '[class.nb-table-row-checked]': 'checked'
     },
     exportAs: 'nbRow'
 })
 export class TableRowComponent {
 
-    /** Whether the row is a even row */
-    even: boolean;
+    @OnChange(true)
+    @Input() checked: boolean = false;
 }
 
 /**
@@ -771,14 +792,35 @@ export class TableRowComponent {
  */
 @Component({
     selector: 'td[nb-td]',
-    template: `<ng-content></ng-content>`,
-    host: {'class': 'nb-table-td'},
+    template: `
+        <div class="nb-table-td-wrapper">
+            <ng-content></ng-content>
+            <i title="edit" class="iconfont icon-edit" *ngIf="editable && !editing" (click)="onEdit()"></i>
+        </div>
+    `,
+    host: {
+        'class': 'nb-table-td',
+        '[class.nb-table-td-edit]': 'editable'
+    },
     preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'nbTd'
 })
-export class TableTdComponent {}
+export class TableTdComponent {
+
+    @Output() edit: EventEmitter<any> = new EventEmitter<any>();
+
+    @OnChange(true)
+    @Input() editable: boolean = false;
+
+    @Input() editing: boolean = false;
+
+    onEdit() {
+        this.editing = true;
+        this.edit.emit();
+    }
+}
 
 
 // @Directive({

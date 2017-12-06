@@ -1,0 +1,49 @@
+<table nb-table #nbTable1 [datasource]="datasource">
+    <thead nb-thead>
+        <tr nb-row>
+            <th *ngFor="let field of fields;index as i"
+                [field]="field.name"
+                [class.first-column]="i==0"
+                [class.third-column]="i==1"
+                [align]="field.align || 'left'">
+                <span class="field-title">{{field.title}}</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody nb-tbody>
+
+        <ng-template ngFor let-item [ngForOf]="nbTable1.datasource">
+            <tr nb-row>
+                <td #td="nbTd" [editing]="td.editing" nb-td *ngFor="let field of fields;index as i" [editable]="field.editable" (edit)="onEdit(td)" [style.textAlign]="field.align || 'left'">
+
+                    <ng-container [ngSwitch]="field.name">
+
+                        <ng-container *ngSwitchCase="'name'">
+                            <span *ngIf="!td.editing">{{item[field.name]}}</span>
+                            <input nb-input type="text" theme="default" #ipt (blur)="onBlur(td, field.name, item, ipt)" *ngIf="td.editing" value="{{item[field.name]}}" style="width: 100%">
+                        </ng-container>
+
+                        <ng-container *ngSwitchCase="'address'">
+                            <span *ngIf="!td.editing">{{item[field.name]}}</span>
+                            <input nb-input type="text" theme="default" #ipt (blur)="onBlur(td, field.name, item, ipt)" *ngIf="td.editing" value="{{item[field.name]}}" style="width: 100%">
+                        </ng-container>
+
+                        <ng-container *ngSwitchCase="'action'">
+                            <a href="javascript:;">查看</a>
+                            <span class="splitter"></span>
+                            <a href="javascript:;">编辑</a>
+                            <span class="splitter"></span>
+                            <a href="javascript:;">删除</a>
+                        </ng-container>
+
+                        <ng-container *ngSwitchDefault>
+                            {{ item[field.name] }}
+                        </ng-container>
+
+                    </ng-container>
+                </td>
+            </tr>
+        </ng-template>
+    </tbody>
+</table>
