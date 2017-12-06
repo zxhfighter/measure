@@ -35,7 +35,8 @@ import {
     CodeHighlighterModule,
     CodeBoxModule,
     TreeModule,
-    AccordionModule
+    AccordionModule,
+    UploaderModule
 } from '../component';
 
 import { AppComponent } from './app.component';
@@ -49,13 +50,14 @@ import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { DemoSearchBox } from './search-box';
 import { DemoTree } from './tree';
-import { DemoAccordion } from './accordion';
 import { DemoToast } from './toast';
 import { DemoSelect } from './select';
 import { DemoDialog } from './dialog';
 import { ChipsDemoModule } from './chips';
 import { DemoCodeHighlighter } from './code-highlighter';
 import { DemoCodeBox } from './code-box';
+import { DemoAccordion } from './accordion';
+import { DemoUploader } from './uploader';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -106,7 +108,8 @@ const demoModules = [
         DemoDialog,
         DemoCodeHighlighter,
         DemoCodeBox,
-        DemoAccordion
+        DemoAccordion,
+        DemoUploader
     ],
     imports: [
         BrowserModule,
@@ -143,6 +146,7 @@ const demoModules = [
         CodeBoxModule,
         TreeModule,
         AccordionModule,
+        UploaderModule,
         // demos
         ...demoModules,
         RouterModule.forRoot(appRoutes, { useHash: true })

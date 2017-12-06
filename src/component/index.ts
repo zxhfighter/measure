@@ -29,3 +29,4 @@ export * from './tree/index';
 export * from './card/index';
 export * from './overlay/index';
 export * from './accordion/index';
+export * from './uploader/index';

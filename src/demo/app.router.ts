@@ -33,6 +33,7 @@ import {DemoCodeBox} from './code-box';
 import {DemoTree} from './tree';
 import {DemoCard} from './card';
 import {DemoAccordion} from './accordion';
+import {DemoUploader} from './uploader';
 
 export const appRoutes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'button'},
@@ -67,5 +68,6 @@ export const appRoutes: Routes = [
     {path: 'code-box', component: DemoCodeBox},
     {path: 'tree', component: DemoTree},
     {path: 'card', component: DemoCard},
-    {path: 'accordion', component: DemoAccordion}
+    {path: 'accordion', component: DemoAccordion},
+    {path: 'uploader', component: DemoUploader}
 ];
