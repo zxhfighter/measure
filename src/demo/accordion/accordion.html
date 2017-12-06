@@ -11,9 +11,25 @@
 </section>
 
 <section>
-    <h3 class="section-title">Accordion first demo</h3>
+    <h3 class="section-title">common Accordion</h3>
 
     <p>
-        <nb-accordion></nb-accordion>
+        <nb-accordion [datasource]="panels"></nb-accordion>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">全部可折叠</h3>
+
+    <p>
+        <nb-accordion [datasource]="panels" [collapsible]="collapsible"></nb-accordion>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">Hover Open</h3>
+
+    <p>
+        <nb-accordion [datasource]="panels" [hoverable]="hoverable"></nb-accordion>
     </p>
 </section>
