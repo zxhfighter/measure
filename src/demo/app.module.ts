@@ -62,6 +62,8 @@ import {DemoCodeBox} from './code-box';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar/';
+import { DemoGuideComponent } from './docs';
+import { DemoIconsComponent } from './icons';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -116,7 +118,9 @@ const demoModules = [
         DemoTree,
         DemoSideBar,
         DemoAccordion,
-        DemoUploader
+        DemoUploader,
+        DemoGuideComponent,
+        DemoIconsComponent
     ],
     imports: [
         BrowserModule,

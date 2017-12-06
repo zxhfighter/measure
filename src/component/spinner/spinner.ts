@@ -1,6 +1,6 @@
 import {
     Component, Input, Output, EventEmitter, ChangeDetectorRef, Renderer2,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, forwardRef
+    ViewEncapsulation, ChangeDetectionStrategy, forwardRef
 } from '@angular/core';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -83,9 +83,8 @@ export class SpinnerComponent implements ControlValueAccessor {
 
         const nextValue = this.value + this.step;
         const isMaxValue = typeof this.maxValue === 'number' && nextValue > this.maxValue;
-        this.value = isMaxValue ? this.maxValue : this.value + this.step;
+        this.value = isMaxValue ? this.maxValue : nextValue;
         this.change.emit(this.value);
-        this._markForCheck();
     }
 
     /**
@@ -99,9 +98,8 @@ export class SpinnerComponent implements ControlValueAccessor {
 
         const nextValue = this.value - this.step;
         const isMinValue = typeof this.minValue === 'number' && nextValue < this.minValue;
-        this.value = isMinValue ? this.minValue : this.value - this.step;
+        this.value = isMinValue ? this.minValue : nextValue;
         this.change.emit(this.value);
-        this._markForCheck();
     }
 
     /**
@@ -130,7 +128,6 @@ export class SpinnerComponent implements ControlValueAccessor {
         }
 
         this.change.emit(this.value);
-
         this._markForCheck();
     }
 
