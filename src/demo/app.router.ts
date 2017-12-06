@@ -36,6 +36,8 @@ import { DemoCard } from './card';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoTransfer } from './transfer';
+import { DemoGuideComponent } from './docs';
+import { DemoIconsComponent } from './icons';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'button' },
@@ -74,5 +76,7 @@ export const appRoutes: Routes = [
     { path: 'card', component: DemoCard },
     { path: 'accordion', component: DemoAccordion },
     { path: 'uploader', component: DemoUploader },
-    { path: 'transfer', component: DemoTransfer }
+    { path: 'transfer', component: DemoTransfer },
+    { path: 'docs', component: DemoGuideComponent },
+    { path: 'icons', component: DemoIconsComponent }
 ];

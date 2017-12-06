@@ -64,6 +64,8 @@ import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar';
 import { DemoTransfer } from './transfer';
+import { DemoGuideComponent } from './docs';
+import { DemoIconsComponent } from './icons';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -119,7 +121,9 @@ const demoModules = [
         DemoSideBar,
         DemoAccordion,
         DemoUploader,
-        DemoTransfer
+        DemoTransfer,
+        DemoGuideComponent,
+        DemoIconsComponent
     ],
     imports: [
         BrowserModule,
