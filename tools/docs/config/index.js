@@ -10,9 +10,9 @@ const templateDir = path.resolve(__dirname, './templates');
 let apiDocsPackage =
 
     new DgeniPackage('xdesign-component-docs', [
-        require('dgeni-packages/jsdoc'),
-        require('dgeni-packages/nunjucks'),
-        require('dgeni-packages/typescript')
+        require('dgeni-packages/jsdoc'), // jsdoc Tag parsing and extracting
+        require('dgeni-packages/nunjucks'), // The nunjucks template rendering engine. No longer in jsdoc - you must add this explicitly to your config or you will get Error
+        require('dgeni-packages/typescript') // Tag parsing and extracting for TypeScript modules
     ])
 
     // 引入一序列需要处理文档处理器
@@ -20,6 +20,7 @@ let apiDocsPackage =
     .processor(require('./processors/docs-private-filter'))
     .processor(require('./processors/categorizer'))
     .processor(require('./processors/component-grouper'))
+
     // 设置源文件和输出路径
     .config(function (log, readFilesProcessor, writeFilesProcessor) {
         // 设置日志等级
@@ -85,6 +86,10 @@ let apiDocsPackage =
             '${ doc.docType }.template.json',
             'common.template.html'
         ];
+
+        // dgeni disables autoescape by default, but we want this turned on.
+        templateEngine.config.autoescape = true;
+
         // Nunjucks模板引擎，默认的标识会与Angular冲突
         templateEngine.config.tags = {
             variableStart: '{$',

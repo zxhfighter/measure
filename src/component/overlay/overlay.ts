@@ -20,14 +20,13 @@ import {
     ChangeDetectorRef,
     NgZone
 } from '@angular/core';
+import { Placement } from '../util/position';
+
+import { ViewportRuler } from './scroll-strategy';
 import { OverlayPositionService } from './overlay-position.service';
-import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from '../util/position';
-import { PositionStrategy } from '../util/position.strategy';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { auditTime } from 'rxjs/operators';
-import { merge } from 'rxjs/observable/merge';
+import { OverlayService } from './overlay.service';
+import { OverlayPositionBuilder } from './overlay-position-builder';
+
 
 @Component({
     selector: 'nb-overlay',
@@ -35,12 +34,13 @@ import { merge } from 'rxjs/observable/merge';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    providers: [ViewportRuler, OverlayPositionService, OverlayService, OverlayPositionBuilder],
     host: {
         'class': 'nb-widget'
     },
     exportAs: 'nbOverlay'
 })
-export class OverlayComponent implements OnInit, AfterContentInit, OnDestroy {
+export class OverlayComponent implements AfterViewInit, OnDestroy {
 
     @Input() origin: any;
 
@@ -50,20 +50,8 @@ export class OverlayComponent implements OnInit, AfterContentInit, OnDestroy {
      */
     @Input() container: string = 'body';
 
-    @Input() set placement(data) {
-        this._placement = data;
-        this.firstPlacement = this._placement.split('-')[0];
-        this.seconedPlacement = this._placement.split('-')[1];
-    }
+    @Input() placement: Placement = 'bottom-left';
 
-    get placement () {
-        return this._placement;
-    }
-
-    firstPlacement: string;
-    seconedPlacement: string;
-    originPos: ConnectionPosition;
-    overlayPos: ConnectionPosition;
     visibility: boolean = false;
 
     private _delay: number = 0;
@@ -72,36 +60,26 @@ export class OverlayComponent implements OnInit, AfterContentInit, OnDestroy {
     /** The timeout ID of any current timer set to hide the tooltip */
     private _hideTimeoutId: number;
 
-    private overlayPositionService: OverlayPositionService;
-
-    private _placement: string;
-
-    private positionStrategy: PositionStrategy;
-
     constructor(
         private el: ElementRef,
         private cdRef: ChangeDetectorRef,
-        ngZone: NgZone
-    ) {
-        this.overlayPositionService = new OverlayPositionService(this, ngZone);
-    }
-
-    ngOnInit() {
-
+        private overlayPositionService: OverlayPositionService) {
     }
 
     ngOnDestroy() {
         this.el.nativeElement.remove();
     }
 
-    ngAfterContentInit() {
+    ngAfterViewInit() {
         if (this.container === 'body') {
             window.document.querySelector(this.container)!.appendChild(this.el.nativeElement);
         }
-        let originPos = this.overlayPositionService.getOriginPosition(this.placement);
-        let overlayPos = this.overlayPositionService.getOverlayPosition(this.placement);
-        this.overlayPositionService.attachTo(this.origin.el, originPos, overlayPos);
-        this.overlayPositionService.updatePosition();
+        if (this.origin) {
+            this.overlayPositionService
+                .setOverlayRef(this)
+                .attachTo(this.origin.el, this.placement)
+                .updatePosition();
+        }
     }
 
     show() {

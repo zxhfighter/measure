@@ -95,7 +95,7 @@
 
     &-td {
         line-height: 2;
-        padding: 13px 0;
+        padding: 13px 10px 13px 0;
 
         .splitter {
             display: inline-block;
@@ -104,6 +104,43 @@
             background-color: #e5e5e5;
             margin-right: 10px;
             margin-left: 10px;
+        }
+
+        &-edit {
+            position: relative;
+
+            .icon-edit {
+                cursor: pointer;
+                display: none;
+            }
+
+            .@{prefix}-table-td-wrapper {
+                border: 1px solid transparent;
+            }
+
+            &:hover {
+                .@{prefix}-table-td-wrapper {
+                    border: 1px solid #e7e7e7;
+                    background-color: #fff;
+                }
+
+                .icon-edit {
+                    display: inline-block;
+                    margin-left: 8px;
+                }
+            }
+        }
+
+        &-left {
+            text-align: left;
+        }
+
+        &-center {
+            text-align: center;
+        }
+
+        &-right {
+            text-align: right;
         }
     }
 

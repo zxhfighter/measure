@@ -1,4 +1,5 @@
 import {
+    Inject,
     Injector,
     Injectable,
     TemplateRef,
@@ -8,23 +9,47 @@ import {
     ViewContainerRef,
     Renderer2,
     NgZone,
+    Host,
+    SkipSelf,
     ComponentRef,
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
-import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from './position';
-import { PositionStrategy } from '../util/position.strategy';
+import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair, Placement } from '../util/position';
+import { PositionStrategy } from '../util/connected-position.strategy';
 import { OverlayPositionService } from './overlay-position.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { auditTime } from 'rxjs/operators';
 import { merge } from 'rxjs/observable/merge';
+import { ViewportRuler } from './scroll-strategy';
 
 export class ContentRef {
     constructor(public nodes: any[], public viewRef?: ViewRef, public componentRef?: ComponentRef<any>) { }
 }
 
+export interface ComponentType<T> {
+    new (...args: any[]): T;
+  }
+
+export class ComponentRefer<T> {
+    component: ComponentType<T>;
+    viewContainerRef?: ViewContainerRef | null;
+    injector?: Injector | null;
+
+    constructor(
+        component: ComponentType<T>,
+        viewContainerRef?: ViewContainerRef | null,
+        injector?: Injector | null) {
+
+        this.component = component;
+        this.viewContainerRef = viewContainerRef;
+        this.injector = injector;
+    }
+}
+
+@Injectable()
 export class OverlayService<T> {
     private _windowFactory: ComponentFactory<T>;
     private _windowRef: ComponentRef<T> | null;
@@ -35,38 +60,30 @@ export class OverlayService<T> {
     originPos: ConnectionPosition;
     overlayPos: ConnectionPosition;
     placement: string;
-    firstPlacement: string;
-    seconedPlacement: string;
 
     /** Subscription to viewport resize events. */
     _resizeSubscription = Subscription.EMPTY;
 
     /** Stream of viewport change events. */
     _change: Observable<Event>;
-    private overlayServiceService: OverlayPositionService;
 
     constructor(
-        type: any,
         private _injector: Injector,
-        private _viewContainerRef: ViewContainerRef,
         private _renderer: Renderer2,
-        componentFactoryResolver: ComponentFactoryResolver,
-        private ngZone: NgZone) {
-        this._windowFactory = componentFactoryResolver.resolveComponentFactory<T>(type);
-        this._change = ngZone.runOutsideAngular(() => {
-            return merge<Event>(fromEvent(window, 'resize'), fromEvent(window.document, 'scroll'));
-        });
-        this.overlayServiceService = new OverlayPositionService(this.overlayComponent, ngZone);
+        private _viewContainerRef: ViewContainerRef,
+        private overlayPositionService: OverlayPositionService,
+        private _componentFactoryResolver: ComponentFactoryResolver) {
     }
 
-    createOverlay(content: string | TemplateRef<any>,
-        originElement: ElementRef,
-        placement: string,
+    createOverlayFromTemplate(
+        type: any,
+        content: string | TemplateRef<any>,
         appendToBody?: boolean,
         context?: any): ComponentRef<T> {
 
         if (!this._windowRef) {
             this._contentRef = this._getContentRef(content, context);
+            this._windowFactory = this._componentFactoryResolver.resolveComponentFactory<T>(type);
             this._windowRef =
                 this._viewContainerRef.createComponent(this._windowFactory, 0, this._injector, this._contentRef.nodes);
         }
@@ -75,24 +92,24 @@ export class OverlayService<T> {
             let overlayRootNode = this.getComponentRootNode(this._windowRef);
             window.document.body.appendChild(overlayRootNode);
         }
-
-        this.originElement = originElement;
-        this.placement = placement;
-        let [firstPlacement, seconedPlacement] = placement.split('-');
-        this.firstPlacement = firstPlacement;
-        this.seconedPlacement = seconedPlacement;
-        this.overlayComponent = this._windowRef.instance;
-
-        this.overlayComponent.needReposition.subscribe(() => this.overlayServiceService.updatePosition());
-
-        let originPos = this.overlayServiceService.getOriginPosition(placement);
-        let overlayPos = this.overlayServiceService.getOverlayPosition(placement);
-        this.overlayServiceService.attachTo(originElement, originPos, overlayPos);
+        this.overlayComponent = this._windowRef!.instance;
 
         return this._windowRef;
     }
 
-    createOverlayFromExistingComponent(overlayComponent: any,
+    attachOverlay(
+        originElement: ElementRef,
+        placement: Placement) {
+
+        this.originElement = originElement;
+        this.placement = placement;
+        this.overlayPositionService
+            .setOverlayRef(this.overlayComponent)
+            .attachTo(originElement, placement);
+        this.overlayComponent.needReposition.subscribe(() => this.overlayPositionService.updatePosition());
+    }
+
+    createOverlayFromComponent(overlayComponent: any,
         originElement: ElementRef,
         placement: string,
         appendToBody?: boolean) {
@@ -103,15 +120,8 @@ export class OverlayService<T> {
 
         this.originElement = originElement;
         this.placement = placement;
-        let [firstPlacement, seconedPlacement] = placement.split('-');
-        this.firstPlacement = firstPlacement;
-        this.seconedPlacement = seconedPlacement;
         this.overlayComponent = overlayComponent;
-        this.overlayComponent.needReposition.subscribe(() => this.overlayServiceService.updatePosition());
-
-        let originPos = this.overlayServiceService.getOriginPosition(placement);
-        let overlayPos = this.overlayServiceService.getOverlayPosition(placement);
-        this.overlayServiceService.attachTo(originElement, originPos, overlayPos);
+        this.overlayComponent.needReposition.subscribe(() => this.overlayPositionService.updatePosition());
 
         return this.overlayComponent;
     }
@@ -145,3 +155,4 @@ export class OverlayService<T> {
         return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     }
 }
+

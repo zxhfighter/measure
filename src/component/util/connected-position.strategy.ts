@@ -4,8 +4,9 @@ import {
     ConnectionPosition,
     ConnectionPositionPair
 } from './position';
-import { ElementRef } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
+// @Injectable()
 export class PositionStrategy {
 
     private _offsetX: number = 0;
@@ -25,6 +26,16 @@ export class PositionStrategy {
         this._overlayEl = this._overlaytRef.nativeElement.children[0];
         this.withFallbackPosition(_targetPos, _overlayPos);
         this._lastConnectedPosition = this.withFallbackPosition[0];
+    }
+
+    withOffsetX(offset: number): this {
+        this._offsetX = offset;
+        return this;
+    }
+
+    withOffsetY(offset: number): this {
+        this._offsetY = offset;
+        return this;
     }
 
     apply(callback: Function) {
@@ -125,9 +136,13 @@ export class PositionStrategy {
             overlayStartY = pos.overlayY === 'top' ? 0 : -overlayRect.height;
         }
 
+        // The (x, y) offsets of the overlay based on the current position.
+        let offsetX = typeof pos.offsetX === 'undefined' ? this._offsetX : pos.offsetX;
+        let offsetY = typeof pos.offsetY === 'undefined' ? this._offsetY : pos.offsetY;
+
         // overlay的坐标
-        let x = targetPoint.x + overlayStartX + this._offsetX;
-        let y = targetPoint.y + overlayStartY + this._offsetY;
+        let x = targetPoint.x + overlayStartX + offsetX;
+        let y = targetPoint.y + overlayStartY + offsetY;
 
         // How much the overlay would overflow at this position, on each side.
         let leftOverflow = 0 - x;
@@ -166,8 +181,10 @@ export class PositionStrategy {
 
     withFallbackPosition(
         originPos: ConnectionPosition,
-        overlayPos: ConnectionPosition): this {
-        this._preferredPositions.push(new ConnectionPositionPair(originPos, overlayPos));
+        overlayPos: ConnectionPosition,
+        offsetX?: number,
+        offsetY?: number): this {
+        this._preferredPositions.push(new ConnectionPositionPair(originPos, overlayPos, offsetX, offsetY));
         return this;
     }
 
