@@ -1,7 +1,6 @@
 .@{prefix}-tree {
     display: block;
     position: relative;
-    width: 200px;
 }
 
 .@{prefix}-tree-node-list {
@@ -28,6 +27,15 @@
     line-height: 36px;
 }
 
+.@{prefix}-tree-node-name {
+    display: inline-block;
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+}
+
 .@{prefix}-tree-no-child {
     margin-left: 15px;
 }
@@ -44,7 +52,7 @@
 }
 
 .@{prefix}-tree-selectable .@{prefix}-tree-content:hover::before {
-    background-color: #f7f7f7;
+    background-color: #f1f1f1;
 }
 
 .@{prefix}-tree-selectable .@{prefix}-tree-content:active::before {
@@ -90,3 +98,24 @@
     display: inline-block;
     color: #666;
 }
+
+// navigation模式
+.@{prefix}-tree-mode-navigation .@{prefix}-tree-content {
+    display: none;
+}
+
+.@{prefix}-tree-mode-navigation .@{prefix}-tree-node-selected {
+    display: inline-block;
+    color: #666;
+}
+
+// .@{prefix}-tree-mode-navigation .@{prefix}-tree-node-selected:not(.nb-tree-node-unselectable) .@{prefix}-tree-node-name:hover::after {
+//     content: "";
+//     position: absolute;
+//     display: block;
+//     left: 0;
+//     right: 0;
+//     height: 36px;
+//     cursor: pointer;
+//     border-top: 2px solid #333;
+// }

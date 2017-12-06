@@ -13,19 +13,34 @@ import &#x7B;TreeModule&#x7D; from 'xdesign';
 <section>
     <h3 class="section-title">Tree first demo</h3>
 
-    <p>
-        <nb-tree [treeData]="treeData"></nb-tree>
-    </p>
+    <div>
+        <p class="nb-tree-wrap">
+            <nb-tree [treeData]="treeData"></nb-tree>
+        </p>
+    </div>
+    
 
     <h3 class="section-title">Candidate Selection</h3>
 
-    <p>
-        <nb-tree [treeData]="treeData" selectionMode="candidate" (onNodeSelect)="nodeSelect($event)"></nb-tree>
-    </p>
+    <div>
+        <p class="nb-tree-wrap">
+            <nb-tree [treeData]="treeData" selectionMode="candidate" (onNodeSelect)="nodeSelect($event)"></nb-tree>
+        </p>
+    </div>
 
     <h3 class="section-title">Selected Selection</h3>
     
-    <p>
-        <nb-tree [treeData]="treeDataSelected" selectionMode="selected" (onNodeSelect)="nodeSelect($event)"></nb-tree>
-    </p>
+    <div>
+        <p class="nb-tree-wrap">
+            <nb-tree [treeData]="treeDataSelected" selectionMode="selected" (onNodeSelect)="nodeSelect($event)"></nb-tree>
+        </p>
+    </div>
+    
+    <h3 class="section-title">Navigation Mode</h3>
+    
+    <div>
+        <p class="nb-tree-wrap">
+            <nb-tree [treeData]="treeDataSelected" selectionMode="navigation" (onNodeSelect)="nodeSelect($event)"></nb-tree>
+        </p>
+    </div>
 </section>

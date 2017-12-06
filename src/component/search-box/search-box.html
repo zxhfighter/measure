@@ -4,9 +4,12 @@
     #searchInput
     type="text" 
     class="nb-search-box-input"
+    [size]="_sizeIpt"
     [placeholder]="placeholder"
     [disabled]="disabled"
     [(ngModel)]="searchValue"
+    (focus)="onFocus(searchInput)"
+    (blur)="onBlur(searchInput)"
     (keyup)="onInputValue()">
 <div class="nb-search-box-operate">
     <div class="nb-search-box-icons">
@@ -15,7 +18,8 @@
             nb-button
             theme="transparent"
             class="nb-clear iconfont icon-close"
-            (click)="clearSearch()"
+            (click)="clearSearch(searchInput)"
+            [size]="_sizeBtn"
             [disabled]="disabled">
             <i class="iconfont icon-close"></i>
         </button>
@@ -23,16 +27,18 @@
             *ngIf="type==='ico'" 
             nb-button
             theme="transparent"
-            class="nb-search iconfont icon-sousuo" 
+            class="nb-search iconfont icon-search" 
             (click)="search()"
+            [size]="_sizeBtn"
             [disabled]="disabled">
-            <i class="iconfont icon-sousuo"></i>
+            <i class="iconfont icon-search"></i>
         </button>
         <button 
             *ngIf="type==='btn'" 
             nb-button 
             theme="primary" 
             (click)="search()"
+            [size]="_sizeBtn"
             [disabled]="disabled">
             搜索
         </button>

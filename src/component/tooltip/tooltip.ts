@@ -17,14 +17,15 @@ import {
 } from '@angular/core';
 
 import { OnChange } from '../core/decorators';
-import { OverlayService } from '../util/overlay.service';
+import { OverlayService } from '../overlay/overlay.service';
 import { TiplayerComponent } from './tiplayer';
 import { ConnectionPosition, Placement } from '../util/position';
-import { PositionStrategy } from '../util/position.strategy';
+import { PositionStrategy } from '../util/connected-position.strategy';
 
 @Directive({
     selector: '[nbTooltip]',
     exportAs: 'nbTooltip',
+    providers: [OverlayService],
     host: {
         '(body:click)': 'this.handleBodyInteraction()'
     }
@@ -78,7 +79,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     private focusListener: Function;
     private blurListener: Function;
     private tiplayerInstance: TiplayerComponent | null;
-    private overlayService: OverlayService<TiplayerComponent>;
+    // private overlayService: OverlayService<TiplayerComponent>;
 
     constructor(
         private el: ElementRef,
@@ -86,15 +87,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
         private viewContainerRef: ViewContainerRef,
         private injector: Injector,
         private ngZone: NgZone,
-        private componentFactoryResolver: ComponentFactoryResolver) {
-
-        this.overlayService = new OverlayService<TiplayerComponent>(
-            TiplayerComponent,
-            injector,
-            viewContainerRef,
-            renderer,
-            componentFactoryResolver,
-            ngZone);
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private overlayService: OverlayService<TiplayerComponent>) {
     }
 
     ngOnInit() {
@@ -149,10 +143,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
      *
      */
     createTiplayer() {
-        let componentRef = this.overlayService.createOverlay(
-            this.nbTooltip, this.el, this.placement, !this.embedded);
-
+        let componentRef = this.overlayService.createOverlayFromTemplate(
+            TiplayerComponent, this.nbTooltip, !this.embedded);
         this.tiplayerInstance = componentRef.instance;
+        this.overlayService.attachOverlay(this.el, this.placement);
 
         const config = {
             trigger: this.trigger,

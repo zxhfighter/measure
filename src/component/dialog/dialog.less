@@ -3,7 +3,7 @@
 .@{prefix}-dialog {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     z-index: 101;
     left: 50%;
     top: 50%;
@@ -14,8 +14,7 @@
     background: @nb-white;
     box-shadow: 0 1px 4px 0;
 
-    &-header {
-        margin-bottom: 20px;
+    &-headerbar {
 
         .close {
             position: absolute;
@@ -28,24 +27,26 @@
         flex-grow: 1;
     }
 
-    &-footer-left {
+    &-footer {
+        padding: 30px 20px 20px;
+        text-align: center;
+
         button[nb-button] {
-            margin-right: 20px;
+            margin: 0 10px;
         }
+    }
+
+    &-footer-left {
+        text-align: left;
+
     }
 
     &-footer-right {
         text-align: right;
-        button[nb-button] {
-            margin-left: 20px;
-        }
     }
 
     &-footer-center {
         text-align: center;
-        button[nb-button] {
-            margin: 0 10px;
-        }
     }
 
     &-title {
@@ -63,4 +64,41 @@
     height: 100%;
     z-index: 100;
     background: @mask-background;
+}
+
+.@{prefix}-alert-box {
+    text-align: center;
+
+    .iconfont {
+        font-size: 30px;
+    }
+    .icon-chenggong {
+        color: @brand-success;
+    }
+    .icon-cuowu {
+        color: @brand-danger;
+    }
+    .icon-jinggao {
+        color: @brand-info;
+    }
+
+    &-title {
+        color: #333;
+        font-weight: 400;
+        margin-top: 20px;
+        margin-bottom: 14px;
+        line-height: 1;
+        font-size: 16px;
+    }
+
+    &-content {
+        color: #666;
+        font-size: 14px;
+    }
+}
+
+@{prefix}-dialog-header {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 16px;
 }

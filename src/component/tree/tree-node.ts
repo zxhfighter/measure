@@ -32,8 +32,8 @@ export class TreeNodeComponent implements OnInit {
     ngOnInit() { }
     
     /** listen tree-node click event */
-    onNodeClick(event: MouseEvent) {
-        this.tree.onNodeClick(event, this.node);
+    onNodeClick() {
+        this.tree.onNodeClick(this.node);
     }
 
     /** fold or unfold tree-node event */
