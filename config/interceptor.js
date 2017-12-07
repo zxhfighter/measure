@@ -22,6 +22,12 @@ module.exports = function (req, res, next) {
     const isXHR = req.headers['x-requested-with'] === 'XMLHttpRequest';
     const isHTML = /\.html$/g.test(req.url);
 
+    // 文件上传专用mock，暂时先放这
+    if (/uploader$/g.test(req.url)) {
+        const uploaderMockFile = require('../mockup/uploader');
+        res.end(JSON.stringify(uploaderMockFile, 'utf-8'));
+    }
+
     // 非 ajax 请求或者 html 请求直接 pass
     if (!isXHR || isHTML) {
         return next();

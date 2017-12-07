@@ -85,6 +85,8 @@ export class SpinnerComponent implements ControlValueAccessor {
         const isMaxValue = typeof this.maxValue === 'number' && nextValue > this.maxValue;
         this.value = isMaxValue ? this.maxValue : nextValue;
         this.change.emit(this.value);
+
+        this._markForCheck();
     }
 
     /**
@@ -100,6 +102,8 @@ export class SpinnerComponent implements ControlValueAccessor {
         const isMinValue = typeof this.minValue === 'number' && nextValue < this.minValue;
         this.value = isMinValue ? this.minValue : nextValue;
         this.change.emit(this.value);
+
+        this._markForCheck();
     }
 
     /**
@@ -220,6 +224,6 @@ export class SpinnerComponent implements ControlValueAccessor {
             this._onTouch(this.value);
         }
 
-        this._cd.markForCheck();
+        // this._cd.markForCheck();
     }
 }

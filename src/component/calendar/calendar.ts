@@ -22,7 +22,7 @@ export type CalendarMode = 'calendar' | 'year' | 'month';
     host: {
         'class': 'nb-widget nb-calendar'
     },
-    exportAs: 'nbCalendar'
+    exportAs: 'xCalendar'
 })
 export class CalendarComponent {
 
@@ -31,6 +31,7 @@ export class CalendarComponent {
 
     /**
      * calendar selected value
+     * @default new Date()
      */
     @Input()
     get value() { return this._value; }
@@ -40,7 +41,10 @@ export class CalendarComponent {
     }
     private _value: Date = new Date();
 
-    /** whether the calendar enable multiple selection */
+    /**
+     * whether the calendar enable multiple selection
+     * @default false
+     */
     @Input() multiple: boolean = false;
 
     /**
@@ -53,7 +57,10 @@ export class CalendarComponent {
      */
     @Input() endDate: Date | null;
 
-    /** whether the calendar is disabled */
+    /**
+     * whether the calendar is disabled
+     * @default false
+     */
     @OnChange(true)
     @Input()
     disabled: boolean = false;
@@ -256,4 +263,3 @@ export class CalendarComponent {
         return (moment(this.month).month() + 1) === month;
     }
 }
-

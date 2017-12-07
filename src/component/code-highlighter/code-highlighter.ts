@@ -22,20 +22,34 @@ import { OnChange } from '../core/decorators';
 })
 export class CodeHighlighterComponent implements AfterViewInit {
 
-    /** code language, see http://prismjs.com/index.html#languages-list */
+    /**
+     * code language, see http://prismjs.com/index.html#languages-list
+     * @default typescript
+     */
     @Input() language: string = 'typescript';
 
-    /** whether show line numbers, default to false */
+    /**
+     * whether show line numbers, default to false
+     */
     @OnChange(true)
     @Input() linenumbers: boolean = false;
 
-    /** code style theme, todo */
+    /**
+     * code style theme, todo
+     * @docs-private
+     */
     @Input() theme: string = '';
 
-    /** code line range highlight */
+    /**
+     * code line range highlight, todo
+     * @docs-private
+     */
     @Input() linehighlight: number;
 
-    /** raw code to be highlighted */
+    /**
+     * raw code to be highlighted
+     * @default ''
+     */
     @Input() rawCode: string = '';
 
     /** code element */
@@ -50,6 +64,9 @@ export class CodeHighlighterComponent implements AfterViewInit {
         this.highlight();
     }
 
+    /**
+     * @docs-private
+     */
     highlight() {
         try {
             if (this.language) {

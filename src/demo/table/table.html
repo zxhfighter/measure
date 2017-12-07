@@ -14,42 +14,56 @@
 
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Table Basic</h3>
-    <p nb-codebox-desc>table basic desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>ui-table</code> 是一个表格组件。</p>
+        <p>2.<code>ui-table</code> 核心属性为 <code>datasource</code>，此外还可以提供 <code>theme</code> 属性提供不同表格样式。</p>
+    </div>
 
     <demo-table-basic></demo-table-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeCheckbox" [htmlCode]="htmlCodeCheckbox" [lessCode]="lessCodeCheckbox">
     <h3 nb-codebox-title>Table With Checkbox</h3>
-    <p nb-codebox-desc>table with checkbox desc.</p>
+    <div nb-codebox-desc>
+        <p>可以很方便的在表格中整合 <code>nb-checkbox</code> 组件，实现表格行的选择功能。</p>
+    </div>
 
     <demo-table-checkbox></demo-table-checkbox>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeSort" [htmlCode]="htmlCodeSort" [lessCode]="lessCodeSort">
     <h3 nb-codebox-title>Table With Tips, Filters and Sortable</h3>
-    <p nb-codebox-desc>Table With Tips, Filters and Sortable desc.</p>
+    <div nb-codebox-desc>
+        <p>还可以很方便的在表头配置提示、筛选项和排序功能。</p>
+    </div>
 
     <demo-table-sort></demo-table-sort>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeResize" [htmlCode]="htmlCodeResize" [lessCode]="lessCodeResize">
     <h3 nb-codebox-title>Table Column Width Resizable</h3>
-    <p nb-codebox-desc>Table Column Width Resizable desc.</p>
+
+    <div nb-codebox-desc>
+        <p><code>nb-table</code> 设置 <code>resizable</code> 就可以通过拖动调整表格列宽。</p>
+    </div>
 
     <demo-table-resize></demo-table-resize>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeFixHead" [htmlCode]="htmlCodeFixHead" [lessCode]="lessCodeFixHead">
     <h3 nb-codebox-title>Fix header</h3>
-    <p nb-codebox-desc>Fix header desc.</p>
+    <div nb-codebox-desc>
+        <p>此外，还可以实现表头固定的功能。</p>
+    </div>
 
     <demo-table-fix-head></demo-table-fix-head>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeFixCol" [htmlCode]="htmlCodeFixCol" [lessCode]="lessCodeFixCol">
     <h3 nb-codebox-title>Fix column</h3>
-    <p nb-codebox-desc>Fix column desc.</p>
+    <div nb-codebox-desc>
+        <p>此外，还可以实现表列固定的功能（第一列）。</p>
+    </div>
 
     <demo-table-fix-column></demo-table-fix-column>
 </nb-code-box>
@@ -57,21 +71,571 @@
 
 <nb-code-box [tsCode]="tsCodeSpan" [htmlCode]="htmlCodeSpan" [lessCode]="lessCodeSpan">
     <h3 nb-codebox-title>ColSpan and RowSpan</h3>
-    <p nb-codebox-desc>ColSpan and RowSpan desc.</p>
+    <div nb-codebox-desc>
+        <p>由于 <code>nb-table</code> 基于原生的 <code>table</code>，因此可以灵活的应用
+            <code>colspan</code> 和  <code>rowspan</code> 来实现跨行和跨列的处理。</p>
+    </div>
+
 
     <demo-table-colspan></demo-table-colspan>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeSpan" [htmlCode]="htmlCodeSpan" [lessCode]="lessCodeSpan">
     <h3 nb-codebox-title>expandable</h3>
-    <p nb-codebox-desc>expandable desc.</p>
+
+    <div nb-codebox-desc>
+        <p>还可以实现列表的折叠展示功能。</p>
+    </div>
 
     <demo-table-expand></demo-table-expand>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeEdit" [htmlCode]="htmlCodeEdit" [lessCode]="lessCodeEdit">
     <h3 nb-codebox-title>edit</h3>
-    <p nb-codebox-desc>edit desc.</p>
+    <div nb-codebox-desc>
+        <p>最后，还可以在列表中配置可以编辑的列。</p>
+    </div>
 
     <demo-table-edit></demo-table-edit>
 </nb-code-box>
+
+<h3 class="section-title">API</h3>
+
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TableComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Table Component
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    sort
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;SortParam&gt;</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table sort event emitter, emit a
+                    <code>SortParam</code> Object with the
+                    <code>order</code> and
+                    <code>orderBy</code> property.</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    datasource
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">any[]</td>
+            <td class="docs-td docs-td-default">[]</td>
+            <td class="docs-td docs-td-desc">
+                <p>table datasource</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    bordered
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>whether the table is bordered</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    order
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">OrderType</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table order state, can be &#39;asc&#39; or &#39;desc&#39; or &#39;&#39;</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    orderBy
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table orderby field</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    page
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table current page</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    pageSize
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table pageSize</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    resizable
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the table columns can be resizable</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    theme
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>the table extra theme, i.e. when theme is &#39;small&#39;, an extra class
+                    <code>nb-table-small</code> will be appended to the host className property</p>
+            </td>
+        </tr>
+
+
+
+    </table>
+
+
+
+
+
+
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TableHeaderComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table header component
+    </p>
+
+
+
+
+
+
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TableHeaderItemComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table header item component
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    filter
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;FilterParam&gt;</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table filter event, emits a
+                    <code>FilterParam</code> Object</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    sort
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;SortParam&gt;</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table sort event, emits a
+                    <code>SortParam</code> Object</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    sortable
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the column can be sortable</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    tipable
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the column can be tipable（has tip icon with tip information）</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    filterable
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the column can be filterable（has filter icon and custom filter panel）</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    showFilterButton
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the filter panel should show filter buttons, e.g. when a single select filter, there no need filter
+                    button to trigger the filter event</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    align
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">&#39;left&#39; | &#39;center&#39; | &#39;right&#39;</td>
+            <td class="docs-td docs-td-default">left</td>
+            <td class="docs-td docs-td-desc">
+                <p>table cell align position</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    order
+                </p>
+            </td>
+            <td class="docs-td docs-td-type"></td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table field order type</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    order
+                </p>
+            </td>
+            <td class="docs-td docs-td-type"></td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>table field order type</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    field
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>column related data field</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    resizable
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the column can be resizable</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    timeout
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number</td>
+            <td class="docs-td docs-td-default">200</td>
+            <td class="docs-td docs-td-desc">
+                <p>the timeout when the tip panel hide</p>
+            </td>
+        </tr>
+    </table>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TableBodyComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table body component
+    </p>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TableRowComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table row component
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    checked
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>whether the table row is checked(selected)</p>
+            </td>
+        </tr>
+
+    </table>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TableTdComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table td component
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    edit
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>when edit, emits a
+                    <code>edit</code> event</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    editable
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>whether the cell is editable</p>
+            </td>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    editing
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>whether the cell is editing</p>
+            </td>
+        </tr>
+    </table>
+
+    <h2 class="docs-api-type">Interface classes</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>SortParam</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table sort param interface
+    </p>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>FilterParam</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table filter param interface
+    </p>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>SortParam</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table sort param interface
+    </p>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>FilterParam</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">table filter param interface
+    </p>
+</div>

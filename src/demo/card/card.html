@@ -14,7 +14,15 @@
 
 <nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
     <h3 nb-codebox-title>card component basic</h3>
-    <p nb-codebox-desc>a card is a component with a head and a body, usually used in management platforms.</p>
+    <div nb-codebox-desc>
+        <p><code>ui-card</code> 组件为一个典型的卡片式布局组件，包括头部、内容区和尾部三部分。可以使用 <code>width</code>
+        来设置卡片宽度，使用 <code>disposable</code> 来设置卡片是否能够关闭，此时关闭时同时会触发 <code>dispose</code> 事件。</p>
+
+        <p>三部分的内容通过模板来定义，使用 <code>#title</code> 来定义头部，<code>#body</code> 来定义内容区，
+        <code>#foot</code> 来定义尾部，<code>#operation</code> 来定义头部额外操作区域。</p>
+
+        <p>另外，卡片也可以通过 <code>theme</code> 属性来设置自定义主题。</p>
+    </div>
 
     <demo-card-basic></demo-card-basic>
 </nb-code-box>

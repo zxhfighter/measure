@@ -18,14 +18,22 @@
 
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Progress Bar Basic</h3>
-    <p nb-codebox-desc>progress bar desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-progress-bar</code> 用直线的形式来显示进度。</p>
+        <p>2.属性 <code>value</code> 表示当前进度值，<code>maxValue</code>可以设置最大进度值（默认为100），还有一些设置文本显示的属性，详见下文API。</p>
+        <p>3.进度条有几种状态，<code>isSuccess</code> 为 true 时表示成功，<code>isError</code> 为 true 时表示失败。</p>
+    </div>
 
     <demo-progress-bar-basic></demo-progress-bar-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeCircular" [htmlCode]="htmlCodeCircular" [lessCode]="lessCodeCircular">
     <h3 nb-codebox-title>Progress Circular Bar Basic</h3>
-    <p nb-codebox-desc>progress circular bar desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-progress-bar-circle</code> 用甜甜圈的形式来显示进度。</p>
+        <p>2.属性 <code>value</code> 表示当前进度值，<code>maxValue</code>可以设置最大进度值（默认为100），还有一些设置文本显示的属性，详见下文API。</p>
+        <p>3.进度条有几种状态，<code>isSuccess</code> 为 true 时表示成功，<code>isError</code> 为 true 时表示失败。</p>
+    </div>
 
     <demo-progress-bar-circular></demo-progress-bar-circular>
 </nb-code-box>

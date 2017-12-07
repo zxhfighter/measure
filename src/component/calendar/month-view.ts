@@ -68,7 +68,7 @@ export enum Weekday {
     host: {
         'class': 'nb-widget nb-month-view'
     },
-    exportAs: 'nbMonthView'
+    exportAs: 'xMonthView'
 })
 export class MonthViewComponent implements OnInit {
 
@@ -76,13 +76,15 @@ export class MonthViewComponent implements OnInit {
     @Output() select: EventEmitter<any> = new EventEmitter<any>();
 
     /**
-     * Whether the month view allows range selection
+     * Whether the month view allows range selection, defaults to false
+     * @default false
      */
     @OnChange(true)
     @Input() multiple: boolean = false;
 
     /**
-     * monthview selected date(when the month view is not multiple)
+     * single monthview selected date(when the month view is not multiple)
+     * @default new Date()
      */
     @Input()
     get value() { return this._value; }
@@ -120,7 +122,8 @@ export class MonthViewComponent implements OnInit {
     private _endDate: DateType;
 
     /**
-     * the current month of the selected date
+     * the current month date of the selected date
+     * @default new Date()
      */
     @Input()
     get month() { return this._month; }
@@ -132,15 +135,20 @@ export class MonthViewComponent implements OnInit {
 
     /**
      * the first day of the week, default to 0(Sunday), here we set to 1(Monday)
+     * @default Weekday.Monday
      */
     @Input() firstDayOfWeek: number = Weekday.Monday;
 
     /**
      * A array of disabled dates that can't be selected, date format is: `'2017-01-01'`
+     * @default []
      */
     @Input() disabledDates: string[] = [];
 
-    /** whether the month view is disabled */
+    /**
+     * whether the month view is disabled
+     * @default false
+     */
     @OnChange(true)
     @Input() disabled: boolean = false;
 
@@ -282,6 +290,7 @@ export class MonthViewComponent implements OnInit {
      * in multiple mode, check the day item's selected state
      * @param {Moment} date - current day item
      * @return {boolean} whether the day item is selected
+     * @docs-private
      */
     checkIsSelected(date: Moment): boolean {
         // if the day item is disabled, return false
@@ -309,6 +318,7 @@ export class MonthViewComponent implements OnInit {
      * Check whether the day item is disabled
      * @param {Moment} date - current day item
      * @return {boolean} true if disabled
+     * @docs-private
      */
     checkIsDisabled(date: Moment): boolean {
         return this.disabledDates.some((d: string) => {
@@ -329,6 +339,7 @@ export class MonthViewComponent implements OnInit {
      * adjust the first day of the week
      * @param {T[]} t - array
      * @param {number} distance - the distance for the shift
+     * @docs-private
      */
     shiftArray<T>(t: T[], distance: number): T[] {
         const headArray = t.slice(0, distance);
@@ -340,6 +351,7 @@ export class MonthViewComponent implements OnInit {
     /**
      * the day click event
      * @param {DayItem} day - day item
+     * @docs-private
      */
     onClick(day: DayItem) {
         if (day.disabled || this.disabled) {
@@ -386,6 +398,7 @@ export class MonthViewComponent implements OnInit {
     /**
      * cell mouse over event
      * @param {DayItem} day - day item
+     * @docs-private
      */
     onMouseOver(day: DayItem) {
 

@@ -63,24 +63,40 @@ const REGION_VALUE_ACCESSOR = {
 })
 export class RegionComponent implements OnInit, OnDestroy {
 
-    /** region value change event, emit an array of id */
+    /** region value change event, emit an array of ids */
     @Output() change: EventEmitter<number[] | string[]> = new EventEmitter<number[] | string[]>();
 
-    /** region datasource */
+    /**
+     * region datasource
+     * @default []
+     */
     @Input() datasource: RegionItem[] = [];
 
-    /** if set to true, when region node's children is all selected, only use the region node id */
+    /**
+     * whether use the gather value, if set to true, when region node's children is all selected,
+     * only use the region node id
+     * @default false
+     */
     @OnChange(true)
     @Input() gather: boolean = false;
 
-    /** region value */
+    /**
+     * region value, an array of numbers
+     * @default []
+     */
     @OnChange()
     @Input() value: number[] = [];
 
-    /** region value change event */
+    /**
+     * region value change event
+     * @docs-private
+     */
     valueChange: EventEmitter<number[]> = new EventEmitter<number[]>();
 
-    /** whether the region is disabled */
+    /**
+     * whether the region is disabled
+     * @default false
+     */
     @OnChange(true)
     @Input() disabled: boolean = false;
 
@@ -125,10 +141,16 @@ export class RegionComponent implements OnInit, OnDestroy {
         });
     }
 
+    /**
+     * @docs-private
+     */
     onToggleNode(item: RegionItem, checked: boolean) {
         this.updateNode(item, checked);
     }
 
+    /**
+     * @docs-private
+     */
     updateNode(node: RegionItem, checked: boolean) {
         node.intermediate = false;
         node.selected = checked;
@@ -146,6 +168,9 @@ export class RegionComponent implements OnInit, OnDestroy {
         this.getSelectedValue();
     }
 
+    /**
+     * @docs-private
+     */
     setChildren(children: RegionItem[], checked: boolean) {
         const self = this;
         if (children && children.length) {
@@ -157,6 +182,9 @@ export class RegionComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * @docs-private
+     */
     updateParent(currentNode: RegionItem, checked: boolean) {
         const self = this;
         if (currentNode.children) {
@@ -186,6 +214,9 @@ export class RegionComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * @docs-private
+     */
     getSelectedValue() {
         let selected: number[] = [];
 
@@ -215,6 +246,9 @@ export class RegionComponent implements OnInit, OnDestroy {
         this.change.emit(this.value);
     }
 
+    /**
+     * @docs-private
+     */
     walkDatasource(datasource: RegionItem[], fn: Function) {
         const self = this;
         datasource.forEach(item => {
@@ -226,6 +260,9 @@ export class RegionComponent implements OnInit, OnDestroy {
         });
     }
 
+    /**
+     * @docs-private
+     */
     findParentNode(id: number): RegionItem | undefined {
         let parentNode: RegionItem | undefined;
 
@@ -243,6 +280,9 @@ export class RegionComponent implements OnInit, OnDestroy {
         return parentNode;
     }
 
+    /**
+     * @docs-private
+     */
     onShowCity(province: RegionItem) {
         if (this._previousProvince) {
             this._previousProvince.showCity = false;
@@ -254,6 +294,9 @@ export class RegionComponent implements OnInit, OnDestroy {
         this._previousProvince = province;
     }
 
+    /**
+     * @docs-private
+     */
     onHideCity(province: RegionItem) {
 
         this._timer = setTimeout(() => {
@@ -262,11 +305,17 @@ export class RegionComponent implements OnInit, OnDestroy {
         }, this._timeout);
     }
 
+    /**
+     * @docs-private
+     */
     onOverPanel(province: RegionItem) {
         clearTimeout(this._timer);
         province.showCity = true;
     }
 
+    /**
+     * @docs-private
+     */
     onLeavePanel(province: RegionItem) {
         this._timer = setTimeout(() => {
             province.showCity = false;
@@ -274,6 +323,9 @@ export class RegionComponent implements OnInit, OnDestroy {
         }, this._timeout);
     }
 
+    /**
+     * @docs-private
+     */
     getSelectedCount(cities: RegionItem[]) {
         return cities.filter(v => !!v.selected).length;
     }

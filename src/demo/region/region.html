@@ -18,14 +18,133 @@
 
 <nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
     <h3 nb-codebox-title>Region Basic</h3>
-    <p nb-codebox-desc>region basic desc.</p>
+    <div nb-codebox-desc>
+        <p>
+            <code>nb-region</code> 为一个地域选择组件，可以选择区域、省份、城市等等。</p>
+    </div>
 
     <demo-region-basic></demo-region-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
     <h3 nb-codebox-title>Region with forms</h3>
-    <p nb-codebox-desc>region form desc.</p>
+    <p nb-codebox-desc>
+        <code>nb-region</code> 可以和 Forms 以及 ReactiveForms 无缝结合使用。
+    </p>
 
     <demo-region-form></demo-region-form>
 </nb-code-box>
+
+<h3 class="section-title">API</h3>
+
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>RegionComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Region Picker Component
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    change
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;number[] | string[]&gt;</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>region value change event, emit an array of ids</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    datasource
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">RegionItem[]</td>
+            <td class="docs-td docs-td-default">[]</td>
+            <td class="docs-td docs-td-desc">
+                <p>region datasource</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    gather
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>whether use the gather value, if set to true, when region node&#39;s children is all selected, only use the
+                    region node id</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    value
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">number[]</td>
+            <td class="docs-td docs-td-default">[]</td>
+            <td class="docs-td docs-td-desc">
+                <p>region value, an array of numbers</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>whether the region is disabled</p>
+            </td>
+        </tr>
+    </table>
+
+    <h2 class="docs-api-type">Interface classes</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>RegionItem</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">region item interface
+    </p>
+
+</div>
