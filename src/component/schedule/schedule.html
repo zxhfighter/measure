@@ -18,17 +18,34 @@
             <span>{{item}}</span>
         </div>
     </div>
-    
     <table class="table-con">
-        <tr *ngFor="let item of week; index as i">
-            <td *ngFor="let item of hour; index as j" >
+        <tr *ngFor="let item1 of week; index as i">
+            <td *ngFor="let item of hour; index as j">
                 <button title="{{item}}-{{hours[j + 1]}}"
+                    [attr.data]="showLabel(i,j)"
                     [ngClass]="{'selected': schedules[i*24 + j] === 1}"
                     (mousedown)="mousedown(i, j)"
                     (mouseup)="mouseup(i, j)"
                     (mouseover)="mouseover(i, j)"
-                    (mouseout)="mouseout(i, j)"></button>
+                    (mouseout)="mouseout(i, j)">
+                    <!-- {{ layerTime[i*24 + j] }} -->
+                </button>
             </td>
         </tr>
     </table>
+
+
+    <!-- <div class="table-parent"> -->
+        
+        <!-- <table class="top-time">
+            <tr *ngFor="let item of week; index as i">
+                <ng-container *ngFor="let item of hour; index as j">
+                    <td [attr.colspan]="layerTime[i*24+j] || 1">
+                        {{layerTime[i*24+j]}}
+                    </td>
+                </ng-container>
+            </tr>
+        </table> -->
+    <!-- </div> -->
+    
 </div>

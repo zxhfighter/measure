@@ -16,15 +16,18 @@ import {
 })
 export class ScheduleComponent implements OnInit {
     schedules;
+    layerTime;
     weekSelect;
     startpoint;
     flag = false;
     week = ['一', '二', '三', '四', '五', '六', '日'];
     hour = ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
     hours = ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
+    hourLabel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
     constructor() {
         this.schedules = Array(168).fill(0);
         this.weekSelect = Array(7).fill(0);
+        this.layerTime = Array(168).fill(0);
     }
 
     ngOnInit() {
@@ -32,6 +35,7 @@ export class ScheduleComponent implements OnInit {
     }
     select(i, j) {
         this.schedules[i*24 + j] = (this.schedules[i*24 + j] + 1) % 2;
+        this.topTimeChange();
 
         let sum = 0;
         for (let k = i * 24; k < (i + 1) * 24; k++) {
@@ -52,6 +56,37 @@ export class ScheduleComponent implements OnInit {
         for (let i = j * 24; i < (j + 1) * 24; i++) {
             this.schedules[i] = value;
         }
+        // this.topTimeChange();
+    }
+    showLabel(i, j) {
+        let value = this.layerTime[i*24 + j];
+        if ( value < 3) {
+            return '';
+        } else if (value === 24) {
+            return '全天'；
+        } else {
+            let label = this.hours[j-value+1] + '-' + this.hours[j+1];
+            return label;
+            // return value;
+        }
+        // console.log(index, time); 
+    }
+    topTimeChange() {
+        this.layerTime = [];
+        let colspan = 0;
+        for (let i = 0; i < this.schedules.length; i++) {
+            if (this.schedules[i] === 0 || (i + 1) % 24 === 0) {
+                this.layerTime.push(0);
+                colspan = 0;
+            } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 0) {
+                colspan ++;
+                this.layerTime.push(colspan);
+            } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1) {
+                this.layerTime.push(0);
+                colspan ++;
+            }
+        }
+        console.log(this.layerTime);
     }
     mouseup(i, j) {
         this.flag = false;

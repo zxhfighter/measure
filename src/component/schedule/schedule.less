@@ -2,7 +2,8 @@
     display: block;
     color: #f00;
     td {
-        width: 22px;
+        position: relative;
+        width: 18px;
         height: 22px;
         border: 1px solid @nb-gray-6;
         &:hover {
@@ -17,17 +18,39 @@
         &:hover {
             background-color: #daf3eb;
         }
-        
-        // &:active {
-        //     background-color: #c4e0fe;
-        // }
-        // &:visited {
-        //     background-color: #c4e0fe;
-        // }
     }
     .selected {
         background-color: #c4e0fe;
+        &::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            z-index: 1;
+            content: attr(data);
+        }
     }
+    // .td-selected:nth-of-type(n) {
+    //     background-color: blue;
+    //     button {
+    //         &::before {
+    //             position: absolute;
+    //             top: 0;
+    //             left: 0;
+    //             content: attr(data);
+    //         }
+    //     }
+    // }
+    // .td-selected + .td-selected + .td-selected {
+    //     button {
+    //         &::before {
+    //             position: absolute;
+    //             top: 0;
+    //             left: 0;
+    //             content: attr(data);
+    //         }
+    //     }
+    // }
     .hour-title {
         margin-left: 10%;
         span {
@@ -58,8 +81,22 @@
             vertical-align: middle;
         } 
     }
+    // .table-parent {
+    //     position: relative;
+    //     float: left;
+    //     width: 90%;
+    // }
     .table-con {
         float: left;
         width: 90%;
+    }
+    .top-time {
+        pointer-events: none;
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        td {
+            background-color: red;
+        }
     }
 }
