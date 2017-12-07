@@ -3,8 +3,8 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, Renderer2, ElementRef
 } from '@angular/core';
 
-import {OnChange} from '../core/decorators';
-import {addClass} from '../util/dom';
+import { OnChange } from '../core/decorators';
+import { addClass } from '../util/dom';
 
 /**
  * Card Component
@@ -18,12 +18,12 @@ import {addClass} from '../util/dom';
     host: {
         'class': 'nb-widget nb-card'
     },
-    exportAs: 'nbCard'
+    exportAs: 'xCard'
 })
 export class CardComponent implements OnInit, AfterViewInit {
 
     /**
-     * the event emitted when the component is disposed(removed from dom)
+     * the event emitted when the component is disposed(removed from the dom)
      */
     @Output() dispose: EventEmitter<CardComponent> = new EventEmitter<CardComponent>();
 
@@ -62,6 +62,9 @@ export class CardComponent implements OnInit, AfterViewInit {
         this.registerWidthChange();
     }
 
+    /**
+     * @docs-private
+     */
     registerWidthChange() {
         const widthChange = (width: number) => {
             if (width) {
@@ -71,8 +74,11 @@ export class CardComponent implements OnInit, AfterViewInit {
         this.widthChange.subscribe(widthChange);
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
+    /**
+     * @docs-private
+     */
     onDispose() {
         this.dispose.emit(this);
 

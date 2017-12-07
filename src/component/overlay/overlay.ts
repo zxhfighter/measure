@@ -25,6 +25,7 @@ import { Placement } from '../util/position';
 import { ViewportRuler } from './scroll-strategy';
 import { OverlayPositionService } from './overlay-position.service';
 import { OverlayService } from './overlay.service';
+import { OverlayOriginDirective } from './overlay-origin.directive';
 import { OverlayPositionBuilder } from './overlay-position-builder';
 
 
@@ -42,7 +43,7 @@ import { OverlayPositionBuilder } from './overlay-position-builder';
 })
 export class OverlayComponent implements AfterViewInit, OnDestroy {
 
-    @Input() origin: any;
+    @Input() origin: OverlayOriginDirective;
 
     /**
      * A selector specifying the element the popover should be appended to.
@@ -77,7 +78,7 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
         if (this.origin) {
             this.overlayPositionService
                 .setOverlayRef(this)
-                .attachTo(this.origin.el, this.placement)
+                .attachTo(this.origin.elementRef, this.placement)
                 .updatePosition();
         }
     }

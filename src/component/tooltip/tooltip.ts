@@ -20,7 +20,6 @@ import { OnChange } from '../core/decorators';
 import { OverlayService } from '../overlay/overlay.service';
 import { TiplayerComponent } from './tiplayer';
 import { ConnectionPosition, Placement } from '../util/position';
-import { PositionStrategy } from '../util/connected-position.strategy';
 
 @Directive({
     selector: '[nbTooltip]',

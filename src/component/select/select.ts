@@ -7,6 +7,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SelectOptionsComponent } from './select.options';
 import { OverlayComponent } from '../overlay';
 import { Placement } from '../util/position';
+import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
 
 @Component({
     selector: 'nb-select',
@@ -25,7 +26,7 @@ import { Placement } from '../util/position';
     }]
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
-    @ViewChild('button') button;
+    @ViewChild('origin') origin: OverlayOriginDirective;
     @ViewChild('overlay') overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
     @Input() defaultLabel: string;
@@ -52,7 +53,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     ngOnInit() {
         this.selectedData = { value: null, label: this.defaultLabel || '请选择' };
-        this.overlay.origin = this.button;
+        this.overlay.origin = this.origin;
     }
 
     onToggle(e) {
