@@ -18,14 +18,23 @@
 
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Spinner Basic</h3>
-    <p nb-codebox-desc>spinner desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-spinner</code> 用于输入数字，可以手动输入，也可以通过右侧的增加和渐少按钮输入。</p>
+        <p>2.<code>nb-spinner</code> 有 <code>value</code> 属性，表示当前的值。</p>
+        <p>3.<code>nb-spinner</code> 有 <code>step</code> 属性，表示每次增加或渐少的值，默认为1。</p>
+        <p>4.<code>nb-spinner</code> 有 <code>minValue</code> 和 <code>maxValue</code> 属性，表示输入的限定范围，如果超出限定值，会显示限定侧的最大/最小值。</p>
+        <p>5.<code>nb-spinner</code> 有 <code>disabled</code> 属性，用于置灰处理。</p>
+        <p>6.<code>nb-spinner</code> 值变更时，会触发 <code>change</code> 事件，参数为当前值。</p>
+    </div>
 
     <demo-spinner-basic></demo-spinner-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
     <h3 nb-codebox-title>Spinner with Forms</h3>
-    <p nb-codebox-desc>spinner desc.</p>
+    <p nb-codebox-desc>
+        <code>nb-spinner</code> 可以和 Forms 和 ReactiveForms 无缝结合使用。
+    </p>
 
     <demo-spinner-form></demo-spinner-form>
 </nb-code-box>

@@ -19,35 +19,50 @@
 
 <nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
     <h3 nb-codebox-title>MonthView</h3>
-    <p nb-codebox-desc>month view desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-month-view</code> 用于显示月视图。</p>
+        <p>2.属性 <code>value</code> 为当前选中日期，<code>month</code> 为当前月份所在日期。</p>
+        <p>3.通过设置属性 <code>multiple</code> 为 true，可以启动多选，同时 <code>startDate</code> 和 <code>endDate</code> 为选中的日期范围。</p>
+    </div>
 
     <demo-monthview></demo-monthview>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeCalendar" [htmlCode]="htmlCodeCalendar" [lessCode]="lessCodeCalendar">
     <h3 nb-codebox-title>Calendar</h3>
-    <p nb-codebox-desc>calendar desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-calendar</code> 为提供月份切换和年份切换的日历面板。</p>
+        <p>2.属性 <code>value</code> 为当前选中日期，<code>disabled</code> 可以设置置灰情况。</p>
+    </div>
 
     <demo-calendar-inner></demo-calendar-inner>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeDate" [htmlCode]="htmlCodeDate" [lessCode]="lessCodeDate">
     <h3 nb-codebox-title>Date Picker</h3>
-    <p nb-codebox-desc>date picker desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-datepicker</code> 为带输入框的单日历选择组件。</p>
+        <p>2.属性 <code>value</code> 为当前选中日期，<code>disabled</code> 可以设置置灰情况。</p>
+    </div>
 
     <demo-datepicker></demo-datepicker>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeRange" [htmlCode]="htmlCodeRange" [lessCode]="lessCodeRange">
     <h3 nb-codebox-title>Date Range Picker</h3>
-    <p nb-codebox-desc>date range picker desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-range-datepicker</code> 为带输入框的日历范围选择组件。</p>
+        <p>2.属性 <code>value</code> 为当前选中日期范围对象，包括 startDate 和 endDate，<code>disabled</code> 可以设置置灰情况。</p>
+    </div>
 
     <demo-daterange></demo-daterange>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
     <h3 nb-codebox-title>Date Picker With Forms</h3>
-    <p nb-codebox-desc>date range picker desc.</p>
+    <p nb-codebox-desc>
+        <code>nb-datepicker</code> 和 <code>nb-range-datepicker</code> 均可以和 Forms 以及 ReactiveForms 无缝结合使用。
+    </p>
 
     <demo-calendar-form></demo-calendar-form>
 </nb-code-box>

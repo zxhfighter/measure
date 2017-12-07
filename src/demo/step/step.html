@@ -16,28 +16,39 @@
 
 <nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
     <h3 nb-codebox-title>Step Basic</h3>
-    <p nb-codebox-desc>step desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-step</code> 用来显示一系列进度条，每一个步骤使用 <code>nb-step-item</code> 来定义。</p>
+        <p>2.<code>nb-step-item</code>的<code>value</code>属性说明当前的步骤索引，<code>nb-step</code>的<code>value</code>属性用于指定当前所在步骤。</p>
+    </div>
 
     <demo-step-basic></demo-step-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeMulti" [htmlCode]="htmlCodeMulti" [lessCode]="lessCodeMulti">
     <h3 nb-codebox-title>Multiline</h3>
-    <p nb-codebox-desc>step desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-step-item</code> 中的内容可以自定义。</p>
+        <p>2.<code>nb-step-item</code>的<code>success</code>属性用于指示当前步骤是否已完成。</p>
+        <p>3.<code>nb-step-item</code>的<code>active</code>属性用于指示当前步骤是否激活。</p>
+    </div>
 
     <demo-step-multi></demo-step-multi>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeVert" [htmlCode]="htmlCodeVert" [lessCode]="lessCodeVert">
     <h3 nb-codebox-title>Vertical</h3>
-    <p nb-codebox-desc>step desc.</p>
+    <p nb-codebox-desc>
+        通过在 <code>nb-step</code> 上设置 <code>skin</code> 为 'vertical'，可以得到垂直的步骤条。
+    </p>
 
     <demo-step-vertical></demo-step-vertical>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeSmall" [htmlCode]="htmlCodeSmall" [lessCode]="lessCodeSmall">
     <h3 nb-codebox-title>Small Size</h3>
-    <p nb-codebox-desc>step desc.</p>
+    <p nb-codebox-desc>
+        通过在 <code>nb-step-item</code> 上设置 <code>skin</code> 为 'small'，可以得到缩小版的步骤条。
+    </p>
 
     <demo-step-small></demo-step-small>
 </nb-code-box>
