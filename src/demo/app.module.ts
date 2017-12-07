@@ -59,6 +59,7 @@ import {DemoDialog} from './dialog';
 import {ChipsDemoModule} from './chips';
 import {DemoCodeHighlighter} from './code-highlighter';
 import {DemoCodeBox} from './code-box';
+import { DemoOverlay } from './overlay';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar/';
@@ -117,6 +118,7 @@ const demoModules = [
         DemoCodeBox,
         DemoTree,
         DemoSideBar,
+        DemoOverlay,
         DemoAccordion,
         DemoUploader,
         DemoGuideComponent,
