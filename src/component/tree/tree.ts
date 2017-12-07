@@ -24,7 +24,7 @@ import { TreeNodeParent } from './treenodeparent';
 export class TreeComponent implements OnInit {
 
     /** input tree-nodes value */
-    @Input() treeData: object[] = [];
+    @Input() treeData: TreeNode[] = [];
 
     /** input tree mode, default: '', have ''|'candidate'|'selected' three modes*/
     @Input() selectionMode: string;

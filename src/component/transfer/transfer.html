@@ -1,3 +1,66 @@
-<div class="nb-transfer">
-    transfer
+<div class="nb-transfer-candidate">
+    <div class="nb-transfer-title">
+        <span>备选列表({{candidateCount}})</span>
+        <a 
+            nb-button
+            theme="transparent"
+            class="nb-transfer-operate-link" 
+            (click)="selectAll()">
+            全部添加
+        </a>
+    </div>
+    <nb-search-box 
+        placeholder="" 
+        size="small" 
+        (onClear)="clearCandidate($event)" 
+        (onSearch)="searchCandidate($event)">
+    </nb-search-box>
+    <div class="nb-transfer-tree-wrap">
+        <nb-tree 
+            *ngIf="hasTreeData" 
+            [treeData]="candidateData" 
+            selectionMode="candidate" 
+            (onNodeSelect)="nodeSelect($event)">
+        </nb-tree>
+        <div 
+            *ngIf="!hasTreeData" 
+            class="nb-side-bar-no-tree">
+            暂无数据！
+        </div>
+    </div>
+</div>
+
+<div class="nb-transfer-selected">
+    <div class="nb-transfer-title">
+        <span>已选列表({{selectedCount}}/{{candidateCount}})</span>
+        <a 
+            nb-button
+            theme="transparent"
+            class="nb-transfer-operate-link" 
+            (click)="deleteAll()">
+            全部删除
+        </a>
+    </div>
+    <nb-search-box 
+        placeholder="" 
+        isSuggestion="true" 
+        size="small" 
+        (onSearchSuggestion)="searchSuggestion($event)" 
+        [suggestionValue]="suggestionValue"
+        (onClear)="clear($event)" 
+        (onSearch)="search($event)">
+    </nb-search-box>
+    <div class="nb-transfer-tree-wrap">
+        <nb-tree 
+            *ngIf="hasTreeData" 
+            [treeData]="selectedData" 
+            selectionMode="selected" 
+            (onNodeSelect)="nodeSelect($event)">
+        </nb-tree>
+        <div 
+            *ngIf="!hasTreeData" 
+            class="nb-side-bar-no-tree">
+            暂无数据！
+        </div>
+    </div>
 </div>
