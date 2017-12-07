@@ -1,7 +1,8 @@
 import {
     Component, Input, Output, EventEmitter, Directive, QueryList, ContentChildren, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef, AfterContentInit, ViewChild,
-    Renderer2, Optional, ChangeDetectorRef, AfterContentChecked, ContentChild, AfterViewInit
+    Renderer2, Optional, ChangeDetectorRef, AfterContentChecked, ContentChild, AfterViewInit,
+    OnDestroy
 } from '@angular/core';
 
 import { OnChange } from '../core/decorators';
@@ -10,7 +11,10 @@ import { addClass } from '../util/dom';
 /** table order type */
 export type OrderType = 'asc' | 'desc' | '';
 
-/** html element position */
+/**
+ * html element position
+ * @docs-private
+ */
 export interface ElementPosition {
     left: number;
     top: number;
@@ -53,53 +57,76 @@ export interface FilterParam {
 })
 export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
 
-    /** table sort event emitter */
+    /** table sort event emitter, emit a `SortParam` Object with the `order` and `orderBy` property. */
     @Output() sort: EventEmitter<SortParam> = new EventEmitter<SortParam>();
 
-    /** table all datasource */
+    /**
+     * table all datasource
+     * @docs-private
+     */
     @Input() allDatasource: any[] = [];
 
-    /** table filterd(sort、filterd) datasource */
+    /**
+     * table datasource
+     * @default []
+     */
     @Input() datasource: any[] = [];
 
+    /**
+     * whether the table is bordered
+     * @default false
+     */
     @OnChange(true)
     @Input() bordered: boolean = false;
 
     /**
-     * table order state, can be '' or 'desc' or ''
-     * if order value is changed, no matter what value it was before, a orderChange will happen
+     * table order state, can be 'asc' or 'desc' or ''
      */
     @OnChange(false, true)
     @Input() order: OrderType;
 
-    /** table order state change event listener */
+    /**
+     * table order state change event listener
+     * @docs-private
+     */
     orderChange: EventEmitter<string> = new EventEmitter<string>();
 
     /**
      * table orderby field
-     * no matter what value ti was, when a orderBy change，a orderByChange will happen
      */
     @OnChange(false, true)
     @Input() orderBy: string;
 
-    /** table orderby field change event listener */
+    /**
+     * table orderby field change event listener
+     * @docs-private
+     */
     orderByChange: EventEmitter<string> = new EventEmitter<string>();
 
     /** table current page */
     @OnChange()
     @Input() page: number;
 
-    /** table page change event listener */
+    /**
+     * table page change event listener
+     * @docs-private
+     */
     pageChange: EventEmitter<number> = new EventEmitter<number>();
 
-    /** table pageSize field */
+    /** table pageSize */
     @OnChange()
     @Input() pageSize: string;
 
-    /** table pageSize change event listener */
+    /**
+     * table pageSize change event listener
+     * @docs-private
+     */
     pageSizeChange: EventEmitter<string> = new EventEmitter<string>();
 
-    /** Whether the table columns can be resizable */
+    /**
+     * Whether the table columns can be resizable
+     * @default false
+     */
     @OnChange(true)
     @Input() resizable: boolean = false;
 
@@ -126,25 +153,21 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
 
     /**
      * cache table position
-     * @docs-private
      */
     _tablePos: ElementPosition;
 
     /**
      * current resize column index when resizing table columns
-     * @docs-private
      */
     _columnIndex: number = 0;
 
     /**
      * current resize column start position when resizing table columns
-     * @docs-private
      */
     _startPos: number;
 
     /**
      * whether the table is resizing column
-     * @docs-private
      */
     _isDragging: boolean = false;
 
@@ -325,6 +348,7 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
 
     /**
      * when column resize is done, compute the new column width array
+     * @docs-private
      */
     getNewColumnWidth(): number[] {
         const self = this;
@@ -452,32 +476,32 @@ export class TableHeaderComponent { }
     },
     exportAs: 'nbTH'
 })
-export class TableHeaderItemComponent implements OnInit {
+export class TableHeaderItemComponent implements OnInit, OnDestroy {
 
     /**
-     * table filter event
+     * table filter event, emits a `FilterParam` Object
      */
     @Output() filter: EventEmitter<FilterParam> = new EventEmitter<FilterParam>();
 
     /**
-     * table sort event
+     * table sort event, emits a `SortParam` Object
      */
     @Output() sort: EventEmitter<SortParam> = new EventEmitter<SortParam>();
 
     /**
-     * Whether the column is sortable
+     * Whether the column can be sortable
      */
     @OnChange(true)
     @Input() sortable: boolean;
 
     /**
-     * Whether the column is tipable（has tip icon with tip information）
+     * Whether the column can be tipable（has tip icon with tip information）
      */
     @OnChange(true)
     @Input() tipable: boolean;
 
     /**
-     * Whether the column is filterable（has filter icon and custom filter panel）
+     * Whether the column can be filterable（has filter icon and custom filter panel）
      */
     @OnChange(true)
     @Input() filterable: boolean;
@@ -488,6 +512,10 @@ export class TableHeaderItemComponent implements OnInit {
      */
     @Input() showFilterButton: boolean = true;
 
+    /**
+     * table cell align position
+     * @default left
+     */
     @Input() align: 'left' | 'center' | 'right' = 'left';
 
     /**
@@ -495,6 +523,9 @@ export class TableHeaderItemComponent implements OnInit {
      */
     private _order: OrderType;
 
+    /**
+     * table field order type
+     */
     @Input() get order() { return this._order; }
     set order(value: any) {
         this._order = value;
@@ -507,13 +538,15 @@ export class TableHeaderItemComponent implements OnInit {
     @Input() field: string;
 
     /**
-     * Whether the column is resizable
+     * Whether the column can be resizable
+     * @default false
      */
     @OnChange(true)
     @Input() resizable: boolean = false;
 
     /**
      * the timeout when the tip panel hide
+     * @default 200
      */
     @Input() timeout: number = 200;
 
@@ -523,8 +556,8 @@ export class TableHeaderItemComponent implements OnInit {
      */
     _columnIndex: number = 0;
 
-    @ViewChild('tipPanel') tipPanel: ElementRef;
-    @ViewChild('filterPanel') filterPanel: ElementRef;
+    @ViewChild('tipPanel') _tipPanel: ElementRef;
+    @ViewChild('filterPanel') _filterPanel: ElementRef;
 
     /**
      * Whether show the tip panel
@@ -536,12 +569,12 @@ export class TableHeaderItemComponent implements OnInit {
      * Whether show the filter panel
      * @docs-private
      */
-    private _showFilter: boolean;
     get showFilter() { return this._showFilter; }
     set showFilter(value: any) {
         this._showFilter = value;
         this._cd.markForCheck();
     }
+    private _showFilter: boolean;
 
     /**
      * Whether the column is in filtered mode
@@ -591,8 +624,8 @@ export class TableHeaderItemComponent implements OnInit {
         clearTimeout(this.t);
 
         this.showTip = true;
-        if (this.tipPanel && this.tipPanel.nativeElement) {
-            const el = this.tipPanel.nativeElement;
+        if (this._tipPanel && this._tipPanel.nativeElement) {
+            const el = this._tipPanel.nativeElement;
             const target = event.target as HTMLElement;
 
             // set tip panel position
@@ -632,8 +665,8 @@ export class TableHeaderItemComponent implements OnInit {
         this.showFilter = !this.showFilter;
         this._cd.markForCheck();
 
-        if (this.filterPanel && this.filterPanel.nativeElement) {
-            const el = this.filterPanel.nativeElement;
+        if (this._filterPanel && this._filterPanel.nativeElement) {
+            const el = this._filterPanel.nativeElement;
             const target = event.target as HTMLElement;
 
             // set filter panel position
@@ -642,7 +675,7 @@ export class TableHeaderItemComponent implements OnInit {
         }
     }
 
-    ngDestroy() {
+    ngOnDestroy() {
         clearTimeout(this.t);
     }
 
@@ -743,6 +776,7 @@ export class TableHeaderItemComponent implements OnInit {
 
     /**
      * click head item, sort if possible
+     * @docs-private
      */
     onHeadItemClick() {
         if (this.sortable) {
@@ -782,6 +816,9 @@ export class TableBodyComponent { }
 })
 export class TableRowComponent {
 
+    /**
+     * whether the table row is checked(selected)
+     */
     @OnChange(true)
     @Input() checked: boolean = false;
 }
@@ -808,13 +845,27 @@ export class TableRowComponent {
 })
 export class TableTdComponent {
 
+    /**
+     * when edit, emits a `edit` event
+     */
     @Output() edit: EventEmitter<any> = new EventEmitter<any>();
 
+    /**
+     * whether the cell is editable
+     * @default false
+     */
     @OnChange(true)
     @Input() editable: boolean = false;
 
+    /**
+     * whether the cell is editing
+     * @default false
+     */
     @Input() editing: boolean = false;
 
+    /**
+     * @docs-private
+     */
     onEdit() {
         this.editing = true;
         this.edit.emit();

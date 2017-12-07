@@ -21,10 +21,13 @@
     
     <table class="table-con">
         <tr *ngFor="let item of week; index as i">
-            <td *ngFor="let item of hour; index as j">
+            <td *ngFor="let item of hour; index as j" >
                 <button title="{{item}}-{{hours[j + 1]}}"
                     [ngClass]="{'selected': schedules[i*24 + j] === 1}"
-                    (click)="select(i, j)"></button>
+                    (mousedown)="mousedown(i, j)"
+                    (mouseup)="mouseup(i, j)"
+                    (mouseover)="mouseover(i, j)"
+                    (mouseout)="mouseout(i, j)"></button>
             </td>
         </tr>
     </table>

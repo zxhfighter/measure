@@ -19,6 +19,7 @@ import { DemoStep } from './step';
 import { DemoTable } from './table';
 import { DemoTooltip } from './tooltip';
 import { DemoPage } from './page';
+import { DemoSchedule } from './schedule';
 import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { DemoSearchBox } from './search-box';
@@ -59,6 +60,7 @@ export const appRoutes: Routes = [
     { path: 'tabs', component: DemoTabs },
     { path: 'tooltip', component: DemoTooltip },
     { path: 'page', component: DemoPage },
+    { path: 'schedule', component: DemoSchedule },
     { path: 'text-line', component: DemoTextLine },
     { path: 'search-box', component: DemoSearchBox },
     { path: 'calendar', component: DemoCalendar },
