@@ -1,6 +1,7 @@
 import {
     Component, OnInit, ChangeDetectionStrategy
 } from '@angular/core';
+// import { UploaderComponent } from '../../component/uploader';
 
 @Component({
     selector: 'demo-uploader',
@@ -17,5 +18,9 @@ export class DemoUploader implements OnInit {
 
     ngOnInit() {
 
+    }
+
+    onBasicUpload() {
+        alert('上传成功');
     }
 }

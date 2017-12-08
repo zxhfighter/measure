@@ -55,6 +55,7 @@ import { DemoSearchBox } from './search-box';
 import { DemoTree } from './tree';
 import { DemoToast } from './toast';
 import { DemoSelect } from './select';
+import { OverlayDemo } from './overlay';
 import { DemoDialog } from './dialog';
 import { ChipsDemoModule } from './chips';
 import { CodeBoxDemo } from './code-box';
@@ -63,7 +64,6 @@ import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar/';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
-import { DemoOverlay } from './overlay';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -118,11 +118,12 @@ const demoModules = [
         CodeBoxDemo,
         DemoTree,
         DemoSideBar,
+        OverlayDemo,
         DemoAccordion,
         DemoUploader,
         GuideComponentDemo,
         IconsComponentDemo,
-        DemoOverlay
+        OverlayDemo
     ],
     imports: [
         BrowserModule,
