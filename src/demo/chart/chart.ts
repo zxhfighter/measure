@@ -8,7 +8,7 @@ import {
     styleUrls: ['./chart.less'],
     preserveWhitespaces: false
 })
-export class DemoChart {
+export class ChartDemo {
 
     // basic source
     tsCodeBasic: string = require('!!raw-loader!./basic/chart-basic.ts');

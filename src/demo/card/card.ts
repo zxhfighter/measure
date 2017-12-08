@@ -9,7 +9,7 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class DemoCard implements OnInit {
+export class CardDemo implements OnInit {
 
     // basic source
     tsCode: string = require('!!raw-loader!./basic/card-basic.ts');

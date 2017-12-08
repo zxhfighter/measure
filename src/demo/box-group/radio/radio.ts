@@ -1,4 +1,4 @@
-import {Input, Component, ViewEncapsulation} from '@angular/core';
+import { Input, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'demo-radio',
@@ -6,6 +6,6 @@ import {Input, Component, ViewEncapsulation} from '@angular/core';
     styleUrls: ['./radio.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoRadio {
+export class RadioDemo {
 
 }

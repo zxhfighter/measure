@@ -25,6 +25,8 @@
 
     .@{prefix}-switch-outer {
         position: relative;
+        display: inline-block;
+        vertical-align: middle;
         width: 50px;
         height: 24px;
         border-radius: 24px;
@@ -38,17 +40,29 @@
             border-radius: 20px;
             top: 2px;
             left: 2px;
+            transform: translate3d(0, 0, 0);
             background-color: #fff;
-            transition: left 300ms ease-in;
+            transition: transform 80ms linear;
         }
 
         &.checked {
             background-color: @brand-primary;
 
             .@{prefix}-switch-inner {
-                left: 28px;
+                transform: translate3d(26px, 0, 0);
             }
         }
+
+        &-dragging {
+            .@{prefix}-switch-inner {
+                cursor: -webkit-grabbing;
+            }
+        }
+    }
+
+    .@{prefix}-switch-label {
+        display: inline-block;
+        margin-left: 10px;
     }
 }
 
@@ -64,11 +78,12 @@
             border-radius: 14px;
             top: 2px;
             left: 2px;
+            transform: translate3d(0, 0, 0);
         }
 
         &.checked {
             .@{prefix}-switch-inner {
-                left: 22px;
+                transform: translate3d(20px, 0, 0);
             }
         }
     }

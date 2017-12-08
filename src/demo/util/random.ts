@@ -12,7 +12,7 @@
  */
 export function genNum(start: number, end: number): number {
     return start + Math.floor(Math.random() * end);
-};
+}
 
 /**
  * 生成长度为 start 到 end（不包括 end）之间的字符串，如果没有 end 参数，就固定为 start 长度
@@ -43,7 +43,7 @@ export function genStr(start: number, end: number): string {
         str += chars[Math.floor(Math.random() * chars.length)];
     }
     return str;
-};
+}
 
 /**
  * 生成随机 bool 值
@@ -52,4 +52,4 @@ export function genStr(start: number, end: number): string {
  */
 export function genBool(): boolean {
     return Math.random() > 0.5;
-};
+}

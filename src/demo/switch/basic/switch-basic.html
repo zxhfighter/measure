@@ -1,24 +1,24 @@
 <p>
     change event:
-    <nb-switch (change)="onSwitchChange($event)"></nb-switch> {{ text }}
+    <nb-switch (change)="onSwitchChange($event)"> Flying Mode </nb-switch> {{ text }}
 </p>
 
 <p>
     default checked:
-    <nb-switch [checked]="checked" [disabled]="isDisabled"></nb-switch>
+    <nb-switch [checked]="checked" [disabled]="isDisabled"> Flying Mode </nb-switch>
 </p>
 <button type="button" (click)="onChange()">change</button>
 <button type="button" (click)="onChangeDisable()">change disabled</button>
 <p>
     disabled:
-    <nb-switch disabled></nb-switch>
-    <nb-switch [checked]="true" disabled></nb-switch>
+    <nb-switch disabled> Flying Mode </nb-switch>
+    <nb-switch [checked]="true" disabled> Flying Mode </nb-switch>
 </p>
 
 <p>
     custom size and theme:
-    <nb-switch theme="small"></nb-switch>
-    <nb-switch theme="small" disabled></nb-switch>
-    <nb-switch theme="small" checked></nb-switch>
-    <nb-switch theme="small" checked disabled></nb-switch>
+    <nb-switch theme="small"> Flying Mode </nb-switch>
+    <nb-switch theme="small" disabled> Flying Mode </nb-switch>
+    <nb-switch theme="small" checked> Flying Mode </nb-switch>
+    <nb-switch theme="small" checked disabled> Flying Mode </nb-switch>
 </p>

@@ -1,6 +1,6 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
-import {BoxGroupValue} from '../../../component/box-group';
+import { BoxGroupValue } from '../../../component/box-group';
 
 @Component({
     selector: 'demo-radio-group',
@@ -8,7 +8,7 @@ import {BoxGroupValue} from '../../../component/box-group';
     styleUrls: ['./radio-group.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoRadioGroup {
+export class RadioGroupDemo {
     onRadioGroupChange(boxValue: BoxGroupValue) {
         console.log(boxValue);
     }

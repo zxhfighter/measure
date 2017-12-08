@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-button-theme',
     templateUrl: './button-theme.html',
     styleUrls: ['./button-theme.less']
 })
-export class DemoButtonTheme {
+export class ButtonThemeDemo {
     name = 'ComponentName';
     counter = 0;
     buttonText = 'xs height 28px';

@@ -10,7 +10,7 @@ import * as moment from 'moment';
     styleUrls: ['./calendar.less'],
     preserveWhitespaces: false
 })
-export class DemoCalendar {
+export class CalendarDemo {
 
     // theme sources
     tsCode: string = require('!!raw-loader!./monthview/monthview.ts');
@@ -31,4 +31,9 @@ export class DemoCalendar {
     tsCodeRange: string = require('!!raw-loader!./daterangepicker/date-range.ts');
     htmlCodeRange: string = require('!!raw-loader!./daterangepicker/date-range.html');
     lessCodeRange: string = require('!!raw-loader!./daterangepicker/date-range.less');
+
+    // theme sources
+    tsCodeForm: string = require('!!raw-loader!./form/calendar-form.ts');
+    htmlCodeForm: string = require('!!raw-loader!./form/calendar-form.html');
+    lessCodeForm: string = require('!!raw-loader!./form/calendar-form.less');
 }

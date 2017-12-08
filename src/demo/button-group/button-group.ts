@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'demo-button-group',
@@ -6,7 +6,7 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
     styleUrls: ['./button-group.less'],
     preserveWhitespaces: false
 })
-export class DemoButtonGroup {
+export class ButtonGroupDemo {
 
     // basic source
     tsCodeBasic: string = require('!!raw-loader!./basic/button-group-basic.ts');

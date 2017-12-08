@@ -57,12 +57,13 @@ import { DemoToast } from './toast';
 import { DemoSelect } from './select';
 import { DemoDialog } from './dialog';
 import { ChipsDemoModule } from './chips';
-import { DemoCodeBox } from './code-box';
+import { CodeBoxDemo } from './code-box';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar/';
-import { DemoGuideComponent } from './docs';
-import { DemoIconsComponent } from './icons';
+import { GuideComponentDemo } from './docs';
+import { IconsComponentDemo } from './icons';
+import { DemoOverlay } from './overlay';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -114,13 +115,14 @@ const demoModules = [
         DemoToast,
         DemoSelect,
         DemoDialog,
-        DemoCodeBox,
+        CodeBoxDemo,
         DemoTree,
         DemoSideBar,
         DemoAccordion,
         DemoUploader,
-        DemoGuideComponent,
-        DemoIconsComponent
+        GuideComponentDemo,
+        IconsComponentDemo,
+        DemoOverlay
     ],
     imports: [
         BrowserModule,

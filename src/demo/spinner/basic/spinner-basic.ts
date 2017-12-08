@@ -1,4 +1,4 @@
-import {Input, Component, ViewEncapsulation} from '@angular/core';
+import { Input, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'demo-spinner-basic',
@@ -6,6 +6,6 @@ import {Input, Component, ViewEncapsulation} from '@angular/core';
     styleUrls: ['./spinner-basic.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoSpinnerBasic {
+export class SpinnerBasicDemo {
 
 }

@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {BoxGroupValue} from '../../../component/box-group';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { BoxGroupValue } from '../../../component/box-group';
 
 @Component({
     selector: 'demo-checkbox-group',
@@ -7,7 +7,7 @@ import {BoxGroupValue} from '../../../component/box-group';
     styleUrls: ['./checkbox-group.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoCheckboxGroup {
+export class CheckboxGroupDemo {
     onCheckboxGroupChange(boxValue: BoxGroupValue) {
         console.log(boxValue);
     }

@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {BoxGroupValue} from '../../../component/box-group';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { BoxGroupValue } from '../../../component/box-group';
 
 const barValue = [
     [749, 1752, 1145, 1912, 1363, 2242, 1538, 2663, 1942, 2838],
@@ -10,7 +10,7 @@ const barValue = [
 ];
 
 const barAxisData = [
-    ["05.01", "05.02", "05.03", "05.04", "05.05", "05.06", "05.07", "05.08", "05.09", "05.10"],
+    ['05.01', '05.02', '05.03', '05.04', '05.05', '05.06', '05.07', '05.08', '05.09', '05.10'],
     ['首次', '1~5 天', '6~10 天', '11~15 天', '16~20 天', '21~25 天', '26~30 天'],
     ['0~10 分钟', '10~30 分钟', '31~60 分钟', '61~90 分钟', '91~120 分钟'],
     ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00']
@@ -87,7 +87,7 @@ export const chartOptions = {
     bar2: {
         title: {
             text: "多数据柱状图表"
-                // 参见 dux-theme.js
+            // 参见 dux-theme.js
         },
         tooltip: {
             // 参见 dux-theme.js
@@ -95,7 +95,7 @@ export const chartOptions = {
         legend: {
             data: ["总收入", "PV", "UV"],
             right: 30
-                // 参见 dux-theme.js
+            // 参见 dux-theme.js
         },
         toolbox: {
             // 参见 dux-theme.js
@@ -231,7 +231,7 @@ export const chartOptions = {
             data: data
         }]
     }
-}
+};
 
 const valueList = [
     [749, 1752, 1145, 1912, 1363, 2242, 1538, 2663, 1942, 2838],
@@ -336,7 +336,7 @@ const options = {
     styleUrls: ['./chart-basic.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoChartBasic {
+export class ChartBasicDemo {
     options: any = options;
 
     barOptions1: any = chartOptions.bar1;

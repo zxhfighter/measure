@@ -1,6 +1,6 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
-import {ButtonGroupValue} from '../../../component/button-group';
+import { ButtonGroupValue } from '../../../component/button-group';
 
 @Component({
     selector: 'demo-button-group-basic',
@@ -8,7 +8,7 @@ import {ButtonGroupValue} from '../../../component/button-group';
     styleUrls: ['./button-group-basic.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoButtonGroupBasic {
+export class ButtonGroupBasicDemo {
     text: string = '';
     radioText: string = '';
     checkboxText: string = '';

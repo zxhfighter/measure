@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'demo-table-edit',
@@ -6,13 +6,13 @@ import {Component, ViewEncapsulation} from '@angular/core';
     styleUrls: ['./table-edit.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoTableEdit {
+export class TableEditDemo {
 
     fields: any[] = [
-        {name: 'name', title: 'Name', editable: true},
-        {name: 'address', title: 'Address', editable: true},
-        {name: 'age', title: 'Age', align: 'right'},
-        {name: 'action', title: 'Action'}
+        { name: 'name', title: 'Name', editable: true },
+        { name: 'address', title: 'Address', editable: true },
+        { name: 'age', title: 'Age', align: 'right' },
+        { name: 'action', title: 'Action' }
     ];
 
     datasource: any[] = [
