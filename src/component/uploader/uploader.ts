@@ -1,5 +1,5 @@
 import {
-    Component, Input, Output, EventEmitter,
+    Component, Input, Output, EventEmitter, ChangeDetectorRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
@@ -37,11 +37,21 @@ export class UploaderComponent implements OnInit {
 
     @Input() url: string;
 
-    @Input() method: string = 'GET';
+    @Input() method: string = 'POST';
 
     @Input() multiple: boolean;
 
-    @Input() files: File[];
+    // 暂时不定位file type
+    // @Input() files: File[];
+    @Input() files: any[] = [];
+    // @Input() set placement(data) {
+    //     this._placement = data;
+    //     this.firstPlacement = this._placement.split('-')[0];
+    // }
+
+    // get placement () {
+    //     return this._placement;
+    // }
 
     @Input() auto: boolean = true;
 
@@ -79,21 +89,29 @@ export class UploaderComponent implements OnInit {
 
     msgs: Message[];
 
-    progress: number = 0;
+    progress: number;
 
-    constructor() {
+    /**
+     * 文件上传的状态
+     * 'uploading' | 'success' | 'error'
+     */
+    state: string;
+
+    constructor(
+        private cdRef: ChangeDetectorRef
+    ) {
 
     }
 
     ngOnInit() {
-
+        console.log(this.files);
     }
 
     onFileSelect(event) {
         this.msgs = [];
-        if (!this.multiple) {
-            this.files = [];
-        }
+        // if (!this.multiple) {
+        //     this.files = [];
+        // }
 
         let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
         for (let i = 0; i < files.length; i++) {
@@ -111,6 +129,8 @@ export class UploaderComponent implements OnInit {
         this.onSelect.emit({originalEvent: event, files: files});
 
         if (this.hasFiles() && this.auto) {
+            this.state = 'uploading';
+            this.cdRef.markForCheck();
             this.upload();
         }
 
@@ -134,6 +154,7 @@ export class UploaderComponent implements OnInit {
         xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
             if (e.lengthComputable) {
                 this.progress = Math.round((e.loaded * 100) / e.total);
+                this.cdRef.markForCheck();
             }
 
             this.onProgress.emit({originalEvent: e, progress: this.progress});
@@ -145,15 +166,21 @@ export class UploaderComponent implements OnInit {
 
                 if (xhr.status >= 200 && xhr.status < 300) {
                     this.onUpload.emit({xhr: xhr, files: this.files});
+                    this.state = 'success';
+                    // 调用回调函数
                 }
                 else {
                     this.onError.emit({xhr: xhr, files: this.files});
+                    this.state = 'error';
                 }
-                this.clear();
+                // TODO 先注释掉
+                // this.clear();
             }
         };
 
         xhr.open(this.method, this.url, true);
+        xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+        xhr.setRequestHeader('x-requested-with', 'XMLHttpRequest');
 
         this.onBeforeSend.emit({
             'xhr': xhr,
@@ -175,7 +202,7 @@ export class UploaderComponent implements OnInit {
             return false;
         }
 
-        if(this.maxFileSize  && file.size > this.maxFileSize) {
+        if (this.maxFileSize  && file.size > this.maxFileSize) {
             this.msgs.push({
                 severity: 'error',
                 summary: this.invalidFileSizeMessageSummary.replace('{0}', file.name),
