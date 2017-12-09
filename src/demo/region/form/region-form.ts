@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-region-form',
     templateUrl: './region-form.html',
     styleUrls: ['./region-form.less']
 })
-export class DemoRegionForm {
+export class RegionFormDemo {
     regionValue = [378, 379, 3, 1002, 34, 35, 36];
 
     regionSource = [{

@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {ButtonModule} from '../../component/button';
-import {CardModule} from '../../component/card';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { ButtonModule } from '../../component/button';
+import { CardModule } from '../../component/card';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoCard} from './card';
-import {DemoCardBasic} from './basic/card-basic';
+import { CardDemo } from './card';
+import { CardBasicDemo } from './basic/card-basic';
 
 @NgModule({
     imports: [
@@ -18,10 +18,10 @@ import {DemoCardBasic} from './basic/card-basic';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoCard,
-        DemoCardBasic
+        CardDemo,
+        CardBasicDemo
     ],
     providers: [],
     exports: []
 })
-export class CardDemoModule {}
+export class CardDemoModule { }

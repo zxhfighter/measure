@@ -1,14 +1,14 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {SwitchModule} from '../../component/switch';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { SwitchModule } from '../../component/switch';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoSwitch} from './switch';
-import {DemoSwitchBasic} from './basic/switch-basic';
-import {DemoSwitchForm} from './form/switch-form';
+import { SwitchDemo } from './switch';
+import { SwitchBasicDemo } from './basic/switch-basic';
+import { SwitchFormDemo } from './form/switch-form';
 
 @NgModule({
     imports: [
@@ -20,11 +20,11 @@ import {DemoSwitchForm} from './form/switch-form';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoSwitch,
-        DemoSwitchBasic,
-        DemoSwitchForm
+        SwitchDemo,
+        SwitchBasicDemo,
+        SwitchFormDemo
     ],
     providers: [],
     exports: []
 })
-export class SwitchDemoModule {}
+export class SwitchDemoModule { }

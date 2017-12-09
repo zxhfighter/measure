@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {genStr, genNum} from '../../util/random';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { genStr, genNum } from '../../util/random';
 
 @Component({
     selector: 'demo-table-expand',
@@ -7,13 +7,13 @@ import {genStr, genNum} from '../../util/random';
     styleUrls: ['./table-expand.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoTableExpand {
+export class TableExpandDemo {
 
     fields: any[] = [
-        {name: 'name', title: 'Name'},
-        {name: 'age', title: 'Age'},
-        {name: 'address', title: 'Address'},
-        {name: 'action', title: 'Action'}
+        { name: 'name', title: 'Name' },
+        { name: 'age', title: 'Age' },
+        { name: 'address', title: 'Address' },
+        { name: 'action', title: 'Action' }
     ];
 
     datasource: any[] = [

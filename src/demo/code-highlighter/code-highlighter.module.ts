@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { CodeBoxModule } from '../../component/code-box';
 import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import { DemoCodeHighlighter } from './code-highlighter';
-import { DemoCodeHighlighterBasic } from './basic/code-highlighter-basic';
+import { CodeHighlighterDemo } from './code-highlighter';
+import { CodeHighlighterBasicDemo } from './basic/code-highlighter-basic';
 
 @NgModule({
     imports: [
@@ -14,8 +14,8 @@ import { DemoCodeHighlighterBasic } from './basic/code-highlighter-basic';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoCodeHighlighter,
-        DemoCodeHighlighterBasic
+        CodeHighlighterDemo,
+        CodeHighlighterBasicDemo
     ],
     providers: [],
     exports: []

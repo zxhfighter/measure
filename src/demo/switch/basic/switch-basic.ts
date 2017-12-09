@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'demo-switch-basic',
@@ -6,7 +6,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
     styleUrls: ['./switch-basic.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoSwitchBasic {
+export class SwitchBasicDemo {
     text: string = '';
     checked: boolean = true;
     isDisabled: boolean = false;

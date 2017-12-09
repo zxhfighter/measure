@@ -1,5 +1,5 @@
-import {Input, Component, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { Input, Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'demo-spinner-form',
@@ -7,16 +7,16 @@ import {FormBuilder, FormGroup} from '@angular/forms';
     styleUrls: ['./spinner-form.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoSpinnerForm {
+export class SpinnerFormDemo implements OnInit {
 
     form: FormGroup;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder) { }
 
     ngOnInit() {
         this.form = this.fb.group({
             spinner: [
-                {value: 11, disabled: false}
+                { value: 11, disabled: false }
             ]
         });
     }

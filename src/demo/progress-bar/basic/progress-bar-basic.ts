@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
     selector: 'demo-progress-bar-basic',
     templateUrl: './progress-bar-basic.html',
     styleUrls: ['./progress-bar-basic.less']
 })
-export class DemoProgressbarBasic implements OnInit, OnDestroy {
+export class ProgressbarBasicDemo implements OnInit, OnDestroy {
     value = 0;
     value1 = 0;
 

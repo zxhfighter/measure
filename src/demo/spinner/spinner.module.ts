@@ -1,14 +1,14 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {SpinnerModule} from '../../component/spinner';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { SpinnerModule } from '../../component/spinner';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoSpinner} from './spinner';
-import {DemoSpinnerBasic} from './basic/spinner-basic';
-import {DemoSpinnerForm} from './form/spinner-form';
+import { SpinnerDemo } from './spinner';
+import { SpinnerBasicDemo } from './basic/spinner-basic';
+import { SpinnerFormDemo } from './form/spinner-form';
 
 @NgModule({
     imports: [
@@ -20,11 +20,11 @@ import {DemoSpinnerForm} from './form/spinner-form';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoSpinner,
-        DemoSpinnerBasic,
-        DemoSpinnerForm
+        SpinnerDemo,
+        SpinnerBasicDemo,
+        SpinnerFormDemo
     ],
     providers: [],
     exports: []
 })
-export class SpinnerDemoModule {}
+export class SpinnerDemoModule { }

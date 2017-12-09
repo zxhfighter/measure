@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-button-size',
     templateUrl: './button-size.html',
     styleUrls: ['./button-size.less']
 })
-export class DemoButtonSize {
+export class ButtonSizeDemo {
     size = 'xs';
 }

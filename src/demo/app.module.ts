@@ -55,15 +55,15 @@ import { DemoSearchBox } from './search-box';
 import { DemoTree } from './tree';
 import { DemoToast } from './toast';
 import { DemoSelect } from './select';
-import { DemoOverlay } from './overlay';
+import { OverlayDemo } from './overlay';
 import { DemoDialog } from './dialog';
 import { ChipsDemoModule } from './chips';
-import { DemoCodeBox } from './code-box';
+import { CodeBoxDemo } from './code-box';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar/';
-import { DemoGuideComponent } from './docs';
-import { DemoIconsComponent } from './icons';
+import { GuideComponentDemo } from './docs';
+import { IconsComponentDemo } from './icons';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -115,14 +115,15 @@ const demoModules = [
         DemoToast,
         DemoSelect,
         DemoDialog,
-        DemoCodeBox,
+        CodeBoxDemo,
         DemoTree,
         DemoSideBar,
-        DemoOverlay,
+        OverlayDemo,
         DemoAccordion,
         DemoUploader,
-        DemoGuideComponent,
-        DemoIconsComponent
+        GuideComponentDemo,
+        IconsComponentDemo,
+        OverlayDemo
     ],
     imports: [
         BrowserModule,

@@ -8,7 +8,7 @@ import {
     styleUrls: ['./step.less'],
     preserveWhitespaces: false
 })
-export class DemoStep implements OnInit {
+export class StepDemo implements OnInit {
 
     // theme sources
     tsCode: string = require('!!raw-loader!./basic/step-basic.ts');
