@@ -2,6 +2,11 @@ import {
     Component, Input, Output, EventEmitter,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'nb-schedule',
@@ -70,7 +75,9 @@ export class ScheduleComponent implements OnInit {
         } else if (value === 24) {
             return '全天';
         } else {
-            let label = this.hours[j-value+1] + '-' + this.hours[j+1];
+            let index = Math.floor(value/2);
+            let tmp = (value + 1) % 2;
+            let label = this.hours[j - index + tmp] + '-' + this.hours[j + index + 1];
             return label;
             // return value;
         }
@@ -79,19 +86,32 @@ export class ScheduleComponent implements OnInit {
     topTimeChange() {
         this.layerTime = [];
         let colspan = 0;
+        // for (let i = 0; i < this.schedules.length; i++) {
+        //     if (this.schedules[i] === 0 || (i + 1) % 24 === 0) {
+        //         this.layerTime.push(0);
+        //         colspan = 0;
+        //     } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 0) {
+        //         colspan ++;
+        //         this.layerTime.push(colspan);
+        //     } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1) {
+        //         this.layerTime.push(0);
+        //         colspan ++;
+        //     }
+        // }
         for (let i = 0; i < this.schedules.length; i++) {
-            if (this.schedules[i] === 0 || (i + 1) % 24 === 0) {
+            if (this.schedules[i] === 0) {
                 this.layerTime.push(0);
                 colspan = 0;
             } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 0) {
                 colspan ++;
-                this.layerTime.push(colspan);
+                let index = this.layerTime.length - (Math.floor(colspan / 2));
+                this.layerTime[index] = colspan;
+                this.layerTime.push(0);
             } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1) {
                 this.layerTime.push(0);
                 colspan ++;
             }
         }
-        console.log(this.layerTime);
     }
     mouseup(i, j) {
         this.flag = false;
@@ -103,9 +123,12 @@ export class ScheduleComponent implements OnInit {
     }
     mouseover(i, j) {
         if (this.flag === true) {
-            this.preSelect(i, j);
+            // console.log('mouseover');
+            // let observable = Observable.fromEvent(event.target, 'mouseover')
+            // .debounceTime(10)
+            // .subscribe(() => this.preSelect(i, j));
+            this.preSelect(i, j)
         }
-
     }
     mouseout(i, j) {
         if (this.flag === true) {

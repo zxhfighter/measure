@@ -22,9 +22,10 @@
     .selected {
         background-color: #c4e0fe;
         &::before {
+            pointer-events: none;
             position: absolute;
             top: 0;
-            right: 0;
+            right: -60px;
             width: 150px;
             z-index: 1;
             content: attr(data);

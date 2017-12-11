@@ -23,7 +23,7 @@
             <td *ngFor="let item of hour; index as j">
                 <button title="{{item}}-{{hours[j + 1]}}"
                     [attr.data]="showLabel(i,j)"
-                    [ngClass]="{'selected': schedules[i*24 + j] === 1}"
+                    [ngClass]="{'selected': schedules[i * 24 + j] === 1}"
                     (mousedown)="mousedown(i, j)"
                     (mouseup)="mouseup(i, j)"
                     (mouseover)="mouseover(i, j)"
