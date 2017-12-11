@@ -5,6 +5,11 @@
     <span class="type-component">Component</span>
 </p>
 
+<p class="type-desc">
+    <span>selector</span>:
+    <code>nb-code-highlighter</code>
+</p>
+
 <section>
     <h3 class="section-title">Usage</h3>
 
@@ -15,25 +20,86 @@
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">TypeScirpt with linenumbers</h3>
+<h3 class="section-title">Examples</h3>
 
-    <nb-code-highlighter language="typescript" linenumbers [rawCode]="jsCode">
+<nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
+    <h3 nb-codebox-title>code highlighter example</h3>
+    <div nb-codebox-desc>
+        <code>nb-code-highlighter</code> 是一个代码高亮组件。可以使用 <code>language</code> 来指定语言，
+        <code>rawCode</code> 来指定代码字符串，<code>linenumbers</code> 来设置是否显示代码行数。
+    </div>
 
-    </nb-code-highlighter>
-</section>
+    <demo-code-highlighter-basic></demo-code-highlighter-basic>
+</nb-code-box>
 
-<section>
-    <h3 class="section-title">HTML with linenumbers</h3>
+<h3 class="section-title">API</h3>
 
-    <nb-code-highlighter language="markup" linenumbers [rawCode]="htmlCode">
-    </nb-code-highlighter>
-</section>
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>CodeHighlighterComponent</code> API Reference
+    </h4>
+    <p class="docs-api-class-description">Code Highlighter Component
+    </p>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    language
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">typescript</td>
+            <td class="docs-td docs-td-desc">
+                <p>code language, see
+                    <a href="http://prismjs.com/index.html#languages-list">http://prismjs.com/index.html#languages-list</a>
+                </p>
+            </td>
+        </tr>
 
 
-<section>
-    <h3 class="section-less">LESS with linenumbers</h3>
 
-    <nb-code-highlighter language="less" linenumbers [rawCode]="lessCode">
-    </nb-code-highlighter>
-</section>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    linenumbers
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>whether show line numbers, default to false</p>
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    rawCode
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>raw code to be highlighted</p>
+            </td>
+        </tr>
+    </table>
+</div>

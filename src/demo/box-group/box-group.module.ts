@@ -1,17 +1,17 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {BoxGroupModule} from '../../component/box-group';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { BoxGroupModule } from '../../component/box-group';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoBoxGroup} from './box-group';
-import {DemoCheckbox} from './checkbox/checkbox';
-import {DemoRadio} from './radio/radio';
-import {DemoCheckboxGroup} from './checkbox-group/checkbox-group';
-import {DemoRadioGroup} from './radio-group/radio-group';
-import {DemoBoxGroupForm} from './form/box-group-form';
+import { BoxGroupDemo } from './box-group';
+import { CheckboxDemo } from './checkbox/checkbox';
+import { RadioDemo } from './radio/radio';
+import { CheckboxGroupDemo } from './checkbox-group/checkbox-group';
+import { RadioGroupDemo } from './radio-group/radio-group';
+import { BoxGroupFormDemo } from './form/box-group-form';
 
 @NgModule({
     imports: [
@@ -23,14 +23,14 @@ import {DemoBoxGroupForm} from './form/box-group-form';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoBoxGroup,
-        DemoCheckbox,
-        DemoRadio,
-        DemoCheckboxGroup,
-        DemoRadioGroup,
-        DemoBoxGroupForm
+        BoxGroupDemo,
+        CheckboxDemo,
+        RadioDemo,
+        CheckboxGroupDemo,
+        RadioGroupDemo,
+        BoxGroupFormDemo
     ],
     providers: [],
     exports: []
 })
-export class BoxGroupDemoModule {}
+export class BoxGroupDemoModule { }

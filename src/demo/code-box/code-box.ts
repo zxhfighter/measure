@@ -9,7 +9,7 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class DemoCodeBox implements OnInit {
+export class CodeBoxDemo implements OnInit {
 
     tsCode: string = require('!!raw-loader!./code-box.ts');
     htmlCode: string = require('!!raw-loader!./code-box.html');

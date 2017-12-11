@@ -4,79 +4,79 @@
  */
 
 import { Routes } from '@angular/router';
-import { DemoButton } from './button';
-import { DemoBreadcrumb } from './breadcrumb';
-import { DemoSwitch } from './switch';
-import { DemoButtonGroup } from './button-group';
-import { DemoBoxGroup } from './box-group';
-import { DemoChart } from './chart';
-import { DemoProgressBar } from './progress-bar';
-import { DemoSpinner } from './spinner';
-import { DemoCarousel } from './carousel';
+import { ButtonDemo } from './button';
+import { BreadcrumbDemo } from './breadcrumb';
+import { SwitchDemo } from './switch';
+import { ButtonGroupDemo } from './button-group';
+import { BoxGroupDemo } from './box-group';
+import { ChartDemo } from './chart';
+import { ProgressBarDemo } from './progress-bar';
+import { SpinnerDemo } from './spinner';
+import { CarouselDemo } from './carousel';
 import { DemoInput } from './input';
 import { DemoTabs } from './tabs';
-import { DemoStep } from './step';
-import { DemoTable } from './table';
+import { StepDemo } from './step';
+import { TableDemo } from './table';
 import { DemoTooltip } from './tooltip';
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
 import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { DemoSearchBox } from './search-box';
-import { DemoCalendar } from './calendar';
+import { CalendarDemo } from './calendar';
 import { DemoToast } from './toast';
 import { DemoSelect } from './select';
-import { DemoRegion } from './region';
+import { RegionDemo } from './region';
 import { DemoDialog } from './dialog';
 import { DemoChips } from './chips';
-import { DemoCodeHighlighter } from './code-highlighter';
-import { DemoCodeBox } from './code-box';
+import { CodeHighlighterDemo } from './code-highlighter';
+import { CodeBoxDemo } from './code-box';
 import { DemoTree } from './tree';
 import { DemoSideBar } from './side-bar/';
-import { DemoCard } from './card';
+import { CardDemo } from './card';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
-import { DemoGuideComponent } from './docs';
-import { DemoIconsComponent } from './icons';
+import { GuideComponentDemo } from './docs';
+import { IconsComponentDemo } from './icons';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'button' },
-    { path: 'button', component: DemoButton },
-    { path: 'breadcrumb', component: DemoBreadcrumb },
-    { path: 'switch', component: DemoSwitch },
-    { path: 'button-group', component: DemoButtonGroup },
-    { path: 'box-group', component: DemoBoxGroup },
-    { path: 'chart', component: DemoChart },
-    { path: 'progress-bar', component: DemoProgressBar },
-    { path: 'spinner', component: DemoSpinner },
-    { path: 'carousel', component: DemoCarousel },
+    { path: 'button', component: ButtonDemo },
+    { path: 'breadcrumb', component: BreadcrumbDemo },
+    { path: 'switch', component: SwitchDemo },
+    { path: 'button-group', component: ButtonGroupDemo },
+    { path: 'box-group', component: BoxGroupDemo },
+    { path: 'chart', component: ChartDemo },
+    { path: 'progress-bar', component: ProgressBarDemo },
+    { path: 'spinner', component: SpinnerDemo },
+    { path: 'carousel', component: CarouselDemo },
     { path: 'input', component: DemoInput },
     { path: 'tabs', component: DemoTabs },
-    { path: 'step', component: DemoStep },
+    { path: 'step', component: StepDemo },
     { path: 'tooltip', component: DemoTooltip },
     { path: 'textarea', component: DemoTextarea },
-    { path: 'table', component: DemoTable },
+    { path: 'table', component: TableDemo },
     { path: 'tabs', component: DemoTabs },
     { path: 'tooltip', component: DemoTooltip },
     { path: 'page', component: DemoPage },
     { path: 'schedule', component: DemoSchedule },
     { path: 'text-line', component: DemoTextLine },
     { path: 'search-box', component: DemoSearchBox },
-    { path: 'calendar', component: DemoCalendar },
+    { path: 'calendar', component: CalendarDemo },
     { path: 'toast', component: DemoToast },
     { path: 'select', component: DemoSelect },
-    { path: 'calendar', component: DemoCalendar },
-    { path: 'region', component: DemoRegion },
+    { path: 'calendar', component: CalendarDemo },
+    { path: 'region', component: RegionDemo },
     { path: 'dialog', component: DemoDialog },
     { path: 'tree', component: DemoTree },
     { path: 'side-bar', component: DemoSideBar },
     { path: 'chips', component: DemoChips },
-    { path: 'code-highlighter', component: DemoCodeHighlighter },
-    { path: 'code-box', component: DemoCodeBox },
+    { path: 'code-highlighter', component: CodeHighlighterDemo },
+    { path: 'code-box', component: CodeBoxDemo },
     { path: 'tree', component: DemoTree },
-    { path: 'card', component: DemoCard },
+    { path: 'card', component: CardDemo },
     { path: 'accordion', component: DemoAccordion },
     { path: 'uploader', component: DemoUploader },
-    { path: 'docs', component: DemoGuideComponent },
-    { path: 'icons', component: DemoIconsComponent }
+    { path: 'docs', component: GuideComponentDemo },
+    { path: 'icons', component: IconsComponentDemo }
 ];

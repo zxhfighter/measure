@@ -14,6 +14,14 @@
     <h3 class="section-title">Uploader first demo</h3>
 
     <p>
-        <nb-uploader></nb-uploader>
+        <nb-uploader
+            mode="basic"
+            name="demo[]"
+            [files]="uploadedFiles"
+            url="./uploader"
+            accept="image/*"
+            maxFileSize="1000000"
+            (onUpload)="onBasicUpload($event)">
+        </nb-uploader>
     </p>
 </section>

@@ -18,35 +18,47 @@
 
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Carousel Basic</h3>
-    <p nb-codebox-desc>carousel desc.</p>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-carousel</code>用来显示一系列轮播图片。</p>
+        <p>2.核心属性为 <code>datasource</code>，用于设置图片的来源和标题，另外还可以通过 <code>width</code> 设置轮播的宽度。</p>
+    </div>
 
     <demo-carousel-basic></demo-carousel-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeAuto" [htmlCode]="htmlCodeAuto" [lessCode]="lessCodeAuto">
     <h3 nb-codebox-title>Carousel Auto</h3>
-    <p nb-codebox-desc>carousel auto desc.</p>
+    <p nb-codebox-desc>
+        通过设置属性 <code>auto</code> 为 true，能够启动自动轮播。
+    </p>
 
     <demo-carousel-auto></demo-carousel-auto>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeLarge" [htmlCode]="htmlCodeLarge" [lessCode]="lessCodeLarge">
     <h3 nb-codebox-title>Other Size Carousel</h3>
-    <p nb-codebox-desc>carousel size desc.</p>
+    <p nb-codebox-desc>
+        通过设置属性 <code>skin</code> 来设置不同的轮播外观，
+        例如设置成 'big' 后会生成 <code>.nb-carousel-big</code> 的样式类，你可以自行定义外观，默认提供 'big' 和 'small' 两种样式。
+    </p>
 
     <demo-carousel-large></demo-carousel-large>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeTitle" [htmlCode]="htmlCodeTitle" [lessCode]="lessCodeTitle">
     <h3 nb-codebox-title>title navigation</h3>
-    <p nb-codebox-desc>title navigation desc.</p>
+    <p nb-codebox-desc>
+        通过设置 <code>showTitle</code> 属性为 true，可以在图片下方显示标题，同时启动标题导航功能。
+    </p>
 
     <demo-carousel-title></demo-carousel-title>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeArrow" [htmlCode]="htmlCodeArrow" [lessCode]="lessCodeArrow">
     <h3 nb-codebox-title>arrow outside</h3>
-    <p nb-codebox-desc>arrow outside desc.</p>
+    <p nb-codebox-desc>
+        通过设置 <code>skin</code> 为 'outside'，可以让导航箭头出现照片两侧，更加利于导航。
+    </p>
 
     <demo-carousel-arrow></demo-carousel-arrow>
 </nb-code-box>

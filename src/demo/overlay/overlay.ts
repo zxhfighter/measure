@@ -9,7 +9,7 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class DemoOverlay implements OnInit {
+export class OverlayDemo implements OnInit {
 
     constructor() {
 

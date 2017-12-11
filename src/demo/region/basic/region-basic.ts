@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-region-basic',
     templateUrl: './region-basic.html',
     styleUrls: ['./region-basic.less']
 })
-export class DemoRegionBasic {
+export class RegionBasicDemo {
     regionValue = [378, 379, 3, 1002, 34, 35, 36];
 
     regionSource = [{

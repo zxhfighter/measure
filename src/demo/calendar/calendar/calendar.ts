@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -6,7 +6,7 @@ import * as moment from 'moment';
     templateUrl: './calendar.html',
     styleUrls: ['./calendar.less']
 })
-export class DemoCalendarInner {
+export class CalendarInnerDemo {
     startDate = new Date();
     endDate = moment().add(7, 'd').toDate();
     selectedDate: Date = moment().add(1, 'month').toDate();

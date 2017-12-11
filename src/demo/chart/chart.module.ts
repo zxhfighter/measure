@@ -1,12 +1,12 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {ChartModule} from '../../component/chart';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { ChartModule } from '../../component/chart';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoChart} from './chart';
-import {DemoChartBasic} from './basic/chart-basic';
+import { ChartDemo } from './chart';
+import { ChartBasicDemo } from './basic/chart-basic';
 
 @NgModule({
     imports: [
@@ -16,10 +16,10 @@ import {DemoChartBasic} from './basic/chart-basic';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoChart,
-        DemoChartBasic
+        ChartDemo,
+        ChartBasicDemo
     ],
     providers: [],
     exports: []
 })
-export class ChartDemoModule {}
+export class ChartDemoModule { }

@@ -1,4 +1,4 @@
-import {Input, Component, ViewEncapsulation} from '@angular/core';
+import { Input, Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 @Component({
     selector: 'demo-checkbox',
@@ -6,7 +6,7 @@ import {Input, Component, ViewEncapsulation} from '@angular/core';
     styleUrls: ['./checkbox.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoCheckbox {
+export class CheckboxDemo implements OnInit {
     allChecked = false;
     intermediate = false;
     appleChecked = false;

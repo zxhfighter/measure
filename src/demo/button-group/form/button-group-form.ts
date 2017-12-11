@@ -1,6 +1,6 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
-import {ButtonGroupValue} from '../../../component/button-group';
+import { ButtonGroupValue } from '../../../component/button-group';
 
 @Component({
     selector: 'demo-button-group-form',
@@ -8,6 +8,6 @@ import {ButtonGroupValue} from '../../../component/button-group';
     styleUrls: ['./button-group-form.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoButtonGroupForm {
+export class ButtonGroupFormDemo {
 
 }

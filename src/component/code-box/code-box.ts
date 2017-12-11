@@ -12,40 +12,52 @@ import {
     host: {
         'class': 'nb-widget nb-codebox'
     },
-    exportAs: 'nbCodeBox'
+    exportAs: 'xCodeBox'
 })
-export class CodeBoxComponent implements OnInit, AfterViewInit, AfterContentInit {
-
-    showSource: boolean = false;
+export class CodeBoxComponent {
+    /**
+     * ts/js code
+     * @default ''
+     */
     @Input() tsCode: string = '';
+
+    /**
+     * html code
+     * @default ''
+     */
     @Input() htmlCode: string = '';
+
+    /**
+     * less/css code
+     * @default ''
+     */
     @Input() lessCode: string = '';
 
+    /**
+     * whether show source code
+     * @docs-private
+     */
+    showSource: boolean = false;
+
+    /**
+     * whether show demo
+     * @docs-private
+     */
     _showDemo = true;
 
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
-
-    ngAfterViewInit() {
-
-    }
-
-    ngAfterContentInit() {
-
-    }
-
+    /**
+     * @docs-private
+     */
     onToggleDemo() {
         this._showDemo = !this._showDemo;
     }
 
+    /**
+     * @docs-private
+     * @param {MouseEvent} event - mouse event
+     */
     onToggleViewSource(event: MouseEvent) {
         this.showSource = !this.showSource;
-
         event.stopPropagation();
     }
 }

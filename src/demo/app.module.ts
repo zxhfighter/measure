@@ -44,26 +44,26 @@ import {
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
-import {DemoInput} from './input';
-import {DemoTabs} from './tabs';
-import {DemoTooltip} from './tooltip';
-import {DemoPage} from './page';
-import {DemoSchedule} from './schedule';
-import {DemoTextarea} from './textarea';
-import {DemoTextLine} from './text-line';
-import {DemoSearchBox} from './search-box';
-import {DemoTree} from './tree';
-import {DemoToast} from './toast';
-import {DemoSelect} from './select';
-import {DemoDialog} from './dialog';
-import {ChipsDemoModule} from './chips';
-import {DemoCodeHighlighter} from './code-highlighter';
-import {DemoCodeBox} from './code-box';
+import { DemoInput } from './input';
+import { DemoTabs } from './tabs';
+import { DemoTooltip } from './tooltip';
+import { DemoPage } from './page';
+import { DemoSchedule } from './schedule';
+import { DemoTextarea } from './textarea';
+import { DemoTextLine } from './text-line';
+import { DemoSearchBox } from './search-box';
+import { DemoTree } from './tree';
+import { DemoToast } from './toast';
+import { DemoSelect } from './select';
+import { OverlayDemo } from './overlay';
+import { DemoDialog } from './dialog';
+import { ChipsDemoModule } from './chips';
+import { CodeBoxDemo } from './code-box';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar/';
-import { DemoGuideComponent } from './docs';
-import { DemoIconsComponent } from './icons';
+import { GuideComponentDemo } from './docs';
+import { IconsComponentDemo } from './icons';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -79,6 +79,7 @@ import { CalendarDemoModule } from './calendar';
 import { RegionDemoModule } from './region';
 import { CardDemoModule } from './card';
 import { TableDemoModule } from './table';
+import { CodeHighlighterDemoModule } from './code-highlighter';
 
 const demoModules = [
     ButtonDemoModule,
@@ -95,7 +96,8 @@ const demoModules = [
     RegionDemoModule,
     CardDemoModule,
     TableDemoModule,
-    ChipsDemoModule
+    ChipsDemoModule,
+    CodeHighlighterDemoModule
 ];
 
 @NgModule({
@@ -113,14 +115,15 @@ const demoModules = [
         DemoToast,
         DemoSelect,
         DemoDialog,
-        DemoCodeHighlighter,
-        DemoCodeBox,
+        CodeBoxDemo,
         DemoTree,
         DemoSideBar,
+        OverlayDemo,
         DemoAccordion,
         DemoUploader,
-        DemoGuideComponent,
-        DemoIconsComponent
+        GuideComponentDemo,
+        IconsComponentDemo,
+        OverlayDemo
     ],
     imports: [
         BrowserModule,

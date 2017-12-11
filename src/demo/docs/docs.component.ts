@@ -8,7 +8,7 @@ import {
     templateUrl: './docs.component.html',
     styleUrls: ['./docs.component.less']
 })
-export class DemoGuideComponent implements OnInit {
+export class GuideComponentDemo implements OnInit {
     name = 'ComponentName';
 
     constructor() {

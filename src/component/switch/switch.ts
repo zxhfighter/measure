@@ -1,6 +1,6 @@
 import {
-    Component, Input, Output, EventEmitter, ElementRef,
-    ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, forwardRef
+    Component, Input, Output, EventEmitter, ElementRef, ViewChild, Renderer2,
+    ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, forwardRef, ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -61,7 +61,16 @@ export class SwitchComponent implements AfterViewInit, ControlValueAccessor {
      */
     @Input() theme: string = '';
 
-    constructor(private _el: ElementRef) { }
+    @ViewChild('checkbox') _checkbox: ElementRef;
+    @ViewChild('innerbar') _innerbar: ElementRef;
+    @ViewChild('outerbar') _outerbar: ElementRef;
+
+    _dragging: boolean = false;
+    _outerbarWidth: number;
+    _innerbarWidth: number;
+    _dragPercentage: number;
+
+    constructor(private _el: ElementRef, private _render: Renderer2, private _cd: ChangeDetectorRef) { }
 
     ngAfterViewInit() {
         // add custom theme
@@ -74,19 +83,80 @@ export class SwitchComponent implements AfterViewInit, ControlValueAccessor {
      * Dispatch change event with current value
      * @docs-private
      */
-    onChange(checked: boolean, event: Event) {
+    _onChange(event: Event) {
         if (this.disabled) {
             return;
         }
 
-        this.checked = checked;
-        this.change.emit(checked);
+        // We always have to stop propagation on the change event.
+        // Otherwise the change event, from the input element, will bubble up and
+        // emit its event object to the component's `change` output.
+        event.stopPropagation();
+
+        this.checked = this._checkbox.nativeElement.checked;
+        this.change.emit(this.checked);
 
         // update form model
         this.updateFormModel();
+    }
 
-        // we have to stop checkbox's defualt change event
+    _onInputClick(event: MouseEvent) {
+        console.log(this._dragging);
+
+        if (this._dragging) {
+            event.preventDefault();
+        }
+
         event.stopPropagation();
+    }
+
+    _onDragStart() {
+        if (this.disabled || this._dragging) {
+            return;
+        }
+
+        this._outerbarWidth = this._outerbar.nativeElement.clientWidth;
+        this._innerbarWidth = this._innerbar.nativeElement.clientWidth;
+        this._dragging = true;
+    }
+
+    _onDrag(dragEvent: any) {
+        this._updateInnerBarPosition(dragEvent.deltaX);
+    }
+
+    _onDragEnd() {
+
+        if (this._dragging) {
+            this.checked = this._dragPercentage > 50;
+
+            this.change.emit(this.checked);
+
+            // update form model
+            this.updateFormModel();
+
+            setTimeout(() => {
+                this._dragging = false;
+                this._render.setStyle(this._innerbar.nativeElement, 'transform', '');
+                this._cd.markForCheck();
+            });
+        }
+    }
+
+    _updateInnerBarPosition(deltaX: number) {
+        this._dragPercentage = this._getDragPercentage(deltaX);
+        let dragX = (this._dragPercentage / 100) * (this._outerbarWidth - this._innerbarWidth - 4);
+        this._render.setStyle(this._innerbar.nativeElement, 'transform', `translate3d(${dragX}px, 0, 0)`);
+        this._render.setStyle(this._innerbar.nativeElement, 'webkitTransform', `translate3d(${dragX}px, 0, 0)`);
+    }
+
+    _getDragPercentage(distance: number) {
+        let percentage = (distance / (this._outerbarWidth - this._innerbarWidth - 4)) * 100;
+
+        if (this.checked) {
+            percentage += 100;
+        }
+
+        return Math.max(0, Math.min(percentage, 100));
     }
 
     /**

@@ -1,11 +1,22 @@
 <label [class.nb-widget-disabled]="disabled">
-    <div class="nb-switch-outer" [class.checked]="checked">
-        <div class="nb-switch-inner"></div>
+    <div #outerbar class="nb-switch-outer" [class.checked]="checked" [class.nb-switch-outer-dragging]="_dragging">
+        <div
+            #innerbar
+            class="nb-switch-inner"
+            (slidestart)="_onDragStart()"
+            (slide)="_onDrag($event)"
+            (slideend)="_onDragEnd()">
+        </div>
     </div>
     <input #checkbox
         name="chk"
         type="checkbox"
         class="visually-hidden"
         [checked]="checked"
-        (change)="onChange(checkbox.checked, $event)">
+        (change)="_onChange($event)"
+        (click)="_onInputClick($event)">
+
+    <span class="nb-switch-label">
+        <ng-content></ng-content>
+    </span>
 </label>

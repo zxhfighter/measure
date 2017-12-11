@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'demo-switch-form',
@@ -7,15 +7,15 @@ import {FormBuilder, FormGroup} from '@angular/forms';
     styleUrls: ['./switch-form.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoSwitchForm implements OnInit {
+export class SwitchFormDemo implements OnInit {
     form: FormGroup;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder) { }
 
     ngOnInit() {
         this.form = this.fb.group({
             switch2: [
-                {value: true, disabled: true}
+                { value: true, disabled: true }
             ]
         });
     }

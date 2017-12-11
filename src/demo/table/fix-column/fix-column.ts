@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {genStr, genNum} from '../../util/random';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { genStr, genNum } from '../../util/random';
 
 @Component({
     selector: 'demo-table-fix-column',
@@ -7,7 +7,7 @@ import {genStr, genNum} from '../../util/random';
     styleUrls: ['./fix-column.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoTableFixColumn {
+export class TableFixColumnDemo {
 
     fields: any[] = [
         {
