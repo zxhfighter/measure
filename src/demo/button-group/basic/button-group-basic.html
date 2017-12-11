@@ -83,3 +83,10 @@
         </nb-button-toggle>
     </nb-button-group>
 </p>
+
+<p>
+    datasource:
+    <nb-button-group #xxx type="checkbox" [datasource]="datasource" [value]="['apple']">
+    </nb-button-group>
+    {{ xxx.value }}
+</p>
