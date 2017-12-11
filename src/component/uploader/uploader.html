@@ -1,33 +1,34 @@
 <div class="nb-uploader">
     <div class="img-list-wrapper">
-        <div class="img-list" data-mark="0" data-imgno="2" data-status="0">
-            <div class="img-progress-start">
-                0%
-            </div>
-            <div class="img-progress-error hidden"></div>
-            <div class="img-progress-finish hidden">
-                <span class="photo_bigger_mark">
-                    <img style="background:url(http://photo.l99.com/thumbnail/12/1343624870180_cz23pa.jpg) no-repeat center center" src="http://static.l99.com/skin/lifeix/images/pixel.gif"
-                    />
-                </span>
-                <div class="photo-control hidden">
-                    <a href="javascript:void(0);" class="control_btn edit_mark" title="编辑"></a>
-                    <a href="javascript:void(0);" class="control_btn left_mark" title="向左转" alt="向左转"></a>
-                    <a href="javascript:void(0);" class="control_btn right_mark" title="向右转" alt="向右转"></a>
-                    <a href="javascript:void(0);" class="control_btn close" title="删除"></a>
-                    <div class="clear"></div>
+        <ng-container *ngIf="files.length">
+            <div *ngFor="let file of files" class="img-list">
+                <div class="img-progress-start">
+                    {{progress}}
                 </div>
-                <div class="photo-info">
-                    <span class="photo-info-num text-blue">01</span>
-                    <span class="photo-info-desc"></span>
+                <div class="img-progress-error" [class.hidden]="!error"></div>
+                <div class="img-progress-finish">
+                    <span class="photo_bigger_mark">
+                        <img src="{{file.url}}" />
+                    </span>
+                    <div class="photo-control hidden">
+                        <a href="javascript:void(0);" class="control_btn edit_mark" title="重新上传"></a>
+                        <a href="javascript:void(0);" class="control_btn close" title="删除"></a>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- <div class="photo-info">
+                        <span class="photo-info-num text-blue">{{file.name}}</span>
+                        <span class="photo-info-desc">{{file.size}}</span>
+                    </div> -->
                 </div>
             </div>
-        </div>
+        </ng-container>
+            <!-- </div> -->
+        <!-- </div> -->
         <div class="img-add">
             <span class="iconfont icon-plus_lg"></span>
             <input (change)="onFileSelect($event)"
                 type="file" multiple="multiple" name="myFile" class="fileinput" style="left: 0px; top: 43px; height: 46px;"
                 accept="image/*">`
         </div>
-    </div>
+    <!-- </div> -->
 </div>
