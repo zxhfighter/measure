@@ -24,7 +24,7 @@ import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { DemoSearchBox } from './search-box';
 import { CalendarDemo } from './calendar';
-import { DemoToast } from './toast';
+import { ToastDemo } from './toast';
 import { DemoSelect } from './select';
 import { RegionDemo } from './region';
 import { DemoDialog } from './dialog';
@@ -63,7 +63,7 @@ export const appRoutes: Routes = [
     { path: 'text-line', component: DemoTextLine },
     { path: 'search-box', component: DemoSearchBox },
     { path: 'calendar', component: CalendarDemo },
-    { path: 'toast', component: DemoToast },
+    { path: 'toast', component: ToastDemo },
     { path: 'select', component: DemoSelect },
     { path: 'calendar', component: CalendarDemo },
     { path: 'region', component: RegionDemo },
