@@ -63,7 +63,7 @@ export class ScheduleComponent implements OnInit {
         if ( value < 3) {
             return '';
         } else if (value === 24) {
-            return '全天'；
+            return '全天';
         } else {
             let label = this.hours[j-value+1] + '-' + this.hours[j+1];
             return label;
