@@ -38,7 +38,6 @@ export class ScheduleComponent implements OnInit {
         this.schedules = Array(169).fill(0);
         this.weekSelect = Array(7).fill(0);
         this.layerTime = Array(168).fill(0);
-        console.log(this.schedules.length);
     }
 
     ngOnInit() {
@@ -82,23 +81,10 @@ export class ScheduleComponent implements OnInit {
             return label;
             // return value;
         }
-        // console.log(index, time); 
     }
     topTimeChange() {
         this.layerTime = [];
         let colspan = 0;
-        // for (let i = 0; i < this.schedules.length; i++) {
-        //     if (this.schedules[i] === 0 || (i + 1) % 24 === 0) {
-        //         this.layerTime.push(0);
-        //         colspan = 0;
-        //     } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 0) {
-        //         colspan ++;
-        //         this.layerTime.push(colspan);
-        //     } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1) {
-        //         this.layerTime.push(0);
-        //         colspan ++;
-        //     }
-        // }
         for (let i = 0; i <= this.schedules.length + 1; i++) {
             if (this.schedules[i] === 0) {
                 this.layerTime.push(0);
@@ -119,7 +105,6 @@ export class ScheduleComponent implements OnInit {
                 colspan = 0;
             }
         }
-        console.log(this.layerTime);
     }
     mouseup(i, j) {
         this.flag = false;
