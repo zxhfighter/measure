@@ -35,9 +35,10 @@ export class ScheduleComponent implements OnInit {
     hourLabel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
         18, 19, 20, 21, 22, 23, 24];
     constructor() {
-        this.schedules = Array(168).fill(0);
+        this.schedules = Array(169).fill(0);
         this.weekSelect = Array(7).fill(0);
         this.layerTime = Array(168).fill(0);
+        console.log(this.schedules.length);
     }
 
     ngOnInit() {
@@ -66,7 +67,7 @@ export class ScheduleComponent implements OnInit {
         for (let i = j * 24; i < (j + 1) * 24; i++) {
             this.schedules[i] = value;
         }
-        // this.topTimeChange();
+        this.topTimeChange();
     }
     showLabel(i, j) {
         let value = this.layerTime[i*24 + j];
@@ -98,7 +99,7 @@ export class ScheduleComponent implements OnInit {
         //         colspan ++;
         //     }
         // }
-        for (let i = 0; i < this.schedules.length; i++) {
+        for (let i = 0; i <= this.schedules.length + 1; i++) {
             if (this.schedules[i] === 0) {
                 this.layerTime.push(0);
                 colspan = 0;
@@ -107,11 +108,18 @@ export class ScheduleComponent implements OnInit {
                 let index = this.layerTime.length - (Math.floor(colspan / 2));
                 this.layerTime[index] = colspan;
                 this.layerTime.push(0);
-            } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1) {
+            } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1 && (i + 1) % 24 !== 0) {
                 this.layerTime.push(0);
                 colspan ++;
+            } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1 && (i + 1) % 24 === 0) {
+                colspan ++;
+                let index = this.layerTime.length - (Math.floor(colspan / 2));
+                this.layerTime[index] = colspan;
+                this.layerTime.push(0);
+                colspan = 0;
             }
         }
+        console.log(this.layerTime);
     }
     mouseup(i, j) {
         this.flag = false;
