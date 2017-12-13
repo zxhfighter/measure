@@ -1,6 +1,6 @@
-import {task, src, dest} from 'gulp';
-import {Dgeni} from 'dgeni';
-import {sequenceTask} from '../utils/sequence-task';
+import { task, src, dest } from 'gulp';
+import { Dgeni } from 'dgeni';
+import { sequenceTask } from '../utils/sequence-task';
 
 const markdown = require('gulp-markdown');
 const highlight = require('gulp-highlight-files');
@@ -34,9 +34,7 @@ const MARKDOWN_TAGS_TO_CLASS_ALIAS = [
 
 task('api-docs', () => {
     const docs = new Dgeni([apiDocsPackage]);
-    return docs.generate().then(function(docs: any) {
-        console.log(docs.length, 'docs generated');
-    });
+    return docs.generate();
 });
 
 task('md-docs', () => {

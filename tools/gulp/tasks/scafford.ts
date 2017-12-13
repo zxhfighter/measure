@@ -1,10 +1,10 @@
-import {src, task, dest} from 'gulp';
-import {join} from 'path';
-import {readFileSync, writeFileSync} from 'fs';
+import { src, task, dest } from 'gulp';
+import { join } from 'path';
+import { readFileSync, writeFileSync } from 'fs';
 import * as chalk from 'chalk';
 
-import {sequenceTask} from '../utils/sequence-task';
-import {config} from '../utils/config';
+import { sequenceTask } from '../utils/sequence-task';
+import { config } from '../utils/config';
 
 const template = require('gulp-template');
 const rename = require('gulp-rename');
@@ -122,7 +122,7 @@ function copyAndReplace(sourcePath: string, destPath: string) {
                 path.basename = path.basename.replace('temp', name);
             }))
             .pipe(dest(destDir));
-    }
+    };
 }
 
 /**

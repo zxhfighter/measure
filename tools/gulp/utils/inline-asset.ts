@@ -1,6 +1,6 @@
-import {dirname, join} from 'path';
-import {readFileSync, writeFileSync} from 'fs';
-import {sync as glob} from 'glob';
+import { dirname, join } from 'path';
+import { readFileSync, writeFileSync } from 'fs';
+import { sync as glob } from 'glob';
 
 export function inlineAssetForDirectory(folderPath: string) {
     glob(join(folderPath, '**/*.js')).forEach(filePath => inlineAsset(filePath));
@@ -36,6 +36,7 @@ function inlineStyles(fileContent: string, filePath: string) {
     return fileContent.replace(/['"]?styleUrls['"]?:\s*(\[[\s\S]*?])/gm, (_match, styleUrlsValue) => {
         // The RegExp matches the array of external style files. This is a string right now and
         // can to be parsed using the `eval` method. The value looks like "['AAA.css', 'BBB.css']"
+        /* tslint:disable */
         const styleUrls = eval(styleUrlsValue) as string[];
         const styleContents = styleUrls
             .map(url => join(dirname(filePath), url.replace('.less', '.css')))
