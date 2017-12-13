@@ -35,7 +35,6 @@ export class ScheduleComponent implements OnInit {
         '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
     hourLabel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
         18, 19, 20, 21, 22, 23, 24];
-    // count = 20;
     selectData: SelectConfig[] = [
         {
             label: '全周',
@@ -66,17 +65,16 @@ export class ScheduleComponent implements OnInit {
      * @docs-private
      */
     setDay(event) {
-        console.log(event);
         let day = event.value;
         switch(day) {
             case 7: 
                 this.schedules = Array(169).fill(1);
                 break;
             case 5:
-                this.schedules = Array(24*5).fill(1).concat(Array(24*2).fill(0));
+                this.schedules = Array(24*5).fill(1).concat(Array(24*2+1).fill(0));
                 break;
             case 2:
-                this.schedules = Array(24*5).fill(0).concat(Array(24*2).fill(1));
+                this.schedules = Array(24*5).fill(0).concat(Array(24*2+1).fill(1));
         } 
         this.topTimeChange();
         
@@ -117,7 +115,6 @@ export class ScheduleComponent implements OnInit {
             let tmp = (value + 1) % 2;
             let label = this.hours[j - index + tmp] + '-' + this.hours[j + index + 1];
             return label;
-            // return value;
         }
     }
     topTimeChange() {
@@ -128,10 +125,14 @@ export class ScheduleComponent implements OnInit {
                 this.layerTime.push(0);
                 colspan = 0;
             } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 0) {
+                
                 colspan ++;
-                let index = this.layerTime.length - (Math.floor(colspan / 2));
-                this.layerTime[index] = colspan;
+                if (colspan >= 3) {
+                    let index = this.layerTime.length - Math.floor(colspan / 2);
+                    this.layerTime[index] = colspan;
+                }
                 this.layerTime.push(0);
+                
             } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1 && (i + 1) % 24 !== 0) {
                 this.layerTime.push(0);
                 colspan ++;
@@ -153,8 +154,8 @@ export class ScheduleComponent implements OnInit {
         this.preSelect(i, j);
     }
     mouseover(i, j) {
+        
         if (this.flag === true) {
-            // console.log('mouseover');
             // let observable = Observable.fromEvent(event.target, 'mouseover')
             // .debounceTime(10)
             // .subscribe(() => this.preSelect(i, j));
@@ -162,6 +163,7 @@ export class ScheduleComponent implements OnInit {
         }
     }
     mouseout(i, j) {
+        
         if (this.flag === true) {
             this.preSelect(i, j);
         }
