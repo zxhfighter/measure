@@ -1,69 +1,56 @@
 .@{prefix}-schedule {
     display: block;
+    width: 653px;
     color: #f00;
-    td {
-        position: relative;
-        width: 18px;
-        height: 22px;
-        border: 1px solid @nb-gray-6;
-        &:hover {
-            background-color: #daf3eb;
+    border: 1px solid #eee;
+    .hour-select {
+        padding: 10px 20px;
+        width: 100%;
+        border-bottom: 1px solid @nb-gray-5;
+        background-color: @nb-white;
+        .hour-select-day {
+            display: inline-block;
+        }
+        li {
+            margin: 0 10px;
+            float: left;
+            // width: 60px;
+            font-size: 12px;
+            color: @nb-gray-2;
+            list-style: none;
+            text-align: center;
+            &::before {
+                display: inline-block;
+                margin-right: 8px;
+                width: 8px;
+                height: 8px;
+                content: "";
+                background-color: #c4e0fe;
+            }
+        }
+        &-label {
+            float: right;
         }
     }
-    button {
-        width: 103%;
-        height: 100%;
-        border: none;
-        border-radius: 0;
-        &:hover {
-            background-color: #daf3eb;
-        }
+    .hour-table {
+        // clear: both;
+        padding: 20px 10px 20px 0;
+        background-color: @nb-gray-8;
     }
-    .selected {
-        background-color: #c4e0fe;
-        &::before {
-            pointer-events: none;
-            position: absolute;
-            top: 0;
-            right: -60px;
-            width: 150px;
-            z-index: 1;
-            content: attr(data);
-        }
-    }
-    // .td-selected:nth-of-type(n) {
-    //     background-color: blue;
-    //     button {
-    //         &::before {
-    //             position: absolute;
-    //             top: 0;
-    //             left: 0;
-    //             content: attr(data);
-    //         }
-    //     }
-    // }
-    // .td-selected + .td-selected + .td-selected {
-    //     button {
-    //         &::before {
-    //             position: absolute;
-    //             top: 0;
-    //             left: 0;
-    //             content: attr(data);
-    //         }
-    //     }
-    // }
     .hour-title {
-        margin-left: 10%;
+        float: right;
+        margin-bottom: 10px;
         span {
             display: inline-block;
             width: 46px;
+            font-size: 12px;
             color: @nb-gray-3;
             text-align: center;
         }
     }
     .week-title {
         float: left;
-        width: 10%;
+        width: 9%;
         color: @nb-gray-3;
         line-height: 22px;
         text-align: center;
@@ -82,22 +69,56 @@
             vertical-align: middle;
         } 
     }
-    // .table-parent {
-    //     position: relative;
-    //     float: left;
-    //     width: 90%;
-    // }
+    td {
+        position: relative;
+        width: 18px;
+        height: 22px;
+        border: 1px solid @nb-gray-6;
+    }
+    tr {
+        td:nth-last-child(1),
+        td:nth-last-child(2),
+        td:nth-last-child(3),
+        td:nth-last-child(4) {
+            button {
+                background-color: #f1f8ff;
+            }
+            
+        }
+    }
+    
     .table-con {
         float: left;
         width: 90%;
-    }
-    .top-time {
-        pointer-events: none;
-        // position: absolute;
-        // top: 0;
-        // left: 0;
-        td {
-            background-color: red;
+        button {
+            width: 103%;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+            &:hover {
+                background-color: #daf3eb;
+            }
+        }
+        tr:nth-last-child(1), tr:nth-last-child(2) {
+            button {
+                background-color:#f1fff8;
+            }
+        }
+        tr {
+            .selected {
+                background-color: #c4e0fe;
+                &::before {
+                    pointer-events: none;
+                    position: absolute;
+                    top: 0;
+                    right: -65px;
+                    width: 150px;
+                    font-size: 12px;
+                    color: @nb-gray-2;
+                    z-index: 1;
+                    content: attr(data);
+                }
+            }
         }
     }
 }

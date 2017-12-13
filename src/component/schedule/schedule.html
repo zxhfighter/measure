@@ -1,51 +1,48 @@
 <div class="nb-schedule">
-    schedule
-    <div class="hour-title">
-        <ng-container *ngFor="let item of hours; index as j">
-            <span *ngIf="j % 2 === 0">{{item}}</span>
-        </ng-container>
-    </div>
-    <div class="week-title">
-        <div class="week-item" *ngFor="let item of week; index as j" (click)="checkDay(j)">
-            <span class="checkbox">
-                <svg *ngIf="weekSelect[j] === 1" version="1.1" role="presentation" width="16" height="16" viewBox="0 0 12 12" class="icon">
-                    <path d="M3 5h6v2H3z" fill-rule="evenodd"></path>
-                </svg>
-                <svg *ngIf="weekSelect[j] === 2" version="1.1" role="presentation" width="16" height="16" viewBox="0 0 12 12" class="icon">
-                    <path d="M5.07 9L2.5 6.19l.98-1.06 1.59 1.75L8.47 3 9.5 4.08z" fill-rule="evenodd"></path>
-                </svg>
-            </span>
-            <span>{{item}}</span>
+    <div class="hour-select">
+        <div class="hour-select-day">
+            <nb-select [datasource]="selectData"
+                (onChange)="setDay($event)">
+            </nb-select>
         </div>
+        <ul class="hour-select-label">
+            <li>投放时段</li>
+            <li>未投时段</li>
+        </ul>
     </div>
-    <table class="table-con">
-        <tr *ngFor="let item1 of week; index as i">
-            <td *ngFor="let item of hour; index as j">
-                <button title="{{item}}-{{hours[j + 1]}}"
-                    [attr.data]="showLabel(i,j)"
-                    [ngClass]="{'selected': schedules[i * 24 + j] === 1}"
-                    (mousedown)="mousedown(i, j)"
-                    (mouseup)="mouseup(i, j)"
-                    (mouseover)="mouseover(i, j)"
-                    (mouseout)="mouseout(i, j)">
-                    <!-- {{ layerTime[i*24 + j] }} -->
-                </button>
-            </td>
-        </tr>
-    </table>
-
-
-    <!-- <div class="table-parent"> -->
-        
-        <!-- <table class="top-time">
-            <tr *ngFor="let item of week; index as i">
-                <ng-container *ngFor="let item of hour; index as j">
-                    <td [attr.colspan]="layerTime[i*24+j] || 1">
-                        {{layerTime[i*24+j]}}
-                    </td>
-                </ng-container>
+    <div class="hour-table clearfix">
+        <div class="hour-title">
+            <ng-container *ngFor="let item of hours; index as j">
+                <span *ngIf="j % 2 === 0">{{item}}</span>
+            </ng-container>
+        </div>
+        <div class="week-title">
+            <div class="week-item" *ngFor="let item of week; index as j" (click)="checkDay(j)">
+                <span class="checkbox">
+                    <svg *ngIf="weekSelect[j] === 1" version="1.1" role="presentation" width="16" height="16" viewBox="0 0 12 12" class="icon">
+                        <path d="M3 5h6v2H3z" fill-rule="evenodd"></path>
+                    </svg>
+                    <svg *ngIf="weekSelect[j] === 2" version="1.1" role="presentation" width="16" height="16" viewBox="0 0 12 12" class="icon">
+                        <path d="M5.07 9L2.5 6.19l.98-1.06 1.59 1.75L8.47 3 9.5 4.08z" fill-rule="evenodd"></path>
+                    </svg>
+                </span>
+                <span>{{item}}</span>
+            </div>
+        </div>
+        <table class="table-con">
+            <tr *ngFor="let item1 of week; index as i">
+                <td *ngFor="let item of hour; index as j">
+                    <button title="{{item}}-{{hours[j + 1]}}"
+                        [attr.data]="showLabel(i,j)"
+                        [ngClass]="{'selected': schedules[i * 24 + j] === 1}"
+                        (mousedown)="mousedown(i, j)"
+                        (mouseup)="mouseup(i, j)"
+                        (mouseover)="mouseover(i, j)"
+                        (mouseout)="mouseout(i, j)">
+                        <!-- {{ layerTime[i*24 + j] }} -->
+                    </button>
+                </td>
             </tr>
-        </table> -->
-    <!-- </div> -->
-    
+        </table>    
+    </div>
 </div>

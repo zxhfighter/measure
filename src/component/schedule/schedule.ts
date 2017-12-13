@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
+import {SelectConfig} from "../select/select.config";
 
 @Component({
     selector: 'nb-schedule',
@@ -34,6 +35,21 @@ export class ScheduleComponent implements OnInit {
         '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
     hourLabel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
         18, 19, 20, 21, 22, 23, 24];
+    // count = 20;
+    selectData: SelectConfig[] = [
+        {
+            label: '全周',
+            value: 7
+        },
+        {
+            label: '工作日',
+            value: 5
+        },
+        {
+            label: '周末',
+            value: 2
+        }
+    ];
     constructor() {
         this.schedules = Array(169).fill(0);
         this.weekSelect = Array(7).fill(0);
@@ -42,6 +58,28 @@ export class ScheduleComponent implements OnInit {
 
     ngOnInit() {
 
+    }
+    /**
+     * set current page count
+     *
+     * @param {object} event - page change event
+     * @docs-private
+     */
+    setDay(event) {
+        console.log(event);
+        let day = event.value;
+        switch(day) {
+            case 7: 
+                this.schedules = Array(169).fill(1);
+                break;
+            case 5:
+                this.schedules = Array(24*5).fill(1).concat(Array(24*2).fill(0));
+                break;
+            case 2:
+                this.schedules = Array(24*5).fill(0).concat(Array(24*2).fill(1));
+        } 
+        this.topTimeChange();
+        
     }
     select(i, j) {
         this.schedules[i * 24 + j] = (this.schedules[i * 24 + j] + 1) % 2;
