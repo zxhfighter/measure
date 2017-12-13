@@ -58,3 +58,11 @@
         <nb-checkbox value="orange">orange</nb-checkbox>
     </nb-boxgroup>
 </p>
+
+<p>
+    using datasource:
+    <br>
+    <nb-boxgroup #dd type="checkbox" [datasource]="datasource" [value]="['apple', 'lemon']">
+    </nb-boxgroup>
+    {{ dd.value }}
+</p>

@@ -1,3 +1,5 @@
+// TypeScript config file that matches all source files in the project. This file is read by
+// IDEs and TSLint. For IDEs it ensures that `experimentalDecorator` warnings are not showing up.
 {
     "compileOnSave": false,
     "compilerOptions": {
@@ -6,7 +8,7 @@
         "lib": [
             "es2015", "dom", "es2016.array.include"
         ],
-        "sourceMap": true, 
+        "sourceMap": true,
         "experimentalDecorators": true,
         "outDir": "dist/packages",
         "moduleResolution": "node",
@@ -21,6 +23,10 @@
         "scafford/**/*.ts",
         "tools/**/*.ts",
         "aot/**/*.ts",
-        "src/demo/main-aot.ts"
+        "src/demo/main-aot.ts",
+
+        // IDEs should not type-check the different node_modules directories of the different packages.
+        // This would cause the IDEs to be slower and also linters would check the node_modules.
+        "node_modules/"
     ]
 }

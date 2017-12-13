@@ -1,1 +1,14 @@
-<ng-content></ng-content>
+<ng-container *ngIf="datasource && datasource.length">
+    <nb-checkbox
+        *ngFor="let d of datasource"
+        [value]="d.value"
+        [checked]="d.checked"
+        [disabled]="d.disabled"
+        [type]="type">
+        {{ d.text }}
+    </nb-checkbox>
+</ng-container>
+
+<ng-container *ngIf="!datasource">
+    <ng-content></ng-content>
+</ng-container>
