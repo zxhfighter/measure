@@ -28,6 +28,12 @@
                 background-color: #c4e0fe;
             }
         }
+        li:last-child {
+            &::before {
+                border: 1px solid @nb-gray-5;
+                background-color: #f1fff8;
+            }
+        }
         &-label {
             float: right;
         }
@@ -120,5 +126,12 @@
                 }
             }
         }
+    }
+    // 覆盖select组件样式
+    .nb-button-theme-default {
+        border: none;
+    }
+    .nb-button-size-default {
+        height: 24px;
     }
 }

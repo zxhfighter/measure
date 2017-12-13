@@ -125,7 +125,6 @@ export class ScheduleComponent implements OnInit {
                 this.layerTime.push(0);
                 colspan = 0;
             } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 0) {
-                
                 colspan ++;
                 if (colspan >= 3) {
                     let index = this.layerTime.length - Math.floor(colspan / 2);
