@@ -38,6 +38,7 @@ import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
+import { TypographyDemo } from './typography';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'button' },
@@ -78,5 +79,6 @@ export const appRoutes: Routes = [
     { path: 'accordion', component: DemoAccordion },
     { path: 'uploader', component: DemoUploader },
     { path: 'docs', component: GuideComponentDemo },
-    { path: 'icons', component: IconsComponentDemo }
+    { path: 'icons', component: IconsComponentDemo },
+    { path: 'typography', component: TypographyDemo }
 ];

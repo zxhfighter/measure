@@ -64,6 +64,7 @@ import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar/';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
+import { TypographyDemo } from './typography';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -123,7 +124,8 @@ const demoModules = [
         DemoUploader,
         GuideComponentDemo,
         IconsComponentDemo,
-        OverlayDemo
+        OverlayDemo,
+        TypographyDemo
     ],
     imports: [
         BrowserModule,
