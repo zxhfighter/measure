@@ -1,5 +1,5 @@
 import {
-    Component, Input, Output, ContentChildren, OnInit,
+    Component, Input, Output, ContentChildren, OnInit, ViewChildren,
     ViewEncapsulation, ChangeDetectionStrategy,
     QueryList, Optional, forwardRef, EventEmitter, AfterContentInit
 } from '@angular/core';
@@ -14,6 +14,14 @@ export interface ButtonGroupValue {
 
     /** all toogled button value, this is usually an array */
     value: any;
+}
+
+/** toogle button group item type */
+export interface ButtongGroupItem {
+    value: string;
+    text: string;
+    checked?: boolean;
+    disabled?: boolean;
 }
 
 /*
@@ -57,6 +65,11 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
     @Input() type: 'radio' | 'checkbox' = 'checkbox';
 
     /**
+     * button group datasource, when datasource exists, the inner toggle buttons will be overwrited
+     */
+    @Input() datasource: ButtongGroupItem[];
+
+    /**
      * button group value, can be any type
      */
     @Input() value: any;
@@ -74,11 +87,18 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
     disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
-     * button toggle children
+     * button toggle content children
      */
     @ContentChildren(
         forwardRef(() => ButtonToggleComponent)
     ) _buttonList: QueryList<ButtonToggleComponent>;
+
+    /**
+     * button toggle view children
+     */
+    @ViewChildren(
+        forwardRef(() => ButtonToggleComponent)
+    ) _buttonViewList: QueryList<ButtonToggleComponent>;
 
     constructor() { }
 
@@ -87,24 +107,42 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
 
         // listen to disabled property, and update children disabled state
         self.disabledChange.subscribe(disabled => {
-            if (self._buttonList) {
-                self._buttonList.forEach(box => {
+            const buttonList = this._getButtonList();
+            if (buttonList) {
+                buttonList.forEach(box => {
                     // if the button group is disabled, all buttons disabled too
                     box.disabled = box.disabled || disabled;
                 });
             }
         });
+
+        // update init value
+        if (this.value && this.datasource) {
+            this.datasource.forEach(item => {
+                item.checked = item.checked || this.value.includes(item.value);
+
+                // update checked value
+                if (item.checked) {
+                    this.value = Array.from(new Set(this.value).add(item.value));
+                }
+            });
+        }
     }
 
     ngAfterContentInit() {
         const self = this;
 
         // init disabled state
-        if (self._buttonList) {
-            self._buttonList.forEach(box => {
+        const buttonList = this._getButtonList();
+        if (buttonList) {
+            buttonList.forEach(box => {
                 box.disabled = box.disabled || self.disabled;
             });
         }
+    }
+
+    _getButtonList() {
+        return this.datasource && this.datasource ? this._buttonViewList : this._buttonList;
     }
 
     /**
@@ -114,14 +152,15 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
      * @docs-private
      */
     select(value: any) {
+        const buttonList = this._getButtonList();
         if (this.type === 'radio') {
-            this._buttonList.forEach(item => {
+            buttonList.forEach(item => {
                 item.checked = item.value === value;
             });
             this.value = [value];
         }
         else if (this.type === 'checkbox') {
-            const button = this._buttonList.find(v => v.value === value);
+            const button = buttonList.find(v => v.value === value);
             const valueSet = new Set(this.value);
             if (button) {
                 button.checked = !button.checked;

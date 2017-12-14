@@ -1,1 +1,13 @@
-<ng-content></ng-content>
+<ng-container *ngIf="datasource && datasource.length">
+    <nb-button-toggle
+        *ngFor="let d of datasource"
+        [value]="d.value"
+        [checked]="d.checked"
+        [disabled]="d.disabled">
+        {{ d.text }}
+    </nb-button-toggle>
+</ng-container>
+
+<ng-container *ngIf="!datasource">
+    <ng-content></ng-content>
+</ng-container>

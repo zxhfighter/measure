@@ -12,6 +12,13 @@ import { BoxGroupValue } from '../../../component/box-group';
 export class BoxGroupFormDemo implements OnInit {
     form: FormGroup;
 
+    datasource: any[] = [
+        {value: 'apple', text: 'apple', checked: false, disabled: false},
+        {value: 'banana', text: 'banana', checked: false, disabled: false},
+        {value: 'lemon', text: 'lemon', checked: false, disabled: false},
+        {value: 'orange', text: 'orange', checked: false, disabled: false}
+    ];
+
     constructor(private fb: FormBuilder) { }
 
     ngOnInit() {
