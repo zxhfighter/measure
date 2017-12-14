@@ -1,23 +1,183 @@
 <h1 class="main-title">Toast demo</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Service</span>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>xToast</code>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;ToastModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;ToastModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Toast first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <button nb-button theme="default" (click)="showToast('all')">全部</button>
-        <button nb-button theme="default" (click)="showToast('success')">成功</button>
-        <button nb-button theme="default" (click)="showToast('warn')">警告</button>
-        <button nb-button theme="default" (click)="showToast('info')">提醒</button>
-        <button nb-button theme="default" (click)="showToast('error')">错误</button>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
+    <h3 nb-codebox-title>Toast Examples</h3>
+    <demo-toast-href></demo-toast-href>
+</nb-code-box>
+
+
+<h3 class="section-title">API</h3>
+
+<div class="docs-api">
+    <h2 class="docs-api-type">Services</h2>
+
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>ToastService</code> API Reference
+    </h4>
+
+    <h5 class="docs-table-desc">Methods</h5>
+    <table class="docs-table docs-table-methods">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th docs-td-name">Name</th>
+            <th class="docs-td docs-th docs-td-param">Parameters</th>
+            <th class="docs-td docs-th docs-td-type">Return Type</th>
+            <th class="docs-td docs-th docs-td-desc">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                success()</td>
+
+            <td class="docs-td docs-td-param">
+                <div class="parameter-item">
+                    content<span class="type">: string</span>
+                    <div class="desc"> - </div>
+                </div>
+
+                <div class="parameter-item">
+                    options<span class="optional">?</span><span class="type">: ToastConfig</span>
+                    <div class="desc"> - </div>
+                </div>
+            </td>
+
+            <td class="docs-td docs-td-type"></td>
+
+            <td class="docs-td docs-td-desc">
+                <p>create a success toast</p>
+
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                error()</td>
+
+            <td class="docs-td docs-td-param">
+                <div class="parameter-item">
+                    content<span class="type">: string</span>
+                    <div class="desc"> - </div>
+                </div>
+
+                <div class="parameter-item">
+                    options<span class="optional">?</span><span class="type">: ToastConfig</span>
+                    <div class="desc"> - </div>
+                </div>
+            </td>
+
+            <td class="docs-td docs-td-type"></td>
+
+            <td class="docs-td docs-td-desc">
+                <p>create a error toast</p>
+
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                info()</td>
+
+            <td class="docs-td docs-td-param">
+                <div class="parameter-item">
+                    content<span class="type">: string</span>
+                    <div class="desc"> - </div>
+                </div>
+
+                <div class="parameter-item">
+                    options<span class="optional">?</span><span class="type">: ToastConfig</span>
+                    <div class="desc"> - </div>
+                </div>
+            </td>
+
+            <td class="docs-td docs-td-type"></td>
+
+            <td class="docs-td docs-td-desc">
+                <p>create a info toast</p>
+
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                warn()</td>
+
+            <td class="docs-td docs-td-param">
+                <div class="parameter-item">
+                    content<span class="type">: string</span>
+                    <div class="desc"> - </div>
+                </div>
+
+                <div class="parameter-item">
+                    options<span class="optional">?</span><span class="type">: ToastConfig</span>
+                    <div class="desc"> - </div>
+                </div>
+            </td>
+
+            <td class="docs-td docs-td-type"></td>
+
+            <td class="docs-td docs-td-desc">
+                <p>create a warn toast</p>
+
+            </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                create()</td>
+
+            <td class="docs-td docs-td-param">
+                <div class="parameter-item">
+                    type<span class="type">: string</span>
+                    <div class="desc"> - </div>
+                </div>
+
+                <div class="parameter-item">
+                    content<span class="type">: string</span>
+                    <div class="desc"> - </div>
+                </div>
+
+                <div class="parameter-item">
+                    options<span class="optional">?</span><span class="type">: ToastConfig</span>
+                    <div class="desc"> - </div>
+                </div>
+            </td>
+
+            <td class="docs-td docs-td-type"></td>
+
+            <td class="docs-td docs-td-desc">
+                <p>create a toast</p>
+
+            </td>
+        </tr>
+
+
+
+    </table>
+</div>

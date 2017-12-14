@@ -53,8 +53,8 @@ import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { DemoSearchBox } from './search-box';
 import { DemoTree } from './tree';
-import { DemoToast } from './toast';
-import { DemoSelect } from './select';
+import { ToastDemoModule } from './toast';
+import { SelectDemoModule } from './select';
 import { OverlayDemo } from './overlay';
 import { DemoDialog } from './dialog';
 import { ChipsDemoModule } from './chips';
@@ -97,6 +97,8 @@ const demoModules = [
     RegionDemoModule,
     CardDemoModule,
     TableDemoModule,
+    ToastDemoModule,
+    SelectDemoModule,
     ChipsDemoModule,
     CodeHighlighterDemoModule,
     SliderDemoModule
@@ -114,8 +116,6 @@ const demoModules = [
         DemoTextLine,
         DemoSearchBox,
         DemoTree,
-        DemoToast,
-        DemoSelect,
         DemoDialog,
         CodeBoxDemo,
         DemoTree,
