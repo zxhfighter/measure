@@ -45,6 +45,18 @@
 </p>
 
 <p>
+    支持子选项
+    <br>
+    <nb-select [datasource]="datasource2"
+               (onChange)="selectedData5 = $event"
+               [searchable]="true">
+    </nb-select>
+    <span class="code">
+        <pre *ngIf="selectedData5">{{selectedData5|json}}</pre>
+    </span>
+</p>
+
+<p>
     禁用
     <br>
     <nb-select [datasource]="datasource"

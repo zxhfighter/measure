@@ -41,20 +41,34 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
 
     onSelectOption(e: Event, data: SelectConfig) {
         e.stopPropagation();
+
+        if (data.children && data.children.length){
+            return;
+        }
+
         this.value = data.value;
         this.onChange.emit(data);
         this.cd.markForCheck();
     }
 
-    onSearch(e: Event) {
+    onSearch(e) {
         e.stopPropagation();
 
         let key = e.target.value;
         if (key) {
             let result = [];
             this._data.forEach(item => {
-                if (item.label.search(key) !== -1) {
-                    result.push(item);
+                if (item.children && item.children.length){
+                    item.children.forEach(child => {
+                        if (child.label.search(key) !== -1) {
+                            result.push(child);
+                        }
+                    });
+                }
+                else {
+                    if (item.label.search(key) !== -1) {
+                        result.push(item);
+                    }
                 }
             });
 

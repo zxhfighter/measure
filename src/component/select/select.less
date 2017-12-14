@@ -38,21 +38,27 @@
     }
 
     &-option {
-        height: 36px;
         line-height: 36px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 100%;
         color: @text-color;
-        cursor: pointer;
-
-        &:hover {
-            background-color: #f7f7f7;
-        }
 
         &-lable {
             padding: 0 38px 0 20px;
+        }
+
+        &-lable.leaf {
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f7f7f7;
+            }
+        }
+
+        .sub-option {
+            padding-left: 32px;
         }
     }
 

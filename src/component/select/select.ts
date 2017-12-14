@@ -1,10 +1,9 @@
 import {
-    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2, ElementRef,
+    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef,
 } from '@angular/core';
 import { SelectConfig, OptionsStyles } from './select.config';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { SelectOptionsComponent } from './select.options';
 import { OverlayComponent } from '../overlay';
 import { Placement } from '../util/position';
 import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
@@ -58,17 +57,16 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     ngOnInit() {
         this.selectedData = { value: null, label: this.defaultLabel || '请选择' };
         this.overlay.origin = this.origin;
-        console.log(this.disabled);
     }
 
     onToggle(e) {
         e.stopPropagation();
 
         this.changeState();
-        console.log(this.expanded);
-        //if (this.expanded) {
+
+        if (this.expanded) {
             this.bindEvents();
-       // }
+        }
     }
 
     show() {
