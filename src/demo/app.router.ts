@@ -28,7 +28,7 @@ import { DemoToast } from './toast';
 import { DemoSelect } from './select';
 import { RegionDemo } from './region';
 import { DemoDialog } from './dialog';
-import { DemoChips } from './chips';
+import { ChipsDemo } from './chips';
 import { CodeHighlighterDemo } from './code-highlighter';
 import { CodeBoxDemo } from './code-box';
 import { DemoTree } from './tree';
@@ -38,6 +38,7 @@ import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
+import { SliderComponentDemo } from './slider';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'button' },
@@ -70,7 +71,7 @@ export const appRoutes: Routes = [
     { path: 'dialog', component: DemoDialog },
     { path: 'tree', component: DemoTree },
     { path: 'side-bar', component: DemoSideBar },
-    { path: 'chips', component: DemoChips },
+    { path: 'chips', component: ChipsDemo },
     { path: 'code-highlighter', component: CodeHighlighterDemo },
     { path: 'code-box', component: CodeBoxDemo },
     { path: 'tree', component: DemoTree },
@@ -78,5 +79,6 @@ export const appRoutes: Routes = [
     { path: 'accordion', component: DemoAccordion },
     { path: 'uploader', component: DemoUploader },
     { path: 'docs', component: GuideComponentDemo },
-    { path: 'icons', component: IconsComponentDemo }
+    { path: 'icons', component: IconsComponentDemo },
+    { path: 'slider', component: SliderComponentDemo }
 ];

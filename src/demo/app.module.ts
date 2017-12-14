@@ -80,6 +80,7 @@ import { RegionDemoModule } from './region';
 import { CardDemoModule } from './card';
 import { TableDemoModule } from './table';
 import { CodeHighlighterDemoModule } from './code-highlighter';
+import { SliderDemoModule } from './slider';
 
 const demoModules = [
     ButtonDemoModule,
@@ -97,7 +98,8 @@ const demoModules = [
     CardDemoModule,
     TableDemoModule,
     ChipsDemoModule,
-    CodeHighlighterDemoModule
+    CodeHighlighterDemoModule,
+    SliderDemoModule
 ];
 
 @NgModule({

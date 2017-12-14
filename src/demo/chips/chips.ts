@@ -9,12 +9,13 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class DemoChips implements OnInit {
-    constructor() {
+export class ChipsDemo {
 
-    }
+    tsCodeBasic: string = require('!!raw-loader!./basic/chips-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/chips-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/chips-basic.less');
 
-    ngOnInit() {
-
-    }
+    tsCodeForm: string = require('!!raw-loader!./form/chips-form.ts');
+    htmlCodeForm: string = require('!!raw-loader!./form/chips-form.html');
+    lessCodeForm: string = require('!!raw-loader!./form/chips-form.less');
 }
