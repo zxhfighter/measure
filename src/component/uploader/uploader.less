@@ -1,41 +1,32 @@
 .@{prefix}-uploader {
     display: block;
-    color: #f00;
-    .fileinput {
-        opacity: 0;
-        filter: Alpha(Opacity=0);
-        cursor: pointer;
-        position: absolute;
-        height: 33px;
-        left: 0px;
-        top: 0px;
-        height: 46px;
-    }
-    .img-list-wrapper {
-        margin: 0 auto;
-        padding: 25px 0;
-        overflow: hidden;
-        margin-right: -12px;
-        zoom: 1;
 
-        .upload_add {
-            width: 170px;
-            height: 46px;
-            margin: 0 auto;
-            overflow: hidden;
-            cursor: pointer;
-            text-align: center;
-            text-indent: 40px;
-            line-height: 40px;
-            color: #FFFFFF;
-            font-size: 18px;
-            background: url(/skin/lifeix/images/dashboard/post_icon_set.png) no-repeat scroll 0px -680px transparent;
-        }
+    .nb-uploader-msg {
+        margin: 0;
+        padding: 0;
+        clear: both;
+        color: @brand-danger;
+        list-style: none;
     }
-    .img-list,
-    .img-add {
-        width: 120px;
-        height: 120px;
+    .progress-error-msg {
+        color: #fc5a0a;
+    }
+    .icon-close {
+        cursor: pointer;
+    }
+}
+
+.@{prefix}-uploader-image {
+    margin: 0 auto;
+    padding: 25px 0;
+    overflow: hidden;
+    margin-right: -12px;
+    zoom: 1;
+
+
+    .image-add {
+        width: 140px;
+        height: 140px;
         border: 1px solid #DDD;
         margin-right: 7px;
         margin-bottom: 25px;
@@ -45,24 +36,90 @@
         zoom: 1;
         background-color: #fff;
         overflow: hidden;
+
+        border: 1px dashed #999;
+        display: table;
+        vertical-align: middle;
+
+        .iconfont {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 50px;
+            color: @text-color-normal;
+        }
+        .blue_btn_mid {
+            width: 87px;
+        }
+
+        .fileinput {
+            opacity: 0;
+            cursor: pointer;
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            left: 0;
+            top: 0;
+        }
     }
-    .img-list {
+
+    .image-list {
+        margin: 0;
+        padding: 0;
+    }
+    .image-item {
+
+        display: table;
+        width: 140px;
+        height: 140px;
+        border: 1px solid #DDD;
+        margin-right: 7px;
+        margin-bottom: 25px;
+        position: relative;
+        text-align: center;
+        zoom: 1;
+        background-color: #fff;
+        overflow: hidden;
+
         .img-progress-start {
             width: 100%;
             // height: 100%;
             background: url("/skin/townfile/images/loading_pic.gif") no-repeat scroll center center transparent;
-            height: 10px;
+            height: 100%;
             // line-height: 180px;
             font-size: 12px;
+            display: table-cell;
+            vertical-align: middle;
+
+            span {
+                display: block;
+                margin: 10px 0;
+                height: 17px;
+            }
         }
         .img-progress-error {
-            line-height: 120px;
-            color: #fc5a0a;
+            display: table-cell;
+            vertical-align: middle;
+
+
+            .progress-error-msg {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .icon-close {
+                background-color: transparent;
+                color: @text-color;
+            }
         }
         .img-progress-finish {
             display: table;
             width: 100%;
             height: 100%;
+
+        }
+
+        .img-progress-finish:hover .photo-control {
+            display: block;
         }
         .photo_bigger_mark {
             display: table-cell;
@@ -86,200 +143,134 @@
             top: 0;
             left: 0;
             width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .icon-close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 24px;
             height: 24px;
-            background: rgba(255, 255, 255, 0.6);
-            filter: alpha(opacity=60);
-        }
-        .photo-control a {
-            display: inline-block;
-            margin-left: 5px;
-        }
-        .control_btn {
-            width: 20px;
-            height: 20px;
-            background: url("/skin/lifeix/images/dashboard/post-photo-icon.png") no-repeat scroll 0 0 transparent;
-        }
-        .left_mark {
-            right: 55px;
-            background-position: -36px 0px;
-        }
-        .right_mark {
-            right: 25px;
-            background-position: -64px 0px;
-        }
-        .close {
-            right: 0px;
-            background-position: -90px 0px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid hsla(0, 0%, 100%, .2);
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            line-height: 24px;
         }
         .edit_mark {
-            right: 80px;
-            background-position: -12px 0;
-        }
-        .photo-info {
             position: absolute;
-            left: 1px;
-            bottom: 2px;
-            width: 100%;
-            height: 20px;
-            font-size: 12px;
+            background-color: rgba(0, 0, 0, .8);
+            border: 1px solid hsla(0, 0%, 100%, .2);
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            top: calc(50% - 14px);
+            left: calc(50% - 30px);
+            width: 88px;
+            height: 28px;
+            line-height: 26px;
         }
-        .photo-info-num {
-            float: left;
-            width: 20px;
-            padding: 2px;
-            background: rgba(255, 255, 255, 0.6);
-            filter: alpha(opacity=60);
-        }
-        .photo-info-desc {
-            float: right;
-            width: 50px;
-            overflow: hidden;
-            margin-right: 2px;
-            padding: 2px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            color: #333;
-        }
-    }
-    .img-add {
-        border: 1px dashed #999;
-        display: table;
-        vertical-align: middle;
 
-        .iconfont {
-            display: table-cell;
-            vertical-align: middle;
-            font-size: 50px;
-            color: @text-color-normal;
-        }
         .fileinput {
-            left: 0px;
-            top: 43px;
-        }
-        .blue_btn_mid {
-            width: 87px;
-        }
-    }
-    .upload_add {
-        width: 100%;
-        height: 33px;
-        margin-top: 43px;
-        overflow: hidden;
-        color: #FFF;
-        cursor: pointer;
-    }
-    .fileinput {
-        left: 0px;
-        top: 43px;
-    }
-    .blue_btn_mid {
-        width: 87px;
-    }
-    .photoarray-info {
-        margin-top: 20px;
-    }
-    .photoarray-title input {
-        width: 625px;
-        margin-bottom: 15px;
-        padding: 7px 5px;
-        border: 1px solid #ddd;
-        font-size: 14px;
-        color: #999;
-    }
-    .drag-wrapper-pre {
-        border: 1px dashed #999;
-        margin: 5px 0;
-    }
-    .photo-edit-wrap {
-        width: 455px;
-        height: 240px;
-        border: 10px solid #6A8197;
-        background-color: #FFFFFF;
-        position: absolute;
-        z-index: 1002;
-        input,
-        textarea {
-            padding: 2px 5px;
-            font-size: 14px;
-            border: 1px solid #DDDDDD;
-            width: 258px;
-        }
-        input {
-            height: 20px;
-            margin-bottom: 10px;
-        }
-        textarea {
-            height: 81px;
-        }
-        .photo-wrapper {
-            width: 122px;
-            background-color: #EEE;
-        }
-        .photo-edit-content {
-            margin: 20px;
-            overflow: hidden;
-        }
-        .photo_bigger_mark {
-            float: left;
-        }
-        .photo_bigger_mark img {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100%;
-            // border: 1px solid #DDD;
-            // display: inline-block;
-            text-align: center;
-            vertical-align: middle;
-            // overflow: hidden;
-        }
-        .photo-edit-title {
-            background: #062D52;
-            cursor: move;
-            height: 25px;
-            margin-top: 0;
-            position: relative;
-            width: 100%;
-        }
-        .photo-edit-title span {
-            float: left;
-            margin: 0;
-            padding: 0;
-            font-size: 14px;
-            font-weight: bold;
-            line-height: 25px;
-            text-indent: 10px;
-            color: #FFFFFF;
-        }
-        .photo-edit-title .close {
             position: absolute;
-            right: 4px;
-            top: 2px;
-            width: 20px;
-            height: 20px;
-            background: url(/skin/public/images/pop_close.png) no-repeat 0 0;
-        }
-        .photo-edit-info {
-            width: 270px;
-            float: left;
-            margin-left: 20px;
-        }
-        .photo-edit-wrap .photo-edit-submit {
-            clear: both;
-            margin-top: 20px;
-            overflow: hidden;
-            margin-right: 20px;
+            opacity: 0;
+            width: 88px;
+            height: 28px;
+            top: calc(50% - 14px);
+            left: calc(50% - 30px);
         }
     }
-    .photo-edit-mask {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 1001;
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        opacity: 0.7;
-        filter: alpha(opacity=70);
+}
+
+.nb-uploader-file {
+
+    .file-list {
+        list-style: none;
+        overflow: hidden;
+        padding: 0;
+        margin: 10px 0;
+
+        .file-item {
+            // display: flex;
+            // flex-direction: row;
+            // width: 185px;
+            height: 28px;
+            line-height: 28px;
+
+            .icon-paperclip {
+                margin: 4px 5px 0;
+                font-size: 12px;
+            }
+        }
+
+        .file-progress-finish {
+            position: relative;
+
+            &:hover {
+                background-color: @disabled-background;
+            }
+
+            &:hover .icon-close {
+                display: block;
+            }
+
+            .icon-close {
+                position: absolute;
+                top: 0;
+                right: 5px;
+                display: none;
+            }
+        }
+
+        .file-progress-start {
+            display: flex;
+            flex-direction: row;
+
+            .file-progress-bar {
+                flex-grow: 1;
+            }
+        }
+
+        .file-progress-error {
+            display: flex;
+            flex-direction: row;
+
+            .progress-error-msg {
+                flex-grow: 1;
+            }
+        }
+
+        .progress-error-reupload {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+    }
+
+    .file-add {
+        position: relative;
+        display: table;
+        cursor: pointer;
+
+        .fileinput {
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.nb-uploader-horizontal {
+    .image-item {
+        float: left;
+    }
+    .file-item {
+        float: left;
+        width: 300px;
     }
 }

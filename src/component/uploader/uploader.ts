@@ -5,8 +5,7 @@ import {
 
 export interface Message {
     severity?: string;
-    summary?: string;
-    detail?: string;
+    message?: string;
     id?: any;
 }
 
@@ -27,7 +26,10 @@ interface FormData {
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'nb-widget nb-uploader'
+        'class': 'nb-widget nb-uploader',
+        '[class.nb-uploader-horizontal]': 'direction==="horizontal"',
+        '[class.nb-uploader-vertical]': 'direction==="vertical"'
+
     },
     exportAs: 'nbUploader'
 })
@@ -41,33 +43,44 @@ export class UploaderComponent implements OnInit {
 
     @Input() multiple: boolean;
 
+    @Input() mode: string = 'image';
+
+    @Input() accept: string = 'image/*';
+
+    @Input() progressMode: string = 'text';
+
     // 暂时不定位file type
     // @Input() files: File[];
-    @Input() files: any[] = [];
-    // @Input() set placement(data) {
-    //     this._placement = data;
-    //     this.firstPlacement = this._placement.split('-')[0];
-    // }
+    // @Input() files: any[] = [];
+    _files: any[] = [];
+    @Input() set files(data) {
+        this._files = data;
+        this._files.forEach((file) => {
+            file.state = 'success';
+        });
+    }
 
-    // get placement () {
-    //     return this._placement;
-    // }
+    get files () {
+        return this._files;
+    }
+
+    @Input() direction: string = 'horizontal';
 
     @Input() auto: boolean = true;
 
-    @Input() accept: string;
-
     @Input() maxFileSize: number;
+
+    @Input() maxFileCount: number;
 
     @Input() withCredentials: boolean;
 
-    @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size, ';
+    @Input() invalidFileCountMessage: string = '文件的数量超过限制';
 
-    @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}.';
+    @Input() invalidFileSizeMessage: string = '{0}: 文件的大小不符合要求';
 
-    @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type, ';
+    @Input() invalidFileTypeMessage: string = '{0}: 文件的类型不符合要求';
 
-    @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}.';
+    @Input() uploadFailedMessage: string = '{0}: 上传失败';
 
     @Output() onBeforeUpload: EventEmitter<any> = new EventEmitter();
 
@@ -97,6 +110,8 @@ export class UploaderComponent implements OnInit {
      */
     state: string;
 
+    replacingFile: any = null;
+
     constructor(
         private cdRef: ChangeDetectorRef
     ) {
@@ -109,69 +124,74 @@ export class UploaderComponent implements OnInit {
 
     onFileSelect(event) {
         this.msgs = [];
-        // if (!this.multiple) {
-        //     this.files = [];
-        // }
 
         let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-        for (let i = 0; i < files.length; i++) {
-            let file = files[i];
-            if (this.validate(file)) {
-                if (this.isImage(file)) {
-                    // file.objectURL = this.sanitizer
-                        // .bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
-                }
 
-                this.files.push(files[i]);
+        if (this.validateFileCount(files)) {
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                if (this.validate(file)) {
+                    if (this.isImage(file)) {
+                        // file.objectURL = this.sanitizer
+                            // .bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
+                    }
+                    file.state = 'toBeUpload';
+                    if (this.replacingFile) {
+                        this.files.splice(this.files.indexOf(this.replacingFile), 1, file);
+                        this.replacingFile = null;
+                    }
+                    else {
+                        this.files.push(file);
+                    }
+                    this.upload(file);
+                }
             }
         }
 
-        this.onSelect.emit({originalEvent: event, files: files});
-
-        if (this.hasFiles() && this.auto) {
-            this.state = 'uploading';
-            this.cdRef.markForCheck();
-            this.upload();
-        }
+        // this.onSelect.emit({originalEvent: event, files: files});
 
         this.clearInputElement();
     }
 
-    upload() {
-        this.msgs = [];
-        let xhr = new XMLHttpRequest(),
-        formData = new FormData();
+    upload(file) {
+        file.state = 'uploading';
+        let xhr = new XMLHttpRequest();
+        file.xhr = xhr;
 
         this.onBeforeUpload.emit({
             'xhr': xhr,
-            'formData': formData
+            'file': file
         });
-
-        for (let i = 0; i < this.files.length; i++) {
-            formData.append(this.name, this.files[i], this.files[i].name);
-        }
 
         xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
             if (e.lengthComputable) {
-                this.progress = Math.round((e.loaded * 100) / e.total);
+                file.progress = Math.round((e.loaded * 100) / e.total);
                 this.cdRef.markForCheck();
             }
 
-            this.onProgress.emit({originalEvent: e, progress: this.progress});
+            this.onProgress.emit({originalEvent: e, progress: file.progress});
         }, false);
 
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
-                this.progress = 0;
+                file.progress = 0;
 
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    this.onUpload.emit({xhr: xhr, files: this.files});
-                    this.state = 'success';
+                    this.onUpload.emit({xhr: xhr, file: file});
+                    file.state = 'success';
+                    file.xhr = null;
                     // 调用回调函数
+
                 }
                 else {
-                    this.onError.emit({xhr: xhr, files: this.files});
-                    this.state = 'error';
+                    this.onError.emit({xhr: xhr, file: file});
+                    file.state = 'error';
+                    this.cdRef.markForCheck();
+                    file.xhr = null;
+                    // this.msgs.push({
+                    //     severity: 'error',
+                    //     message: this.uploadFailedMessage.replace('{0}', file.name),
+                    // });
                 }
                 // TODO 先注释掉
                 // this.clear();
@@ -184,20 +204,19 @@ export class UploaderComponent implements OnInit {
 
         this.onBeforeSend.emit({
             'xhr': xhr,
-            'formData': formData
+            'file': file
         });
 
         xhr.withCredentials = this.withCredentials;
 
-        xhr.send(formData);
+        xhr.send(file);
     }
 
     validate(file: File): boolean {
         if (this.accept && !this.isFileTypeValid(file)) {
             this.msgs.push({
                 severity: 'error',
-                summary: this.invalidFileTypeMessageSummary.replace('{0}', file.name),
-                detail: this.invalidFileTypeMessageDetail.replace('{0}', this.accept)
+                message: this.invalidFileTypeMessage.replace('{0}', file.name),
             });
             return false;
         }
@@ -205,13 +224,25 @@ export class UploaderComponent implements OnInit {
         if (this.maxFileSize  && file.size > this.maxFileSize) {
             this.msgs.push({
                 severity: 'error',
-                summary: this.invalidFileSizeMessageSummary.replace('{0}', file.name),
-                detail: this.invalidFileSizeMessageDetail.replace('{0}', this.formatSize(this.maxFileSize))
+                message: this.invalidFileSizeMessage.replace('{0}', file.name),
             });
             return false;
         }
 
         return true;
+    }
+
+    validateFileCount(files): boolean {
+        if (this.files.length + files.length > this.maxFileCount) {
+            this.msgs.push({
+                severity: 'error',
+                message: this.invalidFileCountMessage,
+            });
+            return false;
+        }
+
+        return true;
+
     }
 
     isFileTypeValid(file: File): boolean {
@@ -273,5 +304,25 @@ export class UploaderComponent implements OnInit {
         this.files = [];
         this.onClear.emit();
         this.clearInputElement();
+    }
+
+    onCancelFile(file) {
+        if (file.xhr) {
+            file.xhr.abort();
+        }
+        this.onRemoveFile(file);
+    }
+
+    onRemoveFile(file) {
+        this.files.splice(this.files.indexOf(file), 1);
+        this.onRemove.emit({file: file});
+    }
+
+    onReuploadFile (file) {
+        this.upload(file);
+    }
+
+    onReplaceFile(file) {
+        this.replacingFile = file;
     }
 }

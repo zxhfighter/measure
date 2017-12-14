@@ -1,34 +1,92 @@
-<div class="nb-uploader">
-    <div class="img-list-wrapper">
-        <ng-container *ngIf="files.length">
-            <div *ngFor="let file of files" class="img-list">
-                <div class="img-progress-start">
-                    {{progress}}
+
+<!-- 图片上传模式 -->
+<ng-container *ngIf="mode==='image'">
+    <div class="nb-uploader-image">
+        <ul *ngIf="files.length" class="image-list">
+            <li *ngFor="let file of files" class="image-item">
+                <div class="img-progress-start {{progressMode}}" [class.hidden]="file.state!=='uploading'">
+                    <span *ngIf="progressMode==='text'">
+                        {{file.progress || '正在上传中'}}<label [class.hidden]="!file.progress">%</label>
+                    </span>
+                    <span *ngIf="progressMode==='bar'">
+                        <nb-progress-bar [value]="file.progress" [isSuccess]="isSuccess"></nb-progress-bar>
+                    </span>
+                    <button nb-button theme="default" (click)="onCancelFile(file)">取消</button>
                 </div>
-                <div class="img-progress-error" [class.hidden]="!error"></div>
-                <div class="img-progress-finish">
+                <div class="img-progress-error" [class.hidden]="file.state!=='error'">
+                    <span class="progress-error-msg">上传失败</span>
+                    <button nb-button theme="default" (click)="onReuploadFile(file)">重试</button>
+                    <i class="iconfont icon-close" title="Close" (click)="onRemoveFile(file)"></i>
+                </div>
+                <div class="img-progress-finish" [class.hidden]="file.state!=='success'">
                     <span class="photo_bigger_mark">
                         <img src="{{file.url}}" />
                     </span>
-                    <div class="photo-control hidden">
-                        <a href="javascript:void(0);" class="control_btn edit_mark" title="重新上传"></a>
-                        <a href="javascript:void(0);" class="control_btn close" title="删除"></a>
-                        <div class="clear"></div>
+                    <div class="photo-control">
+                        <label for="fileInput" class="edit_mark" (click)="onReplaceFile(file)">重新上传</label>
+                        <i class="iconfont icon-close" title="Close" (click)="onRemoveFile(file)"></i>
                     </div>
-                    <!-- <div class="photo-info">
-                        <span class="photo-info-num text-blue">{{file.name}}</span>
-                        <span class="photo-info-desc">{{file.size}}</span>
-                    </div> -->
                 </div>
-            </div>
-        </ng-container>
-            <!-- </div> -->
-        <!-- </div> -->
-        <div class="img-add">
+            </li>
+        </ul>
+        <div class="image-add">
             <span class="iconfont icon-plus_lg"></span>
-            <input (change)="onFileSelect($event)"
-                type="file" multiple="multiple" name="myFile" class="fileinput" style="left: 0px; top: 43px; height: 46px;"
-                accept="image/*">`
+            <input id="fileInput" (change)="onFileSelect($event)"
+                type="file" multiple="multiple" name="myFile" class="fileinput"
+                accept="{{accept}}">
         </div>
-    <!-- </div> -->
-</div>
+        <ul class="nb-uploader-msg">
+            <li *ngFor="let msg of msgs">
+                <span class="ui-messages-summary">{{msg.message}}</span>
+            </li>
+        </ul>
+    </div>
+</ng-container>
+
+<!-- 文件上传模式 -->
+<ng-container *ngIf="mode==='file'">
+    <div class="nb-uploader-file">
+        <!-- 选择文件 -->
+        <div class="file-add">
+            <button nb-button theme="default"><i class="fa fa-upload"></i> 选择文件</button>
+            <input (change)="onFileSelect($event)"
+                type="file" multiple="multiple" name="myFile" class="fileinput"
+                accept="{{accept}}">
+        </div>
+
+        <ul class="nb-uploader-msg">
+            <li *ngFor="let msg of msgs">
+                <span class="ui-messages-summary">{{msg.message}}</span>
+            </li>
+        </ul>
+
+        <ul *ngIf="files.length" class="file-list">
+            <li *ngFor="let file of files" class="file-item">
+                    <div class="file-progress-start"
+                        [class.hidden]="file.state!=='uploading'">
+                        <div *ngIf="progressMode==='text'">
+                            {{file.progress || '正在上传中'}}<label [class.hidden]="!file.progress">%</label>
+                        </div>
+                        <div *ngIf="progressMode==='bar'" class="file-progress-bar">
+                            <nb-progress-bar [value]="file.progress" [isSuccess]="isSuccess"></nb-progress-bar>
+                        </div>
+                        <i class="iconfont icon-close" title="Close" (click)="onCancelFile(file)"></i>
+                    </div>
+                    <div class="file-progress-error" [class.hidden]="file.state!=='error'">
+                        <span class="progress-error-msg">{{file.name}}&nbsp;&nbsp;上传失败</span>
+                        <span class="progress-error-reupload" (click)="onReuploadFile(file)">
+                            <i class="iconfont icon-redo"></i>
+                            重试
+                        </span>
+                        <i class="iconfont icon-close" title="Close" (click)="onRemoveFile(file)"></i>
+                    </div>
+                    <div class="file-progress-finish" [class.hidden]="file.state!=='success'">
+                        <span class="iconfont icon-paperclip"></span>
+                        <span class="file-name">{{file.name}}</span>
+                        <i class="iconfont icon-close" title="Close" (click)="onRemoveFile(file)"></i>
+                    </div>
+            </li>
+        </ul>
+
+    </div>
+</ng-container>
