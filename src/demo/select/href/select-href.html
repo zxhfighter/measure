@@ -1,0 +1,57 @@
+<p>
+    默认效果
+    <br>
+    <nb-select [datasource]="datasource"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <span class="code">
+        <pre *ngIf="selectedData1">{{selectedData1|json}}</pre>
+    </span>
+</p>
+
+<p>
+    自定义内容
+    <br>
+    <nb-select [datasource]="datasource"
+               (onChange)="selectedData2 = $event"
+               [defaultLabel]="'自定义内容'">
+    </nb-select>
+    <span class="code">
+        <pre *ngIf="selectedData2">{{selectedData2|json}}</pre>
+    </span>
+</p>
+
+<p>
+    设置默认值
+    <br>
+    <nb-select [datasource]="datasource"
+               [(ngModel)]="selectedData3">
+    </nb-select>
+    <span class="code">
+        <pre *ngIf="selectedData3.value">{{selectedData3|json}}</pre>
+    </span>
+</p>
+
+<p>
+    支持搜索
+    <br>
+    <nb-select [datasource]="datasource"
+               (onChange)="selectedData4 = $event"
+               [searchable]="true">
+    </nb-select>
+    <span class="code">
+        <pre *ngIf="selectedData4">{{selectedData4|json}}</pre>
+    </span>
+</p>
+
+<p>
+    禁用
+    <br>
+    <nb-select [datasource]="datasource"
+               [disabled]="true"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <span class="code">
+        <pre *ngIf="selectedData1">{{selectedData1|json}}</pre>
+    </span>
+</p>

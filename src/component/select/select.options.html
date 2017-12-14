@@ -1,5 +1,12 @@
 <div class="nb-select-options">
-    <div class="nb-select-option" *ngFor="let item of datasource;">
+    <div class="nb-select-search" *ngIf="searchable">
+        <input nb-input type="text" placeholder="请输入文字"
+               (click)="$event.stopPropagation();"
+               (input)="onSearch($event)"
+        >
+        <i class="icon iconfont icon-search" (click)="$event.stopPropagation();"></i>
+    </div>
+    <div class="nb-select-option" *ngFor="let item of data;">
         <div class="nb-select-option-lable"
              [ngClass]="{'active': item.value === value}"
              (click)="onSelectOption($event, item)"

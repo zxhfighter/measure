@@ -16,7 +16,9 @@ import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'nb-widget nb-select'
+        'class': 'nb-widget nb-select',
+        '[class.disabled]': 'disabled',
+        '[class.nb-widget-disabled]': 'disabled'
     },
     exportAs: 'xSelect',
     providers: [{
@@ -30,6 +32,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @ViewChild('overlay') overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
     @Input() defaultLabel: string;
+    @Input() searchable: boolean = false;
+    @Input() disabled: boolean = false;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
     @Output() onPanelShow: EventEmitter<Object> = new EventEmitter();
     @Output() onPanelHide: EventEmitter<Object> = new EventEmitter();
@@ -54,15 +58,17 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     ngOnInit() {
         this.selectedData = { value: null, label: this.defaultLabel || '请选择' };
         this.overlay.origin = this.origin;
+        console.log(this.disabled);
     }
 
     onToggle(e) {
         e.stopPropagation();
 
         this.changeState();
-        if (this.expanded) {
+        console.log(this.expanded);
+        //if (this.expanded) {
             this.bindEvents();
-        }
+       // }
     }
 
     show() {
