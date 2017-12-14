@@ -27,14 +27,7 @@ export class ScheduleComponent implements OnInit {
     startpoint;
     flag = false;
     week = ['一', '二', '三', '四', '五', '六', '日'];
-    hour = ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', 
-        '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', 
-        '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
-    hours = ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', 
-        '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', 
-        '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
-    hourLabel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
-        18, 19, 20, 21, 22, 23, 24];
+    hours;
     selectData: SelectConfig[] = [
         {
             label: '全周',
@@ -53,13 +46,13 @@ export class ScheduleComponent implements OnInit {
         this.schedules = Array(169).fill(0);
         this.weekSelect = Array(7).fill(0);
         this.layerTime = Array(168).fill(0);
+        this.hours = Array.apply(Array, Array(25)).map((v,k) => k);
     }
-
     ngOnInit() {
 
     }
     /**
-     * set current page count
+     * set day
      *
      * @param {object} event - page change event
      * @docs-private
@@ -77,7 +70,6 @@ export class ScheduleComponent implements OnInit {
                 this.schedules = Array(24*5).fill(0).concat(Array(24*2+1).fill(1));
         } 
         this.topTimeChange();
-        
     }
     select(i, j) {
         this.schedules[i * 24 + j] = (this.schedules[i * 24 + j] + 1) % 2;
@@ -113,7 +105,7 @@ export class ScheduleComponent implements OnInit {
         } else {
             let index = Math.floor(value/2);
             let tmp = (value + 1) % 2;
-            let label = this.hours[j - index + tmp] + '-' + this.hours[j + index + 1];
+            let label = this.hours[j - index + tmp] + ':00-' + this.hours[j + index + 1] + ':00';
             return label;
         }
     }
@@ -153,7 +145,6 @@ export class ScheduleComponent implements OnInit {
         this.preSelect(i, j);
     }
     mouseover(i, j) {
-        
         if (this.flag === true) {
             // let observable = Observable.fromEvent(event.target, 'mouseover')
             // .debounceTime(10)
@@ -162,7 +153,6 @@ export class ScheduleComponent implements OnInit {
         }
     }
     mouseout(i, j) {
-        
         if (this.flag === true) {
             this.preSelect(i, j);
         }

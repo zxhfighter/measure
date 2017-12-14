@@ -13,7 +13,7 @@
     <div class="hour-table clearfix">
         <div class="hour-title">
             <ng-container *ngFor="let item of hours; index as j">
-                <span *ngIf="j % 2 === 0">{{item}}</span>
+                <span *ngIf="j % 2 === 0">{{item}}:00</span>
             </ng-container>
         </div>
         <div class="week-title">
@@ -31,16 +31,18 @@
         </div>
         <table class="table-con">
             <tr *ngFor="let item1 of week; index as i">
-                <td *ngFor="let item of hour; index as j">
-                    <button title="{{item}}-{{hours[j + 1]}}"
-                        [attr.data]="showLabel(i,j)"
-                        [ngClass]="{'selected': schedules[i * 24 + j] === 1}"
-                        (mousedown)="mousedown(i, j)"
-                        (mouseup)="mouseup(i, j)"
-                        (mouseover)="mouseover(i, j)"
-                        (mouseout)="mouseout(i, j)">
-                    </button>
-                </td>
+                <ng-container *ngFor="let item of hours; index as j">
+                    <td *ngIf="j < 24">
+                        <button title="{{item}}:00-{{hours[j + 1]}}:00"
+                            [attr.data]="showLabel(i,j)"
+                            [ngClass]="{'selected': schedules[i * 24 + j] === 1}"
+                            (mousedown)="mousedown(i, j)"
+                            (mouseup)="mouseup(i, j)"
+                            (mouseover)="mouseover(i, j)"
+                            (mouseout)="mouseout(i, j)">
+                        </button>
+                    </td>
+                </ng-container>
             </tr>
         </table>    
     </div>
