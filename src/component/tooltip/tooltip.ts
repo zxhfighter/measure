@@ -17,14 +17,15 @@ import {
 } from '@angular/core';
 
 import { OnChange } from '../core/decorators';
-import { OverlayService } from '../overlay/overlay.service';
 import { TiplayerComponent } from './tiplayer';
 import { ConnectionPosition, Placement } from '../util/position';
+import { OverlayPositionService } from '../overlay/overlay-position.service';
+import { DynamicComponentService } from '../overlay/dynamic-component.service';
 
 @Directive({
     selector: '[nbTooltip]',
     exportAs: 'nbTooltip',
-    providers: [OverlayService],
+    providers: [DynamicComponentService],
     host: {
         '(body:click)': 'this.handleBodyInteraction()'
     }
@@ -87,7 +88,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
         private injector: Injector,
         private ngZone: NgZone,
         private componentFactoryResolver: ComponentFactoryResolver,
-        private overlayService: OverlayService<TiplayerComponent>) {
+        private dynamicComponentService: DynamicComponentService<TiplayerComponent>,
+        private overlayPositionService: OverlayPositionService) {
     }
 
     ngOnInit() {
@@ -142,10 +144,16 @@ export class TooltipDirective implements OnInit, OnDestroy {
      *
      */
     createTiplayer() {
-        let componentRef = this.overlayService.createOverlayFromTemplate(
-            TiplayerComponent, this.nbTooltip, !this.embedded);
+        let componentRef = this.dynamicComponentService.createDynamicComponent(
+            TiplayerComponent, this.nbTooltip, window.document.body);
         this.tiplayerInstance = componentRef.instance;
-        this.overlayService.attachOverlay(this.el, this.placement);
+        // this.overlayService.attachOverlay(this.el, this.placement);
+
+        this.overlayPositionService
+            .setOverlayRef(this.tiplayerInstance)
+            .attachTo(this.el, this.placement);
+
+        this.tiplayerInstance.needReposition.subscribe(() => this.overlayPositionService.updatePosition());
 
         const config = {
             trigger: this.trigger,

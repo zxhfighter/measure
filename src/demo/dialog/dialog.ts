@@ -5,7 +5,7 @@ import {
 import { DialogComponent } from '../../component/dialog/dialog';
 import { AlertComponent } from '../../component/dialog/alert';
 import { DialogService } from '../../component/dialog/dialog.service';
-import { OverlayService } from '../../component/overlay/overlay.service';
+import { DynamicComponentService } from '../../component/overlay/dynamic-component.service';
 
 @Component({
     selector: 'demo-dialog',
@@ -13,7 +13,7 @@ import { OverlayService } from '../../component/overlay/overlay.service';
     styleUrls: ['./dialog.less'],
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default,
-    providers: [DialogService, OverlayService]
+    providers: [DialogService, DynamicComponentService]
 })
 export class DemoDialog implements OnInit, AfterViewInit {
 
