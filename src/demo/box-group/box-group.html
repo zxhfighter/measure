@@ -52,7 +52,8 @@
     <div nb-codebox-desc>
         <p>1.<code>nb-boxgroup</code> 内部使用 <code>nb-checkbox</code> 形成一个选择组，可以是单选组（type="radio"），也可以是多选组（type="checkbox"，默认）。</p>
         <p>2.<code>nb-boxgroup</code> 的 <code>value</code> 属性为字符串或者数字数组，对应的 <code>nb-checkbox</code> 的 <code>value</code> 也必须为字符串或者数字。</p>
-        <p>3    .<code>nb-boxgroup</code> 在值变更时会触发 <code>change</code> 事件，参数为包含 <code>currentValue</code> 和 <code>value</code> 的对象。</p>
+        <p>3.<code>nb-boxgroup</code> 在值变更时会触发 <code>change</code> 事件，参数为包含 <code>currentValue</code> 和 <code>value</code> 的对象。</p>
+        <p>4.对于简单的选择框组，可以直接使用 <code>nb-boxgroup</code> 组件的 <code>datasource</code> 属性，其中每一项包括 value、text、checked 和 disabled 属性。</p>
     </div>
 
     <demo-checkbox-group></demo-checkbox-group>

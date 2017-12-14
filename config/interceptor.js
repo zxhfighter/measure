@@ -66,5 +66,5 @@ module.exports = function (req, res, next) {
     // 设置响应内容
     setTimeout(function () {
         res.end(JSON.stringify(mockFile(urlParams)), 'utf-8');
-    }, 50000)
+    }, 2500)
 };
