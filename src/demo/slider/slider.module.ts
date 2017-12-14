@@ -2,29 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ChipsModule } from '../../component/chips';
+import { SliderModule } from '../../component/slider';
 import { CodeBoxModule } from '../../component/code-box';
 import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import { ChipsDemo } from './chips';
-import { ChipsBasicDemo } from './basic/chips-basic';
-import { ChipsFormDemo } from './form/chips-form';
+import { SliderComponentDemo } from './slider';
+import { SliderBasicDemo } from './basic/slider-basic';
+import { SliderFormDemo } from './form/slider-form';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        ChipsModule,
+        SliderModule,
         CodeBoxModule,
         CodeHighlighterModule
     ],
     declarations: [
-        ChipsDemo,
-        ChipsBasicDemo,
-        ChipsFormDemo
+        SliderComponentDemo,
+        SliderBasicDemo,
+        SliderFormDemo
     ],
     providers: [],
     exports: []
 })
-export class ChipsDemoModule { }
+export class SliderDemoModule { }
