@@ -62,19 +62,22 @@ export class ScheduleComponent implements OnInit {
         switch(day) {
             case 7: 
                 this.schedules = Array(169).fill(1);
+                this.weekSelect = Array(7).fill(2);
                 break;
             case 5:
                 this.schedules = Array(24*5).fill(1).concat(Array(24*2+1).fill(0));
+                this.weekSelect = Array(5).fill(2).concat(Array(2).fill(0));
                 break;
             case 2:
                 this.schedules = Array(24*5).fill(0).concat(Array(24*2+1).fill(1));
+                this.weekSelect = Array(5).fill(0).concat(Array(2).fill(2));
+                break;
         } 
         this.topTimeChange();
     }
     select(i, j) {
         this.schedules[i * 24 + j] = (this.schedules[i * 24 + j] + 1) % 2;
         this.topTimeChange();
-
         let sum = 0;
         for (let k = i * 24; k < (i + 1) * 24; k++) {
             sum = sum + this.schedules[k];
@@ -85,7 +88,7 @@ export class ScheduleComponent implements OnInit {
             this.weekSelect[i] = 2;
         } else {
             this.weekSelect[i] = 1;
-        }
+        }    
     }
     checkDay(j) {
         this.weekSelect[j] = this.weekSelect[j] > 0 ? 0 : 2;
