@@ -1,0 +1,13 @@
+<div #slider class="nb-slider" [class.nb-slider-vertical]="!orientation" [class.nb-slider-disabled]="disabled">
+    <!-- <div *ngIf="range" class="nb-slider-begin"></div>
+    <div #sliderBegin *ngIf="range" class="nb-slider-hand"></div> -->
+    <!-- <div #sliderTracker class="nb-slider-tracker"></div> -->
+    <div class="nb-slider-rail" (click)="clickHandler($event)"></div>
+    <nb-slider-tracker [selected]="trackerSelected" [position]="trackerPos" [orientation]="orientation"></nb-slider-tracker>
+    <nb-slider-hand *ngFor="let hand of hands;" [max]="max" [min]="min" [step]="step" [orientation]="orientation" [initPos]="hand.initPos" [limitMove]="limitMove" [disabled]="disabled" (change)="updateSlider($event)"></nb-slider-hand>
+    <!-- <nb-slider-hand *ngIf="range" [initPos]="initRangeX" [limitMove]="limitMove" (change)="updateSlider($event)"></nb-slider-hand> -->
+    <!-- <div #sliderEndHand class="nb-slider-hand"></div> -->
+</div>
+<br>
+<!-- <input *ngIf="!range && input" [ngModel]="value" [disabled]="disabled" (ngModelChange)="updateSlider({endX: $event})"> -->
+{{value | json}}

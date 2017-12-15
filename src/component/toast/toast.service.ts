@@ -6,23 +6,15 @@ import {ToastComponent} from './toast';
 
 @Injectable()
 export class ToastService {
-    protected counter: number = 0;
-    protected component: ToastComponent;
-    protected idPrefix: string = 'toast';
+    private counter: number = 0;
+    private component: ToastComponent;
+    private idPrefix: string = 'toast';
 
     constructor(overlay: Overlay) {
         this.component = overlay.create().attach(new ComponentPortal(ToastComponent)).instance;
     }
 
-    remove(toastId?: string): void {
-        if (toastId) {
-            this.component.removeToast(toastId);
-        } else {
-            this.component.removeToastAll();
-        }
-    }
-
-    createToast(toastData: ToastData, options?: ToastConfig): ToastDataFilled {
+    private _createToast(toastData: ToastData, options?: ToastConfig): ToastDataFilled {
         const componentOptions: ToastDataFilled = Object.assign(toastData, {
             toastId: this._generateComponentId(),
             options: options,
@@ -33,28 +25,47 @@ export class ToastService {
         return componentOptions;
     }
 
-    protected _generateComponentId(): string {
+    private _generateComponentId(): string {
         return `${this.idPrefix}-${this.counter++}`;
     }
 
-    // Shortcut methods
+    /**
+     * create a success toast
+     * @default false
+     */
     success(content: string, options?: ToastConfig) {
-        return this.createToast({type: 'success', content: content}, options);
+        this._createToast({type: 'success', content: content}, options);
     }
 
+    /**
+     * create a error toast
+     * @default false
+     */
     error(content: string, options?: ToastConfig) {
-        return this.createToast({type: 'error', content: content}, options);
+        this._createToast({type: 'error', content: content}, options);
     }
 
+    /**
+     * create a info toast
+     * @default false
+     */
     info(content: string, options?: ToastConfig) {
-        return this.createToast({type: 'info', content: content}, options);
+        this._createToast({type: 'info', content: content}, options);
     }
 
+    /**
+     * create a warn toast
+     * @default false
+     */
     warn(content: string, options?: ToastConfig) {
-        return this.createToast({type: 'warning', content: content}, options);
+        this._createToast({type: 'warning', content: content}, options);
     }
 
+    /**
+     * create a toast
+     * @default false
+     */
     create(type: string, content: string, options?: ToastConfig) {
-        return this.createToast({type: type as any, content: content}, options);
+        this._createToast({type: type as any, content: content}, options);
     }
 }

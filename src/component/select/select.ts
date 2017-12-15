@@ -1,10 +1,9 @@
 import {
-    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2, ElementRef,
+    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef,
 } from '@angular/core';
 import { SelectConfig, OptionsStyles } from './select.config';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { SelectOptionsComponent } from './select.options';
 import { OverlayComponent } from '../overlay';
 import { Placement } from '../util/position';
 import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
@@ -16,7 +15,9 @@ import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        'class': 'nb-widget nb-select'
+        'class': 'nb-widget nb-select',
+        '[class.disabled]': 'disabled',
+        '[class.nb-widget-disabled]': 'disabled'
     },
     exportAs: 'xSelect',
     providers: [{
@@ -30,6 +31,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @ViewChild('overlay') overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
     @Input() defaultLabel: string;
+    @Input() searchable: boolean = false;
+    @Input() disabled: boolean = false;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
     @Output() onPanelShow: EventEmitter<Object> = new EventEmitter();
     @Output() onPanelHide: EventEmitter<Object> = new EventEmitter();
@@ -60,6 +63,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         e.stopPropagation();
 
         this.changeState();
+
         if (this.expanded) {
             this.bindEvents();
         }
