@@ -1,15 +1,15 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {ButtonModule} from '../../component/button';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { ButtonModule } from '../../component/button';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoButton} from './button';
-import {DemoButtonTheme} from './themes/button-theme';
-import {DemoButtonSize} from './size/button-size';
-import {DemoButtonLink} from './link/button-link';
-import {DemoButtonIcon} from './icon/button-icon';
+import { ButtonDemo } from './button';
+import { ButtonThemeDemo } from './themes/button-theme';
+import { ButtonSizeDemo } from './size/button-size';
+import { ButtonLinkDemo } from './link/button-link';
+import { ButtonIconDemo } from './icon/button-icon';
 
 @NgModule({
     imports: [
@@ -19,13 +19,13 @@ import {DemoButtonIcon} from './icon/button-icon';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoButton,
-        DemoButtonTheme,
-        DemoButtonSize,
-        DemoButtonLink,
-        DemoButtonIcon
+        ButtonDemo,
+        ButtonThemeDemo,
+        ButtonSizeDemo,
+        ButtonLinkDemo,
+        ButtonIconDemo
     ],
     providers: [],
     exports: []
 })
-export class ButtonDemoModule {}
+export class ButtonDemoModule { }

@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {genStr, genNum} from '../../util/random';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { genStr, genNum } from '../../util/random';
 
 @Component({
     selector: 'demo-table-fix-head',
@@ -7,7 +7,7 @@ import {genStr, genNum} from '../../util/random';
     styleUrls: ['./table-fix-head.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoTableFixHead {
+export class TableFixHeadDemo {
 
     fields: any[] = [
         {

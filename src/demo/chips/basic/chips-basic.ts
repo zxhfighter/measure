@@ -6,9 +6,9 @@ import { Input, Component, ViewEncapsulation } from '@angular/core';
     styleUrls: ['./chips-basic.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class DemoChipsBasic {
+export class ChipsBasicDemo {
     chipsValue: Array<any> = ['hello'];
     changeValue(v) {
-    	console.log(v);
+        console.log(v);
     }
 }

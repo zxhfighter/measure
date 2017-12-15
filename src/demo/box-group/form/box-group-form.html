@@ -1,12 +1,7 @@
 <section class="section">
     <h3>with forms:</h3>
     <form #form1="ngForm">
-        <nb-boxgroup type="radio" name="radioBox" [ngModel]="['kiwi']">
-            <nb-checkbox value="apple">apple</nb-checkbox>
-            <nb-checkbox value="banana">banana</nb-checkbox>
-            <nb-checkbox value="grape">grape</nb-checkbox>
-            <nb-checkbox value="kiwi">kiwi</nb-checkbox>
-        </nb-boxgroup>
+        <nb-boxgroup type="radio" name="radioBox" [ngModel]="['banana']" [datasource]="datasource"></nb-boxgroup>
 
         <br>
 

@@ -1,6 +1,6 @@
 import {
     Component, Input, Output, EventEmitter, ContentChildren, QueryList, forwardRef,
-    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
+    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, ViewChildren, OnInit
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -16,6 +16,15 @@ export interface BoxGroupValue {
     /** all box group value, usually an array */
     value: any[];
 }
+
+/** box group item type */
+export interface BoxGroupItem {
+    value: string;
+    text: string;
+    checked?: boolean;
+    disabled?: boolean;
+}
+
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -44,7 +53,7 @@ const BOXGROUP_VALUE_ACCESSOR = {
     },
     exportAs: 'xBoxGroup'
 })
-export class BoxGroupComponent implements ControlValueAccessor {
+export class BoxGroupComponent implements ControlValueAccessor, OnInit {
 
     /**
      * when box group value change, emit a change event with the `BoxGroupValue`, which contains
@@ -67,6 +76,11 @@ export class BoxGroupComponent implements ControlValueAccessor {
     @Input() disabled: boolean = false;
 
     /**
+     * box group datasource, when datasource exists, the inner boxes will be overwrited
+     */
+    @Input() datasource: BoxGroupItem[];
+
+    /**
      * @docs-private
      */
     disabledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -87,16 +101,38 @@ export class BoxGroupComponent implements ControlValueAccessor {
     /** children box components */
     @ContentChildren(forwardRef(() => InputBoxComponent)) _boxList: QueryList<InputBoxComponent>;
 
-    constructor() {
+    /**
+     * button toggle view children
+     */
+    @ViewChildren(
+        forwardRef(() => InputBoxComponent)
+    ) _boxViewList: QueryList<InputBoxComponent>;
+
+    constructor(private _cd: ChangeDetectorRef) {
 
         // listen to disabled property, and update sub child disabled state
         this.disabledChange.subscribe(disabled => {
-            if (this._boxList) {
-                this._boxList.forEach(box => {
+            const boxList = this._getBoxList();
+            if (boxList) {
+                boxList.forEach(box => {
                     box.disabled = disabled;
                 });
             }
         });
+    }
+
+    ngOnInit() {
+        // update init value
+        // if (this.value && this.datasource) {
+        //     this.datasource.forEach(item => {
+        //         item.checked = item.checked || this.value.includes(item.value);
+
+        //         // update checked value
+        //         if (item.checked) {
+        //             this.value = Array.from(new Set(this.value).add(item.value));
+        //         }
+        //     });
+        // }
     }
 
     /**
@@ -106,13 +142,13 @@ export class BoxGroupComponent implements ControlValueAccessor {
      * @docs-private
      */
     select(value: any) {
-
-        if (!this._boxList) {
+        const boxList = this._getBoxList();
+        if (!boxList) {
             return;
         }
 
         if (this.type === 'radio') {
-            this._boxList.forEach(item => {
+            boxList.forEach(item => {
                 item.checked = item.value === value;
             });
             this.value = [value];
@@ -122,7 +158,7 @@ export class BoxGroupComponent implements ControlValueAccessor {
             });
         }
         else if (this.type === 'checkbox') {
-            const box = this._boxList.find(v => v.value === value);
+            const box = boxList.find(v => v.value === value);
 
             // de-duplicate value items
             const valueSet = new Set(this.value);
@@ -137,6 +173,7 @@ export class BoxGroupComponent implements ControlValueAccessor {
             }
         }
 
+        this._cd.markForCheck();
         this._updateFormModel();
     }
 
@@ -201,5 +238,9 @@ export class BoxGroupComponent implements ControlValueAccessor {
         if (this._onTouch) {
             this._onTouch(this.value);
         }
+    }
+
+    _getBoxList() {
+        return this.datasource && this.datasource ? this._boxViewList : this._boxList;
     }
 }

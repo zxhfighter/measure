@@ -8,7 +8,7 @@ import {
     templateUrl: './icons.component.html',
     styleUrls: ['./icons.component.less']
 })
-export class DemoIconsComponent implements OnInit {
+export class IconsComponentDemo implements OnInit {
     name = 'ComponentName';
 
     constructor() {

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -6,7 +6,7 @@ import * as moment from 'moment';
     templateUrl: './monthview.html',
     styleUrls: ['./monthview.less']
 })
-export class DemoMonthView {
+export class MonthViewDemo {
     startDate = new Date();
     endDate = moment().add(7, 'd').toDate();
     selectedDate: Date = moment().add(1, 'month').toDate();

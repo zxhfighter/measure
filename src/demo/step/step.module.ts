@@ -1,16 +1,16 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {StepModule} from '../../component/step';
-import {ButtonModule} from '../../component/button';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { StepModule } from '../../component/step';
+import { ButtonModule } from '../../component/button';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoStep} from './step';
-import {DemoStepBasic} from './basic/step-basic';
-import {DemoStepMulti} from './multiline/step-multi';
-import {DemoStepVertical} from './vertical/step-vertical';
-import {DemoStepSmall} from './small/step-small';
+import { StepDemo } from './step';
+import { StepBasicDemo } from './basic/step-basic';
+import { StepMultiDemo } from './multiline/step-multi';
+import { StepVerticalDemo } from './vertical/step-vertical';
+import { StepSmallDemo } from './small/step-small';
 
 @NgModule({
     imports: [
@@ -21,13 +21,13 @@ import {DemoStepSmall} from './small/step-small';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoStep,
-        DemoStepBasic,
-        DemoStepMulti,
-        DemoStepVertical,
-        DemoStepSmall
+        StepDemo,
+        StepBasicDemo,
+        StepMultiDemo,
+        StepVerticalDemo,
+        StepSmallDemo
     ],
     providers: [],
     exports: []
 })
-export class StepDemoModule {}
+export class StepDemoModule { }

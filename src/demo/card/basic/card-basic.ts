@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'demo-card-basic',
@@ -7,6 +7,6 @@ import {Component, ViewEncapsulation} from '@angular/core';
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false
 })
-export class DemoCardBasic {
+export class CardBasicDemo {
 
 }

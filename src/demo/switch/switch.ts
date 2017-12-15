@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-switch',
@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
     styleUrls: ['./switch.less'],
     preserveWhitespaces: false
 })
-export class DemoSwitch {
+export class SwitchDemo {
 
     // basic source
     tsCodeBasic: string = require('!!raw-loader!./basic/switch-basic.ts');

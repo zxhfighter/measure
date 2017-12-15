@@ -54,17 +54,18 @@ import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { SearchBoxDemo } from './search-box';
 import { DemoTree } from './tree';
-import { DemoToast } from './toast';
-import { DemoSelect } from './select';
+import { ToastDemoModule } from './toast';
+import { SelectDemoModule } from './select';
+import { OverlayDemo } from './overlay';
 import { DemoDialog } from './dialog';
 import { ChipsDemoModule } from './chips';
-import { DemoCodeBox } from './code-box';
+import { CodeBoxDemo } from './code-box';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar';
 import { DemoTransfer } from './transfer';
-import { DemoGuideComponent } from './docs';
-import { DemoIconsComponent } from './icons';
+import { GuideComponentDemo } from './docs';
+import { IconsComponentDemo } from './icons';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -81,6 +82,7 @@ import { RegionDemoModule } from './region';
 import { CardDemoModule } from './card';
 import { TableDemoModule } from './table';
 import { CodeHighlighterDemoModule } from './code-highlighter';
+import { SliderDemoModule } from './slider';
 
 const demoModules = [
     ButtonDemoModule,
@@ -97,8 +99,11 @@ const demoModules = [
     RegionDemoModule,
     CardDemoModule,
     TableDemoModule,
+    ToastDemoModule,
+    SelectDemoModule,
     ChipsDemoModule,
-    CodeHighlighterDemoModule
+    CodeHighlighterDemoModule,
+    SliderDemoModule
 ];
 
 @NgModule({
@@ -113,17 +118,17 @@ const demoModules = [
         DemoTextLine,
         SearchBoxDemo,
         DemoTree,
-        DemoToast,
-        DemoSelect,
         DemoDialog,
-        DemoCodeBox,
+        CodeBoxDemo,
         DemoTree,
         DemoSideBar,
+        OverlayDemo,
         DemoAccordion,
         DemoUploader,
         DemoTransfer,
-        DemoGuideComponent,
-        DemoIconsComponent
+        GuideComponentDemo,
+        IconsComponentDemo,
+        OverlayDemo
     ],
     imports: [
         BrowserModule,

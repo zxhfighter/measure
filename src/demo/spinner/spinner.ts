@@ -8,7 +8,7 @@ import {
     styleUrls: ['./spinner.less'],
     preserveWhitespaces: false
 })
-export class DemoSpinner {
+export class SpinnerDemo {
 
     // basic source
     tsCodeBasic: string = require('!!raw-loader!./basic/spinner-basic.ts');

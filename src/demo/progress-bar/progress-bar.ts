@@ -8,7 +8,7 @@ import {
     styleUrls: ['./progress-bar.less'],
     preserveWhitespaces: false
 })
-export class DemoProgressBar {
+export class ProgressBarDemo {
 
     // basic source
     tsCodeBasic: string = require('!!raw-loader!./basic/progress-bar-basic.ts');

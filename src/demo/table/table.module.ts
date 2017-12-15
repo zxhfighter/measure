@@ -1,22 +1,22 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {InputModule} from '../../component/input';
-import {TableModule} from '../../component/table';
-import {BoxGroupModule} from '../../component/box-group';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { InputModule } from '../../component/input';
+import { TableModule } from '../../component/table';
+import { BoxGroupModule } from '../../component/box-group';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoTable} from './table';
-import {DemoTableBasic} from './basic/table-basic';
-import {DemoTableCheckbox} from './checkbox/table-checkbox';
-import {DemoTableSort} from './sortable/table-sort';
-import {DemoTableResize} from './resize/table-resize';
-import {DemoTableFixHead} from './fix-head/table-fix-head';
-import {DemoTableFixColumn} from './fix-column/fix-column';
-import {DemoTableColSpan} from './colspan/table-colspan';
-import {DemoTableExpand} from './expand/table-expand';
-import {DemoTableEdit} from './edit/table-edit';
+import { TableDemo } from './table';
+import { TableBasicDemo } from './basic/table-basic';
+import { TableCheckboxDemo } from './checkbox/table-checkbox';
+import { TableSortDemo } from './sortable/table-sort';
+import { TableResizeDemo } from './resize/table-resize';
+import { TableFixHeadDemo } from './fix-head/table-fix-head';
+import { TableFixColumnDemo } from './fix-column/fix-column';
+import { TableColSpanDemo } from './colspan/table-colspan';
+import { TableExpandDemo } from './expand/table-expand';
+import { TableEditDemo } from './edit/table-edit';
 
 @NgModule({
     imports: [
@@ -28,18 +28,18 @@ import {DemoTableEdit} from './edit/table-edit';
         InputModule
     ],
     declarations: [
-        DemoTable,
-        DemoTableBasic,
-        DemoTableCheckbox,
-        DemoTableSort,
-        DemoTableResize,
-        DemoTableFixHead,
-        DemoTableFixColumn,
-        DemoTableColSpan,
-        DemoTableExpand,
-        DemoTableEdit
+        TableDemo,
+        TableBasicDemo,
+        TableCheckboxDemo,
+        TableSortDemo,
+        TableResizeDemo,
+        TableFixHeadDemo,
+        TableFixColumnDemo,
+        TableColSpanDemo,
+        TableExpandDemo,
+        TableEditDemo
     ],
     providers: [],
     exports: []
 })
-export class TableDemoModule {}
+export class TableDemoModule { }

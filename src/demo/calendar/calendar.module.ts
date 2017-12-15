@@ -1,17 +1,17 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {CalendarModule} from '../../component/calendar';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { CalendarModule } from '../../component/calendar';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoCalendar} from './calendar';
-import {DemoMonthView} from './monthview/monthview';
-import {DemoCalendarInner} from './calendar/calendar';
-import {DemoDatePicker} from './datepicker/datepicker';
-import {DemoDateRange} from './daterangepicker/date-range';
-import {DemoCalendarForm} from './form/calendar-form';
+import { CalendarDemo } from './calendar';
+import { MonthViewDemo } from './monthview/monthview';
+import { CalendarInnerDemo } from './calendar/calendar';
+import { DatePickerDemo } from './datepicker/datepicker';
+import { DateRangeDemo } from './daterangepicker/date-range';
+import { CalendarFormDemo } from './form/calendar-form';
 
 @NgModule({
     imports: [
@@ -23,14 +23,14 @@ import {DemoCalendarForm} from './form/calendar-form';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoCalendar,
-        DemoMonthView,
-        DemoCalendarInner,
-        DemoDatePicker,
-        DemoDateRange,
-        DemoCalendarForm
+        CalendarDemo,
+        MonthViewDemo,
+        CalendarInnerDemo,
+        DatePickerDemo,
+        DateRangeDemo,
+        CalendarFormDemo
     ],
     providers: [],
     exports: []
 })
-export class CalendarDemoModule {}
+export class CalendarDemoModule { }
