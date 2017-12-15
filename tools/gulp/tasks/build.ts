@@ -1,20 +1,20 @@
-import {task, src, dest} from 'gulp';
-import {spawnSync} from 'child_process';
-import {resolve, join} from 'path';
-import {sequenceTask} from '../utils/sequence-task';
-import {inlineAssetForDirectory} from '../utils/inline-asset';
-import {copyTask} from '../utils/task_helpers';
-import {config} from '../utils/config';
-import {readFileSync, writeFileSync} from 'fs';
-import {sync as glob} from 'glob';
+import { task, src, dest } from 'gulp';
+import { spawnSync } from 'child_process';
+import { resolve, join } from 'path';
+import { sequenceTask } from '../utils/sequence-task';
+import { inlineAssetForDirectory } from '../utils/inline-asset';
+import { copyTask } from '../utils/task_helpers';
+import { config } from '../utils/config';
+import { readFileSync, writeFileSync } from 'fs';
+import { sync as glob } from 'glob';
 
 const rollup = require('rollup');
 const rollupNodeResolutionPlugin = require('rollup-plugin-node-resolve');
 const rollupCommonjsPlugin = require('rollup-plugin-commonjs');
 const htmlmin = require('gulp-htmlmin');
 const less = require('gulp-less');
-const LessAutoprefix = require('less-plugin-autoprefix');
-const autoprefixPlugin = new LessAutoprefix({browsers: ['last 2 versions']});
+const lessAutoprefix = require('less-plugin-autoprefix');
+const autoprefixPlugin = new lessAutoprefix({ browsers: ['last 2 versions'] });
 const gulpCleanCss = require('gulp-clean-css');
 const uglifyJS = require('uglify-js');
 const replace = require('gulp-replace');
@@ -111,7 +111,9 @@ task('build:less:replacepath', (cb?: Function) => {
         writeFileSync(filePath, cssContent, 'utf-8');
     });
 
-    cb && cb();
+    if (cb) {
+        cb();
+    }
 });
 
 /**
@@ -171,7 +173,7 @@ task('build:bundle', async () => {
     };
 
     const bundle = await rollup.rollup(inputOptions);
-    const {code, map} = await bundle.generate(outputOptions);
+    const { code, map } = await bundle.generate(outputOptions);
 
     await bundle.write(outputOptions);
 });
@@ -183,7 +185,9 @@ task('build:uglify', (cb?: Function) => {
     const uglifyPath = resolve('./node_modules/.bin/uglifyjs');
     const umdFile = join(config.umdPath, `${config.moduleName}.umd.js`);
     const umdMiniFile = join(config.umdPath, `${config.moduleName}.umd.min.js`);
-    const childProcess = spawnSync(uglifyPath, ['-c', '-m', '--source-map', '-o',  umdMiniFile, '--', umdFile]);
+    const childProcess = spawnSync(uglifyPath, ['-c', '-m', '--source-map', '-o', umdMiniFile, '--', umdFile]);
 
-    cb && cb();
+    if (cb) {
+        cb();
+    }
 });

@@ -1,9 +1,9 @@
-import {join} from 'path';
-import {src, task, dest} from 'gulp';
-import {spawnSync} from 'child_process';
-import {sequenceTask} from '../utils/sequence-task';
+import { join } from 'path';
+import { src, task, dest } from 'gulp';
+import { spawnSync } from 'child_process';
+import { sequenceTask } from '../utils/sequence-task';
 
-import {config} from '../utils/config';
+import { config } from '../utils/config';
 
 task('build:package', sequenceTask('copy-package', 'copy-readme'));
 
@@ -20,5 +20,7 @@ task('copy-readme', () => {
 task('gzip', (cb?: Function) => {
     spawnSync('cd', [config.dist]);
     spawnSync('tar', ['-czf', 'xdesign.tar.gz', '*']);
-    cb && cb();
+    if (cb) {
+        cb();
+    }
 });

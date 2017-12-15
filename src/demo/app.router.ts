@@ -39,6 +39,7 @@ import { DemoUploader } from './uploader';
 import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
+import { TypographyDemo } from './typography';
 import { SliderComponentDemo } from './slider';
 
 export const appRoutes: Routes = [
@@ -82,5 +83,6 @@ export const appRoutes: Routes = [
     { path: 'transfer', component: DemoTransfer },
     { path: 'docs', component: GuideComponentDemo },
     { path: 'icons', component: IconsComponentDemo },
+    { path: 'typography', component: TypographyDemo },
     { path: 'slider', component: SliderComponentDemo }
 ];
