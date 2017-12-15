@@ -38,6 +38,7 @@ import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
+import { TypographyDemo } from './typography';
 import { SliderComponentDemo } from './slider';
 
 export const appRoutes: Routes = [
@@ -80,5 +81,6 @@ export const appRoutes: Routes = [
     { path: 'uploader', component: DemoUploader },
     { path: 'docs', component: GuideComponentDemo },
     { path: 'icons', component: IconsComponentDemo },
+    { path: 'typography', component: TypographyDemo },
     { path: 'slider', component: SliderComponentDemo }
 ];

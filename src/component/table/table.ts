@@ -391,19 +391,6 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
 }
 
 /**
- * table header component
- */
-@Component({
-    selector: 'thead[nb-thead]',
-    template: `<ng-content></ng-content>`,
-    preserveWhitespaces: false,
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { 'class': 'nb-table-head' }
-})
-export class TableHeaderComponent { }
-
-/**
  * table header item component
  */
 @Component({
@@ -784,20 +771,6 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy {
         }
     }
 }
-
-/**
- * table body component
- */
-@Component({
-    selector: 'tbody[nb-tbody]',
-    template: `<ng-content></ng-content>`,
-    preserveWhitespaces: false,
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { 'class': 'nb-table-body' },
-    exportAs: 'nbTableBody'
-})
-export class TableBodyComponent { }
 
 /**
  * table row component

@@ -1,12 +1,12 @@
-import {task, src, dest, series} from 'gulp';
-import {spawnSync} from 'child_process';
-import {join} from 'path';
+import { task, src, dest } from 'gulp';
+import { spawnSync } from 'child_process';
+import { join } from 'path';
 
-import {config} from '../utils/config';
-import {sequenceTask} from '../utils/sequence-task';
-import {tsBuildTask, copyTask} from '../utils/task_helpers';
+import { config } from '../utils/config';
+import { sequenceTask } from '../utils/sequence-task';
+import { tsBuildTask, copyTask } from '../utils/task_helpers';
 
-import {readFileSync, writeFileSync} from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 
 const serve = require('browser-sync');
 const webpack = require('webpack');
@@ -44,10 +44,10 @@ task(':serve', () => {
     serve({
         port: process.env.PORT || 9009,
         open: true,
-        server: {baseDir: config.appPath},
+        server: { baseDir: config.appPath },
         middleware: [
             helper.isProxy()
-                ? proxyMiddleware(proxyConfig.prefix, {target})
+                ? proxyMiddleware(proxyConfig.prefix, { target })
                 : interceptor,
             webpackDevMiddelware(compiler, {
                 stats: {
@@ -84,7 +84,9 @@ task('build:demo:webpack', (cb?: Function) => {
             errorDetails: true
         }));
 
-        cb && cb();
+        if (cb) {
+            cb();
+        }
     });
 });
 
