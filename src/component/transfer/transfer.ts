@@ -96,7 +96,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
      * selected options's id as list
      * @docs-private
      */
-    private dataListSelected: Array<number[] | string[]> = [];
+    private dataListSelected: Array<string> = [];
 
     constructor() { }
 
@@ -191,7 +191,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
 
     /** judge node whether have child */
     hasChildren(node: TreeNode) {
-        if (!node.chhildren) {
+        if (!node.children) {
             return true;
         }
         if (node.children && node.children.length === 0) {
