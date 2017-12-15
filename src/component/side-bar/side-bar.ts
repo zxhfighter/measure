@@ -91,7 +91,7 @@ export class SideBarComponent implements OnInit {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
                 node.isExpanded = expanded;
-                node.isSelected = true;
+                node.show = true;
                 if (node.children && node.children.length) {
                     this.initTree(node.children, expanded);
                 }
@@ -104,7 +104,7 @@ export class SideBarComponent implements OnInit {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
                 node.isExpanded = false;
-                node.isSelected = false;
+                node.show = false;
                 this._listTreeNodes.push(node);
                 if (node.children && node.children.length) {
                     this.transferTreeToList(node.children);
@@ -267,13 +267,13 @@ export class SideBarComponent implements OnInit {
     renderSelectedNode(rootNode: TreeNode, targetNode: TreeNode) {
         if (rootNode.id === targetNode.id) {
             rootNode.isExpanded = true;
-            rootNode.isSelected = true;
+            rootNode.show = true;
         } else {
             if (rootNode.children && rootNode.children.length) {
                 for (let child of rootNode.children) {
                     if (targetNode.id === child.id) {
                         child.isExpanded = true;
-                        child.isSelected = true;
+                        child.show = true;
                     } else {
                         this.renderSelectedNode(child, targetNode);
                     }

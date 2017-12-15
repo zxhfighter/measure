@@ -52,7 +52,7 @@ import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
 import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
-import { DemoSearchBox } from './search-box';
+import { SearchBoxDemo } from './search-box';
 import { DemoTree } from './tree';
 import { DemoToast } from './toast';
 import { DemoSelect } from './select';
@@ -111,7 +111,7 @@ const demoModules = [
         DemoSchedule,
         DemoTextarea,
         DemoTextLine,
-        DemoSearchBox,
+        SearchBoxDemo,
         DemoTree,
         DemoToast,
         DemoSelect,

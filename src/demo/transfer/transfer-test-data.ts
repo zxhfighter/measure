@@ -1,7 +1,7 @@
 export const candidateData = [
     {
         id: '1',
-        name: '中国',
+        name: '中国1',
         selectable: true,
         isExpanded: true,
         isSelected: false,
@@ -305,6 +305,8 @@ export const candidateData = [
                 name: '华东',
                 selectable: true,
                 isExpanded: false,
+                isSelected: false,
+                parent: { id: '1' },
                 ico: 'custom',
                 children: [
                     {
@@ -312,6 +314,8 @@ export const candidateData = [
                         name: '上海',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '02' },
                         ico: 'custom',
                         children: [
                             {
@@ -319,6 +323,8 @@ export const candidateData = [
                                 name: '静安区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             },
                             {
@@ -326,6 +332,8 @@ export const candidateData = [
                                 name: '浦东新区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             },
                             {
@@ -333,6 +341,8 @@ export const candidateData = [
                                 name: '徐汇区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             },
                             {
@@ -340,6 +350,8 @@ export const candidateData = [
                                 name: '长宁区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             },
                             {
@@ -347,6 +359,8 @@ export const candidateData = [
                                 name: '虹口区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             }
                         ]
@@ -356,6 +370,8 @@ export const candidateData = [
                         name: '江苏',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '02' },
                         ico: 'custom',
                         children: [
                             {
@@ -363,6 +379,8 @@ export const candidateData = [
                                 name: '南京',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0202' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -370,6 +388,8 @@ export const candidateData = [
                                         name: '玄武区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -377,6 +397,8 @@ export const candidateData = [
                                         name: '建邺区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -384,6 +406,8 @@ export const candidateData = [
                                         name: '雨花台区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -391,6 +415,8 @@ export const candidateData = [
                                         name: '江宁区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020201' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -400,6 +426,8 @@ export const candidateData = [
                                 name: '苏州',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0202' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -407,6 +435,8 @@ export const candidateData = [
                                         name: '姑苏区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020202' },
                                         ico: 'custom',
                                     },
                                     {
@@ -414,6 +444,8 @@ export const candidateData = [
                                         name: '吴中区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020202' },
                                         ico: 'custom',
                                     },
                                     {
@@ -421,6 +453,8 @@ export const candidateData = [
                                         name: '相城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020202' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -430,6 +464,8 @@ export const candidateData = [
                                 name: '扬州',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0202' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -437,6 +473,8 @@ export const candidateData = [
                                         name: '邗江区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020203' },
                                         ico: 'custom',
                                     },
                                     {
@@ -444,6 +482,8 @@ export const candidateData = [
                                         name: '江都区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020203' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -455,6 +495,8 @@ export const candidateData = [
                         name: '浙江',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '02' },
                         ico: 'custom',
                         children: [
                             {
@@ -462,6 +504,8 @@ export const candidateData = [
                                 name: '杭州',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0203' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -469,6 +513,8 @@ export const candidateData = [
                                         name: '上城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -476,6 +522,8 @@ export const candidateData = [
                                         name: '下城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -483,6 +531,8 @@ export const candidateData = [
                                         name: '西湖区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -490,6 +540,8 @@ export const candidateData = [
                                         name: '江干区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -497,6 +549,8 @@ export const candidateData = [
                                         name: '滨江区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -504,6 +558,8 @@ export const candidateData = [
                                         name: '萧山区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -511,6 +567,8 @@ export const candidateData = [
                                         name: '拱墅区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -520,6 +578,8 @@ export const candidateData = [
                                 name: '宁波',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0203' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -527,6 +587,8 @@ export const candidateData = [
                                         name: '江北区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -534,6 +596,8 @@ export const candidateData = [
                                         name: '鄞州区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -541,6 +605,8 @@ export const candidateData = [
                                         name: '海曙区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -548,6 +614,8 @@ export const candidateData = [
                                         name: '北仑区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020302' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -557,6 +625,8 @@ export const candidateData = [
                                 name: '温州',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0203' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -564,6 +634,8 @@ export const candidateData = [
                                         name: '鹿城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -571,6 +643,8 @@ export const candidateData = [
                                         name: '龙湾区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -578,6 +652,8 @@ export const candidateData = [
                                         name: '瓯海区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -585,6 +661,8 @@ export const candidateData = [
                                         name: '洞头区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020303' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -598,6 +676,8 @@ export const candidateData = [
                 name: '东北',
                 selectable: true,
                 isExpanded: false,
+                isSelected: false,
+                parent: { id: '1' },
                 ico: 'custom',
                 children: [
                     {
@@ -605,6 +685,8 @@ export const candidateData = [
                         name: '辽宁',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '03' },
                         ico: 'custom',
                         children: [
                             {
@@ -612,6 +694,8 @@ export const candidateData = [
                                 name: '沈阳',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0301' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -619,6 +703,8 @@ export const candidateData = [
                                         name: '和平区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030101' },
                                         ico: 'custom',
                                     },
                                     {
@@ -626,6 +712,8 @@ export const candidateData = [
                                         name: '沈河区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030101' },
                                         ico: 'custom',
                                     },
                                     {
@@ -633,6 +721,8 @@ export const candidateData = [
                                         name: '皇姑区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030101' },
                                         ico: 'custom',
                                     },
                                     {
@@ -640,6 +730,8 @@ export const candidateData = [
                                         name: '铁西区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030101' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -649,6 +741,8 @@ export const candidateData = [
                                 name: '大连',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0301' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -656,6 +750,8 @@ export const candidateData = [
                                         name: '中山区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030102' },
                                         ico: 'custom',
                                     },
                                     {
@@ -663,6 +759,8 @@ export const candidateData = [
                                         name: '西岗区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030102' },
                                         ico: 'custom',
                                     },
                                     {
@@ -670,6 +768,8 @@ export const candidateData = [
                                         name: '沙河口区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030102' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -679,6 +779,8 @@ export const candidateData = [
                                 name: '鞍山',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0301' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -686,6 +788,8 @@ export const candidateData = [
                                         name: '铁东区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030103' },
                                         ico: 'custom',
                                     },
                                     {
@@ -693,6 +797,8 @@ export const candidateData = [
                                         name: '铁西区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030103' },
                                         ico: 'custom',
                                     },
                                     {
@@ -700,6 +806,8 @@ export const candidateData = [
                                         name: '立山区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030103' },
                                         ico: 'custom',
                                     },
                                     {
@@ -707,6 +815,8 @@ export const candidateData = [
                                         name: '千山区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030103' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -718,6 +828,8 @@ export const candidateData = [
                         name: '吉林',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '03' },
                         ico: 'custom',
                         children: [
                             {
@@ -725,6 +837,8 @@ export const candidateData = [
                                 name: '长春',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0302' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -732,6 +846,8 @@ export const candidateData = [
                                         name: '南关区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -739,6 +855,8 @@ export const candidateData = [
                                         name: '朝阳区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -746,6 +864,8 @@ export const candidateData = [
                                         name: '绿园区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030201' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -755,6 +875,8 @@ export const candidateData = [
                                 name: '吉林',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0302' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -762,6 +884,8 @@ export const candidateData = [
                                         name: '船营区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030202' },
                                         ico: 'custom',
                                     },
                                     {
@@ -769,6 +893,8 @@ export const candidateData = [
                                         name: '龙潭区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030202' },
                                         ico: 'custom',
                                     },
                                     {
@@ -776,6 +902,8 @@ export const candidateData = [
                                         name: '丰满区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030202' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -785,6 +913,8 @@ export const candidateData = [
                                 name: '通化',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0302' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -792,6 +922,8 @@ export const candidateData = [
                                         name: '东昌区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030203' },
                                         ico: 'custom',
                                     },
                                     {
@@ -799,6 +931,8 @@ export const candidateData = [
                                         name: '二道江区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030203' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -810,6 +944,8 @@ export const candidateData = [
                         name: '黑龙江',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '03' },
                         ico: 'custom',
                         children: [
                             {
@@ -817,6 +953,8 @@ export const candidateData = [
                                 name: '哈尔滨',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0303' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -824,6 +962,8 @@ export const candidateData = [
                                         name: '道里区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -831,6 +971,8 @@ export const candidateData = [
                                         name: '南岗区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -838,6 +980,8 @@ export const candidateData = [
                                         name: '道外区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030301' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -847,6 +991,8 @@ export const candidateData = [
                                 name: '齐齐哈尔',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0303' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -854,6 +1000,8 @@ export const candidateData = [
                                         name: '龙沙区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -861,6 +1009,8 @@ export const candidateData = [
                                         name: '建华区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -868,6 +1018,8 @@ export const candidateData = [
                                         name: '铁锋区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030302' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -877,6 +1029,8 @@ export const candidateData = [
                                 name: '大庆',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0303' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -884,6 +1038,8 @@ export const candidateData = [
                                         name: '萨尔图区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -891,6 +1047,8 @@ export const candidateData = [
                                         name: '龙凤区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -898,6 +1056,8 @@ export const candidateData = [
                                         name: '让胡路区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030303' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -957,7 +1117,7 @@ export const candidateData = [
 export const selectedData = [
     {
         id: '1',
-        name: '中国',
+        name: '中国2',
         selectable: true,
         isExpanded: true,
         isSelected: true,
@@ -1119,28 +1279,36 @@ export const selectedData = [
                                 name: '石家庄',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
                                 ico: 'custom',
+                                parent: { id: '0103' },
                                 children: [
                                     {
                                         id: '01030101',
                                         name: '桥西区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
                                         ico: 'custom',
+                                        parent: { id: '010301' },
                                     },
                                     {
                                         id: '01030102',
                                         name: '新华区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
                                         ico: 'custom',
+                                        parent: { id: '010301' },
                                     },
                                     {
                                         id: '01030103',
                                         name: '裕华区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
                                         ico: 'custom',
+                                        parent: { id: '010301' },
                                     }
                                 ]
                             },
@@ -1149,28 +1317,36 @@ export const selectedData = [
                                 name: '保定',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
                                 ico: 'custom',
+                                parent: { id: '0103' },
                                 children: [
                                     {
                                         id: '01030201',
                                         name: '莲池区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
                                         ico: 'custom',
+                                        parent: { id: '010302' },
                                     },
                                     {
                                         id: '01030202',
                                         name: '清苑区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
                                         ico: 'custom',
+                                        parent: { id: '010302' },
                                     },
                                     {
                                         id: '01030203',
                                         name: '满城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
                                         ico: 'custom',
+                                        parent: { id: '010302' },
                                     }
                                 ]
                             },
@@ -1179,14 +1355,18 @@ export const selectedData = [
                                 name: '衡水',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
                                 ico: 'custom',
+                                parent: { id: '0103' },
                             },
                             {
                                 id: '010304',
                                 name: '廊坊',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
                                 ico: 'custom',
+                                parent: { id: '0103' },
                             }
                         ]
                     }
@@ -1196,19 +1376,18 @@ export const selectedData = [
                 id: '02',
                 name: '华东',
                 selectable: true,
-                isExpanded: true,
+                isExpanded: false,
                 isSelected: false,
                 parent: { id: '1' },
                 ico: 'custom',
-                expandedIco: 'expanded',
-                collapsedIco: 'collapsed',
-                styleClass: 'selfStyle',
                 children: [
                     {
                         id: '0201',
                         name: '上海',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '02' },
                         ico: 'custom',
                         children: [
                             {
@@ -1216,6 +1395,8 @@ export const selectedData = [
                                 name: '静安区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             },
                             {
@@ -1223,6 +1404,8 @@ export const selectedData = [
                                 name: '浦东新区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             },
                             {
@@ -1230,6 +1413,8 @@ export const selectedData = [
                                 name: '徐汇区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             },
                             {
@@ -1237,6 +1422,8 @@ export const selectedData = [
                                 name: '长宁区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             },
                             {
@@ -1244,6 +1431,8 @@ export const selectedData = [
                                 name: '虹口区',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0201' },
                                 ico: 'custom',
                             }
                         ]
@@ -1253,6 +1442,8 @@ export const selectedData = [
                         name: '江苏',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '02' },
                         ico: 'custom',
                         children: [
                             {
@@ -1260,6 +1451,8 @@ export const selectedData = [
                                 name: '南京',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0202' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1267,6 +1460,8 @@ export const selectedData = [
                                         name: '玄武区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1274,6 +1469,8 @@ export const selectedData = [
                                         name: '建邺区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1281,6 +1478,8 @@ export const selectedData = [
                                         name: '雨花台区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1288,6 +1487,8 @@ export const selectedData = [
                                         name: '江宁区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020201' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1297,6 +1498,8 @@ export const selectedData = [
                                 name: '苏州',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0202' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1304,6 +1507,8 @@ export const selectedData = [
                                         name: '姑苏区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020202' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1311,6 +1516,8 @@ export const selectedData = [
                                         name: '吴中区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020202' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1318,6 +1525,8 @@ export const selectedData = [
                                         name: '相城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020202' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1327,6 +1536,8 @@ export const selectedData = [
                                 name: '扬州',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0202' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1334,6 +1545,8 @@ export const selectedData = [
                                         name: '邗江区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020203' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1341,6 +1554,8 @@ export const selectedData = [
                                         name: '江都区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020203' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1352,6 +1567,8 @@ export const selectedData = [
                         name: '浙江',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '02' },
                         ico: 'custom',
                         children: [
                             {
@@ -1359,6 +1576,8 @@ export const selectedData = [
                                 name: '杭州',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0203' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1366,6 +1585,8 @@ export const selectedData = [
                                         name: '上城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1373,6 +1594,8 @@ export const selectedData = [
                                         name: '下城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1380,6 +1603,8 @@ export const selectedData = [
                                         name: '西湖区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1387,6 +1612,8 @@ export const selectedData = [
                                         name: '江干区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1394,6 +1621,8 @@ export const selectedData = [
                                         name: '滨江区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1401,6 +1630,8 @@ export const selectedData = [
                                         name: '萧山区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1408,6 +1639,8 @@ export const selectedData = [
                                         name: '拱墅区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020301' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1417,6 +1650,8 @@ export const selectedData = [
                                 name: '宁波',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0203' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1424,6 +1659,8 @@ export const selectedData = [
                                         name: '江北区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1431,6 +1668,8 @@ export const selectedData = [
                                         name: '鄞州区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1438,6 +1677,8 @@ export const selectedData = [
                                         name: '海曙区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1445,6 +1686,8 @@ export const selectedData = [
                                         name: '北仑区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020302' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1454,6 +1697,8 @@ export const selectedData = [
                                 name: '温州',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0203' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1461,6 +1706,8 @@ export const selectedData = [
                                         name: '鹿城区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1468,6 +1715,8 @@ export const selectedData = [
                                         name: '龙湾区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1475,6 +1724,8 @@ export const selectedData = [
                                         name: '瓯海区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1482,6 +1733,8 @@ export const selectedData = [
                                         name: '洞头区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '020303' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1494,19 +1747,18 @@ export const selectedData = [
                 id: '03',
                 name: '东北',
                 selectable: true,
-                isExpanded: true,
+                isExpanded: false,
                 isSelected: false,
                 parent: { id: '1' },
                 ico: 'custom',
-                expandedIco: 'expanded',
-                collapsedIco: 'collapsed',
-                styleClass: 'selfStyle',
                 children: [
                     {
                         id: '0301',
                         name: '辽宁',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '03' },
                         ico: 'custom',
                         children: [
                             {
@@ -1514,6 +1766,8 @@ export const selectedData = [
                                 name: '沈阳',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0301' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1521,6 +1775,8 @@ export const selectedData = [
                                         name: '和平区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030101' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1528,6 +1784,8 @@ export const selectedData = [
                                         name: '沈河区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030101' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1535,6 +1793,8 @@ export const selectedData = [
                                         name: '皇姑区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030101' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1542,6 +1802,8 @@ export const selectedData = [
                                         name: '铁西区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030101' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1551,6 +1813,8 @@ export const selectedData = [
                                 name: '大连',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0301' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1558,6 +1822,8 @@ export const selectedData = [
                                         name: '中山区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030102' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1565,6 +1831,8 @@ export const selectedData = [
                                         name: '西岗区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030102' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1572,6 +1840,8 @@ export const selectedData = [
                                         name: '沙河口区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030102' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1581,6 +1851,8 @@ export const selectedData = [
                                 name: '鞍山',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0301' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1588,6 +1860,8 @@ export const selectedData = [
                                         name: '铁东区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030103' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1595,6 +1869,8 @@ export const selectedData = [
                                         name: '铁西区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030103' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1602,6 +1878,8 @@ export const selectedData = [
                                         name: '立山区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030103' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1609,6 +1887,8 @@ export const selectedData = [
                                         name: '千山区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030103' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1620,6 +1900,8 @@ export const selectedData = [
                         name: '吉林',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '03' },
                         ico: 'custom',
                         children: [
                             {
@@ -1627,6 +1909,8 @@ export const selectedData = [
                                 name: '长春',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0302' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1634,6 +1918,8 @@ export const selectedData = [
                                         name: '南关区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1641,6 +1927,8 @@ export const selectedData = [
                                         name: '朝阳区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030201' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1648,6 +1936,8 @@ export const selectedData = [
                                         name: '绿园区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030201' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1657,6 +1947,8 @@ export const selectedData = [
                                 name: '吉林',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0302' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1664,6 +1956,8 @@ export const selectedData = [
                                         name: '船营区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030202' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1671,6 +1965,8 @@ export const selectedData = [
                                         name: '龙潭区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030202' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1678,6 +1974,8 @@ export const selectedData = [
                                         name: '丰满区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030202' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1687,6 +1985,8 @@ export const selectedData = [
                                 name: '通化',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0302' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1694,6 +1994,8 @@ export const selectedData = [
                                         name: '东昌区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030203' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1701,6 +2003,8 @@ export const selectedData = [
                                         name: '二道江区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030203' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1712,6 +2016,8 @@ export const selectedData = [
                         name: '黑龙江',
                         selectable: true,
                         isExpanded: false,
+                        isSelected: false,
+                        parent: { id: '03' },
                         ico: 'custom',
                         children: [
                             {
@@ -1719,6 +2025,8 @@ export const selectedData = [
                                 name: '哈尔滨',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0303' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1726,6 +2034,8 @@ export const selectedData = [
                                         name: '道里区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1733,6 +2043,8 @@ export const selectedData = [
                                         name: '南岗区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030301' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1740,6 +2052,8 @@ export const selectedData = [
                                         name: '道外区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030301' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1749,6 +2063,8 @@ export const selectedData = [
                                 name: '齐齐哈尔',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0303' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1756,6 +2072,8 @@ export const selectedData = [
                                         name: '龙沙区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1763,6 +2081,8 @@ export const selectedData = [
                                         name: '建华区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030302' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1770,6 +2090,8 @@ export const selectedData = [
                                         name: '铁锋区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030302' },
                                         ico: 'custom',
                                     }
                                 ]
@@ -1779,6 +2101,8 @@ export const selectedData = [
                                 name: '大庆',
                                 selectable: true,
                                 isExpanded: false,
+                                isSelected: false,
+                                parent: { id: '0303' },
                                 ico: 'custom',
                                 children: [
                                     {
@@ -1786,6 +2110,8 @@ export const selectedData = [
                                         name: '萨尔图区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1793,6 +2119,8 @@ export const selectedData = [
                                         name: '龙凤区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030303' },
                                         ico: 'custom',
                                     },
                                     {
@@ -1800,6 +2128,8 @@ export const selectedData = [
                                         name: '让胡路区',
                                         selectable: true,
                                         isExpanded: false,
+                                        isSelected: false,
+                                        parent: { id: '030303' },
                                         ico: 'custom',
                                     }
                                 ]

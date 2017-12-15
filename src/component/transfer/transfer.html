@@ -4,29 +4,25 @@
         <a 
             nb-button
             theme="transparent"
-            class="nb-transfer-operate-link" 
-            (click)="selectAll()">
+            [disabled]="disabled"
+            (click)="transAll('selected', true)">
             全部添加
         </a>
     </div>
     <nb-search-box 
         placeholder="" 
         size="small" 
-        (onClear)="clearCandidate($event)" 
-        (onSearch)="searchCandidate($event)">
+        [disabled]="disabled"
+        (onClear)="clearSearch($event, 'candidate')" 
+        (onSearch)="searchByKeyWord($event, 'candidate')">
     </nb-search-box>
     <div class="nb-transfer-tree-wrap">
         <nb-tree 
-            *ngIf="hasTreeData" 
             [treeData]="candidateData" 
             selectionMode="candidate" 
-            (onNodeSelect)="nodeSelect($event)">
+            [disabled]="disabled"
+            (onNodeSelect)="transNode($event, 'selected')">
         </nb-tree>
-        <div 
-            *ngIf="!hasTreeData" 
-            class="nb-side-bar-no-tree">
-            暂无数据！
-        </div>
     </div>
 </div>
 
@@ -36,31 +32,31 @@
         <a 
             nb-button
             theme="transparent"
+            [disabled]="disabled"
             class="nb-transfer-operate-link" 
-            (click)="deleteAll()">
+            (click)="transAll('candidate', false)">
             全部删除
         </a>
     </div>
     <nb-search-box 
         placeholder="" 
-        isSuggestion="true" 
         size="small" 
-        (onSearchSuggestion)="searchSuggestion($event)" 
-        [suggestionValue]="suggestionValue"
-        (onClear)="clear($event)" 
-        (onSearch)="search($event)">
+        [disabled]="disabled"
+        (onClear)="clearSearch($event, 'selected')" 
+        (onSearch)="searchByKeyWord($event, 'selected')">
     </nb-search-box>
     <div class="nb-transfer-tree-wrap">
         <nb-tree 
-            *ngIf="hasTreeData" 
+            *ngIf="selectedCount" 
             [treeData]="selectedData" 
             selectionMode="selected" 
-            (onNodeSelect)="nodeSelect($event)">
+            [disabled]="disabled"
+            (onNodeSelect)="transNode($event, 'candidate')">
         </nb-tree>
         <div 
-            *ngIf="!hasTreeData" 
-            class="nb-side-bar-no-tree">
-            暂无数据！
+            *ngIf="!selectedCount" 
+            class="nb-transfer-no-tree">
+            请从左侧选择内容
         </div>
     </div>
 </div>

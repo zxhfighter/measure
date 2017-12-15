@@ -9,7 +9,7 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class DemoSearchBox implements OnInit {
+export class SearchBoxDemo implements OnInit {
 
     public searchValue = 'qazwsx';
     public suggestionValue = ['qwe', 'asd', 'zxc'];

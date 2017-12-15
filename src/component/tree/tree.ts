@@ -29,6 +29,8 @@ export class TreeComponent implements OnInit {
     /** input tree mode, default: '', have ''|'candidate'|'selected' three modes*/
     @Input() selectionMode: string;
 
+    @Input() disabled = false;
+
     /** Whether upward propagation events, default:true */
     @Input() propagateSelectionUp: boolean = true;
 
@@ -65,7 +67,7 @@ export class TreeComponent implements OnInit {
 
     /** listen tree-node click event */
     onNodeClick(node: TreeNode) {
-        if (!node.selectable) {
+        if (!node.selectable || this.disabled) {
             return;
         }
 
@@ -117,6 +119,7 @@ export class TreeComponent implements OnInit {
     /** select event downward propagate handler */
     propagateDown(node: TreeNode, select: boolean) {
         node.isSelected = select;
+        node.show = select;
         if (node.children && node.children.length) {
             for (let child of node.children) {
                 this.propagateDown(child, select);
@@ -127,6 +130,7 @@ export class TreeComponent implements OnInit {
     /** select event upward propagate handler */
     propagateUp(node: TreeNode, select: boolean) {
         node.isSelected = select;
+        node.show = select;
         let nodeParent: TreeNode;
         if (node.parent) {
             nodeParent = this.getParent(node.parent);
@@ -139,6 +143,7 @@ export class TreeComponent implements OnInit {
                 }
                 if (nodeParent.children.length === selectedCount) {
                     nodeParent.isSelected = select;
+                    nodeParent.show = select;
                 }
             }
 

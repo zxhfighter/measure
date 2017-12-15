@@ -11,6 +11,31 @@
     overflow: scroll;
 }
 
+.@{prefix}-transfer-no-tree {
+    display: block;
+    width: 100%;
+    height: 36px;
+    padding-left: 20px;
+    line-height: 36px;
+    color: #bbb;
+}
+
+.@{prefix}-transfer-candidate .@{prefix}-transfer-title .@{prefix}-button-theme-transparent,
+.@{prefix}-transfer-selected .@{prefix}-transfer-title .@{prefix}-button-theme-transparent {
+    float: right;
+    padding: 0;
+    background-color: transparent;
+
+    &:hover {
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
 // candidate
 .@{prefix}-transfer-candidate {
     display: inline-block;
@@ -18,15 +43,6 @@
     height: 360px;
     margin: 15px;
     border: 1px solid #ddd;
-}
-
-.@{prefix}-transfer-candidate .@{prefix}-transfer-operate-link {
-    float: right;
-    cursor: pointer;
-
-    &:hover {
-        text-decoration: none;
-    }
 }
 
 .@{prefix}-transfer-candidate .@{prefix}-search-box {
@@ -49,15 +65,6 @@
     height: 360px;
     margin: 15px;
     border: 1px solid #ddd;
-}
-
-.@{prefix}-transfer-selected .@{prefix}-transfer-operate-link {
-    float: right;
-    cursor: pointer;
-
-    &:hover {
-        text-decoration: none;
-    }
 }
 
 .@{prefix}-transfer-selected .@{prefix}-search-box {

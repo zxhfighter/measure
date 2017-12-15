@@ -14,6 +14,19 @@
     <h3 class="section-title">Transfer first demo</h3>
 
     <p>
-        <nb-transfer [candidateData]="candidateData" [selectedData]="selectedData"></nb-transfer>
+        <nb-transfer 
+            [candidateData]="candidateData" 
+            [selectedData]="selectedData"
+            (getValue)="getValue($event)"></nb-transfer>
+    </p>
+
+    <h3 class="section-title">Disabled State</h3>
+    
+    <p>
+        <nb-transfer 
+            [candidateData]="candidateData" 
+            [selectedData]="selectedData"
+            (getValue)="getValue($event)"
+            [disabled]="disabled"></nb-transfer>
     </p>
 </section>

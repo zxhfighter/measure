@@ -19,11 +19,17 @@ export class DemoTransfer implements OnInit {
 
     private selectedData = selectedData;
 
+    private disabled = true;
+
     constructor() {
 
     }
 
     ngOnInit() {
 
+    }
+
+    getValue(event) {
+        console.log(event)
     }
 }

@@ -3,6 +3,7 @@
     [ngClass]="{'nb-tree-selectable':selectionMode}"
     [class.nb-tree-mode-candidate]="selectionMode==='candidate'"
     [class.nb-tree-mode-selected]="selectionMode==='selected'"
-    [class.nb-tree-mode-navigation]="selectionMode==='navigation'">
+    [class.nb-tree-mode-navigation]="selectionMode==='navigation'"
+    [class.nb-tree-disabled]="disabled">
     <nb-tree-node *ngFor="let node of treeData" [node]="node"></nb-tree-node>
 </ul>

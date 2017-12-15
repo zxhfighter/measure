@@ -22,7 +22,7 @@ import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
 import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
-import { DemoSearchBox } from './search-box';
+import { SearchBoxDemo } from './search-box';
 import { DemoCalendar } from './calendar';
 import { DemoToast } from './toast';
 import { DemoSelect } from './select';
@@ -62,7 +62,7 @@ export const appRoutes: Routes = [
     { path: 'page', component: DemoPage },
     { path: 'schedule', component: DemoSchedule },
     { path: 'text-line', component: DemoTextLine },
-    { path: 'search-box', component: DemoSearchBox },
+    { path: 'search-box', component: SearchBoxDemo },
     { path: 'calendar', component: DemoCalendar },
     { path: 'toast', component: DemoToast },
     { path: 'select', component: DemoSelect },
