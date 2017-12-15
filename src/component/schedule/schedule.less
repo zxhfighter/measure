@@ -111,8 +111,23 @@
             }
         }
         tr {
+            /* Safari 4.0 - 8.0 */
+            @-webkit-keyframes example {
+                from {background-color: #fff;}
+                to {background-color: #c4e0fe;}
+            }
+
+            /* Standard syntax */
+            @keyframes example {
+                from {background-color: #fff;}
+                to {background-color: #c4e0fe;}
+            }
             button.selected {
                 background-color: #c4e0fe;
+                -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+                -webkit-animation-duration: 0.2s; /* Safari 4.0 - 8.0 */
+                animation-name: example;
+                animation-duration: 0.2s;
                 &::before {
                     pointer-events: none;
                     position: absolute;
