@@ -2,7 +2,7 @@ import {
     Component, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2, AfterViewChecked,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, AfterViewInit
 } from '@angular/core';
-import { SelectConfig, OptionsStyles } from './select.config';
+import { SelectConfig } from './select.config';
 
 @Component({
     selector: 'nb-select-options',
@@ -13,16 +13,17 @@ import { SelectConfig, OptionsStyles } from './select.config';
 })
 export class SelectOptionsComponent implements OnInit, AfterViewChecked {
     @Input() data: SelectConfig[] = [];
-    @Input() datasource: SelectConfig[] = [];
     @Input() value: number;
+    @Input() searchable: boolean;
+    @Input() disabled: boolean;
     @Input() styles: SelectConfig[] = [];
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
     @Output() needReposition: EventEmitter<Object> = new EventEmitter();
 
-    constructor(
-        protected cd: ChangeDetectorRef,
-        protected el: ElementRef
-    ) {
+    private _data: SelectConfig[] = [];
+
+    constructor(protected cd: ChangeDetectorRef,
+                protected el: ElementRef) {
     }
 
     ngOnInit() {
@@ -30,16 +31,57 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
     }
 
     ngAfterViewChecked() {
-        this.render();
+        // this.render();
     }
 
     render() {
-        this.datasource = this.data;
+        this._data = SelectOptionsComponent._clone(this.data);
         this.cd.markForCheck();
     }
 
     onSelectOption(e: Event, data: SelectConfig) {
         e.stopPropagation();
+
+        if (data.children && data.children.length){
+            return;
+        }
+
+        this.value = data.value;
         this.onChange.emit(data);
+        this.cd.markForCheck();
+    }
+
+    onSearch(e) {
+        e.stopPropagation();
+
+        let key = e.target.value;
+        if (key) {
+            let result = [];
+            this._data.forEach(item => {
+                if (item.children && item.children.length){
+                    item.children.forEach(child => {
+                        if (child.label.search(key) !== -1) {
+                            result.push(child);
+                        }
+                    });
+                }
+                else {
+                    if (item.label.search(key) !== -1) {
+                        result.push(item);
+                    }
+                }
+            });
+
+            this.data = result;
+        }
+        else {
+            this.data = this._data;
+        }
+
+        this.cd.markForCheck();
+    }
+
+    private static _clone(data: SelectConfig[]) {
+        return JSON.parse(JSON.stringify(data));
     }
 }

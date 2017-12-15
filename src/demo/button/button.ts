@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
-import {ButtonConfig} from '../../component/button';
+import { ButtonConfig } from '../../component/button';
 export function getButtonConfig(): ButtonConfig {
     return Object.assign(new ButtonConfig, { theme: 'yellow' });
 }
@@ -9,9 +9,9 @@ export function getButtonConfig(): ButtonConfig {
     selector: 'demo-button',
     templateUrl: './button.html',
     styleUrls: ['./button.less'],
-    providers: [{provide: ButtonConfig, useFactory: getButtonConfig}]
+    providers: [{ provide: ButtonConfig, useFactory: getButtonConfig }]
 })
-export class DemoButton {
+export class ButtonDemo {
 
     // theme sources
     tsCode: string = require('!!raw-loader!./themes/button-theme.ts');

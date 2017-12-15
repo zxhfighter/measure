@@ -7,7 +7,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false
 })
-export class DemoCodeHighlighterBasic {
+export class CodeHighlighterBasicDemo {
     jsCode: string = require('!!raw-loader!./code-highlighter-basic.ts');
     htmlCode: string = require('!!raw-loader!./code-highlighter-basic.html');
     lessCode: string = require('!!raw-loader!./code-highlighter-basic.less');

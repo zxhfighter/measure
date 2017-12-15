@@ -91,3 +91,6 @@ import 'prismjs/components/prism-less.min.js';
 
 // show line numbers
 import 'prismjs/plugins/line-numbers/prism-line-numbers.min.js';
+
+// hammerjs
+import 'hammerjs';

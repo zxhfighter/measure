@@ -8,7 +8,7 @@ import {
     styleUrls: ['./carousel.less'],
     preserveWhitespaces: false
 })
-export class DemoCarousel {
+export class CarouselDemo {
 
     // basic source
     tsCodeBasic: string = require('!!raw-loader!./basic/carousel-basic.ts');

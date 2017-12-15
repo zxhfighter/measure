@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-step-basic',
     templateUrl: './step-basic.html',
     styleUrls: ['./step-basic.less']
 })
-export class DemoStepBasic {
+export class StepBasicDemo {
     currentStep = 1;
 
     prev() {

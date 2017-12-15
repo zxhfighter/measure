@@ -11,9 +11,88 @@
 </section>
 
 <section>
-    <h3 class="section-title">Uploader first demo</h3>
+    <h3 class="section-title">图片上传模式 - 上传进度百分比显示</h3>
 
     <p>
-        <nb-uploader></nb-uploader>
+        <nb-uploader
+            mode="image"
+            name="demo[]"
+            [files]="uploadedFilesList[0]"
+            url="./uploader"
+            accept="image/*"
+            maxFileCount="6"
+            maxFileSize="1000000"
+            (onUpload)="onImageUpload($event)">
+        </nb-uploader>
     </p>
 </section>
+
+<section>
+    <h3 class="section-title">图片上传模式 - 上传进度进度条显示</h3>
+
+    <p>
+        <nb-uploader
+            mode="image"
+            name="demo[]"
+            [files]="uploadedFilesList[1]"
+            url="./uploader"
+            accept="image/*"
+            maxFileSize="1000000"
+            progressMode="bar"
+            (onUpload)="onImageBarUpload($event)">
+        </nb-uploader>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">文件上传模式 - 上传进度百分比显示</h3>
+
+    <p>
+        <nb-uploader
+            mode="file"
+            name="demo[]"
+            [files]="uploadedFilesList[2]"
+            url="./uploader"
+            accept="image/*"
+            maxFileCount="6"
+            maxFileSize="1000000"
+            (onUpload)="onFileUpload($event)">
+        </nb-uploader>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">文件上传模式 - 上传进度进度条显示</h3>
+
+    <p>
+        <nb-uploader
+            mode="file"
+            name="demo[]"
+            [files]="uploadedFilesList[3]"
+            url="./uploader"
+            accept="image/*"
+            maxFileSize="1000000"
+            progressMode="bar"
+            (onUpload)="onFileBarUpload($event)">
+        </nb-uploader>
+    </p>
+</section>
+
+<section>
+        <h3 class="section-title">文件上传模式 - 文件列表垂直显示</h3>
+
+        <p>
+            <nb-uploader
+                mode="file"
+                name="demo[]"
+                [files]="uploadedFilesList[3]"
+                url="./uploader"
+                accept="image/*"
+                maxFileSize="1000000"
+                progressMode="bar"
+                direction="vertical"
+                (onUpload)="onFileBarUpload($event)">
+            </nb-uploader>
+        </p>
+    </section>
+

@@ -9,11 +9,11 @@ import {
     preserveWhitespaces: true,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class DemoCodeHighlighter implements OnInit {
+export class CodeHighlighterDemo implements OnInit {
 
-    jsCode: string = require('!!raw-loader!./code-highlighter.ts');
-    htmlCode: string = require('!!raw-loader!./code-highlighter.html');
-    lessCode: string = require('!!raw-loader!./code-highlighter.less');
+    tsCode: string = require('!!raw-loader!./basic/code-highlighter-basic.ts');
+    htmlCode: string = require('!!raw-loader!./basic/code-highlighter-basic.html');
+    lessCode: string = require('!!raw-loader!./basic/code-highlighter-basic.less');
 
     constructor() {
 

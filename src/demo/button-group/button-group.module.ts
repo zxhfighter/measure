@@ -1,14 +1,14 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {ButtonGroupModule} from '../../component/button-group';
-import {CodeBoxModule} from '../../component/code-box';
-import {CodeHighlighterModule} from '../../component/code-highlighter';
+import { ButtonGroupModule } from '../../component/button-group';
+import { CodeBoxModule } from '../../component/code-box';
+import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import {DemoButtonGroup} from './button-group';
-import {DemoButtonGroupBasic} from './basic/button-group-basic';
-import {DemoButtonGroupForm} from './form/button-group-form';
+import { ButtonGroupDemo } from './button-group';
+import { ButtonGroupBasicDemo } from './basic/button-group-basic';
+import { ButtonGroupFormDemo } from './form/button-group-form';
 
 @NgModule({
     imports: [
@@ -20,11 +20,11 @@ import {DemoButtonGroupForm} from './form/button-group-form';
         CodeHighlighterModule
     ],
     declarations: [
-        DemoButtonGroup,
-        DemoButtonGroupBasic,
-        DemoButtonGroupForm
+        ButtonGroupDemo,
+        ButtonGroupBasicDemo,
+        ButtonGroupFormDemo
     ],
     providers: [],
     exports: []
 })
-export class ButtonGroupDemoModule {}
+export class ButtonGroupDemoModule { }

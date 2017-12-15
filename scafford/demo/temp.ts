@@ -9,7 +9,7 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class Demo<%= upperName %> implements OnInit {
+export class <%= upperName %>Demo implements OnInit {
 
     constructor() {
 

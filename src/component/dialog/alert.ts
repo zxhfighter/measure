@@ -8,6 +8,7 @@ import { futimesSync } from 'fs';
 import { Event } from '@angular/router/src/events';
 import { DialogComponent } from './dialog';
 
+export type AlertType = 'info' | 'error' | 'success';
 
 @Component({
     selector: 'nb-alert',
@@ -25,6 +26,7 @@ export class AlertComponent implements OnInit, AfterViewInit {
 
     @ViewChild(DialogComponent) dialog;
 
+    @Input() type: AlertType;
     @Input() title: string = '';
     @Input() content: string = '';
 

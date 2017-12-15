@@ -8,7 +8,7 @@ import {
     styleUrls: ['./region.less'],
     preserveWhitespaces: false
 })
-export class DemoRegion {
+export class RegionDemo {
 
     // theme sources
     tsCode: string = require('!!raw-loader!./basic/region-basic.ts');

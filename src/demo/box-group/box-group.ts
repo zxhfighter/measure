@@ -1,5 +1,5 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'demo-box-group',
@@ -7,7 +7,7 @@ import {FormGroup, FormBuilder} from '@angular/forms';
     styleUrls: ['./box-group.less'],
     preserveWhitespaces: false
 })
-export class DemoBoxGroup implements OnInit {
+export class BoxGroupDemo implements OnInit {
 
     singleDisabled = false;
 
@@ -45,10 +45,10 @@ export class DemoBoxGroup implements OnInit {
     ngOnInit() {
         this.form = this.fb.group({
             radioBox: [
-                {value: ['x'], disabled: false}
+                { value: ['x'], disabled: false }
             ],
             checkboxBox: [
-                {value: ['b', 's'], disabled: true}
+                { value: ['b', 's'], disabled: true }
             ]
         });
     }

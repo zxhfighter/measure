@@ -7,7 +7,7 @@ const qs = require('qs');
 const path = require('path');
 
 // 项目根目录
-const root = '../app';
+const root = '../';
 
 /**
  * HTTP 请求中间件，用于将请求代理至本地文件夹
@@ -21,6 +21,12 @@ module.exports = function (req, res, next) {
 
     const isXHR = req.headers['x-requested-with'] === 'XMLHttpRequest';
     const isHTML = /\.html$/g.test(req.url);
+
+    // 文件上传专用mock，暂时先放这
+    // if (/uploader$/g.test(req.url)) {
+    //     const uploaderMockFile = require('../mockup/uploader');
+    //     res.end(JSON.stringify(uploaderMockFile, 'utf-8'));
+    // }
 
     // 非 ajax 请求或者 html 请求直接 pass
     if (!isXHR || isHTML) {
@@ -58,5 +64,7 @@ module.exports = function (req, res, next) {
     res.setHeader('Content-Type', 'application/json;charset=UTF-8');
 
     // 设置响应内容
-    res.end(JSON.stringify(mockFile(urlParams)), 'utf-8');
+    setTimeout(function () {
+        res.end(JSON.stringify(mockFile(urlParams)), 'utf-8');
+    }, 2500)
 };
