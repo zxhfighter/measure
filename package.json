@@ -48,7 +48,7 @@
     "@types/chalk": "^0.4.31",
     "@types/del": "^3.0.0",
     "@types/glob": "^5.0.33",
-    "@types/gulp": "^4.0.4",
+    "@types/gulp": "^3.8.35",
     "@types/jasmine": "^2.6.2",
     "@types/node": "^8.0.53",
     "@types/rollup": "^0.41.1",

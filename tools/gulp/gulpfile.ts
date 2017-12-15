@@ -7,3 +7,4 @@ import './tasks/serve';
 import './tasks/docs';
 import './tasks/lint';
 import './tasks/e2e';
+import './tasks/test';

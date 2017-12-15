@@ -1,6 +1,6 @@
-import {task} from 'gulp';
+import { task } from 'gulp';
 import chalk from 'chalk';
-import {sequenceTask} from '../utils/sequence-task';
+import { sequenceTask } from '../utils/sequence-task';
 const yellow = chalk.yellow;
 const red = chalk.red;
 
