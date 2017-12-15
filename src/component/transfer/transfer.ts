@@ -279,22 +279,26 @@ export class TransferComponent implements OnInit, AfterViewInit {
     searchNodes(node: TreeNode, mode: string) {
         this.setSearchNodes(node, mode);
         if (node.parent) {
-            let nodeParent: TreeNode;
+            let nodeParent: TreeNode | undefined;
             nodeParent = this.getParentNode(node.parent, mode);
-            if (nodeParent.parent) {
-                this.searchNodes(nodeParent, mode);
-            } else {
-                this.setSearchNodes(nodeParent, mode);
+            if (nodeParent) {
+                if (nodeParent.parent) {
+                    this.searchNodes(nodeParent, mode);
+                } else {
+                    this.setSearchNodes(nodeParent, mode);
+                }
             }
         }
     }
 
     /** get node's parent node  */
-    getParentNode(parent: TreeNodeParent, mode) {
+    getParentNode(parent: TreeNodeParent, mode): TreeNode | undefined {
+        let parentNode: TreeNode | undefined;
         let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
-        return nodeList.find((node: TreeNode) => {
+        parentNode =  nodeList.find((node: TreeNode) => {
             return parent.id === node.id;
         });
+        return parentNode;
     }
 
     /** push filtered by word word node into xxSearchNodeList */
@@ -317,7 +321,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
         if (nodeListSearched.length === 0) {
             return false;
         } else {
-            let nodeFinded: TreeNode;
+            let nodeFinded: TreeNode | undefined;
             nodeFinded = nodeListSearched.find((node: TreeNode) => {
                 return targetNode.id === node.id;
             });
@@ -367,9 +371,11 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this._candidateNodeList = [];
         this.transferTreeToList(data, mode);
 
-        let targetNode: TreeNode = this.getTargetNode(event, mode);
-        this.propagateDown(targetNode, chkVal);
-        this.propagateUp(targetNode, chkVal, mode);
+        let targetNode: TreeNode | undefined = this.getTargetNode(event, mode);
+        if (targetNode) {
+            this.propagateDown(targetNode, chkVal);
+            this.propagateUp(targetNode, chkVal, mode);
+        }
 
         let rootNodes: TreeNode[] = this.renderTargetNode(mode);
         if (mode === 'candidate') {
@@ -385,11 +391,13 @@ export class TransferComponent implements OnInit, AfterViewInit {
     }
 
     /** get target node in xxNodeList */
-    getTargetNode(targetNode: TreeNode, mode: string) {
+    getTargetNode(compareNode: TreeNode, mode: string): TreeNode | undefined {
+        let targetNode: TreeNode | undefined;
         let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
-        return nodeList.find((node: TreeNode) => {
-            return targetNode.id === node.id;
+        targetNode = nodeList.find((node: TreeNode) => {
+            return compareNode.id === node.id;
         });
+        return targetNode;
     }
 
     /** propagate down node 'isSelected' value */
@@ -407,13 +415,15 @@ export class TransferComponent implements OnInit, AfterViewInit {
     /** propagate up node 'isSelected' value */
     propagateUp(node: TreeNode, chkVal: boolean, mode: string) {
         node.isSelected = chkVal;
-        let nodeParent: TreeNode;
+        let nodeParent: TreeNode | undefined;
         if (node.parent) {
             nodeParent = this.getParentNode(node.parent, mode);
-            if (nodeParent.parent) {
-                this.propagateUp(nodeParent, chkVal, mode);
-            } else {
-                nodeParent.isSelected = chkVal;
+            if (nodeParent) {
+                if (nodeParent.parent) {
+                    this.propagateUp(nodeParent, chkVal, mode);
+                } else {
+                    nodeParent.isSelected = chkVal;
+                }
             }
         }
     }

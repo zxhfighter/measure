@@ -43,7 +43,7 @@ export class TreeComponent implements OnInit {
     /** private variable tree-list
      *  @docs-private
      */
-    private _treeList = [];
+    private _treeList: TreeNode[] = [];
 
     constructor() { }
 
@@ -131,10 +131,10 @@ export class TreeComponent implements OnInit {
     propagateUp(node: TreeNode, select: boolean) {
         node.isSelected = select;
         node.show = select;
-        let nodeParent: TreeNode;
         if (node.parent) {
+            let nodeParent: TreeNode | undefined;
             nodeParent = this.getParent(node.parent);
-            if (nodeParent.children && nodeParent.children.length) {
+            if (nodeParent && nodeParent.children && nodeParent.children.length) {
                 let selectedCount: number = 0;
                 for (let child of nodeParent.children) {
                     if (child.isSelected === select || (child.isSelected === undefined && !child.selectable)) {
@@ -147,16 +147,18 @@ export class TreeComponent implements OnInit {
                 }
             }
 
-            if (nodeParent.isSelected === select && nodeParent.parent) {
+            if (nodeParent && nodeParent.isSelected === select && nodeParent.parent) {
                 this.propagateUp(nodeParent, select);
             }
         }
     }
 
     /** get tree-node parent tree-node */
-    getParent(treeNodeParent: TreeNodeParent) {
-        return this._treeList.find((node: TreeNode) => {
+    getParent(treeNodeParent: TreeNodeParent): TreeNode | undefined {
+        let parentNode: TreeNode | undefined;
+        parentNode = this._treeList.find((node: TreeNode) => {
             return treeNodeParent.id === node.id;
         });
+        return parentNode;
     }
 }

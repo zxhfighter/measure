@@ -57,7 +57,7 @@ export class SideBarComponent implements OnInit {
      * search-box suggestion content
      * @docs-private
      */
-    private suggestionValue: string[] = [];
+    private suggestionValue: Array<string | undefined> = [];
 
     /**
      * side-bar tree-node expanded or not
@@ -117,9 +117,11 @@ export class SideBarComponent implements OnInit {
     searchSuggestion(event: string) {
         let suggestionNodes: TreeNode[] = [];
         suggestionNodes = this.getSuggestionNodes(event);
-        this.suggestionValue = suggestionNodes.map((node: TreeNode) => {
-            return node.name;
-        });
+        if (suggestionNodes && suggestionNodes.length) {
+            this.suggestionValue = suggestionNodes.map((node: TreeNode) => {
+                return node.name;
+            });
+        }
     }
 
     /** get matched keyword the suggest tree-node */
@@ -213,12 +215,14 @@ export class SideBarComponent implements OnInit {
     searchNodes(node: TreeNode) {
         if (node.parent) {
             this.setSearchNodes(node);
-            let nodeParent: TreeNode;
+            let nodeParent: TreeNode | undefined;
             nodeParent = this.getParentNode(node.parent);
-            if (nodeParent.parent) {
-                this.searchNodes(nodeParent);
-            } else {
-                this.setSearchNodes(nodeParent);
+            if (nodeParent) {
+                if (nodeParent.parent) {
+                    this.searchNodes(nodeParent);
+                } else {
+                    this.setSearchNodes(nodeParent);
+                }
             }
         } else {
             this.setSearchNodes(node);
@@ -226,10 +230,12 @@ export class SideBarComponent implements OnInit {
     }
 
     /** get tree-node parent node */
-    getParentNode(parent: TreeNodeParent) {
-        return this._listTreeNodes.find((node: TreeNode) => {
+    getParentNode(parent: TreeNodeParent): TreeNode | undefined {
+        let parentNode: TreeNode | undefined;
+        parentNode = this._listTreeNodes.find((node: TreeNode) => {
             return parent.id === node.id;
         });
+        return parentNode;
     }
 
     /** push matched keyword search node into _listSearchNodes */
@@ -244,7 +250,7 @@ export class SideBarComponent implements OnInit {
         if (this._listSearchNodes.length === 0) {
             return false;
         } else {
-            let nodeFinded: TreeNode;
+            let nodeFinded: TreeNode | undefined;
             nodeFinded = this._listSearchNodes.find((node: TreeNode) => {
                 return targetNode.id === node.id;
             });
