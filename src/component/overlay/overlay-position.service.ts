@@ -6,13 +6,13 @@ import {
     ElementRef,
     EmbeddedViewRef,
     ViewContainerRef,
-    Renderer2,
     ComponentRef,
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
 import { Placement, ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from '../util/position';
 import { PositionStrategy } from '../util/connected-position.strategy';
+import { OverlayPositionBuilder } from './overlay-position-builder';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
@@ -41,7 +41,13 @@ export class OverlayPositionService {
     _resizeSubscription = Subscription.EMPTY;
 
     constructor(
-        private _viewportRuler: ViewportRuler) {
+        private _viewportRuler: ViewportRuler,
+        private _overlayPositionBuilder: OverlayPositionBuilder
+    ) {
+    }
+
+    position(): OverlayPositionBuilder {
+        return this._overlayPositionBuilder;
     }
 
     setOverlayRef(overlayRef) {
