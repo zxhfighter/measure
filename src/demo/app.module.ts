@@ -53,8 +53,8 @@ import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { DemoSearchBox } from './search-box';
 import { DemoTree } from './tree';
-import { DemoToast } from './toast';
-import { DemoSelect } from './select';
+import { ToastDemoModule } from './toast';
+import { SelectDemoModule } from './select';
 import { OverlayDemo } from './overlay';
 import { DemoDialog } from './dialog';
 import { ChipsDemoModule } from './chips';
@@ -64,6 +64,7 @@ import { DemoUploader } from './uploader';
 import { DemoSideBar } from './side-bar/';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
+import { TypographyDemo } from './typography';
 
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
@@ -80,6 +81,7 @@ import { RegionDemoModule } from './region';
 import { CardDemoModule } from './card';
 import { TableDemoModule } from './table';
 import { CodeHighlighterDemoModule } from './code-highlighter';
+import { SliderDemoModule } from './slider';
 
 const demoModules = [
     ButtonDemoModule,
@@ -96,8 +98,11 @@ const demoModules = [
     RegionDemoModule,
     CardDemoModule,
     TableDemoModule,
+    ToastDemoModule,
+    SelectDemoModule,
     ChipsDemoModule,
-    CodeHighlighterDemoModule
+    CodeHighlighterDemoModule,
+    SliderDemoModule
 ];
 
 @NgModule({
@@ -112,8 +117,6 @@ const demoModules = [
         DemoTextLine,
         DemoSearchBox,
         DemoTree,
-        DemoToast,
-        DemoSelect,
         DemoDialog,
         CodeBoxDemo,
         DemoTree,
@@ -123,7 +126,8 @@ const demoModules = [
         DemoUploader,
         GuideComponentDemo,
         IconsComponentDemo,
-        OverlayDemo
+        OverlayDemo,
+        TypographyDemo
     ],
     imports: [
         BrowserModule,

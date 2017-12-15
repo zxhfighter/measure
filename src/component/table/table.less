@@ -93,9 +93,14 @@
         }
     }
 
+    &-th,
+    &-td {
+        padding: 13px 10px 13px 10px;
+        word-break: break-all;
+    }
+
     &-td {
         line-height: 2;
-        padding: 13px 10px 13px 0;
 
         .splitter {
             display: inline-block;
@@ -165,8 +170,9 @@
 
 // small 14px table
 .@{prefix}-table-small {
+    .@{prefix}-table-th,
     .@{prefix}-table-td {
-        padding: 8px 0;
+        padding: 8px 8px;
     }
 }
 
@@ -174,7 +180,7 @@
 .@{prefix}-table-x-small {
     font-size: 12px;
     .@{prefix}-table-td {
-        padding: 8px 0;
+        padding: 8px 8px;
     }
 }
 

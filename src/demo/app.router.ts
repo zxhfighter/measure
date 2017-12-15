@@ -24,11 +24,11 @@ import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { DemoSearchBox } from './search-box';
 import { CalendarDemo } from './calendar';
-import { DemoToast } from './toast';
-import { DemoSelect } from './select';
+import { ToastDemo } from './toast';
+import { SelectDemo } from './select';
 import { RegionDemo } from './region';
 import { DemoDialog } from './dialog';
-import { DemoChips } from './chips';
+import { ChipsDemo } from './chips';
 import { CodeHighlighterDemo } from './code-highlighter';
 import { CodeBoxDemo } from './code-box';
 import { DemoTree } from './tree';
@@ -38,6 +38,8 @@ import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
+import { TypographyDemo } from './typography';
+import { SliderComponentDemo } from './slider';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'button' },
@@ -63,14 +65,14 @@ export const appRoutes: Routes = [
     { path: 'text-line', component: DemoTextLine },
     { path: 'search-box', component: DemoSearchBox },
     { path: 'calendar', component: CalendarDemo },
-    { path: 'toast', component: DemoToast },
-    { path: 'select', component: DemoSelect },
+    { path: 'toast', component: ToastDemo },
+    { path: 'select', component: SelectDemo },
     { path: 'calendar', component: CalendarDemo },
     { path: 'region', component: RegionDemo },
     { path: 'dialog', component: DemoDialog },
     { path: 'tree', component: DemoTree },
     { path: 'side-bar', component: DemoSideBar },
-    { path: 'chips', component: DemoChips },
+    { path: 'chips', component: ChipsDemo },
     { path: 'code-highlighter', component: CodeHighlighterDemo },
     { path: 'code-box', component: CodeBoxDemo },
     { path: 'tree', component: DemoTree },
@@ -78,5 +80,7 @@ export const appRoutes: Routes = [
     { path: 'accordion', component: DemoAccordion },
     { path: 'uploader', component: DemoUploader },
     { path: 'docs', component: GuideComponentDemo },
-    { path: 'icons', component: IconsComponentDemo }
+    { path: 'icons', component: IconsComponentDemo },
+    { path: 'typography', component: TypographyDemo },
+    { path: 'slider', component: SliderComponentDemo }
 ];

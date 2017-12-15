@@ -5,12 +5,13 @@ import { ButtonModule } from '../button';
 
 import {
     TableComponent,
-    TableHeaderComponent,
     TableHeaderItemComponent,
-    TableBodyComponent,
     TableRowComponent,
     TableTdComponent
 } from './table';
+
+import { TableBodyComponent } from './table-tbody';
+import { TableHeaderComponent } from './table-thead';
 
 const components = [
     TableComponent,

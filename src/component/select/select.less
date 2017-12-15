@@ -1,5 +1,5 @@
 .@{prefix}-select {
-    display: block;
+    display: inline-block;
     position: relative;
 
     &-label {
@@ -20,28 +20,63 @@
         border: 1px solid #e7e7e7;
         box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
         margin: 3px 0;
+
+        .active {
+            background-color: #f7f7f7;
+        }
+    }
+
+    &-search {
+        padding: 10px;
+        position: relative;
+
+        .icon {
+            position: absolute;
+            top: 17px;
+            right: 20px;
+        }
     }
 
     &-option {
-        height: 36px;
         line-height: 36px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 100%;
         color: @text-color;
-        cursor: pointer;
-
-        &:hover {
-            background-color: #f7f7f7;
-        }
 
         &-lable {
-            padding: 0 10px;
+            padding: 0 38px 0 20px;
+        }
+
+        &-lable.leaf {
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f7f7f7;
+            }
+        }
+
+        .sub-option {
+            padding-left: 32px;
         }
     }
 
-    .active {
-        background-color: #f7f7f7;
+    &.disabled {
+        position: relative;
+        cursor: not-allowed;
+        pointer-events: auto;
+
+        &::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-color: #eee !important;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
     }
 }
