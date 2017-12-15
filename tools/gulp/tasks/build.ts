@@ -7,7 +7,9 @@ import { copyTask } from '../utils/task_helpers';
 import { config } from '../utils/config';
 import { readFileSync, writeFileSync } from 'fs';
 import { sync as glob } from 'glob';
+import * as chalk from 'chalk';
 
+const yellow = chalk.default.yellow;
 const rollup = require('rollup');
 const rollupNodeResolutionPlugin = require('rollup-plugin-node-resolve');
 const rollupCommonjsPlugin = require('rollup-plugin-commonjs');
@@ -47,7 +49,11 @@ task('build', sequenceTask(
  */
 task('build:aot', () => {
     const ngcPath = resolve('./node_modules/.bin/ngc');
-    spawnSync(ngcPath, ['-p', config.tsconfigPath]);
+    const childProcess = spawnSync(ngcPath, ['-p', config.tsconfigPath], {shell: true});
+
+    if (childProcess.status !== 0) {
+        console.error(`${yellow(childProcess.stderr.toString())}`);
+    }
 });
 
 /**

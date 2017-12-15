@@ -2,7 +2,7 @@ import {
     Injectable
 } from '@angular/core';
 import { AlertComponent } from './alert';
-import { OverlayService } from '../overlay/overlay.service';
+import { DynamicComponentService } from '../overlay/dynamic-component.service';
 
 @Injectable()
 export class DialogService<T> {
@@ -10,11 +10,11 @@ export class DialogService<T> {
     private dialogInstance: AlertComponent;
 
     constructor(
-        private overlayService: OverlayService<AlertComponent>) {
+        private dynamicComponentService: DynamicComponentService<AlertComponent>) {
     }
 
     createOverlay(type, content, title) {
-        let componentRef = this.overlayService.createOverlayFromTemplate(AlertComponent, '', true);
+        let componentRef = this.dynamicComponentService.createDynamicComponent(AlertComponent, '', window.document.body);
 
         this.dialogInstance = componentRef.instance;
 
