@@ -10,7 +10,6 @@ import {
     AfterViewInit,
     ElementRef,
     TemplateRef,
-    Renderer2,
     Injector,
     ComponentFactoryResolver,
     ViewContainerRef,
@@ -24,7 +23,6 @@ import { Placement } from '../util/position';
 
 import { ViewportRuler } from './scroll-strategy';
 import { OverlayPositionService } from './overlay-position.service';
-import { OverlayService } from './overlay.service';
 import { OverlayOriginDirective } from './overlay-origin.directive';
 import { OverlayPositionBuilder } from './overlay-position-builder';
 
@@ -35,7 +33,7 @@ import { OverlayPositionBuilder } from './overlay-position-builder';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    providers: [ViewportRuler, OverlayPositionService, OverlayService, OverlayPositionBuilder],
+    providers: [ViewportRuler, OverlayPositionService, OverlayPositionBuilder],
     host: {
         'class': 'nb-widget'
     },
