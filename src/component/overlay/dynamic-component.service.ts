@@ -16,7 +16,7 @@ import {
     ComponentFactoryResolver
 } from '@angular/core';
 import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair, Placement } from '../util/position';
-import { PositionStrategy } from '../util/connected-position.strategy';
+import { ConnectedPositionStrategy } from '../util/connected-position.strategy';
 // import { OverlayPositionService } from './overlay-position.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -35,7 +35,7 @@ export class DynamicComponentService<T> {
     private componentRef: ComponentRef<T> | null;
     private overlayComponent: any;
     private _contentRef: ContentRef | null;
-    private positionStrategy: PositionStrategy;
+    private positionStrategy: ConnectedPositionStrategy;
     private originElement: ElementRef;
     originPos: ConnectionPosition;
     overlayPos: ConnectionPosition;
