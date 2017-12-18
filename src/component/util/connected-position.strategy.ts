@@ -6,8 +6,7 @@ import {
 } from './position';
 import { ElementRef, Injectable } from '@angular/core';
 
-// @Injectable()
-export class PositionStrategy {
+export class ConnectedPositionStrategy {
 
     private _offsetX: number = 0;
     private _offsetY: number = 0;
@@ -19,13 +18,15 @@ export class PositionStrategy {
 
     constructor(
         private _targetRef: ElementRef,
-        private _overlaytRef: ElementRef,
-        private _targetPos: ConnectionPosition,
-        private _overlayPos: ConnectionPosition) {
+        private _overlaytRef: ElementRef
+        // private _targetPos: ConnectionPosition,
+        // private _overlayPos: ConnectionPosition
+    ) {
+
         this._targetEl = this._targetRef.nativeElement;
         this._overlayEl = this._overlaytRef.nativeElement.children[0];
-        this.withFallbackPosition(_targetPos, _overlayPos);
-        this._lastConnectedPosition = this.withFallbackPosition[0];
+
+        // this._lastConnectedPosition = this.withFallbackPosition[0];
     }
 
     withOffsetX(offset: number): this {

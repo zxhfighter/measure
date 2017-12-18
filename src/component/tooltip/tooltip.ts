@@ -12,6 +12,7 @@ import {
     ComponentRef,
     Injector,
     NgZone,
+    EventEmitter,
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
@@ -21,6 +22,7 @@ import { TiplayerComponent } from './tiplayer';
 import { ConnectionPosition, Placement } from '../util/position';
 import { OverlayPositionService } from '../overlay/overlay-position.service';
 import { DynamicComponentService } from '../overlay/dynamic-component.service';
+import { Observable } from 'rxjs/Observable';
 
 @Directive({
     selector: '[nbTooltip]',
@@ -41,6 +43,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
      * 'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'
      *
      */
+    @OnChange()
     @Input() placement: Placement = 'bottom';
 
     /**
@@ -79,7 +82,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
     private focusListener: Function;
     private blurListener: Function;
     private tiplayerInstance: TiplayerComponent | null;
-    // private overlayService: OverlayService<TiplayerComponent>;
 
     constructor(
         private el: ElementRef,
@@ -147,13 +149,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
         let componentRef = this.dynamicComponentService.createDynamicComponent(
             TiplayerComponent, this.nbTooltip, window.document.body);
         this.tiplayerInstance = componentRef.instance;
-        // this.overlayService.attachOverlay(this.el, this.placement);
-
-        this.overlayPositionService
-            .setOverlayRef(this.tiplayerInstance)
-            .attachTo(this.el, this.placement);
-
-        this.tiplayerInstance.needReposition.subscribe(() => this.overlayPositionService.updatePosition());
 
         const config = {
             trigger: this.trigger,
@@ -163,6 +158,13 @@ export class TooltipDirective implements OnInit, OnDestroy {
             nbTooltipTheme: this.nbTooltipTheme
         };
         Object.keys(config).forEach(key => this.tiplayerInstance![key] = config[key]);
+
+        const positionStrategy = this.overlayPositionService
+            .attachTo(this.el, this.tiplayerInstance, this.placement);
+
+        this.tiplayerInstance.needReposition.subscribe(
+            () => this.overlayPositionService.updatePosition(positionStrategy)
+        );
     }
 
     ngOnDestroy() {

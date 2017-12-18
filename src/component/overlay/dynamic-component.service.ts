@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair, Placement } from '../util/position';
 import { PositionStrategy } from '../util/connected-position.strategy';
-import { OverlayPositionService } from './overlay-position.service';
+// import { OverlayPositionService } from './overlay-position.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
@@ -48,7 +48,7 @@ export class DynamicComponentService<T> {
         private _injector: Injector,
         private _renderer: Renderer2,
         private _viewContainerRef: ViewContainerRef,
-        private overlayPositionService: OverlayPositionService,
+        // // private overlayPositionService: OverlayPositionService,
         private _componentFactoryResolver: ComponentFactoryResolver) {
     }
 
@@ -71,23 +71,6 @@ export class DynamicComponentService<T> {
 
         return this.componentRef;
     }
-
-    // createOverlayFromComponent(overlayComponent: any,
-    //     originElement: ElementRef,
-    //     placement: string,
-    //     appendToBody?: boolean) {
-
-    //     if (appendToBody) {
-    //         window.document.body.appendChild(overlayComponent.el.nativeElement);
-    //     }
-
-    //     this.originElement = originElement;
-    //     this.placement = placement;
-    //     this.overlayComponent = overlayComponent;
-    //     this.overlayComponent.needReposition.subscribe(() => this.overlayPositionService.updatePosition());
-
-    //     return this.overlayComponent;
-    // }
 
     close() {
         if (this.componentRef) {

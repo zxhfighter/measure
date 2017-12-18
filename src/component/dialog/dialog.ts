@@ -43,7 +43,6 @@ export class DialogComponent implements OnInit, AfterViewInit {
     @Output() openHandler: EventEmitter<Object> = new EventEmitter();
     @Output() closeHandler: EventEmitter<Object> = new EventEmitter();
     @Output() confirmEvent: EventEmitter<Object> = new EventEmitter();
-    @Output() cancelEvent: EventEmitter<Object> = new EventEmitter();
 
     constructor(
         private cdRef: ChangeDetectorRef,
@@ -52,20 +51,14 @@ export class DialogComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        // this.overlay = document.createElement('nb-overlay');
-        // this.overlay.appendChild(this.el.nativeElement);
     }
 
     ngAfterViewInit() {
-        // this.overlay = document.createElement('nb-overlay');
-        // this.overlay.appendChild(this.el.nativeElement);
     }
 
     open() {
-        // this.visiblity = true;
-        // this.cdRef.markForCheck();
         this.overlay.show();
-        // this.openHandler.emit();
+        this.openHandler.emit();
 
         if (this.modalable) {
             this.enableModality();
@@ -74,8 +67,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
 
     close() {
         this.overlay.hide();
-        // this.visiblity = false;
-        // this.cdRef.markForCheck();
+        this.closeHandler.emit();
 
         if (this.mask) {
             this.mask.remove();

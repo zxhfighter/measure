@@ -53,9 +53,11 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
 
     private _placement: string;
 
+    placementChange: EventEmitter<string> = new EventEmitter<string>();
     @Input() set placement(data) {
         this._placement = data;
         this.firstPlacement = this._placement.split('-')[0];
+        this.placementChange.emit(this._placement);
     }
 
     get placement () {
@@ -77,6 +79,15 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
+        // this.placementChange.subscribe((placement) => {
+        //     if (placement.split('-')[0] === 'left') {
+        //         this.positionStrategy.withOffsetX(-10);
+        //     }
+        //     else if (placement.split('-')[0] === 'right') {
+        //         this.positionStrategy.withOffsetX(10);
+        //     }
+        // });
+
         this.needReposition.emit();
     }
 
