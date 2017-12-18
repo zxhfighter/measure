@@ -45,7 +45,7 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
 import { DemoInput } from './input';
-import { DemoTabs } from './tabs';
+import { TabsDemoModule } from './tabs';
 import { DemoTooltip } from './tooltip';
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
@@ -109,7 +109,7 @@ const demoModules = [
     declarations: [
         AppComponent,
         DemoInput,
-        DemoTabs,
+        TabsDemoModule,
         DemoTooltip,
         DemoPage,
         DemoSchedule,

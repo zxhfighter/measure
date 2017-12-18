@@ -1,21 +1,13 @@
-import {
-    Component, OnInit, ChangeDetectionStrategy
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-<%= name %>',
     templateUrl: './<%= name %>.html',
-    styleUrls: ['./<%= name %>.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    styleUrls: ['./<%= name %>.less']
 })
-export class <%= upperName %>Demo implements OnInit {
+export class <%= upperName %>Demo {
 
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
+    tsCodeBasic: string = require('!!raw-loader!./basic/<%= name %>-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/<%= name %>-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/<%= name %>-basic.less');
 }
