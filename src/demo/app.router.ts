@@ -24,7 +24,6 @@ import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 
 import { SearchBoxDemo } from './search-box';
-import { DemoRegion } from './region';
 import { CalendarDemo } from './calendar';
 import { ToastDemo } from './toast';
 import { SelectDemo } from './select';
