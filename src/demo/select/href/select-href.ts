@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { SelectConfig } from "../../../component/select/select.config";
 
 @Component({
     selector: 'demo-select-href',
     templateUrl: './select-href.html',
-    styleUrls: ['./select-href.less']
+    styleUrls: ['./select-href.less'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class SelectHrefDemo {
     protected selectedData1: SelectConfig;

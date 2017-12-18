@@ -6,6 +6,7 @@ import { SelectConfig, OptionsStyles } from './select.config';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { OverlayComponent } from '../overlay';
 import { Placement } from '../util/position';
+import { BUTTON_THEME, BUTTON_SIZE } from '../button';
 import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
 
 @Component({
@@ -30,6 +31,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @ViewChild('origin') origin: OverlayOriginDirective;
     @ViewChild('overlay') overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
+    @Input() theme: BUTTON_THEME = 'default';
+    @Input() size: BUTTON_SIZE = 'default';
     @Input() defaultLabel: string;
     @Input() searchable: boolean = false;
     @Input() disabled: boolean = false;
