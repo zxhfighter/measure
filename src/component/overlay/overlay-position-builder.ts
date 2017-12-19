@@ -24,10 +24,11 @@ export class OverlayPositionBuilder {
      * @param overlayPos
      */
     attachTo(
-        targetRef: ElementRef,
-        overlayComponent: OverlayComponent,
-        originPos: ConnectionPosition,
-        overlayPos: ConnectionPosition): void {
+        // targetRef: ElementRef,
+        // overlayComponent: OverlayComponent,
+        // originPos: ConnectionPosition,
+        // overlayPos: ConnectionPosition
+    ): void {
             // return new PositionStrategy(targetRef, overlayComponent.el, originPos, overlayPos);
     }
 }

@@ -55,7 +55,7 @@ export class DynamicComponentService<T> {
     createDynamicComponent(
         type: any,
         content: string | TemplateRef<any>,
-        hostDomElement: Element,
+        hostDomElement?: Element,
         context?: any): ComponentRef<T> {
 
         let windowFactory: ComponentFactory<T>;
@@ -66,8 +66,10 @@ export class DynamicComponentService<T> {
                 this._viewContainerRef.createComponent(windowFactory, 0, this._injector, this._contentRef.nodes);
         }
 
-        let overlayRootNode = this.getComponentRootNode(this.componentRef);
-        hostDomElement.appendChild(overlayRootNode);
+        if (hostDomElement) {
+            let overlayRootNode = this.getComponentRootNode(this.componentRef);
+            hostDomElement.appendChild(overlayRootNode);
+        }
 
         return this.componentRef;
     }
