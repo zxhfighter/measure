@@ -21,6 +21,16 @@ import {SelectConfig} from "../select/select.config";
     exportAs: 'nbSchedule'
 })
 export class ScheduleComponent implements OnInit {
+    /**
+     * selected time input
+     * @default default
+     */
+    @Input() selected;
+    /**
+     * selected time output
+     * @default default
+     */
+    @Output() selectedOut;
     schedules;
     layerTime;
     weekSelect;
@@ -49,7 +59,14 @@ export class ScheduleComponent implements OnInit {
         this.hours = Array.apply(Array, Array(25)).map((v,k) => k);
     }
     ngOnInit() {
-
+        for (let i in this.selected) {
+            for (let j = 0;j < this.selected[i].length; j++) {
+                for (let k = this.selected[i][j][0]; k <= this.selected[i][j][1]; k++) {
+                    this.schedules[i * 24 + k] = 1;
+                }
+            }
+        }
+        this.topTimeChange();
     }
     /**
      * set day
@@ -138,6 +155,25 @@ export class ScheduleComponent implements OnInit {
                 colspan = 0;
             }
         }
+        // 输出
+        this.selectedOut = {};
+        for (let k = 0; k < this.layerTime.length; k++) {
+            if (this.layerTime[k] !== 0) {
+                let i = Math.floor(k / 24);
+                let j = k % 24;
+                // debugger
+                let half = Math.floor(this.layerTime[k]/2);
+                let tmp = (this.layerTime[k] + 1) % 2;
+                let arr = [];
+                arr.push(this.hours[j - half + tmp]);
+                arr.push(this.hours[j + half + 1]);
+                if (this.selectedOut[i] === undefined) {
+                    this.selectedOut[i] = [];
+                }
+                this.selectedOut[i].push(arr);
+            }
+        }
+        console.log(this.selectedOut);
     }
     mouseup(i, j) {
         this.flag = false;
