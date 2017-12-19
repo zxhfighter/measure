@@ -45,7 +45,7 @@ import {
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
-import { DemoInput } from './input';
+
 import { DemoTabs } from './tabs';
 import { DemoTooltip } from './tooltip';
 import { DemoPage } from './page';
@@ -68,6 +68,7 @@ import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
 
+import { InputDemoModule } from './input';
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
 import { SwitchDemoModule } from './switch';
@@ -86,6 +87,7 @@ import { CodeHighlighterDemoModule } from './code-highlighter';
 import { SliderDemoModule } from './slider';
 
 const demoModules = [
+    InputDemoModule,
     ButtonDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
@@ -110,7 +112,6 @@ const demoModules = [
 @NgModule({
     declarations: [
         AppComponent,
-        DemoInput,
         DemoTabs,
         DemoTooltip,
         DemoPage,

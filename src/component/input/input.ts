@@ -32,13 +32,19 @@ export type INPUT_SIZE =
 
 export class InputDirective implements OnChanges, AfterViewInit {
 
-    /** input theme, there four default themes: 'default' */
+    /** input theme, there three default themes: 'default' | 'error' | 'transparent'
+     * @default default
+     */
     @Input() theme: INPUT_THEME = 'default';
 
-    /** input size, there four default size: 'default' */
+    /** input size, there seven default size: 'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low'
+     * @default default
+     */
     @Input() size: INPUT_SIZE = 'default';
 
-    /** Whether the input is disabled */
+    /** Whether the input is disabled 
+     * @default false
+     */
     @OnChange(true)
     @Input() disabled = false;
 

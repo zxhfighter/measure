@@ -13,7 +13,7 @@ import { ChartDemo } from './chart';
 import { ProgressBarDemo } from './progress-bar';
 import { SpinnerDemo } from './spinner';
 import { CarouselDemo } from './carousel';
-import { DemoInput } from './input';
+import { InputDemo } from './input';
 import { DemoTabs } from './tabs';
 import { StepDemo } from './step';
 import { TableDemo } from './table';
@@ -55,7 +55,7 @@ export const appRoutes: Routes = [
     { path: 'progress-bar', component: ProgressBarDemo },
     { path: 'spinner', component: SpinnerDemo },
     { path: 'carousel', component: CarouselDemo },
-    { path: 'input', component: DemoInput },
+    { path: 'input', component: InputDemo },
     { path: 'tabs', component: DemoTabs },
     { path: 'step', component: StepDemo },
     { path: 'tooltip', component: DemoTooltip },
