@@ -17,6 +17,8 @@ export class DemoTree implements OnInit {
 
     private treeDataSelected  = treeDataSelected;
 
+    private disabled = true;
+
     constructor() { }
 
     ngOnInit() {

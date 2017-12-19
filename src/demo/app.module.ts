@@ -38,7 +38,8 @@ import {
     TreeModule,
     SideBarModule,
     AccordionModule,
-    UploaderModule
+    UploaderModule,
+    TransferModule
 } from '../component';
 
 import { AppComponent } from './app.component';
@@ -51,7 +52,7 @@ import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
 import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
-import { DemoSearchBox } from './search-box';
+import { SearchBoxDemo } from './search-box';
 import { DemoTree } from './tree';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
@@ -61,7 +62,8 @@ import { ChipsDemoModule } from './chips';
 import { CodeBoxDemo } from './code-box';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
-import { DemoSideBar } from './side-bar/';
+import { DemoSideBar } from './side-bar';
+import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
@@ -115,7 +117,7 @@ const demoModules = [
         DemoSchedule,
         DemoTextarea,
         DemoTextLine,
-        DemoSearchBox,
+        SearchBoxDemo,
         DemoTree,
         DemoDialog,
         CodeBoxDemo,
@@ -124,6 +126,7 @@ const demoModules = [
         OverlayDemo,
         DemoAccordion,
         DemoUploader,
+        DemoTransfer,
         GuideComponentDemo,
         IconsComponentDemo,
         OverlayDemo,
@@ -167,6 +170,7 @@ const demoModules = [
         SideBarModule,
         AccordionModule,
         UploaderModule,
+        TransferModule,
         // demos
         ...demoModules,
         RouterModule.forRoot(appRoutes, { useHash: true })

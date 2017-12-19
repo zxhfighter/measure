@@ -15,16 +15,13 @@
 
 .@{prefix}-tree-content {
     width: 100%;
+    height: 36px;
+    line-height: 36px;
 
     span {
         position: relative;
         z-index: 1;
     }
-}
-
-.@{prefix}-tree-content {
-    height: 36px;
-    line-height: 36px;
 }
 
 .@{prefix}-tree-node-name {
@@ -37,7 +34,7 @@
 }
 
 .@{prefix}-tree-no-child {
-    margin-left: 15px;
+    margin-left: 12px;
 }
 
 .@{prefix}-tree-selectable .@{prefix}-tree-content::before, 
@@ -82,6 +79,15 @@
     margin-right: 10px;
 }
 
+// candidate模式
+.@{prefix}-tree-mode-candidate .@{prefix}-tree-content {
+    display: none;
+}
+.@{prefix}-tree-mode-candidate .@{prefix}-tree-node-show {
+    display: inline-block;
+    color: #666;
+}
+
 // 已选择
 .@{prefix}-tree-selectable .@{prefix}-tree-node-selected,
 // 不可选择
@@ -94,7 +100,7 @@
     display: none;
 }
 
-.@{prefix}-tree-mode-selected .@{prefix}-tree-node-selected {
+.@{prefix}-tree-mode-selected .@{prefix}-tree-node-show {
     display: inline-block;
     color: #666;
 }
@@ -104,18 +110,26 @@
     display: none;
 }
 
-.@{prefix}-tree-mode-navigation .@{prefix}-tree-node-selected {
+.@{prefix}-tree-mode-navigation .@{prefix}-tree-node-show {
     display: inline-block;
     color: #666;
 }
 
-// .@{prefix}-tree-mode-navigation .@{prefix}-tree-node-selected:not(.nb-tree-node-unselectable) .@{prefix}-tree-node-name:hover::after {
-//     content: "";
-//     position: absolute;
-//     display: block;
-//     left: 0;
-//     right: 0;
-//     height: 36px;
-//     cursor: pointer;
-//     border-top: 2px solid #333;
-// }
+// disabled
+.@{prefix}-tree-disabled .@{prefix}-tree-node-show {
+    color: #999;
+}
+
+.@{prefix}-tree-disabled .@{prefix}-tree-node-show::before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    height: 36px;
+    cursor: not-allowed;
+}
+
+.@{prefix}-tree-disabled .@{prefix}-tree-content:hover {
+    cursor: not-allowed;
+}

@@ -14,19 +14,19 @@ import &#x7B;SearchBoxModule&#x7D; from 'xdesign';
     <h3 class="section-title">SearchBox first demo</h3>
 
     <p>
-        <nb-search-box></nb-search-box>
+        <nb-search-box size="long"></nb-search-box>
     </p>
 
     <h3 class="section-title">SearchBox init with set placeholder</h3>
     
     <p>
-        <nb-search-box placeholder="type = 'ico' 常态"></nb-search-box>
+        <nb-search-box placeholder="type = 'ico' 常态" size="small"></nb-search-box>
     </p>
 
     <h3 class="section-title">SearchBox init with search value</h3>
 
     <p>
-        <nb-search-box [searchValue]="searchValue" (onSearch)="search($event)"></nb-search-box>
+        <nb-search-box [searchValue]="searchValue" (onSearch)="search($event)" size="small"></nb-search-box>
     </p>
 
     <h3 class="section-title">SearchBox suggest search</h3>
@@ -37,7 +37,8 @@ import &#x7B;SearchBoxModule&#x7D; from 'xdesign';
             isSuggestion 
             (onSearchSuggestion)="searchSuggestion($event)"
             [suggestionValue]="suggestionValue"
-            (onSearch)="search($event)">
+            (onSearch)="search($event)"
+            size="default">
         </nb-search-box>
     </p>
 
@@ -47,34 +48,35 @@ import &#x7B;SearchBoxModule&#x7D; from 'xdesign';
             isSuggestion="true"
             (onSearchSuggestion)="searchSuggestion($event)"
             [suggestionValue]="suggestionValue"
-            (onSearch)="search($event)">
+            (onSearch)="search($event)"
+            size="default">
         </nb-search-box>
     </p>
 
     <h3 class="section-title">SearchBox no suggest search</h3>
     
     <p>
-        <nb-search-box placeholder="不联想搜索" (onSearch)="search($event)"></nb-search-box>
+        <nb-search-box placeholder="不联想搜索" (onSearch)="search($event)" size="small"></nb-search-box>
     </p>
     <p>
-        <nb-search-box placeholder="不联想搜索"  isRelate="false" (onSearch)="search($event)"></nb-search-box>
+        <nb-search-box placeholder="不联想搜索"  isRelate="false" (onSearch)="search($event)" size="small"></nb-search-box>
     </p>
 
     <h3 class="section-title">SearchBox themes and states</h3>
 
     <p>
-        <nb-search-box placeholder="type = 'ico' 常态"></nb-search-box>
+        <nb-search-box placeholder="type = 'ico' 常态" size="default"></nb-search-box>
     </p>
 
     <p>
-        <nb-search-box placeholder="type = 'ico' 禁用" disabled></nb-search-box>
+        <nb-search-box placeholder="type = 'ico' 禁用" disabled size="default"></nb-search-box>
     </p>
 
     <p>
-        <nb-search-box placeholder="type = 'btn' 常态" type="btn"></nb-search-box>
+        <nb-search-box placeholder="type = 'btn' 常态" type="btn" size="default"></nb-search-box>
     </p>
 
     <p>
-        <nb-search-box placeholder="type = 'btn' 禁用" type="btn" disabled></nb-search-box>
+        <nb-search-box placeholder="type = 'btn' 禁用" type="btn" disabled size="default"></nb-search-box>
     </p>
 </section>

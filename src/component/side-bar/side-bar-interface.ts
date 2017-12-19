@@ -8,6 +8,7 @@ export interface TreeNode {
     selectable?: boolean;
     isExpanded?: boolean;
     isSelected?: boolean;
+    show?: boolean;
     parent?: TreeNodeParent;
     children?: TreeNode[];
     leaf?: boolean;

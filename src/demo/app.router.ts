@@ -22,11 +22,13 @@ import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
 import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
-import { DemoSearchBox } from './search-box';
+
+import { SearchBoxDemo } from './search-box';
 import { CalendarDemo } from './calendar';
 import { ToastDemo } from './toast';
 import { SelectDemo } from './select';
 import { RegionDemo } from './region';
+
 import { DemoDialog } from './dialog';
 import { ChipsDemo } from './chips';
 import { CodeHighlighterDemo } from './code-highlighter';
@@ -36,6 +38,7 @@ import { DemoSideBar } from './side-bar/';
 import { CardDemo } from './card';
 import { DemoAccordion } from './accordion';
 import { DemoUploader } from './uploader';
+import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
@@ -62,12 +65,14 @@ export const appRoutes: Routes = [
     { path: 'page', component: DemoPage },
     { path: 'schedule', component: DemoSchedule },
     { path: 'text-line', component: DemoTextLine },
-    { path: 'search-box', component: DemoSearchBox },
+
+    { path: 'search-box', component: SearchBoxDemo },
     { path: 'calendar', component: CalendarDemo },
     { path: 'toast', component: ToastDemo },
     { path: 'select', component: SelectDemo },
     { path: 'calendar', component: CalendarDemo },
     { path: 'region', component: RegionDemo },
+
     { path: 'dialog', component: DemoDialog },
     { path: 'tree', component: DemoTree },
     { path: 'side-bar', component: DemoSideBar },
@@ -78,6 +83,7 @@ export const appRoutes: Routes = [
     { path: 'card', component: CardDemo },
     { path: 'accordion', component: DemoAccordion },
     { path: 'uploader', component: DemoUploader },
+    { path: 'transfer', component: DemoTransfer },
     { path: 'docs', component: GuideComponentDemo },
     { path: 'icons', component: IconsComponentDemo },
     { path: 'typography', component: TypographyDemo },
