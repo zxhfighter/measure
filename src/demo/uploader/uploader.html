@@ -103,6 +103,14 @@
 
 
 
+
+
+
+
+
+
+
+
 <div class="docs-api"><h2 class="docs-api-type">Components</h2>
 
       <h4 class="docs-api-h4 docs-api-class-name">
@@ -119,51 +127,13 @@
       <tr class="docs-row docs-row-body">
   <td class="docs-td docs-td-name"><div class="docs-input-marker">
           @Input()</div><p class="docs-property-name">
-      name
-    </p>
-  </td>
-  <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
-</tr>
-
-
-
-      <tr class="docs-row docs-row-body">
-  <td class="docs-td docs-td-name"><div class="docs-input-marker">
-          @Input()</div><p class="docs-property-name">
       url
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
   <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
-</tr>
-
-
-
-      <tr class="docs-row docs-row-body">
-  <td class="docs-td docs-td-name"><div class="docs-input-marker">
-          @Input()</div><p class="docs-property-name">
-      method
-    </p>
-  </td>
-  <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
-</tr>
-
-
-
-      <tr class="docs-row docs-row-body">
-  <td class="docs-td docs-td-name"><div class="docs-input-marker">
-          @Input()</div><p class="docs-property-name">
-      multiple
-    </p>
-  </td>
-  <td class="docs-td docs-td-type">boolean</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-desc"><p>上传提交的URL</p>
+</td>
 </tr>
 
 
@@ -175,8 +145,9 @@
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-default">&#39;image&#39;</td>
+  <td class="docs-td docs-td-desc"><p>上传模式包括图片上传和文件上传</p>
+</td>
 </tr>
 
 
@@ -188,8 +159,9 @@
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-default">&#39;image/*&#39;</td>
+  <td class="docs-td docs-td-desc"><p>可上传的文件类型</p>
+</td>
 </tr>
 
 
@@ -201,8 +173,9 @@
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-default">&#39;text&#39;</td>
+  <td class="docs-td docs-td-desc"><p>上传进度包括百分比和进度条</p>
+</td>
 </tr>
 
 
@@ -240,21 +213,9 @@
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
-</tr>
-
-
-
-      <tr class="docs-row docs-row-body">
-  <td class="docs-td docs-td-name"><div class="docs-input-marker">
-          @Input()</div><p class="docs-property-name">
-      auto
-    </p>
-  </td>
-  <td class="docs-td docs-td-type">boolean</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-default">&#39;horizontal&#39;</td>
+  <td class="docs-td docs-td-desc"><p>布局方式，&#39;horizontal&#39; | &#39;vertical&#39;</p>
+</td>
 </tr>
 
 
@@ -267,7 +228,8 @@
   </td>
   <td class="docs-td docs-td-type">number</td>
   <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-desc"><p>限制文件的大小</p>
+</td>
 </tr>
 
 
@@ -280,20 +242,8 @@
   </td>
   <td class="docs-td docs-td-type">number</td>
   <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
-</tr>
-
-
-
-      <tr class="docs-row docs-row-body">
-  <td class="docs-td docs-td-name"><div class="docs-input-marker">
-          @Input()</div><p class="docs-property-name">
-      withCredentials
-    </p>
-  </td>
-  <td class="docs-td docs-td-type">boolean</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-desc"><p>限制文件的数量</p>
+</td>
 </tr>
 
 
@@ -305,8 +255,9 @@
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-default">&#39;文件的数量超过限制&#39;</td>
+  <td class="docs-td docs-td-desc"><p>文件数量不符合要求的提示信息</p>
+</td>
 </tr>
 
 
@@ -318,8 +269,9 @@
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-default">&#39;文件的大小不符合要求&#39;</td>
+  <td class="docs-td docs-td-desc"><p>文件大小不符合要求的提示信息</p>
+</td>
 </tr>
 
 
@@ -331,8 +283,9 @@
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-default">&#39;文件的类型不符合要求&#39;</td>
+  <td class="docs-td docs-td-desc"><p>文件类型不符合要求的提示信息</p>
+</td>
 </tr>
 
 
@@ -344,8 +297,9 @@
     </p>
   </td>
   <td class="docs-td docs-td-type">string</td>
-  <td class="docs-td docs-td-default"></td>
-  <td class="docs-td docs-td-desc"></td>
+  <td class="docs-td docs-td-default">&#39;上传失败&#39;</td>
+  <td class="docs-td docs-td-desc"><p>上传失败的提示信息</p>
+</td>
 </tr>
 
 
@@ -493,6 +447,18 @@
 
       <tr class="docs-row docs-row-body">
   <td class="docs-td docs-td-name"><p class="docs-property-name">
+      method
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
       state
     </p>
   </td>
@@ -507,10 +473,34 @@
 
       <tr class="docs-row docs-row-body">
   <td class="docs-td docs-td-name"><p class="docs-property-name">
+      auto
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
       replacingFile
     </p>
   </td>
   <td class="docs-td docs-td-type">any</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      withCredentials
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
   <td class="docs-td docs-td-default"></td>
   <td class="docs-td docs-td-desc"></td>
 </tr>
@@ -867,3 +857,4 @@
 
 
     </div>
+
