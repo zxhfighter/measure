@@ -29,7 +29,7 @@ import { ToastDemo } from './toast';
 import { SelectDemo } from './select';
 import { RegionDemo } from './region';
 
-import { DemoDialog } from './dialog';
+import { DialogDemo } from './dialog';
 import { ChipsDemo } from './chips';
 import { CodeHighlighterDemo } from './code-highlighter';
 import { CodeBoxDemo } from './code-box';
@@ -72,7 +72,7 @@ export const appRoutes: Routes = [
     { path: 'calendar', component: CalendarDemo },
     { path: 'region', component: RegionDemo },
 
-    { path: 'dialog', component: DemoDialog },
+    { path: 'dialog', component: DialogDemo },
     { path: 'tree', component: DemoTree },
     { path: 'side-bar', component: DemoSideBar },
     { path: 'chips', component: ChipsDemo },

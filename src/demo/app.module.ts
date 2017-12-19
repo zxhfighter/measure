@@ -57,7 +57,7 @@ import { DemoTree } from './tree';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
 import { OverlayDemo } from './overlay';
-import { DemoDialog } from './dialog';
+import { DialogDemoModule } from './dialog';
 import { ChipsDemoModule } from './chips';
 import { CodeBoxDemo } from './code-box';
 import { DemoAccordion } from './accordion';
@@ -106,7 +106,8 @@ const demoModules = [
     CodeHighlighterDemoModule,
     SliderDemoModule,
     TabsDemoModule,
-    TooltipDemoModule
+    TooltipDemoModule,
+    DialogDemoModule
 ];
 
 @NgModule({
@@ -119,7 +120,6 @@ const demoModules = [
         DemoTextLine,
         SearchBoxDemo,
         DemoTree,
-        DemoDialog,
         CodeBoxDemo,
         DemoTree,
         DemoSideBar,
