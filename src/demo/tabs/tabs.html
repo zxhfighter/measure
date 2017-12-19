@@ -1,21 +1,64 @@
 <h1 class="main-title">nb-tabs</h1>
+
 <p class="type-desc">
     <span>type</span>:
     <span class="type-component">Component</span>
 </p>
+
+<p class="type-desc">
+    <span>selector</span>: <code>nb-tabs</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>nbTabs</code>
+</p>
+
 <section>
     <h3 class="section-title">Usage</h3>
+
     <div class="code">
         <nb-code-highlighter language="typescript" ngNonBindable>
             import &#x7B;TabsModule&#x7D; from 'xdesign';
         </nb-code-highlighter>
     </div>
 </section>
+
 <h3 class="section-title">Examples</h3>
+
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Tabs Basic</h3>
-    <p nb-codebox-desc>Tabs desc.</p>
-    <demo-chips-basic></demo-chips-basic>
+    <div nb-codebox-desc>
+        <p>1.tabs可以设置 underline ，将在整体底部增加一条下划线作为标签和内容的分隔</p>
+        <p>2.tabs可以设置 splitline ，标签之间增加竖线作为分隔</p>
+        <p>3.tabs有两种尺寸 'default' | 'large'，默认情况下是较小尺寸，当显示大尺寸时设置 <code>size="large"</code></p>
+        <p>4.tab可以设置 disabled ，用于不可使用状态</p>
+    </div>
+
+    <demo-tabs-basic></demo-tabs-basic>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeTipable" [htmlCode]="htmlCodeTipable" [lessCode]="lessCodeTipable">
+    <h3 nb-codebox-title>Tabs Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.tabs可以设置 underline ，将在整体底部增加一条下划线作为标签和内容的分隔</p>
+        <p>2.tabs可以设置 splitline ，标签之间增加竖线作为分隔</p>
+        <p>3.tabs有两种尺寸 'default' | 'large'，默认情况下是较小尺寸，当显示大尺寸时设置 <code>size="large"</code></p>
+        <p>4.tab可以设置 disabled ，用于不可使用状态</p>
+    </div>
+
+    <demo-tabs-tipable></demo-tabs-tipable>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeTipable" [htmlCode]="htmlCodeTipable" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Tabs Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.tabs可以设置 underline ，将在整体底部增加一条下划线作为标签和内容的分隔</p>
+        <p>2.tabs可以设置 splitline ，标签之间增加竖线作为分隔</p>
+        <p>3.tabs有两种尺寸 'default' | 'large'，默认情况下是较小尺寸，当显示大尺寸时设置 <code>size="large"</code></p>
+        <p>4.tab可以设置 disabled ，用于不可使用状态</p>
+    </div>
+
+    <demo-tabs-tipable></demo-tabs-tipable>
 </nb-code-box>
 
 <h3 class="section-title">API</h3>

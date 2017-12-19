@@ -102,14 +102,14 @@ const demoModules = [
     SelectDemoModule,
     ChipsDemoModule,
     CodeHighlighterDemoModule,
-    SliderDemoModule
+    SliderDemoModule,
+    TabsDemoModule
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
         DemoInput,
-        TabsDemoModule,
         DemoTooltip,
         DemoPage,
         DemoSchedule,

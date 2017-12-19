@@ -17,13 +17,14 @@ export type TABS_SIZE = 'default' | 'large' | string;
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget'
-    }
+    },
+    exportAs: 'nbTabs'
 })
 export class TabsComponent implements AfterContentInit {
     @Input() size: TABS_SIZE = 'default';
 
     @OnChange(true)
-    @Input() underline: boolean = true;
+    @Input() underline: boolean = false;
 
     @OnChange(true)
     @Input() splitline: boolean = false;
