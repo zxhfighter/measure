@@ -1,4 +1,17 @@
-<h1 class="main-title">Accordion demo</h1>
+<h1 class="main-title">nb-accordion</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
+
+<p class="type-desc">
+    <span>selector</span>: <code>nb-accordion</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>nbAccordion</code>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
@@ -10,26 +23,16 @@
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">common Accordion</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-accordion [datasource]="panels"></nb-accordion>
-    </p>
-</section>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Accordion Basic</h3>
+    <div nb-codebox-desc>
+        <p></p>
+    </div>
 
-<section>
-    <h3 class="section-title">全部可折叠</h3>
+    <demo-accordion-basic></demo-accordion-basic>
+</nb-code-box>
 
-    <p>
-        <nb-accordion [datasource]="panels" [collapsible]="collapsible"></nb-accordion>
-    </p>
-</section>
-
-<section>
-    <h3 class="section-title">Hover Open</h3>
-
-    <p>
-        <nb-accordion [datasource]="panels" [hoverable]="hoverable"></nb-accordion>
-    </p>
-</section>
+<h3 class="section-title">API</h3>
+<!-- 把dist/docs/api/component对应的组件APIcopy过来 -->

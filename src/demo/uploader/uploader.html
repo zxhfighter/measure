@@ -1,4 +1,17 @@
-<h1 class="main-title">Uploader demo</h1>
+<h1 class="main-title">nb-uploader</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
+
+<p class="type-desc">
+    <span>selector</span>: <code>nb-uploader</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>nbUploader</code>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
@@ -10,89 +23,847 @@
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">图片上传模式 - 上传进度百分比显示</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-uploader
-            mode="image"
-            name="demo[]"
-            [files]="uploadedFilesList[0]"
-            url="./uploader"
-            accept="image/*"
-            maxFileCount="6"
-            maxFileSize="1000000"
-            (onUpload)="onImageUpload($event)">
-        </nb-uploader>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Uploader Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.对于文件的限制如下：</p>
+        <ul>
+            <li>文件的数量超过限制， 通过 <code>maxFileCount="XXX"</code> 设置，
+                eg. <code>maxFileCount="6"</code></li>
+            <li>文件的大小不符合要求， 通过 <code>maxFileSize="XXX"</code> 设置，
+                eg. <code>maxFileSize="1000000"</code></li>
+            <li>文件的类型不符合要， 通过 <code>accept="XXX"</code> 设置，
+                eg. <code>accept="image/*"</code></li>
+        </ul>
+        <p>2.上传模式有图片上传和文件上传两种，通过 <code>mode</code> 设置，分别为 'image' | 'file' </p>
+        <p>3.上传进度有百分比和进度条两种，通过 <code>progressMode</code>设置，分别为 'text' | 'bar'</p>
+        <p>4.布局方式有水平和垂直两种，通过 <code>direction</code>设置，分别为 'horizontal' | 'vertical'</p>
+        <p>5.已上传的文件，通过 <code>[files]</code> 设置</p>
+        <p>6.自定义校验信息</p>
+        <ul>
+            <li>默认显示「文件的数量超过限制」， 可以通过 <code>invalidFileCountMessage</code> 自定义</li>
+            <li>默认显示「文件的大小不符合要求」， 可以通过 <code>invalidFileSizeMessage</code> 自定义</li>
+            <li>默认显示「文件的类型不符合要求」， 可以通过 <code>invalidFileTypeMessage</code> 自定义</li>
+            <li>默认显示「上传失败」， 可以通过 <code>uploadFailedMessage</code> 自定义</li>
+        </ul>
+        <p>6.通过 <code>url</code>设置</p>
+    </div>
+
+    <demo-uploader-basic></demo-uploader-basic>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeImageProgressBar" [htmlCode]="htmlCodeImageProgressBar" [lessCode]="lessCodeImageProgressBar">
+    <h3 nb-codebox-title>uploader ImageProgressBar</h3>
+    <div nb-codebox-desc>
+        <p>图片上传模式，上传进度使用进度条</p>
+    </div>
+
+    <demo-uploader-image-progress-bar></demo-uploader-image-progress-bar>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeFileProgressText" [htmlCode]="htmlCodeFileProgressText" [lessCode]="lessCodeFileProgressText">
+    <h3 nb-codebox-title>uploader FileProgressText</h3>
+    <div nb-codebox-desc>
+        <p>文件上传模式，上传进度使用百分比显示</p>
+    </div>
+
+    <demo-uploader-file-progress-text></demo-uploader-file-progress-text>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeFileProgressBar" [htmlCode]="htmlCodeFileProgressBar" [lessCode]="lessCodeFileProgressBar">
+    <h3 nb-codebox-title>uploader FileProgressBar</h3>
+    <div nb-codebox-desc>
+        <p>文件上传模式，上传进度使用进度条</p>
+    </div>
+
+    <demo-uploader-file-progress-bar></demo-uploader-file-progress-bar>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeFileVertical" [htmlCode]="htmlCodeFileVertical" [lessCode]="lessCodeFileVertical">
+    <h3 nb-codebox-title>uploader FileVertical</h3>
+    <div nb-codebox-desc>
+        <p>垂直布局</p>
+    </div>
+
+    <demo-uploader-file-vertical></demo-uploader-file-vertical>
+</nb-code-box>
+
+<h3 class="section-title">API</h3>
+<!-- 把dist/docs/api/component对应的组件APIcopy过来 -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="docs-api"><h2 class="docs-api-type">Components</h2>
+
+      <h4 class="docs-api-h4 docs-api-class-name">
+  <code>UploaderComponent</code> API Reference
+</h4><h5 class="docs-table-desc">Properties</h5>
+  <table class="docs-table docs-table-properties">
+    <tr class="docs-row docs-row-head">
+      <th class="docs-td docs-th">Name</th>
+      <th class="docs-td docs-th">Type</th>
+      <th class="docs-td docs-th">Default</th>
+      <th class="docs-td docs-th">Description</th>
+    </tr>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      name
     </p>
-</section>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
 
-<section>
-    <h3 class="section-title">图片上传模式 - 上传进度进度条显示</h3>
 
-    <p>
-        <nb-uploader
-            mode="image"
-            name="demo[]"
-            [files]="uploadedFilesList[1]"
-            url="./uploader"
-            accept="image/*"
-            maxFileSize="1000000"
-            progressMode="bar"
-            (onUpload)="onImageBarUpload($event)">
-        </nb-uploader>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      url
     </p>
-</section>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
 
-<section>
-    <h3 class="section-title">文件上传模式 - 上传进度百分比显示</h3>
 
-    <p>
-        <nb-uploader
-            mode="file"
-            name="demo[]"
-            [files]="uploadedFilesList[2]"
-            url="./uploader"
-            accept="image/*"
-            maxFileCount="6"
-            maxFileSize="1000000"
-            (onUpload)="onFileUpload($event)">
-        </nb-uploader>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      method
     </p>
-</section>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
 
-<section>
-    <h3 class="section-title">文件上传模式 - 上传进度进度条显示</h3>
 
-    <p>
-        <nb-uploader
-            mode="file"
-            name="demo[]"
-            [files]="uploadedFilesList[3]"
-            url="./uploader"
-            accept="image/*"
-            maxFileSize="1000000"
-            progressMode="bar"
-            (onUpload)="onFileBarUpload($event)">
-        </nb-uploader>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      multiple
     </p>
-</section>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
 
-<section>
-        <h3 class="section-title">文件上传模式 - 文件列表垂直显示</h3>
 
-        <p>
-            <nb-uploader
-                mode="file"
-                name="demo[]"
-                [files]="uploadedFilesList[3]"
-                url="./uploader"
-                accept="image/*"
-                maxFileSize="1000000"
-                progressMode="bar"
-                direction="vertical"
-                (onUpload)="onFileBarUpload($event)">
-            </nb-uploader>
-        </p>
-    </section>
 
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      mode
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      accept
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      progressMode
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      files
+    </p>
+  </td>
+  <td class="docs-td docs-td-type"></td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      files
+    </p>
+  </td>
+  <td class="docs-td docs-td-type"></td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      direction
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      auto
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      maxFileSize
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">number</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      maxFileCount
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">number</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      withCredentials
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      invalidFileCountMessage
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      invalidFileSizeMessage
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      invalidFileTypeMessage
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      uploadFailedMessage
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      onBeforeUpload
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      onBeforeSend
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      onUpload
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      onError
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      onClear
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      onRemove
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      onSelect
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      onProgress
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      uploadHandler
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;any&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      msgs
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">Message[]</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      progress
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">number</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      state
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>文件上传的状态
+&#39;uploading&#39; | &#39;success&#39; | &#39;error&#39;</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      replacingFile
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">any</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+  </table>
+
+
+<h5 class="docs-table-desc">Methods</h5>
+<table class="docs-table docs-table-methods">
+  <tr class="docs-row docs-row-head">
+    <th class="docs-td docs-th docs-td-name">Name</th>
+    <th class="docs-td docs-th docs-td-param">Parameters</th>
+    <th class="docs-td docs-th docs-td-type">Return Type</th>
+    <th class="docs-td docs-th docs-td-desc">Description</th>
+  </tr>
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        onFileSelect()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                event<span class="type">: any</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        upload()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                file<span class="type">: any</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        validateFileCount()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                files<span class="type">: any</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"><span class="type">boolean</span>
+        <div class="desc"></div></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        isFileTypeValid()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                file<span class="type">: File</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"><span class="type">boolean</span>
+        <div class="desc"></div></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        isWildcard()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                fileType<span class="type">: string</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"><span class="type">boolean</span>
+        <div class="desc"></div></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        getTypeClass()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                fileType<span class="type">: string</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"><span class="type">string</span>
+        <div class="desc"></div></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        getFileExtension()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                file<span class="type">: File</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"><span class="type">string</span>
+        <div class="desc"></div></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        formatSize()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                bytes<span class="type">: any</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        isImage()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                file<span class="type">: File</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"><span class="type">boolean</span>
+        <div class="desc"></div></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        hasFiles()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"><span class="type">boolean</span>
+        <div class="desc"></div></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        clearInputElement()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        clear()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        onCancelFile()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                file<span class="type">: any</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        onRemoveFile()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                file<span class="type">: any</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        onReuploadFile()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                file<span class="type">: any</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        onReplaceFile()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                file<span class="type">: any</span>
+                <div class="desc"> - </div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+</table>
+
+
+
+    <h2 class="docs-api-type">Interface classes</h2>
+
+      <h4 class="docs-api-h4 docs-api-class-name">
+  <code>Message</code> API Reference
+</h4>
+
+
+
+
+
+
+
+      <h4 class="docs-api-h4 docs-api-class-name">
+  <code>Message</code> API Reference
+</h4>
+
+
+
+
+
+
+    </div>

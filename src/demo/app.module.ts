@@ -56,8 +56,8 @@ import { OverlayDemo } from './overlay';
 import { DialogDemoModule } from './dialog';
 import { ChipsDemoModule } from './chips';
 import { CodeBoxDemo } from './code-box';
-import { DemoAccordion } from './accordion';
-import { DemoUploader } from './uploader';
+import { AccordionDemoModule } from './accordion';
+import { UploaderDemoModule } from './uploader';
 import { DemoSideBar } from './side-bar';
 import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
@@ -109,7 +109,9 @@ const demoModules = [
     SliderDemoModule,
     TabsDemoModule,
     TooltipDemoModule,
-    DialogDemoModule
+    DialogDemoModule,
+    AccordionDemoModule,
+    UploaderDemoModule
 ];
 
 @NgModule({
@@ -124,8 +126,6 @@ const demoModules = [
         DemoTree,
         DemoSideBar,
         OverlayDemo,
-        DemoAccordion,
-        DemoUploader,
         DemoTransfer,
         GuideComponentDemo,
         IconsComponentDemo,
