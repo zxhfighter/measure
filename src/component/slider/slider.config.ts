@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 
-/**
- * input default config
- */
 @Injectable()
+
 export class Hand {
     initPos: number;
-    active: boolean;
 }
 
 export class Info {

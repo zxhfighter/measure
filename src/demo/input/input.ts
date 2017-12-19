@@ -1,8 +1,11 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation
+    Component,
+    OnInit,
+    ChangeDetectionStrategy,
+    ViewEncapsulation
 } from '@angular/core';
 
-import {InputConfig} from '../../component/input';
+import { InputConfig } from '../../component/input';
 
 export function getInputConfig(): InputConfig {
     return Object.assign(new InputConfig, { theme: 'default' });
@@ -14,39 +17,16 @@ export function getInputConfig(): InputConfig {
     styleUrls: ['./input.less'],
     encapsulation: ViewEncapsulation.Emulated,
     changeDetection: ChangeDetectionStrategy.Default,
-    providers: [{provide: InputConfig, useFactory: getInputConfig}]
+    providers: [{ provide: InputConfig, useFactory: getInputConfig }]
 })
-export class DemoInput implements OnInit {
+export class InputDemo {
+    // theme sources
+    tsCode: string = require('!!raw-loader!./themes/input-theme.ts');
+    htmlCode: string = require('!!raw-loader!./themes/input-theme.html');
+    lessCode: string = require('!!raw-loader!./themes/input-theme.less');
 
-    name = 'ComponentName';
-    isDisabled = false;
-
-    size = 'short-low';
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
-
-    /**
-     * 控制input是否disabled
-     */
-    changeDisabled() {
-        this.isDisabled = !this.isDisabled;
-    }
-
-    /**
-     * 改变input尺寸
-     */
-    changeSize() {
-        let arrSize = ['long-high', 'long-middle', 'long-low', 'default', 'short-high', 'short-middle', 'short-low'];
-        this.size = arrSize[Math.floor(Math.random() * 7)];
-    }
-
-    onFocus(ipt) {
-        ipt.placeholder = '';
-    }
+    // size sources
+    tsCodeSize: string = require('!!raw-loader!./size/input-size.ts');
+    htmlCodeSize: string = require('!!raw-loader!./size/input-size.html');
+    lessCodeSize: string = require('!!raw-loader!./size/input-size.less');
 }

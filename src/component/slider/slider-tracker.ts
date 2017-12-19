@@ -1,8 +1,6 @@
 import {
-    Component, Input, Output, EventEmitter, OnInit,
-    ViewEncapsulation, ChangeDetectionStrategy
+    Component, Input, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
-import { SliderHandComponent } from './slider-hand';
 
 @Component({
     selector: 'nb-slider-tracker',
@@ -17,15 +15,21 @@ import { SliderHandComponent } from './slider-hand';
     preserveWhitespaces: false,
     exportAs: 'nbSliderTracker'
 })
-export class SliderTrackerComponent implements OnInit {
+export class SliderTrackerComponent {
+
+    /**
+     * tracker selected
+     */
     @Input() selected;
 
+    /**
+     * tracker position
+     */
     @Input() position;
 
+    /**
+     * slider orientation
+     */
     @Input() orientation;
 
-    constructor() {}
-
-    ngOnInit() {
-    }
 }

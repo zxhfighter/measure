@@ -45,12 +45,8 @@ import {
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
-import { DemoInput } from './input';
-import { TabsDemoModule } from './tabs';
-import { TooltipDemoModule } from './tooltip';
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
-import { DemoTextarea } from './textarea';
 import { DemoTextLine } from './text-line';
 import { SearchBoxDemo } from './search-box';
 import { DemoTree } from './tree';
@@ -68,6 +64,8 @@ import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
 
+import { InputDemoModule } from './input';
+import { TextareaDemoModule } from './textarea';
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
 import { SwitchDemoModule } from './switch';
@@ -84,8 +82,12 @@ import { CardDemoModule } from './card';
 import { TableDemoModule } from './table';
 import { CodeHighlighterDemoModule } from './code-highlighter';
 import { SliderDemoModule } from './slider';
+import { TabsDemoModule } from './tabs';
+import { TooltipDemoModule } from './tooltip';
 
 const demoModules = [
+    InputDemoModule,
+    TextareaDemoModule,
     ButtonDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
@@ -113,10 +115,8 @@ const demoModules = [
 @NgModule({
     declarations: [
         AppComponent,
-        DemoInput,
         DemoPage,
         DemoSchedule,
-        DemoTextarea,
         DemoTextLine,
         SearchBoxDemo,
         DemoTree,

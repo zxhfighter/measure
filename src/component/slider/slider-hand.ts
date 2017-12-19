@@ -1,25 +1,21 @@
 import {
     Component, Input, Output, EventEmitter,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy,
-    AfterViewInit, ViewChild, Renderer2, ElementRef, OnChanges,
-    SimpleChanges, HostListener
+    ViewChild, Renderer2, ElementRef,
+    SimpleChanges
 } from '@angular/core';
-import { min } from 'rxjs/operators/min';
-import { ElementDef } from '@angular/core/src/view';
 
-import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/takeUntil';
 
 import { merge } from 'rxjs/observable/merge';
-import { SliderService } from './slider.service';
-import { Action } from 'rxjs/scheduler/Action';
+import { initNgModule } from '@angular/core/src/view/ng_module';
 
 @Component({
     selector: 'nb-slider-hand',
-    templateUrl: './slider-hand.html',
+    template: '<div #sliderHand class="nb-slider-hand" [ngStyle]="style"></div>',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
@@ -30,23 +26,43 @@ import { Action } from 'rxjs/scheduler/Action';
 })
 
 export class SliderHandComponent implements OnInit {
-
+    /**
+     * The range of dragging, width or height of the component
+     */
     @Input() limitMove: number = 0;
 
+    /**
+     * Orientation of the component
+     */
     @Input() orientation;
+    /**
+     * The init position of hand
+     */
+    @Input() initPos: number = 0;
 
-    @Input() initPos;
+    /**
+     * Whether the slider is disabled or not
+     */
+    @Input() disabled: boolean = false;
 
-    @Input() disabled;
+    /**
+     * Max value of the dragging
+     */
+    @Input() max: number = 0;
 
-    @Input() max: number;
+    /**
+     * Min value of the dragging
+     */
+    @Input() min: number = 0;
 
-    @Input() min: number;
+    /**
+     * Step of dragging
+     */
+    @Input() step: number = 1;
 
-    @Input() step: number;
-
-    @Input() active: boolean;
-
+    /**
+     * The event emitted when slider value changes, emit the init position and end position of hand
+     */
     @Output() change: EventEmitter<object> = new EventEmitter<object>();
 
     @ViewChild('sliderHand') _hand: ElementRef;
@@ -55,13 +71,12 @@ export class SliderHandComponent implements OnInit {
 
     constructor(
         private render: Renderer2,
-        private el: ElementRef
     ) {
         this.render = render;
     }
 
     ngOnInit() {
-        this._updateStyle(`${this.initPos}%`);
+        this.updateStyle(`${this.initPos}%`);
         if (this.disabled) {
             return;
         }
@@ -72,6 +87,9 @@ export class SliderHandComponent implements OnInit {
         this.bindEvent();
     }
 
+    /**
+     * Bind element event
+     */
     bindEvent() {
         const me = this;
         const hand = this._hand.nativeElement as HTMLElement;
@@ -81,10 +99,11 @@ export class SliderHandComponent implements OnInit {
         const mouseUp$ = fromEvent(document, 'mouseup');
         mouseDown$
             .map((event: MouseEvent) => {
-                let style = event.target.style;
+                let target = event.target as HTMLElement;
+
                 let initPos = me.orientation
-                    ? parseInt(style.left)
-                    : parseInt(style.bottom);
+                    ? parseInt(target.style.left as string)
+                    : parseInt(target.style.bottom as string);
                 return {
                     // 返回mousedown时的hand位置
                     initPos,
@@ -94,7 +113,8 @@ export class SliderHandComponent implements OnInit {
             .switchMap((initialState) => {
                 // mousedown时的鼠标位置
                 // 锁定当前移动的hand
-                const { clientX, clientY, target } = initialState.event;
+                const { clientX, clientY } = initialState.event;
+                const target = initialState.event.target as HTMLElement;
                 const initPos = initialState.initPos;
                 return mouseMove$.map((moveEvent: MouseEvent) => {
                     // 鼠标移动的距离
@@ -113,8 +133,8 @@ export class SliderHandComponent implements OnInit {
                         // endPos: moveEvent.clientX,
                         // hand每一次移动前的位置
                         initPos: me.orientation
-                            ? parseInt(target.style.left)
-                            : parseInt(target.style.bottom)
+                            ? parseFloat(target.style.left as string)
+                            : parseFloat(target.style.bottom as string)
                     };
                 })
                     .takeUntil(mouseUp$);
@@ -133,20 +153,25 @@ export class SliderHandComponent implements OnInit {
                 let step = me.step / (me.max - me.min) * 100;
 
                 // 重置hand
-                if (Math.abs(move) < step) {
+                if (Math.abs(Math.abs(move) - step) < 0) {
                     return;
                 }
                 else {
-                    move = Math.floor(move / step) * step;
+                    move = Math.round(move / step) * step;
                 }
                 endPos = initPos + move;
+                endPos = endPos > 0 ? endPos : 0;
                 // this.style[this.orientation ? 'left' : 'bottom'] = `${endPos}%`;
-                me._updateStyle(`${endPos}%`);
+                me.updateStyle(`${endPos}%`);
                 me.change.emit({ endPos, initPos });
             });
     }
 
-    _updateStyle(value) {
+    /**
+     * update end position of hand
+     * @param value position
+     */
+    updateStyle(value) {
         const hand = this._hand.nativeElement as HTMLElement;
         let style = this.orientation ? 'left' : 'bottom';
         // this.style[this.orientation ? 'left' : 'bottom'] = value;
