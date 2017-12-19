@@ -1,0 +1,22 @@
+<button theme="default" nb-button (click)="openCustomFooterDialog()">自定义Footer</button>
+<nb-dialog #customFooterDialog>
+    <nb-dialog-header>
+        <i class="iconfont icon-help"
+            nbTooltip="你可以自定义header、body、footer三部分">
+        </i>
+        <span>自定义对话框</span>
+    </nb-dialog-header>
+    <nb-dialog-body>
+        <div class="filter-content">
+            <div>
+                <label for="heroName">姓名：</label>
+                <input #name type="text" name="heroName" value="">
+            </div>
+        </div>
+    </nb-dialog-body>
+    <nb-dialog-footer>
+        <button nb-button (click)="clickYes()">是</button>
+        <button nb-button (click)="clickNo()">否</button>
+        <button theme="default" nb-button (click)="close()">Cancel</button>
+    </nb-dialog-footer>
+</nb-dialog>

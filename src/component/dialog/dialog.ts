@@ -4,14 +4,13 @@ import {
     ViewChild
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
-import { futimesSync } from 'fs';
-import { Event } from '@angular/router/src/events';
 import { DialogHeaderComponent } from './dialog-header';
 import { DialogBodyComponent } from './dialog-body';
 import { DialogFooterComponent } from './dialog-footer';
 
 @Component({
     selector: 'nb-dialog',
+    exportAs: 'nbDialog',
     templateUrl: './dialog.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,25 +22,45 @@ import { DialogFooterComponent } from './dialog-footer';
 
 export class DialogComponent implements OnInit, AfterViewInit {
 
+    /**
+     * 使用overlay子组件实现
+     */
     @ViewChild('overlay') overlay;
 
+    /**
+     * 为区分不同场景的overlay组件设置不同的 class 类
+     */
     @Input() overlayClass: string = '';
-    @Input() title: string = '';
 
-    @Input() appendTo: any = 'body';
-
+    /**
+     * 是否为模态对话框
+     * @default false
+     */
     @OnChange(true)
     @Input() modalable: boolean = false;
 
+    /**
+     * 是否有关闭功能
+     * @default true
+     */
     @OnChange(true)
     @Input() closable: boolean = true;
 
-    // visiblity: boolean = false;
     mask: HTMLElement | null;
-    maskClickListener: Function;
 
+    /**
+     * 对话框打开时事件 emit
+     */
     @Output() openHandler: EventEmitter<Object> = new EventEmitter();
+
+    /**
+     * 对话框关闭时事件 emit
+     */
     @Output() closeHandler: EventEmitter<Object> = new EventEmitter();
+
+    /**
+     * 点击对话框的确认按钮时事件 emit
+     */
     @Output() confirmEvent: EventEmitter<Object> = new EventEmitter();
 
     constructor(
@@ -80,6 +99,10 @@ export class DialogComponent implements OnInit, AfterViewInit {
         this.close();
     }
 
+
+    /**
+     * 创建模态对话框的遮罩
+     */
     enableModality() {
         if (!this.mask) {
             this.mask = document.createElement('div');
