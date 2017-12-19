@@ -1,0 +1,15 @@
+TextLine for form：
+<form #frm="ngForm">
+    <nb-text-line [ngModel]="value" name="textline"></nb-text-line>
+</form>
+<p>
+    {{ frm.value | json }}
+</p>
+
+TextLine for reactive form：
+<form [formGroup]="form">
+    <nb-text-line formControlName="textline"></nb-text-line>
+</form>
+<p>
+    {{ form.value | json }}
+</p>

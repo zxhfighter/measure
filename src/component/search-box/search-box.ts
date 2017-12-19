@@ -45,49 +45,91 @@ export type SIZE = 'long' | 'default' | 'short' | string;
 })
 export class SearchBoxComponent implements OnInit, OnDestroy {
 
-    /** search-box type: either 'ico' or 'btn' */
-    @Input() type: SEARCH_TYPE = 'ico';
-
-    /** search-box size, there four default size: 'default' */
-    @Input() size: SIZE = 'default';
-
-    /** Whether the search-box is suggest search: either true or false */
-    @Input() isSuggestion: IS_SUGGESTION = 'false';
-
-    /** search-box default placeholder */
-    @Input() placeholder: string = '按关键词搜索';
-
-    /** Whether the search-box is disabled  */
-    @Input() disabled = false;
-
-    /** search-box value */
-    @Input() searchValue: string = '';
-
     /** search event */
     @Output() onSearch = new EventEmitter();
-
+    
     /** clear search event */
     @Output() onClear = new EventEmitter();
-
-    /** search-box suggest search value */
-    @Input() suggestionValue: Array<string> = [];
 
     /** suggest search event */
     @Output() onSearchSuggestion = new EventEmitter();
 
-    /** init suggest search region is not open */
+    /** 
+     * search-box type: either 'ico' or 'btn' 
+     * @default 'ico'
+     */
+    @Input() type: SEARCH_TYPE = 'ico';
+
+    /** 
+     * search-box size, there three default size: 'long' | 'default' | 'short'
+     * @default 'default'
+     */
+    @Input() size: SIZE = 'default';
+
+    /** 
+     * Whether the search-box is suggest search: either true or false 
+     * @default 'false'
+     */
+    @Input() isSuggestion: IS_SUGGESTION = 'false';
+
+    /** 
+     * search-box default placeholder 
+     * @default '按关键词搜索'
+     */
+    @Input() placeholder: string = '按关键词搜索';
+
+    /** 
+     * Whether the search-box is disabled  
+     * @default false
+     */
+    @Input() disabled: boolean = false;
+
+    /** 
+     * search-box value 
+     * @default ''
+     */
+    @Input() searchValue: string = '';
+
+    /** 
+     * search-box suggest search value 
+     * @default []
+     */
+    @Input() suggestionValue: Array<string> = [];
+
+    /** 
+     * init suggest search region is not open 
+     * @docs-private
+     */
     isOpen: boolean = false;
 
-    /** Stream of viewport change|scroll events. */
+    /** 
+     * Stream of viewport change|scroll events. 
+     * @docs-private
+     */
     _change: Observable<Event>;
 
-    /** Subscription to viewport resize|scroll events. */
+    /** 
+     * Subscription to viewport resize|scroll events. 
+     * @docs-private
+     */
     _resizeSubscription = Subscription.EMPTY;
 
+    /**
+     * composing value, default false
+     * @docs-private
+     */
     _composing = false;
 
+    /**
+     * input in search-box default size
+     * @docs-private
+     */
     _sizeIpt = 'default';
 
+    /**
+     * buttion in search-box default size
+     * @docs-private
+     */
     _sizeBtn = 'default';
 
     constructor(
@@ -123,11 +165,20 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this._resizeSubscription.unsubscribe();
     }
 
+    /**
+     * set search-box class
+     * @docs-private
+     */
     setClass() {
         const nativeEl = this.el.nativeElement;
         nativeEl.className = this.getClassName(nativeEl.className);
     }
 
+    /**
+     * get search-box class
+     * @param className 
+     * @docs-private
+     */
     getClassName(className: string) {
         return className + ' ' + `nb-search-box-size-${this.size || 'default'}`;
     }
@@ -136,12 +187,16 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     /**
      * Returns a stream that emits whenever the size of the viewport change|scroll.
      * @param throttle Time in milliseconds to throttle the stream.
+     * @docs-private
      */
     change(throttleTime: number = DEFAULT_DELAY_TIME): Observable<Event> {
         return throttleTime > 0 ? this._change.pipe(auditTime(throttleTime)) : this._change;
     }
 
-    /** position suggestion layer */
+    /** 
+     * position suggestion layer 
+     * @docs-private
+     */
     positionSuggestionLayer(self) {
         let elLayer = self.el.nativeElement.getElementsByClassName('nb-search-box-suggestion-layer');
         if (elLayer.length) {
@@ -155,17 +210,26 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         }
     }
 
-    // 处理compositionstart事件
+    /**
+     * 处理compositionstart事件
+     * @docs-private
+     */
     _compositionStart(): void { 
         this._composing = true; 
     }
     
-    // 处理compositionend事件
+    /**
+     * 处理compositionend事件
+     * @docs-private
+     */
     _compositionEnd(): void {
         this._composing = false;
     }
 
-    /** listen keyword input in search-box */
+    /** 
+     * listen keyword input in search-box 
+     * @docs-private
+     */
     onInputValue() {
         if (this.isSuggestion !== 'false' && this.searchValue && !this._composing) {
             this.positionSuggestionLayer(this);
@@ -180,7 +244,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     /** 
      * clear keyword in search-box 
      * @param ipt
-     * */
+     * @docs-private
+     */
     clearSearch(ipt) {
         this.isOpen = false;
         this.searchValue = '';
@@ -188,13 +253,19 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.onClear.emit(this.searchValue);
     }
 
-    /** search use keyword event */
+    /** 
+     * search use keyword event 
+     * @docs-private
+     */
     search() {
         this.isOpen = false;
         this.onSearch.emit(this.searchValue);
     }
 
-    /** click select suggest search value */
+    /** 
+     * click select suggest search value 
+     * @docs-private
+     */
     selectSuggestionValue(suggestionItem: string) {
         this.searchValue = suggestionItem;
         this.isOpen = false;
@@ -203,6 +274,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     /**
      * listen focus on input event
      * @param ipt
+     * @docs-private
      */
     onFocus(ipt) {
         ipt.placeholder = '';
@@ -211,6 +283,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     /**
      * listen blur input event
      * @param ipt
+     * @docs-private
      */
     onBlur(ipt) {
         let self = this;

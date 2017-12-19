@@ -1,0 +1,41 @@
+suggest：
+<br>
+<p>
+    <nb-search-box 
+        placeholder="联想搜索" 
+        isSuggestion 
+        (onSearchSuggestion)="searchSuggestion($event)" 
+        [suggestionValue]="suggestionValue"
+        (onSearch)="search($event)" 
+        size="default">
+    </nb-search-box>
+</p>
+
+<p>
+    <nb-search-box 
+        placeholder="联想搜索" 
+        isSuggestion="true" 
+        (onSearchSuggestion)="searchSuggestion($event)" 
+        [suggestionValue]="suggestionValue"
+        (onSearch)="search($event)" 
+        size="default">
+    </nb-search-box>
+</p>
+
+no suggest：
+<br>
+<p>
+    <nb-search-box 
+        placeholder="不联想搜索" 
+        (onSearch)="search($event)" 
+        size="small">
+    </nb-search-box>
+</p>
+<p>
+    <nb-search-box 
+        placeholder="不联想搜索" 
+        isRelate="false" 
+        (onSearch)="search($event)" 
+        size="small">
+    </nb-search-box>
+</p>

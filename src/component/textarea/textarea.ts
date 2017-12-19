@@ -31,7 +31,7 @@ export class TextareaComponent implements OnChanges, AfterViewInit {
 
     /** 
      * Whether the textarea is disabled 
-     * @default default
+     * @default false
      */
     @OnChange(true)
     @Input() disabled = false;
