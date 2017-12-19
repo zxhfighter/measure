@@ -1,9 +1,21 @@
 import {
-    Component, Input, Output, EventEmitter, ChangeDetectorRef, Renderer2,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, forwardRef
+    Component,
+    Input,
+    Output,
+    EventEmitter,
+    ChangeDetectorRef,
+    Renderer2,
+    OnInit,
+    ViewEncapsulation,
+    ChangeDetectionStrategy,
+    ElementRef,
+    forwardRef
 } from '@angular/core';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import { OnChange } from '../core/decorators';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -30,19 +42,34 @@ const TEXTLINE_VALUE_ACCESSOR = {
 })
 export class TextLineComponent implements OnInit, ControlValueAccessor {
 
-    /** text-line value */
+    /** 
+     * text-line value 
+     * @default ''
+     */
     @Input() value: string = '';
 
-    /** order dom */
+    /** 
+     * order dom 
+     * @docs-private
+     */
     public domOrder: string;
-    /** content dom */
+    /** 
+     * content dom 
+     * @docs-private
+     */
     public domContent: any;
-    /** order content */
+    /** 
+     * order content 
+     * @docs-private
+     */
     public txtOrder: string = '';
 
-    /** Whether the text-line is disabled  */
+    /** 
+     * Whether the text-line is disabled  
+     * @default false
+     */
     @OnChange(true)
-    @Input() disabled = false;
+    @Input() disabled: boolean = false;
 
     constructor(
         private _cd: ChangeDetectorRef,
@@ -60,18 +87,24 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
         this.computeLine(value.length, objTxtOrder[0]);
     }
 
-    /** in text-line content region input string */
+    /** 
+     * in text-line content region input string
+     * @docs-private
+     */
     onInputKeyup(event, txtOrder) {
         let value = event.target.value;
         value = value.replace(/\r/gi, '');
         value = value.split('\n');
-        
+
         this.value = event.target.value;
         this.computeLine(value.length, txtOrder);
         this._markForCheck();
     }
 
-    /** compute text-line content how many line */
+    /** 
+     * compute text-line content how many line 
+     * @docs-private
+     */
     computeLine(n, txtOrder) {
         for (let i = 1; i < n + 1; i++) {
             if (document.all) {
@@ -84,7 +117,10 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
         this.txtOrder = '';
     }
 
-    /** listen text-line content region scroll event */
+    /** 
+     * listen text-line content region scroll event 
+     * @docs-private
+     */
     scrollHandler(event, txtOrder) {
         this._render.setProperty(txtOrder, 'scrollTop', event.target.scrollTop);
     }

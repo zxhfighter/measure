@@ -1,34 +1,22 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy
+    Component,
+    OnInit
 } from '@angular/core';
-
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'demo-text-line',
     templateUrl: './text-line.html',
     styleUrls: ['./text-line.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    preserveWhitespaces: false
 })
-export class DemoTextLine implements OnInit {
+export class TextLineDemo {
+    // basic sources
+    tsCodeBasic: string = require('!!raw-loader!./basic/text-line-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/text-line-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/text-line-basic.less');
 
-    form: FormGroup;
-
-    disabled = false;
-    value = "fadsfaf";
-
-    constructor(private fb: FormBuilder) {
-
-    }
-
-    ngOnInit() {
-        
-        this.form = this.fb.group({
-            textline: [
-                {value: 'qazwsx', disabled: false}
-            ]
-        });
-        
-    }
+    // form sources
+    tsCodeForm: string = require('!!raw-loader!./form/text-line-form.ts');
+    htmlCodeForm: string = require('!!raw-loader!./form/text-line-form.html');
+    lessCodeForm: string = require('!!raw-loader!./form/text-line-form.less');
 }
