@@ -17,7 +17,7 @@ import { DemoInput } from './input';
 import { TabsDemo } from './tabs';
 import { StepDemo } from './step';
 import { TableDemo } from './table';
-import { DemoTooltip } from './tooltip';
+import { TooltipDemo } from './tooltip';
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
 import { DemoTextarea } from './textarea';
@@ -58,10 +58,9 @@ export const appRoutes: Routes = [
     { path: 'input', component: DemoInput },
     { path: 'tabs', component: TabsDemo },
     { path: 'step', component: StepDemo },
-    { path: 'tooltip', component: DemoTooltip },
+    { path: 'tooltip', component: TooltipDemo },
     { path: 'textarea', component: DemoTextarea },
     { path: 'table', component: TableDemo },
-    { path: 'tooltip', component: DemoTooltip },
     { path: 'page', component: DemoPage },
     { path: 'schedule', component: DemoSchedule },
     { path: 'text-line', component: DemoTextLine },

@@ -1,0 +1,231 @@
+<h1 class="main-title">Tooltip demo</h1>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <pre><code uiCode class="language-markup" ngNonBindable>
+import &#x7B;TooltipModule&#x7D; from 'xdesign';
+        </code></pre>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">multiple directions</h3>
+
+    <div class="grid">
+        <div class="item-top-left">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on top-left"
+                placement="top-left"
+                hasArrow>
+                top-left
+            </button>
+        </div>
+        <div class="item-top-center">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on top"
+                placement="top"
+                hasArrow>
+                top
+            </button>
+        </div>
+        <div class="item-top-right">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on top-right"
+                placement="top-right"
+                hasArrow>
+                top-right
+            </button>
+        </div>
+        <div class="item-bottom-left">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on bottom-left"
+                placement="bottom-left"
+                hasArrow>
+                bottom-left
+            </button>
+        </div>
+        <div class="item-bottom-center">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on bottom"
+                placement="bottom"
+                hasArrow>
+                bottom
+            </button>
+        </div>
+        <div class="item-bottom-right">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on bottom-right"
+                placement="bottom-right"
+                hasArrow>
+                bottom-right
+            </button>
+        </div>
+        <div class="item-left-top">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on left top"
+                placement="left-top"
+                hasArrow>
+                left-top
+            </button>
+        </div>
+        <div class="item-left-center">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on left"
+                placement="left"
+                hasArrow>
+                left
+            </button>
+        </div>
+        <div class="item-left-bottom">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on left bottom"
+                placement="left-bottom"
+                hasArrow>
+                left-bottom
+            </button>
+        </div>
+        <div class="item-right-top">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on right top"
+                placement="right-top"
+                hasArrow>
+                right-top
+            </button>
+        </div>
+        <div class="item-right-center">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on right"
+                placement="right"
+                hasArrow>
+                right
+            </button>
+        </div>
+        <div class="item-right-bottom">
+            <button nb-button
+                theme="default"
+                nbTooltip="Tooltip on right bottom"
+                placement="right-bottom"
+                hasArrow>
+                right-bottom
+            </button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">multiple themes</h3>
+
+    <p>
+        <ng-template #tipContent>
+            <span>高级带图标多行提示</span>
+            <p>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》</p>
+        </ng-template>
+        <button nb-button
+            theme="default"
+            [nbTooltip]="tipContent"
+            placement="top"
+            nbTooltipTheme="pink"
+            trigger="click">
+            theme pink
+        </button>
+        <button nb-button
+            theme="default"
+            [nbTooltip]="tipContent"
+            placement="bottom"
+            nbTooltipTheme="yellow"
+            trigger="click">
+            theme yellow
+        </button>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">support any arbitrary HTML, Angular bindings and even directives</h3>
+
+    <p>
+        <ng-template #tipAttention>
+            <p>帮助内容提示弹窗控件多行显示情况</p>
+            <a class="nb-breadcrumb-text"
+                href="javascript:void(0)"
+                (click)="onIknowthat()">
+                我知道了
+            </a>
+        </ng-template>
+        <button nb-button
+            theme="default"
+            [nbTooltip]="tipAttention"
+            placement="top"
+            nbTooltipTheme="white"
+            trigger="click" hasArrow>
+            customize content
+        </button>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">attach other element</h3>
+    <div>
+        <ng-template #isolateTipContent>
+            <p>这个tip是由其他元素触发的</p>
+            <a class="nb-breadcrumb-text"
+                href="javascript:void(0)">
+                我知道了
+            </a>
+        </ng-template>
+        <span [nbTooltip]="isolateTipContent"
+            #genuineOrigin=nbTooltip
+            placement="top" hasArrow
+            trigger="manual">
+            i am here
+        </span>
+        <br/>
+        <br/>
+        <br/>
+        <button nb-button
+            theme="default"
+            (click)="showIsolateTip()">
+            click me
+        </button>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">focus & blur event</h3>
+
+    <p>
+        <input type="text" name="username" nbTooltip="you focus" trigger="focus" placement="top" value="nb" hasArrow/>
+    </p>
+</section>
+
+<section>
+    <h3 class="section-title">embedded style</h3>
+
+    <p>
+        <ng-template #tipContentEmbedded>
+            <span>高级带图标多行提示</span>
+            <p>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》</p>
+        </ng-template>
+        <button nb-button
+            theme="default"
+            [nbTooltip]="tipContentEmbedded"
+            placement="top"
+            nbTooltipTheme="pink"
+            embedded
+            trigger="click">
+            embedded style
+        </button>
+    </p>
+</section>

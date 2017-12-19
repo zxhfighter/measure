@@ -1,38 +1,13 @@
-import {
-    Component, Output, EventEmitter,  OnInit, ChangeDetectionStrategy, ViewChild, ViewChildren, QueryList, ContentChildren, ContentChild
-} from '@angular/core';
-import { TiplayerComponent } from '../../component/tooltip/tiplayer';
-import { TooltipDirective } from '../../component/tooltip/tooltip';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-tooltip',
     templateUrl: './tooltip.html',
-    styleUrls: ['./tooltip.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    styleUrls: ['./tooltip.less']
 })
-export class DemoTooltip implements OnInit {
+export class TooltipDemo {
 
-    @ViewChild('genuineOrigin') tooltip: TooltipDirective;
-
-    @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
-
-    onIknowthat() {
-        this.close.emit();
-    }
-
-    showIsolateTip() {
-        const isVisible = this.tooltip.isTooltipVisible();
-        if (!isVisible) {
-            this.tooltip.show();
-        }
-    }
+    tsCodeBasic: string = require('!!raw-loader!./basic/tooltip-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/tooltip-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/tooltip-basic.less');
 }

@@ -47,7 +47,7 @@ import { appRoutes } from './app.router';
 
 import { DemoInput } from './input';
 import { TabsDemoModule } from './tabs';
-import { DemoTooltip } from './tooltip';
+import { TooltipDemoModule } from './tooltip';
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
 import { DemoTextarea } from './textarea';
@@ -105,14 +105,14 @@ const demoModules = [
     ChipsDemoModule,
     CodeHighlighterDemoModule,
     SliderDemoModule,
-    TabsDemoModule
+    TabsDemoModule,
+    TooltipDemoModule
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
         DemoInput,
-        DemoTooltip,
         DemoPage,
         DemoSchedule,
         DemoTextarea,
