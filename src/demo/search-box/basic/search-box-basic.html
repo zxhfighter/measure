@@ -1,0 +1,52 @@
+default：
+<br>
+<p>
+    <nb-search-box 
+        size="long">
+    </nb-search-box>
+</p>
+
+themes：
+<br>
+<p>
+    <nb-search-box 
+        placeholder="type = 'ico' 常态" 
+        size="default">
+    </nb-search-box>
+</p>
+<p>
+    <nb-search-box 
+        placeholder="type = 'btn' 常态" 
+        type="btn" 
+        size="default">
+    </nb-search-box>
+</p>
+
+disabled：
+<br>
+<p>
+    <nb-search-box 
+        placeholder="type = 'ico' 禁用" 
+        disabled 
+        size="default">
+    </nb-search-box>
+</p>
+
+<p>
+    <nb-search-box 
+        placeholder="type = 'btn' 禁用" 
+        type="btn" 
+        disabled 
+        size="default">
+    </nb-search-box>
+</p>
+
+value：
+<br>
+<p>
+    <nb-search-box 
+        [searchValue]="searchValue" 
+        (onSearch)="search($event)" 
+        size="small">
+    </nb-search-box>
+</p>

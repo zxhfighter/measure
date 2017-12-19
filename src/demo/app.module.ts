@@ -47,7 +47,6 @@ import { appRoutes } from './app.router';
 
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
-import { SearchBoxDemo } from './search-box';
 import { DemoTree } from './tree';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
@@ -66,6 +65,7 @@ import { TypographyDemo } from './typography';
 import { InputDemoModule } from './input';
 import { TextareaDemoModule } from './textarea';
 import { TextLineDemoModule } from './text-line';
+import { SearchBoxDemoModule } from './search-box';
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
 import { SwitchDemoModule } from './switch';
@@ -89,6 +89,7 @@ const demoModules = [
     InputDemoModule,
     TextareaDemoModule,
     TextLineDemoModule,
+    SearchBoxDemoModule,
     ButtonDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
@@ -118,7 +119,6 @@ const demoModules = [
         AppComponent,
         DemoPage,
         DemoSchedule,
-        SearchBoxDemo,
         DemoTree,
         CodeBoxDemo,
         DemoTree,

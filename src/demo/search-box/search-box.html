@@ -1,82 +1,193 @@
-<h1 class="main-title">SearchBox demo</h1>
+<h1 class="main-title">nb-search-box</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;SearchBoxModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;SearchBoxModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">SearchBox first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-search-box size="long"></nb-search-box>
-    </p>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-search-box</code>用于输入关键词去查询与关键词匹配的结果。</p>
+        <p>2.<code>nb-search-box</code>有<code>type</code>用于设置主题，有两种内置类型，分别是：ico, btn</p>
+        <p>3.<code>nb-search-box</code>有<code>disabled</code> 属性，用于置灰处理，为不可编辑状态。</p>
+        <p>4.<code>nb-search-box</code>有<code>value</code>属性，表示当前的关键词的值。</p>
+    </div>
 
-    <h3 class="section-title">SearchBox init with set placeholder</h3>
-    
-    <p>
-        <nb-search-box placeholder="type = 'ico' 常态" size="small"></nb-search-box>
-    </p>
+    <demo-search-box-basic></demo-search-box-basic>
+</nb-code-box>
+<nb-code-box [tsCode]="tsCodetsCodeSuggest" [htmlCode]="htmlCodetsCodeSuggest" [lessCode]="lessCodetsCodeSuggest">
+    <h3 nb-codebox-title>SearchBox with suggest</h3>
+    <div nb-codebox-desc>
+        <p><code>nb-search-box</code>有<code>isSuggestion</code>属性，用于是否联想提示已输入的关键词结果。</p>
+    </div>
 
-    <h3 class="section-title">SearchBox init with search value</h3>
-
-    <p>
-        <nb-search-box [searchValue]="searchValue" (onSearch)="search($event)" size="small"></nb-search-box>
-    </p>
-
-    <h3 class="section-title">SearchBox suggest search</h3>
-    
-    <p>
-        <nb-search-box 
-            placeholder="联想搜索" 
-            isSuggestion 
-            (onSearchSuggestion)="searchSuggestion($event)"
-            [suggestionValue]="suggestionValue"
-            (onSearch)="search($event)"
-            size="default">
-        </nb-search-box>
-    </p>
-
-    <p>
-        <nb-search-box 
-            placeholder="联想搜索"
-            isSuggestion="true"
-            (onSearchSuggestion)="searchSuggestion($event)"
-            [suggestionValue]="suggestionValue"
-            (onSearch)="search($event)"
-            size="default">
-        </nb-search-box>
-    </p>
-
-    <h3 class="section-title">SearchBox no suggest search</h3>
-    
-    <p>
-        <nb-search-box placeholder="不联想搜索" (onSearch)="search($event)" size="small"></nb-search-box>
-    </p>
-    <p>
-        <nb-search-box placeholder="不联想搜索"  isRelate="false" (onSearch)="search($event)" size="small"></nb-search-box>
-    </p>
-
-    <h3 class="section-title">SearchBox themes and states</h3>
-
-    <p>
-        <nb-search-box placeholder="type = 'ico' 常态" size="default"></nb-search-box>
-    </p>
-
-    <p>
-        <nb-search-box placeholder="type = 'ico' 禁用" disabled size="default"></nb-search-box>
-    </p>
-
-    <p>
-        <nb-search-box placeholder="type = 'btn' 常态" type="btn" size="default"></nb-search-box>
-    </p>
-
-    <p>
-        <nb-search-box placeholder="type = 'btn' 禁用" type="btn" disabled size="default"></nb-search-box>
-    </p>
-</section>
+    <demo-search-box-suggest></demo-search-box-suggest>
+</nb-code-box>
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>SearchBoxComponent</code> API Reference
+    </h4>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    onSearch
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>search event</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    onClear
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>clear search event</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    onSearchSuggestion
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>suggest search event</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    type
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;ico&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>search-box type: either &#39;ico&#39; or &#39;btn&#39; </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    size
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;default&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>search-box size, there three default size: &#39;long&#39; | &#39;default&#39; | &#39;short&#39;</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    isSuggestion
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;false&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the search-box is suggest search: either true or false </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    placeholder
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;按关键词搜索&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>search-box default placeholder </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">false</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the search-box is disabled </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    searchValue
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>search-box value </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    suggestionValue
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">Array&lt;string&gt;</td>
+            <td class="docs-td docs-td-default">[]</td>
+            <td class="docs-td docs-td-desc">
+                <p>search-box suggest search value </p>
+            </td>
+        </tr>
+    </table>
+</div>
