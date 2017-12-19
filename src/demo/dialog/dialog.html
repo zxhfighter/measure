@@ -28,11 +28,243 @@
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Dialog Basic</h3>
     <div nb-codebox-desc>
-        <p></p>
+        <p>1.通过 <code>modalable</code>设置对话框为模态对话框，默认为非模态对话框</p>
+        <p>2.通过 <code>closable</code>设置对话框右上角是否有关闭功能，默认没有</p>
     </div>
 
     <demo-dialog-basic></demo-dialog-basic>
 </nb-code-box>
 
+<nb-code-box [tsCode]="tsCodeContent" [htmlCode]="htmlCodeContent" [lessCode]="lessCodeContent">
+    <h3 nb-codebox-title>Dialog Content</h3>
+    <div nb-codebox-desc>
+        <p>你可以自定义header、body、footer三部分，其中footer部分如果未自定义，将默认使用【确定】、【取消】两个功能</p>
+    </div>
+
+    <demo-dialog-content></demo-dialog-content>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeDynamic" [htmlCode]="htmlCodeDynamic" [lessCode]="lessCodeDynamic">
+    <h3 nb-codebox-title>Dialog Dynamic</h3>
+    <div nb-codebox-desc>
+        <p>动态加载，通过事件绑定的方式 <code>(click)="openSpecialDialog('error', 'you\'ve got an error', 'Error')"</code>动态创建三种对话框，分别是info、error、success</p>
+    </div>
+
+    <demo-dialog-dynamic></demo-dialog-dynamic>
+</nb-code-box>
+
 <h3 class="section-title">API</h3>
 <!-- 把dist/docs/api/component对应的组件APIcopy过来 -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="docs-api"><h2 class="docs-api-type">Components</h2>
+
+      <h4 class="docs-api-h4 docs-api-class-name">
+  <code>DialogComponent</code> API Reference
+</h4><h5 class="docs-table-desc">Properties</h5>
+  <table class="docs-table docs-table-properties">
+    <tr class="docs-row docs-row-head">
+      <th class="docs-td docs-th">Name</th>
+      <th class="docs-td docs-th">Type</th>
+      <th class="docs-td docs-th">Default</th>
+      <th class="docs-td docs-th">Description</th>
+    </tr>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      overlay
+    </p>
+  </td>
+  <td class="docs-td docs-td-type"></td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>使用overlay子组件实现</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      overlayClass
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>为区分不同场景的overlay组件设置不同的 class 类</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      modalable
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default">false</td>
+  <td class="docs-td docs-td-desc"><p>是否为模态对话框</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      closable
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default">true</td>
+  <td class="docs-td docs-td-desc"><p>是否有关闭功能</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      mask
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">HTMLElement | null</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      openHandler
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;Object&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>对话框打开时事件 emit</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      closeHandler
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;Object&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>对话框关闭时事件 emit</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      confirmEvent
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;Object&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>点击对话框的确认按钮时事件 emit</p>
+</td>
+</tr>
+
+
+
+  </table>
+
+
+<h5 class="docs-table-desc">Methods</h5>
+<table class="docs-table docs-table-methods">
+  <tr class="docs-row docs-row-head">
+    <th class="docs-td docs-th docs-td-name">Name</th>
+    <th class="docs-td docs-th docs-td-param">Parameters</th>
+    <th class="docs-td docs-th docs-td-type">Return Type</th>
+    <th class="docs-td docs-th docs-td-desc">Description</th>
+  </tr>
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        open()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        close()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        confirm()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        enableModality()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+        &lt;p&gt;创建模态对话框的遮罩&lt;/p&gt;
+
+    </td>
+</tr>
+
+
+
+</table>
+
+
+
+    </div>
+
+

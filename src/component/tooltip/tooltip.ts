@@ -35,20 +35,24 @@ import { Observable } from 'rxjs/Observable';
 
 export class TooltipDirective implements OnInit, OnDestroy {
 
+    /**
+     * 提示框的内容
+     *
+     */
     @Input() nbTooltip: string | TemplateRef<any> = '';
 
     /**
      * 提示框位置信息，默认为目标元素的底部
      * 可选值为 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |
      * 'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'
-     *
+     * @default bottom
      */
     @OnChange()
     @Input() placement: Placement = 'bottom';
 
     /**
      * 浮层模式还是嵌入模式
-     *
+     * @default false
      */
     @OnChange(true)
     @Input() embedded: boolean = false;
@@ -56,13 +60,13 @@ export class TooltipDirective implements OnInit, OnDestroy {
     /**
      * 提示框的触发事件类型
      * 可选值为 'click' | 'hover' | 'focus'
-     *
+     * @default hover
      */
     @Input() trigger: string = 'hover';
 
     /**
      * 是否有箭头
-     *
+     * @default false
      */
     @OnChange(true)
     @Input() hasArrow: boolean = false;
@@ -70,7 +74,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     /**
      * 提示框主题色
      * 可选值为 'default' | white' | 'pink' | 'yellow'
-     * 默认是灰色
+     * @default default
      *
      */
     @Input() nbTooltipTheme: string = 'default';
@@ -135,19 +139,28 @@ export class TooltipDirective implements OnInit, OnDestroy {
         return !!this.tiplayerInstance && this.tiplayerInstance.isVisible();
     }
 
-    handleHostClick(e) {
+    /**
+     * 处理宿主元素上的点击
+     * @param { Event } event - click event
+     *
+     */
+    handleHostClick(event) {
         this.toggle();
-        e.stopPropagation();
+        event.stopPropagation();
     }
 
     /**
-     * Opens an element’s tooltip. This is considered a “manual” triggering of the tooltip.
-     * The context is an optional value to be injected into the tooltip template when it is created.
+     * 打开一个宿主元素的提示时，动态创建一个提示框组件
+     * 根据是否为嵌入方式，决定创建在当前元素的container内还是挂载到body下面
      *
      */
     createTiplayer() {
+        let hostElement;
+        if (!this.embedded) {
+            hostElement = window.document.body;
+        }
         let componentRef = this.dynamicComponentService.createDynamicComponent(
-            TiplayerComponent, this.nbTooltip, window.document.body);
+            TiplayerComponent, this.nbTooltip, hostElement);
         this.tiplayerInstance = componentRef.instance;
 
         const config = {
@@ -184,6 +197,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * 处理body区域内的点击
+     *
+     */
     handleBodyInteraction() {
         if (this.trigger === 'click') {
             this.hide();
