@@ -28,38 +28,161 @@
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Tabs Basic</h3>
     <div nb-codebox-desc>
-        <p>1.tabs可以设置 underline ，将在整体底部增加一条下划线作为标签和内容的分隔</p>
-        <p>2.tabs可以设置 splitline ，标签之间增加竖线作为分隔</p>
+        <p>1.tabs可以设置 <code>underline</code> ，将在整体底部增加一条下划线作为标签和内容的分隔</p>
+        <p>2.tabs可以设置 <code>splitline</code> ，标签之间增加竖线作为分隔</p>
         <p>3.tabs有两种尺寸 'default' | 'large'，默认情况下是较小尺寸，当显示大尺寸时设置 <code>size="large"</code></p>
-        <p>4.tab可以设置 disabled ，用于不可使用状态</p>
+        <p>4.tab可以设置 <code>disabled</code> ，用于不可使用状态</p>
     </div>
 
     <demo-tabs-basic></demo-tabs-basic>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeTipable" [htmlCode]="htmlCodeTipable" [lessCode]="lessCodeTipable">
-    <h3 nb-codebox-title>Tabs Basic</h3>
+    <h3 nb-codebox-title>Tabs Tipable</h3>
     <div nb-codebox-desc>
-        <p>1.tabs可以设置 underline ，将在整体底部增加一条下划线作为标签和内容的分隔</p>
-        <p>2.tabs可以设置 splitline ，标签之间增加竖线作为分隔</p>
-        <p>3.tabs有两种尺寸 'default' | 'large'，默认情况下是较小尺寸，当显示大尺寸时设置 <code>size="large"</code></p>
-        <p>4.tab可以设置 disabled ，用于不可使用状态</p>
+        <p>标签上支持问号提示，在需要提示的tab上增加 <code>tipable</code>属性，并将提示内容用「 tip-content 」class名包裹起来</p>
     </div>
 
     <demo-tabs-tipable></demo-tabs-tipable>
 </nb-code-box>
 
-<nb-code-box [tsCode]="tsCodeTipable" [htmlCode]="htmlCodeTipable" [lessCode]="lessCodeBasic">
-    <h3 nb-codebox-title>Tabs Basic</h3>
+<nb-code-box [tsCode]="tsCodeContent" [htmlCode]="htmlCodeContent" [lessCode]="lessCodeContent">
+    <h3 nb-codebox-title>Tabs Content</h3>
     <div nb-codebox-desc>
-        <p>1.tabs可以设置 underline ，将在整体底部增加一条下划线作为标签和内容的分隔</p>
-        <p>2.tabs可以设置 splitline ，标签之间增加竖线作为分隔</p>
-        <p>3.tabs有两种尺寸 'default' | 'large'，默认情况下是较小尺寸，当显示大尺寸时设置 <code>size="large"</code></p>
-        <p>4.tab可以设置 disabled ，用于不可使用状态</p>
+        <p>内容支持任意HTML片段或Angular组件，以嵌套tab组件为例说明</p>
     </div>
 
-    <demo-tabs-tipable></demo-tabs-tipable>
+    <demo-tabs-content></demo-tabs-content>
 </nb-code-box>
 
 <h3 class="section-title">API</h3>
 <!-- 把dist/docs/api/component对应的组件APIcopy过来 -->
+<div class="docs-api">
+
+
+
+
+
+
+
+
+
+
+      <h2 class="docs-api-type">Components</h2>
+
+      <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TabsComponent</code> API Reference
+      </h4>
+      <h5 class="docs-table-desc">Properties</h5>
+      <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+          <th class="docs-td docs-th">Name</th>
+          <th class="docs-td docs-th">Type</th>
+          <th class="docs-td docs-th">Default</th>
+          <th class="docs-td docs-th">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+          <td class="docs-td docs-td-name">
+            <div class="docs-input-marker">
+              @Input()</div>
+            <p class="docs-property-name">
+              size
+            </p>
+          </td>
+          <td class="docs-td docs-td-type">TABS_SIZE</td>
+          <td class="docs-td docs-td-default">default</td>
+          <td class="docs-td docs-td-desc">
+            <p>Tabs尺寸, &#39;default&#39; | &#39;large&#39;</p>
+          </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+          <td class="docs-td docs-td-name">
+            <div class="docs-input-marker">
+              @Input()</div>
+            <p class="docs-property-name">
+              underline
+            </p>
+          </td>
+          <td class="docs-td docs-td-type">boolean</td>
+          <td class="docs-td docs-td-default">false</td>
+          <td class="docs-td docs-td-desc">
+            <p>Tabs是否有下划线, true | false</p>
+          </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+          <td class="docs-td docs-td-name">
+            <div class="docs-input-marker">
+              @Input()</div>
+            <p class="docs-property-name">
+              splitline
+            </p>
+          </td>
+          <td class="docs-td docs-td-type">boolean</td>
+          <td class="docs-td docs-td-default">false</td>
+          <td class="docs-td docs-td-desc">
+            <p>各Tab间是否有分割线, true | false</p>
+          </td>
+        </tr>
+
+
+
+        <tr class="docs-row docs-row-body">
+          <td class="docs-td docs-td-name">
+            <p class="docs-property-name">
+              tabs
+            </p>
+          </td>
+          <td class="docs-td docs-td-type">QueryList&lt;TabComponent&gt;</td>
+          <td class="docs-td docs-td-default"></td>
+          <td class="docs-td docs-td-desc"></td>
+        </tr>
+
+
+
+      </table>
+
+
+      <h5 class="docs-table-desc">Methods</h5>
+      <table class="docs-table docs-table-methods">
+        <tr class="docs-row docs-row-head">
+          <th class="docs-td docs-th docs-td-name">Name</th>
+          <th class="docs-td docs-th docs-td-param">Parameters</th>
+          <th class="docs-td docs-th docs-td-type">Return Type</th>
+          <th class="docs-td docs-th docs-td-desc">Description</th>
+        </tr>
+
+        <tr class="docs-row docs-row-body">
+          <td class="docs-td docs-td-name">
+            setActive()</td>
+
+          <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+              tab
+              <span class="type">: TabComponent</span>
+              <div class="desc"> - &lt;p&gt;current Tab&lt;/p&gt;
+              </div>
+            </div>
+          </td>
+
+          <td class="docs-td docs-td-type"></td>
+
+          <td class="docs-td docs-td-desc">
+            &lt;p&gt;设置当前Tab为选中状态&lt;/p&gt;
+
+          </td>
+        </tr>
+
+
+
+      </table>
+
+
+
+    </div>

@@ -7,6 +7,8 @@ import { CodeHighlighterModule } from '../../component/code-highlighter';
 
 import { TabsDemo } from './tabs';
 import { TabsBasicDemo } from './basic/tabs-basic';
+import { TabsTipableDemo } from './tipable/tabs-tipable';
+import { TabsContentDemo } from './content/tabs-content';
 
 @NgModule({
     imports: [
@@ -17,7 +19,9 @@ import { TabsBasicDemo } from './basic/tabs-basic';
     ],
     declarations: [
         TabsDemo,
-        TabsBasicDemo
+        TabsBasicDemo,
+        TabsTipableDemo,
+        TabsContentDemo
     ],
     providers: [],
     exports: []
