@@ -1,5 +1,7 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy
+    Component,
+    OnInit,
+    ChangeDetectionStrategy
 } from '@angular/core';
 
 @Component({
@@ -9,19 +11,9 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class DemoTextarea implements OnInit {
-
-    isDisabled = false;
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
-
-    changeDisabled() {
-        this.isDisabled = !this.isDisabled;
-    }
+export class TextareaDemo {
+    // theme sources
+    tsCode: string = require('!!raw-loader!./themes/textarea-theme.ts');
+    htmlCode: string = require('!!raw-loader!./themes/textarea-theme.html');
+    lessCode: string = require('!!raw-loader!./themes/textarea-theme.less');
 }
