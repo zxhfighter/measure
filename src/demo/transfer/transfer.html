@@ -1,4 +1,9 @@
-<h1 class="main-title">Transfer demo</h1>
+<h1 class="main-title">nb-transfer</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
@@ -10,23 +15,117 @@
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Transfer first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-transfer 
-            [candidateData]="candidateData" 
-            [selectedData]="selectedData"
-            (getValue)="getValue($event)"></nb-transfer>
-    </p>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-transfer</code>用于实现左右列表选项状态互相转化。</p>
+        <p>2.<code>nb-transfer</code>左侧备选项和右侧已选项默认<code>tree</code>类型。</p>
+        <p>3.<code>nb-transfer</code>左侧备选项<code>candidateData</code>和右侧已选项<code>selectedData</code>用于接收展示左右两侧数据结构的数据，数据模型参考<code>tree</code>。</p>
+        <p>4.<code>nb-transfer</code>有<code>disabled</code>属性，用于置灰处理，为不可编辑状态。</p>
+        <p>5.<code>nb-transfer</code>有<code>getValue</code>事件，用于获取已选选项值，可以用于form表单。</p>
+    </div>
 
-    <h3 class="section-title">Disabled State</h3>
-    
-    <p>
-        <nb-transfer 
-            [candidateData]="candidateData" 
-            [selectedData]="selectedData"
-            (getValue)="getValue($event)"
-            [disabled]="disabled"></nb-transfer>
-    </p>
-</section>
+    <demo-transfer-basic></demo-transfer-basic>
+</nb-code-box>
+
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TransferComponent</code> API Reference
+    </h4>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    getValue
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter&lt;number[] | string[]&gt;</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>get selected value event</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    candidateData
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">TreeNode[]</td>
+            <td class="docs-td docs-td-default">[]</td>
+            <td class="docs-td docs-td-desc">
+                <p>candidate list data </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    selectedData
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">TreeNode[]</td>
+            <td class="docs-td docs-td-default">[]</td>
+            <td class="docs-td docs-td-desc">
+                <p>selected list data </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    candidateType
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">CANDIDATE_TYPE</td>
+            <td class="docs-td docs-td-default">&#39;tree&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>candidate list type, default：‘tree’ </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    selectedType
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">SELECTED_TYPE</td>
+            <td class="docs-td docs-td-default">&#39;tree&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>selected list type, default：‘tree’ </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the transfer is disabled </p>
+            </td>
+        </tr>
+    </table>
+</div>

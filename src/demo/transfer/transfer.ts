@@ -1,35 +1,14 @@
-import {
-    Component, 
-    OnInit, 
-    ChangeDetectionStrategy
-} from '@angular/core';
-
-import {candidateData, selectedData} from './transfer-test-data';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-transfer',
     templateUrl: './transfer.html',
     styleUrls: ['./transfer.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    preserveWhitespaces: false
 })
-export class DemoTransfer implements OnInit {
-
-    private candidateData = candidateData;
-
-    private selectedData = selectedData;
-
-    private disabled = true;
-
-    constructor() {
-
-    }
-
-    ngOnInit() {
-
-    }
-
-    getValue(event) {
-        console.log(event)
-    }
+export class TransferDemo {
+    // basic sources
+    tsCodeBasic: string = require('!!raw-loader!./basic/transfer-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/transfer-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/transfer-basic.less');
 }
