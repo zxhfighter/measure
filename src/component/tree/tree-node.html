@@ -1,7 +1,7 @@
 <li [ngClass]="['nb-tree-node', node.styleClass || '']">
     <div 
         class="nb-tree-content"
-        [ngClass]="{'nb-tree-node-selected': node.isSelected, 'nb-tree-node-unselectable': !node.selectable}"
+        [ngClass]="{'nb-tree-node-selected': node.isSelected, 'nb-tree-node-unselectable': !node.selectable, 'nb-tree-node-show': node.show}"
         (click)="onNodeClick()">
         <span 
             *ngIf="node.children && node.children.length" 

@@ -17,14 +17,28 @@ export type TABS_SIZE = 'default' | 'large' | string;
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget'
-    }
+    },
+    exportAs: 'nbTabs'
 })
 export class TabsComponent implements AfterContentInit {
+
+    /**
+     * Tabs尺寸, 'default' | 'large'
+     * @default default
+     */
     @Input() size: TABS_SIZE = 'default';
 
+    /**
+     * Tabs是否有下划线, true | false
+     * @default false
+     */
     @OnChange(true)
-    @Input() underline: boolean = true;
+    @Input() underline: boolean = false;
 
+    /**
+     * 各Tab间是否有分割线, true | false
+     * @default false
+     */
     @OnChange(true)
     @Input() splitline: boolean = false;
 
@@ -39,7 +53,7 @@ export class TabsComponent implements AfterContentInit {
         if (this.tabs.length === 0) {
             return ;
         }
-        /** whether one of tabs is active or not, if not, activate first tab */
+        /** 是否有某个Tab是选中状态，如果没有的话，选中第一个 */
         let activeTab = this.tabs.filter(item => item.active === true);
         if (activeTab.length === 0) {
             setTimeout(() => {
@@ -49,6 +63,11 @@ export class TabsComponent implements AfterContentInit {
         }
     }
 
+    /**
+     * 设置当前Tab为选中状态
+     *
+     * @param {TabComponent} tab - 当前Tab
+     */
     setActive(tab: TabComponent): void {
         if (tab.disabled) {
             return;

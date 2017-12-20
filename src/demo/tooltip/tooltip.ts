@@ -1,38 +1,33 @@
-import {
-    Component, Output, EventEmitter,  OnInit, ChangeDetectionStrategy, ViewChild, ViewChildren, QueryList, ContentChildren, ContentChild
-} from '@angular/core';
-import { TiplayerComponent } from '../../component/tooltip/tiplayer';
-import { TooltipDirective } from '../../component/tooltip/tooltip';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'demo-tooltip',
     templateUrl: './tooltip.html',
-    styleUrls: ['./tooltip.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    styleUrls: ['./tooltip.less']
 })
-export class DemoTooltip implements OnInit {
+export class TooltipDemo {
 
-    @ViewChild('genuineOrigin') tooltip: TooltipDirective;
+    tsCodeBasic: string = require('!!raw-loader!./basic/tooltip-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/tooltip-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/tooltip-basic.less');
 
-    @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
+    tsCodeContent: string = require('!!raw-loader!./content/tooltip-content.ts');
+    htmlCodeContent: string = require('!!raw-loader!./content/tooltip-content.html');
+    lessCodeContent: string = require('!!raw-loader!./content/tooltip-content.less');
 
-    constructor() {
+    tsCodeEmbedded: string = require('!!raw-loader!./embedded/tooltip-embedded.ts');
+    htmlCodeEmbedded: string = require('!!raw-loader!./embedded/tooltip-embedded.html');
+    lessCodeEmbedded: string = require('!!raw-loader!./embedded/tooltip-embedded.less');
 
-    }
+    tsCodeInputFocus: string = require('!!raw-loader!./input-focus/tooltip-input-focus.ts');
+    htmlCodeInputFocus: string = require('!!raw-loader!./input-focus/tooltip-input-focus.html');
+    lessCodeInputFocus: string = require('!!raw-loader!./input-focus/tooltip-input-focus.less');
 
-    ngOnInit() {
+    tsCodeOthersTrigger: string = require('!!raw-loader!./others-trigger/tooltip-others-trigger.ts');
+    htmlCodeOthersTrigger: string = require('!!raw-loader!./others-trigger/tooltip-others-trigger.html');
+    lessCodeOthersTrigger: string = require('!!raw-loader!./others-trigger/tooltip-others-trigger.less');
 
-    }
-
-    onIknowthat() {
-        this.close.emit();
-    }
-
-    showIsolateTip() {
-        const isVisible = this.tooltip.isTooltipVisible();
-        if (!isVisible) {
-            this.tooltip.show();
-        }
-    }
+    tsCodeThemes: string = require('!!raw-loader!./themes/tooltip-themes.ts');
+    htmlCodeThemes: string = require('!!raw-loader!./themes/tooltip-themes.html');
+    lessCodeThemes: string = require('!!raw-loader!./themes/tooltip-themes.less');
 }

@@ -24,7 +24,11 @@ import &#x7B;TreeModule&#x7D; from 'xdesign';
 
     <div>
         <p class="nb-tree-wrap">
-            <nb-tree [treeData]="treeData" selectionMode="candidate" (onNodeSelect)="nodeSelect($event)"></nb-tree>
+            <nb-tree 
+                [treeData]="treeData" 
+                selectionMode="candidate" 
+                (onNodeSelect)="nodeSelect($event)">
+            </nb-tree>
         </p>
     </div>
 
@@ -32,7 +36,11 @@ import &#x7B;TreeModule&#x7D; from 'xdesign';
     
     <div>
         <p class="nb-tree-wrap">
-            <nb-tree [treeData]="treeDataSelected" selectionMode="selected" (onNodeSelect)="nodeSelect($event)"></nb-tree>
+            <nb-tree 
+                [treeData]="treeDataSelected" 
+                selectionMode="selected" 
+                (onNodeSelect)="nodeSelect($event)">
+            </nb-tree>
         </p>
     </div>
     
@@ -40,7 +48,24 @@ import &#x7B;TreeModule&#x7D; from 'xdesign';
     
     <div>
         <p class="nb-tree-wrap">
-            <nb-tree [treeData]="treeDataSelected" selectionMode="navigation" (onNodeSelect)="nodeSelect($event)"></nb-tree>
+            <nb-tree 
+                [treeData]="treeDataSelected" 
+                selectionMode="navigation" 
+                (onNodeSelect)="nodeSelect($event)">
+            </nb-tree>
+        </p>
+    </div>
+
+    <h3 class="section-title">Disabled State</h3>
+    
+    <div>
+        <p class="nb-tree-wrap">
+            <nb-tree 
+                [treeData]="treeData" 
+                selectionMode="candidate" 
+                (onNodeSelect)="nodeSelect($event)"
+                [disabled]="disabled">
+            </nb-tree>
         </p>
     </div>
 </section>

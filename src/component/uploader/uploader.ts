@@ -9,16 +9,6 @@ export interface Message {
     id?: any;
 }
 
-// TODO 可能没有必要
-interface FormData {
-    append(name: string, value: string | Blob, fileName?: string): void;
-    delete(name: string): void;
-    get(name: string): FormDataEntryValue | null;
-    getAll(name: string): FormDataEntryValue[];
-    has(name: string): boolean;
-    set(name: string, value: string | Blob, fileName?: string): void;
-}
-
 @Component({
     selector: 'nb-uploader',
     templateUrl: './uploader.html',
@@ -35,23 +25,32 @@ interface FormData {
 })
 export class UploaderComponent implements OnInit {
 
-    @Input() name: string;
-
+    /**
+     * 上传提交的URL
+     */
     @Input() url: string;
 
-    @Input() method: string = 'POST';
-
-    @Input() multiple: boolean;
-
+    /**
+     * 上传模式包括图片上传和文件上传
+     * @default 'image'
+     */
     @Input() mode: string = 'image';
 
+    /**
+     * 可上传的文件类型
+     * @default 'image/*'
+     */
     @Input() accept: string = 'image/*';
 
+    /**
+     * 上传进度包括百分比和进度条
+     * @default 'text'
+     */
     @Input() progressMode: string = 'text';
 
-    // 暂时不定位file type
-    // @Input() files: File[];
-    // @Input() files: any[] = [];
+    /**
+     * 已上传文件列表
+     */
     _files: any[] = [];
     @Input() set files(data) {
         this._files = data;
@@ -64,22 +63,44 @@ export class UploaderComponent implements OnInit {
         return this._files;
     }
 
+    /**
+     * 布局方式，'horizontal' | 'vertical'
+     * @default 'horizontal'
+     */
     @Input() direction: string = 'horizontal';
 
-    @Input() auto: boolean = true;
-
+    /**
+     * 限制文件的大小
+     */
     @Input() maxFileSize: number;
 
+    /**
+     * 限制文件的数量
+     */
     @Input() maxFileCount: number;
 
-    @Input() withCredentials: boolean;
-
+    /**
+     * 文件数量不符合要求的提示信息
+     * @default '文件的数量超过限制'
+     */
     @Input() invalidFileCountMessage: string = '文件的数量超过限制';
 
+    /**
+     * 文件大小不符合要求的提示信息
+     * @default '文件的大小不符合要求'
+     */
     @Input() invalidFileSizeMessage: string = '{0}: 文件的大小不符合要求';
 
+    /**
+     * 文件类型不符合要求的提示信息
+     * @default '文件的类型不符合要求'
+     */
     @Input() invalidFileTypeMessage: string = '{0}: 文件的类型不符合要求';
 
+    /**
+     * 上传失败的提示信息
+     * @default '上传失败'
+     */
     @Input() uploadFailedMessage: string = '{0}: 上传失败';
 
     @Output() onBeforeUpload: EventEmitter<any> = new EventEmitter();
@@ -104,13 +125,19 @@ export class UploaderComponent implements OnInit {
 
     progress: number;
 
+    method: string = 'POST';
+
     /**
      * 文件上传的状态
      * 'uploading' | 'success' | 'error'
      */
     state: string;
 
+    auto: boolean = true;
+
     replacingFile: any = null;
+
+    withCredentials: boolean;
 
     constructor(
         private cdRef: ChangeDetectorRef

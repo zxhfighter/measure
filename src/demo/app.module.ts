@@ -38,34 +38,34 @@ import {
     TreeModule,
     SideBarModule,
     AccordionModule,
-    UploaderModule
+    UploaderModule,
+    TransferModule
 } from '../component';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
-import { DemoInput } from './input';
-import { DemoTabs } from './tabs';
-import { DemoTooltip } from './tooltip';
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
-import { DemoTextarea } from './textarea';
-import { DemoTextLine } from './text-line';
-import { DemoSearchBox } from './search-box';
 import { DemoTree } from './tree';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
 import { OverlayDemo } from './overlay';
-import { DemoDialog } from './dialog';
+import { DialogDemoModule } from './dialog';
 import { ChipsDemoModule } from './chips';
 import { CodeBoxDemo } from './code-box';
-import { DemoAccordion } from './accordion';
-import { DemoUploader } from './uploader';
-import { DemoSideBar } from './side-bar/';
+import { AccordionDemoModule } from './accordion';
+import { UploaderDemoModule } from './uploader';
+import { DemoSideBar } from './side-bar';
+import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
 
+import { InputDemoModule } from './input';
+import { TextareaDemoModule } from './textarea';
+import { TextLineDemoModule } from './text-line';
+import { SearchBoxDemoModule } from './search-box';
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
 import { SwitchDemoModule } from './switch';
@@ -82,8 +82,14 @@ import { CardDemoModule } from './card';
 import { TableDemoModule } from './table';
 import { CodeHighlighterDemoModule } from './code-highlighter';
 import { SliderDemoModule } from './slider';
+import { TabsDemoModule } from './tabs';
+import { TooltipDemoModule } from './tooltip';
 
 const demoModules = [
+    InputDemoModule,
+    TextareaDemoModule,
+    TextLineDemoModule,
+    SearchBoxDemoModule,
     ButtonDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
@@ -102,28 +108,25 @@ const demoModules = [
     SelectDemoModule,
     ChipsDemoModule,
     CodeHighlighterDemoModule,
-    SliderDemoModule
+    SliderDemoModule,
+    TabsDemoModule,
+    TooltipDemoModule,
+    DialogDemoModule,
+    AccordionDemoModule,
+    UploaderDemoModule
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
-        DemoInput,
-        DemoTabs,
-        DemoTooltip,
         DemoPage,
         DemoSchedule,
-        DemoTextarea,
-        DemoTextLine,
-        DemoSearchBox,
         DemoTree,
-        DemoDialog,
         CodeBoxDemo,
         DemoTree,
         DemoSideBar,
         OverlayDemo,
-        DemoAccordion,
-        DemoUploader,
+        DemoTransfer,
         GuideComponentDemo,
         IconsComponentDemo,
         OverlayDemo,
@@ -167,6 +170,7 @@ const demoModules = [
         SideBarModule,
         AccordionModule,
         UploaderModule,
+        TransferModule,
         // demos
         ...demoModules,
         RouterModule.forRoot(appRoutes, { useHash: true })

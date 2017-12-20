@@ -32,3 +32,4 @@ export * from './overlay/index';
 export * from './schedule/index';
 export * from './accordion/index';
 export * from './uploader/index';
+export * from './transfer/index';

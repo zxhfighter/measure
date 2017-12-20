@@ -1,0 +1,10 @@
+<nb-uploader
+    mode="image"
+    name="demo[]"
+    url="./uploader"
+    accept="image/*"
+    maxFileSize="1000000"
+    progressMode="bar"
+    [files]="uploadedFiles"
+    (onUpload)="onImageBarUpload($event)">
+</nb-uploader>

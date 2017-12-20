@@ -1,88 +1,270 @@
-<h1 class="main-title">Dialog demo</h1>
+<h1 class="main-title">nb-dialog</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
+
+<p class="type-desc">
+    <span>selector</span>: <code>nb-dialog</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>nbDialog</code>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;DialogModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;DialogModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Dialog first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <button theme="default" nb-button (click)="openModalDialog()">打开模态对话框</button>
-        <nb-dialog modalable closable #modalDialog>
-            <nb-dialog-header>打开模态对话框</nb-dialog-header>
-            <nb-dialog-body>
-                <div class="content-box">
-                    内容区
-                </div>
-            </nb-dialog-body>
-        </nb-dialog>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Dialog Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.通过 <code>modalable</code>设置对话框为模态对话框，默认为非模态对话框</p>
+        <p>2.通过 <code>closable</code>设置对话框右上角是否有关闭功能，默认没有</p>
+    </div>
+
+    <demo-dialog-basic></demo-dialog-basic>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeContent" [htmlCode]="htmlCodeContent" [lessCode]="lessCodeContent">
+    <h3 nb-codebox-title>Dialog Content</h3>
+    <div nb-codebox-desc>
+        <p>你可以自定义header、body、footer三部分，其中footer部分如果未自定义，将默认使用【确定】、【取消】两个功能</p>
+    </div>
+
+    <demo-dialog-content></demo-dialog-content>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeDynamic" [htmlCode]="htmlCodeDynamic" [lessCode]="lessCodeDynamic">
+    <h3 nb-codebox-title>Dialog Dynamic</h3>
+    <div nb-codebox-desc>
+        <p>动态加载，通过事件绑定的方式 <code>(click)="openSpecialDialog('error', 'you\'ve got an error', 'Error')"</code>动态创建三种对话框，分别是info、error、success</p>
+    </div>
+
+    <demo-dialog-dynamic></demo-dialog-dynamic>
+</nb-code-box>
+
+<h3 class="section-title">API</h3>
+<!-- 把dist/docs/api/component对应的组件APIcopy过来 -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="docs-api"><h2 class="docs-api-type">Components</h2>
+
+      <h4 class="docs-api-h4 docs-api-class-name">
+  <code>DialogComponent</code> API Reference
+</h4><h5 class="docs-table-desc">Properties</h5>
+  <table class="docs-table docs-table-properties">
+    <tr class="docs-row docs-row-head">
+      <th class="docs-td docs-th">Name</th>
+      <th class="docs-td docs-th">Type</th>
+      <th class="docs-td docs-th">Default</th>
+      <th class="docs-td docs-th">Description</th>
+    </tr>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      overlay
     </p>
-    <p>
-        <button theme="default" nb-button (click)="openUnmodalDialog()">打开非模态对话框</button>
-        <nb-dialog closable #unmodalDialog>
-            <nb-dialog-header>
-                <i class="iconfont icon-calendar"></i>&nbsp;&nbsp;打开非模态对话框
-            </nb-dialog-header>
-            <nb-dialog-body>
-                <div class="filter-content">
-                    <div>
-                        <label for="heroName">姓名：</label>
-                        <input #name type="text" name="heroName" value="">
-                    </div>
-                </div>
-            </nb-dialog-body>
-        </nb-dialog>
+  </td>
+  <td class="docs-td docs-td-type"></td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>使用overlay子组件实现</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      overlayClass
     </p>
-    <p>
-        <button theme="default" nb-button (click)="openCustomFooterDialog()">自定义Footer</button>
-        <nb-dialog #customFooterDialog>
-            <nb-dialog-header>
-                自定义Footer
-            </nb-dialog-header>
-            <nb-dialog-body>
-                <div class="filter-content">
-                    <div>
-                        <label for="heroName">姓名：</label>
-                        <input #name type="text" name="heroName" value="">
-                    </div>
-                </div>
-            </nb-dialog-body>
-            <nb-dialog-footer>
-                <button nb-button (click)="clickYes()">是</button>
-                <button nb-button (click)="clickNo()">否</button>
-                <button theme="default" nb-button (click)="close()">Cancel</button>
-            </nb-dialog-footer>
-        </nb-dialog>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>为区分不同场景的overlay组件设置不同的 class 类</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      modalable
     </p>
-    <p>
-        <span>动态加载</span>
-        <button theme="default" nb-button
-            (click)="openSpecialDialog('info', 'you\'ve got a new message', 'Message')">
-            InfoBox
-        </button>
-        <button theme="default" nb-button
-            (click)="openSpecialDialog('error', 'you\'ve got an error', 'Error')">
-            ErrorBox
-        </button>
-        <button theme="default" nb-button
-            (click)="openSpecialDialog('success', 'Congratulations! Everything is ok!', 'Success')">
-            SuccessBox
-        </button>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default">false</td>
+  <td class="docs-td docs-td-desc"><p>是否为模态对话框</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      closable
     </p>
-    <!-- <p>
-        <span>静态渲染</span>
-        <button theme="default" nb-button (click)="openAlertError()">InfoBox</button>
-        <nb-alert type="error" title="this is erro" content="this is content" #errorAlert><nb-alert>
-        <button theme="default" nb-button (click)="openAlertInfo()">InfoBox</button>
-        <nb-alert type="info" title="this is erro" content="this is content" #infoAlert></nb-alert>
-        <button theme="default" nb-button (click)="openAlertSuccess()">InfoBox</button>
-        <nb-alert type="success" title="this is erro" content="this is content" #successAlert></nb-alert>
-    </p> -->
-</section>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default">true</td>
+  <td class="docs-td docs-td-desc"><p>是否有关闭功能</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      mask
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">HTMLElement | null</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      openHandler
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;Object&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>对话框打开时事件 emit</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      closeHandler
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;Object&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>对话框关闭时事件 emit</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-output-marker">
+          @Output()</div><p class="docs-property-name">
+      confirmEvent
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">EventEmitter&lt;Object&gt;</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>点击对话框的确认按钮时事件 emit</p>
+</td>
+</tr>
+
+
+
+  </table>
+
+
+<h5 class="docs-table-desc">Methods</h5>
+<table class="docs-table docs-table-methods">
+  <tr class="docs-row docs-row-head">
+    <th class="docs-td docs-th docs-td-name">Name</th>
+    <th class="docs-td docs-th docs-td-param">Parameters</th>
+    <th class="docs-td docs-th docs-td-type">Return Type</th>
+    <th class="docs-td docs-th docs-td-desc">Description</th>
+  </tr>
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        open()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        close()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        confirm()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        enableModality()</td>
+
+    <td class="docs-td docs-td-param"></td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+        &lt;p&gt;创建模态对话框的遮罩&lt;/p&gt;
+
+    </td>
+</tr>
+
+
+
+</table>
+
+
+
+    </div>
+
+

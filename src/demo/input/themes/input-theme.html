@@ -1,0 +1,39 @@
+<p>
+    <input 
+        nb-input 
+        #ipt 
+        type="text" 
+        theme="default" 
+        placeholder="请输入文字" 
+        [disabled]="isDisabled" 
+        (focus)="onFocus(ipt)"> 常态
+</p>
+<p>
+    <input 
+        nb-input 
+        type="text" 
+        theme="default" 
+        placeholder="请输入文字" 
+        disabled> 不可用
+</p>
+<p>
+    <input 
+        nb-input 
+        type="text" 
+        theme="error" 
+        placeholder="请输入文字"> 警告提示
+</p>
+<p>
+    <input 
+        nb-input 
+        type="text" 
+        theme="transparent" 
+        placeholder="请输入文字"> 透明
+</p>
+<p>
+    <input 
+        nb-input 
+        type="text" 
+        theme="green" 
+        placeholder="请输入文字"> yellow
+</p>

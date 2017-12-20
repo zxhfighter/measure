@@ -67,3 +67,43 @@
         <pre *ngIf="selectedData1">{{selectedData1|json}}</pre>
     </span>
 </p>
+
+<p>
+    Themes
+    <br>
+    <nb-select [datasource]="datasource" [theme]="'primary'" [defaultLabel]="'theme-primary'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <nb-select [datasource]="datasource" [theme]="'default'" [defaultLabel]="'theme-default'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <nb-select [datasource]="datasource" [theme]="'neutral'" [defaultLabel]="'theme-neutral'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <nb-select [datasource]="datasource" [theme]="'transparent'" [defaultLabel]="'theme-transparent'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <nb-select [datasource]="datasource" [theme]="'transparent'" [defaultLabel]="'theme-transparent'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <nb-select [datasource]="datasource" [theme]="'orange'" [defaultLabel]="'theme-custom'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+</p>
+
+<p>
+    Themes
+    <br>
+    <nb-select [datasource]="datasource" [size]="'xs'" [defaultLabel]="'size-xs'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <nb-select [datasource]="datasource" [size]="'sm'" [defaultLabel]="'size-sm'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <nb-select [datasource]="datasource" [size]="'default'" [defaultLabel]="'size-default'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+    <nb-select [datasource]="datasource" [size]="'lg'" [defaultLabel]="'size-lg'"
+               (onChange)="selectedData1 = $event">
+    </nb-select>
+</p>

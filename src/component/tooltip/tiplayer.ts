@@ -1,7 +1,7 @@
 /**
  *
  * 作为overlay的内容组件要注意两个问题：
- * - 构造函数constructor中要声明el属性，用于overlay.service.ts中将当前内容append到body中
+ * - [已废弃]构造函数constructor中要声明el属性，用于overlay.service.ts中将当前内容append到body中
  * - 需要重新定位的时候，将needReposition事件emit出去
  */
 import {
@@ -53,9 +53,11 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
 
     private _placement: string;
 
+    placementChange: EventEmitter<string> = new EventEmitter<string>();
     @Input() set placement(data) {
         this._placement = data;
         this.firstPlacement = this._placement.split('-')[0];
+        this.placementChange.emit(this._placement);
     }
 
     get placement () {
@@ -77,6 +79,15 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
+        // this.placementChange.subscribe((placement) => {
+        //     if (placement.split('-')[0] === 'left') {
+        //         this.positionStrategy.withOffsetX(-10);
+        //     }
+        //     else if (placement.split('-')[0] === 'right') {
+        //         this.positionStrategy.withOffsetX(10);
+        //     }
+        // });
+
         this.needReposition.emit();
     }
 

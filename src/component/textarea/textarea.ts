@@ -11,7 +11,7 @@ import { OnChange } from '../core/decorators';
 export type TEXTAREA_THEME = 'default' | 'error' | string;
 
 @Component({
-    selector: 'input[nb-textarea]',
+    selector: 'textarea[nb-textarea]',
     templateUrl: './textarea.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,14 +19,20 @@ export type TEXTAREA_THEME = 'default' | 'error' | string;
     host: {
         '[disabled]': 'disabled || null'
     },
-    exportAs: 'xTextarea'
+    exportAs: 'nb-Textarea'
 })
 export class TextareaComponent implements OnChanges, AfterViewInit {
 
-    /** textarea theme, there four default themes: 'default' */
+    /** 
+     * textarea theme, there two default themes: 'default' | 'error'
+     * @default default
+     */
     @Input() theme: TEXTAREA_THEME = 'default';
 
-    /** Whether the textarea is disabled */
+    /** 
+     * Whether the textarea is disabled 
+     * @default false
+     */
     @OnChange(true)
     @Input() disabled = false;
 

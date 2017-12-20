@@ -24,10 +24,12 @@ import { TreeNodeParent } from './treenodeparent';
 export class TreeComponent implements OnInit {
 
     /** input tree-nodes value */
-    @Input() treeData: object[] = [];
+    @Input() treeData: TreeNode[] = [];
 
     /** input tree mode, default: '', have ''|'candidate'|'selected' three modes*/
     @Input() selectionMode: string;
+
+    @Input() disabled = false;
 
     /** Whether upward propagation events, default:true */
     @Input() propagateSelectionUp: boolean = true;
@@ -41,7 +43,7 @@ export class TreeComponent implements OnInit {
     /** private variable tree-list
      *  @docs-private
      */
-    private _treeList = [];
+    private _treeList: TreeNode[] = [];
 
     constructor() { }
 
@@ -65,7 +67,7 @@ export class TreeComponent implements OnInit {
 
     /** listen tree-node click event */
     onNodeClick(node: TreeNode) {
-        if (!node.selectable) {
+        if (!node.selectable || this.disabled) {
             return;
         }
 
@@ -117,6 +119,7 @@ export class TreeComponent implements OnInit {
     /** select event downward propagate handler */
     propagateDown(node: TreeNode, select: boolean) {
         node.isSelected = select;
+        node.show = select;
         if (node.children && node.children.length) {
             for (let child of node.children) {
                 this.propagateDown(child, select);
@@ -127,10 +130,11 @@ export class TreeComponent implements OnInit {
     /** select event upward propagate handler */
     propagateUp(node: TreeNode, select: boolean) {
         node.isSelected = select;
-        let nodeParent: TreeNode;
+        node.show = select;
         if (node.parent) {
+            let nodeParent: TreeNode | undefined;
             nodeParent = this.getParent(node.parent);
-            if (nodeParent.children && nodeParent.children.length) {
+            if (nodeParent && nodeParent.children && nodeParent.children.length) {
                 let selectedCount: number = 0;
                 for (let child of nodeParent.children) {
                     if (child.isSelected === select || (child.isSelected === undefined && !child.selectable)) {
@@ -139,19 +143,22 @@ export class TreeComponent implements OnInit {
                 }
                 if (nodeParent.children.length === selectedCount) {
                     nodeParent.isSelected = select;
+                    nodeParent.show = select;
                 }
             }
 
-            if (nodeParent.isSelected === select && nodeParent.parent) {
+            if (nodeParent && nodeParent.isSelected === select && nodeParent.parent) {
                 this.propagateUp(nodeParent, select);
             }
         }
     }
 
     /** get tree-node parent tree-node */
-    getParent(treeNodeParent: TreeNodeParent) {
-        return this._treeList.find((node: TreeNode) => {
+    getParent(treeNodeParent: TreeNodeParent): TreeNode | undefined {
+        let parentNode: TreeNode | undefined;
+        parentNode = this._treeList.find((node: TreeNode) => {
             return treeNodeParent.id === node.id;
         });
+        return parentNode;
     }
 }

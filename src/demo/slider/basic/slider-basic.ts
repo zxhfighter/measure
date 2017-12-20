@@ -1,5 +1,4 @@
-import { Input, Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 @Component({
     selector: 'demo-slider-basic',
@@ -8,15 +7,49 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SliderBasicDemo implements OnInit {
 
-    value1: number = 0;
-    value2: Array<number>;
+    value1: number = 50;
+    value2: number[] = [100, 150];
     horizontal: string = 'horizontal';
     vertical: string = 'vertical';
-
-    constructor(private fb: FormBuilder) { }
+    valueDefault: number;
+    valueInput: number;
+    valueStep: number;
+    valueRange0: number = 0;
+    valueRange1: number = 0;
+    valueVertical: number;
+    valueVerticalRange0: number = 0;
+    valueVerticalRange1: number = 0;
+    constructor() { }
 
     ngOnInit() {
-        this.value1 = 50;
-        this.value2 = [150, 160];
+        this.valueRange0 = this.value2[0];
+        this.valueRange1 = this.value2[1];
+        this.valueVertical = this.value1;
+    }
+
+    onDefaultChange(e) {
+        this.valueDefault = e;
+    }
+
+    onInputChange(e) {
+        this.valueInput = e;
+    }
+
+    onStepChange(e) {
+        this.valueStep = e;
+    }
+
+    onRangeChange(e) {
+        this.valueRange0 = e[0];
+        this.valueRange1 = e[1];
+    }
+
+    onVerticalChange(e) {
+        this.valueVertical = e;
+    }
+
+    onVerticalRangeChange(e) {
+        this.valueVerticalRange0 = e[0];
+        this.valueVerticalRange1 = e[1];
     }
 }

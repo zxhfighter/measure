@@ -1,51 +1,80 @@
-<h1 class="main-title">TextLine demo</h1>
+<h1 class="main-title">nb-text-line</h1>
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;TextLineModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;TextLineModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">TextLine first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-text-line></nb-text-line>
-    </p>
-    <p>
-        <nb-text-line class="nb-text-line-error"></nb-text-line>
-    </p>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-text-line</code>用于输入多行文本并自动生成行序号。</p>
+        <p>2.如果需要特殊样式可以增加class覆盖默认样式。</p>
+        <p>3.<code>nb-text-line</code>有<code>disabled</code> 属性，用于置灰处理，为不可编辑状态。</p>
+        <p>4.<code>nb-text-line</code>有<code>value</code>属性，表示当前的值。</p>
+    </div>
 
-    <h3 class="section-title">TextLine disabled</h3>
-    <p>
-        <nb-text-line disabled></nb-text-line>
-    </p>
+    <demo-text-line-basic></demo-text-line-basic>
+</nb-code-box>
+<nb-code-box [tsCode]="tsCodetsCodeForm" [htmlCode]="htmlCodetsCodeForm" [lessCode]="lessCodetsCodeForm">
+    <h3 nb-codebox-title>TextLine with Form</h3>
+    <div nb-codebox-desc>
+        <p><code>nb-text-line</code>可以与Forms 和 ReactiveForms 无缝结合使用。</p>
+    </div>
 
-    <h3 class="section-title">TextLine init with value</h3>
-    <p>
-        <nb-text-line [value]="value"></nb-text-line>
-    </p>
-    <p>
-        <nb-text-line disabled [value]="value"></nb-text-line>
-    </p>
-
-    <h3 class="section-title">TextLine for form</h3>
-    <form #frm="ngForm">
-        <nb-text-line [ngModel]="value" name="textline"></nb-text-line>
-    </form>
-    <p>
-        {{ frm.value | json }}
-    </p>
-
-    <h3 class="section-title">TextLine for reactive form</h3>
-    <form [formGroup]="form">
-        <nb-text-line formControlName="textline"></nb-text-line>
-    </form>
-    <p>
-        {{ form.value | json }}
-    </p>
-</section>
+    <demo-text-line-form></demo-text-line-form>
+</nb-code-box>
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TextLineComponent</code> API Reference
+    </h4>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    value
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>text-line value </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether the text-line is disabled </p>
+            </td>
+        </tr>
+    </table>
+</div>

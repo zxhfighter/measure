@@ -10,7 +10,6 @@ import {
     AfterViewInit,
     ElementRef,
     TemplateRef,
-    Renderer2,
     Injector,
     ComponentFactoryResolver,
     ViewContainerRef,
@@ -24,9 +23,8 @@ import { Placement } from '../util/position';
 
 import { ViewportRuler } from './scroll-strategy';
 import { OverlayPositionService } from './overlay-position.service';
-import { OverlayService } from './overlay.service';
 import { OverlayOriginDirective } from './overlay-origin.directive';
-import { OverlayPositionBuilder } from './overlay-position-builder';
+// import { OverlayPositionBuilder } from './overlay-position-builder';
 
 
 @Component({
@@ -35,7 +33,7 @@ import { OverlayPositionBuilder } from './overlay-position-builder';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    providers: [ViewportRuler, OverlayPositionService, OverlayService, OverlayPositionBuilder],
+    providers: [ViewportRuler, OverlayPositionService],
     host: {
         'class': 'nb-widget'
     },
@@ -76,10 +74,10 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
             window.document.querySelector(this.container)!.appendChild(this.el.nativeElement);
         }
         if (this.origin) {
-            this.overlayPositionService
-                .setOverlayRef(this)
-                .attachTo(this.origin.elementRef, this.placement)
-                .updatePosition();
+            const positionStategy = this.overlayPositionService
+                .attachTo(this.origin.elementRef, this, this.placement)
+
+            this.overlayPositionService.updatePosition(positionStategy);
         }
     }
 

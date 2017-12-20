@@ -13,29 +13,32 @@ import { ChartDemo } from './chart';
 import { ProgressBarDemo } from './progress-bar';
 import { SpinnerDemo } from './spinner';
 import { CarouselDemo } from './carousel';
-import { DemoInput } from './input';
-import { DemoTabs } from './tabs';
+import { TabsDemo } from './tabs';
+import { InputDemo } from './input';
 import { StepDemo } from './step';
 import { TableDemo } from './table';
-import { DemoTooltip } from './tooltip';
+import { TooltipDemo } from './tooltip';
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
-import { DemoTextarea } from './textarea';
-import { DemoTextLine } from './text-line';
-import { DemoSearchBox } from './search-box';
+import { TextareaDemo } from './textarea';
+import { TextLineDemo } from './text-line';
+
+import { SearchBoxDemo } from './search-box';
 import { CalendarDemo } from './calendar';
 import { ToastDemo } from './toast';
 import { SelectDemo } from './select';
 import { RegionDemo } from './region';
-import { DemoDialog } from './dialog';
+
+import { DialogDemo } from './dialog';
 import { ChipsDemo } from './chips';
 import { CodeHighlighterDemo } from './code-highlighter';
 import { CodeBoxDemo } from './code-box';
 import { DemoTree } from './tree';
 import { DemoSideBar } from './side-bar/';
 import { CardDemo } from './card';
-import { DemoAccordion } from './accordion';
-import { DemoUploader } from './uploader';
+import { AccordionDemo } from './accordion';
+import { UploaderDemo } from './uploader';
+import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
@@ -52,24 +55,24 @@ export const appRoutes: Routes = [
     { path: 'progress-bar', component: ProgressBarDemo },
     { path: 'spinner', component: SpinnerDemo },
     { path: 'carousel', component: CarouselDemo },
-    { path: 'input', component: DemoInput },
-    { path: 'tabs', component: DemoTabs },
+    { path: 'tabs', component: TabsDemo },
+    { path: 'input', component: InputDemo },
     { path: 'step', component: StepDemo },
-    { path: 'tooltip', component: DemoTooltip },
-    { path: 'textarea', component: DemoTextarea },
+    { path: 'tooltip', component: TooltipDemo },
+    { path: 'textarea', component: TextareaDemo },
     { path: 'table', component: TableDemo },
-    { path: 'tabs', component: DemoTabs },
-    { path: 'tooltip', component: DemoTooltip },
     { path: 'page', component: DemoPage },
     { path: 'schedule', component: DemoSchedule },
-    { path: 'text-line', component: DemoTextLine },
-    { path: 'search-box', component: DemoSearchBox },
+    { path: 'text-line', component: TextLineDemo },
+
+    { path: 'search-box', component: SearchBoxDemo },
     { path: 'calendar', component: CalendarDemo },
     { path: 'toast', component: ToastDemo },
     { path: 'select', component: SelectDemo },
     { path: 'calendar', component: CalendarDemo },
     { path: 'region', component: RegionDemo },
-    { path: 'dialog', component: DemoDialog },
+
+    { path: 'dialog', component: DialogDemo },
     { path: 'tree', component: DemoTree },
     { path: 'side-bar', component: DemoSideBar },
     { path: 'chips', component: ChipsDemo },
@@ -77,8 +80,9 @@ export const appRoutes: Routes = [
     { path: 'code-box', component: CodeBoxDemo },
     { path: 'tree', component: DemoTree },
     { path: 'card', component: CardDemo },
-    { path: 'accordion', component: DemoAccordion },
-    { path: 'uploader', component: DemoUploader },
+    { path: 'accordion', component: AccordionDemo },
+    { path: 'uploader', component: UploaderDemo },
+    { path: 'transfer', component: DemoTransfer },
     { path: 'docs', component: GuideComponentDemo },
     { path: 'icons', component: IconsComponentDemo },
     { path: 'typography', component: TypographyDemo },

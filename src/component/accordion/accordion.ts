@@ -24,6 +24,9 @@ export class AccordionComponent implements OnInit {
      */
     panels: Panel[];
 
+    /**
+     * 数据源
+     */
     @Input() set datasource(data: Panel[]) {
         this.panels = data;
     }

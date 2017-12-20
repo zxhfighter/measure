@@ -6,18 +6,14 @@ import {
     ElementRef,
     EmbeddedViewRef,
     ViewContainerRef,
-    Renderer2,
     ComponentRef,
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
 import { Placement, ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair } from '../util/position';
-import { PositionStrategy } from '../util/connected-position.strategy';
+import { ConnectedPositionStrategy } from '../util/connected-position.strategy';
+import { GlobalPositionStrategy } from '../util/global-position.strategy';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { auditTime } from 'rxjs/operators';
-import { merge } from 'rxjs/observable/merge';
 import { ViewportRuler } from './scroll-strategy';
 import { OverlayComponent } from './overlay';
 
@@ -29,7 +25,6 @@ export class ContentRef {
 export class OverlayPositionService {
     private overlayComponent: any;
     private _contentRef: ContentRef | null;
-    private positionStrategy: PositionStrategy;
     private originElement: ElementRef;
     originPos: ConnectionPosition;
     overlayPos: ConnectionPosition;
@@ -41,7 +36,8 @@ export class OverlayPositionService {
     _resizeSubscription = Subscription.EMPTY;
 
     constructor(
-        private _viewportRuler: ViewportRuler) {
+        private _viewportRuler: ViewportRuler,
+    ) {
     }
 
     setOverlayRef(overlayRef) {
@@ -49,20 +45,56 @@ export class OverlayPositionService {
         return this;
     }
 
+    /**
+     * Creates a global position strategy.
+     */
+    global(): GlobalPositionStrategy {
+        return new GlobalPositionStrategy();
+    }
+
+    /**
+     * Creates a relative position strategy.
+     * @param elementRef
+     * @param originPos
+     * @param overlayPos
+     */
     attachTo(
         targetRef: ElementRef,
-        placement: Placement) {
+        overlayComponent: any,
+        placement): ConnectedPositionStrategy {
 
-        this.splitPlacement(placement);
+            this.splitPlacement(placement);
+            this.overlayComponent = overlayComponent;
+
+            const positionStrategy = new ConnectedPositionStrategy(targetRef, this.overlayComponent.el);
+            this.withPosition(positionStrategy);
+            this.subscribeWindowEvent(positionStrategy);
+
+            return positionStrategy;
+    }
+
+    withPosition(positionStrategy) {
+        this.withFirstPositon(positionStrategy);
+        this.withNextPositon(positionStrategy);
+    }
+
+    withFirstPositon(positionStrategy) {
         this.originPos = this.getOriginPosition();
         this.overlayPos = this.getOverlayPosition();
-        this.positionStrategy = new PositionStrategy(targetRef, this.overlayComponent.el, this.originPos, this.overlayPos);
+        const {offsetX, offsetY} = this.getOffset();
+        positionStrategy.withFallbackPosition(this.originPos, this.overlayPos, offsetX, offsetY);
+    }
+
+    withNextPositon(positionStrategy): void {
         const origin = this.getOrigin();
         const overlay = this.getOverlay();
-        this.positionStrategy.withFallbackPosition(origin.fallback, overlay.fallback);
+        const {offsetX, offsetY} = this.getOffset(origin.fallback);
+        positionStrategy.withFallbackPosition(origin.fallback, overlay.fallback, offsetX, offsetY);
+    }
+
+    subscribeWindowEvent(positionStrategy) {
         this._resizeSubscription.unsubscribe();
-        this._resizeSubscription = this._viewportRuler.change().subscribe(() => this.reposition());
-        return this;
+        this._resizeSubscription = this._viewportRuler.change().subscribe(() => this.updatePosition(positionStrategy));
     }
 
     splitPlacement(placement: Placement) {
@@ -72,12 +104,8 @@ export class OverlayPositionService {
         this.seconedPlacement = seconedPlacement;
     }
 
-    updatePosition() {
-        this.positionStrategy.apply(this.positionChangeHandler());
-    }
-
-    reposition() {
-        this.updatePosition();
+    updatePosition(positionStrategy) {
+        positionStrategy.apply(this.positionChangeHandler());
     }
 
     positionChangeHandler() {
@@ -97,6 +125,43 @@ export class OverlayPositionService {
         else if (lastConnectedPosition.targetY !== lastConnectedPosition.overlayY) {
             this.overlayComponent.placement = lastConnectedPosition.targetY + '-' + lastConnectedPosition.targetX;
         }
+    }
+
+    getOffset(originPos?: ConnectionPosition) {
+        let offsetX = 0;
+        let offsetY = 0;
+        if (this.overlayComponent.hasArrow) {
+
+            if (originPos) {
+                if (originPos.horizontal === 'left') {
+                    offsetX = -8;
+                }
+                else if (originPos.horizontal === 'right') {
+                    offsetX = 8;
+                }
+                else if (originPos.vertical === 'top') {
+                    offsetY = -8;
+                }
+                else if (originPos.vertical === 'bottom') {
+                    offsetY = 8;
+                }
+            }
+            else  {
+                if (this.firstPlacement === 'left') {
+                    offsetX = -8;
+                }
+                else if (this.firstPlacement === 'right') {
+                    offsetX = 8;
+                }
+                else if (this.firstPlacement === 'top') {
+                    offsetY = -8;
+                }
+                else if (this.firstPlacement === 'bottom') {
+                    offsetY = 8;
+                }
+            }
+        }
+        return {offsetX, offsetY};
     }
 
     getOriginPosition(): ConnectionPosition {
@@ -245,16 +310,3 @@ export class OverlayPositionService {
         return { x, y };
     }
 }
-
-// export function OVERLYA_POSITION_SERVICE_FACTORY(
-//     viewportRuler: ViewportRuler) {
-//     return new OverlayPositionService(viewportRuler);
-// }
-
-// /** @docs-private */
-// export const OVERLYA_POSITION_SERVICE_PROVIDER = {
-// // If there is already a ViewportRuler available, use that. Otherwise, provide a new one.
-// provide: OverlayPositionService,
-// deps: [ViewportRuler],
-// useFactory: OVERLYA_POSITION_SERVICE_FACTORY
-// };
