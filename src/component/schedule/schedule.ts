@@ -25,19 +25,43 @@ export class ScheduleComponent implements OnInit {
      * selected time input
      * @default default
      */
-    @Input() selected;
+    @Input() selected: object;
     /**
      * selected time output
      * @default default
      */
-    @Output() selectedOut;
+    @Output() selectedOut: object;
+    /**
+     * @docs-private
+     */
     schedules;
+    /**
+     * @docs-private
+     */
     layerTime;
+    /**
+     * @docs-private
+     */
     weekSelect;
+    /**
+     * @docs-private
+     */
     startpoint;
+    /**
+     * @docs-private
+     */
     flag = false;
+    /**
+     * @docs-private
+     */
     week = ['一', '二', '三', '四', '五', '六', '日'];
+    /**
+     * @docs-private
+     */
     hours;
+    /**
+     * @docs-private
+     */
     selectData: SelectConfig[] = [
         {
             label: '全周',
@@ -92,6 +116,9 @@ export class ScheduleComponent implements OnInit {
         } 
         this.topTimeChange();
     }
+    /**
+     * @docs-private
+     */
     select(i, j) {
         this.schedules[i * 24 + j] = (this.schedules[i * 24 + j] + 1) % 2;
         this.topTimeChange();
@@ -107,6 +134,9 @@ export class ScheduleComponent implements OnInit {
             this.weekSelect[i] = 1;
         }    
     }
+    /**
+     * @docs-private
+     */
     checkDay(j) {
         this.weekSelect[j] = this.weekSelect[j] > 0 ? 0 : 2;
 
@@ -116,6 +146,9 @@ export class ScheduleComponent implements OnInit {
         }
         this.topTimeChange();
     }
+    /**
+     * @docs-private
+     */
     showLabel(i, j) {
         let value = this.layerTime[i*24 + j];
         if ( value < 3) {
@@ -129,6 +162,9 @@ export class ScheduleComponent implements OnInit {
             return label;
         }
     }
+    /**
+     * @docs-private
+     */
     topTimeChange() {
         this.layerTime = [];
         let colspan = 0;
@@ -175,14 +211,23 @@ export class ScheduleComponent implements OnInit {
         }
         console.log(this.selectedOut);
     }
+    /**
+     * @docs-private
+     */
     mouseup(i, j) {
         this.flag = false;
     }
+    /**
+     * @docs-private
+     */
     mousedown(i, j) {
         this.startpoint = [i, j];
         this.flag = true;
         this.preSelect(i, j);
     }
+    /**
+     * @docs-private
+     */
     mouseover(i, j) {
         if (this.flag === true) {
             // let observable = Observable.fromEvent(event.target, 'mouseover')
@@ -191,11 +236,17 @@ export class ScheduleComponent implements OnInit {
             this.preSelect(i, j)
         }
     }
+    /**
+     * @docs-private
+     */
     mouseout(i, j) {
         if (this.flag === true) {
             this.preSelect(i, j);
         }
     }
+    /**
+     * @docs-private
+     */
     preSelect(i, j) {
         let x1 = this.startpoint[0] < i ? this.startpoint[0] : i;
         let x2 = this.startpoint[0] > i ? this.startpoint[0] : i;
