@@ -1,6 +1,8 @@
 import {
     Component,
     OnInit,
+    OnChanges,
+    SimpleChanges,
     OnDestroy,
     Input,
     Output,
@@ -33,7 +35,7 @@ import { Observable } from 'rxjs/Observable';
     }
 })
 
-export class TooltipDirective implements OnInit, OnDestroy {
+export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
 
     /**
      * 提示框的内容
@@ -118,6 +120,14 @@ export class TooltipDirective implements OnInit, OnDestroy {
         }
     }
 
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['nbTooltip']) {
+            if (this.isTooltipVisible()) {
+                this.tiplayerInstance!.changeContent(this.nbTooltip);
+            }
+        }
+    }
+
     show() {
         if (!this.tiplayerInstance) {
             this.createTiplayer();
@@ -159,6 +169,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
         if (!this.embedded) {
             hostElement = window.document.body;
         }
+
+        this.nbTooltip = 'wfj';
         let componentRef = this.dynamicComponentService.createDynamicComponent(
             TiplayerComponent, this.nbTooltip, hostElement);
         this.tiplayerInstance = componentRef.instance;
