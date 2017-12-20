@@ -24,7 +24,7 @@ export class SliderBasicDemo implements OnInit {
     ngOnInit() {
         this.valueRange0 = this.value2[0];
         this.valueRange1 = this.value2[1];
-        this.valueVertical = this.value1;
+        this.valueVertical = 20;
     }
 
     onDefaultChange(e) {
@@ -32,7 +32,12 @@ export class SliderBasicDemo implements OnInit {
     }
 
     onInputChange(e) {
-        this.valueInput = e;
+        /**
+         * 作为input控件本身在输入框值变化时会触发
+         */
+        if (!isNaN(e)) {
+            this.valueInput = e;
+        }
     }
 
     onStepChange(e) {

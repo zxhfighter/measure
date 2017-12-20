@@ -47,7 +47,6 @@ import { appRoutes } from './app.router';
 
 import { DemoPage } from './page';
 import { DemoSchedule } from './schedule';
-import { DemoTree } from './tree';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
 import { OverlayDemo } from './overlay';
@@ -56,7 +55,6 @@ import { ChipsDemoModule } from './chips';
 import { CodeBoxDemo } from './code-box';
 import { AccordionDemoModule } from './accordion';
 import { UploaderDemoModule } from './uploader';
-import { DemoSideBar } from './side-bar';
 import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
@@ -66,6 +64,8 @@ import { InputDemoModule } from './input';
 import { TextareaDemoModule } from './textarea';
 import { TextLineDemoModule } from './text-line';
 import { SearchBoxDemoModule } from './search-box';
+import { TreeDemoModule } from './tree';
+import { SideBarDemoModule } from './side-bar';
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
 import { SwitchDemoModule } from './switch';
@@ -90,6 +90,8 @@ const demoModules = [
     TextareaDemoModule,
     TextLineDemoModule,
     SearchBoxDemoModule,
+    TreeDemoModule,
+    SideBarDemoModule,
     ButtonDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
@@ -121,10 +123,7 @@ const demoModules = [
         AppComponent,
         DemoPage,
         DemoSchedule,
-        DemoTree,
         CodeBoxDemo,
-        DemoTree,
-        DemoSideBar,
         OverlayDemo,
         DemoTransfer,
         GuideComponentDemo,

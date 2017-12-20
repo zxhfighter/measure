@@ -12,7 +12,7 @@ import {dataSideBar} from './side-bar-test-data';
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class DemoSideBar implements OnInit {
+export class SideBarDemo implements OnInit {
 
     private data = dataSideBar;
 

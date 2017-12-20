@@ -24,19 +24,28 @@ import {TreeComponent} from './tree';
 })
 export class TreeNodeComponent implements OnInit {
 
-     /** input tree-node value */
+     /** 
+      * input tree-node value 
+      * @docs-private
+      */
     @Input() node: TreeNode;
 
     constructor(@Inject(forwardRef(() => TreeComponent)) public tree: TreeComponent) { }
 
     ngOnInit() { }
     
-    /** listen tree-node click event */
+    /** 
+     * listen tree-node click event 
+     * @docs-private
+     */
     onNodeClick() {
         this.tree.onNodeClick(this.node);
     }
 
-    /** fold or unfold tree-node event */
+    /** 
+     * fold or unfold tree-node event 
+     * @docs-private
+     */
     toggle(event: Event) {
         event.stopPropagation();
         this.node.isExpanded = !this.node.isExpanded;

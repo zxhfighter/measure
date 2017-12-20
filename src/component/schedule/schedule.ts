@@ -21,13 +21,47 @@ import {SelectConfig} from "../select/select.config";
     exportAs: 'nbSchedule'
 })
 export class ScheduleComponent implements OnInit {
+    /**
+     * selected time input
+     * @default default
+     */
+    @Input() selected: object;
+    /**
+     * selected time output
+     * @default default
+     */
+    @Output() selectedOut: object;
+    /**
+     * @docs-private
+     */
     schedules;
+    /**
+     * @docs-private
+     */
     layerTime;
+    /**
+     * @docs-private
+     */
     weekSelect;
+    /**
+     * @docs-private
+     */
     startpoint;
+    /**
+     * @docs-private
+     */
     flag = false;
+    /**
+     * @docs-private
+     */
     week = ['一', '二', '三', '四', '五', '六', '日'];
+    /**
+     * @docs-private
+     */
     hours;
+    /**
+     * @docs-private
+     */
     selectData: SelectConfig[] = [
         {
             label: '全周',
@@ -49,7 +83,14 @@ export class ScheduleComponent implements OnInit {
         this.hours = Array.apply(Array, Array(25)).map((v,k) => k);
     }
     ngOnInit() {
-
+        for (let i in this.selected) {
+            for (let j = 0;j < this.selected[i].length; j++) {
+                for (let k = this.selected[i][j][0]; k <= this.selected[i][j][1]; k++) {
+                    this.schedules[i * 24 + k] = 1;
+                }
+            }
+        }
+        this.topTimeChange();
     }
     /**
      * set day
@@ -62,19 +103,25 @@ export class ScheduleComponent implements OnInit {
         switch(day) {
             case 7: 
                 this.schedules = Array(169).fill(1);
+                this.weekSelect = Array(7).fill(2);
                 break;
             case 5:
                 this.schedules = Array(24*5).fill(1).concat(Array(24*2+1).fill(0));
+                this.weekSelect = Array(5).fill(2).concat(Array(2).fill(0));
                 break;
             case 2:
                 this.schedules = Array(24*5).fill(0).concat(Array(24*2+1).fill(1));
+                this.weekSelect = Array(5).fill(0).concat(Array(2).fill(2));
+                break;
         } 
         this.topTimeChange();
     }
+    /**
+     * @docs-private
+     */
     select(i, j) {
         this.schedules[i * 24 + j] = (this.schedules[i * 24 + j] + 1) % 2;
         this.topTimeChange();
-
         let sum = 0;
         for (let k = i * 24; k < (i + 1) * 24; k++) {
             sum = sum + this.schedules[k];
@@ -85,8 +132,11 @@ export class ScheduleComponent implements OnInit {
             this.weekSelect[i] = 2;
         } else {
             this.weekSelect[i] = 1;
-        }
+        }    
     }
+    /**
+     * @docs-private
+     */
     checkDay(j) {
         this.weekSelect[j] = this.weekSelect[j] > 0 ? 0 : 2;
 
@@ -96,6 +146,9 @@ export class ScheduleComponent implements OnInit {
         }
         this.topTimeChange();
     }
+    /**
+     * @docs-private
+     */
     showLabel(i, j) {
         let value = this.layerTime[i*24 + j];
         if ( value < 3) {
@@ -109,6 +162,9 @@ export class ScheduleComponent implements OnInit {
             return label;
         }
     }
+    /**
+     * @docs-private
+     */
     topTimeChange() {
         this.layerTime = [];
         let colspan = 0;
@@ -135,15 +191,43 @@ export class ScheduleComponent implements OnInit {
                 colspan = 0;
             }
         }
+        // 输出
+        this.selectedOut = {};
+        for (let k = 0; k < this.layerTime.length; k++) {
+            if (this.layerTime[k] !== 0) {
+                let i = Math.floor(k / 24);
+                let j = k % 24;
+                // debugger
+                let half = Math.floor(this.layerTime[k]/2);
+                let tmp = (this.layerTime[k] + 1) % 2;
+                let arr = [];
+                arr.push(this.hours[j - half + tmp]);
+                arr.push(this.hours[j + half + 1]);
+                if (this.selectedOut[i] === undefined) {
+                    this.selectedOut[i] = [];
+                }
+                this.selectedOut[i].push(arr);
+            }
+        }
+        console.log(this.selectedOut);
     }
+    /**
+     * @docs-private
+     */
     mouseup(i, j) {
         this.flag = false;
     }
+    /**
+     * @docs-private
+     */
     mousedown(i, j) {
         this.startpoint = [i, j];
         this.flag = true;
         this.preSelect(i, j);
     }
+    /**
+     * @docs-private
+     */
     mouseover(i, j) {
         if (this.flag === true) {
             // let observable = Observable.fromEvent(event.target, 'mouseover')
@@ -152,11 +236,17 @@ export class ScheduleComponent implements OnInit {
             this.preSelect(i, j)
         }
     }
+    /**
+     * @docs-private
+     */
     mouseout(i, j) {
         if (this.flag === true) {
             this.preSelect(i, j);
         }
     }
+    /**
+     * @docs-private
+     */
     preSelect(i, j) {
         let x1 = this.startpoint[0] < i ? this.startpoint[0] : i;
         let x2 = this.startpoint[0] > i ? this.startpoint[0] : i;

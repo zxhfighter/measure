@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SelectConfig {
-    value?: number|null;
+    value?: number | null;
     label: string;
     children?: any[];
 }

@@ -21,13 +21,13 @@ export class PageComponent implements OnInit {
      * count per page
      * @default default
      */
-    @Input() count = 20;
+    @Input() count: number = 20;
     
     /**
      * total count
      * @default default
      */
-    @Input() total;
+    @Input() total: number;
 
     // 可选择的每页显示条数,
     // 可选填参数
@@ -36,7 +36,7 @@ export class PageComponent implements OnInit {
      * page list selected
      * @default default
      */
-    @Input('value') list;
+    @Input('value') list: Array<T>;
 
     /**
      * when page change, emit a change event, which contains the currrentIndex and the count

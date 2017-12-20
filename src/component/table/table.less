@@ -43,10 +43,6 @@
                 z-index: 100;
             }
 
-            &:hover {
-                background: @table-row-hover;
-            }
-
             &:last-of-type {
                 .table-resize-bar {
                     display: none;
@@ -58,6 +54,10 @@
             font-weight: normal;
             display: inline-block;
             font-size: 12px;
+        }
+
+        .icon-help {
+            margin-left: 8px;
         }
 
         .icon-filter {
@@ -184,6 +184,16 @@
     }
 }
 
+.@{prefix}-table-resizable {
+    .@{prefix}-table-head {
+        .@{prefix}-table-th {
+            &:hover {
+                background: @table-row-hover;
+            }
+        }
+    }
+}
+
 .table-tip-panel {
     position: absolute;
     background-color: #fff;
@@ -196,7 +206,7 @@
 }
 
 .table-filter-panel {
-    position: absolute;
+    // position: absolute;
     background-color: #fff;
     padding: 15px;
     z-index: 10;

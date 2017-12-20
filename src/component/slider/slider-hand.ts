@@ -12,10 +12,11 @@ import 'rxjs/add/operator/takeUntil';
 
 import { merge } from 'rxjs/observable/merge';
 import { initNgModule } from '@angular/core/src/view/ng_module';
+import { SliderService } from './slider.service';
 
 @Component({
     selector: 'nb-slider-hand',
-    template: '<div #sliderHand class="nb-slider-hand" [ngStyle]="style"></div>',
+    template: '<div #sliderHand class="nb-slider-hand" [nbTooltip]="value" placement="top" [ngStyle]="style"></div>',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
@@ -60,6 +61,8 @@ export class SliderHandComponent implements OnInit {
      */
     @Input() step: number = 1;
 
+    value: string = '';
+
     /**
      * The event emitted when slider value changes, emit the init position and end position of hand
      */
@@ -71,6 +74,7 @@ export class SliderHandComponent implements OnInit {
 
     constructor(
         private render: Renderer2,
+        private service: SliderService
     ) {
         this.render = render;
     }
@@ -84,6 +88,8 @@ export class SliderHandComponent implements OnInit {
             throw new Error('step需能被（max-min）整除');
         }
 
+        let value = this.service.getValue(this.initPos, this.step, this.min, this.max);
+        this.value = value + '';
         this.bindEvent();
     }
 

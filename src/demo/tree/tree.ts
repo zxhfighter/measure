@@ -1,31 +1,22 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy
+    Component
 } from '@angular/core';
-
-import {treeData, treeDataSelected} from './tree-data';
 
 @Component({
     selector: 'demo-tree',
     templateUrl: './tree.html',
     styleUrls: ['./tree.less'],
-    preserveWhitespaces: false,
-    changeDetection: ChangeDetectionStrategy.Default
+    preserveWhitespaces: false
 })
-export class DemoTree implements OnInit {
 
-    private treeData = treeData;
+export class TreeDemo {
+    // basic sources
+    tsCodeBasic: string = require('!!raw-loader!./basic/tree-basic.ts');
+    htmlCodeBasic: string = require('!!raw-loader!./basic/tree-basic.html');
+    lessCodeBasic: string = require('!!raw-loader!./basic/tree-basic.less');
 
-    private treeDataSelected  = treeDataSelected;
-
-    private disabled = true;
-
-    constructor() { }
-
-    ngOnInit() {
-
-    }
-
-    nodeSelect(event) {
-        console.log(event);
-    }
+    // mode sources
+    tsCodeMode: string = require('!!raw-loader!./mode/tree-mode.ts');
+    htmlCodeMode: string = require('!!raw-loader!./mode/tree-mode.html');
+    lessCodeMode: string = require('!!raw-loader!./mode/tree-mode.less');
 }

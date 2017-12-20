@@ -1,11 +1,16 @@
-<table nb-table #nbTable [datasource]="datasource" (sort)="onSort($event)" order="asc" orderBy="height">
+<table nb-table #nbTable
+    [datasource]="datasource"
+    [pageSize]="pageSize"
+    (sort)="onSort($event)"
+    (dataChange)="onDisplayDataChange($event)"
+    order="asc"
+    orderBy="height">
     <thead nb-thead>
         <tr nb-row>
             <th field="name" tipable filterable sortable (filter)="onFilter(name.value, $event)">
                 <span class="field-title">姓名</span>
                 <div class="tip-content">
-                    <b style="color:red">H</b>ello,
-                    <b style="color:green">W</b>orld.
+                    <p>This is the field tip message, <a href="http://www.baidu.com" target="_blank">see more</a></p>
                 </div>
 
                 <div nb-table-filter class="filter-content">
@@ -49,7 +54,7 @@
     </thead>
 
     <tbody nb-tbody>
-        <tr nb-row *ngFor="let item of nbTable.datasource">
+        <tr nb-row *ngFor="let item of displayTableData">
             <td nb-td>{{item.name}}</td>
             <td nb-td>
                 <ng-container [ngSwitch]="item.status">
@@ -68,7 +73,7 @@
             </td>
             <td nb-td>{{item.phone}}</td>
             <td nb-td>{{item.school}}</td>
-            <td nb-td>{{item.height}}</td>
+            <td nb-td>{{item.height}} cm</td>
             <td nb-td>
                 <a href="javascript:;">查看</a>
                 <span class="splitter"></span>

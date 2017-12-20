@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { genTableData } from '../table.data';
 
 @Component({
     selector: 'demo-table-sort',
@@ -12,21 +13,20 @@ export class TableSortDemo implements OnInit {
 
     sortParam: any = {};
 
-    allDatasource: any[] = [
-        { name: '张三', phone: '13566665553', status: 0, statusText: '审核中', school: 'CMU', height: '178cm', checked: false },
-        { name: '李四', phone: '15566665554', status: 2, statusText: '审核通过', school: 'XSU', height: '208cm', checked: false },
-        { name: '王五', phone: '16566665555', status: 1, statusText: '审核拒绝', school: 'CSU', height: '218cm', checked: false },
-        { name: '刘六', phone: '17566665556', status: 2, statusText: '审核通过', school: 'DEU', height: '188cm', checked: false },
-        { name: '七七', phone: '17566665557', status: 0, statusText: '审核中', school: 'CSU', height: '178cm', checked: false },
-        { name: '巴巴', phone: '18566665558', status: 2, statusText: '审核通过', school: 'DEU', height: '168cm', checked: false },
-        { name: '阿九', phone: '11566665559', status: 1, statusText: '审核拒绝', school: 'CBB', height: '158cm', checked: false }
-    ];
+    datasource: any[] = genTableData();
 
-    datasource: any[] = [];
+    displayTableData: any[] = [];
+
+    pageSize = 5;
+
+    onDisplayDataChange(data: any[]) {
+        this.displayTableData = data;
+    }
 
     onSort(sortParam: any) {
-        this.sortParam = sortParam;
-        this.datasource = this.sortDatasource(this.datasource, sortParam);
+        // this.sortParam = sortParam;
+        // this.displayTableData = this.sortDatasource(this.datasource, sortParam);
+        console.log('sorting...: ', sortParam);
     }
 
     sortDatasource(datasource: any, sortParam: any) {
@@ -71,16 +71,12 @@ export class TableSortDemo implements OnInit {
         }
     }
 
-    getDatasource() {
-        return JSON.parse(JSON.stringify(this.allDatasource));
-    }
-
     ngOnInit() {
-        this.datasource = this.getDatasource();
+
     }
 
     filterDatasource(filterMap: any) {
-        let filterData: any = this.getDatasource();
+        let filterData: any = this.datasource;
 
         for (const key in filterMap) {
             if (filterMap.hasOwnProperty(key)) {
@@ -104,7 +100,7 @@ export class TableSortDemo implements OnInit {
             filterData = this.sortDatasource(filterData, this.sortParam);
         }
 
-        this.datasource = filterData;
+        this.displayTableData = filterData.slice(0, this.pageSize);
     }
 
     onSingleFilter(value: string, target: any) {

@@ -1,71 +1,140 @@
-<h1 class="main-title">Tree demo</h1>
+<h1 class="main-title">nb-tree</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
 
     <div class="code">
-        <pre><code uiCode class="language-markup" ngNonBindable>
-import &#x7B;TreeModule&#x7D; from 'xdesign';
-        </code></pre>
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;TreeModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">Tree first demo</h3>
+<h3 class="section-title">Examples</h3>
 
-    <div>
-        <p class="nb-tree-wrap">
-            <nb-tree [treeData]="treeData"></nb-tree>
-        </p>
-    </div>
-    
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-tree</code>用于展现树形数据结构的组件。</p>
+        <p>2.<code>nb-tree</code>有<code>treeData</code>属性，用于接收treeNode[]值的输入。</p>
+        <p>3.<code>nb-tree</code>有<code>disabled</code> 属性，用于置灰处理，为不可点选状态。</p>
 
-    <h3 class="section-title">Candidate Selection</h3>
-
-    <div>
-        <p class="nb-tree-wrap">
-            <nb-tree 
-                [treeData]="treeData" 
-                selectionMode="candidate" 
-                (onNodeSelect)="nodeSelect($event)">
-            </nb-tree>
-        </p>
     </div>
 
-    <h3 class="section-title">Selected Selection</h3>
-    
-    <div>
-        <p class="nb-tree-wrap">
-            <nb-tree 
-                [treeData]="treeDataSelected" 
-                selectionMode="selected" 
-                (onNodeSelect)="nodeSelect($event)">
-            </nb-tree>
-        </p>
-    </div>
-    
-    <h3 class="section-title">Navigation Mode</h3>
-    
-    <div>
-        <p class="nb-tree-wrap">
-            <nb-tree 
-                [treeData]="treeDataSelected" 
-                selectionMode="navigation" 
-                (onNodeSelect)="nodeSelect($event)">
-            </nb-tree>
-        </p>
+    <demo-tree-basic></demo-tree-basic>
+</nb-code-box>
+<nb-code-box [tsCode]="tsCodeMode" [htmlCode]="htmlCodeMode" [lessCode]="lessCodeMode">
+    <h3 nb-codebox-title>Tree with modes</h3>
+    <div nb-codebox-desc>
+        <p>1.<code>nb-tree</code>有四种内置<code>selectionMode</code>，分别为：'', 'candidate', 'selected', 'navigation'。</p>
+        <p>2.<code>nb-tree</code>有<code>propagateSelectionUp</code>和<code>propagateSelectionDown</code>属性，用于设置被点选的node节点是否向上/向下传递选中态。</p>
+        <p>3.<code>nb-tree</code>有<code>onNodeSelect</code>事件，用于向外抛出被点选节点的数据。</p>
     </div>
 
-    <h3 class="section-title">Disabled State</h3>
-    
-    <div>
-        <p class="nb-tree-wrap">
-            <nb-tree 
-                [treeData]="treeData" 
-                selectionMode="candidate" 
-                (onNodeSelect)="nodeSelect($event)"
-                [disabled]="disabled">
-            </nb-tree>
-        </p>
-    </div>
-</section>
+    <demo-tree-mode></demo-tree-mode>
+</nb-code-box>
+
+<div class="docs-api">
+    <h2 class="docs-api-type">Components</h2>
+    <h4 class="docs-api-h4 docs-api-class-name">
+        <code>TreeComponent</code> API Reference
+    </h4>
+    <h5 class="docs-table-desc">Properties</h5>
+    <table class="docs-table docs-table-properties">
+        <tr class="docs-row docs-row-head">
+            <th class="docs-td docs-th">Name</th>
+            <th class="docs-td docs-th">Type</th>
+            <th class="docs-td docs-th">Default</th>
+            <th class="docs-td docs-th">Description</th>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-output-marker">
+                    @Output()</div>
+                <p class="docs-property-name">
+                    onNodeSelect
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">EventEmitter</td>
+            <td class="docs-td docs-td-default"></td>
+            <td class="docs-td docs-td-desc">
+                <p>tree node selection event</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    treeData
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">TreeNode[]</td>
+            <td class="docs-td docs-td-default">[]</td>
+            <td class="docs-td docs-td-desc">
+                <p>input tree-nodes value </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    selectionMode
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">string</td>
+            <td class="docs-td docs-td-default">&#39;&#39;</td>
+            <td class="docs-td docs-td-desc">
+                <p>input four mode, have &#39;&#39;, &#39;candidate&#39;, &#39;selected&#39;, &#39;navigation&#39; four modes</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    disabled
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">false</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether is disabled or not</p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    propagateSelectionUp
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">true</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether upward propagation events, default: true </p>
+            </td>
+        </tr>
+        <tr class="docs-row docs-row-body">
+            <td class="docs-td docs-td-name">
+                <div class="docs-input-marker">
+                    @Input()</div>
+                <p class="docs-property-name">
+                    propagateSelectionDown
+                </p>
+            </td>
+            <td class="docs-td docs-td-type">boolean</td>
+            <td class="docs-td docs-td-default">true</td>
+            <td class="docs-td docs-td-desc">
+                <p>Whether downward propagation events, default: true </p>
+            </td>
+        </tr>
+    </table>
+</div>
