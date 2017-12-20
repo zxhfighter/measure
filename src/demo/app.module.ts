@@ -55,7 +55,6 @@ import { ChipsDemoModule } from './chips';
 import { CodeBoxDemo } from './code-box';
 import { AccordionDemoModule } from './accordion';
 import { UploaderDemoModule } from './uploader';
-import { DemoSideBar } from './side-bar';
 import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
@@ -66,6 +65,7 @@ import { TextareaDemoModule } from './textarea';
 import { TextLineDemoModule } from './text-line';
 import { SearchBoxDemoModule } from './search-box';
 import { TreeDemoModule } from './tree';
+import { SideBarDemoModule } from './side-bar';
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
 import { SwitchDemoModule } from './switch';
@@ -91,6 +91,7 @@ const demoModules = [
     TextLineDemoModule,
     SearchBoxDemoModule,
     TreeDemoModule,
+    SideBarDemoModule,
     ButtonDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
@@ -123,7 +124,6 @@ const demoModules = [
         DemoPage,
         DemoSchedule,
         CodeBoxDemo,
-        DemoSideBar,
         OverlayDemo,
         DemoTransfer,
         GuideComponentDemo,
