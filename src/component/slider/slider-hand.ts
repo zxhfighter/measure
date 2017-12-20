@@ -13,6 +13,7 @@ import 'rxjs/add/operator/takeUntil';
 import { merge } from 'rxjs/observable/merge';
 import { initNgModule } from '@angular/core/src/view/ng_module';
 import { SliderService } from './slider.service';
+import { TooltipDirective } from '../../component/tooltip';
 
 @Component({
     selector: 'nb-slider-hand',
@@ -69,6 +70,8 @@ export class SliderHandComponent implements OnInit {
     @Output() change: EventEmitter<object> = new EventEmitter<object>();
 
     @ViewChild('sliderHand') _hand: ElementRef;
+
+    @ViewChild(TooltipDirective) tooltip: TooltipDirective;
 
     style: object = {};
 
@@ -170,6 +173,7 @@ export class SliderHandComponent implements OnInit {
                 // this.style[this.orientation ? 'left' : 'bottom'] = `${endPos}%`;
                 me.updateStyle(`${endPos}%`);
                 me.change.emit({ endPos, initPos });
+
             });
     }
 
@@ -182,5 +186,6 @@ export class SliderHandComponent implements OnInit {
         let style = this.orientation ? 'left' : 'bottom';
         // this.style[this.orientation ? 'left' : 'bottom'] = value;
         this.render.setStyle(hand, style, value);
+        this.tooltip.needReposition();
     }
 }

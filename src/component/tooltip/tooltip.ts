@@ -88,6 +88,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
     private focusListener: Function;
     private blurListener: Function;
     private tiplayerInstance: TiplayerComponent | null;
+    private positionStrategy;
 
     constructor(
         private el: ElementRef,
@@ -120,10 +121,13 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         }
     }
 
+    /**
+     * 给slider使用
+     */
     ngOnChanges(changes: SimpleChanges) {
         if (changes['nbTooltip']) {
-            if (this.isTooltipVisible()) {
-                this.tiplayerInstance!.changeContent(this.nbTooltip);
+            if (this.tiplayerInstance) {
+                this.tiplayerInstance.changeContent(this.nbTooltip);
             }
         }
     }
@@ -170,7 +174,6 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
             hostElement = window.document.body;
         }
 
-        this.nbTooltip = 'wfj';
         let componentRef = this.dynamicComponentService.createDynamicComponent(
             TiplayerComponent, this.nbTooltip, hostElement);
         this.tiplayerInstance = componentRef.instance;
@@ -187,9 +190,19 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         const positionStrategy = this.overlayPositionService
             .attachTo(this.el, this.tiplayerInstance, this.placement);
 
-        this.tiplayerInstance.needReposition.subscribe(
+        this.positionStrategy = positionStrategy;
+            this.tiplayerInstance.needReposition.subscribe(
             () => this.overlayPositionService.updatePosition(positionStrategy)
         );
+    }
+
+    /**
+     * 给slider使用
+     */
+    needReposition() {
+        if (this.positionStrategy) {
+            this.overlayPositionService.updatePosition(this.positionStrategy);
+        }
     }
 
     ngOnDestroy() {
