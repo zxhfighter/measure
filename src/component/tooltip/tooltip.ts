@@ -1,6 +1,8 @@
 import {
     Component,
     OnInit,
+    OnChanges,
+    SimpleChanges,
     OnDestroy,
     Input,
     Output,
@@ -33,7 +35,7 @@ import { Observable } from 'rxjs/Observable';
     }
 })
 
-export class TooltipDirective implements OnInit, OnDestroy {
+export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
 
     /**
      * 提示框的内容
@@ -86,6 +88,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     private focusListener: Function;
     private blurListener: Function;
     private tiplayerInstance: TiplayerComponent | null;
+    private positionStrategy;
 
     constructor(
         private el: ElementRef,
@@ -115,6 +118,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
                 this.renderer.listen(this.el.nativeElement, 'focus', () => this.show());
             this.blurListener =
                 this.renderer.listen(this.el.nativeElement, 'blur', () => this.hide());
+        }
+    }
+
+    /**
+     * 给slider使用
+     */
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['nbTooltip']) {
+            if (this.tiplayerInstance) {
+                this.tiplayerInstance.changeContent(this.nbTooltip);
+            }
         }
     }
 
@@ -159,6 +173,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         if (!this.embedded) {
             hostElement = window.document.body;
         }
+
         let componentRef = this.dynamicComponentService.createDynamicComponent(
             TiplayerComponent, this.nbTooltip, hostElement);
         this.tiplayerInstance = componentRef.instance;
@@ -175,9 +190,19 @@ export class TooltipDirective implements OnInit, OnDestroy {
         const positionStrategy = this.overlayPositionService
             .attachTo(this.el, this.tiplayerInstance, this.placement);
 
-        this.tiplayerInstance.needReposition.subscribe(
+        this.positionStrategy = positionStrategy;
+            this.tiplayerInstance.needReposition.subscribe(
             () => this.overlayPositionService.updatePosition(positionStrategy)
         );
+    }
+
+    /**
+     * 给slider使用
+     */
+    needReposition() {
+        if (this.positionStrategy) {
+            this.overlayPositionService.updatePosition(this.positionStrategy);
+        }
     }
 
     ngOnDestroy() {

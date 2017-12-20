@@ -34,8 +34,31 @@
         <p>3. 通过 <code>hasArrow</code>设置是否有箭头</p>
     </div>
 
-    <demo-tooltip-basic></demo-tooltip-basic>
-</nb-code-box>
+<section>
+    <h3 class="section-title">multiple themes</h3>
+
+    <p>
+        <ng-template #tipContent>
+            <span>高级带图标多行提示</span>
+            <p><b>Begin: </b>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》</p>
+        </ng-template>
+        <button nb-button
+            theme="default"
+            [nbTooltip]="tipContent"
+            placement="top"
+            nbTooltipTheme="pink">
+            theme pink
+        </button>
+        <button nb-button
+            theme="default"
+            [nbTooltip]="tipContent"
+            placement="bottom"
+            nbTooltipTheme="yellow"
+            trigger="click">
+            theme yellow
+        </button>
+    </p>
+</section>
 
 <nb-code-box [tsCode]="tsCodeContent" [htmlCode]="htmlCodeContent" [lessCode]="lessCodeContent">
     <h3 nb-codebox-title>Tooltip Content</h3>

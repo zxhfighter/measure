@@ -33,12 +33,12 @@ import { DialogDemo } from './dialog';
 import { ChipsDemo } from './chips';
 import { CodeHighlighterDemo } from './code-highlighter';
 import { CodeBoxDemo } from './code-box';
-import { DemoTree } from './tree';
-import { DemoSideBar } from './side-bar/';
+import { TreeDemo } from './tree';
+import { SideBarDemo } from './side-bar/';
 import { CardDemo } from './card';
 import { AccordionDemo } from './accordion';
 import { UploaderDemo } from './uploader';
-import { DemoTransfer } from './transfer';
+import { TransferDemo } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
@@ -73,16 +73,16 @@ export const appRoutes: Routes = [
     { path: 'region', component: RegionDemo },
 
     { path: 'dialog', component: DialogDemo },
-    { path: 'tree', component: DemoTree },
-    { path: 'side-bar', component: DemoSideBar },
+    { path: 'tree', component: TreeDemo },
+    { path: 'side-bar', component: SideBarDemo },
     { path: 'chips', component: ChipsDemo },
     { path: 'code-highlighter', component: CodeHighlighterDemo },
     { path: 'code-box', component: CodeBoxDemo },
-    { path: 'tree', component: DemoTree },
+    { path: 'tree', component: TreeDemo },
     { path: 'card', component: CardDemo },
     { path: 'accordion', component: AccordionDemo },
     { path: 'uploader', component: UploaderDemo },
-    { path: 'transfer', component: DemoTransfer },
+    { path: 'transfer', component: TransferDemo },
     { path: 'docs', component: GuideComponentDemo },
     { path: 'icons', component: IconsComponentDemo },
     { path: 'typography', component: TypographyDemo },

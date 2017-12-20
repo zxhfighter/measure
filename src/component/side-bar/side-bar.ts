@@ -1,14 +1,18 @@
 import {
-    Component, 
-    Input, 
-    Output, 
+    Component,
+    Input,
+    Output,
     EventEmitter,
-    OnInit, 
-    ViewEncapsulation, 
+    OnInit,
+    ViewEncapsulation,
     ChangeDetectionStrategy
 } from '@angular/core';
 
-import {SiderBarModel, TreeNode, TreeNodeParent} from './side-bar-interface';
+import {
+    SiderBarModel,
+    TreeNode,
+    TreeNodeParent
+} from './side-bar-interface';
 
 @Component({
     selector: 'nb-side-bar',
@@ -23,11 +27,11 @@ import {SiderBarModel, TreeNode, TreeNodeParent} from './side-bar-interface';
 
 export class SideBarComponent implements OnInit {
 
-    /** side-bar data */
-    @Input() data: SiderBarModel;
-
     /** click navi event */
     @Output() onNavi = new EventEmitter();
+
+    /** side-bar data */
+    @Input() data: SiderBarModel;
 
     /**
      * storage tree-nodes as list
@@ -77,7 +81,7 @@ export class SideBarComponent implements OnInit {
         if (this.data.root) {
             this.root = this.data.root;
         }
-        
+
         if (this.data.tree) {
             this.treeData = JSON.parse(JSON.stringify(this.data.tree));
             this.initTree(this.treeData, !!this.data.expanded);
@@ -86,7 +90,10 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** init tree data */
+    /** 
+     * init tree data 
+     * @docs-private
+     */
     initTree(treeData: TreeNode[], expanded: boolean) {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
@@ -99,7 +106,10 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** transfer tree to list */
+    /** 
+     * transfer tree to list 
+     * @docs-private
+     */
     transferTreeToList(treeData: TreeNode[]) {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
@@ -113,7 +123,10 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** listen the search-box search keyword suggest event */
+    /** 
+     * listen the search-box search keyword suggest event 
+     * @docs-private
+     */
     searchSuggestion(event: string) {
         let suggestionNodes: TreeNode[] = [];
         suggestionNodes = this.getSuggestionNodes(event);
@@ -124,7 +137,10 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** get matched keyword the suggest tree-node */
+    /** 
+     * get matched keyword the suggest tree-node 
+     * @docs-private
+     */
     getSuggestionNodes(event: string) {
         let listMatchedTreeNodes: TreeNode[] = [];
         let lengthMaxNodes = this._listTreeNodes.length > 3 ? 3 : this._listTreeNodes.length;
@@ -135,7 +151,7 @@ export class SideBarComponent implements OnInit {
              */
             if (node.name && node.name.search(event) !== -1) {
                 listMatchedTreeNodes.push(node);
-            } 
+            }
             if (listMatchedTreeNodes.length === lengthMaxNodes) {
                 return listMatchedTreeNodes;
             }
@@ -162,17 +178,26 @@ export class SideBarComponent implements OnInit {
         return this.treeData && this.treeData.length ? true : false;
     }
 
-    /** listen search-box clear keyword event */
+    /** 
+     * listen search-box clear keyword event 
+     * @docs-private
+     */
     clear(event: string) {
         this.search(event);
     }
 
-    /** listen tree-root refresh tree event */
+    /** 
+     * listen tree-root refresh tree event 
+     * @docs-private
+     */
     refreshTree() {
         this.search();
     }
 
-    /** listen search-box filter tree-node event */
+    /** 
+     * listen search-box filter tree-node event 
+     * @docs-private
+     */
     search(event?: string) {
         /**
          * when the keyword is null, show the all navi item
@@ -199,8 +224,8 @@ export class SideBarComponent implements OnInit {
         }
 
         let rootNodes: TreeNode[] = [];
-        rootNodes =  this.getRootNodes(this._listSearchNodes);
-        
+        rootNodes = this.getRootNodes(this._listSearchNodes);
+
         for (let root of rootNodes) {
             for (let node of this._listSearchNodes) {
                 this.renderSelectedNode(root, node);
@@ -211,7 +236,10 @@ export class SideBarComponent implements OnInit {
         this.hasTreeData = this.checkTreeData();
     }
 
-    /** find all the tree nodes associated with the key words */
+    /** 
+     * find all the tree nodes associated with the key words 
+     * @docs-private
+     */
     searchNodes(node: TreeNode) {
         if (node.parent) {
             this.setSearchNodes(node);
@@ -229,7 +257,10 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** get tree-node parent node */
+    /** 
+     * get tree-node parent node 
+     * @docs-private
+     */
     getParentNode(parent: TreeNodeParent): TreeNode | undefined {
         let parentNode: TreeNode | undefined;
         parentNode = this._listTreeNodes.find((node: TreeNode) => {
@@ -238,14 +269,20 @@ export class SideBarComponent implements OnInit {
         return parentNode;
     }
 
-    /** push matched keyword search node into _listSearchNodes */
+    /** 
+     * push matched keyword search node into _listSearchNodes 
+     * @docs-private
+     */
     setSearchNodes(node: TreeNode) {
         if (!this.isExistRepetition(node)) {
             this._listSearchNodes.push(node);
         }
     }
 
-    /** judge in _listSearchNodes has repeat node or not */
+    /** 
+     * judge in _listSearchNodes has repeat node or not 
+     * @docs-private
+     */
     isExistRepetition(targetNode: TreeNode) {
         if (this._listSearchNodes.length === 0) {
             return false;
@@ -262,14 +299,20 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** get root nodes */
+    /** 
+     * get root nodes 
+     * @docs-private
+     */
     getRootNodes(rootNodes: TreeNode[]) {
         return rootNodes.filter((node: TreeNode) => {
             return !node.parent;
         });
     }
 
-    /** render filtered tree-node */
+    /** 
+     * render filtered tree-node 
+     * @docs-private
+     */
     renderSelectedNode(rootNode: TreeNode, targetNode: TreeNode) {
         if (rootNode.id === targetNode.id) {
             rootNode.isExpanded = true;
@@ -288,12 +331,18 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** throw the navigation click event out */
+    /** 
+     * throw the navigation click event out 
+     * @docs-private
+     */
     nodeSelect(event) {
         this.onNavi.emit(event);
     }
 
-    /** fold or unfold side-bar */
+    /** 
+     * fold or unfold side-bar
+     * @docs-private
+     */
     fold() {
         this.expanded = !this.expanded;
     }

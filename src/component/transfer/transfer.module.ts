@@ -6,8 +6,19 @@ import { SearchBoxModule } from '../search-box/search-box.module';
 import { TreeModule } from '../tree/tree.module';
 
 @NgModule({
-    imports: [CommonModule, ButtonModule, SearchBoxModule, TreeModule],
-    declarations: [TransferComponent],
-    exports: [TransferComponent]
+    imports: [
+        CommonModule,
+        ButtonModule,
+        SearchBoxModule,
+        TreeModule
+    ],
+    declarations: [
+        TransferComponent
+    ],
+    providers: [],
+    exports: [
+        TransferComponent
+    ]
 })
+
 export class TransferModule { }

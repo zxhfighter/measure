@@ -1,0 +1,53 @@
+<div class="field-title-wrapper" (click)="onSort()">
+    <ng-content select=".field-title"></ng-content>
+</div>
+
+<ng-container *ngIf="tipable">
+    <i class="iconfont icon-help" [nbTooltip]="tip" placement="top" hasArrow></i>
+</ng-container>
+
+<i
+    [class.hide]="!filterable"
+    nbOverlayOrigin
+    #origin="nbOverlayOrigin"
+    class="iconfont icon-filter"
+    [class.active]="showFilter || filtered"
+    (click)="onToggleFilter($event)">
+</i>
+
+<ng-container *ngIf="sortable">
+    <span
+        title="sort"
+        (click)="onSort()"
+        class="sort-group"
+        [class.sort-group-asc]="order=='asc'"
+        [class.sort-group-desc]="order=='desc'">
+        <i class="iconfont icon-sort-desc"></i>
+        <i class="iconfont icon-sort-asc"></i>
+    </span>
+</ng-container>
+
+<ng-template #tip>
+    <ng-content select=".tip-content"></ng-content>
+</ng-template>
+
+<ng-template #filter>
+    <ng-content select="[nb-table-filter]"></ng-content>
+
+    <div *ngIf="showFilterButton" class="filter-content-button">
+        <button size="sm" theme="primary" nb-button (click)="onFilter()">筛选</button>
+        <button size="sm" theme="default" nb-button (click)="onCancel()">取消</button>
+    </div>
+</ng-template>
+
+<nb-overlay #overlay placement="bottom-left" (onHide)="onFilterPanelHide($event)">
+    <div class="table-filter-panel">
+        <ng-container *ngTemplateOutlet="filter"></ng-container>
+    </div>
+</nb-overlay>
+
+<div
+    *ngIf="resizable"
+    class="table-resize-bar"
+    (mousedown)="onColumnResizeBegin($event)">
+</div>

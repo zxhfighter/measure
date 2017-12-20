@@ -12,6 +12,8 @@ import { BoxGroupValue } from '../../../component/box-group';
 export class BoxGroupFormDemo implements OnInit {
     form: FormGroup;
 
+    rememberMe: boolean = true;
+
     datasource: any[] = [
         {value: 'apple', text: 'apple', checked: false, disabled: false},
         {value: 'banana', text: 'banana', checked: false, disabled: false},
