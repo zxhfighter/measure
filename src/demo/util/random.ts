@@ -11,7 +11,7 @@
  * @return {number}       随机数
  */
 export function genNum(start: number, end: number): number {
-    return start + Math.floor(Math.random() * end);
+    return start + Math.floor(Math.random() * (end - start));
 }
 
 /**

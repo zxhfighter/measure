@@ -17,7 +17,8 @@ import {
     Output,
     EventEmitter,
     ChangeDetectorRef,
-    NgZone
+    NgZone,
+    Renderer2
 } from '@angular/core';
 import { Placement } from '../util/position';
 
@@ -35,11 +36,15 @@ import { OverlayPositionBuilder } from './overlay-position-builder';
     preserveWhitespaces: false,
     providers: [ViewportRuler, OverlayPositionService, OverlayPositionBuilder],
     host: {
-        'class': 'nb-widget'
+        'class': 'nb-widget',
+        '(click)': '_preventDefault($event)'
     },
     exportAs: 'nbOverlay'
 })
 export class OverlayComponent implements AfterViewInit, OnDestroy {
+
+    /** the event emitted when the overlay is hide */
+    @Output() onHide: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
 
     @Input() origin: OverlayOriginDirective;
 
@@ -59,14 +64,31 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
     /** The timeout ID of any current timer set to hide the tooltip */
     private _hideTimeoutId: number;
 
+    /** document click listener, when click on other area, hide the overlay */
+    private _documentClickListener: Function | null;
+
     constructor(
         private el: ElementRef,
         private cdRef: ChangeDetectorRef,
-        private overlayPositionService: OverlayPositionService) {
+        private render: Renderer2,
+        private overlayPositionService: OverlayPositionService
+    ) {
+
+        // when click on other area, hide the overlay
+        this._documentClickListener = this.render.listen('document', 'click', () => {
+            this.visibility = false;
+            this.cdRef.markForCheck();
+        });
     }
 
     ngOnDestroy() {
         this.el.nativeElement.remove();
+
+        // remove document click listener
+        if (this._documentClickListener) {
+            this._documentClickListener();
+            this._documentClickListener = null;
+        }
     }
 
     ngAfterViewInit() {
@@ -98,11 +120,17 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
 
         this._hideTimeoutId = window.setTimeout(() => {
             this.visibility = false;
+            this.onHide.emit(this);
             this.cdRef.markForCheck();
         }, this._delay);
     }
 
     isVisible(): boolean {
         return this.visibility;
+    }
+
+    _preventDefault(event: MouseEvent) {
+        event.stopPropagation();
+        event.preventDefault();
     }
 }

@@ -43,7 +43,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     protected selectedData: SelectConfig;
     protected styles: OptionsStyles;
     protected windowResizeListener: Function | null;
-    protected documentClickListener: Function | null;
     protected onModelChange: Function = () => { };
     protected onModelTouched: Function = () => { };
 
@@ -87,10 +86,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.expanded = !this.expanded;
         this.icon = this.expanded ? 'fa-angle-up' : 'fa-angle-down';
         this.cd.markForCheck();
-
-        if (!this.expanded) {
-            this.unbindDocumentClickListener();
-        }
     }
 
     onSelectedOption(data: SelectConfig) {
@@ -109,11 +104,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     bindEvents() {
 
-        if (!this.documentClickListener) {
-            this.documentClickListener = this.renderer.listen('document', 'click', () => {
-                this.changeState();
-            });
-        }
     }
 
     unbindEvents() {
@@ -122,14 +112,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
             this.windowResizeListener = null;
         }
 
-        this.unbindDocumentClickListener();
-    }
-
-    unbindDocumentClickListener() {
-        if (this.documentClickListener) {
-            this.documentClickListener();
-            this.documentClickListener = null;
-        }
     }
 
     setSelectedData() {
