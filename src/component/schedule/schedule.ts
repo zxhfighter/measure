@@ -86,7 +86,7 @@ export class ScheduleComponent implements OnInit {
         for (let i in this.selected) {
             for (let j = 0;j < this.selected[i].length; j++) {
                 for (let k = this.selected[i][j][0]; k <= this.selected[i][j][1]; k++) {
-                    this.schedules[i * 24 + k] = 1;
+                    this.schedules[24 * parseInt(i) + k] = 1;
                 }
             }
         }
@@ -209,7 +209,6 @@ export class ScheduleComponent implements OnInit {
                 this.selectedOut[i].push(arr);
             }
         }
-        console.log(this.selectedOut);
     }
     /**
      * @docs-private

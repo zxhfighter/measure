@@ -36,7 +36,7 @@ export class PageComponent implements OnInit {
      * page list selected
      * @default default
      */
-    @Input('value') list: Array<T>;
+    @Input('value') list: Array<number>;
 
     /**
      * when page change, emit a change event, which contains the currrentIndex and the count
@@ -101,7 +101,7 @@ export class PageComponent implements OnInit {
             this.selectData = [];
             for(let i = 0; i < this.list.length; i++) {
                 this.selectData.push({
-                    label: this.list[i],
+                    label: this.list[i].toString(),
                     value: this.list[i]
                 });
             }
