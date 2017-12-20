@@ -17,7 +17,8 @@ import { TooltipDirective } from '../../component/tooltip';
 
 @Component({
     selector: 'nb-slider-hand',
-    template: '<div #sliderHand class="nb-slider-hand" [nbTooltip]="value" placement="top" [ngStyle]="style"></div>',
+    template: ` <div #sliderHand class="nb-slider-hand" [nbTooltip]="value"
+                hasArrow="false" [placement]="placement" [ngStyle]="style"></div>`,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
@@ -63,6 +64,7 @@ export class SliderHandComponent implements OnInit {
     @Input() step: number = 1;
 
     value: string = '';
+    placement: string = '';
 
     /**
      * The event emitted when slider value changes, emit the init position and end position of hand
@@ -92,6 +94,7 @@ export class SliderHandComponent implements OnInit {
             throw new Error('step需能被（max-min）整除');
         }
 
+        this.placement = this.orientation ? 'top' : 'right';
         this.bindEvent();
     }
 
