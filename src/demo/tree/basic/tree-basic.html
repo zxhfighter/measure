@@ -1,0 +1,20 @@
+<h3 class="section-title">Default State</h3>
+<div>
+    <p class="nb-tree-wrap">
+        <nb-tree 
+            [treeData]="treeData">
+        </nb-tree>
+    </p>
+</div>
+
+<h3 class="section-title">Disabled State</h3>
+<div>
+    <p class="nb-tree-wrap">
+        <nb-tree 
+            [treeData]="treeData" 
+            selectionMode="candidate" 
+            (onNodeSelect)="nodeSelect($event)" 
+            [disabled]="disabled">
+        </nb-tree>
+    </p>
+</div>

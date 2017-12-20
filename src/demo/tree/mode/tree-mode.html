@@ -1,0 +1,32 @@
+<h3 class="section-title">Candidate Selection</h3>
+<div>
+    <p class="nb-tree-wrap">
+        <nb-tree 
+            [treeData]="treeData" 
+            selectionMode="candidate" 
+            (onNodeSelect)="nodeSelect($event)">
+        </nb-tree>
+    </p>
+</div>
+
+<h3 class="section-title">Selected Selection</h3>
+<div>
+    <p class="nb-tree-wrap">
+        <nb-tree 
+            [treeData]="treeDataSelected" 
+            selectionMode="selected" 
+            (onNodeSelect)="nodeSelect($event)">
+        </nb-tree>
+    </p>
+</div>
+
+<h3 class="section-title">Navigation Mode</h3>
+<div>
+    <p class="nb-tree-wrap">
+        <nb-tree 
+            [treeData]="treeDataSelected" 
+            selectionMode="navigation" 
+            (onNodeSelect)="nodeSelect($event)">
+        </nb-tree>
+    </p>
+</div>

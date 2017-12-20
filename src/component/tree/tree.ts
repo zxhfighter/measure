@@ -23,22 +23,38 @@ import { TreeNodeParent } from './treenodeparent';
 })
 export class TreeComponent implements OnInit {
 
-    /** input tree-nodes value */
+    /** tree node selection event */
+    @Output() onNodeSelect = new EventEmitter();
+
+    /** 
+     * input tree-nodes value 
+     * @default []
+     */
     @Input() treeData: TreeNode[] = [];
 
-    /** input tree mode, default: '', have ''|'candidate'|'selected' three modes*/
+    /** 
+     * input four mode, have '', 'candidate', 'selected', 'navigation' four modes
+     * @default ''
+     */
     @Input() selectionMode: string;
 
-    @Input() disabled = false;
+    /**
+     * Whether is disabled or not
+     * @default false
+     */
+    @Input() disabled: boolean = false;
 
-    /** Whether upward propagation events, default:true */
+    /** 
+     * Whether upward propagation events, default: true 
+     * @default true
+     */
     @Input() propagateSelectionUp: boolean = true;
 
-    /** Whether downward propagation events, default:true */
+    /** 
+     * Whether downward propagation events, default: true 
+     * @default true
+     */
     @Input() propagateSelectionDown: boolean = true;
-
-    /** Outward exposure selection event */
-    @Output() onNodeSelect = new EventEmitter();
 
     /** private variable tree-list
      *  @docs-private
@@ -53,7 +69,10 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** transfer tree to list */
+    /** 
+     * transfer tree to list 
+     * @docs-private
+     */
     transferTreeToList(treeData: object[]) {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
@@ -65,7 +84,10 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** listen tree-node click event */
+    /** 
+     * listen tree-node click event 
+     * @docs-private
+     */
     onNodeClick(node: TreeNode) {
         if (!node.selectable || this.disabled) {
             return;
@@ -86,7 +108,10 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** candidate mode click event handler */
+    /** 
+     * candidate mode click event handler 
+     * @docs-private
+     */
     clickCandidate(node: TreeNode) {
         if (!node.isSelected) {
             if (this.propagateSelectionDown) {
@@ -99,7 +124,10 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** selected mode click event handler */
+    /** 
+     * selected mode click event handler 
+     * @docs-private
+     */
     clickSelected(node: TreeNode) {
         if (node.isSelected) {
             if (this.propagateSelectionDown) {
@@ -112,11 +140,19 @@ export class TreeComponent implements OnInit {
         }
     }
 
+    /**
+     * click navigation node
+     * @param node 
+     * @docs-private
+     */
     clickNavigation(node: TreeNode) {
         this.onNodeSelect.emit(node);
     }
 
-    /** select event downward propagate handler */
+    /** 
+     * select event downward propagate handler 
+     * @docs-private
+     */
     propagateDown(node: TreeNode, select: boolean) {
         node.isSelected = select;
         node.show = select;
@@ -127,7 +163,10 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** select event upward propagate handler */
+    /** 
+     * select event upward propagate handler 
+     * @docs-private
+     */
     propagateUp(node: TreeNode, select: boolean) {
         node.isSelected = select;
         node.show = select;
@@ -153,7 +192,10 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** get tree-node parent tree-node */
+    /** 
+     * get tree-node parent tree-node 
+     * @docs-private
+     */
     getParent(treeNodeParent: TreeNodeParent): TreeNode | undefined {
         let parentNode: TreeNode | undefined;
         parentNode = this._treeList.find((node: TreeNode) => {
