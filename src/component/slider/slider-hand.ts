@@ -80,7 +80,8 @@ export class SliderHandComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.updateStyle(`${this.initPos}%`);
+        this.updateStyle(this.initPos);
+
         if (this.disabled) {
             return;
         }
@@ -88,8 +89,6 @@ export class SliderHandComponent implements OnInit {
             throw new Error('step需能被（max-min）整除');
         }
 
-        let value = this.service.getValue(this.initPos, this.step, this.min, this.max);
-        this.value = value + '';
         this.bindEvent();
     }
 
@@ -105,7 +104,7 @@ export class SliderHandComponent implements OnInit {
         const mouseUp$ = fromEvent(document, 'mouseup');
         mouseDown$
             .map((event: MouseEvent) => {
-                let target = event.target as HTMLElement;
+                const target = event.target as HTMLElement;
 
                 let initPos = me.orientation
                     ? parseInt(target.style.left as string)
@@ -136,7 +135,6 @@ export class SliderHandComponent implements OnInit {
                     return {
                         // hand的新位置
                         endPos,
-                        // endPos: moveEvent.clientX,
                         // hand每一次移动前的位置
                         initPos: me.orientation
                             ? parseFloat(target.style.left as string)
@@ -147,7 +145,6 @@ export class SliderHandComponent implements OnInit {
             })
             .subscribe((pos) => {
                 let endPos = pos.endPos;
-                // let endPos = pos.endPos;
                 let initPos = pos.initPos;
                 if (endPos < 0) {
                     endPos = 0;
@@ -167,20 +164,24 @@ export class SliderHandComponent implements OnInit {
                 }
                 endPos = initPos + move;
                 endPos = endPos > 0 ? endPos : 0;
-                // this.style[this.orientation ? 'left' : 'bottom'] = `${endPos}%`;
-                me.updateStyle(`${endPos}%`);
+                // this.style[this.orientation ? 'left' : 'bottom'] = endPos;
+                me.updateStyle(endPos);
                 me.change.emit({ endPos, initPos });
             });
     }
 
     /**
      * update end position of hand
-     * @param value position
+     * @param val position
      */
-    updateStyle(value) {
+    updateStyle(val: number) {
         const hand = this._hand.nativeElement as HTMLElement;
         let style = this.orientation ? 'left' : 'bottom';
-        // this.style[this.orientation ? 'left' : 'bottom'] = value;
-        this.render.setStyle(hand, style, value);
+        // this.style[this.orientation ? 'left' : 'bottom'] = val;
+        this.render.setStyle(hand, style, `${val}%`);
+
+        // tooltip
+        let value = this.service.getValue(val, this.step, this.min, this.max);
+        this.value = value + '';
     }
 }
