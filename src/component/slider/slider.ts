@@ -186,13 +186,10 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
                 this.value[0] = this.value[1] = this.min;
             }
             else {
-                // this.value[0] = !isNaN(this.value[0]) ? this.value[0] : this.min;
-                // this.value[1] = !isNaN(this.value[1]) ? this.value[1] : this.min;
                 (<number[]>this.value).map((val, i, arr) => arr[i] = this.valueCheck(val, this.min));
             }
         }
         else {
-            // this.value = this.value ? this.value : this.min;
             this.value = this.valueCheck(<number>this.value, this.min);
         }
     }
@@ -250,8 +247,6 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
      * @param value input value
      */
     getWidthFromValue(value: CoreValue): number {
-        // let trackerMin = !isNaN(value[0]) ? value[0] : this.min;
-        // let trackerMax = !isNaN(value[1]) ? value[1] : value;
         let trackerMin = this.valueCheck(value[0], this.min);
         let trackerMax = this.valueCheck(value[1], <number>value);
 
@@ -286,8 +281,6 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         if (this.range) {
             this.getNearest(info.initPos, info.endPos, this.hands);
             let move = hands[1].initPos - hands[0].initPos;
-            // this.value[0] = this.service.getValue(hands[0].initPos, this.step, this.min, this.max);
-            // this.value[1] = this.service.getValue(hands[1].initPos, this.step, this.min, this.max);
 
             (<number[]>this.value).map((v, i, arr) => {
                 arr[i] = this.service.getValue(hands[i].initPos, this.step, this.min, this.max);
