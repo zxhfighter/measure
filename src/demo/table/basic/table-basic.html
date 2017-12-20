@@ -1,7 +1,7 @@
 <p class="table-desc">
     main size(14px) table, usually used as main table in a page.
 </p>
-<table nb-table #nbTable1 [datasource]="datasource">
+<table nb-table #nbTable1 [datasource]="datasource" [pageSize]="5">
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">
@@ -11,7 +11,7 @@
     </thead>
 
     <tbody nb-tbody>
-        <tr nb-row *ngFor="let item of nbTable1.datasource">
+        <tr nb-row *ngFor="let item of nbTable1.data">
             <ng-container *ngTemplateOutlet="tableTds;context: {$implicit: item}"></ng-container>
         </tr>
     </tbody>
@@ -20,7 +20,7 @@
 <p class="table-desc">
     small size(14px) table, used in dialogs, forms and so on.
 </p>
-<table nb-table #nbTable2 [datasource]="datasource" theme="small">
+<table nb-table #nbTable2 [datasource]="datasource" [pageSize]="5" theme="small">
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">
@@ -30,7 +30,7 @@
     </thead>
 
     <tbody nb-tbody>
-        <tr nb-row *ngFor="let item of nbTable2.datasource">
+        <tr nb-row *ngFor="let item of nbTable2.data">
             <ng-container *ngTemplateOutlet="tableTds;context: {$implicit: item}"></ng-container>
         </tr>
     </tbody>
@@ -39,7 +39,7 @@
 <p class="table-desc">
     small size(12px) bordered table, used in dialogs, forms and so on.
 </p>
-<table nb-table bordered #nbTable3 [datasource]="datasource" theme="x-small">
+<table nb-table bordered #nbTable3 [datasource]="datasource" [pageSize]="5" theme="x-small">
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">
@@ -49,7 +49,7 @@
     </thead>
 
     <tbody nb-tbody>
-        <tr nb-row *ngFor="let item of nbTable3.datasource">
+        <tr nb-row *ngFor="let item of nbTable3.data">
             <ng-container *ngTemplateOutlet="tableTds;context: {$implicit: item}"></ng-container>
         </tr>
     </tbody>
@@ -76,7 +76,7 @@
     </td>
     <td nb-td>{{item.phone}}</td>
     <td nb-td>{{item.school}}</td>
-    <td nb-td>{{item.height}}</td>
+    <td nb-td>{{item.height}} cm</td>
     <td nb-td>
         <a href="javascript:;">查看</a>
         <span class="splitter"></span>

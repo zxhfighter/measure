@@ -1,15 +1,30 @@
 import {
     Component, Input, Output, EventEmitter, Optional, OnInit, AfterViewInit,
-    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef
+    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef,
+    forwardRef
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { BoxGroupComponent } from './box-group';
 import { uuid as getUUID } from '../util/uuid';
 import { addClass } from '../util/dom';
 import { OnChange } from '../core/decorators';
+import { coerceBooleanProperty } from '../util/coerce';
 
 /** box type: radio or checkbox */
 export type BOX_TYPE = 'radio' | 'checkbox';
+
+/*
+ * Provider Expression that allows component to register as a ControlValueAccessor.
+ * This allows it to support [(ngModel)].
+ * @docs-private
+ */
+const BOX_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => InputBoxComponent),
+    multi: true
+};
+
 
 /**
  * A single checkbox or radiobox
@@ -20,6 +35,7 @@ export type BOX_TYPE = 'radio' | 'checkbox';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    providers: [BOX_VALUE_ACCESSOR],
     host: {
         'class': 'nb-widget nb-checkbox',
         '[class.nb-checkbox-disabled]': 'disabled',
@@ -29,10 +45,11 @@ export type BOX_TYPE = 'radio' | 'checkbox';
     },
     exportAs: 'xBox'
 })
-export class InputBoxComponent implements OnInit, AfterViewInit {
+export class InputBoxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
 
     /** When the box state change, emit a change event with a boolean value */
     @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() checkedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
      * box type: either 'checkbox' or 'radio'
@@ -59,14 +76,14 @@ export class InputBoxComponent implements OnInit, AfterViewInit {
      * Whether the box is checked
      * @default false
      */
-    @OnChange(true)
+    @OnChange(true, true)
     @Input() checked: boolean = false;
 
     /**
      * Whether the box is intermediate
      * @default false
      */
-    @OnChange(true)
+    @OnChange(true, true)
     @Input() intermediate: boolean = false;
 
     /**
@@ -78,7 +95,7 @@ export class InputBoxComponent implements OnInit, AfterViewInit {
     /**
      * @docs-private
      */
-    intermediateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    // intermediateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /** box value, can be any type */
     @Input() value: any;
@@ -91,17 +108,21 @@ export class InputBoxComponent implements OnInit, AfterViewInit {
      *
      * @param {BoxGroupComponent?} parentBox - find parent box group component and inject it
      */
-    constructor( @Optional() parentBox: BoxGroupComponent, private _el: ElementRef) {
+    constructor(
+        @Optional() parentBox: BoxGroupComponent,
+        private _el: ElementRef,
+        private _cd: ChangeDetectorRef
+    ) {
         this._parentBox = parentBox;
 
-        this.intermediateChange.subscribe(
-            (v: boolean) => {
-                if (v) {
-                    // if in the intermediate state, checked is false
-                    this.checked = false;
-                }
-            }
-        );
+        // this.intermediateChange.subscribe(
+        //     (v: boolean) => {
+        //         if (v) {
+        //             // if in the intermediate state, checked is false
+        //             this.checked = false;
+        //         }
+        //     }
+        // );
     }
 
     ngOnInit() {
@@ -142,6 +163,9 @@ export class InputBoxComponent implements OnInit, AfterViewInit {
             this.checked = checked;
             this.intermediate = false;
             this.change.emit(checked);
+            this.checkedChange.emit(checked);
+
+            this._updateFormModel();
         }
 
         this.preventCheckboxDefaultEvent(event);
@@ -159,6 +183,63 @@ export class InputBoxComponent implements OnInit, AfterViewInit {
         }
         else {
             event.returnValue = false;
+        }
+    }
+
+    /**
+     * The method to be called in order to update ngModel.
+     * Now `ngModel` binding is not supported in multiple selection mode.
+     */
+    private _onModelChange: Function;
+
+    /**
+     * Registers a callback that will be triggered when the value has changed.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On change callback function.
+     */
+    registerOnChange(fn: Function) {
+        this._onModelChange = fn;
+    }
+
+    /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
+    private _onTouch: Function;
+
+    /**
+     * Registers a callback that will be triggered when the control has been touched.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On touch callback function.
+     */
+    registerOnTouched(fn: Function) {
+        this._onTouch = fn;
+    }
+
+    /**
+     * Sets the model value. Implemented as part of ControlValueAccessor.
+     * @param value Value to be set to the model.
+     */
+    writeValue(value: any) {
+        this.checked = coerceBooleanProperty(value);
+        this._cd.markForCheck();
+    }
+
+    /**
+     * Toggles the disabled state of the component. Implemented as part of ControlValueAccessor.
+     * @param isDisabled Whether the component should be disabled.
+     */
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+    }
+
+    /**
+     * update form model value and mark for check
+     */
+    _updateFormModel() {
+        if (this._onModelChange) {
+            this._onModelChange(this.checked);
+        }
+
+        if (this._onTouch) {
+            this._onTouch(this.checked);
         }
     }
 }
