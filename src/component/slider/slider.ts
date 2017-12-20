@@ -150,6 +150,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         private service: SliderService
     ) {
         this.render = render;
+        this.service = service;
     }
 
     ngOnInit() {
@@ -266,6 +267,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         this.value = calculated;
         let value = this.trackerSelected = this.getTrackerSelected(calculated);
         this.sliderHands.first.updateStyle(`${value}%`);
+        this.change.emit(this.value);
         this._markForCheck();
     }
 
@@ -280,8 +282,8 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         if (this.range) {
             this.getNearest(info.initPos, info.endPos, this.hands);
             let move = hands[1].initPos - hands[0].initPos;
-            this.value[0] = this.getValue(hands[0].initPos);
-            this.value[1] = this.getValue(hands[1].initPos);
+            this.value[0] = this.service.getValue(hands[0].initPos, this.step, this.min, this.max);
+            this.value[1] = this.service.getValue(hands[1].initPos, this.step, this.min, this.max);
 
             this.trackerSelected = move;
             this.trackerPos = hands[0].initPos;
@@ -290,29 +292,11 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
             return;
         }
 
-        this.value = this.getValue(info.endPos);
+        this.value = this.service.getValue(info.endPos, this.step, this.min, this.max);
         this.trackerSelected = this.hands[0].initPos = info.endPos;
         this.change.emit(this.value);
         // 更新form model
         this._markForCheck();
-    }
-
-    /**
-     * 根据position计算slider-hand当前的value
-     * @param pos trackerPos
-     */
-    getValue(pos: number): number {
-        const step = this.step;
-        let value = Math.round((this.max - this.min) * pos / 100 + this.min);
-        let remainder = value % step;
-        let round = Math.floor(value / step);
-        if (remainder < 5) {
-            value = step * round;
-        }
-        else {
-            value = step * (round + 1);
-        }
-        return value;
     }
 
     /**

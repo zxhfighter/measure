@@ -1,4 +1,17 @@
-<h1 class="main-title">Accordion demo</h1>
+<h1 class="main-title">nb-accordion</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
+
+<p class="type-desc">
+    <span>selector</span>: <code>nb-accordion</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>nbAccordion</code>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
@@ -10,26 +23,213 @@
     </div>
 </section>
 
-<section>
-    <h3 class="section-title">common Accordion</h3>
+<h3 class="section-title">Examples</h3>
 
-    <p>
-        <nb-accordion [datasource]="panels"></nb-accordion>
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Accordion Basic</h3>
+    <div nb-codebox-desc>
+        <p>1.支持 click 、hover 两种触发方式，默认情况下是 click，需要 hover 展开时设置 <code>hoverable</code></p>
+        <p>2.折叠方式支持互斥折叠和全部可折叠，通过设置 <code>collapsible</code>， true 为全部可折叠， false 为互斥折叠</p>
+    </div>
+
+    <demo-accordion-basic></demo-accordion-basic>
+</nb-code-box>
+
+<h3 class="section-title">API</h3>
+<!-- 把dist/docs/api/component对应的组件APIcopy过来 -->
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="docs-api"><h2 class="docs-api-type">Components</h2>
+
+      <h4 class="docs-api-h4 docs-api-class-name">
+  <code>AccordionComponent</code> API Reference
+</h4><h5 class="docs-table-desc">Properties</h5>
+  <table class="docs-table docs-table-properties">
+    <tr class="docs-row docs-row-head">
+      <th class="docs-td docs-th">Name</th>
+      <th class="docs-td docs-th">Type</th>
+      <th class="docs-td docs-th">Default</th>
+      <th class="docs-td docs-th">Description</th>
+    </tr>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      panels
     </p>
-</section>
+  </td>
+  <td class="docs-td docs-td-type">object</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>渲染对象</p>
+</td>
+</tr>
 
-<section>
-    <h3 class="section-title">全部可折叠</h3>
 
-    <p>
-        <nb-accordion [datasource]="panels" [collapsible]="collapsible"></nb-accordion>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      datasource
     </p>
-</section>
+  </td>
+  <td class="docs-td docs-td-type"></td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
 
-<section>
-    <h3 class="section-title">Hover Open</h3>
 
-    <p>
-        <nb-accordion [datasource]="panels" [hoverable]="hoverable"></nb-accordion>
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      datasource
     </p>
-</section>
+  </td>
+  <td class="docs-td docs-td-type"></td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"></td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      activeIndex
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">number</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>激活的panel下标, 如果为-1视为全部折叠</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      hoverable
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>是否hover展开</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><div class="docs-input-marker">
+          @Input()</div><p class="docs-property-name">
+      collapsible
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">boolean</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>折叠方式
+false - 互斥折叠
+true - 全部可折叠</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      headerIcon
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>正常状态三角图标的样式
+TODO 项目中确定iconfont方案后完善</p>
+</td>
+</tr>
+
+
+
+      <tr class="docs-row docs-row-body">
+  <td class="docs-td docs-td-name"><p class="docs-property-name">
+      activeHeaderIcon
+    </p>
+  </td>
+  <td class="docs-td docs-td-type">string</td>
+  <td class="docs-td docs-td-default"></td>
+  <td class="docs-td docs-td-desc"><p>展开状态三角图标的样式</p>
+</td>
+</tr>
+
+
+
+  </table>
+
+
+<h5 class="docs-table-desc">Methods</h5>
+<table class="docs-table docs-table-methods">
+  <tr class="docs-row docs-row-head">
+    <th class="docs-td docs-th docs-td-name">Name</th>
+    <th class="docs-td docs-th docs-td-param">Parameters</th>
+    <th class="docs-td docs-th docs-td-type">Return Type</th>
+    <th class="docs-td docs-th docs-td-desc">Description</th>
+  </tr>
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        changeActiveIndex()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                activeIndex<span class="type">: number</span>
+                <div class="desc"> - &lt;p&gt;指定索引&lt;/p&gt;
+</div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+        &lt;p&gt;变更索引&lt;/p&gt;
+
+    </td>
+</tr>
+
+
+
+    <tr class="docs-row docs-row-body">
+    <td class="docs-td docs-td-name">
+        onClickPanel()</td>
+
+    <td class="docs-td docs-td-param">
+            <div class="parameter-item">
+                activeIndex<span class="type">: number</span>
+                <div class="desc"> - &lt;p&gt;指定索引&lt;/p&gt;
+</div>
+            </div>
+            </td>
+
+    <td class="docs-td docs-td-type"></td>
+
+    <td class="docs-td docs-td-desc">
+        &lt;p&gt;激活指定panel&lt;/p&gt;
+
+    </td>
+</tr>
+
+
+
+</table>
+
+
+
+    </div>

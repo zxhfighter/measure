@@ -36,8 +36,8 @@ import { CodeBoxDemo } from './code-box';
 import { TreeDemo } from './tree';
 import { DemoSideBar } from './side-bar/';
 import { CardDemo } from './card';
-import { DemoAccordion } from './accordion';
-import { DemoUploader } from './uploader';
+import { AccordionDemo } from './accordion';
+import { UploaderDemo } from './uploader';
 import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
@@ -80,8 +80,8 @@ export const appRoutes: Routes = [
     { path: 'code-box', component: CodeBoxDemo },
     { path: 'tree', component: TreeDemo },
     { path: 'card', component: CardDemo },
-    { path: 'accordion', component: DemoAccordion },
-    { path: 'uploader', component: DemoUploader },
+    { path: 'accordion', component: AccordionDemo },
+    { path: 'uploader', component: UploaderDemo },
     { path: 'transfer', component: DemoTransfer },
     { path: 'docs', component: GuideComponentDemo },
     { path: 'icons', component: IconsComponentDemo },

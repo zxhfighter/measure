@@ -1,46 +1,52 @@
-<table nb-table #nbTable2 [datasource]="datasource">
+<button nb-button [disabled]="!selectedLength">Delete</button> {{ selectedLength }} items
+
+<table nb-table #nbTable2 [datasource]="datasource" [pageSize]="5" (dataChange)="onDisplayDataChange($event)">
     <thead nb-thead>
         <tr nb-row>
             <th nb-th [style.width.px]="60">
                 <div class="field-title">
-                    <nb-checkbox [checked]="isAllChecked" (change)="toggleAllChecked($event)"></nb-checkbox>
+                    <nb-checkbox
+                        [(checked)]="isAllChecked"
+                        [intermediate]="isIntermediate"
+                        (change)="toggleAllChecked($event)">
+                    </nb-checkbox>
                 </div>
             </th>
             <th *ngFor="let field of fields" [field]="field.name">
-                <span class="field-title">{{field.title}}</span>
+                <span class="field-title">{{ field.title }}</span>
             </th>
         </tr>
     </thead>
 
     <tbody nb-tbody>
         <tr nb-row
-            *ngFor="let item of nbTable2.datasource"
+            *ngFor="let item of nbTable2.data"
             [checked]="item.checked"
             (click)="onRowClick($event, item)">
             <td nb-td>
                 <div>
-                    <nb-checkbox [checked]="item.checked" (change)="checkIsAllChecked($event, item)"></nb-checkbox>
+                    <nb-checkbox [(checked)]="item.checked" (change)="checkIsAllChecked($event)"></nb-checkbox>
                 </div>
             </td>
-            <td nb-td>{{item.name}}</td>
+            <td nb-td>{{ item.name }}</td>
             <td nb-td>
                 <ng-container [ngSwitch]="item.status">
                     <ng-template [ngSwitchCase]="0">
-                        <span class="status-waiting">{{item.statusText}}</span>
+                        <span class="status-waiting">{{ item.statusText }}</span>
                     </ng-template>
 
                     <ng-template [ngSwitchCase]="1">
-                        <span class="status-error">{{item.statusText}}</span>
+                        <span class="status-error">{{ item.statusText }}</span>
                     </ng-template>
 
                     <ng-template [ngSwitchCase]="2">
-                        <span class="status-done">{{item.statusText}}</span>
+                        <span class="status-done">{{ item.statusText }}</span>
                     </ng-template>
                 </ng-container>
             </td>
-            <td nb-td>{{item.phone}}</td>
-            <td nb-td>{{item.school}}</td>
-            <td nb-td>{{item.height}}</td>
+            <td nb-td>{{ item.phone }}</td>
+            <td nb-td>{{ item.school }}</td>
+            <td nb-td>{{ item.height }} cm</td>
             <td nb-td>
                 <a href="javascript:;">查看</a>
                 <span class="splitter"></span>

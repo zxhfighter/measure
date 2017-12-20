@@ -2,7 +2,7 @@
     <h3>with forms:</h3>
     <form #form1="ngForm">
         <nb-boxgroup type="radio" name="radioBox" [ngModel]="['banana']" [datasource]="datasource"></nb-boxgroup>
-
+        <nb-checkbox name="singleBox" [ngModel]="rememberMe">Remember me</nb-checkbox>
         <br>
 
         <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="['apple', 'grape']">

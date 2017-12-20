@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ButtonModule } from '../../component/button';
 import { InputModule } from '../../component/input';
 import { TableModule } from '../../component/table';
 import { BoxGroupModule } from '../../component/box-group';
@@ -21,6 +22,7 @@ import { TableEditDemo } from './edit/table-edit';
 @NgModule({
     imports: [
         CommonModule,
+        ButtonModule,
         TableModule,
         BoxGroupModule,
         CodeBoxModule,
