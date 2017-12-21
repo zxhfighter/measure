@@ -22,24 +22,48 @@
     <demo-table-basic></demo-table-basic>
 </nb-code-box> -->
 
-<!-- <nb-code-box [tsCode]="tsCodeCheckbox" [htmlCode]="htmlCodeCheckbox" [lessCode]="lessCodeCheckbox">
+<!--
+<nb-code-box [tsCode]="tsCodeCheckbox" [htmlCode]="htmlCodeCheckbox" [lessCode]="lessCodeCheckbox">
     <h3 nb-codebox-title>Table With Checkbox</h3>
     <div nb-codebox-desc>
         <p>可以很方便的在表格中整合 <code>nb-checkbox</code> 组件，实现表格行的选择功能。</p>
     </div>
 
     <demo-table-checkbox></demo-table-checkbox>
-</nb-code-box> -->
+</nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeSort" [htmlCode]="htmlCodeSort" [lessCode]="lessCodeSort">
     <h3 nb-codebox-title>Table With Tips, Filters and Sortable</h3>
     <div nb-codebox-desc>
-        <p>还可以很方便的在表头配置提示、筛选项和排序功能。</p>
+        <div>还可以很方便的在表头配置提示、筛选项和排序功能。</div>
+        <div>
+            配置提示步骤如下：
+            <ul>
+                <li>1. 给表头 <code>th</code> 设置 <code>tipable</code> 属性；</li>
+                <li>2. 在表头里边设置一个类为 <code>.tip-content</code> 的元素即可。</li>
+            </ul>
+        </div>
+        <div>
+            配置筛选项步骤如下：
+            <ul>
+                <li>1. 给表头 <code>th</code> 设置 <code>filterable</code> 属性；</li>
+                <li>2. 在表头里边设置一个 <code>[nb-table-filter]</code> 的元素，该元素放置筛选条件；</li>
+                <li>3. 表头可以添加 <code>filter</code> 事件进行筛选，<code>filterReset</code> 事件进行筛选重置。</li>
+            </ul>
+        </div>
+        <div>
+            配置排序功能如下：
+            <ul>
+                <li>1. 给表头 <code>th</code> 设置 <code>sortable</code> 属性；</li>
+                <li>2. 在 <code>table</code> 元素上添加 <code>sort</code> 事件；</li>
+                <li>3. 可以通过 <code>order</code> 和 <code>orderBy</code> 设置表格初始化排序。</li>
+            </ul>
+        </div>
     </div>
 
     <demo-table-sort></demo-table-sort>
-</nb-code-box>
-<!--
+</nb-code-box> -->
+
 <nb-code-box [tsCode]="tsCodeResize" [htmlCode]="htmlCodeResize" [lessCode]="lessCodeResize">
     <h3 nb-codebox-title>Table Column Width Resizable</h3>
 
@@ -49,7 +73,7 @@
 
     <demo-table-resize></demo-table-resize>
 </nb-code-box>
-
+<!--
 <nb-code-box [tsCode]="tsCodeFixHead" [htmlCode]="htmlCodeFixHead" [lessCode]="lessCodeFixHead">
     <h3 nb-codebox-title>Fix header</h3>
     <div nb-codebox-desc>
@@ -67,7 +91,6 @@
 
     <demo-table-fix-column></demo-table-fix-column>
 </nb-code-box>
-
 
 <nb-code-box [tsCode]="tsCodeSpan" [htmlCode]="htmlCodeSpan" [lessCode]="lessCodeSpan">
     <h3 nb-codebox-title>ColSpan and RowSpan</h3>

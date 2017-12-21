@@ -4,19 +4,19 @@
         <ng-container *ngIf="item.href">
             <a class="nb-breadcrumb-text"
                 [class.last]="isLast"
-                href="{{item.href}}"
-                target="_blank">{{item.text}}</a>
+                href="{{ item.href }}"
+                target="_blank">{{ item.text }}</a>
         </ng-container>
 
         <ng-container *ngIf="item.path && !item.href">
             <a class="nb-breadcrumb-text"
                 [class.last]="isLast"
-                [routerLink]="[item.path]">{{item.text}}</a>
+                [routerLink]="[item.path]">{{ item.text }}</a>
         </ng-container>
 
         <ng-container *ngIf="isLast || (!item.path && !item.href)">
             <span class="nb-breadcrumb-text no-clickable"
-                [class.last]="isLast">{{item.text}}</span>
+                [class.last]="isLast">{{ item.text }}</span>
         </ng-container>
 
         <span class="nb-breadcrumb-split" *ngIf="!isLast">

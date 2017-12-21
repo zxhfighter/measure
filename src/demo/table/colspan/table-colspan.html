@@ -2,39 +2,39 @@
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">
-                <span class="field-title">{{field.title}}</span>
+                <span class="field-title">{{ field.title }}</span>
             </th>
         </tr>
     </thead>
 
     <tbody nb-tbody>
         <tr nb-row *ngFor="let item of nbTable1.datasource;index as idx">
-            <td nb-td>{{item.name}}</td>
+            <td nb-td>{{ item.name }}</td>
             <td nb-td>
                 <ng-container [ngSwitch]="item.status">
                     <ng-template [ngSwitchCase]="0">
-                        <span class="status-waiting">{{item.statusText}}</span>
+                        <span class="status-waiting">{{ item.statusText }}</span>
                     </ng-template>
 
                     <ng-template [ngSwitchCase]="1">
-                        <span class="status-error">{{item.statusText}}</span>
+                        <span class="status-error">{{ item.statusText }}</span>
                     </ng-template>
 
                     <ng-template [ngSwitchCase]="2">
-                        <span class="status-done">{{item.statusText}}</span>
+                        <span class="status-done">{{ item.statusText }}</span>
                     </ng-template>
                 </ng-container>
             </td>
 
             <ng-container *ngIf="item.name=='阿九'">
-                <td nb-td colspan="4">{{item.phone}}</td>
+                <td nb-td colspan="4">{{ item.phone }}</td>
             </ng-container>
 
             <ng-container *ngIf="item.name!=='阿九'">
-                <td nb-td rowspan="2" *ngIf="idx==2">{{item.phone}}</td>
-                <td nb-td rowspan="1" *ngIf="idx!=2 && idx!=3">{{item.phone}}</td>
-                <td nb-td>{{item.school}}</td>
-                <td nb-td>{{item.height}}</td>
+                <td nb-td rowspan="2" *ngIf="idx==2">{{ item.phone }}</td>
+                <td nb-td rowspan="1" *ngIf="idx!=2 && idx!=3">{{ item.phone }}</td>
+                <td nb-td>{{ item.school }}</td>
+                <td nb-td>{{ item.height }}</td>
                 <td nb-td>
                     <a href="javascript:;">查看</a>
                     <span class="splitter"></span>

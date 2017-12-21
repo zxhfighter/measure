@@ -151,6 +151,5 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     _preventDefault(event: MouseEvent) {
         event.stopPropagation();
-        event.preventDefault();
     }
 }
