@@ -2,11 +2,11 @@ import {
     Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewChild,
     ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, OnDestroy
 } from '@angular/core';
-import * as echarts from 'echarts';
 
+import * as echartsLib from 'echarts';
 import { OnChange } from '../core/decorators';
 
-declare var echarts: any;
+const echarts: any = (echartsLib as any).default ? (echartsLib as any).default : echartsLib;
 
 /**
  * Chart Component, depends on [Echarts](http://echarts.baidu.com/)
