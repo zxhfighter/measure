@@ -7,15 +7,19 @@ import {
     selector: 'demo-typography',
     templateUrl: './typography.component.html',
     styleUrls: ['./typography.component.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TypographyDemo implements OnInit {
-    name = 'ComponentName';
-
     constructor() {
 
     }
 
     ngOnInit() {
 
+    }
+
+    get abc() {
+        console.log('abc');
+        return 'abc';
     }
 }

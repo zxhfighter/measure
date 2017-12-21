@@ -1,7 +1,7 @@
 import {
     Component, Input, Output, EventEmitter, QueryList, ContentChildren, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef, AfterContentInit,
-    ViewChild, Renderer2, ContentChild, AfterViewInit
+    ViewChild, Renderer2, ContentChild, AfterViewInit, OnDestroy, NgZone, ChangeDetectorRef
 } from '@angular/core';
 
 import { OnChange } from '../core/decorators';
@@ -30,6 +30,55 @@ export interface SortParam {
 }
 
 /**
+ * sort function
+ *
+ * @param {string} order - order type
+ * @param {string} orderBy - order field
+ */
+export function sortFunc(order: string, orderBy: string) {
+
+    return function (x: any, y: any) {
+        const symbol = order === 'asc' ? 1 : -1;
+        const a = x[orderBy];
+        const b = y[orderBy];
+
+        // 相等，返回0
+        if (a === b) {
+            return 0;
+        }
+
+        if (a === null && b === null) {
+            return 0;
+        }
+
+        // b是null，desc时排在最后
+        if (b === null) {
+            return symbol * 1;
+        }
+        else if (a === null) {
+            return symbol * (-1);
+        }
+
+        const aIsNumber = !isNaN(a);
+        const bIsNumber = !isNaN(b);
+
+        // a, b 都是数字
+        if (aIsNumber && bIsNumber) {
+            return symbol * (parseFloat(a) - parseFloat(b));
+        }
+
+        // a, b 如果有一个能转成数字
+        // 能转成数字的永远大。
+        if (aIsNumber || bIsNumber) {
+            return aIsNumber ? (symbol * 1) : (symbol * -1);
+        }
+
+        // 否则就是文字对比
+        return symbol * (a + '').localeCompare(b);
+    };
+}
+
+/**
  * Table Component
  */
 @Component({
@@ -42,12 +91,11 @@ export interface SortParam {
         'class': 'nb-widget nb-table',
         '[class.nb-table-bordered]': 'bordered',
         '[class.nb-table-resizable]': 'resizable',
-        '(mousemove)': 'onMouseMove($event)',
         '(mouseup)': 'onMouseUp()'
     },
     exportAs: 'nbTable'
 })
-export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
+export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
 
     /** table sort event emitter, emit a `SortParam` Object with the `order` and `orderBy` property. */
     @Output() sort: EventEmitter<SortParam> = new EventEmitter<SortParam>();
@@ -171,8 +219,37 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
      */
     _distance: number = 0;
 
-    constructor(private _el: ElementRef, private _render: Renderer2) {
+    _mouseMoveListener: Function | null;
+
+    constructor(
+        private _el: ElementRef,
+        private _render: Renderer2,
+        private _ngZone: NgZone,
+        private _cd: ChangeDetectorRef
+    ) {
         this.listenSortParamChange();
+    }
+
+    startColumnResizing() {
+        this._isDragging = true;
+        this._cd.markForCheck();
+
+        this.bindMouseEvents();
+    }
+
+    bindMouseEvents() {
+
+        this._ngZone.runOutsideAngular(() => {
+            const el = this._el.nativeElement;
+            this._mouseMoveListener = this._render.listen(el, 'mousemove', this.onMouseMove.bind(this));
+        });
+    }
+
+    unbindMouseEvents() {
+        if (this._mouseMoveListener) {
+            this._mouseMoveListener();
+            this._mouseMoveListener = null;
+        }
     }
 
     /**
@@ -196,8 +273,6 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
                         order: (order as OrderType),
                         orderBy: self.orderBy
                     });
-
-                    this.data = this.getDisplayData();
                 }
             }
         );
@@ -208,8 +283,6 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
                 order: self.order,
                 orderBy: orderBy
             });
-
-            this.data = this.getDisplayData();
         });
     }
 
@@ -225,45 +298,7 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
         const pageSize = this.pageSize;
 
         if (order && orderBy) {
-            data = data.sort((x: any, y: any) => {
-                const symbol = order === 'asc' ? 1 : -1;
-                const a = x[orderBy];
-                const b = y[orderBy];
-
-                // 相等，返回0
-                if (a === b) {
-                    return 0;
-                }
-
-                if (a === null && b === null) {
-                    return 0;
-                }
-
-                // b是null，desc时排在最后
-                if (b === null) {
-                    return symbol * 1;
-                }
-                else if (a === null) {
-                    return symbol * (-1);
-                }
-
-                const aIsNumber = !isNaN(a);
-                const bIsNumber = !isNaN(b);
-
-                // a, b 都是数字
-                if (aIsNumber && bIsNumber) {
-                    return symbol * (parseFloat(a) - parseFloat(b));
-                }
-
-                // a, b 如果有一个能转成数字
-                // 能转成数字的永远大。
-                if (aIsNumber || bIsNumber) {
-                    return aIsNumber ? (symbol * 1) : (symbol * -1);
-                }
-
-                // 否则就是文字对比
-                return symbol * (a + '').localeCompare(b);
-            });
+            data = data.sort(sortFunc(order, orderBy));
         }
 
         if (page && pageSize) {
@@ -340,6 +375,8 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
 
         if (this._isDragging) {
 
+            // this._ngZone.runOutsideAngular(() => {
+
             // table left position
             const pos = this.getTablePosition();
 
@@ -351,10 +388,11 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
 
             // update resize indicator line position to the end position
             this.updateResizeLinePosition(endPos);
-
-            // it's important here, and it will prevent default behavior like copy content from table
-            return false;
+            // });
         }
+
+        // it's important here, and it will prevent default behavior like copy content from table
+        return false;
     }
 
     /**
@@ -364,7 +402,12 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
      */
     onMouseUp() {
         if (this._isDragging) {
-            this.updateTableHeadItemWidth();
+
+            this._ngZone.runOutsideAngular(() => {
+                this.updateTableHeadItemWidth();
+                this.unbindMouseEvents();
+            });
+
             this._isDragging = false;
         }
     }
@@ -421,7 +464,7 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
         colWidths.forEach((width, columnIndex) => {
 
             // if is current column, add the distance, for example
-            // drag to left 10px distance will be 10, drap to right 10px distance will be -10
+            // drag to left 10px distance will be 10, drag to right 10px distance will be -10
             if (columnIndex === self._columnIndex) {
                 newColWidths[columnIndex] = width + distance;
             }
@@ -442,5 +485,9 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit {
         if (this.theme) {
             addClass(this._el.nativeElement, `nb-table-${this.theme}`);
         }
+    }
+
+    ngOnDestroy() {
+        this.unbindMouseEvents();
     }
 }

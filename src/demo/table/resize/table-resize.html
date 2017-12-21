@@ -1,4 +1,4 @@
-<table nb-table resizable #nbTable1 [datasource]="datasource">
+<table nb-table resizable #nbTable1 [datasource]="datasource" [pageSize]="10">
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">
@@ -8,7 +8,7 @@
     </thead>
 
     <tbody nb-tbody>
-        <tr nb-row *ngFor="let item of nbTable1.datasource">
+        <tr nb-row *ngFor="let item of nbTable1.data">
             <td nb-td>{{item.name}}</td>
             <td nb-td>
                 <ng-container [ngSwitch]="item.status">
@@ -27,7 +27,7 @@
             </td>
             <td nb-td>{{item.phone}}</td>
             <td nb-td>{{item.school}}</td>
-            <td nb-td>{{item.height}}</td>
+            <!-- <td nb-td>{{item.height}}</td> -->
             <td nb-td>
                 <a href="javascript:;">查看</a>
                 <span class="splitter"></span>
