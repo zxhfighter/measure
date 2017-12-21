@@ -72,6 +72,8 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     /** document click listener, when click on other area, hide the overlay */
     private _documentClickListener: Function | null;
 
+    private positionStategy: any;
+
     constructor(
         private el: ElementRef,
         private cdRef: ChangeDetectorRef,
@@ -111,7 +113,9 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
             const positionStategy = this.overlayPositionService
                 .attachTo(this.origin.elementRef, this, this.placement)
 
-            this.overlayPositionService.updatePosition(positionStategy);
+            this.positionStategy = positionStategy;
+            // 等到显示的时候再定位
+            // this.overlayPositionService.updatePosition(positionStategy);
         }
     }
 
@@ -120,6 +124,10 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
             clearTimeout(this._hideTimeoutId);
         }
         this._showTimeoutId = window.setTimeout(() => {
+            // TODO positionStategy应该在更早的时机赋值 此处就不需要判断了
+            if (this.positionStategy) {
+                this.overlayPositionService.updatePosition(this.positionStategy);
+            }
             this.visibility = true;
             this.cdRef.markForCheck();
         }, this._delay);
