@@ -47,7 +47,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     /** search event */
     @Output() onSearch = new EventEmitter();
-    
+
     /** clear search event */
     @Output() onClear = new EventEmitter();
 
@@ -214,10 +214,10 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      * 处理compositionstart事件
      * @docs-private
      */
-    _compositionStart(): void { 
-        this._composing = true; 
+    _compositionStart(): void {
+        this._composing = true;
     }
-    
+
     /**
      * 处理compositionend事件
      * @docs-private
@@ -235,7 +235,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
             this.positionSuggestionLayer(this);
             this.onSearchSuggestion.emit(this.searchValue);
             this.isOpen = true;
-        } 
+        }
         if (!this.searchValue) {
             this.isOpen = false;
         }

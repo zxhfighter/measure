@@ -11,16 +11,16 @@ import {
     ChangeDetectorRef
 } from '@angular/core';
 
-import {coerceBooleanProperty} from '../util/coerce';
-import {InputConfig} from './input.config';
-import {OnChange} from '../core/decorators';
+import { coerceBooleanProperty } from '../util/coerce';
+import { InputConfig } from './input.config';
+import { OnChange } from '../core/decorators';
 
 /** default input theme types */
 export type INPUT_THEME = 'default' | 'error' | 'transparent' | string;
 
 /** default input size types */
 export type INPUT_SIZE =
-'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
+    'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
 
 @Directive({
     selector: '[nb-input]',

@@ -6,8 +6,19 @@ import { InputModule } from '../input/index';
 import { ButtonModule } from '../button/index';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, InputModule, ButtonModule],
-    declarations: [SearchBoxComponent],
-    exports: [SearchBoxComponent]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        InputModule,
+        ButtonModule
+    ],
+    declarations: [
+        SearchBoxComponent
+    ],
+    providers: [],
+    exports: [
+        SearchBoxComponent
+    ]
 })
 export class SearchBoxModule { }
