@@ -58,7 +58,7 @@ export class ScheduleComponent implements OnInit {
     /**
      * @docs-private
      */
-    hours;
+    hours: Array<number> = [];
     /**
      * @docs-private
      */
@@ -80,7 +80,7 @@ export class ScheduleComponent implements OnInit {
         this.schedules = Array(169).fill(0);
         this.weekSelect = Array(7).fill(0);
         this.layerTime = Array(168).fill(0);
-        this.hours = Array.apply(Array, Array(25)).map((v,k) => k);
+        for(var n = 0; n < 25; n++) this.hours[n] = n;
     }
     ngOnInit() {
         for (let i in this.selected) {
@@ -200,7 +200,7 @@ export class ScheduleComponent implements OnInit {
                 // debugger
                 let half = Math.floor(this.layerTime[k]/2);
                 let tmp = (this.layerTime[k] + 1) % 2;
-                let arr = [];
+                let arr: Array<number> = [];
                 arr.push(this.hours[j - half + tmp]);
                 arr.push(this.hours[j + half + 1]);
                 if (this.selectedOut[i] === undefined) {
@@ -213,7 +213,7 @@ export class ScheduleComponent implements OnInit {
     /**
      * @docs-private
      */
-    mouseup(i, j) {
+    mouseup() {
         this.flag = false;
     }
     /**

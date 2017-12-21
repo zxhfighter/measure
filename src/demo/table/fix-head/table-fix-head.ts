@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { genStr, genNum } from '../../util/random';
 
 @Component({
@@ -7,7 +7,7 @@ import { genStr, genNum } from '../../util/random';
     styleUrls: ['./table-fix-head.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class TableFixHeadDemo {
+export class TableFixHeadDemo implements OnInit {
 
     fields: any[] = [
         {

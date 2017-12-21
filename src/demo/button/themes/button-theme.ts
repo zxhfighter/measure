@@ -13,6 +13,11 @@ export class ButtonThemeDemo {
 
     size = 'xs';
 
+    get abc() {
+        console.log('abc');
+        return 'abc';
+    }
+
     onClick() {
         this.counter = this.counter + 1;
     }

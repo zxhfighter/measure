@@ -28,37 +28,14 @@
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Tooltip Basic</h3>
     <div nb-codebox-desc>
-        <p>1. 通过 <code>placement</code>设置提示框的位置，支持的方向有： <code>'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |
+        <p>1. 通过 <code>placement</code> 设置提示框的位置，支持的方向有： <code>'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |
             'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'</code> 默认为 bottom 底部显示</p>
-        <p>2. 通过 <code>trigger</code>设置提示框的触发类型，可选值为 <code>'click' | 'hover' | 'focus'</code> ，默认为 hover 触发</p>
-        <p>3. 通过 <code>hasArrow</code>设置是否有箭头</p>
+        <p>2. 通过 <code>trigger</code> 设置提示框的触发类型，可选值为 <code>'click' | 'hover' | 'focus'</code> ，默认为 hover 触发</p>
+        <p>3. 通过 <code>hasArrow</code >设置是否有箭头</p>
     </div>
 
-<section>
-    <h3 class="section-title">multiple themes</h3>
-
-    <p>
-        <ng-template #tipContent>
-            <span>高级带图标多行提示</span>
-            <p><b>Begin: </b>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》</p>
-        </ng-template>
-        <button nb-button
-            theme="default"
-            [nbTooltip]="tipContent"
-            placement="top"
-            nbTooltipTheme="pink">
-            theme pink
-        </button>
-        <button nb-button
-            theme="default"
-            [nbTooltip]="tipContent"
-            placement="bottom"
-            nbTooltipTheme="yellow"
-            trigger="click">
-            theme yellow
-        </button>
-    </p>
-</section>
+    <demo-tooltip-basic></demo-tooltip-basic>
+</nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeContent" [htmlCode]="htmlCodeContent" [lessCode]="lessCodeContent">
     <h3 nb-codebox-title>Tooltip Content</h3>

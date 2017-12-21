@@ -7,7 +7,7 @@
             [checked]="rootItem.selected"
             [intermediate]="rootItem.intermediate"
             (change)="onToggleNode(rootItem, $event)">
-            {{rootItem.label}}
+            {{ rootItem.label }}
         </nb-checkbox>
     </div>
 
@@ -20,7 +20,7 @@
                     [checked]="district.selected"
                     [intermediate]="district.intermediate"
                     (change)="onToggleNode(district, $event)">
-                    {{district.label}}
+                    {{ district.label }}
                 </nb-checkbox>
             </div>
 
@@ -33,7 +33,7 @@
                             [checked]="province.selected"
                             [intermediate]="province.intermediate"
                             (change)="onToggleNode(province, $event)">
-                            {{province.label}}
+                            {{ province.label }}
                             <ng-container *ngIf="province.children">
                                 <span class="province-count">({{ getSelectedCount(province.children) }}/{{ province.children.length }})</span>
                             </ng-container>
@@ -57,7 +57,7 @@
                                             [checked]="city.selected"
                                             [intermediate]="city.intermediate"
                                             (change)="onToggleNode(city, $event)">
-                                            {{city.label}}
+                                            {{ city.label }}
                                         </nb-checkbox>
                                     </div>
                                 </div>

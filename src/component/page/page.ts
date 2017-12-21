@@ -48,7 +48,7 @@ export class PageComponent implements OnInit {
      * 页数
      * @docs-private
      */
-    pageSize = [];
+    pageSize: Array<number> = [];
     // pageSize = [1,2,3,4,5,6,7,8,9,10,11];
     // 每页显示条数可选列表
     

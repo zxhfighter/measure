@@ -6,7 +6,7 @@
         padding-left: 20px;
         cursor: pointer;
 
-        &:before {
+        &::before {
             content: '';
             display: block;
             position: absolute;
@@ -23,7 +23,7 @@
 .@{prefix}-checkbox.@{prefix}-checkbox-checked {
 
     .@{prefix}-checkbox-label {
-        &:after {
+        &::after {
             content: '';
             display: block;
             position: absolute;
@@ -42,7 +42,7 @@
 .@{prefix}-checkbox.@{prefix}-checkbox-intermediate {
 
     .@{prefix}-checkbox-label {
-        &:after {
+        &::after {
             content: '';
             display: block;
             position: absolute;
@@ -56,7 +56,7 @@
 
     &.@{prefix}-checkbox-disabled {
         .@{prefix}-checkbox-label {
-            &:after {
+            &::after {
                 background-color: #b8b8b8;
             }
         }
@@ -68,7 +68,7 @@
     cursor: not-allowed;
 
     .@{prefix}-checkbox-label {
-        &:before {
+        &::before {
             border-color: #dbdbdb;
             background-color: #eee;
         }
@@ -76,7 +76,7 @@
 
     &.@{prefix}-checkbox-checked {
         .@{prefix}-checkbox-label {
-            &:after {
+            &::after {
                 border-color: #b8b8b8;
             }
         }
@@ -89,7 +89,7 @@
 
 .@{prefix}-checkbox-radio {
     .@{prefix}-checkbox-label {
-        &:before {
+        &::before {
             border-radius: 16px;
         }
     }
@@ -97,7 +97,7 @@
 
 .@{prefix}-checkbox-radio.@{prefix}-checkbox-checked {
     .@{prefix}-checkbox-label {
-        &:after {
+        &::after {
             border: none;
             width: 8px;
             height: 8px;
@@ -112,7 +112,7 @@
 
 .@{prefix}-checkbox-radio.@{prefix}-checkbox-disabled {
     .@{prefix}-checkbox-label {
-        &:before {
+        &::before {
             border-color: #dbdbdb;
             background-color: #eee;
         }
@@ -120,7 +120,7 @@
 
     &.@{prefix}-checkbox-checked {
         .@{prefix}-checkbox-label {
-            &:after {
+            &::after {
                 background-color: #b8b8b8;
             }
         }

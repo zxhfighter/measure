@@ -29,38 +29,38 @@ export const chartOptions = {
 
     bar1: {
         title: {
-            text: "柱状基础图表"
+            text: '柱状基础图表'
         },
         tooltip: {
             // 参见 dux-theme.js
         },
         legend: {
             show: false,
-            data: ["总收入"],
+            data: ['总收入'],
             right: 30
         },
         xAxis: [{
-            type: "category",
+            type: 'category',
             boundaryGap: true,
             axisTick: {
                 alignWithLabel: false
             },
             axisLabel: {
-                align: "center",
+                align: 'center',
                 showMaxLabel: true,
             },
             data: barAxisData[0]
         }],
         yAxis: [{
-            type: "value",
+            type: 'value',
             axisLabel: {
                 inside: false,
                 margin: 10
             }
         }],
         series: [{
-            name: "总收入",
-            type: "bar",
+            name: '总收入',
+            type: 'bar',
             // barWidth: 40,
             barMaxWidth: 40,
             label: {
@@ -77,7 +77,7 @@ export const chartOptions = {
             },
             itemStyle: {
                 normal: {
-                    color: "rgb(57, 152, 252)"
+                    color: 'rgb(57, 152, 252)'
                 }
             },
             data: barValue[0]
@@ -86,14 +86,14 @@ export const chartOptions = {
 
     bar2: {
         title: {
-            text: "多数据柱状图表"
+            text: '多数据柱状图表'
             // 参见 dux-theme.js
         },
         tooltip: {
             // 参见 dux-theme.js
         },
         legend: {
-            data: ["总收入", "PV", "UV"],
+            data: ['总收入', 'PV', 'UV'],
             right: 30
             // 参见 dux-theme.js
         },
@@ -101,31 +101,31 @@ export const chartOptions = {
             // 参见 dux-theme.js
         },
         xAxis: [{
-            type: "category",
+            type: 'category',
             boundaryGap: true,
             axisTick: {
                 alignWithLabel: false
             },
             axisLabel: {
-                align: "center",
+                align: 'center',
                 showMaxLabel: true,
             },
             data: barAxisData[0]
         }],
         yAxis: [{
-            type: "value",
+            type: 'value',
             axisLabel: {
                 inside: false,
                 margin: 10
             }
         }],
         series: [{
-            name: "总收入",
-            type: "bar",
+            name: '总收入',
+            type: 'bar',
             barMaxWidth: 20,
             itemStyle: {
                 normal: {
-                    color: "rgb(57, 152, 252)",
+                    color: 'rgb(57, 152, 252)',
                     lineStyle: {
                         width: 1
                     }
@@ -137,12 +137,12 @@ export const chartOptions = {
             // 参见 dux-theme.js
             data: barValue[0]
         }, {
-            name: "PV",
-            type: "bar",
+            name: 'PV',
+            type: 'bar',
             barMaxWidth: 20,
             itemStyle: {
                 normal: {
-                    color: "rgb(91, 196, 159)",
+                    color: 'rgb(91, 196, 159)',
                     lineStyle: {
                         width: 1
                     }
@@ -154,12 +154,12 @@ export const chartOptions = {
             // 参见 dux-theme.js
             data: barValue[1]
         }, {
-            name: "UV",
-            type: "bar",
+            name: 'UV',
+            type: 'bar',
             barMaxWidth: 20,
             itemStyle: {
                 normal: {
-                    color: "#66D7D2",
+                    color: '#66D7D2',
                     lineStyle: {
                         width: 1
                     }
@@ -175,61 +175,9 @@ export const chartOptions = {
 
     bar3: {
         title: {
-            text: "条形图表"
+            text: ''
         },
-
-        tooltip: {},
-        legend: {
-            show: false
-        },
-        toolbox: {},
-        xAxis: [{
-            type: "value",
-            inside: false,
-            axisLabel: {
-                show: false
-            },
-            splitLine: {
-                show: false
-            },
-            margin: 10
-        }],
-        yAxis: [{
-            type: "category",
-            boundaryGap: true,
-            axisLine: {
-                show: false
-            },
-            axisLabel: {
-                align: "right",
-                margin: 10,
-                showMaxLabel: true,
-            },
-            data: barAxisData[0]
-        }],
-        series: [{
-            type: "bar",
-            itemStyle: {
-                normal: {
-                    color: 'rgba(0,0,0,0.05)'
-                }
-            },
-            barWidth: 12,
-            barGap: '-100%',
-            barCategoryGap: '40%',
-            data: dataShadow,
-            animation: false
-        }, {
-            name: "图文阅读数",
-            type: "bar",
-            barWidth: 12,
-            itemStyle: {
-                normal: {
-                    color: "#60ACFC"
-                }
-            },
-            data: data
-        }]
+        data: data
     }
 };
 
