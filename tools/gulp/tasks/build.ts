@@ -158,7 +158,12 @@ task('build:bundle', async () => {
         ],
         plugins: [
             rollupNodeResolutionPlugin(),
-            rollupCommonjsPlugin()
+            rollupCommonjsPlugin({
+                include: [
+                    'node_modules/rxjs/**',
+                    'node_modules/moment/**'
+                ]
+            })
         ]
     };
 

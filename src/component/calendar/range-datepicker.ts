@@ -5,7 +5,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Moment } from 'moment';
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { OnChange } from '../core/decorators';
 

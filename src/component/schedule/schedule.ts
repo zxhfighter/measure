@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
-import {SelectConfig} from "../select/select.config";
+import { SelectConfig } from "../select/select.config";
 
 @Component({
     selector: 'nb-schedule',
@@ -80,14 +80,14 @@ export class ScheduleComponent implements OnInit {
         this.schedules = Array(169).fill(0);
         this.weekSelect = Array(7).fill(0);
         this.layerTime = Array(168).fill(0);
-        for(var n = 0; n < 25; n++) this.hours[n] = n;
+        for (var n = 0; n < 25; n++) this.hours[n] = n;
     }
     ngOnInit() {
         for (let i in this.selected) {
-            for (let j = 0;j < this.selected[i].length; j++) {
+            for (let j = 0; j < this.selected[i].length; j++) {
                 for (let k = this.selected[i][j][0]; k <= this.selected[i][j][1]; k++) {
                     this.schedules[24 * parseInt(i) + k] = 1;
-                    
+
                     if (k === 23) {
                         this.weekSelect[i] = 2;
                     } else if (k > 0 && k < 23) {
@@ -106,20 +106,20 @@ export class ScheduleComponent implements OnInit {
      */
     setDay(event) {
         let day = event.value;
-        switch(day) {
-            case 7: 
+        switch (day) {
+            case 7:
                 this.schedules = Array(169).fill(1);
                 this.weekSelect = Array(7).fill(2);
                 break;
             case 5:
-                this.schedules = Array(24*5).fill(1).concat(Array(24*2+1).fill(0));
+                this.schedules = Array(24 * 5).fill(1).concat(Array(24 * 2 + 1).fill(0));
                 this.weekSelect = Array(5).fill(2).concat(Array(2).fill(0));
                 break;
             case 2:
-                this.schedules = Array(24*5).fill(0).concat(Array(24*2+1).fill(1));
+                this.schedules = Array(24 * 5).fill(0).concat(Array(24 * 2 + 1).fill(1));
                 this.weekSelect = Array(5).fill(0).concat(Array(2).fill(2));
                 break;
-        } 
+        }
         this.topTimeChange();
     }
     /**
@@ -138,7 +138,7 @@ export class ScheduleComponent implements OnInit {
             this.weekSelect[i] = 2;
         } else {
             this.weekSelect[i] = 1;
-        }    
+        }
     }
     /**
      * @docs-private
@@ -156,13 +156,13 @@ export class ScheduleComponent implements OnInit {
      * @docs-private
      */
     showLabel(i, j) {
-        let value = this.layerTime[i*24 + j];
-        if ( value < 3) {
+        let value = this.layerTime[i * 24 + j];
+        if (value < 3) {
             return '';
         } else if (value === 24) {
             return '全天';
         } else {
-            let index = Math.floor(value/2);
+            let index = Math.floor(value / 2);
             let tmp = (value + 1) % 2;
             let label = this.hours[j - index + tmp] + ':00-' + this.hours[j + index + 1] + ':00';
             return label;
@@ -179,18 +179,18 @@ export class ScheduleComponent implements OnInit {
                 this.layerTime.push(0);
                 colspan = 0;
             } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 0) {
-                colspan ++;
+                colspan++;
                 if (colspan >= 3) {
                     let index = this.layerTime.length - Math.floor(colspan / 2);
                     this.layerTime[index] = colspan;
                 }
                 this.layerTime.push(0);
-                
+
             } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1 && (i + 1) % 24 !== 0) {
                 this.layerTime.push(0);
-                colspan ++;
+                colspan++;
             } else if (this.schedules[i] === 1 && this.schedules[i + 1] === 1 && (i + 1) % 24 === 0) {
-                colspan ++;
+                colspan++;
                 let index = this.layerTime.length - (Math.floor(colspan / 2));
                 this.layerTime[index] = colspan;
                 this.layerTime.push(0);
@@ -204,7 +204,7 @@ export class ScheduleComponent implements OnInit {
                 let i = Math.floor(k / 24);
                 let j = k % 24;
                 // debugger
-                let half = Math.floor(this.layerTime[k]/2);
+                let half = Math.floor(this.layerTime[k] / 2);
                 let tmp = (this.layerTime[k] + 1) % 2;
                 let arr: Array<number> = [];
                 arr.push(this.hours[j - half + tmp]);
