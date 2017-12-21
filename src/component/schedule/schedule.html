@@ -1,8 +1,7 @@
 <div class="nb-schedule">
     <div class="hour-select">
         <div class="hour-select-day">
-            <nb-select [datasource]="selectData"
-                (onChange)="setDay($event)">
+            <nb-select [datasource]="selectData" (onChange)="setDay($event)">
             </nb-select>
         </div>
         <ul class="hour-select-label">
@@ -33,21 +32,12 @@
             <tr *ngFor="let item1 of week; index as i">
                 <ng-container *ngFor="let item of hours; index as j">
                     <td *ngIf="j < 24">
-                        <button title="{{item}}:00-{{hours[j + 1]}}:00"
-                            [attr.data]="showLabel(i,j)"
-                            [ngClass]="{'selected': schedules[i * 24 + j] === 1}"
-                            (mousedown)="mousedown(i, j)"
-                            (mouseup)="mouseup(i, j)"
-                            (mouseover)="mouseover(i, j)"
-                            (mouseout)="mouseout(i, j)">
+                        <button title="{{item}}:00-{{hours[j + 1]}}:00" [attr.data]="showLabel(i,j)" [ngClass]="{'selected': schedules[i * 24 + j] === 1}"
+                            (mousedown)="mousedown(i, j)" (mouseup)="mouseup()" (mouseover)="mouseover(i, j)" (mouseout)="mouseout(i, j)">
                         </button>
                     </td>
                 </ng-container>
             </tr>
-        </table>    
+        </table>
     </div>
 </div>
-
-
-
-
