@@ -13,7 +13,7 @@ import {ToastConfig, ToastDataFilled} from './toast.config';
     exportAs: 'xToast'
 })
 export class ToastComponent {
-    toasts: ToastDataFilled[] = [];
+    toasts: any = [];
     config: ToastConfig;
 
     constructor(@Optional() config: ToastConfig,
@@ -22,7 +22,7 @@ export class ToastComponent {
     }
 
     // Create a new toast
-    createToast(toastData: ToastDataFilled): void {
+    createToast(toastData: any): void {
         toastData.options = this._mergeOptions(toastData.options);
         this.toasts.push(toastData);
         this.cd.markForCheck();

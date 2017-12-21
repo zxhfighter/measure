@@ -9,7 +9,7 @@ import { OnChange } from '../core/decorators';
  */
 @Component({
     selector: 'tr[nb-row]',
-    template: `<ng-content></ng-content>`,
+    template: '<ng-content></ng-content>',
     preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,

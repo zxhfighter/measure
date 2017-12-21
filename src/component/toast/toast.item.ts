@@ -36,11 +36,11 @@ export class ToastItemComponent implements OnInit, OnDestroy {
     @Input() toast: ToastDataFilled;
 
     // Shortcut reference to toast.options
-    protected options: ToastConfig;
+    protected options: any;
 
     // Whether record timeout to auto destroy self
     private autoErase: boolean;
-    private timer: number = null;
+    private timer: number | null = null;
 
     constructor(protected toastComponent: ToastComponent,
                 protected cd: ChangeDetectorRef) {

@@ -3,7 +3,7 @@
         <tr nb-row>
             <th nb-th style="width:50px"></th>
             <th *ngFor="let field of fields" [field]="field.name">
-                <span class="field-title">{{field.title}}</span>
+                <span class="field-title">{{ field.title }}</span>
             </th>
         </tr>
     </thead>
@@ -15,9 +15,9 @@
                 <td nb-td>
                     <i class="iconfont" [class.icon-right]="!item.expand" [class.icon-down]="item.expand" (click)="onToggle(item)"></i>
                 </td>
-                <td nb-td>{{item.name}}</td>
-                <td nb-td>{{item.age}}</td>
-                <td nb-td>{{item.address}}</td>
+                <td nb-td>{{ item.name }}</td>
+                <td nb-td>{{ item.age }}</td>
+                <td nb-td>{{ item.address }}</td>
 
                 <td nb-td>
                     <a href="javascript:;">查看</a>
@@ -30,7 +30,7 @@
 
             <tr nb-row *ngIf="item.expand">
                 <td nb-td></td>
-                <td nb-td colspan="4">{{item.description}}</td>
+                <td nb-td colspan="4">{{ item.description }}</td>
             </tr>
         </ng-template>
     </tbody>

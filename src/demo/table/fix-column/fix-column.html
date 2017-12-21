@@ -4,37 +4,37 @@
             <thead nb-thead>
                 <tr nb-row>
                     <th *ngFor="let field of fields" [field]="field.name">
-                        <span class="field-title">{{field.title}}</span>
+                        <span class="field-title">{{ field.title }}</span>
                     </th>
                 </tr>
             </thead>
 
             <tbody nb-tbody>
                 <tr nb-row *ngFor="let item of nbTable1.datasource">
-                    <td nb-td>{{item.name}}</td>
+                    <td nb-td>{{ item.name }}</td>
                     <td nb-td>
                         <ng-container [ngSwitch]="item.status">
                             <ng-template [ngSwitchCase]="0">
-                                <span class="status-waiting">{{item.statusText}}</span>
+                                <span class="status-waiting">{{ item.statusText }}</span>
                             </ng-template>
 
                             <ng-template [ngSwitchCase]="1">
-                                <span class="status-error">{{item.statusText}}</span>
+                                <span class="status-error">{{ item.statusText }}</span>
                             </ng-template>
 
                             <ng-template [ngSwitchCase]="2">
-                                <span class="status-done">{{item.statusText}}</span>
+                                <span class="status-done">{{ item.statusText }}</span>
                             </ng-template>
                         </ng-container>
                     </td>
-                    <td nb-td>{{item.phone}}</td>
-                    <td nb-td>{{item.school}}</td>
-                    <td nb-td>{{item.height}}</td>
-                    <td nb-td>{{item.weight}}</td>
-                    <td nb-td>{{item.age}}</td>
-                    <td nb-td>{{item.company}}</td>
-                    <td nb-td>{{item.country}}</td>
-                    <td nb-td>{{item.city}}</td>
+                    <td nb-td>{{ item.phone }}</td>
+                    <td nb-td>{{ item.school }}</td>
+                    <td nb-td>{{ item.height }}</td>
+                    <td nb-td>{{ item.weight }}</td>
+                    <td nb-td>{{ item.age }}</td>
+                    <td nb-td>{{ item.company }}</td>
+                    <td nb-td>{{ item.country }}</td>
+                    <td nb-td>{{ item.city }}</td>
                     <td nb-td>
                         <a href="javascript:;">查看</a>
                         <span class="splitter"></span>
