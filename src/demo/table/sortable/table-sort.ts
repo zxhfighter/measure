@@ -1,11 +1,27 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { genTableData } from '../table.data';
+import { sortFunc } from '../../../component/table';
+
+import { Subject } from 'rxjs/Subject';
+
+interface TableArgs {
+    order: string;
+    orderBy: string;
+    page: number;
+    pageSize: number;
+    filterMap: {
+        name: string;
+        status: string[];
+        school: string;
+    }
+};
 
 @Component({
     selector: 'demo-table-sort',
     templateUrl: './table-sort.html',
     styleUrls: ['./table-sort.less'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableSortDemo implements OnInit {
 
@@ -19,41 +35,38 @@ export class TableSortDemo implements OnInit {
 
     pageSize = 5;
 
+    paramSubject: Subject<TableArgs> = new Subject<TableArgs>();
+
     onDisplayDataChange(data: any[]) {
         this.displayTableData = data;
     }
 
     onSort(sortParam: any) {
-        // this.sortParam = sortParam;
-        // this.displayTableData = this.sortDatasource(this.datasource, sortParam);
-        console.log('sorting...: ', sortParam);
+        this.sortParam = sortParam;
+        this.refresh();
     }
 
-    sortDatasource(datasource: any, sortParam: any) {
-        const order = sortParam.order;
-        const orderBy = sortParam.orderBy;
-
-        const stringSort = (a: any, b: any): number => {
-            if (a[orderBy] === b[orderBy]) {
-                return 0;
-            }
-
-            return order === 'desc'
-                ? b[orderBy] > a[orderBy] ? 1 : -1
-                : b[orderBy] > a[orderBy] ? -1 : 1;
+    getEntity() {
+        return {
+            order: this.sortParam.order,
+            orderBy: this.sortParam.orderBy,
+            page: 1,
+            pageSize: this.pageSize,
+            filterMap: this.filterMap
         };
+    }
 
-        return datasource.sort(stringSort);
+    refresh() {
+        let entity = this.getEntity();
+        this.paramSubject.next(entity);
     }
 
     onFilter(value: any, filterParam: any) {
 
-
         if (filterParam) {
             const target = filterParam.target;
-
             this.filterMap[target.field] = value;
-            this.filterDatasource(this.filterMap);
+            this.refresh();
 
             switch (target.field) {
                 case 'status':
@@ -72,51 +85,60 @@ export class TableSortDemo implements OnInit {
     }
 
     ngOnInit() {
-
+        this.paramSubject.subscribe(params => {
+            this.displayTableData = this.getDisplayDatasource(params);
+        });
     }
 
-    filterDatasource(filterMap: any) {
-        let filterData: any = this.datasource;
+    getDisplayDatasource(params: TableArgs) {
+        let data: any[] = [];
 
-        for (const key in filterMap) {
-            if (filterMap.hasOwnProperty(key)) {
-                const value = filterMap[key];
-
-                if (key === 'name' && value !== '') {
-                    filterData = filterData.filter(v => v.name.indexOf(value) !== -1);
-                }
-
-                if (key === 'status' && value.length) {
-                    filterData = filterData.filter(v => value.includes(v.status + ''));
-                }
-
-                if (key === 'school' && value !== 'ALL') {
-                    filterData = filterData.filter(v => v.school.indexOf(value) !== -1);
-                }
-            }
+        // sort
+        if (params.order && params.orderBy) {
+            data = this.datasource.sort(sortFunc(params.order, params.orderBy));
         }
 
-        if (this.sortParam) {
-            filterData = this.sortDatasource(filterData, this.sortParam);
+        // filter
+        if (params.filterMap.name) {
+            data = data.filter(v => v.name.indexOf(params.filterMap.name) !== -1);
         }
 
-        this.displayTableData = filterData.slice(0, this.pageSize);
+        if (params.filterMap.status && params.filterMap.status.length) {
+            data = data.filter(v => params.filterMap.status.includes(v.status + ''));
+        }
+
+        if (params.filterMap.school && params.filterMap.school.toLowerCase() !== 'all') {
+            data = data.filter(v => v.school.indexOf(params.filterMap.school) !== -1);
+        }
+
+        // page
+        if (params.page) {
+            data = data.slice((params.page - 1) * data.length, params.page * data.length);
+        }
+
+        if (params.pageSize) {
+            data = data.slice(0, params.pageSize);
+        }
+
+        return data;
     }
 
     onSingleFilter(value: string, target: any) {
 
+        this.filterMap.school = value;
+        this.refresh();
+        target.hide();
+    }
 
-        if (target.field === 'school') {
+    onResetNameFilter(target: HTMLInputElement, filterTarget: any) {
+        target.value = '';
+        this.filterMap.name = target.value;
+        this.refresh();
+    }
 
-            this.filterMap[target.field] = value;
-            this.filterDatasource(this.filterMap);
-
-            target.filtered = true;
-            target.showFilter = false;
-
-            if (value.toLowerCase() === 'all') {
-                target.filtered = false;
-            }
-        }
+    onResetStatusFilter(target: any, filterTarget: any) {
+        target.reset();
+        this.filterMap.status = [];
+        this.refresh();
     }
 }

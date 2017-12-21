@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 import { genTableData } from '../table.data';
 
@@ -6,7 +6,8 @@ import { genTableData } from '../table.data';
     selector: 'demo-table-basic',
     templateUrl: './table-basic.html',
     styleUrls: ['./table-basic.less'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableBasicDemo {
 
@@ -56,4 +57,9 @@ export class TableBasicDemo {
     ];
 
     datasource: any[] = genTableData();
+
+    get abc() {
+        console.log('abc');
+        return 'abc';
+    }
 }

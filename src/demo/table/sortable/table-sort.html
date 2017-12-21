@@ -7,7 +7,7 @@
     orderBy="height">
     <thead nb-thead>
         <tr nb-row>
-            <th field="name" tipable filterable sortable (filter)="onFilter(name.value, $event)">
+            <th field="name" tipable filterable sortable (filter)="onFilter(name.value, $event)" (filterReset)="onResetNameFilter(name, $event)">
                 <span class="field-title">姓名</span>
                 <div class="tip-content">
                     <p>This is the field tip message, <a href="http://www.baidu.com" target="_blank">see more</a></p>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </th>
-            <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)">
+            <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)" (filterReset)="onResetStatusFilter(chk, $event)">
                 <span class="field-title">状态</span>
 
                 <div nb-table-filter class="filter-content">
@@ -42,9 +42,9 @@
                 <div nb-table-filter class="filter-content">
                     <ul class="filter-list">
                         <li (click)="onSingleFilter('ALL', schoolHead)">ALL</li>
-                        <li (click)="onSingleFilter('CBB', schoolHead)">CBB</li>
-                        <li (click)="onSingleFilter('CMU', schoolHead)">CMU</li>
-                        <li (click)="onSingleFilter('CSU', schoolHead)">CSU</li>
+                        <li (click)="onSingleFilter('Harvard', schoolHead)">Harvard</li>
+                        <li (click)="onSingleFilter('Stanford', schoolHead)">Stanford</li>
+                        <li (click)="onSingleFilter('Tsinghua', schoolHead)">Tsinghua</li>
                     </ul>
                 </div>
             </th>

@@ -78,6 +78,8 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
      */
     @Output() filter: EventEmitter<FilterParam> = new EventEmitter<FilterParam>();
 
+    @Output() filterReset: EventEmitter<FilterParam> = new EventEmitter<FilterParam>();
+
     /**
      * table sort event, emits a `SortParam` Object
      */
@@ -209,7 +211,6 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
     }
 
     ngAfterViewInit() {
-
     }
 
     /**
@@ -266,9 +267,15 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
      * @docs-private
      */
     onCancel() {
-
+        this.filtered = false;
         this.hide();
+
+        this.filterReset.emit({
+            field: this.field,
+            target: this
+        });
     }
+
 
     /**
      * on column sort
@@ -304,7 +311,7 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
         const leftRelativeTable = event.clientX - this._tablePos.left;
 
         // mark the table is resizing columns
-        this._table._isDragging = true;
+        this._table.startColumnResizing();
 
         // tell the parent table the `_columnIndex`th column is resizing columns
         this._table.setColumeResizeStartPosition(leftRelativeTable, this._columnIndex);
@@ -313,17 +320,7 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
         return false;
     }
 
-    /**
-     * click head item, sort if possible
-     * @docs-private
-     */
-    onHeadItemClick() {
-        if (this.sortable) {
-            this.onSort();
-        }
-    }
-
     onFilterPanelHide(event: any) {
-        console.log('panel hide: ', event);
+
     }
 }
