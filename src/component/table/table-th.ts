@@ -215,10 +215,9 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
 
     /**
      * toggle filter panel
-     * @param {MouseEvent} event  - mouse event
      * @docs-private
      */
-    onToggleFilter(event: MouseEvent) {
+    onToggleFilter() {
         this.toggleOverlay();
     }
 
@@ -320,7 +319,7 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
         return false;
     }
 
-    onFilterPanelHide(event: any) {
+    onFilterPanelHide() {
 
     }
 }
