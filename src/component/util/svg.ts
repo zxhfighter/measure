@@ -7,7 +7,7 @@ export const polarToCartesian = (
         x: centerX + (radius * Math.cos(angleInRadians)),
         y: centerY + (radius * Math.sin(angleInRadians))
     };
-}
+};
 
 export const describeArc = (
     x: number, y: number, radius: number,

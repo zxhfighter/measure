@@ -6,7 +6,7 @@
                 [class.first-column]="i==0"
                 [class.third-column]="i==1"
                 [align]="field.align || 'left'">
-                <span class="field-title">{{field.title}}</span>
+                <span class="field-title">{{ field.title }}</span>
             </th>
         </tr>
     </thead>
@@ -20,13 +20,13 @@
                     <ng-container [ngSwitch]="field.name">
 
                         <ng-container *ngSwitchCase="'name'">
-                            <span *ngIf="!td.editing">{{item[field.name]}}</span>
-                            <input nb-input type="text" theme="default" #ipt (blur)="onBlur(td, field.name, item, ipt)" *ngIf="td.editing" value="{{item[field.name]}}" style="width: 100%">
+                            <span *ngIf="!td.editing">{{ item[field.name] }}</span>
+                            <input nb-input type="text" theme="default" #ipt (blur)="onBlur(td, field.name, item, ipt)" *ngIf="td.editing" value="{{ item[field.name] }}" style="width: 100%">
                         </ng-container>
 
                         <ng-container *ngSwitchCase="'address'">
-                            <span *ngIf="!td.editing">{{item[field.name]}}</span>
-                            <input nb-input type="text" theme="default" #ipt (blur)="onBlur(td, field.name, item, ipt)" *ngIf="td.editing" value="{{item[field.name]}}" style="width: 100%">
+                            <span *ngIf="!td.editing">{{ item[field.name] }}</span>
+                            <input nb-input type="text" theme="default" #ipt (blur)="onBlur(td, field.name, item, ipt)" *ngIf="td.editing" value="{{ item[field.name] }}" style="width: 100%">
                         </ng-container>
 
                         <ng-container *ngSwitchCase="'action'">

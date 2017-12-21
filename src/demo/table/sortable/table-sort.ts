@@ -13,8 +13,8 @@ interface TableArgs {
         name: string;
         status: string[];
         school: string;
-    }
-};
+    };
+}
 
 @Component({
     selector: 'demo-table-sort',
