@@ -180,51 +180,22 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
      * Set default value
      */
     setDefaultValue() {
-        // let value = this.value;
         if (this.range) {
             if (!this.value) {
                 this.value = [];
                 this.value[0] = this.value[1] = this.min;
             }
             else {
-                this.value[0] = !isNaN(this.value[0]) ? this.value[0] : this.min;
-                this.value[1] = !isNaN(this.value[1]) ? this.value[1] : this.min;
+                (<number[]>this.value).map((val, i, arr) => arr[i] = this.valueCheck(val, this.min));
             }
         }
         else {
-            this.value = this.value ? this.value : this.min;
+            this.value = this.valueCheck(<number>this.value, this.min);
         }
     }
 
-    /**
-     * Initialize the slider and the sub components
-     */
-    initSlider() {
-        this.setDefaultValue();
-        this.inputValidate();
-
-        // 设置hand能移动的范围值
-        const slider = this._slider.nativeElement as HTMLElement;
-        this.limitMove = this.orientation ? slider.clientWidth : slider.clientHeight;
-
-        // 根据输入值设置hand初始值
-        let value = this.range ? this.value[0] : this.value;
-        let selected = this.getTrackerSelected(value);
-        this.hands.push({
-            initPos: selected
-        });
-        this.trackerSelected = selected;
-
-        if (this.range) {
-            // 根据输入值设置tracker初始值, 包括selected and position
-            this.trackerSelected = this.getTrackerSelected(this.value);
-            this.trackerPos = this.hands[0].initPos;
-            // 根据输入值设置hand初始值
-            this.hands.push({
-                initPos: this.getTrackerSelected(this.value[1])
-            });
-        }
-        this._markForCheck();
+    valueCheck(v: number, option: number) {
+        return !isNaN(v) ? v : option;
     }
 
     /**
@@ -244,12 +215,41 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     }
 
     /**
+     * Initialize the slider and the sub components
+     */
+    initSlider() {
+        this.setDefaultValue();
+        this.inputValidate();
+
+        // 设置hand能移动的范围值
+        const slider = this._slider.nativeElement as HTMLElement;
+        this.limitMove = this.orientation ? slider.clientWidth : slider.clientHeight;
+
+        // 根据输入值设置hand, tracker初始值
+        if (this.range) {
+            this.trackerSelected = this.getWidthFromValue(this.value);
+            this.trackerPos = this.getWidthFromValue(this.value[0]);
+            this.hands.push(
+                {initPos: this.trackerPos},
+                {initPos: this.getWidthFromValue(this.value[1])}
+            );
+        }
+        else {
+            this.trackerSelected = this.getWidthFromValue(this.value);
+            this.hands.push({initPos: this.trackerSelected});
+        }
+
+        this._markForCheck();
+    }
+
+    /**
      * 根据输入值计算tracker的width
      * @param value input value
      */
-    getTrackerSelected(value: CoreValue): number {
-        let trackerMin = !isNaN(value[0]) ? value[0] : this.min;
-        let trackerMax = !isNaN(value[1]) ? value[1] : value;
+    getWidthFromValue(value: CoreValue): number {
+        let trackerMin = this.valueCheck(value[0], this.min);
+        let trackerMax = this.valueCheck(value[1], <number>value);
+
         return (trackerMax - trackerMin) / (this.max - this.min) * 100;
     }
 
@@ -265,8 +265,8 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
             return;
         }
         this.value = calculated;
-        let value = this.trackerSelected = this.getTrackerSelected(calculated);
-        this.sliderHands.first.updateStyle(`${value}%`);
+        let value = this.trackerSelected = this.getWidthFromValue(calculated);
+        this.sliderHands.first.updateStyle(value);
         this.change.emit(this.value);
         this._markForCheck();
     }
@@ -277,13 +277,14 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
      */
     updateSlider(info: Info) {
         let hands = this.hands;
-        info.endPos = info.endPos;
 
         if (this.range) {
             this.getNearest(info.initPos, info.endPos, this.hands);
             let move = hands[1].initPos - hands[0].initPos;
-            this.value[0] = this.service.getValue(hands[0].initPos, this.step, this.min, this.max);
-            this.value[1] = this.service.getValue(hands[1].initPos, this.step, this.min, this.max);
+
+            (<number[]>this.value).map((v, i, arr) => {
+                arr[i] = this.service.getValue(hands[i].initPos, this.step, this.min, this.max);
+            });
 
             this.trackerSelected = move;
             this.trackerPos = hands[0].initPos;
@@ -293,7 +294,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         }
 
         this.value = this.service.getValue(info.endPos, this.step, this.min, this.max);
-        this.trackerSelected = this.hands[0].initPos = info.endPos;
+        this.trackerSelected = hands[0].initPos = info.endPos;
         this.change.emit(this.value);
         // 更新form model
         this._markForCheck();
@@ -316,11 +317,11 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
             endPos: endPos
         });
         let hand = this._hand || this.sliderHands.first;
-        hand.updateStyle(`${endPos}%`);
+        hand.updateStyle(endPos);
     }
 
     /**
-     * 函数适用于range为true时更新hand的位置
+     * 算法适用于range为true时计算hand的位置
      * @param target 当前移动的hand
      * @param endX 当前hand移动到的新位置
      * @param scope Scope 两个hand的原始位置

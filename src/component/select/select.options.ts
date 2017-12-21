@@ -13,7 +13,7 @@ import { SelectConfig } from './select.config';
 })
 export class SelectOptionsComponent implements OnInit, AfterViewChecked {
     @Input() data: SelectConfig[] = [];
-    @Input() value: number;
+    @Input() value: number | null | undefined;
     @Input() searchable: boolean;
     @Input() disabled: boolean;
     @Input() styles: SelectConfig[] = [];
@@ -56,7 +56,7 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
 
         let key = e.target.value;
         if (key) {
-            let result = [];
+            let result: SelectConfig[] = [];
             this._data.forEach(item => {
                 if (item.children && item.children.length){
                     item.children.forEach(child => {
