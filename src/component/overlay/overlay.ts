@@ -21,12 +21,10 @@ import {
     Renderer2
 } from '@angular/core';
 import { Placement } from '../util/position';
-
+import { OnChange } from '../core/decorators';
 import { ViewportRuler } from './scroll-strategy';
 import { OverlayPositionService } from './overlay-position.service';
 import { OverlayOriginDirective } from './overlay-origin.directive';
-// import { OverlayPositionBuilder } from './overlay-position-builder';
-
 
 @Component({
     selector: 'nb-overlay',
@@ -41,7 +39,7 @@ import { OverlayOriginDirective } from './overlay-origin.directive';
     },
     exportAs: 'nbOverlay'
 })
-export class OverlayComponent implements AfterViewInit, OnDestroy {
+export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /** the event emitted when the overlay is hide */
     @Output() onHide: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
@@ -55,6 +53,13 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
     @Input() container: string = 'body';
 
     @Input() placement: Placement = 'bottom-left';
+
+    /**
+     * document区域内点击后是否隐藏，默认隐藏
+     * @default true
+     */
+    @OnChange(true)
+    @Input() needHideAfterDocumentClick: boolean = true;
 
     visibility: boolean = false;
 
@@ -72,13 +77,20 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
         private cdRef: ChangeDetectorRef,
         private render: Renderer2,
         private overlayPositionService: OverlayPositionService
-    ) {
+    ) { 
+    }
 
-        // when click on other area, hide the overlay
-        this._documentClickListener = this.render.listen('document', 'click', () => {
-            this.visibility = false;
-            this.cdRef.markForCheck();
-        });
+    ngOnInit() {
+        if (this.needHideAfterDocumentClick) {
+            // when click on other area, hide the overlay
+            this._documentClickListener = this.render.listen('document', 'click', () => {
+                if (this.visibility) {
+                    this.visibility = false;
+                    this.onHide.emit(this);
+                    this.cdRef.markForCheck();
+                }
+            });
+        }
     }
 
     ngOnDestroy() {
