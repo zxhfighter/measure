@@ -14,6 +14,7 @@ import { merge } from 'rxjs/observable/merge';
 import { initNgModule } from '@angular/core/src/view/ng_module';
 import { SliderService } from './slider.service';
 import { TooltipDirective } from '../../component/tooltip';
+import { OnChange } from '../core/decorators';
 
 @Component({
     selector: 'nb-slider-hand',
@@ -37,6 +38,7 @@ export class SliderHandComponent implements OnInit {
     /**
      * Orientation of the component
      */
+    @OnChange(true)
     @Input() orientation;
     /**
      * The init position of hand
@@ -46,6 +48,7 @@ export class SliderHandComponent implements OnInit {
     /**
      * Whether the slider is disabled or not
      */
+    @OnChange(true)
     @Input() disabled: boolean = false;
 
     /**
@@ -189,9 +192,8 @@ export class SliderHandComponent implements OnInit {
 
         // tooltip
         let value = this.service.getValue(val, this.step, this.min, this.max);
-        this.value = value + '';
+        this.value = `${value}`;
         // this.style[this.orientation ? 'left' : 'bottom'] = value;
-        this.render.setStyle(hand, style, value);
         this.tooltip.needReposition();
     }
 }

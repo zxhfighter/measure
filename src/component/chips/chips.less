@@ -5,15 +5,16 @@
     	width: 389px;
     	min-height: 36px;
 	    border: 1px solid #dbdbdb;
-	    &:not(.@{prefix}-chips-disabled) {
-	    	li.@{prefix}-chips-label {
-	    		cursor: default;
-	    	}
-	    	&:hover {
-			    border-color: #a8a8a8;
-	    		cursor: text;
-		    }
-	    }
+	}
+
+	&-wrap:not(.@{prefix}-chips-disabled) {
+		li.@{prefix}-chips-label {
+			cursor: default;
+		}
+		&:hover {
+			border-color: #a8a8a8;
+			cursor: text;
+		}
 	}
 
 	&-disabled {
@@ -25,39 +26,41 @@
 	    }
 	}
 
+
 	ul {
 		margin: 0;
 		padding: 0;
 		li {
-	    	list-style-type: none;
+			list-style-type: none;
 			display: inline-block;
 			vertical-align: middle;
-			input {
-				height: 34px;
-				margin-left: 10px;
-				background-color: transparent;
-				border-color: transparent;
-				&:hover,
-				&:focus {
-					background-color: transparent;
-					border-color: transparent;
-				}
-			}
-			input:disabled {
-				border: none;
-				cursor: not-allowed;
-			}
-	    }
-	    li.@{prefix}-chips-label {
-		    background: #dbdbdb;
-		    height: 24px;
+		}
+		li.@{prefix}-chips-label {
+			background: #dbdbdb;
+			height: 24px;
 			margin: 5px 0 5px 10px;
-		    line-height: 24px;
-		    margin-top: 5px;
-		    padding: 0 5px;
-		    .fa-times {
-		    	margin-left: 10px;
-		    }
-	    }
+			line-height: 24px;
+			margin-top: 5px;
+			padding: 0 5px;
+		}
+		.fa-times {
+			margin-left: 10px;
+		}
+	}
+
+	input {
+		height: 34px;
+		margin-left: 10px;
+		background-color: transparent;
+		border-color: transparent;
+		&:hover,
+		&:focus {
+			background-color: transparent;
+			border-color: transparent;
+		}
+	}
+	input:disabled {
+		border: none;
+		cursor: not-allowed;
 	}
 }
