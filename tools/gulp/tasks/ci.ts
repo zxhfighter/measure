@@ -1,6 +1,8 @@
 import { task, src, dest } from 'gulp';
 import { sequenceTask } from '../utils/sequence-task';
 import { readFileSync } from 'fs';
+import { join } from 'path';
+import { config } from '../utils/config';
 
 const bump = require('gulp-bump');
 const gutil = require('gulp-util');
@@ -8,6 +10,8 @@ const git = require('gulp-git');
 
 const conventionalChangelog = require('gulp-conventional-changelog');
 const conventionalGithubReleaser = require('conventional-github-releaser');
+
+const yargs = require('yargs');
 
 const branch = 'develop';
 
@@ -39,9 +43,10 @@ task('changelog', () => {
 });
 
 task('commit-changes', () => {
+    const commitMsg = yargs.argv.m;
     return src('.')
         .pipe(git.add())
-        .pipe(git.commit('【Prerelease】Bumped version number'));
+        .pipe(git.commit(commitMsg || '【Prerelease】Bumped version number'));
 });
 
 task('push-changes', cb => {
@@ -49,7 +54,7 @@ task('push-changes', cb => {
 });
 
 task('create-new-tag', cb => {
-    const version = require('./package.json').version;
+    const version = require(join(config.projectPath, 'package.json')).version;
     git.tag(version, 'Created Tag for version: ' + version, (error: any) => {
         if (error) {
             cb(error);
