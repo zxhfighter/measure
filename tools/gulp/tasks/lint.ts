@@ -17,7 +17,7 @@ const tsLintBaseFlags = [
 task('lint', sequenceTask('tslint', 'stylelint'));
 
 task('stylelint', execNodeTask(
-  'stylelint', [stylesGlob, '--config', '.stylelintrc', '--syntax', 'less']
+  'stylelint', [stylesGlob, '--config', '.stylelintrc', '--syntax', 'less', '--fix']
 ));
 
 task('tslint', execTsLintTask());
