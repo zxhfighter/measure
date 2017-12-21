@@ -66,7 +66,7 @@ task('create-new-tag', cb => {
 task('github-release', done => {
     conventionalGithubReleaser({
         type: 'oauth',
-        token: 'ad223a9a4f899466e3a4d1e447e591140594d695'
+        token: 'b5f2e69bfbafba2ac0fd66a9cf865ce4d0874fa5'
     }, {
         preset: 'angular'
     }, done);

@@ -80,6 +80,8 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
 
     @Output() filterReset: EventEmitter<FilterParam> = new EventEmitter<FilterParam>();
 
+    @Output() filterHide: EventEmitter<any> = new EventEmitter<any>();
+
     /**
      * table sort event, emits a `SortParam` Object
      */
@@ -319,7 +321,7 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
         return false;
     }
 
-    onFilterPanelHide() {
-
+    onFilterPanelHide(event: any) {
+        this.filterHide.emit(event);
     }
 }
