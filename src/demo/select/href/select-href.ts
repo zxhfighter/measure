@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { SelectConfig } from "../../../component/select/select.config";
+import { SelectConfig } from '../../../component/select/select.config';
 
 @Component({
     selector: 'demo-select-href',
@@ -8,12 +8,12 @@ import { SelectConfig } from "../../../component/select/select.config";
     encapsulation: ViewEncapsulation.None,
 })
 export class SelectHrefDemo {
-    protected selectedData1: SelectConfig;
-    protected selectedData2: SelectConfig;
-    protected selectedData3: number = 2;
-    protected selectedData4: SelectConfig;
-    protected selectedData5: SelectConfig;
-    protected datasource: SelectConfig[] = [
+    selectedData1: SelectConfig;
+    selectedData2: SelectConfig;
+    selectedData3: number = 2;
+    selectedData4: SelectConfig;
+    selectedData5: SelectConfig;
+    datasource: SelectConfig[] = [
         {
             label: '下拉选项1',
             value: 1
@@ -31,7 +31,7 @@ export class SelectHrefDemo {
             value: 4
         }
     ];
-    protected datasource2: SelectConfig[] = [
+    datasource2: SelectConfig[] = [
         {
             label: '下拉选项1',
             children: [
@@ -87,6 +87,4 @@ export class SelectHrefDemo {
 
     constructor() {
     }
-
-
 }

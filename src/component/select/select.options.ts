@@ -42,7 +42,7 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
     onSelectOption(e: Event, data: SelectConfig) {
         e.stopPropagation();
 
-        if (data.children && data.children.length){
+        if (data.children && data.children.length) {
             return;
         }
 
@@ -58,7 +58,7 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
         if (key) {
             let result: SelectConfig[] = [];
             this._data.forEach(item => {
-                if (item.children && item.children.length){
+                if (item.children && item.children.length) {
                     item.children.forEach(child => {
                         if (child.label.search(key) !== -1) {
                             result.push(child);

@@ -40,11 +40,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @Output() onPanelShow: EventEmitter<Object> = new EventEmitter();
     @Output() onPanelHide: EventEmitter<Object> = new EventEmitter();
 
-    protected value: number | null | undefined;
+    value: number | null | undefined;
+    icon: string = 'fa-angle-down';
+    selectedData: SelectConfig;
+    styles: OptionsStyles;
     protected expanded: boolean = false;
-    protected icon: string = 'fa-angle-down';
-    protected selectedData: SelectConfig;
-    protected styles: OptionsStyles;
     protected windowResizeListener: Function | null;
     protected onModelChange: Function = () => { };
     protected onModelTouched: Function = () => { };
