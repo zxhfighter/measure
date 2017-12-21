@@ -6,6 +6,8 @@ import {
 import * as prism from 'prismjs';
 import { OnChange } from '../core/decorators';
 
+declare var prism: any;
+
 /**
  * Code Highlighter Component
  */

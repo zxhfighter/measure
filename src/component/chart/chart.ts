@@ -6,6 +6,8 @@ import * as echarts from 'echarts';
 
 import { OnChange } from '../core/decorators';
 
+declare var echarts: any;
+
 /**
  * Chart Component, depends on [Echarts](http://echarts.baidu.com/)
  */
