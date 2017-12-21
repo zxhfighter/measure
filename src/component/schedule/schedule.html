@@ -37,7 +37,7 @@
                             [attr.data]="showLabel(i,j)"
                             [ngClass]="{'selected': schedules[i * 24 + j] === 1}"
                             (mousedown)="mousedown(i, j)"
-                            (mouseup)="mouseup(i, j)"
+                            (mouseup)="mouseup()"
                             (mouseover)="mouseover(i, j)"
                             (mouseout)="mouseout(i, j)">
                         </button>
