@@ -18,11 +18,11 @@ import {
 
 export class TransferBasicDemo {
 
-    private candidateData = candidateData;
+    candidateData = candidateData;
 
-    private selectedData = selectedData;
+    selectedData = selectedData;
 
-    private disabled = true;
+    disabled = true;
 
     getValue(event) {
         console.log(event)

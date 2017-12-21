@@ -67,7 +67,7 @@ export class SideBarComponent implements OnInit {
      * side-bar tree-node expanded or not
      * @docs-private
      */
-    private expanded: boolean = true;
+    expanded: boolean = true;
 
     /**
      * judge treeData has data or not

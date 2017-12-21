@@ -15,7 +15,7 @@ import {dataSideBar} from '../side-bar-test-data';
 
 export class SideBarBasicDemo {
 
-    private data = dataSideBar;
+    data = dataSideBar;
 
     onNavi(event) {
         console.log(event);

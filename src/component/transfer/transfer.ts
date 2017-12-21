@@ -81,12 +81,12 @@ export class TransferComponent implements OnInit, AfterViewInit {
      * all options count
      * @docs-private
      */
-    private candidateCount: number = 0;
+    candidateCount: number = 0;
     /**
      * all selected options count
      * @docs-private
      */
-    private selectedCount: number = 0;
+    selectedCount: number = 0;
 
     /**
      * candidate trans to list data
