@@ -79,7 +79,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
         private cdRef: ChangeDetectorRef,
         private render: Renderer2,
         private overlayPositionService: OverlayPositionService
-    ) { 
+    ) {
     }
 
     ngOnInit() {
@@ -111,7 +111,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         if (this.origin) {
             const positionStategy = this.overlayPositionService
-                .attachTo(this.origin.elementRef, this, this.placement)
+                .attachTo(this.origin.elementRef, this, this.placement);
 
             this.positionStategy = positionStategy;
             // 等到显示的时候再定位
