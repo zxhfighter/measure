@@ -1,7 +1,7 @@
-import {NgModule, ModuleWithProviders} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {TextareaComponent} from './textarea';
-import {TextareaConfig} from './textarea.config';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TextareaComponent } from './textarea';
+import { TextareaConfig } from './textarea.config';
 
 @NgModule({
     imports: [CommonModule],
@@ -11,6 +11,6 @@ import {TextareaConfig} from './textarea.config';
 })
 export class TextareaModule {
     static forRoot(): ModuleWithProviders {
-        return {ngModule: TextareaModule, providers: [TextareaConfig]};
+        return { ngModule: TextareaModule, providers: [TextareaConfig] };
     }
 }

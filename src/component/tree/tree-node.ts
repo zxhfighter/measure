@@ -1,16 +1,16 @@
 import {
-    Component, 
-    Input, 
-    Output, 
+    Component,
+    Input,
+    Output,
     EventEmitter,
-    OnInit, 
-    ViewEncapsulation, 
-    ChangeDetectionStrategy, 
-    Inject, 
+    OnInit,
+    ViewEncapsulation,
+    ChangeDetectionStrategy,
+    Inject,
     forwardRef
 } from '@angular/core';
-import {TreeNode} from './treenode';
-import {TreeComponent} from './tree';
+import { TreeNode } from './treenode';
+import { TreeComponent } from './tree';
 
 @Component({
     selector: 'nb-tree-node',
@@ -24,16 +24,16 @@ import {TreeComponent} from './tree';
 })
 export class TreeNodeComponent implements OnInit {
 
-     /** 
-      * input tree-node value 
-      * @docs-private
-      */
+    /** 
+     * input tree-node value 
+     * @docs-private
+     */
     @Input() node: TreeNode;
 
-    constructor(@Inject(forwardRef(() => TreeComponent)) public tree: TreeComponent) { }
+    constructor( @Inject(forwardRef(() => TreeComponent)) public tree: TreeComponent) { }
 
     ngOnInit() { }
-    
+
     /** 
      * listen tree-node click event 
      * @docs-private

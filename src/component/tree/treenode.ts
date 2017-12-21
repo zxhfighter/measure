@@ -1,6 +1,6 @@
-import {TreeNodeParent} from './treenodeparent';
+import { TreeNodeParent } from './treenodeparent';
 
-export interface TreeNode {
+export interface TreeNode  {
     id?: any;
     name?: string;
     selectable?: boolean;

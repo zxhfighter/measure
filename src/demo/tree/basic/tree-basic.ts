@@ -16,9 +16,13 @@ import {
 
 export class TreeBasicDemo {
 
-    private treeData = treeData;
+    treeData = treeData;
 
-    private treeDataSelected = treeDataSelected;
+    treeDataSelected = treeDataSelected;
 
-    private disabled = true;
+    disabled = true;
+
+    nodeSelect(event) {
+        console.log(event);
+    }
 }

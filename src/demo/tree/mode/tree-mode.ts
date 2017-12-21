@@ -18,9 +18,9 @@ import {
 
 export class TreeModeDemo {
 
-    private treeData = treeData;
+    treeData = treeData;
 
-    private treeDataSelected = treeDataSelected;
+    treeDataSelected = treeDataSelected;
 
     nodeSelect(event) {
         console.log(event);
