@@ -29,7 +29,8 @@ const CHIPS_VALUE_ACCESSOR = {
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-chips'
-    }
+    },
+    exportAs: 'nbChips'
 })
 export class ChipsComponent implements ControlValueAccessor {
     /**

@@ -27,7 +27,7 @@ export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
         // otherwise use [attr.disabled]
         '[disabled]': 'disabled || null'
     },
-    exportAs: 'xButton'
+    exportAs: 'nbButton'
 })
 export class ButtonComponent implements OnChanges, AfterViewInit {
 
@@ -110,7 +110,7 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
         '[attr.disabled]': 'disabled || null',
         '(click)': '_haltDisabledEvents($event)',
     },
-    exportAs: 'xButton, xAnchor'
+    exportAs: 'nbButton, nbAnchor'
 })
 export class ButtonAnchorComponent extends ButtonComponent {
 

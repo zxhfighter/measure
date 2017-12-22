@@ -20,7 +20,7 @@ import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
         '[class.disabled]': 'disabled',
         '[class.nb-widget-disabled]': 'disabled'
     },
-    exportAs: 'xSelect',
+    exportAs: 'nbSelect',
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => SelectComponent),

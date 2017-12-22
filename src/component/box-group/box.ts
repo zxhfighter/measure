@@ -43,7 +43,7 @@ const BOX_VALUE_ACCESSOR = {
         '[class.nb-checkbox-intermediate]': 'intermediate',
         '[class.nb-checkbox-radio]': 'type == "radio"'
     },
-    exportAs: 'xBox'
+    exportAs: 'nbBox'
 })
 export class InputBoxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
 
