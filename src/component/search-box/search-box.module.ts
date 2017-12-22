@@ -21,4 +21,5 @@ import { ButtonModule } from '../button/index';
         SearchBoxComponent
     ]
 })
+
 export class SearchBoxModule { }

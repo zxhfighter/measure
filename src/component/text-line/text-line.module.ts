@@ -3,9 +3,16 @@ import { CommonModule } from '@angular/common';
 import { TextLineComponent } from './text-line';
 
 @NgModule({
-    imports: [CommonModule],
-    declarations: [TextLineComponent],
+    imports: [
+        CommonModule
+    ],
+    declarations: [
+        TextLineComponent
+    ],
     providers: [],
-    exports: [TextLineComponent]
+    exports: [
+        TextLineComponent
+    ]
 })
+
 export class TextLineModule { }

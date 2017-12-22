@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 
 import { TreeNode } from './treenode';
+
 import { TreeNodeParent } from './treenodeparent';
 
 @Component({
@@ -21,6 +22,7 @@ import { TreeNodeParent } from './treenodeparent';
         'class': 'nb-widget nb-tree'
     }
 })
+
 export class TreeComponent implements OnInit {
 
     /** tree node selection event */

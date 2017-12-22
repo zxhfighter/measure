@@ -18,4 +18,5 @@ import { TreeModule } from '../tree/tree.module';
         SideBarComponent
     ]
 })
+
 export class SideBarModule { }
