@@ -86,14 +86,16 @@ export class ScheduleComponent implements OnInit {
     }
     ngOnInit() {
         for (let i in this.selected) {
-            for (let j = 0; j < this.selected[i].length; j++) {
-                for (let k = this.selected[i][j][0]; k <= this.selected[i][j][1]; k++) {
-                    this.schedules[24 * parseInt(i) + k] = 1;
+            if (this.selected.hasOwnProperty(i)) {
+                for (let j = 0; j < this.selected[i].length; j++) {
+                    for (let k = this.selected[i][j][0]; k <= this.selected[i][j][1]; k++) {
+                        this.schedules[24 * parseInt(i) + k] = 1;
 
-                    if (k === 23) {
-                        this.weekSelect[i] = 2;
-                    } else if (k > 0 && k < 23) {
-                        this.weekSelect[i] = 1;
+                        if (k === 23) {
+                            this.weekSelect[i] = 2;
+                        } else if (k > 0 && k < 23) {
+                            this.weekSelect[i] = 1;
+                        }
                     }
                 }
             }
