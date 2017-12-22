@@ -36,7 +36,7 @@ export class PageComponent implements OnInit {
      * page list selected
      * @default default
      */
-    @Input('value') list: Array<number>;
+    @Input() list: Array<number>;
 
     /**
      * when page change, emit a change event, which contains the currrentIndex and the count
