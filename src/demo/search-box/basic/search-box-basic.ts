@@ -11,7 +11,7 @@ import {
 
 export class SearchBoxBasicDemo {
     
-    public searchValue = 'qazwsx';
+    searchValue = 'qazwsx';
 
     search(value) {
         console.log(value);

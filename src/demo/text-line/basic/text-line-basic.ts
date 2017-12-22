@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 
 export class TextLineBasicDemo { 
     disabled = false;
-    value = "fadsfaf";
+    value = 'fadsfaf';
 }

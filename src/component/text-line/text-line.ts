@@ -52,17 +52,17 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
      * order dom 
      * @docs-private
      */
-    public domOrder: string;
+    domOrder: string;
     /** 
      * content dom 
      * @docs-private
      */
-    public domContent: any;
+    domContent: any;
     /** 
      * order content 
      * @docs-private
      */
-    public txtOrder: string = '';
+    txtOrder: string = '';
 
     /** 
      * Whether the text-line is disabled  

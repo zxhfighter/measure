@@ -55,13 +55,13 @@ export class SideBarComponent implements OnInit {
      * side-bar tree data
      * @docs-private
      */
-    private treeData: TreeNode[] = [];
+    treeData: TreeNode[] = [];
 
     /**
      * search-box suggestion content
      * @docs-private
      */
-    private suggestionValue: Array<string | undefined> = [];
+    suggestionValue: Array<string | undefined> = [];
 
     /**
      * side-bar tree-node expanded or not
@@ -73,7 +73,7 @@ export class SideBarComponent implements OnInit {
      * judge treeData has data or not
      * @docs-private
      */
-    private hasTreeData: boolean = true;
+    hasTreeData: boolean = true;
 
     constructor() { }
 

@@ -21,7 +21,7 @@ export class TextLineFormDemo implements OnInit {
     form: FormGroup;
     
     disabled = false;
-    value = "fadsfaf";
+    value = 'fadsfaf';
 
     constructor(private fb: FormBuilder) {
 

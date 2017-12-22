@@ -2,7 +2,7 @@
     *ngIf="expanded"
     class="nb-side-bar-content">
     <div>
-        <span>{{data.title}}</span>
+        <span>{{ data.title }}</span>
         <button 
             nb-button
             theme="transparent"
@@ -24,7 +24,7 @@
         nb-button
         class="nb-side-bar-root"
         (click)="refreshTree()">
-        {{root}}
+        {{ root }}
     </a>
     <nb-tree 
         *ngIf="hasTreeData"

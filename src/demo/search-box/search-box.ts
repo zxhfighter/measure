@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 })
 export class SearchBoxDemo {
 
-    public searchValue = 'qazwsx';
-    public suggestionValue = ['qwe', 'asd', 'zxc'];
+    searchValue = 'qazwsx';
+    suggestionValue = ['qwe', 'asd', 'zxc'];
 
     search(value) {
         console.log(value);

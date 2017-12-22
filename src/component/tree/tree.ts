@@ -94,13 +94,13 @@ export class TreeComponent implements OnInit {
         }
 
         switch (this.selectionMode) {
-            case "candidate":
+            case 'candidate':
                 this.clickCandidate(node);
                 break;
-            case "selected":
+            case 'selected':
                 this.clickSelected(node);
                 break;
-            case "navigation":
+            case 'navigation':
                 this.clickNavigation(node);
                 break;
             default:

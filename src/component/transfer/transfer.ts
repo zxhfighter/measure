@@ -534,7 +534,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
         root.show = mode === 'candidate' ? true : root.isSelected;
         if (mode === 'selected') {
             root.isExpanded = root.isSelected;
-        };
+        }
         if (root.children && root.children.length) {
             for (let child of root.children) {
                 this.renderTransTree(child, mode);
