@@ -1,6 +1,7 @@
 import {
     Component,
     Input,
+    Directive,
     ViewEncapsulation,
     ChangeDetectionStrategy,
     ElementRef,
@@ -17,18 +18,15 @@ import { OnChange } from '../core/decorators';
 /** default textarea theme types */
 export type TEXTAREA_THEME = 'default' | 'error' | string;
 
-@Component({
-    selector: 'textarea[nb-textarea]',
-    templateUrl: './textarea.html',
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    preserveWhitespaces: false,
+@Directive({
+    selector: '[nbTextarea]',
+    exportAs: 'nbTextarea',
     host: {
         '[disabled]': 'disabled || null'
-    },
-    exportAs: 'nb-Textarea'
+    }
 })
-export class TextareaComponent implements OnChanges, AfterViewInit {
+
+export class TextareaDirective implements OnChanges, AfterViewInit {
 
     /**
      * textarea theme, there two default themes: 'default' | 'error'

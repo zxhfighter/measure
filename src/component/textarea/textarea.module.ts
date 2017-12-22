@@ -1,12 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TextareaComponent } from './textarea';
+import { TextareaDirective } from './textarea';
 import { TextareaConfig } from './textarea.config';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [TextareaComponent],
-    exports: [TextareaComponent],
+    declarations: [TextareaDirective],
+    exports: [TextareaDirective],
     providers: [TextareaConfig]
 })
 export class TextareaModule {
