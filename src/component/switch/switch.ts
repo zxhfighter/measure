@@ -32,7 +32,7 @@ const SWITCH_VALUE_ACCESSOR = {
     host: {
         'class': 'nb-widget nb-switch'
     },
-    exportAs: 'xSwitch'
+    exportAs: 'nbSwitch'
 })
 export class SwitchComponent implements AfterViewInit, ControlValueAccessor {
 

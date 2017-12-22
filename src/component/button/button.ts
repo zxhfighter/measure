@@ -27,7 +27,7 @@ export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
         // otherwise use [attr.disabled]
         '[disabled]': 'disabled || null'
     },
-    exportAs: 'xButton'
+    exportAs: 'nbButton'
 })
 export class ButtonComponent implements OnChanges, AfterViewInit {
 

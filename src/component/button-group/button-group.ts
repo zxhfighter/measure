@@ -48,7 +48,7 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
     host: {
         'class': 'nb-widget nb-button-group'
     },
-    exportAs: 'xButtonGroup'
+    exportAs: 'nbButtonGroup'
 })
 export class ButtonGroupComponent implements ControlValueAccessor, AfterContentInit, OnInit {
 

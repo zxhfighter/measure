@@ -12,7 +12,7 @@ import {
     host: {
         'class': 'nb-widget nb-codebox'
     },
-    exportAs: 'xCodeBox'
+    exportAs: 'nbCodeBox'
 })
 export class CodeBoxComponent {
     /**

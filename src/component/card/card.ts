@@ -18,7 +18,7 @@ import { addClass } from '../util/dom';
     host: {
         'class': 'nb-widget nb-card'
     },
-    exportAs: 'xCard'
+    exportAs: 'nbCard'
 })
 export class CardComponent implements OnInit, AfterViewInit {
 
