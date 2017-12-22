@@ -15,9 +15,10 @@ const yargs = require('yargs');
 
 const branch = 'develop';
 
+
 task('commit', sequenceTask(
     'lint',
-    // 'build',
+    'build',
     'bump-version',
     'changelog',
     'commit-changes',
@@ -66,7 +67,7 @@ task('create-new-tag', cb => {
 task('github-release', done => {
     conventionalGithubReleaser({
         type: 'oauth',
-        token: 'b5f2e69bfbafba2ac0fd66a9cf865ce4d0874fa5'
+        token: process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
     }, {
         preset: 'angular'
     }, done);
