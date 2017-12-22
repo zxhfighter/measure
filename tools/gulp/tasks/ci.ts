@@ -17,7 +17,7 @@ const branch = 'develop';
 
 task('commit', sequenceTask(
     'lint',
-    // 'build',
+    'build',
     'bump-version',
     'changelog',
     'commit-changes',
