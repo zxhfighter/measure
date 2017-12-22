@@ -629,7 +629,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
     registerOnChange(fn: Function) {
         this._onModelChange = fn;
     }
-    
+
     /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
     private _onTouch: Function;
 
@@ -642,8 +642,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this._onTouch = fn;
     }
 
-    /** 
-     * set text-line model value 
+    /**
+     * set text-line model value
      * @docs-private
      */
     writeValue(value: any) {
