@@ -6,8 +6,17 @@ import {
     OnInit,
     AfterViewInit,
     ViewEncapsulation,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    forwardRef,
+    ChangeDetectorRef,
+    ElementRef,
+    Renderer2
 } from '@angular/core';
+
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 
 import {
     TreeNode,
@@ -22,12 +31,24 @@ export type CANDIDATE_TYPE = 'tree' | 'list';
 /** default selected list types */
 export type SELECTED_TYPE = 'tree' | 'path';
 
+/*
+ * Provider Expression that allows component to register as a ControlValueAccessor.
+ * This allows it to support [(ngModel)].
+ * @docs-private
+ */
+const TRANSFER_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => TransferComponent),
+    multi: true
+};
+
 @Component({
     selector: 'nb-transfer',
     templateUrl: './transfer.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    providers: [TRANSFER_VALUE_ACCESSOR],
     host: {
         'class': 'nb-widget nb-transfer'
     },
@@ -115,9 +136,13 @@ export class TransferComponent implements OnInit, AfterViewInit {
      * selected options's id as list
      * @docs-private
      */
-    private dataListSelected: Array<string> = [];
+    private value: Array<string> = [];
 
-    constructor() { }
+    constructor(
+        private _cd: ChangeDetectorRef,
+        private el: ElementRef,
+        private _render: Renderer2
+    ) { }
 
     ngOnInit() {
         this.initTree(this.candidateData, 'candidate');
@@ -132,7 +157,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.getValue.emit(this.dataListSelected);
+        this.getValue.emit(this.value);
     }
 
     /**
@@ -206,7 +231,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
      * @docs-private
      */
     clearDataListSelected() {
-        this.dataListSelected = [];
+        this.value = [];
     }
 
     /**
@@ -217,7 +242,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
         if (tree.length) {
             tree.forEach((node: TreeNode) => {
                 if (node.selectable && node.isSelected && this.hasChildren(node)) {
-                    this.dataListSelected.push(node.id);
+                    this.value.push(node.id);
                 }
                 if (node.children && node.children.length) {
                     this.getSelectedData(node.children);
@@ -463,7 +488,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.countOptsStateValue(this.candidateData);
         this.clearDataListSelected();
         this.getSelectedData(this.candidateData);
-        this.getValue.emit(this.dataListSelected);
+        this.getValue.emit(this.value);
+        this._markForCheck();
     }
 
     /**
@@ -572,7 +598,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.countOptsStateValue(this.candidateData);
         this.clearDataListSelected();
         this.getSelectedData(this.candidateData);
-        this.getValue.emit(this.dataListSelected);
+        this.getValue.emit(this.value);
+        this._markForCheck();
     }
 
     /**
@@ -586,5 +613,57 @@ export class TransferComponent implements OnInit, AfterViewInit {
             this.renderTransTree(root, mode);
         }
         return rootNodes;
+    }
+
+    /**
+     * The method to be called in order to update ngModel.
+     * Now `ngModel` binding is not supported in multiple selection mode.
+     */
+    private _onModelChange: Function;
+
+    /**
+     * Registers a callback that will be triggered when the value has changed.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On change callback function.
+     */
+    registerOnChange(fn: Function) {
+        this._onModelChange = fn;
+    }
+    
+    /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
+    private _onTouch: Function;
+
+    /**
+     * Registers a callback that will be triggered when the control has been touched.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On touch callback function.
+     */
+    registerOnTouched(fn: Function) {
+        this._onTouch = fn;
+    }
+
+    /** 
+     * set text-line model value 
+     * @docs-private
+     */
+    writeValue(value: any) {
+        this.value = value;
+        this._cd.markForCheck();
+    }
+
+    /**
+     * update form model value and mark for check
+     * @docs-private
+     */
+    _markForCheck() {
+        if (this._onModelChange) {
+            this._onModelChange(this.value);
+        }
+
+        if (this._onTouch) {
+            this._onTouch(this.value);
+        }
+
+        this._cd.markForCheck();
     }
 }
