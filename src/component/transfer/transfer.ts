@@ -38,30 +38,30 @@ export class TransferComponent implements OnInit, AfterViewInit {
     /** get selected value event */
     @Output() getValue: EventEmitter<number[] | string[]> = new EventEmitter<number[] | string[]>();
 
-    /** 
-     * candidate list data 
+    /**
+     * candidate list data
      * @default []
      */
     @Input() candidateData: TreeNode[] = [];
-    /** 
-     * selected list data 
+    /**
+     * selected list data
      * @default []
      */
     @Input() selectedData: TreeNode[] = [];
 
-    /** 
-     * candidate list type, default：‘tree’ 
+    /**
+     * candidate list type, default：‘tree’
      * @default 'tree'
      */
     @Input() candidateType: CANDIDATE_TYPE = 'tree';
-    /** 
-     * selected list type, default：‘tree’ 
+    /**
+     * selected list type, default：‘tree’
      * @default 'tree'
      */
     @Input() selectedType: SELECTED_TYPE = 'tree';
 
-    /** 
-     * Whether the transfer is disabled 
+    /**
+     * Whether the transfer is disabled
      * @default false
      */
     @Input() disabled: boolean = false;
@@ -134,8 +134,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.getValue.emit(this.dataListSelected);
     }
 
-    /** 
-     * set the show attribute to true 
+    /**
+     * set the show attribute to true
      * @docs-private
      */
     initTree(treeData: TreeNode[], mode: string) {
@@ -150,8 +150,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * set the show attribute to false, for fitler 
+    /**
+     * set the show attribute to false, for fitler
      * @docs-private
      */
     transferTreeToList(treeData: TreeNode[], mode: string) {
@@ -171,8 +171,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * init count 
+    /**
+     * init count
      * @docs-private
      */
     initCount() {
@@ -180,8 +180,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.selectedCount = 0;
     }
 
-    /** 
-     * calculate selected options count 
+    /**
+     * calculate selected options count
      * @docs-private
      */
     countOptsStateValue(tree: TreeNode[]) {
@@ -200,16 +200,16 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * clear selected options's id as list 
+    /**
+     * clear selected options's id as list
      * @docs-private
      */
     clearDataListSelected() {
         this.dataListSelected = [];
     }
 
-    /** 
-     * get selected options's id as list 
+    /**
+     * get selected options's id as list
      * @docs-private
      */
     getSelectedData(tree: TreeNode[]) {
@@ -225,8 +225,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * judge node whether have child 
+    /**
+     * judge node whether have child
      * @docs-private
      */
     hasChildren(node: TreeNode) {
@@ -239,16 +239,16 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return false;
     }
 
-    /** 
-     * clear search results 
+    /**
+     * clear search results
      * @docs-private
      */
     clearSearch(event: string, mode: string) {
         this.searchByKeyWord(event, mode);
     }
 
-    /** 
-     * fitler candidate or selected list by key word 
+    /**
+     * fitler candidate or selected list by key word
      * @docs-private
      */
     searchByKeyWord(event: string, mode: string) {
@@ -295,8 +295,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * reset candidate or selected node list 
+    /**
+     * reset candidate or selected node list
      * @docs-private
      */
     resetNodeList(mode: string) {
@@ -310,8 +310,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.transferTreeToList(treeData, mode);
     }
 
-    /** 
-     * reset candidate or selected list data 
+    /**
+     * reset candidate or selected list data
      * @docs-private
      */
     resetTreeData(mode: string) {
@@ -326,8 +326,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return rootNodes;
     }
 
-    /** 
-     * get node the searched by key word  
+    /**
+     * get node the searched by key word
      * @docs-private
      */
     searchNodes(node: TreeNode, mode: string) {
@@ -345,8 +345,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * get node's parent node 
+    /**
+     * get node's parent node
      * @docs-private
      */
     getParentNode(parent: TreeNodeParent, mode): TreeNode | undefined {
@@ -358,8 +358,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return parentNode;
     }
 
-    /** 
-     * push filtered by word word node into xxSearchNodeList 
+    /**
+     * push filtered by word word node into xxSearchNodeList
      * @docs-private
      */
     setSearchNodes(node: TreeNode, mode) {
@@ -375,8 +375,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * judge node whether have in xxSearchNodeList 
+    /**
+     * judge node whether have in xxSearchNodeList
      * @docs-private
      */
     isExistRepetition(targetNode: TreeNode, mode) {
@@ -392,8 +392,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * get target node root node 
+    /**
+     * get target node root node
      * @docs-private
      */
     getRootNodes(nodes: TreeNode[]) {
@@ -402,8 +402,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         });
     }
 
-    /** 
-     * render searched nodes 
+    /**
+     * render searched nodes
      * @docs-private
      */
     renderSearchNodes(root: TreeNode, node: TreeNode, mode: string) {
@@ -421,8 +421,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * render searched node 
+    /**
+     * render searched node
      * @docs-private
      */
     renderNode(node: TreeNode, mode: string) {
@@ -435,8 +435,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * throw the node click event out 
+    /**
+     * throw the node click event out
      * @docs-private
      */
     transNode(event: TreeNode, mode: string) {
@@ -465,8 +465,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.getValue.emit(this.dataListSelected);
     }
 
-    /** 
-     * get target node in xxNodeList 
+    /**
+     * get target node in xxNodeList
      * @docs-private
      */
     getTargetNode(compareNode: TreeNode, mode: string): TreeNode | undefined {
@@ -478,8 +478,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return targetNode;
     }
 
-    /** 
-     * propagate down node 'isSelected' value 
+    /**
+     * propagate down node 'isSelected' value
      * @docs-private
      */
     propagateDown(node: TreeNode, chkVal: boolean) {
@@ -493,8 +493,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * propagate up node 'isSelected' value 
+    /**
+     * propagate up node 'isSelected' value
      * @docs-private
      */
     propagateUp(node: TreeNode, chkVal: boolean, mode: string) {
@@ -512,8 +512,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * render target node 'isExpanded' and 'isSelected' attribute 
+    /**
+     * render target node 'isExpanded' and 'isSelected' attribute
      * @docs-private
      */
     renderTargetNode(mode: string) {
@@ -526,15 +526,15 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return rootNodes;
     }
 
-    /** 
-     * render target's root node and root's children the 'isExpanded' and 'isSelected' attribute 
+    /**
+     * render target's root node and root's children the 'isExpanded' and 'isSelected' attribute
      * @docs-private
      */
     renderTransTree(root: TreeNode, mode: string) {
         root.show = mode === 'candidate' ? true : root.isSelected;
         if (mode === 'selected') {
             root.isExpanded = root.isSelected;
-        };
+        }
         if (root.children && root.children.length) {
             for (let child of root.children) {
                 this.renderTransTree(child, mode);
@@ -542,8 +542,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** 
-     * trans all options to Selected or not 
+    /**
+     * trans all options to Selected or not
      * @docs-private
      */
     transAll(mode: string, chkVal: boolean) {
@@ -574,8 +574,8 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.getValue.emit(this.dataListSelected);
     }
 
-    /** 
-     * render root nodes and root's children the 'isExpanded' and 'isSelected' attribute 
+    /**
+     * render root nodes and root's children the 'isExpanded' and 'isSelected' attribute
      * @docs-private
      */
     renderRootNodes(treeData: TreeNode[], mode: string, chkVal: boolean) {

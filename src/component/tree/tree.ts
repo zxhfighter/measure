@@ -26,13 +26,13 @@ export class TreeComponent implements OnInit {
     /** tree node selection event */
     @Output() onNodeSelect = new EventEmitter();
 
-    /** 
-     * input tree-nodes value 
+    /**
+     * input tree-nodes value
      * @default []
      */
     @Input() treeData: TreeNode[] = [];
 
-    /** 
+    /**
      * input four mode, have '', 'candidate', 'selected', 'navigation' four modes
      * @default ''
      */
@@ -44,14 +44,14 @@ export class TreeComponent implements OnInit {
      */
     @Input() disabled: boolean = false;
 
-    /** 
-     * Whether upward propagation events, default: true 
+    /**
+     * Whether upward propagation events, default: true
      * @default true
      */
     @Input() propagateSelectionUp: boolean = true;
 
-    /** 
-     * Whether downward propagation events, default: true 
+    /**
+     * Whether downward propagation events, default: true
      * @default true
      */
     @Input() propagateSelectionDown: boolean = true;
@@ -69,8 +69,8 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** 
-     * transfer tree to list 
+    /**
+     * transfer tree to list
      * @docs-private
      */
     transferTreeToList(treeData: object[]) {
@@ -84,8 +84,8 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** 
-     * listen tree-node click event 
+    /**
+     * listen tree-node click event
      * @docs-private
      */
     onNodeClick(node: TreeNode) {
@@ -94,13 +94,13 @@ export class TreeComponent implements OnInit {
         }
 
         switch (this.selectionMode) {
-            case "candidate":
+            case 'candidate':
                 this.clickCandidate(node);
                 break;
-            case "selected":
+            case 'selected':
                 this.clickSelected(node);
                 break;
-            case "navigation":
+            case 'navigation':
                 this.clickNavigation(node);
                 break;
             default:
@@ -108,8 +108,8 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** 
-     * candidate mode click event handler 
+    /**
+     * candidate mode click event handler
      * @docs-private
      */
     clickCandidate(node: TreeNode) {
@@ -124,8 +124,8 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** 
-     * selected mode click event handler 
+    /**
+     * selected mode click event handler
      * @docs-private
      */
     clickSelected(node: TreeNode) {
@@ -142,15 +142,15 @@ export class TreeComponent implements OnInit {
 
     /**
      * click navigation node
-     * @param node 
+     * @param node
      * @docs-private
      */
     clickNavigation(node: TreeNode) {
         this.onNodeSelect.emit(node);
     }
 
-    /** 
-     * select event downward propagate handler 
+    /**
+     * select event downward propagate handler
      * @docs-private
      */
     propagateDown(node: TreeNode, select: boolean) {
@@ -163,8 +163,8 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** 
-     * select event upward propagate handler 
+    /**
+     * select event upward propagate handler
      * @docs-private
      */
     propagateUp(node: TreeNode, select: boolean) {
@@ -192,8 +192,8 @@ export class TreeComponent implements OnInit {
         }
     }
 
-    /** 
-     * get tree-node parent tree-node 
+    /**
+     * get tree-node parent tree-node
      * @docs-private
      */
     getParent(treeNodeParent: TreeNodeParent): TreeNode | undefined {

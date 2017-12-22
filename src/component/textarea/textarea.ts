@@ -30,14 +30,14 @@ export type TEXTAREA_THEME = 'default' | 'error' | string;
 })
 export class TextareaComponent implements OnChanges, AfterViewInit {
 
-    /** 
+    /**
      * textarea theme, there two default themes: 'default' | 'error'
      * @default default
      */
     @Input() theme: TEXTAREA_THEME = 'default';
 
-    /** 
-     * Whether the textarea is disabled 
+    /**
+     * Whether the textarea is disabled
      * @default false
      */
     @OnChange(true)

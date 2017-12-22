@@ -1,6 +1,6 @@
 import {
-    Component, 
-    OnInit, 
+    Component,
+    OnInit,
     ChangeDetectionStrategy
 } from '@angular/core';
 
@@ -11,7 +11,7 @@ import {
 })
 export class SearchBoxSuggestDemo {
 
-    public suggestionValue = ['qwe', 'asd', 'zxc'];
+    suggestionValue = ['qwe', 'asd', 'zxc'];
 
     search(value) {
         console.log(value);

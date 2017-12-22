@@ -59,6 +59,8 @@ export class UploaderComponent implements OnInit {
         });
     }
 
+    isSuccess: boolean = false;
+
     get files () {
         return this._files;
     }

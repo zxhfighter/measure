@@ -49,19 +49,19 @@ export class SideBarComponent implements OnInit {
      * tree title node
      * @docs-private
      */
-    private root: string = '';
+    root: string = '';
 
     /**
      * side-bar tree data
      * @docs-private
      */
-    private treeData: TreeNode[] = [];
+    treeData: TreeNode[] = [];
 
     /**
      * search-box suggestion content
      * @docs-private
      */
-    private suggestionValue: Array<string | undefined> = [];
+    suggestionValue: Array<string | undefined> = [];
 
     /**
      * side-bar tree-node expanded or not
@@ -73,7 +73,7 @@ export class SideBarComponent implements OnInit {
      * judge treeData has data or not
      * @docs-private
      */
-    private hasTreeData: boolean = true;
+    hasTreeData: boolean = true;
 
     constructor() { }
 
@@ -90,8 +90,8 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** 
-     * init tree data 
+    /**
+     * init tree data
      * @docs-private
      */
     initTree(treeData: TreeNode[], expanded: boolean) {
@@ -106,8 +106,8 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** 
-     * transfer tree to list 
+    /**
+     * transfer tree to list
      * @docs-private
      */
     transferTreeToList(treeData: TreeNode[]) {
@@ -123,8 +123,8 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** 
-     * listen the search-box search keyword suggest event 
+    /**
+     * listen the search-box search keyword suggest event
      * @docs-private
      */
     searchSuggestion(event: string) {
@@ -137,8 +137,8 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** 
-     * get matched keyword the suggest tree-node 
+    /**
+     * get matched keyword the suggest tree-node
      * @docs-private
      */
     getSuggestionNodes(event: string) {
@@ -178,24 +178,24 @@ export class SideBarComponent implements OnInit {
         return this.treeData && this.treeData.length ? true : false;
     }
 
-    /** 
-     * listen search-box clear keyword event 
+    /**
+     * listen search-box clear keyword event
      * @docs-private
      */
     clear(event: string) {
         this.search(event);
     }
 
-    /** 
-     * listen tree-root refresh tree event 
+    /**
+     * listen tree-root refresh tree event
      * @docs-private
      */
     refreshTree() {
         this.search();
     }
 
-    /** 
-     * listen search-box filter tree-node event 
+    /**
+     * listen search-box filter tree-node event
      * @docs-private
      */
     search(event?: string) {
@@ -236,8 +236,8 @@ export class SideBarComponent implements OnInit {
         this.hasTreeData = this.checkTreeData();
     }
 
-    /** 
-     * find all the tree nodes associated with the key words 
+    /**
+     * find all the tree nodes associated with the key words
      * @docs-private
      */
     searchNodes(node: TreeNode) {
@@ -257,8 +257,8 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** 
-     * get tree-node parent node 
+    /**
+     * get tree-node parent node
      * @docs-private
      */
     getParentNode(parent: TreeNodeParent): TreeNode | undefined {
@@ -269,8 +269,8 @@ export class SideBarComponent implements OnInit {
         return parentNode;
     }
 
-    /** 
-     * push matched keyword search node into _listSearchNodes 
+    /**
+     * push matched keyword search node into _listSearchNodes
      * @docs-private
      */
     setSearchNodes(node: TreeNode) {
@@ -279,8 +279,8 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** 
-     * judge in _listSearchNodes has repeat node or not 
+    /**
+     * judge in _listSearchNodes has repeat node or not
      * @docs-private
      */
     isExistRepetition(targetNode: TreeNode) {
@@ -299,8 +299,8 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** 
-     * get root nodes 
+    /**
+     * get root nodes
      * @docs-private
      */
     getRootNodes(rootNodes: TreeNode[]) {
@@ -309,8 +309,8 @@ export class SideBarComponent implements OnInit {
         });
     }
 
-    /** 
-     * render filtered tree-node 
+    /**
+     * render filtered tree-node
      * @docs-private
      */
     renderSelectedNode(rootNode: TreeNode, targetNode: TreeNode) {
@@ -331,15 +331,15 @@ export class SideBarComponent implements OnInit {
         }
     }
 
-    /** 
-     * throw the navigation click event out 
+    /**
+     * throw the navigation click event out
      * @docs-private
      */
     nodeSelect(event) {
         this.onNavi.emit(event);
     }
 
-    /** 
+    /**
      * fold or unfold side-bar
      * @docs-private
      */

@@ -1,9 +1,9 @@
 import {
-    Component, 
+    Component,
     ChangeDetectionStrategy
 } from '@angular/core';
 
-import {dataSideBar} from '../side-bar-test-data';
+import { dataSideBar } from '../side-bar-test-data';
 
 @Component({
     selector: 'demo-side-bar-basic',

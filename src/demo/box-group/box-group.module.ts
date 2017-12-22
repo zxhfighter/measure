@@ -12,6 +12,7 @@ import { RadioDemo } from './radio/radio';
 import { CheckboxGroupDemo } from './checkbox-group/checkbox-group';
 import { RadioGroupDemo } from './radio-group/radio-group';
 import { BoxGroupFormDemo } from './form/box-group-form';
+import { BoxGroupDynamicDemo } from './dynamic/box-group-dynamic';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { BoxGroupFormDemo } from './form/box-group-form';
         RadioDemo,
         CheckboxGroupDemo,
         RadioGroupDemo,
-        BoxGroupFormDemo
+        BoxGroupFormDemo,
+        BoxGroupDynamicDemo
     ],
     providers: [],
     exports: []

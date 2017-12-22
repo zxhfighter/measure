@@ -18,8 +18,8 @@ import { InputDemo } from './input';
 import { StepDemo } from './step';
 import { TableDemo } from './table';
 import { TooltipDemo } from './tooltip';
-import { DemoPage } from './page';
-import { DemoSchedule } from './schedule';
+import { PageDemo } from './page';
+import { ScheduleDemo } from './schedule';
 import { TextareaDemo } from './textarea';
 import { TextLineDemo } from './text-line';
 
@@ -61,8 +61,8 @@ export const appRoutes: Routes = [
     { path: 'tooltip', component: TooltipDemo },
     { path: 'textarea', component: TextareaDemo },
     { path: 'table', component: TableDemo },
-    { path: 'page', component: DemoPage },
-    { path: 'schedule', component: DemoSchedule },
+    { path: 'page', component: PageDemo },
+    { path: 'schedule', component: ScheduleDemo },
     { path: 'text-line', component: TextLineDemo },
 
     { path: 'search-box', component: SearchBoxDemo },

@@ -2,7 +2,7 @@ import {
     Component, Input, Output, EventEmitter,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
-import { SelectConfig } from "../select/select.config";
+import { SelectConfig } from '../select/select.config';
 
 @Component({
     selector: 'nb-page',

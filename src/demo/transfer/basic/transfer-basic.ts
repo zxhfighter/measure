@@ -25,6 +25,6 @@ export class TransferBasicDemo {
     disabled = true;
 
     getValue(event) {
-        console.log(event)
+        console.log(event);
     }
 }

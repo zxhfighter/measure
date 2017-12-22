@@ -54,62 +54,62 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     /** suggest search event */
     @Output() onSearchSuggestion = new EventEmitter();
 
-    /** 
-     * search-box type: either 'ico' or 'btn' 
+    /**
+     * search-box type: either 'ico' or 'btn'
      * @default 'ico'
      */
     @Input() type: SEARCH_TYPE = 'ico';
 
-    /** 
+    /**
      * search-box size, there three default size: 'long' | 'default' | 'short'
      * @default 'default'
      */
     @Input() size: SIZE = 'default';
 
-    /** 
-     * Whether the search-box is suggest search: either true or false 
+    /**
+     * Whether the search-box is suggest search: either true or false
      * @default 'false'
      */
     @Input() isSuggestion: IS_SUGGESTION = 'false';
 
-    /** 
-     * search-box default placeholder 
+    /**
+     * search-box default placeholder
      * @default '按关键词搜索'
      */
     @Input() placeholder: string = '按关键词搜索';
 
-    /** 
-     * Whether the search-box is disabled  
+    /**
+     * Whether the search-box is disabled
      * @default false
      */
     @Input() disabled: boolean = false;
 
-    /** 
-     * search-box value 
+    /**
+     * search-box value
      * @default ''
      */
     @Input() searchValue: string = '';
 
-    /** 
-     * search-box suggest search value 
+    /**
+     * search-box suggest search value
      * @default []
      */
     @Input() suggestionValue: Array<string> = [];
 
-    /** 
-     * init suggest search region is not open 
+    /**
+     * init suggest search region is not open
      * @docs-private
      */
     isOpen: boolean = false;
 
-    /** 
-     * Stream of viewport change|scroll events. 
+    /**
+     * Stream of viewport change|scroll events.
      * @docs-private
      */
     _change: Observable<Event>;
 
-    /** 
-     * Subscription to viewport resize|scroll events. 
+    /**
+     * Subscription to viewport resize|scroll events.
      * @docs-private
      */
     _resizeSubscription = Subscription.EMPTY;
@@ -176,7 +176,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     /**
      * get search-box class
-     * @param className 
+     * @param className
      * @docs-private
      */
     getClassName(className: string) {
@@ -193,15 +193,15 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         return throttleTime > 0 ? this._change.pipe(auditTime(throttleTime)) : this._change;
     }
 
-    /** 
-     * position suggestion layer 
+    /**
+     * position suggestion layer
      * @docs-private
      */
     positionSuggestionLayer(self) {
         let elLayer = self.el.nativeElement.getElementsByClassName('nb-search-box-suggestion-layer');
         if (elLayer.length) {
             /**
-             * 156 = 36 + 110 + 10 
+             * 156 = 36 + 110 + 10
              * @docs-private
              */
             let pos = window.scrollY + window.innerHeight - self.el.nativeElement.offsetTop - 156 > 0
@@ -226,8 +226,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this._composing = false;
     }
 
-    /** 
-     * listen keyword input in search-box 
+    /**
+     * listen keyword input in search-box
      * @docs-private
      */
     onInputValue() {
@@ -241,8 +241,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         }
     }
 
-    /** 
-     * clear keyword in search-box 
+    /**
+     * clear keyword in search-box
      * @param ipt
      * @docs-private
      */
@@ -253,8 +253,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.onClear.emit(this.searchValue);
     }
 
-    /** 
-     * search use keyword event 
+    /**
+     * search use keyword event
      * @docs-private
      */
     search() {
@@ -262,8 +262,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.onSearch.emit(this.searchValue);
     }
 
-    /** 
-     * click select suggest search value 
+    /**
+     * click select suggest search value
      * @docs-private
      */
     selectSuggestionValue(suggestionItem: string) {

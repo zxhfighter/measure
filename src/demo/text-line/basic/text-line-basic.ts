@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./text-line-basic.less']
 })
 
-export class TextLineBasicDemo { 
+export class TextLineBasicDemo {
     disabled = false;
-    value = "fadsfaf";
+    value = 'fadsfaf';
 }
