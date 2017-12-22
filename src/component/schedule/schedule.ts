@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
-import { SelectConfig } from "../select/select.config";
+import { SelectConfig } from '../select/select.config';
 
 @Component({
     selector: 'nb-schedule',
@@ -80,7 +80,9 @@ export class ScheduleComponent implements OnInit {
         this.schedules = Array(169).fill(0);
         this.weekSelect = Array(7).fill(0);
         this.layerTime = Array(168).fill(0);
-        for (var n = 0; n < 25; n++) this.hours[n] = n;
+        for (let n = 0; n < 25; n++) {
+            this.hours[n] = n;
+        }
     }
     ngOnInit() {
         for (let i in this.selected) {
@@ -238,7 +240,7 @@ export class ScheduleComponent implements OnInit {
             // let observable = Observable.fromEvent(event.target, 'mouseover')
             // .debounceTime(10)
             // .subscribe(() => this.preSelect(i, j));
-            this.preSelect(i, j)
+            this.preSelect(i, j);
         }
     }
     /**

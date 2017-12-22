@@ -1,8 +1,8 @@
-<input 
+<input
     nb-input
     theme="default"
     #searchInput
-    type="text" 
+    type="text"
     class="nb-search-box-input"
     [size]="_sizeIpt"
     [placeholder]="placeholder"
@@ -13,7 +13,7 @@
     (keyup)="onInputValue()">
 <div class="nb-search-box-operate">
     <div class="nb-search-box-icons">
-        <button 
+        <button
             *ngIf="searchValue.length > 0"
             nb-button
             theme="transparent"
@@ -23,20 +23,20 @@
             [disabled]="disabled">
             <i class="iconfont icon-close"></i>
         </button>
-        <button 
-            *ngIf="type==='ico'" 
+        <button
+            *ngIf="type==='ico'"
             nb-button
             theme="transparent"
-            class="nb-search iconfont icon-search" 
+            class="nb-search iconfont icon-search"
             (click)="search()"
             [size]="_sizeBtn"
             [disabled]="disabled">
             <i class="iconfont icon-search"></i>
         </button>
-        <button 
-            *ngIf="type==='btn'" 
-            nb-button 
-            theme="primary" 
+        <button
+            *ngIf="type==='btn'"
+            nb-button
+            theme="primary"
             (click)="search()"
             [size]="_sizeBtn"
             [disabled]="disabled">
@@ -46,9 +46,9 @@
 </div>
 <div [hidden]="isSuggestion === 'false' || !isOpen" class="nb-search-box-suggestion-layer">
     <ul class="nb-search-box-suggestion-list">
-        <li 
-            *ngFor="let item of suggestionValue" 
-            class="nb-search-box-suggestion-item" 
+        <li
+            *ngFor="let item of suggestionValue"
+            class="nb-search-box-suggestion-item"
             (click)="selectSuggestionValue(item)">
             {{ item }}
         </li>

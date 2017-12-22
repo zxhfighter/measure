@@ -24,8 +24,8 @@ import { TreeComponent } from './tree';
 })
 export class TreeNodeComponent implements OnInit {
 
-    /** 
-     * input tree-node value 
+    /**
+     * input tree-node value
      * @docs-private
      */
     @Input() node: TreeNode;
@@ -34,16 +34,16 @@ export class TreeNodeComponent implements OnInit {
 
     ngOnInit() { }
 
-    /** 
-     * listen tree-node click event 
+    /**
+     * listen tree-node click event
      * @docs-private
      */
     onNodeClick() {
         this.tree.onNodeClick(this.node);
     }
 
-    /** 
-     * fold or unfold tree-node event 
+    /**
+     * fold or unfold tree-node event
      * @docs-private
      */
     toggle(event: Event) {

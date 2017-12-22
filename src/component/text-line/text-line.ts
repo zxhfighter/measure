@@ -42,30 +42,32 @@ const TEXTLINE_VALUE_ACCESSOR = {
 })
 export class TextLineComponent implements OnInit, ControlValueAccessor {
 
-    /** 
-     * text-line value 
+    /**
+     * text-line value
      * @default ''
      */
     @Input() value: string = '';
 
-    /** 
-     * order dom 
+    /**
+     * order dom
      * @docs-private
      */
     domOrder: string;
-    /** 
-     * content dom 
+
+    /**
+     * content dom
      * @docs-private
      */
     domContent: any;
-    /** 
-     * order content 
+
+    /**
+     * order content
      * @docs-private
      */
     txtOrder: string = '';
 
-    /** 
-     * Whether the text-line is disabled  
+    /**
+     * Whether the text-line is disabled
      * @default false
      */
     @OnChange(true)
@@ -87,7 +89,7 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
         this.computeLine(value.length, objTxtOrder[0]);
     }
 
-    /** 
+    /**
      * in text-line content region input string
      * @docs-private
      */
@@ -101,8 +103,8 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
         this._markForCheck();
     }
 
-    /** 
-     * compute text-line content how many line 
+    /**
+     * compute text-line content how many line
      * @docs-private
      */
     computeLine(n, txtOrder) {
@@ -117,8 +119,8 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
         this.txtOrder = '';
     }
 
-    /** 
-     * listen text-line content region scroll event 
+    /**
+     * listen text-line content region scroll event
      * @docs-private
      */
     scrollHandler(event, txtOrder) {

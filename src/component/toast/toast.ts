@@ -1,5 +1,5 @@
-import {Optional, Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation} from '@angular/core';
-import {ToastConfig, ToastDataFilled} from './toast.config';
+import { Optional, Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { ToastConfig } from './toast.config';
 
 @Component({
     selector: 'nb-toast',

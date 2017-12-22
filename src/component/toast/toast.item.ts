@@ -7,9 +7,9 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef
 } from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/animations';
-import {ToastComponent} from './toast';
-import {ToastConfig, ToastDataFilled} from './toast.config';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ToastComponent } from './toast';
+import { ToastDataFilled } from './toast.config';
 
 @Component({
     selector: 'nb-toast-item',

@@ -3,9 +3,10 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
-import moment from 'moment';
-
+import * as momentLib from 'moment';
 import { OnChange } from '../core/decorators';
+
+const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
 
 /** calendar show mode */
 export type CalendarMode = 'calendar' | 'year' | 'month';

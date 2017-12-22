@@ -10,7 +10,7 @@ import {
 })
 
 export class SearchBoxBasicDemo {
-    
+
     searchValue = 'qazwsx';
 
     search(value) {

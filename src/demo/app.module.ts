@@ -45,8 +45,8 @@ import {
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
-import { DemoPage } from './page';
-import { DemoSchedule } from './schedule';
+import { PageDemo } from './page';
+import { ScheduleDemo } from './schedule';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
 import { OverlayDemo } from './overlay';
@@ -122,8 +122,8 @@ const demoModules = [
 @NgModule({
     declarations: [
         AppComponent,
-        DemoPage,
-        DemoSchedule,
+        PageDemo,
+        ScheduleDemo,
         CodeBoxDemo,
         OverlayDemo,
         GuideComponentDemo,

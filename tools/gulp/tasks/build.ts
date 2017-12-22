@@ -154,14 +154,16 @@ task('build:bundle', async () => {
             '@angular/common',
             '@angular/forms',
             '@angular/router',
-            '@angular/http'
+            '@angular/http',
+            'moment',
+            'echarts',
+            'prismjs'
         ],
         plugins: [
             rollupNodeResolutionPlugin(),
             rollupCommonjsPlugin({
                 include: [
-                    'node_modules/rxjs/**',
-                    'node_modules/moment/**'
+                    'node_modules/rxjs/**'
                 ]
             })
         ]
@@ -176,7 +178,10 @@ task('build:bundle', async () => {
             '@angular/common': 'ng.common',
             '@angular/forms': 'ng.forms',
             '@angular/router': 'ng.router',
-            '@angular/http': 'ng.http'
+            '@angular/http': 'ng.http',
+            'moment': 'moment',
+            'echarts': 'echarts',
+            'prismjs': 'prismjs'
         },
         file: join(config.umdPath, `${config.moduleName}.umd.js`),
         banner: `/** Copyright (c) BAIDU INC. */`,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastService } from '../../../component';
 
-interface msgData {
+interface MsgData {
     type: 'success' | 'info' | 'warn' | 'error' | string;
     message: string;
     duration?: number;
@@ -13,7 +13,7 @@ interface msgData {
     styleUrls: ['./toast-href.less']
 })
 export class ToastHrefDemo {
-    private messages: msgData[] = [
+    private messages: MsgData[] = [
         {
             type: 'success',
             message: '恭喜您，您的请求已成功处理',
@@ -48,9 +48,9 @@ export class ToastHrefDemo {
 
     showToast(type: string) {
         if (type === 'all') {
-            this.messages.forEach(({type, message, duration}) => {
-                this.toastService.create(type, message, {
-                    duration: duration
+            this.messages.forEach((item) => {
+                this.toastService.create(item.type, item.message, {
+                    duration: item.duration
                 });
             });
         }

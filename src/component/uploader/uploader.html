@@ -4,9 +4,9 @@
     <div class="nb-uploader-image">
         <ul *ngIf="files.length" class="image-list">
             <li *ngFor="let file of files" class="image-item">
-                <div class="img-progress-start {{progressMode}}" [class.hidden]="file.state!=='uploading'">
+                <div class="img-progress-start {{ progressMode }}" [class.hidden]="file.state!=='uploading'">
                     <span *ngIf="progressMode==='text'">
-                        {{file.progress || '正在上传中'}}<label [class.hidden]="!file.progress">%</label>
+                        {{ file.progress || '正在上传中' }}<label [class.hidden]="!file.progress">%</label>
                     </span>
                     <span *ngIf="progressMode==='bar'">
                         <nb-progress-bar [value]="file.progress" [isSuccess]="isSuccess"></nb-progress-bar>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="img-progress-finish" [class.hidden]="file.state!=='success'">
                     <span class="photo_bigger_mark">
-                        <img src="{{file.url}}" />
+                        <img src="{{ file.url }}" />
                     </span>
                     <div class="photo-control">
                         <label for="fileInput" class="edit_mark" (click)="onReplaceFile(file)">重新上传</label>
@@ -33,11 +33,11 @@
             <span class="iconfont icon-plus_lg"></span>
             <input id="fileInput" (change)="onFileSelect($event)"
                 type="file" multiple="multiple" name="myFile" class="fileinput"
-                accept="{{accept}}">
+                accept="{{ accept }}">
         </div>
         <ul class="nb-uploader-msg">
             <li *ngFor="let msg of msgs">
-                <span class="ui-messages-summary">{{msg.message}}</span>
+                <span class="ui-messages-summary">{{ msg.message }}</span>
             </li>
         </ul>
     </div>
@@ -51,12 +51,12 @@
             <button nb-button theme="default"><i class="fa fa-upload"></i> 选择文件</button>
             <input (change)="onFileSelect($event)"
                 type="file" multiple="multiple" name="myFile" class="fileinput"
-                accept="{{accept}}">
+                accept="{{ accept }}">
         </div>
 
         <ul class="nb-uploader-msg">
             <li *ngFor="let msg of msgs">
-                <span class="ui-messages-summary">{{msg.message}}</span>
+                <span class="ui-messages-summary">{{ msg.message }}</span>
             </li>
         </ul>
 
@@ -65,7 +65,7 @@
                     <div class="file-progress-start"
                         [class.hidden]="file.state!=='uploading'">
                         <div *ngIf="progressMode==='text'">
-                            {{file.progress || '正在上传中'}}<label [class.hidden]="!file.progress">%</label>
+                            {{ file.progress || '正在上传中' }}<label [class.hidden]="!file.progress">%</label>
                         </div>
                         <div *ngIf="progressMode==='bar'" class="file-progress-bar">
                             <nb-progress-bar [value]="file.progress" [isSuccess]="isSuccess"></nb-progress-bar>
@@ -73,7 +73,7 @@
                         <i class="iconfont icon-close" title="Close" (click)="onCancelFile(file)"></i>
                     </div>
                     <div class="file-progress-error" [class.hidden]="file.state!=='error'">
-                        <span class="progress-error-msg">{{file.name}}&nbsp;&nbsp;上传失败</span>
+                        <span class="progress-error-msg">{{ file.name }}&nbsp;&nbsp;上传失败</span>
                         <span class="progress-error-reupload" (click)="onReuploadFile(file)">
                             <i class="iconfont icon-redo"></i>
                             重试
@@ -82,7 +82,7 @@
                     </div>
                     <div class="file-progress-finish" [class.hidden]="file.state!=='success'">
                         <span class="iconfont icon-paperclip"></span>
-                        <span class="file-name">{{file.name}}</span>
+                        <span class="file-name">{{ file.name }}</span>
                         <i class="iconfont icon-close" title="Close" (click)="onRemoveFile(file)"></i>
                     </div>
             </li>

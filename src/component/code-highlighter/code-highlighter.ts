@@ -3,10 +3,10 @@ import {
     ViewEncapsulation, ChangeDetectionStrategy, Renderer2
 } from '@angular/core';
 
-import * as prism from 'prismjs';
+import * as prismLib from 'prismjs';
 import { OnChange } from '../core/decorators';
 
-declare var prism: any;
+const prism: any = (prismLib as any).default ? (prismLib as any).default : prismLib;
 
 /**
  * Code Highlighter Component

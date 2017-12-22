@@ -3,11 +3,13 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
-import moment from 'moment';
+import * as momentLib from 'moment';
 import { Moment } from 'moment';
 import 'moment/locale/zh-cn';
-
 import { OnChange } from '../core/decorators';
+
+const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
+
 
 /** day item cell type */
 export interface DayItem {
@@ -224,7 +226,7 @@ export class MonthViewComponent implements OnInit {
         }
 
         const weeks: WeekItem[] = [];
-        const rawDate = this._resetTime(d);
+        const rawDate = this._resetTime(d || moment());
 
         // get the first day of the first week of the month
         const start = rawDate.clone().date(1).day(this.firstDayOfWeek - 7);

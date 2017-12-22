@@ -1,12 +1,12 @@
 import {
-    Component, 
-    ViewEncapsulation, 
+    Component,
+    ViewEncapsulation,
     OnInit
 } from '@angular/core';
 
-import { 
-    FormBuilder, 
-    FormGroup 
+import {
+    FormBuilder,
+    FormGroup
 } from '@angular/forms';
 
 @Component({
@@ -19,7 +19,7 @@ import {
 export class TextLineFormDemo implements OnInit {
 
     form: FormGroup;
-    
+
     disabled = false;
     value = 'fadsfaf';
 
@@ -28,12 +28,12 @@ export class TextLineFormDemo implements OnInit {
     }
 
     ngOnInit() {
-        
+
         this.form = this.fb.group({
             textline: [
-                {value: 'qazwsx', disabled: false}
+                { value: 'qazwsx', disabled: false }
             ]
         });
-        
+
     }
 }

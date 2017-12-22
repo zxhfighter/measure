@@ -96,22 +96,22 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     /**
      * The hands init position
      */
-    private hands: Hand[] = [];
+    hands: Hand[] = [];
 
     /**
      * Range of the slider
      */
-    private limitMove: number;
+    limitMove: number;
 
     /**
      * Selected of the tracker
      */
-    private trackerSelected: number;
+    trackerSelected: number;
 
     /**
      * Position of the tracker
      */
-    private trackerPos: number;
+    trackerPos: number;
 
     /**
      * Dragging hands copy

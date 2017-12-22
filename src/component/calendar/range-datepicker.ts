@@ -5,9 +5,11 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Moment } from 'moment';
-import moment from 'moment';
+import * as momentLib from 'moment';
 
 import { OnChange } from '../core/decorators';
+
+const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.

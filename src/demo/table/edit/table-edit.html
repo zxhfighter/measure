@@ -15,7 +15,7 @@
 
         <ng-template ngFor let-item [ngForOf]="nbTable1.datasource">
             <tr nb-row>
-                <td #td="nbTd" [editing]="td.editing" nb-td *ngFor="let field of fields;index as i" [editable]="field.editable" (edit)="onEdit(td)" [style.textAlign]="field.align || 'left'">
+                <td nb-td #td="nbTd" [editing]="td.editing" *ngFor="let field of fields;index as i" [editable]="field.editable" (edit)="onEdit(td)" [style.textAlign]="field.align || 'left'">
 
                     <ng-container [ngSwitch]="field.name">
 
