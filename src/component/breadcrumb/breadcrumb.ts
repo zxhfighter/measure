@@ -32,7 +32,7 @@ export type BreadcrumbItem = {
     host: {
         'class': 'nb-widget nb-breadcrumb'
     },
-    exportAs: 'xBreadcrumb'
+    exportAs: 'nbBreadcrumb'
 })
 export class BreadcrumbComponent {
 

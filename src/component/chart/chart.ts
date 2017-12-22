@@ -20,7 +20,7 @@ const echarts: any = (echartsLib as any).default ? (echartsLib as any).default :
     host: {
         'class': 'nb-widget nb-chart'
     },
-    exportAs: 'xChart'
+    exportAs: 'nbChart'
 })
 export class ChartComponent implements AfterViewInit, OnDestroy {
 

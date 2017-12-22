@@ -33,7 +33,8 @@ export interface CarouselItem {
         'class': 'nb-widget nb-carousel',
         '(mouseover)': '_onMouseOver()',
         '(mouseout)': '_onMouseOut()'
-    }
+    },
+    exportAs: 'nbCarousel'
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy {
 
