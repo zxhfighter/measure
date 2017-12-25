@@ -1,0 +1,25 @@
+<form nb-form [nzLayout]="'horizontal'" [formGroup]="validateForm" [style.width]="'500px'">
+    <div nb-form-item>
+        <div nb-form-control nbHasFeedback [nbValidateStatus]="validateForm.controls.userName">
+            <input nb-input formControlName="userName" type="text" placeholder="请输入用户名">
+            <div nb-form-explain *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">用户名必须填写</div>
+        </div>
+    </div>
+    <div nb-form-item>
+        <div nb-form-control nbHasFeedback [nbValidateStatus]="validateForm.controls.password">
+            <input nb-input formControlName="password" type="password" placeholder="请输入密码">
+            <div nb-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">密码必须填写</div>
+        </div>
+    </div>
+    <div nb-form-item>
+        <div nb-form-control>
+            <nb-checkbox formControlName="remember">记住密码</nb-checkbox>
+
+        </div>
+    </div>
+    <div nb-form-item>
+        <div nb-form-control>
+            <button nb-button [disabled]="!validateForm.valid" theme="primary">登录</button>
+        </div>
+    </div>
+</form>

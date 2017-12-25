@@ -39,7 +39,8 @@ import {
     SideBarModule,
     AccordionModule,
     UploaderModule,
-    TransferModule
+    TransferModule,
+    FormModule
 } from '../component';
 
 import { AppComponent } from './app.component';
@@ -84,6 +85,7 @@ import { CodeHighlighterDemoModule } from './code-highlighter';
 import { SliderDemoModule } from './slider';
 import { TabsDemoModule } from './tabs';
 import { TooltipDemoModule } from './tooltip';
+import { FormDemoModule } from './form';
 
 const demoModules = [
     InputDemoModule,
@@ -115,7 +117,8 @@ const demoModules = [
     TooltipDemoModule,
     DialogDemoModule,
     AccordionDemoModule,
-    UploaderDemoModule
+    UploaderDemoModule,
+    FormDemoModule
 ];
 
 @NgModule({
@@ -170,6 +173,7 @@ const demoModules = [
         AccordionModule,
         UploaderModule,
         TransferModule,
+        FormModule,
         // demos
         ...demoModules,
         RouterModule.forRoot(appRoutes, { useHash: true })
