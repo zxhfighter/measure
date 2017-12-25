@@ -13,6 +13,7 @@ import { SliderService } from './slider.service';
 import { TooltipDirective } from '../../component/tooltip/tooltip';
 
 import * as _ from 'lodash';
+import { OnChange } from '../core/decorators';
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -39,6 +40,7 @@ const SLIDER_VALUE_ACCESSOR = {
 })
 
 export class SliderComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+    @OnChange(true)
     @Input() input: boolean = false;
 
     /**
@@ -54,11 +56,13 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     /**
      * If the slider has double hands
      */
+    @OnChange(true)
     @Input() range: boolean = false;
 
     /**
      * Whether the slider is disabled or not
      */
+    @OnChange(true)
     @Input() disabled: boolean = false;
 
     /**
@@ -116,7 +120,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     /**
      * Dragging hands copy
      */
-    private sliderHands;
+    private sliderHands: any;
 
     /**
      * Current dragging hand
@@ -124,8 +128,14 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     private _hand: SliderHandComponent;
 
     /**
+     * Mark the current hand index
+     */
+    private _currentHand: number = 1;
+
+    /**
      * If move one hand over the other
      */
+    @OnChange(true)
     private _handRange: boolean = false;
 
     /**
@@ -161,6 +171,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
 
     ngAfterViewInit() {
         setTimeout(() => {
+            // this.sliderHands = this.afterView();
             this.afterView();
         }, 0);
     }
@@ -170,10 +181,11 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
      * so keep a init order here
      */
     afterView() {
-        let first = _.clone(this._hands.first);
-        let last = _.clone(this._hands.last);
+        // let first = _.clone(this._hands.first);
+        // let last = _.clone(this._hands.last);
 
-        let sliderHands = this.sliderHands = { first, last };
+        // return { first, last };
+        this.sliderHands = _.clone(this._hands);
     }
 
     /**
@@ -186,7 +198,8 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
                 this.value[0] = this.value[1] = this.min;
             }
             else {
-                (<number[]>this.value).map((val, i, arr) => arr[i] = this.valueCheck(val, this.min));
+                (<number[]>this.value).map((val, i, arr) => arr[i]
+                    = this.valueCheck(val, this.min));
             }
         }
         else {
@@ -239,7 +252,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
             this.hands.push({initPos: this.trackerSelected});
         }
 
-        this._markForCheck();
+        this.emitChange();
     }
 
     /**
@@ -267,8 +280,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         this.value = calculated;
         let value = this.trackerSelected = this.getWidthFromValue(calculated);
         this.sliderHands.first.updateStyle(value);
-        this.change.emit(this.value);
-        this._markForCheck();
+        this.emitChange();
     }
 
     /**
@@ -288,13 +300,16 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
 
             this.trackerSelected = move;
             this.trackerPos = hands[0].initPos;
-            this.change.emit(this.value);
-
+            this.emitChange();
             return;
         }
 
         this.value = this.service.getValue(info.endPos, this.step, this.min, this.max);
         this.trackerSelected = hands[0].initPos = info.endPos;
+        this.emitChange();
+    }
+
+    emitChange() {
         this.change.emit(this.value);
         // 更新form model
         this._markForCheck();
@@ -316,7 +331,8 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
             initPos: endPos,
             endPos: endPos
         });
-        let hand = this._hand || this.sliderHands.first;
+        let hand = this._hand || this.sliderHands.last
+        ;
         hand.updateStyle(endPos);
     }
 
@@ -326,37 +342,64 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
      * @param endX 当前hand移动到的新位置
      * @param scope Scope 两个hand的原始位置
      */
-    getNearest(target: number, endX: number, scope: Scope) {
+    getNearest(initX: number, endX: number, scope: Scope) {
         let x0 = scope[0].initPos;
         let x1 = scope[1].initPos;
-        const hands = this.sliderHands;
+        let hands = this.sliderHands;
 
-        if (Math.abs((target - x0)) < Math.abs((target - x1))) {
+        if (x0 === x1) {
+            if (endX > x0) {
+                scope[0].initPos = x0;
+                scope[1].initPos = endX;
+            }
+            else {
+                scope[0].initPos = endX;
+                scope[1].initPos = x0;
+            }
+            if (!this._currentHand) {
+                if (endX > x0) {
+                    this._handRange = !this._handRange;
+                }
+            } else {
+                if (endX < x0) {
+                    this._handRange = !this._handRange;
+                }
+            }
+            return;
+        }
+
+        if (Math.abs((initX - x0)) < Math.abs((initX - x1))) {
+            // move x0
             if (endX < x1) {
                 scope[0].initPos = (endX);
                 this._handRange
                     ? (this._hand = hands.last)
                     : (this._hand = hands.first);
-
+                this._currentHand = 0;
             }
             else {
                 scope[0].initPos = (x1);
                 scope[1].initPos = (endX);
                 this._handRange = !this._handRange;
+                this._currentHand = 1;
             }
+
         }
 
         else {
+            // move x1
             if (endX > x0) {
                 scope[1].initPos = (endX);
                 this._handRange
                     ? (this._hand = hands.first)
                     : (this._hand = hands.last);
+                this._currentHand = 1;
             }
             else {
                 scope[0].initPos = (endX);
                 scope[1].initPos = (x0);
                 this._handRange = !this._handRange;
+                this._currentHand = 0;
             }
         }
     }

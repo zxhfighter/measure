@@ -19,7 +19,7 @@ import { OnChange } from '../core/decorators';
 @Component({
     selector: 'nb-slider-hand',
     template: ` <div #sliderHand class="nb-slider-hand" [nbTooltip]="value"
-                hasArrow="false" [placement]="placement" [ngStyle]="style"></div>`,
+                hasArrow="false" [placement]="placement"></div>`,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
@@ -78,8 +78,6 @@ export class SliderHandComponent implements OnInit {
 
     @ViewChild(TooltipDirective) tooltip: TooltipDirective;
 
-    style: object = {};
-
     constructor(
         private render: Renderer2,
         private service: SliderService
@@ -89,6 +87,7 @@ export class SliderHandComponent implements OnInit {
 
     ngOnInit() {
         this.updateStyle(this.initPos);
+        this.placement = this.orientation ? 'top' : 'right';
 
         if (this.disabled) {
             return;
@@ -97,7 +96,6 @@ export class SliderHandComponent implements OnInit {
             throw new Error('step需能被（max-min）整除');
         }
 
-        this.placement = this.orientation ? 'top' : 'right';
         this.bindEvent();
     }
 
@@ -173,10 +171,8 @@ export class SliderHandComponent implements OnInit {
                 }
                 endPos = initPos + move;
                 endPos = endPos > 0 ? endPos : 0;
-                // this.style[this.orientation ? 'left' : 'bottom'] = endPos;
                 me.updateStyle(endPos);
                 me.change.emit({ endPos, initPos });
-
             });
     }
 
@@ -187,13 +183,11 @@ export class SliderHandComponent implements OnInit {
     updateStyle(val: number) {
         const hand = this._hand.nativeElement as HTMLElement;
         let style = this.orientation ? 'left' : 'bottom';
-        // this.style[this.orientation ? 'left' : 'bottom'] = val;
         this.render.setStyle(hand, style, `${val}%`);
 
         // tooltip
         let value = this.service.getValue(val, this.step, this.min, this.max);
         this.value = `${value}`;
-        // this.style[this.orientation ? 'left' : 'bottom'] = value;
         this.tooltip.needReposition();
     }
 }
