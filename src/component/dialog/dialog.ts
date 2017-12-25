@@ -73,35 +73,47 @@ export class DialogComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.overlay.onHide.subscribe(() => this.removeMask());
+        this.overlay.onHide.subscribe(() => this._removeMask());
     }
 
     ngAfterViewInit() {
     }
 
+    /**
+     * 显示Tooltip
+     */
     open() {
         this.overlay.show();
         this.openHandler.emit();
 
         if (this.modalable) {
-            this.enableModality();
+            this._enableModality();
         }
     }
 
+    /**
+     * 关闭Tooltip
+     */
     close() {
         this.overlay.hide();
         this.closeHandler.emit();
 
-        this.removeMask();
+        this._removeMask();
     }
 
-    removeMask() {
+    /**
+     * 移除遮罩
+     */
+    _removeMask() {
         if (this.mask) {
             this.mask.remove();
             this.mask = null;
         }
     }
 
+    /**
+     * Dialog确定按钮的点击响应
+     */
     confirm() {
         this.confirmEvent.emit();
         this.close();
@@ -111,7 +123,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
     /**
      * 创建模态对话框的遮罩
      */
-    enableModality() {
+    _enableModality() {
         if (!this.mask) {
             this.mask = document.createElement('div');
             this.mask.className = 'nb-mask';
