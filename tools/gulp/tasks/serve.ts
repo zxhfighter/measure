@@ -19,7 +19,7 @@ const interceptor = require('../../../config/interceptor');
 const devConfigPath = join(config.webpackConfigPath, 'webpack.dev');
 const prodConfigPath = join(config.webpackConfigPath, 'webpack.prod');
 
-task('serve', sequenceTask('clean', ':serve'));
+task('serve', sequenceTask('clean', 'docs', ':serve'));
 
 task(':serve', () => {
     const devConfig = require(devConfigPath);
