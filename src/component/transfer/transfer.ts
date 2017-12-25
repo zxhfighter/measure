@@ -6,18 +6,41 @@ import {
     OnInit,
     AfterViewInit,
     ViewEncapsulation,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    forwardRef,
+    ChangeDetectorRef,
+    ElementRef,
+    Renderer2
 } from '@angular/core';
 
-import { TreeNode, TreeNodeParent } from './transfer-interface';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
+
+import {
+    TreeNode,
+    TreeNodeParent
+} from './transfer-interface';
 
 import { deepClone } from '../util/clone';
 
 /** default candidate list types */
-export type CANDIDATE_TYPE = 'tree' | 'table';
+export type CANDIDATE_TYPE = 'tree' | 'list';
 
 /** default selected list types */
 export type SELECTED_TYPE = 'tree' | 'path';
+
+/*
+ * Provider Expression that allows component to register as a ControlValueAccessor.
+ * This allows it to support [(ngModel)].
+ * @docs-private
+ */
+const TRANSFER_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => TransferComponent),
+    multi: true
+};
 
 @Component({
     selector: 'nb-transfer',
@@ -25,28 +48,45 @@ export type SELECTED_TYPE = 'tree' | 'path';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    providers: [TRANSFER_VALUE_ACCESSOR],
     host: {
         'class': 'nb-widget nb-transfer'
     },
     exportAs: 'nbTransfer'
 })
+
 export class TransferComponent implements OnInit, AfterViewInit {
-    
-    /** candidate list data */
-    @Input() candidateData: TreeNode[] = [];
-    /** selected list data */
-    @Input() selectedData: TreeNode[] = [];
-
-    /** candidate list type, default：‘tree’ */
-    @Input() candidateType: CANDIDATE_TYPE = 'tree';
-    /** selected list type, default：‘tree’ */
-    @Input() selectedType: SELECTED_TYPE = 'tree';
-
-    /** Whether the transfer is disabled */
-    @Input() disabled: boolean = false;
 
     /** get selected value event */
     @Output() getValue: EventEmitter<number[] | string[]> = new EventEmitter<number[] | string[]>();
+
+    /**
+     * candidate list data
+     * @default []
+     */
+    @Input() candidateData: TreeNode[] = [];
+    /**
+     * selected list data
+     * @default []
+     */
+    @Input() selectedData: TreeNode[] = [];
+
+    /**
+     * candidate list type, default：‘tree’
+     * @default 'tree'
+     */
+    @Input() candidateType: CANDIDATE_TYPE = 'tree';
+    /**
+     * selected list type, default：‘tree’
+     * @default 'tree'
+     */
+    @Input() selectedType: SELECTED_TYPE = 'tree';
+
+    /**
+     * Whether the transfer is disabled
+     * @default false
+     */
+    @Input() disabled: boolean = false;
 
     /**
      * original candidate data
@@ -63,12 +103,12 @@ export class TransferComponent implements OnInit, AfterViewInit {
      * all options count
      * @docs-private
      */
-    private candidateCount: number = 0;
+    candidateCount: number = 0;
     /**
      * all selected options count
      * @docs-private
      */
-    private selectedCount: number = 0;
+    selectedCount: number = 0;
 
     /**
      * candidate trans to list data
@@ -96,9 +136,13 @@ export class TransferComponent implements OnInit, AfterViewInit {
      * selected options's id as list
      * @docs-private
      */
-    private dataListSelected: Array<string> = [];
+    private value: Array<string> = [];
 
-    constructor() { }
+    constructor(
+        private _cd: ChangeDetectorRef,
+        private el: ElementRef,
+        private _render: Renderer2
+    ) { }
 
     ngOnInit() {
         this.initTree(this.candidateData, 'candidate');
@@ -113,10 +157,13 @@ export class TransferComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.getValue.emit(this.dataListSelected);
+        this.getValue.emit(this.value);
     }
 
-    /** set the show attribute to true */
+    /**
+     * set the show attribute to true
+     * @docs-private
+     */
     initTree(treeData: TreeNode[], mode: string) {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
@@ -129,7 +176,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** set the show attribute to false, for fitler */
+    /**
+     * set the show attribute to false, for fitler
+     * @docs-private
+     */
     transferTreeToList(treeData: TreeNode[], mode: string) {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
@@ -147,13 +197,19 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** init count */
+    /**
+     * init count
+     * @docs-private
+     */
     initCount() {
         this.candidateCount = 0;
         this.selectedCount = 0;
     }
 
-    /** calculate selected options count */
+    /**
+     * calculate selected options count
+     * @docs-private
+     */
     countOptsStateValue(tree: TreeNode[]) {
         if (tree.length) {
             tree.forEach((node: TreeNode) => {
@@ -170,17 +226,23 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** clear selected options's id as list */
+    /**
+     * clear selected options's id as list
+     * @docs-private
+     */
     clearDataListSelected() {
-        this.dataListSelected = [];
+        this.value = [];
     }
 
-    /** get selected options's id as list */
+    /**
+     * get selected options's id as list
+     * @docs-private
+     */
     getSelectedData(tree: TreeNode[]) {
         if (tree.length) {
             tree.forEach((node: TreeNode) => {
                 if (node.selectable && node.isSelected && this.hasChildren(node)) {
-                    this.dataListSelected.push(node.id);
+                    this.value.push(node.id);
                 }
                 if (node.children && node.children.length) {
                     this.getSelectedData(node.children);
@@ -189,7 +251,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** judge node whether have child */
+    /**
+     * judge node whether have child
+     * @docs-private
+     */
     hasChildren(node: TreeNode) {
         if (!node.children) {
             return true;
@@ -200,12 +265,18 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return false;
     }
 
-    /** clear search results */
+    /**
+     * clear search results
+     * @docs-private
+     */
     clearSearch(event: string, mode: string) {
         this.searchByKeyWord(event, mode);
     }
 
-    /** fitler candidate or selected list by key word */
+    /**
+     * fitler candidate or selected list by key word
+     * @docs-private
+     */
     searchByKeyWord(event: string, mode: string) {
 
         /**
@@ -250,7 +321,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** reset candidate or selected node list */
+    /**
+     * reset candidate or selected node list
+     * @docs-private
+     */
     resetNodeList(mode: string) {
         if (mode === 'candidate') {
             this._candidateNodeList = [];
@@ -262,7 +336,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.transferTreeToList(treeData, mode);
     }
 
-    /** reset candidate or selected list data */
+    /**
+     * reset candidate or selected list data
+     * @docs-private
+     */
     resetTreeData(mode: string) {
         let rootNodes: TreeNode[] = [];
         let nodeListSearched = mode === 'candidate' ? this._candidateSearchNodeList : this._selectedSearchNodeList;
@@ -275,7 +352,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return rootNodes;
     }
 
-    /** get node the searched by key word  */
+    /**
+     * get node the searched by key word
+     * @docs-private
+     */
     searchNodes(node: TreeNode, mode: string) {
         this.setSearchNodes(node, mode);
         if (node.parent) {
@@ -291,17 +371,23 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** get node's parent node  */
+    /**
+     * get node's parent node
+     * @docs-private
+     */
     getParentNode(parent: TreeNodeParent, mode): TreeNode | undefined {
         let parentNode: TreeNode | undefined;
         let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
-        parentNode =  nodeList.find((node: TreeNode) => {
+        parentNode = nodeList.find((node: TreeNode) => {
             return parent.id === node.id;
         });
         return parentNode;
     }
 
-    /** push filtered by word word node into xxSearchNodeList */
+    /**
+     * push filtered by word word node into xxSearchNodeList
+     * @docs-private
+     */
     setSearchNodes(node: TreeNode, mode) {
         if (mode === 'candidate') {
             if (!this.isExistRepetition(node, mode)) {
@@ -314,8 +400,11 @@ export class TransferComponent implements OnInit, AfterViewInit {
             }
         }
     }
-    
-    /** judge node whether have in xxSearchNodeList */
+
+    /**
+     * judge node whether have in xxSearchNodeList
+     * @docs-private
+     */
     isExistRepetition(targetNode: TreeNode, mode) {
         let nodeListSearched = mode === 'candidate' ? this._candidateSearchNodeList : this._selectedSearchNodeList;
         if (nodeListSearched.length === 0) {
@@ -329,14 +418,20 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** get target node root node */
+    /**
+     * get target node root node
+     * @docs-private
+     */
     getRootNodes(nodes: TreeNode[]) {
         return nodes.filter((node: TreeNode) => {
             return !node.parent;
         });
     }
 
-    /** render searched nodes */
+    /**
+     * render searched nodes
+     * @docs-private
+     */
     renderSearchNodes(root: TreeNode, node: TreeNode, mode: string) {
         if (root.id === node.id) {
             this.renderNode(root, mode);
@@ -352,7 +447,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** render searched node */
+    /**
+     * render searched node
+     * @docs-private
+     */
     renderNode(node: TreeNode, mode: string) {
         node.isExpanded = true;
         if (mode === 'candidate') {
@@ -363,7 +461,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** throw the node click event out */
+    /**
+     * throw the node click event out
+     * @docs-private
+     */
     transNode(event: TreeNode, mode: string) {
         let data = mode === 'selected' ? this.selectedData : this.candidateData;
         let chkVal = mode === 'selected' ? true : false;
@@ -387,10 +488,14 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.countOptsStateValue(this.candidateData);
         this.clearDataListSelected();
         this.getSelectedData(this.candidateData);
-        this.getValue.emit(this.dataListSelected);
+        this.getValue.emit(this.value);
+        this._markForCheck();
     }
 
-    /** get target node in xxNodeList */
+    /**
+     * get target node in xxNodeList
+     * @docs-private
+     */
     getTargetNode(compareNode: TreeNode, mode: string): TreeNode | undefined {
         let targetNode: TreeNode | undefined;
         let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
@@ -400,7 +505,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return targetNode;
     }
 
-    /** propagate down node 'isSelected' value */
+    /**
+     * propagate down node 'isSelected' value
+     * @docs-private
+     */
     propagateDown(node: TreeNode, chkVal: boolean) {
         if (node.selectable || (node.children && node.children.length)) {
             node.isSelected = chkVal;
@@ -412,7 +520,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** propagate up node 'isSelected' value */
+    /**
+     * propagate up node 'isSelected' value
+     * @docs-private
+     */
     propagateUp(node: TreeNode, chkVal: boolean, mode: string) {
         node.isSelected = chkVal;
         let nodeParent: TreeNode | undefined;
@@ -428,7 +539,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** render target node 'isExpanded' and 'isSelected' attribute */
+    /**
+     * render target node 'isExpanded' and 'isSelected' attribute
+     * @docs-private
+     */
     renderTargetNode(mode: string) {
         let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
         let rootNodes: TreeNode[] = [];
@@ -439,12 +553,15 @@ export class TransferComponent implements OnInit, AfterViewInit {
         return rootNodes;
     }
 
-    /** render target's root node and root's children the 'isExpanded' and 'isSelected' attribute */
+    /**
+     * render target's root node and root's children the 'isExpanded' and 'isSelected' attribute
+     * @docs-private
+     */
     renderTransTree(root: TreeNode, mode: string) {
         root.show = mode === 'candidate' ? true : root.isSelected;
-        if(mode === 'selected') {
+        if (mode === 'selected') {
             root.isExpanded = root.isSelected;
-        };
+        }
         if (root.children && root.children.length) {
             for (let child of root.children) {
                 this.renderTransTree(child, mode);
@@ -452,7 +569,10 @@ export class TransferComponent implements OnInit, AfterViewInit {
         }
     }
 
-    /** trans all options to Selected or not */
+    /**
+     * trans all options to Selected or not
+     * @docs-private
+     */
     transAll(mode: string, chkVal: boolean) {
         if (this.disabled) {
             return;
@@ -465,7 +585,7 @@ export class TransferComponent implements OnInit, AfterViewInit {
         if (mode === 'selected' && this.selectedCount === this.candidateCount) {
             return;
         }
-        
+
         let rootCandidateNodes: TreeNode[] = [];
         rootCandidateNodes = this.renderRootNodes(this.candidateData, mode, chkVal);
         this.candidateData = rootCandidateNodes;
@@ -478,10 +598,14 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.countOptsStateValue(this.candidateData);
         this.clearDataListSelected();
         this.getSelectedData(this.candidateData);
-        this.getValue.emit(this.dataListSelected);
+        this.getValue.emit(this.value);
+        this._markForCheck();
     }
 
-    /** render root nodes and root's children the 'isExpanded' and 'isSelected' attribute */
+    /**
+     * render root nodes and root's children the 'isExpanded' and 'isSelected' attribute
+     * @docs-private
+     */
     renderRootNodes(treeData: TreeNode[], mode: string, chkVal: boolean) {
         let rootNodes: TreeNode[] = this.getRootNodes(treeData);
         for (let root of rootNodes) {
@@ -489,5 +613,57 @@ export class TransferComponent implements OnInit, AfterViewInit {
             this.renderTransTree(root, mode);
         }
         return rootNodes;
+    }
+
+    /**
+     * The method to be called in order to update ngModel.
+     * Now `ngModel` binding is not supported in multiple selection mode.
+     */
+    private _onModelChange: Function;
+
+    /**
+     * Registers a callback that will be triggered when the value has changed.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On change callback function.
+     */
+    registerOnChange(fn: Function) {
+        this._onModelChange = fn;
+    }
+
+    /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
+    private _onTouch: Function;
+
+    /**
+     * Registers a callback that will be triggered when the control has been touched.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On touch callback function.
+     */
+    registerOnTouched(fn: Function) {
+        this._onTouch = fn;
+    }
+
+    /**
+     * set text-line model value
+     * @docs-private
+     */
+    writeValue(value: any) {
+        this.value = value;
+        this._cd.markForCheck();
+    }
+
+    /**
+     * update form model value and mark for check
+     * @docs-private
+     */
+    _markForCheck() {
+        if (this._onModelChange) {
+            this._onModelChange(this.value);
+        }
+
+        if (this._onTouch) {
+            this._onTouch(this.value);
+        }
+
+        this._cd.markForCheck();
     }
 }

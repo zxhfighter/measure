@@ -4,9 +4,10 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import * as moment from 'moment';
-
+import * as momentLib from 'moment';
 import { OnChange } from '../core/decorators';
+
+const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -32,7 +33,8 @@ const DATEPICKER_VALUE_ACCESSOR = {
     host: {
         'class': 'nb-widget nb-datepicker',
         '(click)': 'onClickDatePicker($event)'
-    }
+    },
+    exportAs: 'nbDatePicker'
 })
 export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAccessor {
 

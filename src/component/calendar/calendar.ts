@@ -3,9 +3,10 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
-import * as moment from 'moment';
-
+import * as momentLib from 'moment';
 import { OnChange } from '../core/decorators';
+
+const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
 
 /** calendar show mode */
 export type CalendarMode = 'calendar' | 'year' | 'month';
@@ -22,7 +23,7 @@ export type CalendarMode = 'calendar' | 'year' | 'month';
     host: {
         'class': 'nb-widget nb-calendar'
     },
-    exportAs: 'xCalendar'
+    exportAs: 'nbCalendar'
 })
 export class CalendarComponent {
 

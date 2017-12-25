@@ -18,8 +18,8 @@ import { InputDemo } from './input';
 import { StepDemo } from './step';
 import { TableDemo } from './table';
 import { TooltipDemo } from './tooltip';
-import { DemoPage } from './page';
-import { DemoSchedule } from './schedule';
+import { PageDemo } from './page';
+import { ScheduleDemo } from './schedule';
 import { TextareaDemo } from './textarea';
 import { TextLineDemo } from './text-line';
 
@@ -38,7 +38,7 @@ import { SideBarDemo } from './side-bar/';
 import { CardDemo } from './card';
 import { AccordionDemo } from './accordion';
 import { UploaderDemo } from './uploader';
-import { DemoTransfer } from './transfer';
+import { TransferDemo } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
@@ -62,8 +62,8 @@ export const appRoutes: Routes = [
     { path: 'tooltip', component: TooltipDemo },
     { path: 'textarea', component: TextareaDemo },
     { path: 'table', component: TableDemo },
-    { path: 'page', component: DemoPage },
-    { path: 'schedule', component: DemoSchedule },
+    { path: 'page', component: PageDemo },
+    { path: 'schedule', component: ScheduleDemo },
     { path: 'text-line', component: TextLineDemo },
 
     { path: 'search-box', component: SearchBoxDemo },
@@ -83,7 +83,7 @@ export const appRoutes: Routes = [
     { path: 'card', component: CardDemo },
     { path: 'accordion', component: AccordionDemo },
     { path: 'uploader', component: UploaderDemo },
-    { path: 'transfer', component: DemoTransfer },
+    { path: 'transfer', component: TransferDemo },
     { path: 'docs', component: GuideComponentDemo },
     { path: 'icons', component: IconsComponentDemo },
     { path: 'typography', component: TypographyDemo },

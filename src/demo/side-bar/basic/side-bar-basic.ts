@@ -1,9 +1,9 @@
 import {
-    Component, 
+    Component,
     ChangeDetectionStrategy
 } from '@angular/core';
 
-import {dataSideBar} from '../side-bar-test-data';
+import { dataSideBar } from '../side-bar-test-data';
 
 @Component({
     selector: 'demo-side-bar-basic',
@@ -15,7 +15,7 @@ import {dataSideBar} from '../side-bar-test-data';
 
 export class SideBarBasicDemo {
 
-    private data = dataSideBar;
+    data = dataSideBar;
 
     onNavi(event) {
         console.log(event);

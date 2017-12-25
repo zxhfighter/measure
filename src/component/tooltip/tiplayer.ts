@@ -9,11 +9,15 @@ import {
     Input,
     Component,
     OnInit,
+    OnChanges,
+    ViewChild,
     SimpleChanges,
     ViewEncapsulation,
     ChangeDetectionStrategy,
     AfterContentInit,
     AfterViewInit,
+    ContentChild,
+    AfterContentChecked,
     ElementRef,
     TemplateRef,
     OnDestroy,
@@ -37,7 +41,9 @@ import {
 
 export class TiplayerComponent implements AfterViewInit, OnDestroy {
 
-    @Input() content: string | TemplateRef<any>;
+    // @Input() content: string | TemplateRef<any>;
+
+    @ViewChild('content') content: ElementRef;
 
     @Input() nbTooltipTheme: string;
 
@@ -89,6 +95,10 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
         // });
 
         this.needReposition.emit();
+    }
+
+    changeContent(content) {
+        this.content.nativeElement.innerHTML = content;
     }
 
     show() {

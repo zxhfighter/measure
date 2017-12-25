@@ -1,5 +1,5 @@
-import {Optional, Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation} from '@angular/core';
-import {ToastConfig, ToastDataFilled} from './toast.config';
+import { Optional, Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { ToastConfig } from './toast.config';
 
 @Component({
     selector: 'nb-toast',
@@ -10,10 +10,10 @@ import {ToastConfig, ToastDataFilled} from './toast.config';
     host: {
         'class': 'nb-widget nb-toast'
     },
-    exportAs: 'xToast'
+    exportAs: 'nbToast'
 })
 export class ToastComponent {
-    toasts: ToastDataFilled[] = [];
+    toasts: any = [];
     config: ToastConfig;
 
     constructor(@Optional() config: ToastConfig,
@@ -22,7 +22,7 @@ export class ToastComponent {
     }
 
     // Create a new toast
-    createToast(toastData: ToastDataFilled): void {
+    createToast(toastData: any): void {
         toastData.options = this._mergeOptions(toastData.options);
         this.toasts.push(toastData);
         this.cd.markForCheck();

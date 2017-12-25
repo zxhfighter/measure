@@ -23,7 +23,6 @@ export * from './select/index';
 export * from './region/index';
 export * from './dialog/index';
 export * from './chips/index';
-export * from './code-highlighter/index';
 export * from './code-box/index';
 export * from './tree/index';
 export * from './side-bar/index';

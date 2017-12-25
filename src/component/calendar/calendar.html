@@ -9,11 +9,11 @@
             <td class="year-month-col">
                 <div *ngIf="mode == 'calendar'" class="year-month-col-content">
                     <div class="year-select" (click)="onShowYearPanel()">
-                        <span class="year-text">{{month.getFullYear()}}</span>
+                        <span class="year-text">{{ month.getFullYear() }}</span>
                         <i class="iconfont icon-down"></i>
                     </div>
                     <div class="month-select" (click)="onShowMonthPanel()">
-                        <span class="month-text">{{month.getMonth() + 1}}</span>
+                        <span class="month-text">{{ month.getMonth() + 1 }}</span>
                         <i class="iconfont icon-down"></i>
                     </div>
                 </div>

@@ -51,7 +51,7 @@ const BOXGROUP_VALUE_ACCESSOR = {
         'class': 'nb-widget nb-boxgroup',
         '[class.nb-boxgroup-disabled]': 'disabled'
     },
-    exportAs: 'xBoxGroup'
+    exportAs: 'nbBoxGroup'
 })
 export class BoxGroupComponent implements ControlValueAccessor, OnInit {
 
@@ -242,5 +242,15 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
 
     _getBoxList() {
         return this.datasource && this.datasource ? this._boxViewList : this._boxList;
+    }
+
+    /**
+     * reset box group value
+     */
+    reset() {
+        this._getBoxList().forEach(box => {
+            box.checked = false;
+        });
+        this.value = [];
     }
 }

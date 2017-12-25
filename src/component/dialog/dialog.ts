@@ -46,6 +46,9 @@ export class DialogComponent implements OnInit, AfterViewInit {
     @OnChange(true)
     @Input() closable: boolean = true;
 
+    @OnChange(true)
+    @Input() needHideAfterDocumentClick: boolean;
+
     mask: HTMLElement | null;
 
     /**
@@ -70,6 +73,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.overlay.onHide.subscribe(() => this.removeMask());
     }
 
     ngAfterViewInit() {
@@ -88,6 +92,10 @@ export class DialogComponent implements OnInit, AfterViewInit {
         this.overlay.hide();
         this.closeHandler.emit();
 
+        this.removeMask();
+    }
+
+    removeMask() {
         if (this.mask) {
             this.mask.remove();
             this.mask = null;

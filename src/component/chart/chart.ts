@@ -2,9 +2,11 @@ import {
     Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewChild,
     ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, OnDestroy
 } from '@angular/core';
-import * as echarts from 'echarts';
 
+import * as echartsLib from 'echarts';
 import { OnChange } from '../core/decorators';
+
+const echarts: any = (echartsLib as any).default ? (echartsLib as any).default : echartsLib;
 
 /**
  * Chart Component, depends on [Echarts](http://echarts.baidu.com/)
@@ -18,7 +20,7 @@ import { OnChange } from '../core/decorators';
     host: {
         'class': 'nb-widget nb-chart'
     },
-    exportAs: 'xChart'
+    exportAs: 'nbChart'
 })
 export class ChartComponent implements AfterViewInit, OnDestroy {
 

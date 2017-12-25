@@ -6,8 +6,8 @@
             *ngFor="let panel of panels; let index = index"
             (click)="onClickPanel(index)"
             [class.nb-accordion-panel-active]="index === activeIndex">
-            <div class="nb-accordion-header">{{panel.header}}</div>
-            <div class="nb-accordion-content">{{panel.content}}</div>
+            <div class="nb-accordion-header">{{ panel.header }}</div>
+            <div class="nb-accordion-content">{{ panel.content }}</div>
         </div>
     </ng-template>
     <ng-template #hoverBlock>
@@ -16,8 +16,8 @@
             *ngFor="let panel of panels; let index = index"
             (mouseover)="onClickPanel(index)"
             [class.nb-accordion-panel-active]="index === activeIndex">
-            <div class="nb-accordion-header">{{panel.header}}</div>
-            <div class="nb-accordion-content">{{panel.content}}</div>
+            <div class="nb-accordion-header">{{ panel.header }}</div>
+            <div class="nb-accordion-content">{{ panel.content }}</div>
         </div>
     </ng-template>
 </div>

@@ -2,7 +2,7 @@ import {
     Component, Input, Output, EventEmitter,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
-import {SelectConfig} from "../select/select.config";
+import { SelectConfig } from '../select/select.config';
 
 @Component({
     selector: 'nb-page',
@@ -22,7 +22,7 @@ export class PageComponent implements OnInit {
      * @default default
      */
     @Input() count: number = 20;
-    
+
     /**
      * total count
      * @default default
@@ -36,27 +36,27 @@ export class PageComponent implements OnInit {
      * page list selected
      * @default default
      */
-    @Input('value') list: Array<T>;
+    @Input() list: Array<number>;
 
     /**
      * when page change, emit a change event, which contains the currrentIndex and the count
      * @default default
      */
     @Output() pageChange: EventEmitter<Object> = new EventEmitter();
-    
+
     /**
      * 页数
      * @docs-private
      */
-    pageSize = [];
+    pageSize: Array<number> = [];
     // pageSize = [1,2,3,4,5,6,7,8,9,10,11];
     // 每页显示条数可选列表
-    
+
     /**
      * 前4页
      * @docs-private
      */
-    firstPages = [1,2,3,4];
+    firstPages = [1, 2, 3, 4];
     /**
      * 当前页
      * @docs-private
@@ -99,14 +99,14 @@ export class PageComponent implements OnInit {
     ngOnInit() {
         if (this.list && this.list.length > 0) {
             this.selectData = [];
-            for(let i = 0; i < this.list.length; i++) {
+            for (let i = 0; i < this.list.length; i++) {
                 this.selectData.push({
-                    label: this.list[i],
+                    label: this.list[i].toString(),
                     value: this.list[i]
                 });
             }
         }
-        
+
         this.setPage();
     }
 
@@ -130,7 +130,7 @@ export class PageComponent implements OnInit {
      * @param {number} index - page num
      * @docs-private
      */
-    jumpTo (index: number) {
+    jumpTo(index: number) {
         if (this.currrentIndex > 0 && this.currrentIndex < this.pageSize.length + 1) {
             if (+index === -2 && this.currrentIndex !== 1) {
                 this.currrentIndex--;
@@ -145,7 +145,8 @@ export class PageComponent implements OnInit {
         }
         this.pageChange.emit({
             currrentIndex: this.currrentIndex,
-            count: this.count});
+            count: this.count
+        });
         // this.$dispatch('pageChange', this.currrentIndex - 1);
     }
 
@@ -160,7 +161,8 @@ export class PageComponent implements OnInit {
         this.currrentIndex = 1;
         this.pageChange.emit({
             currrentIndex: this.currrentIndex,
-            count: this.count});
+            count: this.count
+        });
         this.setPage();
     }
 }

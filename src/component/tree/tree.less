@@ -39,7 +39,7 @@
 
 .@{prefix}-tree-selectable .@{prefix}-tree-content::before, 
 .@{prefix}-tree-selectable .@{prefix}-tree-content::after {
-    content: "";
+    content: '';
     position: absolute;
     display: block;
     left: 0;
@@ -72,8 +72,12 @@
     display: none;
 }
 
-.@{prefix}-tree-mode-candidate .@{prefix}-tree-content:hover .@{prefix}-tree-node-selection-candidate-icon,
-.@{prefix}-tree-mode-selected .@{prefix}-tree-content:hover .@{prefix}-tree-node-selection-selected-icon {
+.@{prefix}-tree-mode-candidate 
+.@{prefix}-tree-content:hover 
+.@{prefix}-tree-node-selection-candidate-icon,
+.@{prefix}-tree-mode-selected 
+.@{prefix}-tree-content:hover 
+.@{prefix}-tree-node-selection-selected-icon {
     display: inline-block;
     float: right;
     margin-right: 10px;
@@ -121,7 +125,7 @@
 }
 
 .@{prefix}-tree-disabled .@{prefix}-tree-node-show::before {
-    content: "";
+    content: '';
     position: absolute;
     display: block;
     left: 0;

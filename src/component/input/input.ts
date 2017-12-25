@@ -11,20 +11,20 @@ import {
     ChangeDetectorRef
 } from '@angular/core';
 
-import {coerceBooleanProperty} from '../util/coerce';
-import {InputConfig} from './input.config';
-import {OnChange} from '../core/decorators';
+import { coerceBooleanProperty } from '../util/coerce';
+import { InputConfig } from './input.config';
+import { OnChange } from '../core/decorators';
 
 /** default input theme types */
 export type INPUT_THEME = 'default' | 'error' | 'transparent' | string;
 
 /** default input size types */
 export type INPUT_SIZE =
-'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
+    'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
 
 @Directive({
-    selector: '[nb-input]',
-    exportAs: 'nb-input',
+    selector: '[nbInput]',
+    exportAs: 'nbInput',
     host: {
         '[disabled]': 'disabled || null'
     }
@@ -32,20 +32,21 @@ export type INPUT_SIZE =
 
 export class InputDirective implements OnChanges, AfterViewInit {
 
-    /** 
+    /**
      * input theme, there three default themes: 'default' | 'error' | 'transparent'
      * @default default
      */
     @Input() theme: INPUT_THEME = 'default';
 
-    /** 
-     * input size, there seven default size: 'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low'
+    /**
+     * input size, there seven default size:
+     * 'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low'
      * @default default
      */
     @Input() size: INPUT_SIZE = 'default';
 
-    /** 
-     * Whether the input is disabled 
+    /**
+     * Whether the input is disabled
      * @default false
      */
     @OnChange(true)

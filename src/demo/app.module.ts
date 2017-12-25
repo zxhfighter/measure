@@ -46,8 +46,8 @@ import {
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
-import { DemoPage } from './page';
-import { DemoSchedule } from './schedule';
+import { PageDemo } from './page';
+import { ScheduleDemo } from './schedule';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
 import { OverlayDemo } from './overlay';
@@ -56,7 +56,6 @@ import { ChipsDemoModule } from './chips';
 import { CodeBoxDemo } from './code-box';
 import { AccordionDemoModule } from './accordion';
 import { UploaderDemoModule } from './uploader';
-import { DemoTransfer } from './transfer';
 import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
@@ -67,6 +66,7 @@ import { TextLineDemoModule } from './text-line';
 import { SearchBoxDemoModule } from './search-box';
 import { TreeDemoModule } from './tree';
 import { SideBarDemoModule } from './side-bar';
+import { TransferDemoModule } from './transfer';
 import { ButtonDemoModule } from './button';
 import { BreadcrumbDemoModule } from './breadcrumb';
 import { SwitchDemoModule } from './switch';
@@ -94,6 +94,7 @@ const demoModules = [
     SearchBoxDemoModule,
     TreeDemoModule,
     SideBarDemoModule,
+    TransferDemoModule,
     ButtonDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
@@ -124,11 +125,10 @@ const demoModules = [
 @NgModule({
     declarations: [
         AppComponent,
-        DemoPage,
-        DemoSchedule,
+        PageDemo,
+        ScheduleDemo,
         CodeBoxDemo,
         OverlayDemo,
-        DemoTransfer,
         GuideComponentDemo,
         IconsComponentDemo,
         OverlayDemo,

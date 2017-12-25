@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Overlay} from '@angular/cdk/overlay';
-import {ComponentPortal} from '@angular/cdk/portal';
-import {ToastConfig, ToastData, ToastDataFilled} from './toast.config';
-import {ToastComponent} from './toast';
+import { Injectable } from '@angular/core';
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { ToastConfig, ToastData, ToastDataFilled } from './toast.config';
+import { ToastComponent } from './toast';
 
 @Injectable()
 export class ToastService {

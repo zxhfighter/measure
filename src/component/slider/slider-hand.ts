@@ -13,10 +13,13 @@ import 'rxjs/add/operator/takeUntil';
 import { merge } from 'rxjs/observable/merge';
 import { initNgModule } from '@angular/core/src/view/ng_module';
 import { SliderService } from './slider.service';
+import { TooltipDirective } from '../../component/tooltip';
+import { OnChange } from '../core/decorators';
 
 @Component({
     selector: 'nb-slider-hand',
-    template: '<div #sliderHand class="nb-slider-hand" [nbTooltip]="value" placement="top" [ngStyle]="style"></div>',
+    template: ` <div #sliderHand class="nb-slider-hand" [nbTooltip]="value"
+                hasArrow="false" [placement]="placement"></div>`,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
@@ -35,6 +38,7 @@ export class SliderHandComponent implements OnInit {
     /**
      * Orientation of the component
      */
+    @OnChange(true)
     @Input() orientation;
     /**
      * The init position of hand
@@ -44,6 +48,7 @@ export class SliderHandComponent implements OnInit {
     /**
      * Whether the slider is disabled or not
      */
+    @OnChange(true)
     @Input() disabled: boolean = false;
 
     /**
@@ -62,6 +67,7 @@ export class SliderHandComponent implements OnInit {
     @Input() step: number = 1;
 
     value: string = '';
+    placement: string = '';
 
     /**
      * The event emitted when slider value changes, emit the init position and end position of hand
@@ -70,7 +76,7 @@ export class SliderHandComponent implements OnInit {
 
     @ViewChild('sliderHand') _hand: ElementRef;
 
-    style: object = {};
+    @ViewChild(TooltipDirective) tooltip: TooltipDirective;
 
     constructor(
         private render: Renderer2,
@@ -80,7 +86,9 @@ export class SliderHandComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.updateStyle(`${this.initPos}%`);
+        this.updateStyle(this.initPos);
+        this.placement = this.orientation ? 'top' : 'right';
+
         if (this.disabled) {
             return;
         }
@@ -88,8 +96,6 @@ export class SliderHandComponent implements OnInit {
             throw new Error('step需能被（max-min）整除');
         }
 
-        let value = this.service.getValue(this.initPos, this.step, this.min, this.max);
-        this.value = value + '';
         this.bindEvent();
     }
 
@@ -105,7 +111,7 @@ export class SliderHandComponent implements OnInit {
         const mouseUp$ = fromEvent(document, 'mouseup');
         mouseDown$
             .map((event: MouseEvent) => {
-                let target = event.target as HTMLElement;
+                const target = event.target as HTMLElement;
 
                 let initPos = me.orientation
                     ? parseInt(target.style.left as string)
@@ -136,7 +142,6 @@ export class SliderHandComponent implements OnInit {
                     return {
                         // hand的新位置
                         endPos,
-                        // endPos: moveEvent.clientX,
                         // hand每一次移动前的位置
                         initPos: me.orientation
                             ? parseFloat(target.style.left as string)
@@ -147,7 +152,6 @@ export class SliderHandComponent implements OnInit {
             })
             .subscribe((pos) => {
                 let endPos = pos.endPos;
-                // let endPos = pos.endPos;
                 let initPos = pos.initPos;
                 if (endPos < 0) {
                     endPos = 0;
@@ -167,20 +171,23 @@ export class SliderHandComponent implements OnInit {
                 }
                 endPos = initPos + move;
                 endPos = endPos > 0 ? endPos : 0;
-                // this.style[this.orientation ? 'left' : 'bottom'] = `${endPos}%`;
-                me.updateStyle(`${endPos}%`);
+                me.updateStyle(endPos);
                 me.change.emit({ endPos, initPos });
             });
     }
 
     /**
      * update end position of hand
-     * @param value position
+     * @param val position
      */
-    updateStyle(value) {
+    updateStyle(val: number) {
         const hand = this._hand.nativeElement as HTMLElement;
         let style = this.orientation ? 'left' : 'bottom';
-        // this.style[this.orientation ? 'left' : 'bottom'] = value;
-        this.render.setStyle(hand, style, value);
+        this.render.setStyle(hand, style, `${val}%`);
+
+        // tooltip
+        let value = this.service.getValue(val, this.step, this.min, this.max);
+        this.value = `${value}`;
+        this.tooltip.needReposition();
     }
 }

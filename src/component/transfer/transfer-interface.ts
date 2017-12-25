@@ -2,7 +2,7 @@ export interface TreeNodeParent {
     id: string;
 }
 
-export interface TreeNode {
+export interface TreeNode {
     id?: any;
     name?: string;
     selectable?: boolean;

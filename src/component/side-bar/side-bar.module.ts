@@ -5,8 +5,18 @@ import { SearchBoxModule } from '../search-box/search-box.module';
 import { TreeModule } from '../tree/tree.module';
 
 @NgModule({
-    imports: [CommonModule, SearchBoxModule, TreeModule],
-    declarations: [SideBarComponent],
-    exports: [SideBarComponent]
+    imports: [
+        CommonModule,
+        SearchBoxModule,
+        TreeModule
+    ],
+    declarations: [
+        SideBarComponent
+    ],
+    providers: [],
+    exports: [
+        SideBarComponent
+    ]
 })
+
 export class SideBarModule { }

@@ -18,7 +18,7 @@
 
 .@{prefix}-uploader-image {
     margin: 0 auto;
-    padding: 25px 0;
+    padding: 10px 0;
     overflow: hidden;
     margin-right: -12px;
     zoom: 1;
@@ -27,25 +27,30 @@
     .image-add {
         width: 140px;
         height: 140px;
-        border: 1px solid #DDD;
         margin-right: 7px;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
         position: relative;
         float: left;
         text-align: center;
         zoom: 1;
         background-color: #fff;
         overflow: hidden;
-
-        border: 1px dashed #999;
+        border: 1px solid @border-color;
         display: table;
         vertical-align: middle;
 
-        .iconfont {
-            display: table-cell;
-            vertical-align: middle;
-            font-size: 50px;
+        &:hover {
+            background-color: @nb-gray-8; 
+        }
+
+        &:active {
+            background-color: @nb-gray-6;
+        }
+
+        .image-add-icon {
+            font-size: 85px;
             color: @text-color-normal;
+            font-weight: 100;
         }
         .blue_btn_mid {
             width: 87px;
@@ -71,9 +76,9 @@
         display: table;
         width: 140px;
         height: 140px;
-        border: 1px solid #DDD;
+        border: 1px solid @border-color;
         margin-right: 7px;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
         position: relative;
         text-align: center;
         zoom: 1;
@@ -153,7 +158,7 @@
             width: 24px;
             height: 24px;
             background: rgba(0, 0, 0, 0.8);
-            border: 1px solid hsla(0, 0%, 100%, .2);
+            border: 1px solid hsla(0, 0%, 100%, 0.2);
             font-size: 14px;
             color: #fff;
             text-align: center;
@@ -161,8 +166,8 @@
         }
         .edit_mark {
             position: absolute;
-            background-color: rgba(0, 0, 0, .8);
-            border: 1px solid hsla(0, 0%, 100%, .2);
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 1px solid hsla(0, 0%, 100%, 0.2);
             color: #fff;
             font-size: 14px;
             cursor: pointer;
@@ -185,6 +190,7 @@
 }
 
 .nb-uploader-file {
+    padding: 10px 0;
 
     .file-list {
         list-style: none;
@@ -261,6 +267,22 @@
             width: 100%;
             height: 100%;
         }
+    }
+
+    .file-add-disabled {
+        color: red;
+
+        &::after {
+            content: '';
+            background-color: @nb-gray-7;
+            cursor: not-allowed;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            opacity: 0;
+        }
+        
     }
 }
 

@@ -1,0 +1,5 @@
+/**
+     * body区域内点击后是否隐藏
+     * @default false
+     */
+    @Input() needHideAfterBobyClick: boolean = false;

@@ -48,7 +48,7 @@ const BUTTONGROUP_VALUE_ACCESSOR = {
     host: {
         'class': 'nb-widget nb-button-group'
     },
-    exportAs: 'xButtonGroup'
+    exportAs: 'nbButtonGroup'
 })
 export class ButtonGroupComponent implements ControlValueAccessor, AfterContentInit, OnInit {
 
@@ -255,7 +255,7 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
         '[class.nb-button-toggle-disabled]': 'disabled',
         '(click)': 'onToggle()'
     },
-    exportAs: 'xButtonToggle'
+    exportAs: 'nbButtonToggle'
 })
 export class ButtonToggleComponent {
 

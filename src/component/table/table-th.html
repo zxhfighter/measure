@@ -12,7 +12,7 @@
     #origin="nbOverlayOrigin"
     class="iconfont icon-filter"
     [class.active]="showFilter || filtered"
-    (click)="onToggleFilter($event)">
+    (click)="onToggleFilter()">
 </i>
 
 <ng-container *ngIf="sortable">
@@ -36,7 +36,7 @@
 
     <div *ngIf="showFilterButton" class="filter-content-button">
         <button size="sm" theme="primary" nb-button (click)="onFilter()">筛选</button>
-        <button size="sm" theme="default" nb-button (click)="onCancel()">取消</button>
+        <button size="sm" theme="default" nb-button (click)="onCancel()">重置</button>
     </div>
 </ng-template>
 

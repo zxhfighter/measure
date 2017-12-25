@@ -1,0 +1,44 @@
+<form #form1="ngForm">
+    <nb-boxgroup type="radio" name="radioBox" [ngModel]="[2]" [datasource]="datasource"></nb-boxgroup> <br>
+    <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="[2]" [datasource]="datasource"></nb-boxgroup>
+</form>
+
+{{ form1.value | json }}
+
+<br><br>
+
+<form [formGroup]="form">
+
+    <nb-boxgroup type="radio" [datasource]="datasource" formControlName="radioBox1">
+    </nb-boxgroup>
+    <br>
+    <nb-boxgroup type="checkbox" formControlName="checkboxBox1">
+        <ng-container *ngFor="let item of datasource">
+            <nb-checkbox [value]="item.value" [checked]="item.checked">{{ item.text }}</nb-checkbox>
+        </ng-container>
+    </nb-boxgroup>
+    <br>
+    {{ form.value | json }}
+</form>
+
+<br><br>
+
+<form #form3="ngForm">
+
+
+    <nb-boxgroup type="radio" name="radioBox" [ngModel]="[2]">
+        <ng-container *ngFor="let item of datasource">
+            <nb-checkbox [value]="item.value" [checked]="item.checked">{{ item.text }}</nb-checkbox>
+        </ng-container>
+    </nb-boxgroup>
+
+    <br>
+
+    <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="[3]">
+        <ng-container *ngFor="let item of datasource">
+            <nb-checkbox [value]="item.value" [checked]="item.checked">{{ item.text }}</nb-checkbox>
+        </ng-container>
+    </nb-boxgroup>
+</form>
+
+{{ form3.value | json }}

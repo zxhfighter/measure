@@ -1,9 +1,14 @@
-<input *ngIf="!range && input" [ngModel]="value" [disabled]="disabled" (ngModelChange)="inputValue($event)">
+<input *ngIf="!range && input" [ngModel]="value" [disabled]="disabled"
+    (ngModelChange)="inputValue($event)">
 
-<div #slider class="nb-slider" [class.nb-slider-vertical]="!orientation" [class.nb-slider-disabled]="disabled">
+<div #slider class="nb-slider" [class.nb-slider-vertical]="!orientation"
+    [class.nb-slider-disabled]="disabled">
     <div class="nb-slider-rail" (click)="clickHandler($event)"></div>
-    <nb-slider-tracker [selected]="trackerSelected" [position]="trackerPos" [orientation]="orientation"></nb-slider-tracker>
-    <nb-slider-hand *ngFor="let hand of hands;" [max]="max" [min]="min" [step]="step" [orientation]="orientation" [initPos]="hand.initPos"
-        [limitMove]="limitMove" [disabled]="disabled" (change)="updateSlider($event)"></nb-slider-hand>
+    <nb-slider-tracker [selected]="trackerSelected" [position]="trackerPos"
+        [orientation]="orientation">
+    </nb-slider-tracker>
+    <nb-slider-hand *ngFor="let hand of hands;" [max]="max" [min]="min" [step]="step"
+        [orientation]="orientation" [initPos]="hand.initPos"
+        [limitMove]="limitMove" [disabled]="disabled" (change)="updateSlider($event)">
+    </nb-slider-hand>
 </div>
-

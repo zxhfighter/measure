@@ -1,6 +1,7 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
         "declaration": true,
         "emitDecoratorMetadata": true,
         "sourceMap": true,

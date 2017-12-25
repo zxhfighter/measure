@@ -1,19 +1,20 @@
-@import "../../../node_modules/bootstrap-less/bootstrap/index.less";
-@import "../../../node_modules/prismjs/themes/prism.css";
-@import "../../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
+@import '../../../node_modules/bootstrap-less/bootstrap/index.less';
+@import '../../../node_modules/prismjs/themes/prism.css';
+@import '../../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css';
 
-@import "./dev.less";
-@import "./common.less";
-@import "./font.less";
-@import "./component.less";
+@import './dev.less';
+@import './common.less';
+@import './font.less';
+@import './component.less';
 
 // overwrite the variables
-@import "./variable.less";
+@import './variable.less';
 
 @header-height: 60px;
 @aside-width: 150px;
 
-*:focus {
+button:focus,
+input:focus {
     outline: none;
 }
 
@@ -125,12 +126,12 @@ body {
                 font-size: 16px;
                 color: @brand-primary;
                 font-style: italic;
-                margin: 50px 0 10px 0;
+                margin: 50px 0 10px;
                 padding: 5px 0;
                 padding-left: 20px;
                 position: relative;
 
-                &:before {
+                &::before {
                     position: absolute;
                     content: ' ';
                     display: block;

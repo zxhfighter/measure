@@ -1,9 +1,10 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 /**
  * input default config
  */
 @Injectable()
+
 export class InputConfig {
 
     /** input default theme */
