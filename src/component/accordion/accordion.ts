@@ -91,7 +91,7 @@ export class AccordionComponent implements OnInit {
      * @param {number} activeIndex - 指定索引
      */
     onClickPanel(activeIndex: number) {
-        // 非互斥折叠
+        // 全部可折叠
         if (this.collapsible) {
             // 该元素内容已展开，折叠收缩
             if (this.activeIndex === activeIndex) {
