@@ -1,196 +1,29 @@
 <h1 class="main-title">Slider demo</h1>
 
 <section>
-        <h3 class="section-title">Usage</h3>
-        <div class="code">
-                <nb-code-highlighter language="typescript" ngNonBindable>
-                        import &#x7B;SliderModule&#x7D; from 'xdesign';
-                </nb-code-highlighter>
-        </div>
+    <h3 class="section-title">Usage</h3>
+    <div class="code">
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;SliderModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
+    </div>
 </section>
 
 <section>
-        <h3 class="section-title">Basic Examples</h3>
-        <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
-                <h3 nb-codebox-title>Slider Basic</h3>
-                <demo-slider-basic></demo-slider-basic>
-        </nb-code-box>
+    <h3 class="section-title">Basic Examples</h3>
+    <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+        <h3 nb-codebox-title>Slider Basic</h3>
+        <demo-slider-basic></demo-slider-basic>
+    </nb-code-box>
 </section>
 
 <section>
-        <h3 class="section-title">Use in Form</h3>
-        <nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
-                <h3 nb-codebox-title>In Form</h3>
-                <demo-slider-form></demo-slider-form>
-        </nb-code-box>
+    <h3 class="section-title">Use in Form</h3>
+    <nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+        <h3 nb-codebox-title>In Form</h3>
+        <demo-slider-form></demo-slider-form>
+    </nb-code-box>
 </section>
 
-<section>
-        <h3 class="section-title">API</h3>
-
-        <div class="docs-api">
-                <h2 class="docs-api-type">Components</h2>
-
-                <h4 class="docs-api-h4 docs-api-class-name">
-                        <code>SliderComponent</code> API Reference
-                </h4>
-                <h5 class="docs-table-desc">Properties</h5>
-                <table class="docs-table docs-table-properties">
-                        <tr class="docs-row docs-row-head">
-                                <th class="docs-td docs-th">Name</th>
-                                <th class="docs-td docs-th">Type</th>
-                                <th class="docs-td docs-th">Default</th>
-                                <th class="docs-td docs-th">Description</th>
-                        </tr>
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-input-marker">
-                                                @Input()</div>
-                                        <p class="docs-property-name">
-                                                input
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">boolean</td>
-                                <td class="docs-td docs-td-default">false</td>
-                                <td class="docs-td docs-td-desc">If we can use input box to change the slider value, input value should be larger than min,
-                                        less than max and multiples of the step. Only can use when range is false</td>
-                        </tr>
-
-
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-input-marker">
-                                                @Input()</div>
-                                        <p class="docs-property-name">
-                                                min
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">number</td>
-                                <td class="docs-td docs-td-default">0</td>
-                                <td class="docs-td docs-td-desc">
-                                        <p>Min value of slider</p>
-                                </td>
-                        </tr>
-
-
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-input-marker">
-                                                @Input()</div>
-                                        <p class="docs-property-name">
-                                                max
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">number</td>
-                                <td class="docs-td docs-td-default">100</td>
-                                <td class="docs-td docs-td-desc">
-                                        <p>Max value of slider</p>
-                                </td>
-                        </tr>
-
-
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-input-marker">
-                                                @Input()</div>
-                                        <p class="docs-property-name">
-                                                range
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">boolean</td>
-                                <td class="docs-td docs-td-default">false</td>
-                                <td class="docs-td docs-td-desc">
-                                        <p>If the slider has double hands</p>
-                                </td>
-                        </tr>
-
-
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-input-marker">
-                                                @Input()</div>
-                                        <p class="docs-property-name">
-                                                disabled
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">boolean</td>
-                                <td class="docs-td docs-td-default">false</td>
-                                <td class="docs-td docs-td-desc">
-                                        <p>Whether the slider is disabled or not</p>
-                                </td>
-                        </tr>
-
-
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-input-marker">
-                                                @Input()</div>
-                                        <p class="docs-property-name">
-                                                step
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">number</td>
-                                <td class="docs-td docs-td-default">1</td>
-                                <td class="docs-td docs-td-desc">
-                                        <p>The step of dragging, should be divided by (max - min)</p>
-                                </td>
-                        </tr>
-
-
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-input-marker">
-                                                @Input()</div>
-                                        <p class="docs-property-name">
-                                                value
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">number | number[]</td>
-                                <td class="docs-td docs-td-default">min</td>
-                                <td class="docs-td docs-td-desc">Core value of slider</td>
-                        </tr>
-
-
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-input-marker">
-                                                @Input()</div>
-                                        <p class="docs-property-name">
-                                                orientation
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">string</td>
-                                <td class="docs-td docs-td-default">horizontal</td>
-                                <td class="docs-td docs-td-desc">Orientation of slider, horizontal or vertical</td>
-                        </tr>
-
-
-
-                        <tr class="docs-row docs-row-body">
-                                <td class="docs-td docs-td-name">
-                                        <div class="docs-output-marker">
-                                                @Output()</div>
-                                        <p class="docs-property-name">
-                                                change
-                                        </p>
-                                </td>
-                                <td class="docs-td docs-td-type">EventEmitter&lt;CoreValue&gt;</td>
-                                <td class="docs-td docs-td-default"></td>
-                                <td class="docs-td docs-td-desc">The event emitted when slider value changes, emit the value of slider</td>
-                        </tr>
-
-
-
-                </table>
-
-        </div>
-
-</section>
+<h3 class="section-title">API</h3>
+<!-- api(slider.html) -->

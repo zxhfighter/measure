@@ -49,15 +49,24 @@ module.exports = function componentGrouper() {
                 } else if (doc.isDirective) {
                     group.directives.push(doc);
                 } else if (doc.isService) {
-                    group.services.push(doc);
+                    if (!flagMap[doc.name]) {
+                        group.services.push(doc);
+                        flagMap[doc.name] = true;
+                    }
                 } else if (doc.isNgModule) {
                     group.ngModule = doc;
                 } else if (doc.docType === 'class') {
                     group.additionalClasses.push(doc);
                 } else if (doc.docType === 'interface') {
-                    group.interfaceClasses.push(doc);
+                    if (!flagMap[doc.name]) {
+                        group.interfaceClasses.push(doc);
+                        flagMap[doc.name] = true;
+                    }
                 } else if (doc.docType === 'type') {
-                    group.typeClasses.push(doc);
+                    if (!flagMap[doc.name]) {
+                        group.typeClasses.push(doc);
+                        flagMap[doc.name] = true;
+                    }
                 }
             });
 

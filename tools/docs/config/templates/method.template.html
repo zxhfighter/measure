@@ -9,7 +9,7 @@
             <div class="parameter-item">
                 {$ parameter.name $}{%- if parameter.isOptional -%}<span class="optional">?</span> {%- endif -%}
                 <span class="type">: {$ parameter.type $}</span>
-                <div class="desc"> - {$ parameter.description | marked $}</div>
+                <div class="desc">{$ parameter.description | marked | safe $}</div>
             </div>
             {% endfor %}
         {%- endif -%}
@@ -18,11 +18,11 @@
     <td class="docs-td docs-td-type">
         {%- if method.showReturns -%}
         <span class="type">{$ method.returnType $}</span>
-        <div class="desc">{$ method.returns.description | marked $}</div>
+        <div class="desc">{$ method.returns.description | marked | safe $}</div>
         {%- endif -%}
     </td>
 
     <td class="docs-td docs-td-desc">
-        {$ method.description | marked $}
+        {$ method.description | marked | safe $}
     </td>
 </tr>
