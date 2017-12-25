@@ -1,20 +1,12 @@
-<a name="1.1.21"></a>
-## [1.1.21](https://github.com/zxhfighter/measure/compare/1.1.13...1.1.21) (2017-12-25)
+<a name="1.1.15"></a>
+## [1.1.15](https://github.com/zxhfighter/measure/compare/1.1.14...1.1.15) (2017-12-25)
 
-
-
-<a name="1.1.19"></a>
-## [1.1.19](https://github.com/zxhfighter/measure/compare/1.1.17...1.1.19) (2017-12-22)
-
-
-
-<a name="1.1.17"></a>
-## [1.1.17](https://github.com/zxhfighter/measure/compare/1.1.14...1.1.17) (2017-12-22)
 
 
 
 <a name="1.1.14"></a>
-## [1.1.14](https://github.com/zxhfighter/measure/compare/1.1.10...1.1.14) (2017-12-22)
+## [1.1.14](https://github.com/zxhfighter/measure/compare/1.1.12...1.1.14) (2017-12-25)
+
 
 
 

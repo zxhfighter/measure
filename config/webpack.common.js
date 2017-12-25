@@ -85,6 +85,12 @@ module.exports = {
             },
 
             {
+                test: /\.(htm|html)$/,
+                loader: helper.root('tools/docs/docs-loader'),
+                include: [helper.root('src/demo')]
+            },
+
+            {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader?limit=10000'
             },
