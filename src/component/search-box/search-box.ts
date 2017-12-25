@@ -14,9 +14,9 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { merge } from 'rxjs/observable/merge';
-import { 
-    auditTime, 
-    delay 
+import {
+    auditTime,
+    delay
 } from 'rxjs/operators';
 
 /** default search-box theme types */
