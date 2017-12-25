@@ -43,6 +43,7 @@ export type SIZE = 'long' | 'default' | 'short' | string;
         '(compositionend)': '_compositionEnd($event.target.value)'
     }
 })
+
 export class SearchBoxComponent implements OnInit, OnDestroy {
 
     /** search event */

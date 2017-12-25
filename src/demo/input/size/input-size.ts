@@ -5,4 +5,5 @@ import { Component } from '@angular/core';
     templateUrl: './input-size.html',
     styleUrls: ['./input-size.less']
 })
+
 export class InputSizeDemo { }
