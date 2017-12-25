@@ -1,13 +1,26 @@
 import {
-    Component, Input, Output, EventEmitter, ChangeDetectorRef,
+    Component, Input, Output, EventEmitter, ChangeDetectorRef, forwardRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { OnChange } from '../core/decorators';
 
 export interface Message {
-    severity?: string;
-    message?: string;
+    severity: string;
+    message: string;
     id?: any;
 }
+
+/*
+ * Provider Expression that allows component to register as a ControlValueAccessor.
+ * This allows it to support [(ngModel)].
+ * @docs-private
+ */
+const UPLOADER_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => UploaderComponent),
+    multi: true
+};
 
 @Component({
     selector: 'nb-uploader',
@@ -103,13 +116,20 @@ export class UploaderComponent implements OnInit {
      * 上传失败的提示信息
      * @default '上传失败'
      */
-    @Input() uploadFailedMessage: string = '{0}: 上传失败';
+    @Input() uploadFailedMessage: string = '上传失败';
+
+    /**
+     * 上传是否是禁用状态
+     * @default false
+     */
+    @OnChange(true)
+    @Input() disabled: boolean = false;
 
     @Output() onBeforeUpload: EventEmitter<any> = new EventEmitter();
 
     @Output() onBeforeSend: EventEmitter<any> = new EventEmitter();
 
-    @Output() onUpload: EventEmitter<any> = new EventEmitter();
+    @Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
     @Output() onError: EventEmitter<any> = new EventEmitter();
 
@@ -148,7 +168,7 @@ export class UploaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.files);
+        this.validateFileCount([]);
     }
 
     onFileSelect(event) {
@@ -156,6 +176,10 @@ export class UploaderComponent implements OnInit {
 
         let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
 
+        this.validateFiles(files);
+    }
+
+    validateFiles(files) {
         if (this.validateFileCount(files)) {
             for (let i = 0; i < files.length; i++) {
                 let file = files[i];
@@ -173,13 +197,11 @@ export class UploaderComponent implements OnInit {
                         this.files.push(file);
                     }
                     this.upload(file);
+
+                    this._updateFormModel();
                 }
             }
         }
-
-        // this.onSelect.emit({originalEvent: event, files: files});
-
-        this.clearInputElement();
     }
 
     upload(file) {
@@ -206,7 +228,7 @@ export class UploaderComponent implements OnInit {
                 file.progress = 0;
 
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    this.onUpload.emit({xhr: xhr, file: file});
+                    this.onSuccess.emit({xhr: xhr, file: file});
                     file.state = 'success';
                     file.xhr = null;
                     // 调用回调函数
@@ -217,13 +239,7 @@ export class UploaderComponent implements OnInit {
                     file.state = 'error';
                     this.cdRef.markForCheck();
                     file.xhr = null;
-                    // this.msgs.push({
-                    //     severity: 'error',
-                    //     message: this.uploadFailedMessage.replace('{0}', file.name),
-                    // });
                 }
-                // TODO 先注释掉
-                // this.clear();
             }
         };
 
@@ -262,12 +278,21 @@ export class UploaderComponent implements OnInit {
     }
 
     validateFileCount(files): boolean {
+        // 上传的文件数量超过上限，显示错误提示
         if (this.files.length + files.length > this.maxFileCount) {
             this.msgs.push({
                 severity: 'error',
                 message: this.invalidFileCountMessage,
             });
             return false;
+        }
+        // 上传的文件数量达到上限，置灰上传按钮
+        else if (this.files.length + files.length === +this.maxFileCount) {
+            this.setDisabledState(true);
+        }
+        // 否则，点亮上传按钮
+        else {
+            this.setDisabledState(false);
         }
 
         return true;
@@ -321,18 +346,9 @@ export class UploaderComponent implements OnInit {
         return this.files && this.files.length > 0;
     }
 
-    clearInputElement() {
-        // TODO 还应该有个input file用于重新上传
-        // let inputViewChild = this.advancedFileInput||this.basicFileInput;
-        // if(inputViewChild && inputViewChild.nativeElement) {
-        //     inputViewChild.nativeElement.value = '';
-        // }
-    }
-
     clear() {
         this.files = [];
         this.onClear.emit();
-        this.clearInputElement();
     }
 
     onCancelFile(file) {
@@ -344,6 +360,8 @@ export class UploaderComponent implements OnInit {
 
     onRemoveFile(file) {
         this.files.splice(this.files.indexOf(file), 1);
+        this._updateFormModel();
+        this.validateFileCount([]);
         this.onRemove.emit({file: file});
     }
 
@@ -353,5 +371,66 @@ export class UploaderComponent implements OnInit {
 
     onReplaceFile(file) {
         this.replacingFile = file;
+    }
+
+    /**
+     * Sets the model value. Implemented as part of ControlValueAccessor.
+     * @param value Value to be set to the model.
+     */
+    writeValue(value: any[]) {
+        if (value) {
+            this.files = value;
+
+            // when init, set children toggle button state
+            this.files.forEach(file => {
+                this.validateFiles(file);
+            });
+        }
+    }
+
+    /**
+     * The method to be called in order to update ngModel.
+     * Now `ngModel` binding is not supported in multiple selection mode.
+     */
+    private _onModelChange: Function;
+
+    /**
+     * Registers a callback that will be triggered when the value has changed.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On change callback function.
+     */
+    registerOnChange(fn: Function) {
+        this._onModelChange = fn;
+    }
+
+    /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
+    private _onTouch: Function;
+
+    /**
+     * Registers a callback that will be triggered when the control has been touched.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On touch callback function.
+     */
+    registerOnTouched(fn: Function) {
+        this._onTouch = fn;
+    }
+
+    /**
+     * Toggles the disabled state of the component. Implemented as part of ControlValueAccessor.
+     * @param isDisabled Whether the component should be disabled.
+     */
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+        this.cdRef.markForCheck();
+    }
+
+    _updateFormModel() {
+        if (this._onModelChange) {
+            this._onModelChange(this.files);
+        }
+
+        if (this._onTouch) {
+            this._onTouch(this.files);
+        }
     }
 }

@@ -3,8 +3,10 @@
     name="demo[]"
     url="./uploader"
     accept="image/*"
+    maxFileCount="3"
     maxFileSize="1000000"
     progressMode="bar"
     [files]="uploadedFiles"
-    (onUpload)="onImageBarUpload($event)">
+    (onSuccess)="onImageBarUpload($event)">
+    <span>请选择图片，大小在 1M 以内，最多上传 3 张图片</span>
 </nb-uploader>
