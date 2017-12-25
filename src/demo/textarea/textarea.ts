@@ -11,6 +11,7 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
+
 export class TextareaDemo {
     // theme sources
     tsCode: string = require('!!raw-loader!./themes/textarea-theme.ts');

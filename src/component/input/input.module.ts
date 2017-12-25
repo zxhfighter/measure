@@ -17,6 +17,7 @@ import { InputConfig } from './input.config';
         InputConfig
     ]
 })
+
 export class InputModule {
     static forRoot(): ModuleWithProviders {
         return { ngModule: InputModule, providers: [InputConfig] };
