@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
-    selector: '[nb-form-control]',
+    selector: '[nbFormControl]',
     template: `
         <div class="nb-form-item-control"
              [class.has-error]="isError"

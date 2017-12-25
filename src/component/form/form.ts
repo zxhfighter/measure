@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: '[nb-form]',
+    selector: '[nbForm]',
     template: `
         <div class="nb-widget nb-form">
             <ng-content></ng-content>

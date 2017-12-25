@@ -2,7 +2,7 @@ import { Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@a
 import { NbFormItemDirective } from './nb-form-item.directive';
 
 @Component({
-    selector: '[nb-form-explain]',
+    selector: '[nbFormExplain]',
     encapsulation: ViewEncapsulation.None,
     template: `
         <ng-content></ng-content>

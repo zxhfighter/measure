@@ -1,7 +1,7 @@
 import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
-    selector: '[nb-form-item]'
+    selector: '[nbFormItem]'
 })
 
 export class NbFormItemDirective {
