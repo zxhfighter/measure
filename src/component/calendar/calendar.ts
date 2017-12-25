@@ -23,7 +23,7 @@ export type CalendarMode = 'calendar' | 'year' | 'month';
     host: {
         'class': 'nb-widget nb-calendar'
     },
-    exportAs: 'xCalendar'
+    exportAs: 'nbCalendar'
 })
 export class CalendarComponent {
 

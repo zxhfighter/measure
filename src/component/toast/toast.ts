@@ -10,7 +10,7 @@ import { ToastConfig } from './toast.config';
     host: {
         'class': 'nb-widget nb-toast'
     },
-    exportAs: 'xToast'
+    exportAs: 'nbToast'
 })
 export class ToastComponent {
     toasts: any = [];

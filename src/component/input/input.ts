@@ -23,8 +23,8 @@ export type INPUT_SIZE =
     'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low' | string;
 
 @Directive({
-    selector: '[nb-input]',
-    exportAs: 'nb-input',
+    selector: '[nbInput]',
+    exportAs: 'nbInput',
     host: {
         '[disabled]': 'disabled || null'
     }
@@ -39,8 +39,8 @@ export class InputDirective implements OnChanges, AfterViewInit {
     @Input() theme: INPUT_THEME = 'default';
 
     /**
-     * input size, there seven default size: 'long-high' | 'long-middle' | 'long-low'
-     * | 'default' | 'short-high' | 'short-middle' | 'short-low'
+     * input size, there seven default size:
+     * 'long-high' | 'long-middle' | 'long-low' | 'default' | 'short-high' | 'short-middle' | 'short-low'
      * @default default
      */
     @Input() size: INPUT_SIZE = 'default';

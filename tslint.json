@@ -2,7 +2,6 @@
     "rulesDirectory": [
         "node_modules/codelyzer"
     ],
-    "defaultSeverity": "warning",
     "rules": {
         "class-name": true,
         "comment-format": [

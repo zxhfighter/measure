@@ -33,7 +33,8 @@ const DATEPICKER_VALUE_ACCESSOR = {
     host: {
         'class': 'nb-widget nb-datepicker',
         '(click)': 'onClickDatePicker($event)'
-    }
+    },
+    exportAs: 'nbDatePicker'
 })
 export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAccessor {
 

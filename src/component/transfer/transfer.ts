@@ -33,6 +33,7 @@ export type SELECTED_TYPE = 'tree' | 'path';
     },
     exportAs: 'nbTransfer'
 })
+
 export class TransferComponent implements OnInit, AfterViewInit {
 
     /** get selected value event */

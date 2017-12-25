@@ -70,7 +70,7 @@ export enum Weekday {
     host: {
         'class': 'nb-widget nb-month-view'
     },
-    exportAs: 'xMonthView'
+    exportAs: 'nbMonthView'
 })
 export class MonthViewComponent implements OnInit {
 

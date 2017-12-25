@@ -22,6 +22,7 @@ import { TreeComponent } from './tree';
         'class': 'nb-widget nb-tree-node'
     }
 })
+
 export class TreeNodeComponent implements OnInit {
 
     /**

@@ -11,10 +11,12 @@ import {
     ElementRef,
     forwardRef
 } from '@angular/core';
+
 import {
     ControlValueAccessor,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
+
 import { OnChange } from '../core/decorators';
 
 /*
@@ -40,6 +42,7 @@ const TEXTLINE_VALUE_ACCESSOR = {
         '[class.nb-text-line-disabled]': 'disabled'
     }
 })
+
 export class TextLineComponent implements OnInit, ControlValueAccessor {
 
     /**
@@ -53,11 +56,13 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
      * @docs-private
      */
     domOrder: string;
+
     /**
      * content dom
      * @docs-private
      */
     domContent: any;
+
     /**
      * order content
      * @docs-private

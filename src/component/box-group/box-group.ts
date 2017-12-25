@@ -51,7 +51,7 @@ const BOXGROUP_VALUE_ACCESSOR = {
         'class': 'nb-widget nb-boxgroup',
         '[class.nb-boxgroup-disabled]': 'disabled'
     },
-    exportAs: 'xBoxGroup'
+    exportAs: 'nbBoxGroup'
 })
 export class BoxGroupComponent implements ControlValueAccessor, OnInit {
 
