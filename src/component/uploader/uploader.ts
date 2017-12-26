@@ -2,8 +2,9 @@ import {
     Component, Input, Output, EventEmitter, ChangeDetectorRef, forwardRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OnChange } from '../core/decorators';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface Message {
     severity: string;
@@ -72,7 +73,7 @@ export class UploaderComponent implements OnInit {
         });
     }
 
-    get files () {
+    get files() {
         return this._files;
     }
 
@@ -123,6 +124,11 @@ export class UploaderComponent implements OnInit {
     @OnChange(true)
     @Input() disabled: boolean = false;
 
+    /**
+     * 跨域请求中是否携带cookie
+     */
+    @Input() withCredentials: boolean;
+
     @Output() onBeforeUpload: EventEmitter<any> = new EventEmitter();
 
     @Output() onBeforeSend: EventEmitter<any> = new EventEmitter();
@@ -139,55 +145,62 @@ export class UploaderComponent implements OnInit {
 
     @Output() onProgress: EventEmitter<any> = new EventEmitter();
 
-    private _msgs: Message[];
-
-    progress: number;
-
-    method: string = 'POST';
+    /**
+     * 错误信息集合
+     *
+     * @docs-private
+     */
+    msgs: Message[];
 
     /**
-     * 文件上传的状态
-     * 'uploading' | 'success' | 'error'
+     * 重新上传中被替换的文件
      */
-    state: string;
+    private _replacingFile: any = null;
 
-    auto: boolean = true;
-
-    replacingFile: any = null;
-
-    withCredentials: boolean;
+    private _method: string = 'POST';
 
     constructor(
-        private cdRef: ChangeDetectorRef
+        public sanitizer: DomSanitizer,
+        private cdRef: ChangeDetectorRef,
     ) {
-
     }
 
     ngOnInit() {
         this.validateFileCount([]);
     }
 
+    /**
+     * 选择待上传的文件
+     *
+     * @param {object} event - 文件选择事件
+     * @docs-private
+     */
     onFileSelect(event) {
-        this._msgs = [];
+        this.msgs = [];
 
-        let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-
+        const files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
         this.validateFiles(files);
     }
 
-    validateFiles(files) {
+    /**
+     * 文件验证通过后上传
+     *
+     * @param {object} files - 待上传文件
+     */
+    private validateFiles(files) {
         if (this.validateFileCount(files)) {
             for (let i = 0; i < files.length; i++) {
                 let file = files[i];
                 if (this.validate(file)) {
+                    // 预览图片
                     if (this.isImage(file)) {
-                        // file.objectURL = this.sanitizer
-                            // .bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
+                        file.url = this.sanitizer
+                            .bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
                     }
                     file.state = 'toBeUpload';
-                    if (this.replacingFile) {
-                        this.files.splice(this.files.indexOf(this.replacingFile), 1, file);
-                        this.replacingFile = null;
+                    if (this._replacingFile) {
+                        this.files.splice(this.files.indexOf(this._replacingFile), 1, file);
+                        this._replacingFile = null;
                     }
                     else {
                         this.files.push(file);
@@ -200,7 +213,12 @@ export class UploaderComponent implements OnInit {
         }
     }
 
-    upload(file) {
+    /**
+     * 上传文件
+     *
+     * @param {object} files - 待上传文件
+     */
+    private upload(file) {
         file.state = 'uploading';
         let xhr = new XMLHttpRequest();
         file.xhr = xhr;
@@ -216,7 +234,7 @@ export class UploaderComponent implements OnInit {
                 this.cdRef.markForCheck();
             }
 
-            this.onProgress.emit({originalEvent: e, progress: file.progress});
+            this.onProgress.emit({ originalEvent: e, progress: file.progress });
         }, false);
 
         xhr.onreadystatechange = () => {
@@ -224,14 +242,14 @@ export class UploaderComponent implements OnInit {
                 file.progress = 0;
 
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    this.onSuccess.emit({xhr: xhr, file: file});
+                    this.onSuccess.emit({ xhr: xhr, file: file });
                     file.state = 'success';
                     file.xhr = null;
                     // 调用回调函数
 
                 }
                 else {
-                    this.onError.emit({xhr: xhr, file: file});
+                    this.onError.emit({ xhr: xhr, file: file });
                     file.state = 'error';
                     this.cdRef.markForCheck();
                     file.xhr = null;
@@ -239,7 +257,7 @@ export class UploaderComponent implements OnInit {
             }
         };
 
-        xhr.open(this.method, this.url, true);
+        xhr.open(this._method, this.url, true);
         xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
         xhr.setRequestHeader('x-requested-with', 'XMLHttpRequest');
 
@@ -253,17 +271,22 @@ export class UploaderComponent implements OnInit {
         xhr.send(file);
     }
 
-    validate(file: File): boolean {
+    /**
+     * 验证文件的类型、大小
+     *
+     * @param {object} files - 待上传文件
+     */
+    private validate(file: File): boolean {
         if (this.accept && !this.isFileTypeValid(file)) {
-            this._msgs.push({
+            this.msgs.push({
                 severity: 'error',
                 message: this.invalidFileTypeMessage.replace('{0}', file.name),
             });
             return false;
         }
 
-        if (this.maxFileSize  && file.size > this.maxFileSize) {
-            this._msgs.push({
+        if (this.maxFileSize && file.size > this.maxFileSize) {
+            this.msgs.push({
                 severity: 'error',
                 message: this.invalidFileSizeMessage.replace('{0}', file.name),
             });
@@ -273,10 +296,16 @@ export class UploaderComponent implements OnInit {
         return true;
     }
 
-    validateFileCount(files): boolean {
+    /**
+     * 验证文件的数量是否超过上限
+     *
+     * @param {object} files - 待上传文件
+     * @return {boolean} 是否通过验证
+     */
+    private validateFileCount(files): boolean {
         // 上传的文件数量超过上限，显示错误提示
         if (this.files.length + files.length > this.maxFileCount) {
-            this._msgs.push({
+            this.msgs.push({
                 severity: 'error',
                 message: this.invalidFileCountMessage,
             });
@@ -295,7 +324,13 @@ export class UploaderComponent implements OnInit {
 
     }
 
-    isFileTypeValid(file: File): boolean {
+    /**
+     * 验证文件的类型是否符合要求
+     *
+     * @param {object} file - 待上传文件
+     * @return {boolean} 是否通过验证
+     */
+    private isFileTypeValid(file: File): boolean {
         let acceptableTypes = this.accept.split(',');
         for (let type of acceptableTypes) {
             let acceptable = this.isWildcard(type) ?
@@ -310,43 +345,70 @@ export class UploaderComponent implements OnInit {
         return false;
     }
 
-    isWildcard(fileType: string): boolean {
+    /**
+     * 文件类型是否包含通配符
+     *
+     * @param {string} fileType - 文件类型
+     * @return {boolean} 是否通过验证
+     */
+    private isWildcard(fileType: string): boolean {
         return fileType.indexOf('*') !== -1;
     }
 
-    getTypeClass(fileType: string): string {
+    /**
+     * 获取文件的第一类型
+     *
+     * @param {string} fileType - 文件类型
+     * @return {string} 文件的第一类型，如image、file
+     */
+    private getTypeClass(fileType: string): string {
         return fileType.substring(0, fileType.indexOf('/'));
     }
 
-    getFileExtension(file: File): string {
+    /**
+     * 获取文件名后缀
+     *
+     * @param {string} file - 待上传文件
+     * @return {string} 文件名后缀
+     */
+    private getFileExtension(file: File): string {
         return '.' + file.name.split('.').pop();
     }
 
-    formatSize(bytes) {
+    /**
+     * 将文件原始大小的字节数格式化成可读性更好的单位数
+     *
+     * @param {number} bytes - 字节数
+     * @return {string} 带有单位的文件大小
+     */
+    private formatSize(bytes) {
         if (bytes === 0) {
             return '0 B';
         }
         let k = 1000,
-        dm = 3,
-        sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-        i = Math.floor(Math.log(bytes) / Math.log(k));
+            dm = 3,
+            sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+            i = Math.floor(Math.log(bytes) / Math.log(k));
 
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     }
 
-    isImage(file: File): boolean {
+    /**
+     * 是否为图片
+     *
+     * @param {object} file - 待上传的文件
+     * @return {boolean} 是否为图片
+     */
+    private isImage(file: File): boolean {
         return /^image\//.test(file.type);
     }
 
-    hasFiles(): boolean {
-        return this.files && this.files.length > 0;
-    }
-
-    clear() {
-        this.files = [];
-        this.onClear.emit();
-    }
-
+    /**
+     * 取消上传中的文件
+     *
+     * @param {object} file - 上传中的文件
+     * @docs-private
+     */
     onCancelFile(file) {
         if (file.xhr) {
             file.xhr.abort();
@@ -354,26 +416,44 @@ export class UploaderComponent implements OnInit {
         this.onRemoveFile(file);
     }
 
+    /**
+     * 删除已上传的文件
+     *
+     * @param {object} file - 已上传的文件
+     * @docs-private
+     */
     onRemoveFile(file) {
         this.files.splice(this.files.indexOf(file), 1);
         this._updateFormModel();
         this.validateFileCount([]);
-        this.onRemove.emit({file: file});
+        this.onRemove.emit({ file: file });
     }
 
-    onReuploadFile (file) {
+    /**
+     * 上传失败后重新上传当前文件
+     *
+     * @param {object} file - 上传失败的文件
+     * @docs-private
+     */
+    onReuploadFile(file) {
         this.upload(file);
     }
 
+    /**
+     * 上次成功后重新选择其他文件上传
+     *
+     * @param {object} file - 待上传的文件
+     * @docs-private
+     */
     onReplaceFile(file) {
-        this.replacingFile = file;
+        this._replacingFile = file;
     }
 
     /**
      * Sets the model value. Implemented as part of ControlValueAccessor.
      * @param value Value to be set to the model.
      */
-    writeValue(value: any[]) {
+    private writeValue(value: any[]) {
         if (value) {
             this.files = value;
 
@@ -420,6 +500,9 @@ export class UploaderComponent implements OnInit {
         this.cdRef.markForCheck();
     }
 
+    /**
+     * 用于Form中的数据接口
+     */
     _updateFormModel() {
         if (this._onModelChange) {
             this._onModelChange(this.files);

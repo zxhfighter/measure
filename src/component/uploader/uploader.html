@@ -22,7 +22,7 @@
                 </div>
                 <div class="img-progress-finish" [class.hidden]="file.state!=='success'">
                     <span class="photo_bigger_mark">
-                        <img src="{{ file.url }}" />
+                        <img [src]="file.url" />
                     </span>
                     <div class="photo-control">
                         <label for="fileInput" class="edit_mark" (click)="onReplaceFile(file)">重新上传</label>
@@ -38,7 +38,7 @@
                 accept="{{ accept }}">
         </div>
         <ul class="nb-uploader-msg">
-            <li *ngFor="let msg of _msgs">
+            <li *ngFor="let msg of msgs">
                 <span class="ui-messages-summary">{{ msg.message }}</span>
             </li>
         </ul>
@@ -58,7 +58,7 @@
         </div>
 
         <ul class="nb-uploader-msg">
-            <li *ngFor="let msg of _msgs">
+            <li *ngFor="let msg of msgs">
                 <span class="ui-messages-summary">{{ msg.message }}</span>
             </li>
         </ul>

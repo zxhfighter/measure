@@ -49,7 +49,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
     @OnChange(true)
     @Input() needHideAfterDocumentClick: boolean;
 
-    mask: HTMLElement | null;
+    private mask: HTMLElement | null;
 
     /**
      * 对话框打开时事件 emit
