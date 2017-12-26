@@ -11,14 +11,15 @@
 @import './variable.less';
 
 @header-height: 60px;
-@aside-width: 150px;
+@aside-width: 200px;
 
 button:focus,
 input:focus,
 ul:focus,
 li:focus,
 a:focus,
-img:focus {
+img:focus,
+textarea:focus {
     outline: none;
 }
 
@@ -80,6 +81,10 @@ body {
             width: @aside-width;
             overflow: scroll;
             background: #f1f1f1;
+
+            .nb-side-bar-content {
+                padding: 20px;
+            }
 
             .app-aside-list {
                 padding: 0;
