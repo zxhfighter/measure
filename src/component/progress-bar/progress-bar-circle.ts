@@ -19,7 +19,8 @@ import { OnChange } from '../core/decorators';
         'class': 'nb-widget nb-progress-bar-circle',
         '[class.success]': 'isSuccess',
         '[class.error]': 'isError'
-    }
+    },
+    exportAs: 'nbProgressBarCircle'
 })
 export class ProgressBarCircleComponent {
 

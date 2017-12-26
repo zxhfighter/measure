@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./search-box.less'],
     preserveWhitespaces: false
 })
+
 export class SearchBoxDemo {
 
     searchValue = 'qazwsx';

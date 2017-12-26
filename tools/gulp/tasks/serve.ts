@@ -19,7 +19,7 @@ const interceptor = require('../../../config/interceptor');
 const devConfigPath = join(config.webpackConfigPath, 'webpack.dev');
 const prodConfigPath = join(config.webpackConfigPath, 'webpack.prod');
 
-task('serve', sequenceTask('clean', ':serve'));
+task('serve', sequenceTask('clean', 'docs', ':serve'));
 
 task(':serve', () => {
     const devConfig = require(devConfigPath);
@@ -65,7 +65,7 @@ task(':serve', () => {
     // serve.watch(root + '/index.html').on('change', serve.reload);
 });
 
-task('build:demo', sequenceTask('build:demo:webpack', 'build:replace:basehref'));
+task('build:demo', sequenceTask('docs', 'build:demo:webpack', 'build:replace:basehref'));
 
 task('build:demo:webpack', (cb?: Function) => {
     let buildConfig = require(prodConfigPath);

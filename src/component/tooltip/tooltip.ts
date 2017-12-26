@@ -31,7 +31,7 @@ import { Observable } from 'rxjs/Observable';
     exportAs: 'nbTooltip',
     providers: [DynamicComponentService],
     host: {
-        '(body:click)': 'this.handleBodyInteraction()'
+        '(body:click)': 'handleBodyInteraction()'
     }
 })
 
@@ -111,7 +111,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         }
         if (this.trigger === 'click') {
             this.clickListener =
-                this.renderer.listen(this.el.nativeElement, 'click', (e) => this.handleHostClick(e));
+                this.renderer.listen(this.el.nativeElement, 'click', (e) => this._handleHostClick(e));
         }
         if (this.trigger === 'focus') {
             this.focusListener =
@@ -122,7 +122,8 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * 给slider使用
+     * 截获Tooltip内容的变化，重新渲染
+     * 仅支持Tooltip内容为 string 类型
      */
     ngOnChanges(changes: SimpleChanges) {
         if (changes['nbTooltip']) {
@@ -132,23 +133,35 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         }
     }
 
+    /**
+     * 创建并显示Tooltip
+     */
     show() {
         if (!this.tiplayerInstance) {
-            this.createTiplayer();
+            this._createTiplayer();
         }
         this.tiplayerInstance!.show();
     }
 
+    /**
+     * 隐藏Tooltip
+     */
     hide() {
         if (this.tiplayerInstance) {
             this.tiplayerInstance.hide();
         }
     }
 
+    /**
+     * 显示或隐藏Tooltip
+     */
     toggle() {
         this.isTooltipVisible() ? this.hide() : this.show();
     }
 
+    /**
+     * Tooltip是否显示
+     */
     isTooltipVisible(): boolean {
         return !!this.tiplayerInstance && this.tiplayerInstance.isVisible();
     }
@@ -158,7 +171,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
      * @param { Event } event - click event
      *
      */
-    handleHostClick(event) {
+    _handleHostClick(event) {
         this.toggle();
         event.stopPropagation();
     }
@@ -168,7 +181,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
      * 根据是否为嵌入方式，决定创建在当前元素的container内还是挂载到body下面
      *
      */
-    createTiplayer() {
+    _createTiplayer() {
         let hostElement;
         if (!this.embedded) {
             hostElement = window.document.body;
@@ -197,7 +210,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * 给slider使用
+     * 重新定位Tooltip
      */
     needReposition() {
         if (this.positionStrategy) {

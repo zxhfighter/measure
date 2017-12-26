@@ -1,4 +1,17 @@
-<h1 class="main-title">ui-card</h1>
+<h1 class="main-title">nb-card</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
+
+<p class="type-desc">
+    <span>selector</span>: <code>nb-card</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>nbCard</code>
+</p>
 
 <section>
     <h3 class="section-title">Usage</h3>
@@ -15,7 +28,7 @@
 <nb-code-box [tsCode]="tsCode" [htmlCode]="htmlCode" [lessCode]="lessCode">
     <h3 nb-codebox-title>card component basic</h3>
     <div nb-codebox-desc>
-        <p><code>ui-card</code> 组件为一个典型的卡片式布局组件，包括头部、内容区和尾部三部分。可以使用 <code>width</code>
+        <p><code>nb-card</code> 组件为一个典型的卡片式布局组件，包括头部、内容区和尾部三部分。可以使用 <code>width</code>
         来设置卡片宽度，使用 <code>disposable</code> 来设置卡片是否能够关闭，此时关闭时同时会触发 <code>dispose</code> 事件。</p>
 
         <p>三部分的内容通过模板来定义，使用 <code>#title</code> 来定义头部，<code>#body</code> 来定义内容区，
@@ -29,91 +42,4 @@
 
 <h3 class="section-title">API</h3>
 
-<div class="docs-api">
-    <h2 class="docs-api-type">Components</h2>
-
-    <h4 class="docs-api-h4 docs-api-class-name">
-        <code>ui-card</code> API Reference
-    </h4>
-    <p class="docs-api-class-description">Card Component
-    </p>
-    <h5 class="docs-table-desc">Properties</h5>
-    <table class="docs-table docs-table-properties">
-        <tr class="docs-row docs-row-head">
-            <th class="docs-td docs-th">Name</th>
-            <th class="docs-td docs-th">Type</th>
-            <th class="docs-td docs-th">Default</th>
-            <th class="docs-td docs-th">Description</th>
-        </tr>
-
-        <tr class="docs-row docs-row-body">
-            <td class="docs-td docs-td-name">
-                <div class="docs-output-marker">
-                    @Output()</div>
-                <p class="docs-property-name">
-                    dispose
-                </p>
-            </td>
-            <td class="docs-td docs-td-type">EventEmitter&lt;CardComponent&gt;
-            </td>
-            <td class="docs-td docs-td-default"></td>
-            <td class="docs-td docs-td-desc">
-                <p>the event emitted when the component is disposed(removed from dom)</p>
-            </td>
-        </tr>
-
-        <tr class="docs-row docs-row-body">
-            <td class="docs-td docs-td-name">
-                <div class="docs-input-marker">
-                    @Input()</div>
-                <p class="docs-property-name">
-                    width
-                </p>
-            </td>
-            <td class="docs-td docs-td-type">number</td>
-            <td class="docs-td docs-td-default">540</td>
-            <td class="docs-td docs-td-desc">
-                <p>card width, in pixels</p>
-            </td>
-        </tr>
-
-
-
-        <tr class="docs-row docs-row-body">
-            <td class="docs-td docs-td-name">
-                <div class="docs-input-marker">
-                    @Input()</div>
-                <p class="docs-property-name">
-                    disposable
-                </p>
-            </td>
-            <td class="docs-td docs-td-type">boolean</td>
-            <td class="docs-td docs-td-default">false</td>
-            <td class="docs-td docs-td-desc">
-                <p>whether the card can be disposed</p>
-            </td>
-        </tr>
-
-
-
-        <tr class="docs-row docs-row-body">
-            <td class="docs-td docs-td-name">
-                <div class="docs-input-marker">
-                    @Input()</div>
-                <p class="docs-property-name">
-                    theme
-                </p>
-            </td>
-            <td class="docs-td docs-td-type">string</td>
-            <td class="docs-td docs-td-default">''</td>
-            <td class="docs-td docs-td-desc">
-                <p>the card extra theme, i.e. when theme is &#39;dialog&#39;, an extra class
-                    <code>nb-card-dialog</code> will be appended to the host className property</p>
-            </td>
-        </tr>
-
-
-
-    </table>
-
-</div>
+<!-- api(card.html) -->

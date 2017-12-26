@@ -1,11 +1,11 @@
 
 // --- variable ---
-@ui-accordion-panel-bottom-margin: 0.2em;
-@ui-accordion-panel-padding: 1em;
-@ui-accordion-panel-header-padding: 0.5em 0.5em 0.5em 2em;
-@ui-accordion-panel-header-icon-right-padding: 0.5em 2em 0.5em 0.5em;
-@ui-accordion-panel-header-icon-spacing: 1em;
-@ui-accordion-panel-header-border-radius: 0;
+@accordion-panel-bottom-margin: 0.2em;
+@accordion-panel-padding: 1em;
+@accordion-panel-header-padding: 0.5em 0.5em 0.5em 1em;
+@accordion-panel-header-icon-right-padding: 0.5em 2em 0.5em 0.5em;
+@accordion-panel-header-icon-spacing: 1em;
+@accordion-panel-header-border-radius: 0;
 
 // --- layout ---
 .@{prefix}-accordion {
@@ -13,57 +13,24 @@
 }
 
 .@{prefix}-accordion-panel {
-    margin-bottom: @ui-accordion-panel-bottom-margin;
+    margin-bottom: @accordion-panel-bottom-margin;
 }
 
 .@{prefix}-accordion-header {
     cursor: pointer;
-    padding: @ui-accordion-panel-header-padding;
+    padding: @accordion-panel-header-padding;
     position: relative;
-    border-radius: @ui-accordion-panel-header-border-radius;
-}
-
-.@{prefix}-accordion-header-icon {
-    position: absolute;
-    left: @ui-accordion-panel-header-icon-spacing;
-    top: 50%;
-    margin-top: -0.5em;
-}
-
-.@{prefix}-accordion-icon-right {
-    .@{prefix}-accordion-header {
-        padding: @ui-accordion-panel-header-icon-right-padding;
-    }
-    .@{prefix}-accordion-header-icon {
-        left: auto;
-        right: @ui-accordion-panel-header-icon-spacing;
-    }
+    border-radius: @accordion-panel-header-border-radius;
 }
 
 .@{prefix}-accordion-content {
-    padding: @ui-accordion-panel-padding;
+    padding: @accordion-panel-padding;
     display: none;
 }
 
 .@{prefix}-accordion-panel-active {
     .@{prefix}-accordion-content {
         display: block;
-    }
-}
-
-// --- presentation ---
-@ui-palette-color: #666;
-@ui-accordion-header-background: #f6f6f6;
-@ui-accordion-header-hover-background: #fbfbfb;
-@ui-accordion-header-color: #f6f6f6;
-@ui-accordion-header-border: 1px solid #ddd;
-
-.@{prefix}-accordion-header {
-    border: @ui-accordion-header-border;
-    background: @ui-accordion-header-background;
-    color: @ui-palette-color;
-    &:hover {
-        background: @ui-accordion-header-hover-background;
     }
 }
 

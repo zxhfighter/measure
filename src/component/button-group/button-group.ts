@@ -100,6 +100,8 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
         forwardRef(() => ButtonToggleComponent)
     ) _buttonViewList: QueryList<ButtonToggleComponent>;
 
+
+
     constructor() { }
 
     ngOnInit() {
@@ -253,7 +255,7 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
         '[class.nb-button-toggle-disabled]': 'disabled',
         '(click)': 'onToggle()'
     },
-    exportAs: 'xButtonToggle'
+    exportAs: 'nbButtonToggle'
 })
 export class ButtonToggleComponent {
 

@@ -1,10 +1,74 @@
+<a name="1.1.26"></a>
+## [1.1.26](https://github.com/zxhfighter/measure/compare/1.1.24...1.1.26) (2017-12-25)
+
+
+
+<a name="1.1.25"></a>
+## [1.1.25](https://github.com/zxhfighter/measure/compare/1.1.24...1.1.25) (2017-12-25)
+
+
+
+<a name="1.1.24"></a>
+## [1.1.24](https://github.com/zxhfighter/measure/compare/1.1.23...1.1.24) (2017-12-25)
+
+
+
+<a name="1.1.23"></a>
+## [1.1.23](https://github.com/zxhfighter/measure/compare/1.1.15...1.1.23) (2017-12-25)
+
+
+
+<a name="1.1.14"></a>
+## [1.1.14](https://github.com/zxhfighter/measure/compare/1.1.10...1.1.14) (2017-12-22)
+
+
+
+<a name=""></a>
+#  (2017-12-25)
+
+
+
+<a name="1.1.22"></a>
+## [1.1.22](https://github.com/zxhfighter/measure/compare/1.1.15...1.1.22) (2017-12-25)
+
+
+
+<a name="1.1.19"></a>
+## [1.1.19](https://github.com/zxhfighter/measure/compare/1.1.17...1.1.19) (2017-12-22)
+
+
+
+<a name="1.1.17"></a>
+## [1.1.17](https://github.com/zxhfighter/measure/compare/1.1.14...1.1.17) (2017-12-22)
+
+
+
+<a name="1.1.14"></a>
+## [1.1.14](https://github.com/zxhfighter/measure/compare/1.1.10...1.1.14) (2017-12-22)
+
+
+
+<a name="1.1.15"></a>
+## [1.1.15](https://github.com/zxhfighter/measure/compare/1.1.14...1.1.15) (2017-12-25)
+
+
+
+
+<a name="1.1.14"></a>
+## [1.1.14](https://github.com/zxhfighter/measure/compare/1.1.12...1.1.14) (2017-12-25)
+
+
+
+
 <a name="1.1.13"></a>
 ## [1.1.13](https://github.com/zxhfighter/measure/compare/1.1.8...1.1.13) (2017-12-25)
 
 
 
+
 <a name="1.1.12"></a>
 ## [1.1.12](https://github.com/zxhfighter/measure/compare/1.1.9...1.1.12) (2017-12-22)
+
 
 
 

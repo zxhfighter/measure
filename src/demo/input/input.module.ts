@@ -24,4 +24,5 @@ import { InputSizeDemo } from './size/input-size';
     providers: [],
     exports: []
 })
+
 export class InputDemoModule { }

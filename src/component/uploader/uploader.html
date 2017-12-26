@@ -1,3 +1,5 @@
+<!-- 上传提示 -->
+<ng-content></ng-content>
 
 <!-- 图片上传模式 -->
 <ng-container *ngIf="mode==='image'">
@@ -9,12 +11,12 @@
                         {{ file.progress || '正在上传中' }}<label [class.hidden]="!file.progress">%</label>
                     </span>
                     <span *ngIf="progressMode==='bar'">
-                        <nb-progress-bar [value]="file.progress" [isSuccess]="isSuccess"></nb-progress-bar>
+                        <nb-progress-bar [value]="file.progress"></nb-progress-bar>
                     </span>
                     <button nb-button theme="default" (click)="onCancelFile(file)">取消</button>
                 </div>
                 <div class="img-progress-error" [class.hidden]="file.state!=='error'">
-                    <span class="progress-error-msg">上传失败</span>
+                    <span class="progress-error-msg">{{ uploadFailedMessage }}</span>
                     <button nb-button theme="default" (click)="onReuploadFile(file)">重试</button>
                     <i class="iconfont icon-close" title="Close" (click)="onRemoveFile(file)"></i>
                 </div>
@@ -29,14 +31,14 @@
                 </div>
             </li>
         </ul>
-        <div class="image-add">
-            <span class="iconfont icon-plus_lg"></span>
+        <div class="image-add" *ngIf="!disabled">
+            <span class="image-add-icon">+</span>
             <input id="fileInput" (change)="onFileSelect($event)"
                 type="file" multiple="multiple" name="myFile" class="fileinput"
                 accept="{{ accept }}">
         </div>
         <ul class="nb-uploader-msg">
-            <li *ngFor="let msg of msgs">
+            <li *ngFor="let msg of _msgs">
                 <span class="ui-messages-summary">{{ msg.message }}</span>
             </li>
         </ul>
@@ -47,15 +49,16 @@
 <ng-container *ngIf="mode==='file'">
     <div class="nb-uploader-file">
         <!-- 选择文件 -->
-        <div class="file-add">
-            <button nb-button theme="default"><i class="fa fa-upload"></i> 选择文件</button>
+        <div class="file-add"
+            [class.file-add-disabled]="disabled">
+            <button nb-button theme="default" [disabled]="disabled"><i class="fa fa-upload"></i> 选择文件</button>
             <input (change)="onFileSelect($event)"
                 type="file" multiple="multiple" name="myFile" class="fileinput"
                 accept="{{ accept }}">
         </div>
 
         <ul class="nb-uploader-msg">
-            <li *ngFor="let msg of msgs">
+            <li *ngFor="let msg of _msgs">
                 <span class="ui-messages-summary">{{ msg.message }}</span>
             </li>
         </ul>
@@ -68,7 +71,7 @@
                             {{ file.progress || '正在上传中' }}<label [class.hidden]="!file.progress">%</label>
                         </div>
                         <div *ngIf="progressMode==='bar'" class="file-progress-bar">
-                            <nb-progress-bar [value]="file.progress" [isSuccess]="isSuccess"></nb-progress-bar>
+                            <nb-progress-bar [value]="file.progress"></nb-progress-bar>
                         </div>
                         <i class="iconfont icon-close" title="Close" (click)="onCancelFile(file)"></i>
                     </div>

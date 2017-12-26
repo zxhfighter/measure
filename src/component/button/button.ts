@@ -110,7 +110,7 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
         '[attr.disabled]': 'disabled || null',
         '(click)': '_haltDisabledEvents($event)',
     },
-    exportAs: 'xButton, xAnchor'
+    exportAs: 'nbButton, nbAnchor'
 })
 export class ButtonAnchorComponent extends ButtonComponent {
 
