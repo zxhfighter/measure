@@ -7,6 +7,8 @@ import { CodeHighlighterModule } from '../../component/code-highlighter';
 
 import { AccordionDemo } from './accordion';
 import { AccordionBasicDemo } from './basic/accordion-basic';
+import { AccordionCollapsibleDemo } from './collapsible/accordion-collapsible';
+import { AccordionHoverableDemo } from './hoverable/accordion-hoverable';
 
 @NgModule({
     imports: [
@@ -17,7 +19,9 @@ import { AccordionBasicDemo } from './basic/accordion-basic';
     ],
     declarations: [
         AccordionDemo,
-        AccordionBasicDemo
+        AccordionBasicDemo,
+        AccordionCollapsibleDemo,
+        AccordionHoverableDemo
     ],
     providers: [],
     exports: []

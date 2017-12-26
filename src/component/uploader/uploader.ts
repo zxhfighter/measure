@@ -72,8 +72,6 @@ export class UploaderComponent implements OnInit {
         });
     }
 
-    isSuccess: boolean = false;
-
     get files () {
         return this._files;
     }
@@ -141,9 +139,7 @@ export class UploaderComponent implements OnInit {
 
     @Output() onProgress: EventEmitter<any> = new EventEmitter();
 
-    @Output() uploadHandler: EventEmitter<any> = new EventEmitter();
-
-    msgs: Message[];
+    private _msgs: Message[];
 
     progress: number;
 
@@ -172,7 +168,7 @@ export class UploaderComponent implements OnInit {
     }
 
     onFileSelect(event) {
-        this.msgs = [];
+        this._msgs = [];
 
         let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
 
@@ -259,7 +255,7 @@ export class UploaderComponent implements OnInit {
 
     validate(file: File): boolean {
         if (this.accept && !this.isFileTypeValid(file)) {
-            this.msgs.push({
+            this._msgs.push({
                 severity: 'error',
                 message: this.invalidFileTypeMessage.replace('{0}', file.name),
             });
@@ -267,7 +263,7 @@ export class UploaderComponent implements OnInit {
         }
 
         if (this.maxFileSize  && file.size > this.maxFileSize) {
-            this.msgs.push({
+            this._msgs.push({
                 severity: 'error',
                 message: this.invalidFileSizeMessage.replace('{0}', file.name),
             });
@@ -280,7 +276,7 @@ export class UploaderComponent implements OnInit {
     validateFileCount(files): boolean {
         // 上传的文件数量超过上限，显示错误提示
         if (this.files.length + files.length > this.maxFileCount) {
-            this.msgs.push({
+            this._msgs.push({
                 severity: 'error',
                 message: this.invalidFileCountMessage,
             });
