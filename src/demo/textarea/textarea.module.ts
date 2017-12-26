@@ -22,4 +22,5 @@ import { TextareaThemeDemo } from './themes/textarea-theme';
     providers: [],
     exports: []
 })
+
 export class TextareaDemoModule { }

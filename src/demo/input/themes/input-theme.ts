@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
     templateUrl: './input-theme.html',
     styleUrls: ['./input-theme.less']
 })
+
 export class InputThemeDemo {
     isDisabled = false;
     onFocus(ipt) {

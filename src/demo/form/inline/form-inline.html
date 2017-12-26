@@ -1,0 +1,15 @@
+<form nbForm [nzLayout]="'inline'" [formGroup]="validateForm">
+    <div nbFormItem>
+        <div nbFormControl nbHasFeedback [nbValidateStatus]="validateForm.controls.userName">
+            <input nbInput formControlName="userName" type="text" theme="default" placeholder="请输入用户名" >
+            <div nbFormExplain *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">用户名必须填写</div>
+        </div>
+    </div>
+    <div nbFormItem>
+        <div nbFormControl nbHasFeedback [nbValidateStatus]="validateForm.controls.password">
+            <input nbInput formControlName="password" type="password" placeholder="请输入密码">
+            <div nbFormExplain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">密码必须填写</div>
+        </div>
+    </div>
+    <button nb-button [disabled]="!validateForm.valid" theme="primary">登录</button>
+</form>

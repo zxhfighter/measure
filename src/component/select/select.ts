@@ -36,11 +36,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @Input() defaultLabel: string;
     @Input() searchable: boolean = false;
     @Input() disabled: boolean = false;
+    @Input() value: number | null | undefined;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
     @Output() onPanelShow: EventEmitter<Object> = new EventEmitter();
     @Output() onPanelHide: EventEmitter<Object> = new EventEmitter();
 
-    value: number | null | undefined;
     icon: string = 'fa-angle-down';
     selectedData: SelectConfig;
     styles: OptionsStyles;

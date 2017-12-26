@@ -14,7 +14,8 @@ import {
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-progress-bar'
-    }
+    },
+    exportAs: 'nbProgressBar'
 })
 export class ProgressBarComponent {
 

@@ -65,7 +65,7 @@ task(':serve', () => {
     // serve.watch(root + '/index.html').on('change', serve.reload);
 });
 
-task('build:demo', sequenceTask('build:demo:webpack', 'build:replace:basehref'));
+task('build:demo', sequenceTask('docs', 'build:demo:webpack', 'build:replace:basehref'));
 
 task('build:demo:webpack', (cb?: Function) => {
     let buildConfig = require(prodConfigPath);

@@ -1,0 +1,22 @@
+.form-control-validation(@text-color: @text-color; @border-color: @border-color;) {
+
+    .@{prefix}-form-explain {
+        color: @text-color;
+        font-size: @font-size-small;
+    }
+
+    .@{prefix}-input {
+        &,
+        &:hover {
+            border-color: @border-color;
+        }
+
+        &:not([disabled]):hover {
+            border-color: darken(@border-color, 20%);
+        }
+    }
+
+    .has-feedback {
+        color: @text-color;
+    }
+}

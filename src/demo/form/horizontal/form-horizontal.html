@@ -1,0 +1,163 @@
+<form nbForm [nzLayout]="'horizontal'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>推广计划名称</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl nbHasFeedback [nbValidateStatus]="getFormControl('planName')">
+                    <input nbInput formControlName="planName">
+                    <div nbFormExplain *ngIf="getFormControl('planName').dirty&&getFormControl('planName').hasError('required')">推广计划名称不能为空</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>关键词</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl nbHasFeedback [nbValidateStatus]="getFormControl('keyword')">
+                    <nb-chips formControlName="keyword"></nb-chips>
+                    <div nbFormExplain *ngIf="getFormControl('keyword').dirty&&getFormControl('keyword').hasError('required')">关键词不能为空</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>计费方式</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl [nbValidateStatus]="getFormControl('chargeType')">
+                    <nb-boxgroup type="radio" formControlName="chargeType">
+                        <ng-container *ngFor="let item of chargeOpts">
+                            <nb-checkbox [value]="item.value">{{ item.name }}</nb-checkbox>
+                        </ng-container>
+                    </nb-boxgroup>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>关联订单</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl nbHasFeedback [nbValidateStatus]="getFormControl('orderId')">
+                    <nb-select formControlName="orderId" [datasource]="orderData" [searchable]="true"
+                               [defaultLabel]="'请选择订单'"></nb-select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>单元价格</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl [nbValidateStatus]="getFormControl('price')">
+                    <nb-spinner formControlName="price"></nb-spinner>
+                    <div nbFormExplain *ngIf="getFormControl('price').dirty&&getFormControl('price').hasError('min')">请输入大于0的数字</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>选择性别</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl [nbValidateStatus]="getFormControl('gender')">
+                    <nb-boxgroup type="checkbox" formControlName="gender">
+                        <ng-container *ngFor="let item of genderOpts">
+                            <nb-checkbox [value]="item.value" [checked]="item.checked">{{ item.name }}</nb-checkbox>
+                        </ng-container>
+                    </nb-boxgroup>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>自动下线</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl [nbValidateStatus]="getFormControl('autoOffline')">
+                    <nb-switch formControlName="autoOffline"></nb-switch>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>创意类型</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl [nbValidateStatus]="getFormControl('creativeType')">
+                    <nb-button-group type="radio" formControlName="creativeType">
+                        <ng-container *ngFor="let item of creativeOpts">
+                            <nb-button-toggle value="{{ item.name }}">{{ item.name }}</nb-button-toggle>
+                        </ng-container>
+                    </nb-button-group>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-2">
+                <div nbFormLabel>
+                    <label nbFormItemRequired>备注</label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div nbFormControl [nbValidateStatus]="getFormControl('remark')">
+                    <textarea nbTextarea theme="default" formControlName="remark">
+    </textarea>
+                    <div nbFormExplain *ngIf="getFormControl('remark').dirty&&getFormControl('remark').hasError('required')">备注不能为空</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div nbFormItem>
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-2">
+                <button nb-button [disabled]="!validateForm.valid" theme="primary">提交</button>
+            </div>
+        </div>
+    </div>
+
+</form>

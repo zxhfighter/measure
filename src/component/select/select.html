@@ -1,12 +1,11 @@
 <button nbOverlayOrigin nb-button
     #origin="nbOverlayOrigin"
-    type="button" theme="{{theme}}" size="{{ size }}" (click)="onToggle($event)">
-        <span class="nb-select-label">{{ selectedData.label }}</span>
-        <i class="nb-select-icon fa {{ icon }}"></i>
+    type="button" theme="{{theme}}" size="{{size}}" (click)="onToggle($event)">
+        <span class="nb-select-label">{{selectedData.label}}</span>
+        <i class="nb-select-icon fa {{icon}}"></i>
 </button>
 
 <nb-overlay #overlay
-    needHideAfterBobyClick
     placement="bottom-left">
     <nb-select-options
                     (onChange)="onSelectedOption($event)"

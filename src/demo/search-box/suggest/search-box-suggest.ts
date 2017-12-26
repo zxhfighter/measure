@@ -9,6 +9,7 @@ import {
     templateUrl: './search-box-suggest.html',
     styleUrls: ['./search-box-suggest.less'],
 })
+
 export class SearchBoxSuggestDemo {
 
     suggestionValue = ['qwe', 'asd', 'zxc'];
