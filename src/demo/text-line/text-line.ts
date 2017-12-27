@@ -9,6 +9,7 @@ import {
     styleUrls: ['./text-line.less'],
     preserveWhitespaces: false
 })
+
 export class TextLineDemo {
     // basic sources
     tsCodeBasic: string = require('!!raw-loader!./basic/text-line-basic.ts');

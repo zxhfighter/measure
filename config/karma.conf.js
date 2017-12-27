@@ -1,78 +1,47 @@
-/**
- * @file karma config
- * @author wanlingfeng(wanlingfeng@baidu.com)
- */
+const path = require('path');
 
-module.exports = function (config) {
-    const testWebpackConfig = require('./webpack.test')();
-    const configuration = {
-        basePath: '',
-
-        frameworks: ['jasmine'],
-
-        exclude: [],
-
+module.exports = config => {
+    config.set({
+        basePath: path.join(__dirname, './'),
+        singleRun: false,
+        autoWatch: true,
         client: {
-            captureConsole: false
+            clearContext: false
         },
-
-        files: [
-            {pattern: './config/spec-bundle.js', watched: false}
+        logLevel: config.LOG_INFO,
+        junitReporter: {
+            outputDir: './test-reports'
+        },
+        browsers: [
+            'Chrome'
         ],
-
-        proxies: {
-            "/assets/": "/base/src/assets/"
+        frameworks: [
+            'jasmine'
+        ],
+        files: [
+            './spec-bundle.js'
+        ],
+        preprocessors: {
+            ['./spec-bundle.js']: [
+                'webpack'
+            ]
         },
-
-        preprocessors: {'./config/spec-bundle.js': ['coverage', 'webpack', 'sourcemap']},
-
-        webpack: testWebpackConfig,
-
+        reporters: ['progress', 'coverage', 'kjhtml'],
         coverageReporter: {
-            type: 'in-memory'
+            type: 'html',
+            dir: '../coverage/'
         },
-
-        remapCoverageReporter: {
-            'text-summary': null,
-            json: './coverage/coverage.json',
-            html: './coverage/html'
-        },
-
+        webpack: require('./webpack.test')(),
         webpackMiddleware: {
-            noInfo: true,
-
-            stats: {
-                chunks: false
-            }
+            noInfo: true
         },
-
-        reporters: ['mocha', 'coverage', 'remap-coverage'],
-
-        port: 9876,
-
-        colors: true,
-
-        logLevel: config.LOG_WARN,
-
-        autoWatch: false,
-
-        browsers: ['Chrome'],
-
-        customLaunchers: {
-            ChromeTravisCi: {
-                base: 'Chrome',
-                flags: ['--no-sandbox']
-            }
-        },
-
-        singleRun: true
-    };
-
-    if (process.env.TRAVIS) {
-        configuration.browsers = [
-            'ChromeTravisCi'
-        ];
-    }
-
-    config.set(configuration);
-};
+        plugins: [
+            require('karma-jasmine'),
+            require('karma-junit-reporter'),
+            require('karma-coverage'),
+            require('karma-chrome-launcher'),
+            require('karma-webpack'),
+            require('karma-jasmine-html-reporter')
+        ]
+    })
+}

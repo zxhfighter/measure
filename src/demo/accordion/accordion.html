@@ -28,11 +28,31 @@
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Accordion Basic</h3>
     <div nb-codebox-desc>
-        <p>1.支持 click 、hover 两种触发方式，默认情况下是 click，需要 hover 展开时设置 <code>hoverable</code></p>
-        <p>2.折叠方式支持互斥折叠和全部可折叠，通过设置 <code>collapsible</code>， true 为全部可折叠， false 为互斥折叠</p>
+        <p>默认情况下，展开第一项，其他项目处于折叠状态；点击当前项目无反应；点击其他项目时，折叠当前项目，展开点击的项目。</p>
     </div>
 
     <demo-accordion-basic></demo-accordion-basic>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeCollapsible" [htmlCode]="htmlCodeCollapsible" [lessCode]="lessCodeCollapsible">
+    <h3 nb-codebox-title>Accordion Collapsible</h3>
+    <div nb-codebox-desc>
+        <p>折叠方式支持互斥折叠和全部可折叠，上一示例为互斥折叠，当前示例为全部可折叠；<br/>
+            互斥折叠：所有项目中只有一个项目可以展开；<br/>
+            全部可折叠：每一项目独自展开折叠，与其他项目的状态无关；<br/>
+            通过设置 <code>collapsible</code>， true 为全部可折叠，false 为互斥折叠。</p>
+    </div>
+
+    <demo-accordion-collapsible></demo-accordion-collapsible>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeHoverable" [htmlCode]="htmlCodeHoverable" [lessCode]="lessCodeHoverable">
+    <h3 nb-codebox-title>Accordion Hoverable</h3>
+    <div nb-codebox-desc>
+        <p>支持 click 、hover 两种触发方式，默认情况下是 click，需要 hover 展开时设置 <code>hoverable</code></p>
+    </div>
+
+    <demo-accordion-hoverable></demo-accordion-hoverable>
 </nb-code-box>
 
 <h3 class="section-title">API</h3>

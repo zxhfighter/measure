@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
     templateUrl: './textarea-theme.html',
     styleUrls: ['./textarea-theme.less']
 })
+
 export class TextareaThemeDemo {
     isDisabled = false;
 }

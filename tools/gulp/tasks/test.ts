@@ -3,29 +3,18 @@
  */
 
 import { join } from 'path';
-import { task, watch } from 'gulp';
+import { task } from 'gulp';
 import { config } from '../utils/config';
-import { sequenceTask } from '../utils/sequence-task';
 
-const runSequence = require('run-sequence');
 const defaultOptions = {
-    configFile: join(config.projectPath, 'test/karma.conf.js'),
-    autoWatch: false,
-    singleRun: false
+    configFile: join(config.projectPath, 'config/karma.conf.js')
 };
-
-task(':test:build', sequenceTask(
-    'clean',
-    'build:aot',
-    'build:assets',
-    'build:inline-assets'
-));
 
 /**
  * Runs the unit tests. Does not watch for changes.
  * This task should be used when running tests on the CI server.
  */
-task('test:single-run', [':test:build'], (done: () => void) => {
+task('test:single-run', [], (done: () => void) => {
     // Load karma not outside. Karma pollutes Promise with a different implementation.
     const karma = require('karma');
 
@@ -38,7 +27,7 @@ task('test:single-run', [':test:build'], (done: () => void) => {
     }).start();
 });
 
-task('test', [':test:build'], karmaWatchTask());
+task('test', [], karmaWatchTask());
 
 /**
  * Runs a Karma server which will run the unit tests against any browser that connects to it.
@@ -75,11 +64,5 @@ function karmaWatchTask(options?: any) {
 
         // Boot up the test server and run the tests whenever a new browser connects.
         server.start();
-        server.on('browser_register', () => runTests());
-
-        const patternRoot = join(config.componentPath, '**/*');
-
-        // Whenever a file change has been recognized, rebuild and re-run the tests.
-        watch(patternRoot + '.+(ts|scss|html)', () => runSequence(':test:build', runTests));
     };
 }

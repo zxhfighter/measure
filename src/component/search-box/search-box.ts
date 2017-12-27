@@ -14,7 +14,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { merge } from 'rxjs/observable/merge';
-import { auditTime, delay } from 'rxjs/operators';
+import {
+    auditTime,
+    delay
+} from 'rxjs/operators';
 
 /** default search-box theme types */
 export type SEARCH_TYPE = 'ico' | 'btn' | string;
@@ -43,6 +46,7 @@ export type SIZE = 'long' | 'default' | 'short' | string;
         '(compositionend)': '_compositionEnd($event.target.value)'
     }
 })
+
 export class SearchBoxComponent implements OnInit, OnDestroy {
 
     /** search event */

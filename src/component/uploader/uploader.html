@@ -11,7 +11,7 @@
                         {{ file.progress || '正在上传中' }}<label [class.hidden]="!file.progress">%</label>
                     </span>
                     <span *ngIf="progressMode==='bar'">
-                        <nb-progress-bar [value]="file.progress" [isSuccess]="isSuccess"></nb-progress-bar>
+                        <nb-progress-bar [value]="file.progress"></nb-progress-bar>
                     </span>
                     <button nb-button theme="default" (click)="onCancelFile(file)">取消</button>
                 </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="img-progress-finish" [class.hidden]="file.state!=='success'">
                     <span class="photo_bigger_mark">
-                        <img src="{{ file.url }}" />
+                        <img [src]="file.url" />
                     </span>
                     <div class="photo-control">
                         <label for="fileInput" class="edit_mark" (click)="onReplaceFile(file)">重新上传</label>
@@ -49,7 +49,7 @@
 <ng-container *ngIf="mode==='file'">
     <div class="nb-uploader-file">
         <!-- 选择文件 -->
-        <div class="file-add" 
+        <div class="file-add"
             [class.file-add-disabled]="disabled">
             <button nb-button theme="default" [disabled]="disabled"><i class="fa fa-upload"></i> 选择文件</button>
             <input (change)="onFileSelect($event)"
@@ -71,7 +71,7 @@
                             {{ file.progress || '正在上传中' }}<label [class.hidden]="!file.progress">%</label>
                         </div>
                         <div *ngIf="progressMode==='bar'" class="file-progress-bar">
-                            <nb-progress-bar [value]="file.progress" [isSuccess]="isSuccess"></nb-progress-bar>
+                            <nb-progress-bar [value]="file.progress"></nb-progress-bar>
                         </div>
                         <i class="iconfont icon-close" title="Close" (click)="onCancelFile(file)"></i>
                     </div>

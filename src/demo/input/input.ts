@@ -19,6 +19,7 @@ export function getInputConfig(): InputConfig {
     changeDetection: ChangeDetectionStrategy.Default,
     providers: [{ provide: InputConfig, useFactory: getInputConfig }]
 })
+
 export class InputDemo {
     // theme sources
     tsCode: string = require('!!raw-loader!./themes/input-theme.ts');

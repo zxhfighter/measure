@@ -20,14 +20,9 @@ import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
         '[class.disabled]': 'disabled',
         '[class.nb-widget-disabled]': 'disabled'
     },
-    exportAs: 'nbSelect',
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => SelectComponent),
-        multi: true
-    }]
+    exportAs: 'nbSelect'
 })
-export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
+export class SelectComponent  {
     @ViewChild('origin') origin: OverlayOriginDirective;
     @ViewChild('overlay') overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
@@ -36,11 +31,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @Input() defaultLabel: string;
     @Input() searchable: boolean = false;
     @Input() disabled: boolean = false;
+    @Input() value: number | null | undefined;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
     @Output() onPanelShow: EventEmitter<Object> = new EventEmitter();
     @Output() onPanelHide: EventEmitter<Object> = new EventEmitter();
 
-    value: number | null | undefined;
     icon: string = 'fa-angle-down';
     selectedData: SelectConfig;
     styles: OptionsStyles;
@@ -52,14 +47,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     placement: Placement = 'bottom-left';
 
     constructor(
-        private renderer: Renderer2,
-        private cd: ChangeDetectorRef) {
+
+        public cd: ChangeDetectorRef) {
     }
 
-    ngOnInit() {
-        this.selectedData = { value: null, label: this.defaultLabel || '请选择' };
-        this.overlay.origin = this.origin;
-    }
 
     onToggle(e) {
         e.stopPropagation();
@@ -102,7 +93,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.changeState();
         this.onModelTouched();
         this.setSelectedData();
-        this.cd.markForCheck();
+        // this.cd.markForCheck();
     }
 
     bindEvents() {
@@ -121,7 +112,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.datasource.forEach((data) => {
             if (data.value === this.value) {
                 this.selectedData = data;
-                this.cd.markForCheck();
+                // this.cd.markForCheck();
             }
         });
     }
@@ -137,15 +128,13 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     registerOnChange(fn: Function) {
         this.onModelChange = fn;
-        this.cd.markForCheck();
+        // this.cd.markForCheck();
     }
 
     registerOnTouched(fn: Function) {
         this.onModelTouched = fn;
-        this.cd.markForCheck();
+        // this.cd.markForCheck();
     }
 
-    ngOnDestroy() {
-        this.unbindEvents();
-    }
+
 }

@@ -4,9 +4,15 @@
         <div
             class="nb-accordion-panel"
             *ngFor="let panel of panels; let index = index"
-            (click)="onClickPanel(index)"
+            (click)="onActivatePanel(index)"
             [class.nb-accordion-panel-active]="index === activeIndex">
-            <div class="nb-accordion-header">{{ panel.header }}</div>
+            <div class="nb-accordion-header">
+                <i class="iconfont"
+                    [class.icon-down]="index === activeIndex"
+                    [class.icon-right]="index !== activeIndex"
+                    ></i>
+                {{ panel.header }}
+            </div>
             <div class="nb-accordion-content">{{ panel.content }}</div>
         </div>
     </ng-template>
@@ -14,9 +20,15 @@
         <div
             class="nb-accordion-panel"
             *ngFor="let panel of panels; let index = index"
-            (mouseover)="onClickPanel(index)"
+            (mouseover)="onActivatePanel(index)"
             [class.nb-accordion-panel-active]="index === activeIndex">
-            <div class="nb-accordion-header">{{ panel.header }}</div>
+            <div class="nb-accordion-header">
+                <i class="iconfont"
+                [class.icon-down]="index === activeIndex"
+                [class.icon-right]="index !== activeIndex"
+                ></i>
+                {{ panel.header }}
+            </div>
             <div class="nb-accordion-content">{{ panel.content }}</div>
         </div>
     </ng-template>

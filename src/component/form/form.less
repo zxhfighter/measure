@@ -1,0 +1,169 @@
+@import "./styles/mixin";
+
+@form-prefix-cls: 'nb-form';
+@form-component-height: 36px;
+@form-item-margin-bottom: 24px;
+
+.@{prefix}-form {
+    &-item-required {
+        &::before {
+            display: inline-block;
+            margin-right: 4px;
+            content: '*';
+            font-family: 'SimSun', serif;
+            line-height: 1;
+            font-size: @font-size-base;
+            color: @brand-danger;
+        }
+    }
+
+    &-item {
+        font-size: @font-size-base;
+        margin-bottom: @form-item-margin-bottom;
+        color: @text-color;
+        vertical-align: top;
+
+        &-label {
+            width: 100%;
+            text-align: right;
+            vertical-align: middle;
+            line-height: @form-component-height;
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            label {
+                &::after {
+                    content: ':';
+                    margin: 0 10px 0 2px;
+                    position: relative;
+                }
+            }
+        }
+
+        &-control {
+            line-height: @form-component-height;
+            position: relative;
+            .clearfix();
+
+            .@{prefix}-input {
+                width: 100%;
+            }
+
+            .@{prefix}-chips {
+                &-wrap {
+                    width: 100%;
+                }
+            }
+
+            .@{prefix}-select {
+                display: inline-block;
+            }
+        }
+
+        &-with-help {
+            margin-bottom: @form-item-margin-bottom - @font-size-base * @line-height-base + 2;
+        }
+
+        &-no-colon &-label label:after {
+            content: '.';
+        }
+
+        &-explain {
+            color: @text-color-dark;
+            line-height: 1.5;
+        }
+
+        .@{prefix}-checkbox {
+            margin-right: 20px;
+        }
+    }
+
+    .has-success,
+    .has-error {
+        &.has-feedback:after {
+            width: 32px;
+            height: 32px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            visibility: visible;
+            pointer-events: none;
+            line-height: @form-component-height;
+            text-align: center;
+            font-size: @font-size-large;
+            font-family: 'FontAwesome', serif;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            z-index: 1;
+        }
+    }
+
+    .has-success {
+        .form-control-validation(@text-color; @border-color;);
+
+        &.has-feedback::after {
+            content: '\f058';
+            color: @brand-success;
+        }
+    }
+
+    .has-error {
+        .form-control-validation(@brand-danger; @brand-danger;);
+
+        &.has-feedback:after {
+            content: '\f057';
+            color: @brand-danger;
+        }
+
+        .@{prefix}-spinner:hover:not(.@{prefix}-spinner-disabled) .@{prefix}-spinner-input {
+            border-color: @brand-danger;
+        }
+
+        .@{prefix}-spinner {
+
+            &-input {
+                border-color: @brand-danger;
+            }
+        }
+
+        .@{prefix}-chips {
+            &-wrap {
+                border-color: @brand-danger;
+            }
+        }
+
+        .@{prefix}-textarea {
+            border-color: @brand-danger;
+        }
+    }
+
+}
+
+.@{prefix}-form-inline {
+    .@{prefix}-form-item {
+        display: inline-block;
+        margin-right: 20px;
+        margin-bottom: 0;
+        float: left;
+
+        &-with-help {
+            margin-bottom: 24px;
+        }
+
+        > div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .has-feedback {
+        display: inline-block;
+    }
+
+    .@{prefix}-form-explain {
+        position: absolute;
+    }
+}
