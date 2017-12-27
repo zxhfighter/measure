@@ -1,17 +1,16 @@
 import {
-    Component, ElementRef,Renderer2, Input,
+    Component, ElementRef, Renderer2, Input,
     OnInit, ViewEncapsulation
 } from '@angular/core';
 
 @Component({
-    selector: '[nbForm]',
-    template: `
-        <div class="nb-widget nb-form">
-            <ng-content></ng-content>
-        </div>
-    `,
+    selector: '[nb-form]',
+    templateUrl: './form.html',
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false,
+    host: {
+        'class': 'nb-widget nb-form'
+    },
     exportAs: 'nbForm'
 })
 export class FormComponent implements OnInit {

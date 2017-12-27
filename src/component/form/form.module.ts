@@ -4,11 +4,11 @@ import { FormComponent } from './form';
 import { ButtonModule } from '../button';
 import { InputModule } from '../input';
 
-import {NbFormItemDirective} from './nb-form-item.directive';
-import {NbFormControlComponent} from './nb-form-control.component';
-import {NbFormExplainComponent} from './nb-form-explain.directive';
-import {NbFormLabelDirective} from './nb-form-label.directive';
-import {NbFormItemRequiredDirective} from './nb-form-item-required.directive';
+import { NbFormControlComponent } from './nb-form-control.component';
+import { NbFormExplainComponent } from './nb-form-explain.component';
+import { NbFormItemComponent } from './nb-form-item.component';
+import { NbFormLabelComponent } from './nb-form-label.component';
+import { NbFormItemRequiredComponent } from './nb-form-item-required.component';
 
 @NgModule({
     imports: [
@@ -18,19 +18,19 @@ import {NbFormItemRequiredDirective} from './nb-form-item-required.directive';
     ],
     declarations: [
         FormComponent,
-        NbFormLabelDirective,
-        NbFormItemDirective,
+        NbFormLabelComponent,
+        NbFormItemComponent,
         NbFormControlComponent,
         NbFormExplainComponent,
-        NbFormItemRequiredDirective
+        NbFormItemRequiredComponent
     ],
     exports: [
         FormComponent,
-        NbFormLabelDirective,
-        NbFormItemDirective,
+        NbFormLabelComponent,
+        NbFormItemComponent,
         NbFormControlComponent,
         NbFormExplainComponent,
-        NbFormItemRequiredDirective
+        NbFormItemRequiredComponent
     ]
 })
 export class FormModule { }
