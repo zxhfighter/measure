@@ -20,9 +20,14 @@ import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
         '[class.disabled]': 'disabled',
         '[class.nb-widget-disabled]': 'disabled'
     },
-    exportAs: 'nbSelect'
+    exportAs: 'nbSelect',
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => SelectComponent),
+        multi: true
+    }]
 })
-export class SelectComponent  {
+export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
     @ViewChild('origin') origin: OverlayOriginDirective;
     @ViewChild('overlay') overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
@@ -46,11 +51,13 @@ export class SelectComponent  {
 
     placement: Placement = 'bottom-left';
 
-    constructor(
-
-        public cd: ChangeDetectorRef) {
+    constructor(private cd: ChangeDetectorRef) {
     }
 
+    ngOnInit() {
+        this.selectedData = { value: null, label: this.defaultLabel || '请选择' };
+        this.overlay.origin = this.origin;
+    }
 
     onToggle(e) {
         e.stopPropagation();
@@ -93,7 +100,7 @@ export class SelectComponent  {
         this.changeState();
         this.onModelTouched();
         this.setSelectedData();
-        // this.cd.markForCheck();
+        this.cd.markForCheck();
     }
 
     bindEvents() {
@@ -112,7 +119,7 @@ export class SelectComponent  {
         this.datasource.forEach((data) => {
             if (data.value === this.value) {
                 this.selectedData = data;
-                // this.cd.markForCheck();
+                this.cd.markForCheck();
             }
         });
     }
@@ -128,13 +135,15 @@ export class SelectComponent  {
 
     registerOnChange(fn: Function) {
         this.onModelChange = fn;
-        // this.cd.markForCheck();
+        this.cd.markForCheck();
     }
 
     registerOnTouched(fn: Function) {
         this.onModelTouched = fn;
-        // this.cd.markForCheck();
+        this.cd.markForCheck();
     }
 
-
+    ngOnDestroy() {
+        this.unbindEvents();
+    }
 }
