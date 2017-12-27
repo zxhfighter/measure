@@ -1,6 +1,6 @@
 export const dataSideBar = {
     title: '世界国家目录',
-    expanded: false,
+    expanded: true,
     root: '全部国家',
     tree: [
         {
@@ -31,13 +31,12 @@ export const dataSideBar = {
                                     id: '010103',
                                     name: '朝阳区',
                                     parent: { id: '0101' },
-                                    children: [],
+
                                 },
                                 {
                                     id: '010104',
                                     name: '海淀区',
                                     parent: { id: '0101' },
-                                    children: [],
                                 }
                             ]
                         },
@@ -45,30 +44,27 @@ export const dataSideBar = {
                             id: '0102',
                             name: '天津',
                             parent: { id: '01' },
+                            selectable: false,
                             children: [
                                 {
                                     id: '010201',
                                     name: '南开区',
                                     parent: { id: '0102' },
-                                    children: [],
                                 },
                                 {
                                     id: '010202',
                                     name: '和平区',
                                     parent: { id: '0102' },
-                                    children: [],
                                 },
                                 {
                                     id: '010203',
                                     name: '河东区',
                                     parent: { id: '0102' },
-                                    children: [],
                                 },
                                 {
                                     id: '010204',
                                     name: '河西区',
                                     parent: { id: '0102' },
-                                    children: [],
                                 }
                             ]
                         },
@@ -86,19 +82,16 @@ export const dataSideBar = {
                                             id: '01030101',
                                             name: '桥西区',
                                             parent: { id: '010301' },
-                                            children: [],
                                         },
                                         {
                                             id: '01030102',
                                             name: '新华区',
                                             parent: { id: '010301' },
-                                            children: [],
                                         },
                                         {
                                             id: '01030103',
                                             name: '裕华区',
                                             parent: { id: '010301' },
-                                            children: [],
                                         }
                                     ]
                                 },
@@ -111,19 +104,16 @@ export const dataSideBar = {
                                             id: '01030201',
                                             name: '莲池区',
                                             parent: { id: '010302' },
-                                            children: [],
                                         },
                                         {
                                             id: '01030202',
                                             name: '清苑区',
                                             parent: { id: '010302' },
-                                            children: [],
                                         },
                                         {
                                             id: '01030203',
                                             name: '满城区',
                                             parent: { id: '010302' },
-                                            children: [],
                                         }
                                     ]
                                 },
