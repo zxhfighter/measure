@@ -131,7 +131,6 @@ const demoModules = [
         OverlayDemo,
         GuideComponentDemo,
         IconsComponentDemo,
-        OverlayDemo,
         TypographyDemo
     ],
     imports: [

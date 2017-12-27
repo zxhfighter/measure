@@ -66,6 +66,7 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
 
     /**
      * button group datasource, when datasource exists, the inner toggle buttons will be overwrited
+     * using datasource, you can't use html tags in toggle button
      */
     @Input() datasource: ButtongGroupItem[];
 
@@ -91,31 +92,21 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
      */
     @ContentChildren(
         forwardRef(() => ButtonToggleComponent)
-    ) _buttonList: QueryList<ButtonToggleComponent>;
+    ) _contentButtonList: QueryList<ButtonToggleComponent>;
 
     /**
      * button toggle view children
      */
     @ViewChildren(
         forwardRef(() => ButtonToggleComponent)
-    ) _buttonViewList: QueryList<ButtonToggleComponent>;
-
-
-
-    constructor() { }
+    ) _viewButtonList: QueryList<ButtonToggleComponent>;
 
     ngOnInit() {
         const self = this;
 
         // listen to disabled property, and update children disabled state
         self.disabledChange.subscribe(disabled => {
-            const buttonList = this._getButtonList();
-            if (buttonList) {
-                buttonList.forEach(box => {
-                    // if the button group is disabled, all buttons disabled too
-                    box.disabled = box.disabled || disabled;
-                });
-            }
+            self._disableButtonList(disabled);
         });
 
         // update init value
@@ -132,19 +123,22 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
     }
 
     ngAfterContentInit() {
-        const self = this;
+        this._disableButtonList(this.disabled);
+    }
 
-        // init disabled state
+    _disableButtonList(groupDisabled: boolean) {
+        const self = this;
         const buttonList = this._getButtonList();
         if (buttonList) {
-            buttonList.forEach(box => {
-                box.disabled = box.disabled || self.disabled;
+            buttonList.forEach(button => {
+                button.disabled = button.disabled || groupDisabled;
             });
         }
     }
 
     _getButtonList() {
-        return this.datasource && this.datasource ? this._buttonViewList : this._buttonList;
+        const hasDatasource = this.datasource && this.datasource.length;
+        return hasDatasource ? this._viewButtonList : this._contentButtonList;
     }
 
     /**
@@ -283,12 +277,6 @@ export class ButtonToggleComponent {
     @Input() disabled: boolean = false;
 
     /**
-     * Whether toggle button is single, not wrapped by an button group component
-     * @docs-private
-     */
-    _isSingleButton: boolean = true;
-
-    /**
      * Reference to the wrapped parent button group component
      * @docs-private
      */
@@ -299,9 +287,7 @@ export class ButtonToggleComponent {
      * @param {ButtonGroupComponent?} buttonGroup - the optional wrapped parent button group component
      */
     constructor( @Optional() buttonGroup: ButtonGroupComponent) {
-
         this.buttonGroup = buttonGroup;
-        this._isSingleButton = !this.buttonGroup;
     }
 
     /**
@@ -314,7 +300,7 @@ export class ButtonToggleComponent {
 
         // if not a single toggle button, tell the parent button group component
         // to toggle proper buttons according to type
-        if (!this._isSingleButton) {
+        if (this.buttonGroup) {
             this.buttonGroup.select(this.value);
         }
         // if a single toggle button, just emit the toggle event
