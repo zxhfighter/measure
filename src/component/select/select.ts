@@ -51,9 +51,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     placement: Placement = 'bottom-left';
 
-    constructor(
-        private renderer: Renderer2,
-        private cd: ChangeDetectorRef) {
+    constructor(private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
