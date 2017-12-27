@@ -3,7 +3,7 @@
     nb-tiplayer-{{firstPlacement}}
     nb-tiplayer-{{placement}}"
     [class.invisible]="!visibility"
-    [class.nb-tiplayer-embedded]="embedded">
+    [class.nb-tiplayer-embedded]="embedded" [@fadeAnimation]="visibility">
     <div
         class="nb-tiplayer-inner">
         <div class="nb-tiplayer-arrow" *ngIf="hasArrow"></div>
