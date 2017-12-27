@@ -15,29 +15,18 @@ import { Panel } from './panel';
     },
     exportAs: 'nbAccordion'
 })
-export class AccordionComponent implements OnInit {
-
-    /**
-     * 渲染对象
-     *
-     * @type {object}
-     */
-    panels: Panel[];
+export class AccordionComponent {
 
     /**
      * 数据源
+     *
+     * @type {object}
      */
-    @Input() set datasource(data: Panel[]) {
-        this.panels = data;
-    }
-
-    get datasource(): Panel[] {
-        return this.panels;
-    }
+    @Input() panels: Panel[];
 
     /**
      * 激活的panel下标, 如果为-1视为全部折叠
-     *
+     * @default 0
      */
     @Input() activeIndex: number = 0;
 
@@ -48,36 +37,17 @@ export class AccordionComponent implements OnInit {
     @Input() hoverable: boolean = false;
 
     /**
-     * 折叠方式
-     * false - 互斥折叠
-     * true - 全部可折叠
+     * 折叠方式，互斥折叠 or 全部可折叠
+     * @default false 互斥折叠
      *
      */
     @Input() collapsible: boolean = false;
 
-    /**
-     * 正常状态三角图标的样式
-     * TODO 项目中确定iconfont方案后完善
-     *
-     */
-    headerIcon: string = 'caret-right';
-
-    /**
-     * 展开状态三角图标的样式
-     *
-     */
-    activeHeaderIcon: string = 'caret-down';
-
     constructor() {
-
-    }
-
-    ngOnInit() {
-
     }
 
     /**
-     * 变更索引
+     * 变更活动状态的索引
      *
      * @param {number} activeIndex - 指定索引
      */
@@ -90,7 +60,7 @@ export class AccordionComponent implements OnInit {
      *
      * @param {number} activeIndex - 指定索引
      */
-    onClickPanel(activeIndex: number) {
+    onActivatePanel(activeIndex: number) {
         // 全部可折叠
         if (this.collapsible) {
             // 该元素内容已展开，折叠收缩
