@@ -2,11 +2,11 @@
     [class.nb-tabs-underline]="underline"
     [class.nb-tabs-splitline]="splitline">
 
-    <a *ngFor="let tab of tabs"
+    <nb-tab-header *ngFor="let tab of tabs; let index = index"
         class="item"
         [class.active]="tab.active"
         [class.disabled]="tab.disabled"
-        (click)="setActive(tab)">
+        (click)="setActive(tab, index)">
 
         <ng-container *ngIf="tab.tipable">
             <ng-template #tipContent>
@@ -19,7 +19,8 @@
         </ng-container>
 
         {{ tab.title }}
-    </a>
+    </nb-tab-header>
+    <nb-ink-bar></nb-ink-bar>
 </div>
 
 <ng-content></ng-content>
