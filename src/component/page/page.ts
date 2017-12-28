@@ -1,8 +1,11 @@
 import {
-    Component, Input, Output, EventEmitter,
+    Component, Input, Output, EventEmitter, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 import { SelectConfig } from '../select/select.config';
+
+/** default button size types */
+export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
 
 @Component({
     selector: 'nb-page',
@@ -37,6 +40,12 @@ export class PageComponent implements OnInit {
      * @default default
      */
     @Input() list: Array<number>;
+
+    /**
+     * button size, there are four default sizes: 'xs' | 'sm' | 'default' | 'lg'
+     * @default default
+     */
+    @Input() size: BUTTON_SIZE = 'default';
 
     /**
      * when page change, emit a change event, which contains the currrentIndex and the count
@@ -92,7 +101,7 @@ export class PageComponent implements OnInit {
         }
     ];
 
-    constructor() {
+    constructor(private _el: ElementRef) {
 
     }
 
@@ -108,6 +117,32 @@ export class PageComponent implements OnInit {
         }
 
         this.setPage();
+    }
+    ngAfterViewInit() {
+        // init class list
+        this.setClass();
+    }
+    /**
+     * set host element classes
+     * @docs-private
+     */
+    setClass() {
+        const nativeEl = this._el.nativeElement;
+        nativeEl.className = this.getClassName();
+    }
+
+    /**
+     * get host element classes, depends on the theme and size.
+     * @return {string} class names
+     * @docs-private
+     */
+    getClassName() {
+        return [
+            // 'nb-widget',
+            // 'nb-page',
+            `nb-page-size-${this.size || 'default'}`,
+            // `nb-page-theme-${this.theme || 'default'}`
+        ].join(' ');
     }
 
     /**
