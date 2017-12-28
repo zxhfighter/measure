@@ -52,11 +52,13 @@ export class ChipsComponent implements ControlValueAccessor {
 
     /**
      * 获取input输入框
+     * @docs-private
      */
     @ViewChild('input') liInput: ElementRef;
 
     /**
      * 获取已输入的chips list
+     * @docs-private
      */
     @ViewChildren(ListItemDirective) chipsLi: QueryList<ListItemDirective>;
 
@@ -71,6 +73,7 @@ export class ChipsComponent implements ControlValueAccessor {
      * Input event
      * @param {number} k event type
      * @param {string} v input value
+     * @docs-private
      */
     onInputValue(k: number, v: string) {
         if (this.disabled) {
@@ -105,6 +108,7 @@ export class ChipsComponent implements ControlValueAccessor {
     /**
      * Delete chip event
      * @param {string} v to delete value
+     * @docs-private
      */
     onDelChip(i: number) {
         if (this.disabled) {
@@ -118,6 +122,7 @@ export class ChipsComponent implements ControlValueAccessor {
     /**
      * Imitate input focus event
      * @param {object} input input element
+     * @docs-private
      */
     inputFocus() {
         const codeEl = this.liInput.nativeElement as HTMLElement;

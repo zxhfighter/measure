@@ -33,6 +33,9 @@ export class SideBarComponent implements OnInit {
     /** side-bar data */
     @Input() data: SiderBarModel;
 
+    /** side-bar default selected node */
+    @Input() selectedNodeId: string;
+
     /**
      * storage tree-nodes as list
      * @docs-private
@@ -75,9 +78,24 @@ export class SideBarComponent implements OnInit {
      */
     hasTreeData: boolean = true;
 
+    /**
+     * selected node
+     * @docs-private
+     */
+    selectedNode: TreeNode;
+
     constructor() { }
 
     ngOnInit() {
+        if (!this.selectedNodeId && this.data.tree && this.data.tree.length > 0) {
+            let firstChild: TreeNode | undefined;
+            firstChild = this.getFirstChild(this.data.tree[0]);
+            if (firstChild) {
+                this.selectedNodeId = firstChild.id;
+                this.onNavi.emit(firstChild);
+            }
+        }
+
         if (this.data.root) {
             this.root = this.data.root;
         }
@@ -98,8 +116,12 @@ export class SideBarComponent implements OnInit {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
                 node.isExpanded = expanded;
-                node.selectable = node.selectable && !node.selectable ? false : true;
+                node.selectable = node.selectable !== false ? true : false;
                 node.show = true;
+                if (this.selectedNodeId === node.id) {
+                    node.isSelected = true;
+                    this.selectedNode = node;
+                }
                 if (node.children && node.children.length) {
                     this.initTree(node.children, expanded);
                 }
@@ -115,7 +137,7 @@ export class SideBarComponent implements OnInit {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
                 node.isExpanded = false;
-                node.selectable = node.selectable && !node.selectable ? false : true;
+                node.selectable = node.selectable !== false ? true : false;
                 node.show = false;
                 this._listTreeNodes.push(node);
                 if (node.children && node.children.length) {
@@ -318,14 +340,14 @@ export class SideBarComponent implements OnInit {
     renderSelectedNode(rootNode: TreeNode, targetNode: TreeNode) {
         if (rootNode.id === targetNode.id) {
             rootNode.isExpanded = true;
-            rootNode.selectable = rootNode.selectable && !rootNode.selectable ? false : true;
+            rootNode.selectable = rootNode.selectable !== false ? true : false;
             rootNode.show = true;
         } else {
             if (rootNode.children && rootNode.children.length) {
                 for (let child of rootNode.children) {
                     if (targetNode.id === child.id) {
                         child.isExpanded = true;
-                        child.selectable = child.selectable && !child.selectable ? false : true;
+                        child.selectable = child.selectable !== false ? true : false;
                         child.show = true;
                     } else {
                         this.renderSelectedNode(child, targetNode);
@@ -339,8 +361,15 @@ export class SideBarComponent implements OnInit {
      * throw the navigation click event out
      * @docs-private
      */
-    nodeSelect(event) {
-        this.onNavi.emit(event);
+    nodeSelect(event: TreeNode) {
+        let targetNode: TreeNode | undefined;
+        targetNode = this.setSelectedNode(event);
+        if (targetNode) {
+            this.selectedNode.isSelected = false;
+            targetNode.isSelected = true;
+            this.selectedNode = targetNode;
+        }
+        this.onNavi.emit(this.selectedNode);
     }
 
     /**
@@ -349,5 +378,37 @@ export class SideBarComponent implements OnInit {
      */
     fold() {
         this.expanded = !this.expanded;
+    }
+
+    /**
+     * set selected node
+     * @docs-private
+     */
+    setSelectedNode(node: TreeNode) {
+        if (node && node.children && node.children.length > 0) {
+            let targetNode: TreeNode | undefined = this.getFirstChild(node);
+            if (targetNode) {
+                return targetNode;
+            }
+        } else {
+            return node;
+        }
+    }
+
+    /**
+     * get node the first child
+     * @param node
+     * @docs-private
+     */
+    getFirstChild(node: TreeNode): TreeNode | undefined {
+        if (node && node.children && node.children.length) {
+            let firstChild: TreeNode | undefined;
+            firstChild = node.children[0];
+            if (firstChild && firstChild.children && firstChild.children.length > 0) {
+                return this.getFirstChild(firstChild);
+            } else {
+                return firstChild;
+            }
+        }
     }
 }

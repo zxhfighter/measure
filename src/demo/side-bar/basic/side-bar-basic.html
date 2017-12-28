@@ -1,6 +1,14 @@
 <p>
     <nb-side-bar 
         [data]="data" 
+        [selectedNodeId]="selectedNodeId"
+        (onNavi)="onNavi($event)">
+    </nb-side-bar>
+</p>
+
+<p>
+    <nb-side-bar 
+        [data]="data" 
         (onNavi)="onNavi($event)">
     </nb-side-bar>
 </p>

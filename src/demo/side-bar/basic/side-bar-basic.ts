@@ -17,6 +17,8 @@ export class SideBarBasicDemo {
 
     data = dataSideBar;
 
+    selectedNodeId = '010102';
+
     onNavi(event) {
         console.log(event);
     }

@@ -1,9 +1,11 @@
 import {
-    Component, Input, ElementRef, Output, EventEmitter,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy,
+    Component, Input, ElementRef, Output, EventEmitter, forwardRef,
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ViewChild, ViewChildren,
     ContentChildren, QueryList, AfterContentInit, AfterViewInit, ChangeDetectorRef
 } from '@angular/core';
 import { TabComponent } from './tab';
+import { InkBarComponent } from './ink-bar';
+import { TabHeaderComponent } from './tab-header';
 import { OnChange } from '../core/decorators';
 
 /** default tab size types */
@@ -20,7 +22,7 @@ export type TABS_SIZE = 'default' | 'large' | string;
     },
     exportAs: 'nbTabs'
 })
-export class TabsComponent implements AfterContentInit {
+export class TabsComponent implements AfterContentInit, AfterViewInit {
 
     /**
      * Tabs尺寸, 'default' | 'large'
@@ -44,12 +46,33 @@ export class TabsComponent implements AfterContentInit {
 
     @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
+    @ViewChild(InkBarComponent) inkBar: InkBarComponent;
+
+    @ViewChildren(TabHeaderComponent) tabHeader: QueryList<TabHeaderComponent>;
+
     constructor(
         private cdRef: ChangeDetectorRef
     ) {
     }
 
     ngAfterContentInit(): void {
+        // if (this.tabs.length === 0) {
+        //     return ;
+        // }
+        // /** 是否有某个Tab是选中状态，如果没有的话，选中第一个 */
+        // let activeTab = this.tabs.filter(item => item.active === true);
+        // if (activeTab.length === 0) {
+        //     setTimeout(() => {
+        //         this.tabs.toArray()[0].active = true;
+        //         this.cdRef.markForCheck();
+
+        //         const activeTitle = this.buttons.toArray()[0];
+        //         this.inkBar.alignToElement(activeTitle._el.nativeElement);
+        //     });
+        // }
+    }
+
+    ngAfterViewInit(): void {
         if (this.tabs.length === 0) {
             return ;
         }
@@ -59,6 +82,9 @@ export class TabsComponent implements AfterContentInit {
             setTimeout(() => {
                 this.tabs.toArray()[0].active = true;
                 this.cdRef.markForCheck();
+
+                const activeTitle = this.tabHeader.toArray()[0];
+                this.inkBar.alignToElement(activeTitle.elementRef.nativeElement);
             });
         }
     }
@@ -67,12 +93,16 @@ export class TabsComponent implements AfterContentInit {
      * 设置当前Tab为选中状态
      *
      * @param {TabComponent} tab - 当前Tab
+     * @param {number} index - 当前Tab的索引
      */
-    setActive(tab: TabComponent): void {
+    setActive(tab: TabComponent, index: number): void {
         if (tab.disabled) {
             return;
         }
         this.tabs.toArray().forEach((t) => t.active = false);
         tab.active = true;
+
+        const activeTitle = this.tabHeader.toArray()[index];
+        this.inkBar.alignToElement(activeTitle.elementRef.nativeElement);
     }
 }

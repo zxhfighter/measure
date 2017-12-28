@@ -83,12 +83,13 @@
     .has-success,
     .has-error {
         &.has-feedback:after {
+            width: 32px;
+            height: 32px;
             position: absolute;
             top: 0;
             right: 0;
             visibility: visible;
             pointer-events: none;
-            .square(@form-component-height);
             line-height: @form-component-height;
             text-align: center;
             font-size: @font-size-large;
