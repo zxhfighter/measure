@@ -1,10 +1,7 @@
 
 // --- variable ---
 @accordion-panel-bottom-margin: 0.2em;
-@accordion-panel-padding: 1em;
 @accordion-panel-header-padding: 0.5em 0.5em 0.5em 1em;
-@accordion-panel-header-icon-right-padding: 0.5em 2em 0.5em 0.5em;
-@accordion-panel-header-icon-spacing: 1em;
 @accordion-panel-header-border-radius: 0;
 
 // --- layout ---
@@ -21,16 +18,18 @@
     padding: @accordion-panel-header-padding;
     position: relative;
     border-radius: @accordion-panel-header-border-radius;
-}
 
-.@{prefix}-accordion-content {
-    padding: @accordion-panel-padding;
-    display: none;
+    .iconfont {
+        display: inline-block;
+        transition: transform 0.24s, -webkit-transform 0.24s;
+        transform: rotate(0);
+        -webkit-transform: rotate(0);
+    }
 }
 
 .@{prefix}-accordion-panel-active {
-    .@{prefix}-accordion-content {
-        display: block;
+    .iconfont {
+        transform: rotate(90deg);
     }
 }
 

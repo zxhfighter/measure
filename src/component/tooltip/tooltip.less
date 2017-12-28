@@ -2,35 +2,29 @@
 @tiplayer-bgcolor-default: rgba(red(@nb-gray-1), green(@nb-gray-1), blue(@nb-gray-1), 0.8);
 @tiplayer-box-shadow: rgba(red(@nb-black), green(@nb-black), blue(@nb-black), 0.2);
 
+
 .@{prefix}-tiplayer {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.@{prefix}-tiplayer-box {
 
     &.@{prefix}-tiplayer-embedded {
         position: static;
         margin-top: 10px;
     }
 
-    position: absolute;
-    left: 0;
-    top: 0;
     max-width: 276px;
     background: @tiplayer-bgcolor-default;
     box-shadow: 0 -1px 4px 0 @tiplayer-box-shadow;
     border-radius: @border-radius-small;
     color: @nb-white;
     z-index: 200;
+}
 
-    // 已通过offset计算
-    // &-top {
-    //     margin-top: -8px;
-    // }
-
-    // &-bottom {
-    //     margin-top: 8px;
-    // }
-
-    &-content {
-        padding: 9px 14px;
-    }
+.@{prefix}-tiplayer-content {
+    padding: 9px 14px;
 }
 
 .@{prefix}-tiplayer-top {

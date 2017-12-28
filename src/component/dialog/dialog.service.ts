@@ -24,6 +24,7 @@ export class DialogService<T> {
             content: content
         };
         Object.keys(config).forEach(key => this.dialogInstance![key] = config[key]);
+
         this.dialogInstance.open();
     }
 
