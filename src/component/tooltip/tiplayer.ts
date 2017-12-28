@@ -34,7 +34,7 @@ import { fadeAnimation } from '../core/animation/fade-animations';
     templateUrl: './tiplayer.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations   : [ fadeAnimation ],
+    animations: [ fadeAnimation ],
     exportAs: 'nbTiplayer',
     host: {
         '(mouseenter)': 'this.onMouseEnter()',
