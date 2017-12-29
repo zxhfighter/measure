@@ -2,13 +2,16 @@ import {
     Component, Input, Output, EventEmitter,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
+
 import { Panel } from './panel';
+import { collapseAnimation } from '../core/animation/collapse-animations';
 
 @Component({
     selector: 'nb-accordion',
     templateUrl: './accordion.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [ collapseAnimation ],
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-accordion'

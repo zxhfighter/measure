@@ -5,6 +5,7 @@
     flex: 0 0 auto;
     align-items: center;
     cursor: pointer;
+    position: relative;
 
     .item {
         color: @text-color-dark;
@@ -15,7 +16,7 @@
         margin: 0 1em -1px;
 
         &.active {
-            border-color: @text-color-dark;
+            // border-color: @text-color-dark;
         }
 
         &.disabled {
@@ -29,8 +30,17 @@
         }
 
         &:hover {
-            border-color: @text-color-light;
+            // border-color: @text-color-light;
         }
+    }
+
+    .@{prefix}-ink-bar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        background-color: #333;
+        transition: 250ms cubic-bezier(0.35, 0, 0.25, 1);
     }
 }
 

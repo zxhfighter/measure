@@ -46,7 +46,7 @@ import {
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
-import { PageDemo } from './page';
+// import { PageDemo } from './page';
 import { ScheduleDemo } from './schedule';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
@@ -68,6 +68,7 @@ import { TreeDemoModule } from './tree';
 import { SideBarDemoModule } from './side-bar';
 import { TransferDemoModule } from './transfer';
 import { ButtonDemoModule } from './button';
+import { PageDemoModule } from './page';
 import { BreadcrumbDemoModule } from './breadcrumb';
 import { SwitchDemoModule } from './switch';
 import { ButtonGroupDemoModule } from './button-group';
@@ -96,6 +97,7 @@ const demoModules = [
     SideBarDemoModule,
     TransferDemoModule,
     ButtonDemoModule,
+    PageDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
     ButtonGroupDemoModule,
@@ -125,7 +127,7 @@ const demoModules = [
 @NgModule({
     declarations: [
         AppComponent,
-        PageDemo,
+        // PageDemo,
         ScheduleDemo,
         CodeBoxDemo,
         OverlayDemo,

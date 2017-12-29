@@ -2,6 +2,7 @@ import {
     NgModule,
     Component,
     OnInit,
+    ElementRef,
     ViewEncapsulation,
     ChangeDetectionStrategy,
     Input
@@ -19,7 +20,7 @@ import { OnChange } from '../core/decorators';
         '[class.active]': 'active',
     }
 })
-export class TabComponent {
+export class TabComponent implements OnInit {
     @Input() title: string;
 
     @OnChange(true)
@@ -31,7 +32,11 @@ export class TabComponent {
     @OnChange(true)
     @Input() tipable: boolean = false;
 
-    constructor() {
+    constructor(public elementRef: ElementRef) {
+    }
+
+    ngOnInit () {
+
     }
 }
 

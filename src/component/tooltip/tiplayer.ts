@@ -24,16 +24,20 @@ import {
     Output,
     EventEmitter,
     ChangeDetectorRef,
-    NgZone
+    NgZone,
+    trigger
 } from '@angular/core';
+import { fadeAnimation } from '../core/animation/fade-animations';
 
 @Component({
     selector: 'nb-tiplayer',
     templateUrl: './tiplayer.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [ fadeAnimation ],
     exportAs: 'nbTiplayer',
     host: {
+        'class': 'nb-widget nb-tiplayer',
         '(mouseenter)': 'this.onMouseEnter()',
         '(mouseleave)': 'this.onMouseLeave()'
     }

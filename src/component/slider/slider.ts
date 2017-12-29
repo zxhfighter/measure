@@ -40,45 +40,57 @@ const SLIDER_VALUE_ACCESSOR = {
 })
 
 export class SliderComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+    /**
+     * If we can use input box to change the slider value, input value should be larger than
+     * min, less than max and multiple of the step.
+     * Only can use when range is false
+     * @default 0
+     */
     @OnChange(true)
     @Input() input: boolean = false;
 
     /**
      * Min value of slider
+     * @default 0
      */
     @Input() min: number = 0;
 
     /**
      * Max value of slider
+     * @default 100
      */
     @Input() max: number = 100;
 
     /**
      * If the slider has double hands
+     * @default false
      */
     @OnChange(true)
     @Input() range: boolean = false;
 
     /**
      * Whether the slider is disabled or not
+     * @default false
      */
     @OnChange(true)
     @Input() disabled: boolean = false;
 
     /**
      * The step of dragging
+     * @default 1
      */
     @Input() step: number = 1;
 
     /**
      * Core value of the slider
+     * @default 0
      */
     @Input() value: CoreValue;
 
     /**
      * Orientation of the slider
+     * @default horizontal
      */
-    private _orientation: any = 'horizontal';
     @Input()
     get orientation() {
         return this._orientation;
@@ -91,6 +103,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
             this._orientation = false;
         }
     }
+    private _orientation: any = 'horizontal';
 
     /**
      * The event emitted when slider value changes, emit the value of slider
@@ -99,57 +112,68 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
 
     /**
      * The hands init position
+     * @docs-private
      */
     hands: Hand[] = [];
 
     /**
      * Range of the slider
+     * @docs-private
      */
     limitMove: number;
 
     /**
      * Selected of the tracker
+     * @docs-private
      */
     trackerSelected: number;
 
     /**
      * Position of the tracker
+     * @docs-private
      */
     trackerPos: number;
 
     /**
      * Dragging hands copy
+     * @docs-private
      */
     private sliderHands: any;
 
     /**
      * Current dragging hand
+     * @docs-private
      */
     private _hand: SliderHandComponent;
 
     /**
      * Mark the current hand index
+     * @docs-private
      */
     private _currentHand: number = 1;
 
     /**
      * If move one hand over the other
+     * @docs-private
      */
     @OnChange(true)
     private _handRange: boolean = false;
 
     /**
      * Slider Component
+     * @docs-private
      */
     @ViewChild('slider') _slider: ElementRef;
 
     /**
      * slider-tracker Component
+     * @docs-private
      */
     @ViewChild(SliderTrackerComponent) _tracker: SliderTrackerComponent;
 
     /**
      * slider-hand Components
+     * @docs-private
      */
     @ViewChildren(SliderHandComponent) _hands: QueryList<SliderHandComponent>;
 
@@ -179,17 +203,15 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     /**
      * Dragging hands copy, because the hands'order change when dragging cross,
      * so keep a init order here
+     * @docs-private
      */
     afterView() {
-        // let first = _.clone(this._hands.first);
-        // let last = _.clone(this._hands.last);
-
-        // return { first, last };
         this.sliderHands = _.clone(this._hands);
     }
 
     /**
      * Set default value
+     * @docs-private
      */
     setDefaultValue() {
         if (this.range) {
@@ -207,12 +229,17 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         }
     }
 
-    valueCheck(v: number, option: number) {
+    /**
+     * value check
+     * @docs-private
+     */
+    valueCheck(v: any, option: number) {
         return !isNaN(v) ? v : option;
     }
 
     /**
-     *  输入值校验
+     * 输入值校验
+     * @docs-private
      */
     inputValidate() {
         if (this.range) {
@@ -229,6 +256,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
 
     /**
      * Initialize the slider and the sub components
+     * @docs-private
      */
     initSlider() {
         this.setDefaultValue();
@@ -258,6 +286,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     /**
      * 根据输入值计算tracker的width
      * @param value input value
+     * @docs-private
      */
     getWidthFromValue(value: CoreValue): number {
         let trackerMin = this.valueCheck(value[0], this.min);
@@ -268,6 +297,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
 
     /**
      * 输入框输入slider value，限于range为false
+     * @docs-private
      */
     inputValue(v) {
         let calculated = +v;
@@ -286,6 +316,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     /**
      * 更新slider
      * @param info Info
+     * @docs-private
      */
     updateSlider(info: Info) {
         let hands = this.hands;
@@ -294,9 +325,8 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
             this.getNearest(info.initPos, info.endPos, this.hands);
             let move = hands[1].initPos - hands[0].initPos;
 
-            (<number[]>this.value).map((v, i, arr) => {
-                arr[i] = this.service.getValue(hands[i].initPos, this.step, this.min, this.max);
-            });
+            this.value[0] = this.service.getValue(hands[0].initPos, this.step, this.min, this.max);
+            this.value[1] = this.service.getValue(hands[1].initPos, this.step, this.min, this.max);
 
             this.trackerSelected = move;
             this.trackerPos = hands[0].initPos;
@@ -309,6 +339,10 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         this.emitChange();
     }
 
+    /**
+     * emit change
+     * @docs-private
+     */
     emitChange() {
         this.change.emit(this.value);
         // 更新form model
@@ -317,6 +351,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
 
     /**
      * rail click handler
+     * @docs-private
      */
     clickHandler(e) {
         if (this.disabled) {
@@ -338,9 +373,10 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
 
     /**
      * 算法适用于range为true时计算hand的位置
-     * @param target 当前移动的hand
+     * @param initX 当前移动的hand
      * @param endX 当前hand移动到的新位置
      * @param scope Scope 两个hand的原始位置
+     * @docs-private
      */
     getNearest(initX: number, endX: number, scope: Scope) {
         let x0 = scope[0].initPos;

@@ -7,6 +7,7 @@ import { OnChange } from '../core/decorators';
 import { DialogHeaderComponent } from './dialog-header';
 import { DialogBodyComponent } from './dialog-body';
 import { DialogFooterComponent } from './dialog-footer';
+import { slideAnimation } from '../core/animation/slide-animations';
 
 @Component({
     selector: 'nb-dialog',
@@ -15,22 +16,18 @@ import { DialogFooterComponent } from './dialog-footer';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    animations: [ slideAnimation ],
     host: {
         'class': 'nb-widget'
     }
 })
 
-export class DialogComponent implements OnInit, AfterViewInit {
+export class DialogComponent implements OnInit {
 
     /**
      * 使用overlay子组件实现
      */
     @ViewChild('overlay') overlay;
-
-    /**
-     * 为区分不同场景的overlay组件设置不同的 class 类
-     */
-    @Input() overlayClass: string = '';
 
     /**
      * 是否为模态对话框
@@ -66,17 +63,20 @@ export class DialogComponent implements OnInit, AfterViewInit {
      */
     @Output() confirmEvent: EventEmitter<Object> = new EventEmitter();
 
+    /**
+     * 为增加动画从overlay同步来一个可见属性
+     * @docs-private
+     */
+    visibility: boolean;
+
     constructor(
-        private cdRef: ChangeDetectorRef,
         private el: ElementRef,
-        public renderer: Renderer2) {
+        private cdRef: ChangeDetectorRef) {
+
     }
 
     ngOnInit() {
         this.overlay.onHide.subscribe(() => this._removeMask());
-    }
-
-    ngAfterViewInit() {
     }
 
     /**
@@ -84,6 +84,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
      */
     open() {
         this.overlay.show();
+        this.visibility = true;
         this.openHandler.emit();
 
         if (this.modalable) {
@@ -96,6 +97,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
      */
     close() {
         this.overlay.hide();
+        this.visibility = false;
         this.closeHandler.emit();
 
         this._removeMask();
@@ -118,7 +120,6 @@ export class DialogComponent implements OnInit, AfterViewInit {
         this.confirmEvent.emit();
         this.close();
     }
-
 
     /**
      * 创建模态对话框的遮罩
