@@ -9,8 +9,7 @@ import { Component, HostBinding, Input } from '@angular/core';
              [class.has-feedback]="hasFeedBack">
             <ng-content></ng-content>
         </div>
-    `,
-    styles: []
+    `
 })
 
 export class NbFormControlComponent {
