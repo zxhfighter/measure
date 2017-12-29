@@ -91,17 +91,29 @@ body {
                 margin: 0;
 
                 .list-item {
-                    height: 38px;
-                    line-height: 38px;
-                    padding-left: 20px;
-                    font-size: 14px;
+                    height: 46px;
+                    line-height: 46px;
+                    padding-left: 30px;
+                    font-size: 16px;
                     cursor: pointer;
                     color: @brand-primary;
+                    font-weight: 500;
 
-                    &:hover,
-                    &.active {
+                    &:hover {
                         background-color: #fffdee;
                     }
+
+                    &.active {
+                        background-color: @brand-primary;
+                        color: #fff;
+                    }
+                }
+
+                .list-item-desc {
+                    color: #999;
+                    font-weight: 600;
+                    padding-left: 20px;
+                    pointer-events: none;
                 }
             }
         }

@@ -11,47 +11,62 @@
 
     <div class="app-body" [class.app-body-collapse]="isDocs">
         <aside class="app-aside" *ngIf="!isDocs">
-            <!-- <nb-side-bar
-                    [data]="menuTree"
-                    (onNavi)="onNavi($event)">
-                </nb-side-bar> -->
 
             <ul class="app-aside-list">
+                <li class="list-item list-item-desc">typography</li>
                 <li class="list-item" routerLinkActive="active" [routerLink]="['/components/typography']">typography</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/button']">button</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/breadcrumb']">breadcrumb</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/switch']">switch</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/button-group']">button-group</li>
+
+                <li class="list-item list-item-desc">Data Entry</li>
                 <li class="list-item" routerLinkActive="active" [routerLink]="['/components/box-group']">box-group</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/chart']">chart</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/progress-bar']">progress-bar</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/spinner']">spinner</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/carousel']">carousel</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/input']">input</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/tabs']">tabs</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/step']">step</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/tooltip']">tooltip</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/textarea']">textarea</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/table']">table</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/page']">page</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/text-line']">text-line</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/search-box']">search-box</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/toast']">toast</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/select']">select</li>
                 <li class="list-item" routerLinkActive="active" [routerLink]="['/components/calendar']">calendar</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/region']">region</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/dialog']">dialog</li>
                 <li class="list-item" routerLinkActive="active" [routerLink]="['/components/chips']">chips</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/input']">input</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/region']">region</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/select']">select</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/schedule']">schedule</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/search-box']">search-box</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/slider']">slider</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/spinner']">spinner</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/switch']">switch</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/textarea']">textarea</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/text-line']">text-line</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/transfer']">transfer</li>
+
+                <li class="list-item list-item-desc">Navigation</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/breadcrumb']">breadcrumb</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/page']">page</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/side-bar']">side-bar</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/step']">step</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/tabs']">tabs</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/tree']">tree</li>
+
+                <li class="list-item list-item-desc">Button</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/button']">button</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/button-group']">button-group</li>
+
+                <li class="list-item list-item-desc">Chart</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/chart']">chart</li>
+
+                <li class="list-item list-item-desc">Data</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/table']">table</li>
+
+                <li class="list-item list-item-desc">Overlay</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/dialog']">dialog</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/toast']">toast</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/tooltip']">tooltip</li>
+
+                <li class="list-item list-item-desc">Containers</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/accordion']">accordion</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/card']">card</li>
+
+                <li class="list-item list-item-desc">Uploader</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/uploader']">uploader</li>
+
+                <li class="list-item list-item-desc">Utilities</li>
                 <li class="list-item" routerLinkActive="active" [routerLink]="['/components/code-highlighter']">code-highlighter</li>
                 <li class="list-item" routerLinkActive="active" [routerLink]="['/components/code-box']">code-box</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/tree']">tree</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/side-bar']">side-bar</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/card']">card</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/schedule']">schedule</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/accordion']">accordion</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/uploader']">uploader</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/transfer']">transfer</li>
-                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/slider']">slider</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/carousel']">carousel</li>
+                <li class="list-item" routerLinkActive="active" [routerLink]="['/components/progress-bar']">progress-bar</li>
             </ul>
         </aside>
 
