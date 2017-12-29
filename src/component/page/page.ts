@@ -1,6 +1,6 @@
 import {
     Component, Input, Output, EventEmitter, ElementRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit
 } from '@angular/core';
 import { SelectConfig } from '../select/select.config';
 
@@ -17,7 +17,7 @@ export type PAGE_SIZE = 'sm' | 'default';
         'class': 'nb-widget nb-page'
     }
 })
-export class PageComponent implements OnInit {
+export class PageComponent implements OnInit, AfterViewInit {
     // 每页20条
     // count = 20;
     /**
