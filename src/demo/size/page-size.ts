@@ -18,6 +18,7 @@ export class PageSizeDemo {
 
     }
 
+
     pageChange(event) {
         console.log(event);
     }

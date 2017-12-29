@@ -1,10 +1,13 @@
-import { Directive, HostBinding } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
-@Directive({
-    selector: '[nbFormItem]'
+@Component({
+    selector: '[nb-form-item]',
+    template: `
+        <ng-content></ng-content>
+    `
 })
 
-export class NbFormItemDirective {
+export class NbFormItemComponent {
     _withHelp = 0;
 
     @HostBinding(`class.nb-form-item`) _nzFormItem = true;

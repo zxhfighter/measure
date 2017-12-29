@@ -1,3 +1,6 @@
-describe('1st tests', () => {
-    it('true is true', () => expect(false).toBe(true));
+describe('aaa', () => {
+    it('bbb', () => {
+        let a = 1;
+        expect(a).toBe(1);
+    });
 });
