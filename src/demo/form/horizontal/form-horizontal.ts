@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { SelectConfig } from "../../../component/select/select.config";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SelectConfig } from '../../../component/select/select.config';
 
 export class GroupBoxItem {
     name: string;
@@ -37,7 +37,7 @@ export class FormHorizontalDemo implements OnInit {
     ];
 
 
-    protected orderData: SelectConfig[] = [
+    orderData: SelectConfig[] = [
         {
             label: '订单3801273',
             value: 3801273

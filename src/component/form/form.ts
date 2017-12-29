@@ -1,10 +1,10 @@
 import {
-    Component, ElementRef,Renderer2, Input,
+    Component, ElementRef, Renderer2, Input,
     OnInit, ViewEncapsulation
 } from '@angular/core';
 
 @Component({
-    selector: '[nbForm]',
+    selector: '[nb-form]',
     template: `
         <div class="nb-widget nb-form">
             <ng-content></ng-content>
