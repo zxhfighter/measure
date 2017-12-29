@@ -5,13 +5,12 @@ import {
 
 @Component({
     selector: '[nb-form]',
-    template: `
-        <div class="nb-widget nb-form">
-            <ng-content></ng-content>
-        </div>
-    `,
+    templateUrl: './form.html',
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false,
+    host: {
+        'class': 'nb-widget nb-form'
+    },
     exportAs: 'nbForm'
 })
 export class FormComponent implements OnInit {
