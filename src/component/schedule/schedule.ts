@@ -1,12 +1,13 @@
 import {
     Component, Input, Output, EventEmitter,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/map';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+// import { Subscription } from 'rxjs/Subscription';
+// import { Observable } from 'rxjs/Observable';
+// import 'rxjs/add/operator/debounceTime';
+// import 'rxjs/add/observable/fromEvent';
+// import 'rxjs/add/operator/map';
 import { SelectConfig } from '../select/select.config';
 
 @Component({
@@ -18,7 +19,12 @@ import { SelectConfig } from '../select/select.config';
     host: {
         'class': 'nb-widget nb-schedule'
     },
-    exportAs: 'nbSchedule'
+    exportAs: 'nbSchedule',
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => ScheduleComponent),
+        multi: true
+    }]
 })
 export class ScheduleComponent implements OnInit {
     /**

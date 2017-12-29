@@ -19,14 +19,9 @@ export class ConnectedPositionStrategy {
     constructor(
         private _targetRef: ElementRef,
         private _overlaytRef: ElementRef
-        // private _targetPos: ConnectionPosition,
-        // private _overlayPos: ConnectionPosition
     ) {
-
         this._targetEl = this._targetRef.nativeElement;
-        this._overlayEl = this._overlaytRef.nativeElement.children[0];
-
-        // this._lastConnectedPosition = this.withFallbackPosition[0];
+        this._overlayEl = this._overlaytRef.nativeElement;
     }
 
     withOffsetX(offset: number): this {
@@ -41,6 +36,7 @@ export class ConnectedPositionStrategy {
 
     apply(callback: Function) {
         let lastConnectedPosition = this.position();
+
         // 定位改变后执行回调函数 - 重新设置定位属性以渲染页面
         if (lastConnectedPosition !== this._lastConnectedPosition
             && typeof callback === 'function'
@@ -48,6 +44,7 @@ export class ConnectedPositionStrategy {
             this._lastConnectedPosition = lastConnectedPosition;
             callback(lastConnectedPosition);
         }
+
         return lastConnectedPosition;
     }
 
@@ -90,6 +87,7 @@ export class ConnectedPositionStrategy {
         // with the largest visible area.
         this._setElementPosition(this._overlayEl, fallbackPoint!);
         this._lastOverlayRect = overlayRect;
+
         return fallbackPosition!;
     }
 
@@ -163,6 +161,7 @@ export class ConnectedPositionStrategy {
     }
 
     private _subtractOverflows(length: number, ...overflows: number[]): number {
+
         return overflows.reduce((currentValue: number, currentOverflow: number) => {
             return currentValue - Math.max(currentOverflow, 0);
         }, length);
@@ -185,6 +184,7 @@ export class ConnectedPositionStrategy {
         overlayPos: ConnectionPosition,
         offsetX?: number,
         offsetY?: number): this {
+
         this._preferredPositions.push(new ConnectionPositionPair(originPos, overlayPos, offsetX, offsetY));
         return this;
     }

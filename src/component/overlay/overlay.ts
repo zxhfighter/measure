@@ -34,7 +34,8 @@ import { OverlayOriginDirective } from './overlay-origin.directive';
     preserveWhitespaces: false,
     providers: [ViewportRuler, OverlayPositionService],
     host: {
-        'class': 'nb-widget',
+        'class': 'nb-widget nb-overlay',
+        '[class.invisible]': '!visibility',
         '(click)': '_preventDefault($event)'
     },
     exportAs: 'nbOverlay'

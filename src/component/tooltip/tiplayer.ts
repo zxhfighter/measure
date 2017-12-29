@@ -37,6 +37,7 @@ import { fadeAnimation } from '../core/animation/fade-animations';
     animations: [ fadeAnimation ],
     exportAs: 'nbTiplayer',
     host: {
+        'class': 'nb-widget nb-tiplayer',
         '(mouseenter)': 'this.onMouseEnter()',
         '(mouseleave)': 'this.onMouseLeave()'
     }

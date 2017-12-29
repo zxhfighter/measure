@@ -12,10 +12,19 @@ import &#x7B;PageModule&#x7D; from 'xdesign';
 
 <section>
     <h3 class="section-title">Page first demo</h3>
-    <p>
-        <nb-page [total]="total" [count]="count" [list]="list" (pageChange)="pageChange($event)"></nb-page>
-    </p>
+
+    <nb-code-box [htmlCode]="htmlCodeSize">
+        <h3 nb-codebox-title>Sizes</h3>
+        <div nb-codebox-desc>
+            <p>1.用于设置按钮的尺寸大小，有两种内置的 <code>size</code> 尺寸，从小到大分别是：sm, default。</p>
+            <p>2.如果没有显示指定，将使用默认的 default 尺寸。</p>
+            <p>3.如果两种内置尺寸不符合你的需求，您还可以自定义尺寸，如上例，设置 <code>size="xxl"</code>，会给按钮添加一个名为 <code>nb-page-size-xxl</code> 的尺寸样式类。</p>
+        </div>
+
+        <demo-page-size></demo-page-size>
+
+    </nb-code-box>
 </section>
 
 <h3 class="section-title">API</h3>
-<!-- api(dialog.html) -->
+<!-- api(page.html) -->

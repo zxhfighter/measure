@@ -1,30 +1,33 @@
-<nb-overlay #overlay class="nb-dialog-box {{overlayClass}}" 
+<nb-overlay #overlay class="nb-dialog-box"
     needHideAfterDocumentClick="{{needHideAfterDocumentClick}}">
-<div class="nb-dialog">
 
-    <div class="nb-dialog-headerbar">
-        <h4 class="nb-dialog-title">
-            <ng-content select="nb-dialog-header"></ng-content>
-        </h4>
-        <button *ngIf="closable"
-            type="button" class="close" (click)="close()">
-            <span>&times;</span>
-        </button>
-    </div>
+    <div class="nb-dialog-mask" *ngIf="modalable"></div>
 
-    <div class="nb-dialog-body">
-        <ng-content select="nb-dialog-body"></ng-content>
-    </div>
+    <div class="nb-dialog" [@slideAnimation]="visibility">
 
-    <div class="nb-dialog-footer">
-        <div #ref>
-            <ng-content select="nb-dialog-footer"></ng-content>
+        <div class="nb-dialog-headerbar">
+            <h4 class="nb-dialog-title">
+                <ng-content select="nb-dialog-header"></ng-content>
+            </h4>
+            <button *ngIf="closable" type="button" class="close" (click)="close()">
+                <span>&times;</span>
+            </button>
         </div>
-        <ng-container *ngIf="ref.children.length == 0">
-            <button nb-button (click)="confirm()">确定</button>
-            <button theme="default" nb-button (click)="close()">取消</button>
-        </ng-container>
+
+        <div class="nb-dialog-body">
+            <ng-content select="nb-dialog-body"></ng-content>
+        </div>
+
+        <div class="nb-dialog-footer">
+            <div #ref>
+                <ng-content select="nb-dialog-footer"></ng-content>
+            </div>
+            <ng-container *ngIf="ref.children.length == 0">
+                <button nb-button (click)="confirm()">确定</button>
+                <button theme="default" nb-button (click)="close()">取消</button>
+            </ng-container>
+        </div>
+
     </div>
 
-</div>
 </nb-overlay>
