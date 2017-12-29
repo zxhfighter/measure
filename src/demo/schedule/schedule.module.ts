@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PageModule } from '../../component/page';
+import { ScheduleModule } from '../../component/schedule';
 import { CodeBoxModule } from '../../component/code-box';
 import { CodeHighlighterModule } from '../../component/code-highlighter';
 
-import { PageDemo } from './page';
-import { PageSizeDemo } from './size/page-size';
+import { ScheduleDemo } from './schedule';
+import { ScheduleSelectedDemo } from './selected/schedule-selected';
 
 @NgModule({
     imports: [
         CommonModule,
-        PageModule,
+        ScheduleModule,
         CodeBoxModule,
         CodeHighlighterModule
     ],
     declarations: [
-        PageDemo,
-        PageSizeDemo,
+        ScheduleDemo,
+        ScheduleSelectedDemo,
     ],
     providers: [],
     exports: []
 })
-export class PageDemoModule { }
+export class ScheduleDemoModule { }
