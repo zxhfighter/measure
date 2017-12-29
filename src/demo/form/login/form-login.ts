@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators, FormGroup} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'demo-form-login',
     templateUrl: './form-login.html',
     styleUrls: ['./form-login.less']
 })
-export class FormLoginDemo implements OnInit{
+export class FormLoginDemo implements OnInit {
     validateForm: FormGroup;
 
     constructor(private fb: FormBuilder) {

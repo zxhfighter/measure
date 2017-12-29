@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
-    selector: '[nbFormControl]',
+    selector: '[nb-form-control]',
     template: `
         <div class="nb-form-item-control"
              [class.has-error]="isError"
@@ -42,7 +42,7 @@ export class NbFormControlComponent {
     get isSuccess(): boolean {
         return this.nbValidateStatus === 'success' || this.nbValidateStatus &&
             this.nbValidateStatus.dirty && this.nbValidateStatus.valid;
-    };
+    }
 
     get hasFeedBack(): boolean {
         return this.nbHasFeedback as boolean;

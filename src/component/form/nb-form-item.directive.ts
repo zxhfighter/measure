@@ -11,16 +11,16 @@ export class NbFormItemDirective {
 
     enableHelp() {
         this._withHelp++;
-    };
+    }
 
     disableHelp() {
         this._withHelp--;
-    };
+    }
 
     @HostBinding(`class.nb-form-item-with-help`)
     get withHelp(): boolean {
         return this._withHelp > 0;
-    };
+    }
 
     constructor() {
     }
