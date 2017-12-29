@@ -12,4 +12,5 @@ import {
 export class PageDemo{
 
     htmlCodeSize: string = require('!!raw-loader!./size/page-size.html');
+    tsCodeSize: string = require('!!raw-loader!./size/page-size.ts');
 }

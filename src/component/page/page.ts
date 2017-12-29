@@ -4,8 +4,8 @@ import {
 } from '@angular/core';
 import { SelectConfig } from '../select/select.config';
 
-/** default button size types */
-export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
+/** default page size types */
+export type PAGE_SIZE = 'sm' | 'default';
 
 @Component({
     selector: 'nb-page',
@@ -42,10 +42,10 @@ export class PageComponent implements OnInit {
     @Input() list: Array<number>;
 
     /**
-     * button size, there are four default sizes: 'xs' | 'sm' | 'default' | 'lg'
+     * page size, there are four default sizes:  'sm' | 'default'
      * @default default
      */
-    @Input() size: BUTTON_SIZE = 'default';
+    @Input() size: PAGE_SIZE = 'default';
 
     /**
      * when page change, emit a change event, which contains the currrentIndex and the count
