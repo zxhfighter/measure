@@ -30,6 +30,6 @@ export class SideBarBasicDemo {
     }
 
     changeData() {
-        this.sigleData = changeDataSideBar;
+        this.sigleData = dataSideBar;
     }
 }
