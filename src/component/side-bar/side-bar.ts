@@ -409,6 +409,8 @@ export class SideBarComponent implements OnInit {
             } else {
                 return firstChild;
             }
+        } else {
+            return node;
         }
     }
 }

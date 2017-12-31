@@ -1,5 +1,14 @@
 <p>
     <nb-side-bar 
+        [data]="sigleData" 
+        (onNavi)="onNavi($event)">
+    </nb-side-bar>
+</p>
+
+<a href="javascript:;" (click)="changeData()">切换数据</a>
+
+<p>
+    <nb-side-bar 
         [data]="data" 
         [selectedNodeId]="selectedNodeId"
         (onNavi)="onNavi($event)">
