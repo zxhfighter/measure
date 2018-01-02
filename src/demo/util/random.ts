@@ -37,7 +37,7 @@ export function genStr(start: number, end: number): string {
         '楠榕风航弘'
     ].join('');
 
-    let len = end ? this.genNum(start, end) : start;
+    let len = end ? genNum(start, end) : start;
     let str = '';
     for (let i = 0; i < len; i++) {
         str += chars[Math.floor(Math.random() * chars.length)];
