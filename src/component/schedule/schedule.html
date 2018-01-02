@@ -17,9 +17,9 @@
         </div>
         <div class="week-title">
             <div class="week-item" *ngFor="let item of week; index as j" (click)="checkDay(j)">
-                <nb-checkbox *ngIf="weekSelect[j] === 0" theme="small">{{item}}</nb-checkbox>
-                <nb-checkbox *ngIf="weekSelect[j] === 1" theme="small" intermediate>{{item}}</nb-checkbox>
-                <nb-checkbox *ngIf="weekSelect[j] === 2" theme="small" checked>{{item}}</nb-checkbox>
+                <nb-checkbox *ngIf="weekSelect[j] === 0" theme="small">{{ item }}</nb-checkbox>
+                <nb-checkbox *ngIf="weekSelect[j] === 1" theme="small" intermediate>{{ item }}</nb-checkbox>
+                <nb-checkbox *ngIf="weekSelect[j] === 2" theme="small" checked>{{ item }}</nb-checkbox>
 
                 <!-- <span class="checkbox"> -->
 
