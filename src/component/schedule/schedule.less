@@ -150,3 +150,17 @@
         height: 24px;
     }
 }
+.nb-checkbox-small {
+    font-size: 12px;
+
+    .nb-checkbox-label {
+        &::before {
+            width: 12px;
+            height: 12px;
+            top: 3px;
+        }
+    }
+}
+.nb-checkbox .nb-checkbox-label::before {
+    left: 2px;
+}
