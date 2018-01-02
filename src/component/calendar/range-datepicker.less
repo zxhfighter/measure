@@ -1,11 +1,9 @@
 .@{prefix}-rangedatepicker {
     display: inline-block;
     position: relative;
-
     .@{prefix}-rangedatepicker-input-area {
         width: 210px;
         position: relative;
-
         .@{prefix}-rangedatepicker-input {
             width: 100%;
             height: 36px;
@@ -14,7 +12,6 @@
             border: none;
             cursor: pointer;
         }
-
         &::after {
             font-family: 'iconfont' !important;
             font-size: 14px;
@@ -27,72 +24,6 @@
             top: 8px;
         }
     }
-
-    .@{prefix}-rangedatepicker-calendar-panel {
-        position: absolute;
-        left: 0;
-        top: 38px;
-        width: 505px;
-        background: #fff;
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
-        border-radius: 1px;
-
-        .@{prefix}-rangedatepicker-calendars {
-            .@{prefix}-calendar {
-                box-shadow: none;
-                border: none;
-                vertical-align: top;
-
-                &:last-of-type {
-                    margin-left: 1px;
-                }
-            }
-        }
-
-        .@{prefix}-rangedatepicker-quicklinks {
-            padding: 10px 0 10px 10px;
-            border-bottom: 1px solid #e7e7e7;
-
-            .clearfix;
-
-            .@{prefix}-rangedatepicker-quicklink {
-                float: left;
-                padding: 0 10px;
-                line-height: 24px;
-                font-size: 12px;
-                margin-right: 10px;
-                text-align: center;
-                cursor: pointer;
-                user-select: none;
-
-                &:hover:not(.disabled) {
-                    background-color: #e7e7e7;
-                }
-
-                &:active:not(.disabled) {
-                    background-color: #dbdbdb;
-                }
-
-                &.selected {
-                    background-color: #eee;
-                }
-
-                &.disabled {
-                    color: #b8b8b8;
-                    cursor: not-allowed;
-                }
-            }
-        }
-
-        .@{prefix}-rangedatepicker-buttons {
-            padding: 16px 0 16px 16px;
-
-            .@{prefix}-button-theme-primary {
-                margin-right: 10px;
-            }
-        }
-    }
-
     &.disabled {
         .@{prefix}-rangedatepicker-input-area {
             .@{prefix}-rangedatepicker-input {
@@ -100,10 +31,60 @@
                 color: #b8b8b8;
                 cursor: not-allowed;
             }
-
             &::after {
                 color: #b8b8b8;
             }
+        }
+    }
+}
+
+.@{prefix}-rangedatepicker-calendar-panel {
+    width: 505px;
+    background: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+    .@{prefix}-rangedatepicker-calendars {
+        .@{prefix}-calendar {
+            box-shadow: none;
+            border: none;
+            vertical-align: top;
+            &:last-of-type {
+                margin-left: 1px;
+            }
+        }
+    }
+    .@{prefix}-rangedatepicker-quicklinks {
+        padding: 10px 0 10px 10px;
+        border-bottom: 1px solid #e7e7e7;
+        .clearfix;
+        .@{prefix}-rangedatepicker-quicklink {
+            float: left;
+            padding: 0 10px;
+            line-height: 24px;
+            font-size: 12px;
+            margin-right: 10px;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            &:hover:not(.disabled) {
+                background-color: #e7e7e7;
+            }
+            &:active:not(.disabled) {
+                background-color: #dbdbdb;
+            }
+            &.selected {
+                background-color: #eee;
+            }
+            &.disabled {
+                color: #b8b8b8;
+                cursor: not-allowed;
+            }
+        }
+    }
+    .@{prefix}-rangedatepicker-buttons {
+        padding: 16px 0 16px 16px;
+        .@{prefix}-button-theme-primary {
+            margin-right: 10px;
         }
     }
 }

@@ -8,7 +8,6 @@ import { OnChange } from '../core/decorators';
 import { TableComponent } from './table';
 
 import { OverlayComponent } from '../overlay';
-import { Placement } from '../util/position';
 import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
 
 

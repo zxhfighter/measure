@@ -4,11 +4,16 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { OverlayComponent } from '../overlay';
+import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
+
 import { Moment } from 'moment';
 import * as momentLib from 'moment';
 
 import { OnChange } from '../core/decorators';
 
+// fix rollup bundle bug, see
+// https://stackoverflow.com/questions/39519823/using-rollup-for-angular-2s-aot-compiler-and-importing-moment-js
 const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
 
 /*
@@ -51,12 +56,11 @@ export interface QuickLinkValue {
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-rangedatepicker',
-        '[class.disabled]': 'disabled',
-        '(click)': 'onClickDatePicker($event)'
+        '[class.disabled]': 'disabled'
     },
     exportAs: 'nbRangeDatePicker'
 })
-export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor {
+export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
     /** range datepicker change event, emit a `RangeDatePickerValue` value */
     @Output() change: EventEmitter<RangeDatePickerValue> = new EventEmitter<RangeDatePickerValue>();
@@ -134,60 +138,48 @@ export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor
     /** whether the panel is show */
     _showPanel: boolean = false;
 
-    /** document click listener */
-    _documentClickListener: any;
-
     /** the start date(the min date of the two dates) */
     _startDate: Date | null;
 
     /** the end date(the max date of the two dates) */
     _endDate: Date | null;
 
-    @ViewChild('input') _input: ElementRef;
-    @ViewChild('panel') _panel: ElementRef;
+    @ViewChild('origin') origin: OverlayOriginDirective;
+    @ViewChild('overlay') overlay: OverlayComponent;
 
     constructor(private render: Renderer2, private cd: ChangeDetectorRef, private el: ElementRef) {
 
-        // listen document click
-        this._documentClickListener = this.render.listen('document', 'click', () => {
-            this._showPanel = false;
-            this.cd.markForCheck();
-        });
+    }
+
+    ngOnInit() {
+        this.overlay.origin = this.origin;
     }
 
     ngOnDestroy() {
-        // remove global document click listener
-        if (this._documentClickListener) {
-            this._documentClickListener();
-        }
+
     }
 
     onShowCalendar() {
-        this._showPanel = true;
-        this._setPanelPosition();
+        if (this._showPanel) {
+            this._hideOverlay();
+        }
+        else {
+            this._showOverlay();
+        }
     }
 
-    onHideCalendar() {
+    _hideOverlay() {
+        this.overlay.hide();
         this._showPanel = false;
     }
 
-    _setPanelPosition() {
-        try {
-            const panel = this._panel.nativeElement as HTMLElement;
-            const windowHeight = window.innerHeight;
-            const rect = (this.el.nativeElement as HTMLElement).getBoundingClientRect();
+    _showOverlay() {
+        this.overlay.show();
+        this._showPanel = true;
+    }
 
-            this.render.setStyle(panel, 'opacity', 0);
-            setTimeout(() => {
-                const panelRec = panel.getBoundingClientRect();
-                const up = rect.top > windowHeight / 2;
-                this.render.setStyle(panel, 'top', (up ? -panelRec.height : 38) + 'px');
-                this.render.setStyle(panel, 'opacity', 1);
-            }, 100);
-        }
-        catch (e) {
-            throw new Error('it only works in browser');
-        }
+    onFilterPanelHide() {
+        this._showPanel = false;
     }
 
     onSelectStartDate(date: Date) {
@@ -233,21 +225,15 @@ export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor
     }
 
     /**
-     * stop propagation
-     * @param {MouseEvent} event - mouse event
-     * @docs-private
-     */
-    onClickDatePicker(event: MouseEvent) {
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-    }
-
-    /**
      * quickly set date range
      * @param {QuickLinkValue} quickLink - quick link item
      * @docs-private
      */
     onClickQuickLink(quickLink: QuickLinkValue) {
+        if (this.disabled) {
+            return;
+        }
+
         // set selection range
         this._startDate = quickLink.startDate;
         this._endDate = quickLink.endDate;
@@ -263,7 +249,7 @@ export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor
      */
     onConfirm() {
         this.change.emit(this.value);
-        this._showPanel = false;
+        this._hideOverlay();
 
         this._markForCheck();
     }
@@ -273,7 +259,7 @@ export class RangeDatePickerComponent implements OnDestroy, ControlValueAccessor
      * @docs-private
      */
     onCancel() {
-        this._showPanel = false;
+        this._hideOverlay();
     }
 
     /**

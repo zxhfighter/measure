@@ -1,15 +1,13 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import { genTableData } from '../table.data';
+import { genTableData, getTableDataAsync } from '../table.data';
 
 @Component({
     selector: 'demo-table-basic',
     templateUrl: './table-basic.html',
-    styleUrls: ['./table-basic.less'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./table-basic.less']
 })
-export class TableBasicDemo {
+export class TableBasicDemo implements OnInit {
 
     fields: any[] = [
         {
@@ -56,10 +54,17 @@ export class TableBasicDemo {
         }
     ];
 
-    datasource: any[] = genTableData();
+    datasource: any[] = [];
 
-    get abc() {
-        console.log('abc');
-        return 'abc';
+    constructor(private _cd: ChangeDetectorRef) {}
+
+    ngOnInit() {
+        const self = this;
+        getTableDataAsync().subscribe(data => {
+            self.datasource = [];
+            self.datasource = data;
+            console.log(data);
+            this._cd.markForCheck();
+        });
     }
 }

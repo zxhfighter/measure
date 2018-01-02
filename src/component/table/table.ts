@@ -106,7 +106,11 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
      * table datasource
      * @default []
      */
-    @Input() datasource: any[] = [];
+    @OnChange(false)
+    @Input()
+    datasource: any[] = [];
+
+    datasourceChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
     /**
      * inner filterd datasource
@@ -228,6 +232,7 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
         private _cd: ChangeDetectorRef
     ) {
         this.listenSortParamChange();
+        this.listenDatasourceChange();
     }
 
     startColumnResizing() {
@@ -286,12 +291,20 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
         });
     }
 
+    listenDatasourceChange() {
+        this.datasourceChange.subscribe((datasource: any[] = []) => {
+            if (datasource) {
+                this.data = this.getDisplayData();
+            }
+        });
+    }
+
     ngOnInit() {
         this.data = this.getDisplayData();
     }
 
     getDisplayData() {
-        let data: any[] = [...this.datasource];
+        let data: any[] = [...(this.datasource || [])];
         const orderBy = this.orderBy;
         const order = this.order;
         const page = this.page;

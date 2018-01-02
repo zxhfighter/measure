@@ -130,13 +130,13 @@ export class TableSortDemo implements OnInit {
         target.hide();
     }
 
-    onResetNameFilter(target: HTMLInputElement, filterTarget: any) {
+    onResetNameFilter(target: HTMLInputElement) {
         target.value = '';
         this.filterMap.name = target.value;
         this.refresh();
     }
 
-    onResetStatusFilter(target: any, filterTarget: any) {
+    onResetStatusFilter(target: any) {
         target.reset();
         this.filterMap.status = [];
         this.refresh();

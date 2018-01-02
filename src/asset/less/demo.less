@@ -11,14 +11,15 @@
 @import './variable.less';
 
 @header-height: 60px;
-@aside-width: 150px;
+@aside-width: 200px;
 
 button:focus,
 input:focus,
 ul:focus,
 li:focus,
 a:focus,
-img:focus {
+img:focus,
+textarea:focus {
     outline: none;
 }
 
@@ -81,22 +82,38 @@ body {
             overflow: scroll;
             background: #f1f1f1;
 
+            .nb-side-bar-content {
+                padding: 20px;
+            }
+
             .app-aside-list {
                 padding: 0;
                 margin: 0;
 
                 .list-item {
-                    height: 38px;
-                    line-height: 38px;
-                    padding-left: 20px;
-                    font-size: 14px;
+                    height: 46px;
+                    line-height: 46px;
+                    padding-left: 30px;
+                    font-size: 16px;
                     cursor: pointer;
                     color: @brand-primary;
+                    font-weight: 500;
 
-                    &:hover,
-                    &.active {
+                    &:hover {
                         background-color: #fffdee;
                     }
+
+                    &.active {
+                        background-color: @brand-primary;
+                        color: #fff;
+                    }
+                }
+
+                .list-item-desc {
+                    color: #999;
+                    font-weight: 600;
+                    padding-left: 20px;
+                    pointer-events: none;
                 }
             }
         }
