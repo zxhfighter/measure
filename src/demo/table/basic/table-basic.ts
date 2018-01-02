@@ -5,7 +5,8 @@ import { genTableData, getTableDataAsync } from '../table.data';
 @Component({
     selector: 'demo-table-basic',
     templateUrl: './table-basic.html',
-    styleUrls: ['./table-basic.less']
+    styleUrls: ['./table-basic.less'],
+    encapsulation: ViewEncapsulation.None
 })
 export class TableBasicDemo implements OnInit {
 

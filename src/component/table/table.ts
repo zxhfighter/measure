@@ -289,6 +289,14 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
                 orderBy: orderBy
             });
         });
+
+        self.pageChange.subscribe(() => {
+            this.data = this.getDisplayData();
+        });
+
+        self.pageSizeChange.subscribe(() => {
+            this.data = this.getDisplayData();
+        });
     }
 
     listenDatasourceChange() {
@@ -309,14 +317,14 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
         const order = this.order;
         const page = this.page;
         const pageSize = this.pageSize;
+        const len = data.length;
 
         if (order && orderBy) {
             data = data.sort(sortFunc(order, orderBy));
         }
 
         if (page && pageSize) {
-            data = data.slice((page - 1) * data.length, page * data.length);
-            data = data.slice(0, pageSize);
+            data = data.slice((page - 1) * pageSize, page * pageSize);
         }
 
         this.dataChange.emit(data);

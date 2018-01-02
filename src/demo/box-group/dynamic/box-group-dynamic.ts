@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { BoxGroupValue } from '../../../component/box-group';
+import { BoxGroupValue, BoxGroupItem } from '../../../component/box-group';
 
 @Component({
     selector: 'demo-boxgroup-dynamic',
@@ -13,11 +13,11 @@ export class BoxGroupDynamicDemo implements OnInit {
 
     form: FormGroup;
 
-    datasource: any[] = [
-        {value: 1, text: 'apple', checked: false, disabled: false},
-        {value: 2, text: 'banana', checked: false, disabled: false},
-        {value: 3, text: 'lemon', checked: false, disabled: false},
-        {value: 4, text: 'orange', checked: false, disabled: false}
+    datasource: BoxGroupItem[] = [
+        {value: '1', text: 'apple', checked: false, disabled: false},
+        {value: '2', text: 'banana', checked: false, disabled: false},
+        {value: '3', text: 'lemon', checked: false, disabled: false},
+        {value: '4', text: 'orange', checked: false, disabled: false}
     ];
 
     constructor(private fb: FormBuilder) { }
@@ -25,12 +25,11 @@ export class BoxGroupDynamicDemo implements OnInit {
     ngOnInit() {
         this.form = this.fb.group({
             radioBox1: [
-                { value: [3], disabled: false }
+                { value: ['3'], disabled: false }
             ],
             checkboxBox1: [
-                { value: [1, 4], disabled: false }
+                { value: ['1', '4'], disabled: false }
             ]
         });
     }
 }
-

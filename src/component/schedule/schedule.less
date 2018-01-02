@@ -150,10 +150,13 @@
         height: 24px;
     }
 }
-.nb-checkbox-small {
+
+.@{prefix}-checkbox-small {
     font-size: 12px;
 
-    .nb-checkbox-label {
+    .@{prefix}-checkbox-label {
+        padding-left: 20px;
+
         &::before {
             width: 12px;
             height: 12px;
@@ -161,6 +164,27 @@
         }
     }
 }
-.nb-checkbox .nb-checkbox-label::before {
-    left: 2px;
+
+.@{prefix}-checkbox-small.@{prefix}-checkbox-checked {
+    .@{prefix}-checkbox-label {
+        &::after {
+            width: 7px;
+            height: 4px;
+            left: 3px;
+            top: 6px;
+        }
+    }
 }
+
+.@{prefix}-checkbox-small.@{prefix}-checkbox-intermediate {
+    .@{prefix}-checkbox-label {
+        &::after {
+            width: 6px;
+            height: 2px;
+            left: 3px;
+            top: 8px;
+            font-size: 14px;
+        }
+    }
+}
+

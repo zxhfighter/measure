@@ -19,10 +19,11 @@ export interface BoxGroupValue {
 
 /** box group item type */
 export interface BoxGroupItem {
-    value: string;
+    value: string | number;
     text: string;
     checked?: boolean;
     disabled?: boolean;
+    [key: string]: any;
 }
 
 
@@ -141,7 +142,7 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
 
         if (this.type === 'radio') {
             boxList.forEach(item => {
-                item.checked = item.value === value;
+                item.checked = (item.value + '') === (value + '');
             });
             this.value = [value];
             this.change.emit({
@@ -150,7 +151,7 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
             });
         }
         else if (this.type === 'checkbox') {
-            const box = boxList.find(v => v.value === value);
+            const box = boxList.find(v => (v.value + '') === (value + ''));
 
             // de-duplicate value items
             const valueSet = new Set(this.value);

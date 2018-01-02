@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'demo-page-size',
     templateUrl: './page-size.html',
-    styleUrls: ['./page-size.less']
+    styleUrls: ['./page-size.less'],
+    // encapsulation: ViewEncapsulation.None
 })
 export class PageSizeDemo {
      // pageSize = [1,2,3,4,5,6,7,8,9,10,11];

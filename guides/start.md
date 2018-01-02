@@ -12,7 +12,7 @@ $ npm install --save xdesign
 
 首先，导入组件所在的模块。
 
-```ts
+```typescript
 import { ButtonModule, TableModule } from 'xdesign';
 
 @NgModule({
@@ -80,7 +80,7 @@ $ npm install --save xdesign
 
 第三步，引入组件库模块，修改 `src/app/app.module.ts` 如下:
 
-```ts
+```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ButtonModule } from 'xdesign';
