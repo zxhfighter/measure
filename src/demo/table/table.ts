@@ -50,4 +50,9 @@ export class TableDemo {
     tsCodeEdit: string = require('!!raw-loader!./edit/table-edit.ts');
     htmlCodeEdit: string = require('!!raw-loader!./edit/table-edit.html');
     lessCodeEdit: string = require('!!raw-loader!./edit/table-edit.less');
+
+    // basic source
+    tsCodePage: string = require('!!raw-loader!./page/table-page.ts');
+    htmlCodePage: string = require('!!raw-loader!./page/table-page.html');
+    lessCodePage: string = require('!!raw-loader!./page/table-page.less');
 }

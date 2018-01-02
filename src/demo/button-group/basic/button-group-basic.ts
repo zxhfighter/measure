@@ -15,7 +15,7 @@ export class ButtonGroupBasicDemo {
     checked: boolean = true;
 
     datasource: any[] = [
-        {value: 'apple', text: 'apple'},
+        {value: 'apple', text: 'apple <b>a</b>'},
         {value: 'book', text: 'book', disabled: true},
         {value: 'falsh', text: 'flash', checked: true}
     ];

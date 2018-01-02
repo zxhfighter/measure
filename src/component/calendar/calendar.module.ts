@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ButtonModule } from '../button/button.module';
+import { OverlayModule } from '../overlay/overlay.module';
 
 import { CalendarComponent } from './calendar';
 import { MonthViewComponent } from './month-view';
@@ -17,7 +18,7 @@ const components = [
 ];
 
 @NgModule({
-    imports: [CommonModule, FormsModule, ButtonModule],
+    imports: [CommonModule, FormsModule, ButtonModule, OverlayModule],
     declarations: [...components],
     exports: [...components]
 })

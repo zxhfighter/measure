@@ -7,7 +7,7 @@
     orderBy="height">
     <thead nb-thead>
         <tr nb-row>
-            <th field="name" tipable filterable sortable (filter)="onFilter(name.value, $event)" (filterReset)="onResetNameFilter(name, $event)">
+            <th field="name" tipable filterable sortable (filter)="onFilter(name.value, $event)" (filterReset)="onResetNameFilter($event)">
                 <span class="field-title">姓名</span>
                 <div class="tip-content">
                     <p>This is the field tip message, <a href="http://www.baidu.com" target="_blank">see more</a></p>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </th>
-            <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)" (filterReset)="onResetStatusFilter(chk, $event)">
+            <th field="status" filterable sortable (filter)="onFilter(chk.value, $event)" (filterReset)="onResetStatusFilter(chk)">
                 <span class="field-title">状态</span>
 
                 <div nb-table-filter class="filter-content">

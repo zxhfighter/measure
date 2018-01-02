@@ -25,8 +25,11 @@
             </div>
 
             <div *ngIf="district.children" class="nb-region-district-content">
-                <div *ngFor="let province of district.children" class="nb-region-province">
-                    <div class="nb-region-province-title" (mouseover)="onShowCity(province)" (mouseout)="onHideCity(province)">
+                <div *ngFor="let province of district.children" class="nb-region-province" nbOverlayOrigin #origin="nbOverlayOrigin">
+                    <div
+                        class="nb-region-province-title"
+                        (mouseover)="onShowCity(overlay, $event)"
+                        (mouseout)="onHideCity(overlay)">
                         <nb-checkbox
                             [value]="province.id"
                             [disabled]="disabled || province.disabled"
@@ -40,7 +43,33 @@
                         </nb-checkbox>
                     </div>
 
-                    <div
+                    <nb-overlay
+                        #overlay
+                        [origin]="origin"
+                        placement="bottom-left">
+
+                        <div class="nb-region-city-panel" (mouseover)="onClearTimeout()" (mouseout)="onHideOverlay(overlay)">
+                            <div class="nb-region-city-table">
+                                <ng-container *ngFor="let rowIndex of province.cityRows">
+                                    <div class="nb-region-city-row">
+                                        <div *ngFor="let city of province.children.slice(rowIndex * 3, rowIndex * 3 + 3)" class="nb-region-city-cell">
+                                            <nb-checkbox
+                                                [value]="city.id"
+                                                [disabled]="disabled || city.disabled"
+                                                [checked]="city.selected"
+                                                [intermediate]="city.intermediate"
+                                                (change)="onToggleNode(city, $event)">
+                                                {{ city.label }}
+                                            </nb-checkbox>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                    </nb-overlay>
+
+                    <!-- <div
                         *ngIf="province.children"
                         class="nb-region-city-panel"
                         [class.hide]="!province.showCity"
@@ -63,7 +92,7 @@
                                 </div>
                             </ng-container>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

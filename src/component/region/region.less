@@ -46,10 +46,13 @@
     &-province {
         float: left;
         padding: 16px 0;
+        padding-left: 10px;
+        padding-right: 10px;
         position: relative;
 
         &-title {
-            width: 116px;
+            width: 96px;
+            white-space: nowrap;
         }
 
         .province-count {
@@ -65,31 +68,27 @@
                 display: inline-block;
             }
         }
+    }
+}
 
-        .@{prefix}-region-city-panel {
-            position: absolute;
-            top: 45px;
-            left: -10px;
-            padding-left: 20px;
-            min-width: max-content;
-            z-index: 1001;
-            background-color: #fff;
-            // box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .20);
-            box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2);
+.@{prefix}-region-city-panel {
+    padding-left: 20px;
+    min-width: max-content;
+    z-index: 1001;
+    background-color: #fff;
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2);
 
-            .@{prefix}-region-city-table {
-                display: table;
-                width: 100%;
+    .@{prefix}-region-city-table {
+        display: table;
+        width: 100%;
 
-                .@{prefix}-region-city-row {
-                    display: table-row;
-                    margin: 10px 8px;
+        .@{prefix}-region-city-row {
+            display: table-row;
+            margin: 10px 8px;
 
-                    .@{prefix}-region-city-cell {
-                        display: table-cell;
-                        padding: 10px 20px 10px 8px;
-                    }
-                }
+            .@{prefix}-region-city-cell {
+                display: table-cell;
+                padding: 10px 20px 10px 8px;
             }
         }
     }
