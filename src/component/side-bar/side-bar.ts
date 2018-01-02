@@ -30,6 +30,9 @@ export class SideBarComponent implements OnInit {
     /** click navi event */
     @Output() onNavi = new EventEmitter();
 
+    /** toggle side-bar */
+    @Output() toggle = new EventEmitter();
+
     /** side-bar data */
     @Input() data: SiderBarModel;
 
@@ -420,6 +423,7 @@ export class SideBarComponent implements OnInit {
      */
     fold() {
         this.expanded = !this.expanded;
+        this.toggle.emit(this.expanded);
     }
 
     /**
