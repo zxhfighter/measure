@@ -24,6 +24,6 @@ export class UploaderFileProgressTextDemo {
         }
     ];
 
-    onFileUpload(event) {
+    onFileUpload() {
     }
 }

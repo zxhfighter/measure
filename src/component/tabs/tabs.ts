@@ -22,7 +22,7 @@ export type TABS_SIZE = 'default' | 'large' | string;
     },
     exportAs: 'nbTabs'
 })
-export class TabsComponent implements AfterContentInit, AfterViewInit {
+export class TabsComponent implements OnInit, AfterViewInit {
 
     /**
      * Tabs尺寸, 'default' | 'large'
@@ -44,6 +44,12 @@ export class TabsComponent implements AfterContentInit, AfterViewInit {
     @OnChange(true)
     @Input() splitline: boolean = false;
 
+    /**
+     *  panel 活动状态发生改变时事件 emit
+     *
+     */
+    @Output() change: EventEmitter<object> = new EventEmitter<object>();
+
     @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
     @ViewChild(InkBarComponent) inkBar: InkBarComponent;
@@ -55,21 +61,7 @@ export class TabsComponent implements AfterContentInit, AfterViewInit {
     ) {
     }
 
-    ngAfterContentInit(): void {
-        // if (this.tabs.length === 0) {
-        //     return ;
-        // }
-        // /** 是否有某个Tab是选中状态，如果没有的话，选中第一个 */
-        // let activeTab = this.tabs.filter(item => item.active === true);
-        // if (activeTab.length === 0) {
-        //     setTimeout(() => {
-        //         this.tabs.toArray()[0].active = true;
-        //         this.cdRef.markForCheck();
-
-        //         const activeTitle = this.buttons.toArray()[0];
-        //         this.inkBar.alignToElement(activeTitle._el.nativeElement);
-        //     });
-        // }
+    ngOnInit() {
     }
 
     ngAfterViewInit(): void {
@@ -83,8 +75,7 @@ export class TabsComponent implements AfterContentInit, AfterViewInit {
                 this.tabs.toArray()[0].active = true;
                 this.cdRef.markForCheck();
 
-                const activeTitle = this.tabHeader.toArray()[0];
-                this.inkBar.alignToElement(activeTitle.elementRef.nativeElement);
+                this.alignInkBar(0);
             });
         }
     }
@@ -102,6 +93,19 @@ export class TabsComponent implements AfterContentInit, AfterViewInit {
         this.tabs.toArray().forEach((t) => t.active = false);
         tab.active = true;
 
+        this.alignInkBar(index);
+
+        this.change.emit({
+            activeIndex: index
+        });
+    }
+
+    /**
+     * 设置选中线的位置
+     *
+     * @param {number} index - 当前Tab的索引
+     */
+    alignInkBar(index: number): void {
         const activeTitle = this.tabHeader.toArray()[index];
         this.inkBar.alignToElement(activeTitle.elementRef.nativeElement);
     }
