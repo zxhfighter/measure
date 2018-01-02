@@ -128,7 +128,7 @@ export class PageComponent implements OnInit, AfterViewInit {
         // init class list
         this.setClass();
         if (this.theme) {
-            addClass(this._el.nativeElement, `nb-checkbox-${this.theme}`);
+            addClass(this._el.nativeElement, `nb-page-${this.theme}`);
         }
     }
     /**
@@ -150,7 +150,7 @@ export class PageComponent implements OnInit, AfterViewInit {
             // 'nb-widget',
             // 'nb-page',
             `nb-page-size-${this.size || 'default'}`,
-            // `nb-page-theme-${this.theme || 'default'}`
+            `nb-page-theme-${this.theme || 'default'}`
         ].join(' ');
     }
 
