@@ -20,15 +20,15 @@
         (onSearch)="search($event)">
     </nb-search-box>
     <a
-        *ngIf="root"
+        *ngIf="data.root"
         nb-button
         class="nb-side-bar-root"
         (click)="refreshTree()">
-        {{ root }}
+        {{ data.root }}
     </a>
     <nb-tree
         *ngIf="hasTreeData"
-        [treeData]="treeData"
+        [treeData]="changeTree()"
         selectionMode="navigation"
         (onNodeSelect)="nodeSelect($event)">
     </nb-tree>

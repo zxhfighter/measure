@@ -1,3 +1,59 @@
+export const sigleDataSideBar = {
+    title: '世界国家目录',
+    expanded: false,
+    root: '全部国家',
+    tree: [
+        {
+            id: '1',
+            name: '中国'
+        },
+        {
+            id: '2',
+            name: '美国',
+        },
+        {
+            id: '3',
+            name: '日本',
+        },
+        {
+            id: '4',
+            name: '德国',
+        },
+        {
+            id: '5',
+            name: '其他',
+        }
+    ]
+};
+
+export const changeDataSideBar = {
+    title: '互联网公司目录',
+    expanded: true,
+    root: '全部互联网公司',
+    tree: [
+        {
+            id: 'baidu',
+            name: '百度'
+        },
+        {
+            id: 'ali',
+            name: '阿里巴巴',
+        },
+        {
+            id: 'tencent',
+            name: '腾讯',
+        },
+        {
+            id: 'jd',
+            name: '京东',
+        },
+        {
+            id: 'mi',
+            name: '小米',
+        }
+    ]
+};
+
 export const dataSideBar = {
     title: '世界国家目录',
     expanded: true,
