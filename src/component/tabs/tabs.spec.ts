@@ -1,10 +1,9 @@
 import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverlayPositionService } from '../overlay/overlay-position.service';
+import { ViewportRuler } from '../overlay/scroll-strategy';
 import { Component } from '@angular/core';
 import { TabsModule } from './index';
-// import { TooltipModule } from '../tooltip';
-// import { ButtonModule } from '../button';
-import { OverlayPositionService } from '../overlay/overlay-position.service';
 
 function getTabTitles(nativeEl: HTMLElement) {
     return nativeEl.querySelectorAll('.nb-tab-header');
@@ -24,7 +23,8 @@ function expectTabs(nativeEl: HTMLElement, active: boolean[], disabled?: boolean
     if (disabled) {
         expect(disabled.length).toBe(active.length);
     } else {
-        disabled = new Array(active.length);  // tabs are not disabled by default
+        // tabs are not disabled by default
+        disabled = new Array(active.length);
     }
 
     for (let i = 0; i < active.length; i++) {
@@ -52,7 +52,7 @@ describe('nb-tabs', () => {
         TestBed.configureTestingModule({
             declarations: [TabsTestComponent],
             imports: [TabsModule, BrowserAnimationsModule],
-            providers: [OverlayPositionService],
+            providers: [OverlayPositionService, ViewportRuler],
         }).compileComponents();
     });
 
@@ -95,84 +95,91 @@ describe('nb-tabs', () => {
         fixture.detectChanges();
 
         const tabTitles = getTabTitles(fixture.nativeElement);
-
-        // expect(tabTitles[1].innerHTML).toMatch(/<b>bar<\/b>/);
-        // 待放开
-        // expect(tabTitles[2].textContent).toMatch(/bazbaz/);
+        expect(tabTitles[1].innerHTML).toMatch(/<i.*<\/i>/);
     });
 
 
-    // it('should not crash for empty tabs', () => {
-    //     const html = `<nb-tabs underline></nb-tabs>`;
+    it('should not crash for empty tabs', () => {
+        const html = `<nb-tabs underline></nb-tabs>`;
 
-    //     TestBed.overrideComponent(TabsTestComponent, {set: {template: html}});
-    //     const fixture = TestBed.createComponent(TabsTestComponent);
-    //     fixture.detectChanges();
+        TestBed.overrideComponent(TabsTestComponent, {set: {template: html}});
+        const fixture = TestBed.createComponent(TabsTestComponent);
+        fixture.detectChanges();
 
-    //     expectTabs(fixture.nativeElement, []);
-    // });
+        expectTabs(fixture.nativeElement, []);
+    });
 
+    it('should mark the requested tab as active', () => {
+        const html = `<nb-tabs>
+                <nb-tab title="选中状态"></nb-tab>
+                <nb-tab title="默认状态"></nb-tab>
+                <nb-tab title="悬浮状态" active></nb-tab>
+                <nb-tab title="按下状态"></nb-tab>
+            </nb-tabs>
+        `;
 
-    // it('should mark the requested tab as active', () => {
-    //     const html = `<nb-tabs>
-    //             <nb-tab title="选中状态"></nb-tab>
-    //             <nb-tab title="默认状态"></nb-tab>
-    //             <nb-tab title="悬浮状态" active></nb-tab>
-    //             <nb-tab title="按下状态"></nb-tab>
-    //         </nb-tabs>å
-    //     `;
+        TestBed.overrideComponent(TabsTestComponent, {set: {template: html}});
+        const fixture = TestBed.createComponent(TabsTestComponent);
+        fixture.detectChanges();
 
-    //     TestBed.overrideComponent(TabsTestComponent, {set: {template: html}});
-    //     const fixture = TestBed.createComponent(TabsTestComponent);
-    //     fixture.detectChanges();
+        expectTabs(fixture.nativeElement, [false, false, true, false]);
+    });
 
-    //     expectTabs(fixture.nativeElement, [false, true, false, false]);
-    // });
+    it('should change active tab on tab title click except for disabled', () => {
+        const fixture = TestBed.createComponent(TabsTestComponent);
+        fixture.detectChanges();
 
-    // it('should change active tab on tab title click except for disabled', () => {
-    //     const fixture = TestBed.createComponent(TabsTestComponent);
-    //     const tabTitles = getTabTitles(fixture.nativeElement);
-    //     const tabContents = getTabContents(fixture.nativeElement);
+        const tabTitles = getTabTitles(fixture.nativeElement);
+        const tabContents = getTabContents(fixture.nativeElement);
 
-    //     (<HTMLElement>tabTitles[1]).click();
-    //     fixture.detectChanges();
-    //     expectTabs(fixture.nativeElement, [false, true, false, false, false], [false, false, false, false, true]);
+        (<HTMLElement>tabTitles[1]).click();
+        fixture.detectChanges();
+        expectTabs(fixture.nativeElement, [false, true, false, false, false], [false, false, false, false, true]);
 
-    //     // click disabled tabTitle
-    //     (<HTMLElement>tabTitles[4]).click();
-    //     fixture.detectChanges();
-    //     expectTabs(fixture.nativeElement, [false, true, false, false, false], [false, false, false, false, true]);
-    // });
+        // click disabled tabTitle
+        (<HTMLElement>tabTitles[4]).click();
+        fixture.detectChanges();
+        expectTabs(fixture.nativeElement, [false, true, false, false, false], [false, false, false, false, true]);
+    });
 
-    // it('should emit tab change event when switching tabs', () => {
+    it('should emit tab change event when switching tabs', () => {
+        const html = `<nb-tabs (change)="onChange($event)">
+                <nb-tab title="选中状态" active></nb-tab>
+                <nb-tab title="默认状态"></nb-tab>
+                <nb-tab title="悬浮状态">悬浮状态</nb-tab>
+                <nb-tab title="按下状态">按下状态</nb-tab>
+                <nb-tab title="不可点击" disabled>不可点击</nb-tab>
+            </nb-tabs>
+        `;
+        TestBed.overrideComponent(TabsTestComponent, {set: {template: html}});
+        const fixture = TestBed.createComponent(TabsTestComponent);
+        fixture.detectChanges();
 
-    //     const fixture = TestBed.createComponent(TabsTestComponent);
-    //     const tabTitles = getTabTitles(fixture.nativeElement);
-    //     // const tabContents = getTabContents(fixture.nativeElement);
+        const tabTitles = getTabTitles(fixture.nativeElement);
 
-    //     spyOn(fixture.componentInstance, 'change');
+        spyOn(fixture.componentInstance, 'onChange');
 
-    //     // Select the second tab -> change event
-    //     (<HTMLElement>tabTitles[1]).click();
-    //     fixture.detectChanges();
-    //     expect(fixture.componentInstance.change)
-    //         .toHaveBeenCalledWith(jasmine.objectContaining({ activeIndex: 1}));
+        // should not emit tab change event when selecting currently active and disabled tabs
+        (<HTMLElement>tabTitles[0]).click();
+        fixture.detectChanges();
+        expect(fixture.componentInstance.onChange).not.toHaveBeenCalled();
 
-    //     // Select the first tab again -> change event
-    //     (<HTMLElement>tabTitles[0]).click();
-    //     fixture.detectChanges();
-    //     expect(fixture.componentInstance.change)
-    //         .toHaveBeenCalledWith(jasmine.objectContaining({ activeIndex: 0}));
+        (<HTMLElement>tabTitles[4]).click();
+        fixture.detectChanges();
+        expect(fixture.componentInstance.onChange).not.toHaveBeenCalled();
 
-    //     // should not emit tab change event when selecting currently active and disabled tabs
-    //     (<HTMLElement>tabTitles[0]).click();
-    //     fixture.detectChanges();
-    //     expect(fixture.componentInstance.change).not.toHaveBeenCalled();
+        // Select the second tab -> change event
+        (<HTMLElement>tabTitles[1]).click();
+        fixture.detectChanges();
+        expect(fixture.componentInstance.onChange)
+            .toHaveBeenCalledWith(jasmine.objectContaining({ activeIndex: 1}));
 
-    //     (<HTMLElement>tabTitles[4]).click();
-    //     fixture.detectChanges();
-    //     expect(fixture.componentInstance.change).not.toHaveBeenCalled();
-    // });
+        // Select the first tab again -> change event
+        (<HTMLElement>tabTitles[0]).click();
+        fixture.detectChanges();
+        expect(fixture.componentInstance.onChange)
+            .toHaveBeenCalledWith(jasmine.objectContaining({ activeIndex: 0}));
+    });
 
 });
 
@@ -191,35 +198,5 @@ describe('nb-tabs', () => {
 
 class TabsTestComponent {
 
-    // tabsSelected: [
-    //     { title: '第一项目', content: 'This is the About tab' },
-    //     { title: '第二项目', content: 'This is our blog' },
-    //     { title: '第三项目', content: 'Contact us here' },
-    //     { title: '第四项目', content: 'Contact us here' },
-    //     { title: '第五项目', content: 'Contact us here' },
-    // ];
-
-    // tabsDefault: [
-    //     { title: '第一项目', content: 'This is the About tab' },
-    //     { title: '第二项目', content: 'This is our blog', active: true },
-    //     { title: '第三项目', content: 'Contact us here' },
-    //     { title: '第四项目', content: 'Contact us here' },
-    //     { title: '第五项目', content: 'Contact us here' },
-    // ];
-
-    // tabsHover: [
-    //     { title: '第一项目', content: 'This is the About tab' },
-    //     { title: '第二项目', content: 'This is our blog' },
-    //     { title: '第三项目', content: 'Contact us here', active: true },
-    //     { title: '第四项目', content: 'Contact us here' },
-    //     { title: '第五项目', content: 'Contact us here' },
-    // ];
-
-    // tabsPress: [
-    //     { title: '第一项目', content: 'This is the About tab' },
-    //     { title: '第二项目', content: 'This is our blog' },
-    //     { title: '第三项目', content: 'Contact us here' },
-    //     { title: '第四项目', content: 'Contact us here', active: true },
-    //     { title: '第五项目', content: 'Contact us here' },
-    // ];
+    onChange = () => {};
 }

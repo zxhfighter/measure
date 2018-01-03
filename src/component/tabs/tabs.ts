@@ -90,6 +90,9 @@ export class TabsComponent implements OnInit, AfterViewInit {
         if (tab.disabled) {
             return;
         }
+        if (tab.active) {
+            return;
+        }
         this.tabs.toArray().forEach((t) => t.active = false);
         tab.active = true;
 
