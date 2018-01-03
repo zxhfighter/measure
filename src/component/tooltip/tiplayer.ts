@@ -91,21 +91,6 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        this.placementChange.subscribe((placement) => {
-            if (placement.split('-')[0] === 'left') {
-                this.positionStrategy.withOffsetX(-8);
-            }
-            else if (placement.split('-')[0] === 'right') {
-                this.positionStrategy.withOffsetX(8);
-            }
-            else if (placement.split('-')[0] === 'top') {
-                this.positionStrategy.withOffsetY(-8);
-            }
-            else if (placement.split('-')[0] === 'bottom') {
-                this.positionStrategy.withOffsetY(8);
-            }
-        });
-
         this.needReposition.emit();
     }
 
