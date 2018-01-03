@@ -18,7 +18,7 @@ export type PAGE_SIZE = 'sm' | 'default';
         'class': 'nb-widget nb-page'
     }
 })
-export class PageComponent implements OnInit, AfterViewInit {
+export class PageComponent implements OnInit, AfterViewInit, OnChanges {
     /**
      * extra theme class
      * @default ''
