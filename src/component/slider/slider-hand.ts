@@ -6,11 +6,8 @@ import {
 } from '@angular/core';
 
 import { fromEvent } from 'rxjs/observable/fromEvent';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/takeUntil';
+import { map, switchMap, takeUntil } from 'rxjs/operators';
 
-import { merge } from 'rxjs/observable/merge';
 import { initNgModule } from '@angular/core/src/view/ng_module';
 import { SliderService } from './slider.service';
 import { TooltipDirective } from '../../component/tooltip';
@@ -105,12 +102,10 @@ export class SliderHandComponent implements OnInit {
     bindEvent() {
         const me = this;
         const hand = this._hand.nativeElement as HTMLElement;
-
         const mouseDown$ = fromEvent(hand, 'mousedown');
-        const mouseMove$ = fromEvent(document, 'mousemove');
-        const mouseUp$ = fromEvent(document, 'mouseup');
-        mouseDown$
-            .map((event: MouseEvent) => {
+
+        mouseDown$.pipe(
+            map((event: MouseEvent) => {
                 const target = event.target as HTMLElement;
 
                 let initPos = me.orientation
@@ -121,59 +116,75 @@ export class SliderHandComponent implements OnInit {
                     initPos,
                     event
                 };
-            })
-            .switchMap((initialState) => {
-                // mousedown时的鼠标位置
-                // 锁定当前移动的hand
-                const { clientX, clientY } = initialState.event;
-                const target = initialState.event.target as HTMLElement;
-                const initPos = initialState.initPos;
-                return mouseMove$.map((moveEvent: MouseEvent) => {
-                    // 鼠标移动的距离
-                    let move: number;
-                    if (this.orientation) {
-                        move = moveEvent.clientX - clientX;
-                    }
-                    else {
-                        move = clientY - moveEvent.clientY;
-                    }
-                    let endPos = move / me.limitMove * 100 + initPos;
+            }),
+            switchMap(initState => me.moveUntilUp(initState))
+        ).subscribe(pos => me.updateHand(pos));
+    }
 
-                    return {
-                        // hand的新位置
-                        endPos,
-                        // hand每一次移动前的位置
-                        initPos: me.orientation
-                            ? parseFloat(target.style.left as string)
-                            : parseFloat(target.style.bottom as string)
-                    };
-                })
-                    .takeUntil(mouseUp$);
-            })
-            .subscribe((pos) => {
-                let endPos = pos.endPos;
-                let initPos = pos.initPos;
-                if (endPos < 0) {
-                    endPos = 0;
-                }
-                if (endPos > 100) {
-                    endPos = 100;
-                }
-                let move = endPos - initPos;
-                let step = me.step / (me.max - me.min) * 100;
+    /**
+     * mousemove事件流
+     * @param initialState mousedown时的位置信息
+     */
+    moveUntilUp(initialState) {
+        const me = this;
+        const mouseMove$ = fromEvent(document, 'mousemove');
+        const mouseUp$ = fromEvent(document, 'mouseup');
 
-                // 重置hand
-                if (Math.abs(Math.abs(move) - step) < 0) {
-                    return;
-                }
-                else {
-                    move = Math.round(move / step) * step;
-                }
-                endPos = initPos + move;
-                endPos = endPos > 0 ? endPos : 0;
-                me.updateStyle(endPos);
-                me.change.emit({ endPos, initPos });
-            });
+        // mousedown时的鼠标位置
+        // 锁定当前移动的hand
+        const { clientX, clientY } = initialState.event;
+        const target = initialState.event.target as HTMLElement;
+        const initPos = initialState.initPos;
+        return mouseMove$.pipe(map((moveEvent: MouseEvent) => {
+            // 鼠标移动的距离
+            let move: number;
+            if (this.orientation) {
+                move = moveEvent.clientX - clientX;
+            }
+            else {
+                move = clientY - moveEvent.clientY;
+            }
+            let endPos = move / me.limitMove * 100 + initPos;
+
+            return {
+                // hand的新位置
+                endPos,
+                // hand每一次移动前的位置
+                initPos: me.orientation
+                    ? parseFloat(target.style.left as string)
+                    : parseFloat(target.style.bottom as string)
+            };
+        }), takeUntil(mouseUp$));
+    }
+
+    /**
+     * 更新hand位置
+     * @param pos mouseup时的位置信息
+     */
+    updateHand(pos) {
+        const me = this;
+        let endPos = pos.endPos;
+        let initPos = pos.initPos;
+        if (endPos < 0) {
+            endPos = 0;
+        }
+        if (endPos > 100) {
+            endPos = 100;
+        }
+        let move = endPos - initPos;
+        let step = me.step / (me.max - me.min) * 100;
+
+        // 重置hand
+        if (Math.abs(Math.abs(move) - step) < 0) {
+            return;
+        }
+        else {
+            move = Math.round(move / step) * step;
+        }
+        endPos = initPos + move;
+        endPos = endPos > 0 ? endPos : 0;
+        me.updateStyle(endPos);
+        me.change.emit({ endPos, initPos });
     }
 
     /**
