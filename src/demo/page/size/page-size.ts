@@ -9,7 +9,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 export class PageSizeDemo {
      // pageSize = [1,2,3,4,5,6,7,8,9,10,11];
     // 每页显示多少条
-    count = 30;
+    count = 10;
     // 一共多少条
     total = 302;
     // 可选择的每页显示条数
@@ -22,4 +22,9 @@ export class PageSizeDemo {
     pageChange(event) {
         console.log(event);
     }
+    // test() {
+    //     this.total = 50;
+    //     this.count = 10;
+    //     console.log(this.count);
+    // }
 }
