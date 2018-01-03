@@ -29,7 +29,7 @@ import { Observable } from 'rxjs/Observable';
 @Directive({
     selector: '[nbTooltip]',
     exportAs: 'nbTooltip',
-    providers: [DynamicComponentService],
+    providers: [DynamicComponentService, OverlayPositionService],
     host: {
         '(body:click)': 'handleBodyInteraction()'
     }
