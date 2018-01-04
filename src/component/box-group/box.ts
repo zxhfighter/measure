@@ -49,6 +49,8 @@ export class InputBoxComponent implements OnInit, AfterViewInit, ControlValueAcc
 
     /** When the box state change, emit a change event with a boolean value */
     @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    /** to enable [(checked)] style, we need to add a checkedChange event */
     @Output() checkedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
@@ -92,11 +94,6 @@ export class InputBoxComponent implements OnInit, AfterViewInit, ControlValueAcc
      */
     @Input() theme: string = '';
 
-    /**
-     * @docs-private
-     */
-    // intermediateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-
     /** box value, can be any type */
     @Input() value: any;
 
@@ -114,15 +111,6 @@ export class InputBoxComponent implements OnInit, AfterViewInit, ControlValueAcc
         private _cd: ChangeDetectorRef
     ) {
         this._parentBox = parentBox;
-
-        // this.intermediateChange.subscribe(
-        //     (v: boolean) => {
-        //         if (v) {
-        //             // if in the intermediate state, checked is false
-        //             this.checked = false;
-        //         }
-        //     }
-        // );
     }
 
     ngOnInit() {

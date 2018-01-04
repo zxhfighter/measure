@@ -30,6 +30,9 @@ export class SideBarComponent implements OnInit {
     /** click navi event */
     @Output() onNavi = new EventEmitter();
 
+    /** toggle side-bar */
+    @Output() toggle = new EventEmitter();
+
     /** side-bar data */
     @Input() data: SiderBarModel;
 
@@ -84,9 +87,25 @@ export class SideBarComponent implements OnInit {
      */
     selectedNode: TreeNode;
 
+    /**
+     * temp original data
+     * @docs-private
+     */
+    tempData: SiderBarModel;
+
     constructor() { }
 
     ngOnInit() {
+        this.setSelectNodeId();
+        this.initTreeNodeProperty();
+        this.tempDataIndex();
+    }
+
+    /**
+     * set selected node id
+     * @docs-private
+     */
+    setSelectNodeId() {
         if (!this.selectedNodeId && this.data.tree && this.data.tree.length > 0) {
             let firstChild: TreeNode | undefined;
             firstChild = this.getFirstChild(this.data.tree[0]);
@@ -95,17 +114,43 @@ export class SideBarComponent implements OnInit {
                 this.onNavi.emit(firstChild);
             }
         }
+    }
 
-        if (this.data.root) {
-            this.root = this.data.root;
-        }
-
+    /**
+     * init tree node property
+     * @docs-private
+     */
+    initTreeNodeProperty() {
         if (this.data.tree) {
             this.treeData = JSON.parse(JSON.stringify(this.data.tree));
             this.initTree(this.treeData, !!this.data.expanded);
             this.transferTreeToList(this.data.tree);
             this.hasTreeData = this.checkTreeData();
         }
+    }
+
+    /**
+     * temp data index
+     * @docs-private
+     */
+    tempDataIndex() {
+        this.tempData = this.data;
+    }
+
+    /**
+     * change data-tree when data soure change
+     * @docs-private
+     */
+    changeTree() {
+
+        if (this.tempData !== this.data) {
+            this.selectedNodeId = '';
+            this.setSelectNodeId();
+            this.initTreeNodeProperty();
+            this.tempDataIndex();
+        }
+
+        return this.treeData;
     }
 
     /**
@@ -378,6 +423,7 @@ export class SideBarComponent implements OnInit {
      */
     fold() {
         this.expanded = !this.expanded;
+        this.toggle.emit(this.expanded);
     }
 
     /**
@@ -409,6 +455,8 @@ export class SideBarComponent implements OnInit {
             } else {
                 return firstChild;
             }
+        } else {
+            return node;
         }
     }
 }

@@ -18,4 +18,9 @@ export class AppComponent {
             }
         });
     }
+
+    onNavi(event: any) {
+        const url = `/components/${event.name}`;
+        this.router.navigate([url]);
+    }
 }

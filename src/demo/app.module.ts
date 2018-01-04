@@ -47,7 +47,7 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app.router';
 
 // import { PageDemo } from './page';
-import { ScheduleDemo } from './schedule';
+// import { ScheduleDemo } from './schedule';
 import { ToastDemoModule } from './toast';
 import { SelectDemoModule } from './select';
 import { OverlayDemo } from './overlay';
@@ -87,6 +87,8 @@ import { SliderDemoModule } from './slider';
 import { TabsDemoModule } from './tabs';
 import { TooltipDemoModule } from './tooltip';
 import { FormDemoModule } from './form';
+import { ScheduleDemoModule } from './schedule';
+
 
 const demoModules = [
     InputDemoModule,
@@ -98,6 +100,7 @@ const demoModules = [
     TransferDemoModule,
     ButtonDemoModule,
     PageDemoModule,
+    ScheduleDemoModule,
     BreadcrumbDemoModule,
     SwitchDemoModule,
     ButtonGroupDemoModule,
@@ -128,12 +131,11 @@ const demoModules = [
     declarations: [
         AppComponent,
         // PageDemo,
-        ScheduleDemo,
+        // ScheduleDemo,
         CodeBoxDemo,
         OverlayDemo,
         GuideComponentDemo,
         IconsComponentDemo,
-        OverlayDemo,
         TypographyDemo
     ],
     imports: [

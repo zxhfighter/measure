@@ -75,7 +75,7 @@ export class TableCheckboxDemo {
         this._freshStatus();
     }
 
-    checkIsAllChecked(checked: boolean) {
+    checkIsAllChecked() {
         this._freshStatus();
     }
 

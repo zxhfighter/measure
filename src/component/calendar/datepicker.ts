@@ -4,6 +4,9 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { OverlayComponent } from '../overlay';
+import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
+
 import * as momentLib from 'moment';
 import { OnChange } from '../core/decorators';
 
@@ -31,8 +34,7 @@ const DATEPICKER_VALUE_ACCESSOR = {
     preserveWhitespaces: false,
     providers: [DATEPICKER_VALUE_ACCESSOR],
     host: {
-        'class': 'nb-widget nb-datepicker',
-        '(click)': 'onClickDatePicker($event)'
+        'class': 'nb-widget nb-datepicker'
     },
     exportAs: 'nbDatePicker'
 })
@@ -63,76 +65,52 @@ export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAcces
     /** whether the panel is show */
     _showPanel: boolean = false;
 
-    /** document click listener */
-    _documentClickListener: any;
+    @ViewChild('origin') origin: OverlayOriginDirective;
+    @ViewChild('overlay') overlay: OverlayComponent;
 
-    @ViewChild('input') _input: ElementRef;
-    @ViewChild('panel') _panel: ElementRef;
+    constructor(
+        private render: Renderer2,
+        private cd: ChangeDetectorRef,
+        private el: ElementRef
+    ) {}
 
-    constructor(private render: Renderer2, private cd: ChangeDetectorRef, private el: ElementRef) {
-
-        // listen document click
-        this._documentClickListener = this.render.listen('document', 'click', () => {
-            this._showPanel = false;
-            this.cd.markForCheck();
-        });
+    ngOnInit() {
+        this.overlay.origin = this.origin;
     }
-
-    ngOnInit() { }
 
     ngOnDestroy() {
 
-        // remove global document click listener
-        if (this._documentClickListener) {
-            this._documentClickListener();
-        }
     }
 
     onShowCalendar() {
-        this._showPanel = true;
-        this._setPanelPosition();
+        if (this._showPanel) {
+            this._hideOverlay();
+        }
+        else {
+            this._showOverlay();
+        }
     }
 
-    onHideCalendar() {
+    _hideOverlay() {
+        this.overlay.hide();
         this._showPanel = false;
+    }
+
+    _showOverlay() {
+        this.overlay.show();
+        this._showPanel = true;
     }
 
     onSelectDate(date: Date) {
         this.value = date;
         this.change.emit(this.value);
-        this._showPanel = false;
 
+        this._hideOverlay();
         this._markForCheck();
     }
 
-    _setPanelPosition() {
-        try {
-            const panel = this._panel.nativeElement as HTMLElement;
-            const windowHeight = window.innerHeight;
-            const rect = (this.el.nativeElement as HTMLElement).getBoundingClientRect();
-
-            this.render.setStyle(panel, 'opacity', 0);
-            setTimeout(() => {
-                const panelRec = panel.getBoundingClientRect();
-                const up = rect.top > windowHeight / 2;
-                this.render.setStyle(panel, 'top', (up ? -panelRec.height : 38) + 'px');
-                this.render.setStyle(panel, 'opacity', 1);
-            }, 100);
-        }
-        catch (e) {
-            throw new Error('it only works in browser');
-        }
-    }
-
-    /**
-     * stop propagation, when click host, don't close panel
-     * @param {MouseEvent} event - mouse event
-     * @docs-private
-     */
-    onClickDatePicker(event: MouseEvent) {
-
-        event.stopPropagation();
-        event.stopImmediatePropagation();
+    onFilterPanelHide() {
+        this._showPanel = false;
     }
 
     /**

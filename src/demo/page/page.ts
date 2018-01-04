@@ -9,7 +9,9 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class PageDemo{
+export class PageDemo {
 
     htmlCodeSize: string = require('!!raw-loader!./size/page-size.html');
+    tsCodeSize: string = require('!!raw-loader!./size/page-size.ts');
+    lessCodeSize: string = require('!!raw-loader!./size/page-size.less');
 }

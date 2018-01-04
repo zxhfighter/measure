@@ -24,6 +24,6 @@ export class UploaderFileProgressBarDemo {
         }
     ];
 
-    onFileBarUpload(event) {
+    onFileBarUpload() {
     }
 }

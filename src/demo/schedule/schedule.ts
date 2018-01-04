@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy
+    Component, ChangeDetectionStrategy
 } from '@angular/core';
 
 @Component({
@@ -9,16 +9,9 @@ import {
     preserveWhitespaces: false,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class ScheduleDemo implements OnInit {
-    selected = {
-        0: [[0, 23]],
-        1: [[9, 12], [13, 18]],
-        3: [[13, 16]]
-    };
-    constructor() {
-    }
+export class ScheduleDemo {
 
-    ngOnInit() {
-
-    }
+    htmlCodeSize: string = require('!!raw-loader!./selected/schedule-selected.html');
+    tsCodeSize: string = require('!!raw-loader!./selected/schedule-selected.ts');
+    lessCodeSize: string = require('!!raw-loader!./selected/schedule-selected.less');
 }

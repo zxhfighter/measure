@@ -20,9 +20,9 @@
         <ng-container *ngIf="pageSize.length >= 7 && currrentIndex > 3 && currrentIndex < pageSize.length - 2">
             <span (click)="jumpTo(1)">1</span>
             <em>...</em>
-            <span (click)="jumpTo(--currrentIndex)">{{ +currrentIndex-1 }}</span>
+            <span (click)="jumpTo(currrentIndex-1)">{{ +currrentIndex-1 }}</span>
             <span (click)="jumpTo(currrentIndex)" class="turn-on">{{ currrentIndex }}</span>
-            <span (click)="jumpTo(++currrentIndex)">{{ +currrentIndex+1 }}</span>
+            <span (click)="jumpTo(currrentIndex+1)">{{ +currrentIndex+1 }}</span>
             <em>...</em>
             <span (click)="jumpTo(pageSize.length)">{{ pageSize.length }}</span>
         </ng-container>

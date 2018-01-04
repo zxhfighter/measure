@@ -57,6 +57,8 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
 
     @Input() embedded: boolean;
 
+    @Input() positionStrategy;
+
     visibility: boolean = true;
 
     firstPlacement: string;
@@ -89,15 +91,6 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        // this.placementChange.subscribe((placement) => {
-        //     if (placement.split('-')[0] === 'left') {
-        //         this.positionStrategy.withOffsetX(-10);
-        //     }
-        //     else if (placement.split('-')[0] === 'right') {
-        //         this.positionStrategy.withOffsetX(10);
-        //     }
-        // });
-
         this.needReposition.emit();
     }
 

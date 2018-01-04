@@ -13,9 +13,16 @@
 <section>
     <h3 class="section-title">Schedule first demo</h3>
 
-    <p>
-        <nb-schedule [selected]="selected"></nb-schedule>
-    </p>
+    <nb-code-box [htmlCode]="htmlCodeSize" [tsCode]="tsCodeSize" [lessCode]="lessCodeSize">
+        <h3 nb-codebox-title>Input</h3>
+        <div nb-codebox-desc>
+            <p>输入参数的数据格式如下：</p>
+        </div>
+
+        <demo-schedule-selected></demo-schedule-selected>
+
+    </nb-code-box>
+
 </section>
 
 <h3 class="section-title">API</h3>

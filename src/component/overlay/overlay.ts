@@ -32,7 +32,6 @@ import { OverlayOriginDirective } from './overlay-origin.directive';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    providers: [ViewportRuler, OverlayPositionService],
     host: {
         'class': 'nb-widget nb-overlay',
         '[class.invisible]': '!visibility',

@@ -46,6 +46,12 @@ export class AccordionComponent {
      */
     @Input() collapsible: boolean = false;
 
+    /**
+     *  panel 活动状态发生改变时事件 emit
+     *
+     */
+    @Output() change: EventEmitter<object> = new EventEmitter<object>();
+
     constructor() {
     }
 
@@ -56,6 +62,10 @@ export class AccordionComponent {
      */
     changeActiveIndex(activeIndex: number) {
         this.activeIndex = activeIndex;
+
+        this.change.emit({
+            activeIndex: activeIndex
+        });
     }
 
     /**

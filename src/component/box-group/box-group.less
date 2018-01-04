@@ -1,9 +1,17 @@
+@nb-checkbox-box-size: 16px;
+@nb-checkbox-inner-width: 10px;
+@nb-checkbox-inner-height: 6px;
+@nb-checkbox-intermediate-width: 8px;
+@nb-checkbox-intermediate-height: 2px;
+
+@nb-radio-inner-size: 8px;
+
 .@{prefix}-checkbox {
     // display: inline-block;
     position: relative;
 
     .@{prefix}-checkbox-label {
-        padding-left: 20px;
+        padding-left: 25px;
         cursor: pointer;
 
         &::before {
@@ -12,8 +20,8 @@
             position: absolute;
             left: 0;
             top: 2px;
-            width: 16px;
-            height: 16px;
+            width: @nb-checkbox-box-size;
+            height: @nb-checkbox-box-size;
             border: 1px solid @text-color;
             background-color: #fff;
         }
@@ -27,11 +35,11 @@
             content: '';
             display: block;
             position: absolute;
-            top: 5px;
-            left: 3px;
-            width: 0.66em;
-            height: 0.4em;
-            border: 0.11em solid @text-color;
+            top: (@nb-checkbox-box-size - @nb-checkbox-inner-height) / 2;
+            left: (@nb-checkbox-box-size - @nb-checkbox-inner-width) / 2;
+            width: @nb-checkbox-inner-width;
+            height: @nb-checkbox-inner-height;
+            border: 2px solid @text-color;
             border-top: none;
             border-right: none;
             transform: rotate(-45deg);
@@ -46,10 +54,10 @@
             content: '';
             display: block;
             position: absolute;
-            top: 8px;
-            left: 4px;
-            width: 8px;
-            height: 2px;
+            top: (@nb-checkbox-box-size - @nb-checkbox-intermediate-height) / 2 + 2px;
+            left: (@nb-checkbox-box-size - @nb-checkbox-intermediate-width) / 2;
+            width: @nb-checkbox-intermediate-width;
+            height: @nb-checkbox-intermediate-height;
             background-color: @text-color;
         }
     }
@@ -99,10 +107,10 @@
     .@{prefix}-checkbox-label {
         &::after {
             border: none;
-            width: 8px;
-            height: 8px;
-            border-radius: 8px;
-            left: 4px;
+            width: @nb-radio-inner-size;
+            height: @nb-radio-inner-size;
+            border-radius: @nb-radio-inner-size;
+            left: (@nb-checkbox-box-size - @nb-radio-inner-size) / 2;
             top: 50%;
             transform: translateY(-50%);
             background-color: @text-color-dark;
@@ -127,7 +135,16 @@
     }
 }
 
-.@{prefix}-box-group {
-    display: block;
-    color: #f00;
+.@{prefix}-boxgroup {
+    display: inline-block;
+    .clearfix();
+
+    & > .@{prefix}-checkbox {
+        float: left;
+        margin-right: 10px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
 }

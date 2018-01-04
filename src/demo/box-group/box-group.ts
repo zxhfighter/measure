@@ -38,6 +38,11 @@ export class BoxGroupDemo implements OnInit {
     htmlCodeForm: string = require('!!raw-loader!./form/box-group-form.html');
     lessCodeForm: string = require('!!raw-loader!./form/box-group-form.less');
 
+    // radio group source
+    tsCodeDynamic: string = require('!!raw-loader!./dynamic/box-group-dynamic.ts');
+    htmlCodeDynamic: string = require('!!raw-loader!./dynamic/box-group-dynamic.html');
+    lessCodeDynamic: string = require('!!raw-loader!./dynamic/box-group-dynamic.less');
+
     constructor(private fb: FormBuilder) {
 
     }

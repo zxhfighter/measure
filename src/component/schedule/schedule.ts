@@ -29,12 +29,12 @@ import { SelectConfig } from '../select/select.config';
 export class ScheduleComponent implements OnInit {
     /**
      * selected time input
-     * @default default
+     *
      */
     @Input() selected: object;
     /**
      * selected time output
-     * @default default
+     *
      */
     @Output() selectedOut: object;
     /**
