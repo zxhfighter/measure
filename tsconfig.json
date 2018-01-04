@@ -9,6 +9,7 @@
             "es2015", "dom", "es2016.array.include"
         ],
         "sourceMap": true,
+        "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "outDir": "dist/packages",
         "moduleResolution": "node",

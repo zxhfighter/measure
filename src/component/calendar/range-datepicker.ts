@@ -164,7 +164,9 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
             this._hideOverlay();
         }
         else {
-            this._showOverlay();
+            if (!this.disabled) {
+                this._showOverlay();
+            }
         }
     }
 

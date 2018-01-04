@@ -2,7 +2,7 @@
     main size(14px) table, usually used as main table in a page.
 </p>
 
-<table nb-table #nbTable1 [datasource]="datasource" [pageSize]="5">
+<table nb-table #nbTable1 [datasource]="datasource" [pageSize]="5" [loading]="loading">
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">
@@ -21,7 +21,7 @@
 <p class="table-desc">
     small size(14px) table, used in dialogs, forms and so on.
 </p>
-<table nb-table #nbTable2 [datasource]="datasource" [pageSize]="5" theme="small">
+<table nb-table #nbTable2 [datasource]="datasource" [pageSize]="5" theme="small" [loading]="loading">
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">
@@ -40,7 +40,7 @@
 <p class="table-desc">
     small size(12px) bordered table, used in dialogs, forms and so on.
 </p>
-<table nb-table bordered #nbTable3 [datasource]="datasource" [pageSize]="5" theme="x-small">
+<table nb-table bordered #nbTable3 [datasource]="datasource" [pageSize]="5" theme="x-small" [loading]="loading">
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">

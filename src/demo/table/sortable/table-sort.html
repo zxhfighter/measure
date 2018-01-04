@@ -3,8 +3,8 @@
     [pageSize]="pageSize"
     (sort)="onSort($event)"
     (dataChange)="onDisplayDataChange($event)"
-    order="asc"
-    orderBy="height">
+    [order]="sortParam.order"
+    [orderBy]="sortParam.orderBy">
     <thead nb-thead>
         <tr nb-row>
             <th field="name" tipable filterable sortable (filter)="onFilter(name.value, $event)" (filterReset)="onResetNameFilter($event)">
@@ -84,3 +84,7 @@
         </tr>
     </tbody>
 </table>
+
+<div class="table-pager">
+    <nb-page size="sm" [total]="filteredDatasource.length" [count]="pageSize" (pageChange)="pageChange($event)"></nb-page>
+</div>

@@ -8,11 +8,11 @@ interface MsgData {
 }
 
 @Component({
-    selector: 'demo-toast-href',
-    templateUrl: './toast-href.html',
-    styleUrls: ['./toast-href.less']
+    selector: 'demo-toast-base',
+    templateUrl: './toast-base.html',
+    styleUrls: ['./toast-base.less']
 })
-export class ToastHrefDemo {
+export class ToastBaseDemo {
     private messages: MsgData[] = [
         {
             type: 'success',

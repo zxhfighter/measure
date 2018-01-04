@@ -1,7 +1,12 @@
 .@{prefix}-page {
     display: block;
-    font: 14px/30px 'Microsoft Yahei';
-    color: #333;
+    font: 14px/30px 'HelveticaNeue,Helvetica,Arial,sans-serif';
+    // color: #333;
+    .total {
+        padding: 0 3px;
+        color: @nb-gray-1;
+    }
+
 }
 .@{prefix}-page-size-sm {
     .@{prefix}-page {
@@ -20,6 +25,15 @@
 .page-turn .arrow {
     border: 1px solid @nb-gray-5;
 }
+.page-turn {
+    .arrow-disable {
+        background-color: @nb-gray-6;
+    }
+    .nb-button {
+        margin-right: 20px;
+        padding: 0 10px;
+    }
+}
 .page-turn > span {
     margin: 0 2px;
     padding: 4px 10px;
@@ -36,7 +50,7 @@
 }
 
 .page-turn .turn-on {
-    color: @nb-gray-1;
+    color: #989a9c;
     background-color: @nb-gray-7;
     // border-color: #2f82f5;
 }

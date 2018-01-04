@@ -2,6 +2,13 @@
 
 <div
     #resizeLine
-    class="table-resize-line"
+    class="nb-table-resize-line"
     [class.hide]="!_isDragging">
+</div>
+
+<div *ngIf="loading" class="nb-table-loading-layer">
+
+    <div class="loading-content">
+        <i class="iconfont icon-loading"></i>
+    </div>
 </div>

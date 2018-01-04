@@ -5,23 +5,10 @@ import {
 } from '@angular/core';
 
 import { OnChange } from '../core/decorators';
-import { TableComponent } from './table';
+import { TableComponent, SortParam, OrderType } from './table';
 
 import { OverlayComponent } from '../overlay';
 import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
-
-
-/** table order type */
-export type OrderType = 'asc' | 'desc' | '';
-
-/** table sort param interface */
-export interface SortParam {
-    /** sort field */
-    orderBy: string;
-
-    /** sort type */
-    order: OrderType;
-}
 
 /** table filter param interface */
 export interface FilterParam {

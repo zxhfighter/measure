@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
+
 import { genTableData } from '../table.data';
+import { Field } from '../../../component/table';
 
 @Component({
     selector: 'demo-table-checkbox',
@@ -8,14 +10,20 @@ import { genTableData } from '../table.data';
     encapsulation: ViewEncapsulation.None
 })
 export class TableCheckboxDemo {
+
+    // whether is all checked
     isAllChecked = false;
+
+    // whether is checked but not all checked
     isIntermediate = false;
-    displayTableData: any[] = [];
+
+    // checked row length
     selectedLength = 0;
 
-    constructor() {}
-
-    fields: any[] = [
+    /**
+     * table fields
+     */
+    fields: Field[] = [
         {
             name: 'name',
             title: '姓名',
@@ -60,13 +68,29 @@ export class TableCheckboxDemo {
         }
     ];
 
+    /**
+     * all table datasource
+     */
     datasource: any[] = genTableData();
 
+    /**
+     * current paged data
+     */
+    displayTableData: any[] = [];
+
+    /**
+     * when paged data is changed, update current display data
+     */
     onDisplayDataChange(data: any[]) {
         this.displayTableData = data;
         setTimeout(() => this._freshStatus());
+        console.log('1');
     }
 
+    /**
+     * check all/uncheck all
+     * @param {boolean} allChecked
+     */
     toggleAllChecked(allChecked: boolean) {
         this.displayTableData.forEach(v => {
             v.checked = allChecked;
@@ -75,10 +99,16 @@ export class TableCheckboxDemo {
         this._freshStatus();
     }
 
+    /**
+     * check whether all rows are checked
+     */
     checkIsAllChecked() {
         this._freshStatus();
     }
 
+    /**
+     * update status
+     */
     _freshStatus() {
         let all = this.displayTableData.every(v => v.checked);
         let some = this.displayTableData.some(v => v.checked);
@@ -88,6 +118,9 @@ export class TableCheckboxDemo {
         this.selectedLength = this.displayTableData.filter(v => v.checked).length;
     }
 
+    /**
+     * row click event
+     */
     onRowClick(event: MouseEvent, item: any) {
 
         const target = event.target as HTMLElement;

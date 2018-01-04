@@ -1,6 +1,6 @@
 import {
     Component, Input, Output, EventEmitter, ElementRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, OnChanges
 } from '@angular/core';
 import { SelectConfig } from '../select/select.config';
 import { addClass } from '../util/dom';
@@ -18,7 +18,7 @@ export type PAGE_SIZE = 'sm' | 'default';
         'class': 'nb-widget nb-page'
     }
 })
-export class PageComponent implements OnInit, AfterViewInit {
+export class PageComponent implements OnInit, AfterViewInit, OnChanges {
     /**
      * extra theme class
      * @default ''
@@ -122,6 +122,9 @@ export class PageComponent implements OnInit, AfterViewInit {
             }
         }
 
+        this.setPage();
+    }
+    ngOnChanges() {
         this.setPage();
     }
     ngAfterViewInit() {

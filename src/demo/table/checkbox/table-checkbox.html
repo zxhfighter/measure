@@ -25,7 +25,7 @@
             (click)="onRowClick($event, item)">
             <td nb-td>
                 <div>
-                    <nb-checkbox [(checked)]="item.checked" (change)="checkIsAllChecked($event)"></nb-checkbox>
+                    <nb-checkbox [(checked)]="item.checked" (change)="checkIsAllChecked()"></nb-checkbox>
                 </div>
             </td>
             <td nb-td>{{ item.name }}</td>

@@ -88,7 +88,7 @@ export class OverlayPositionService {
     withNextPositon(positionStrategy): void {
         const origin = this.getOrigin();
         const overlay = this.getOverlay();
-        const {offsetX, offsetY} = this.getOffset(origin.fallback);
+        const {offsetX, offsetY} = this.getOffset(origin.fallback, overlay.fallback);
         positionStrategy.withFallbackPosition(origin.fallback, overlay.fallback, offsetX, offsetY);
     }
 
@@ -127,23 +127,28 @@ export class OverlayPositionService {
         }
     }
 
-    getOffset(originPos?: ConnectionPosition) {
+    getOffset(originPos?: ConnectionPosition, overlayPos?: ConnectionPosition) {
         let offsetX = 0;
         let offsetY = 0;
         if (this.overlayComponent.hasArrow) {
 
-            if (originPos) {
-                if (originPos.horizontal === 'left') {
-                    offsetX = -8;
+            if (originPos && overlayPos) {
+                // 相异为主方向
+                if (originPos.vertical !== overlayPos.vertical) {
+                    if (originPos.vertical === 'top') {
+                        offsetY = -8;
+                    }
+                    else {
+                        offsetY = 8;
+                    }
                 }
-                else if (originPos.horizontal === 'right') {
-                    offsetX = 8;
-                }
-                else if (originPos.vertical === 'top') {
-                    offsetY = -8;
-                }
-                else if (originPos.vertical === 'bottom') {
-                    offsetY = 8;
+                else if (originPos.horizontal !== overlayPos.horizontal) {
+                    if (originPos.horizontal === 'left') {
+                        offsetX = -8;
+                    }
+                    else {
+                        offsetX = 8;
+                    }
                 }
             }
             else  {

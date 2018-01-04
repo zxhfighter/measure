@@ -7,14 +7,17 @@
     position: absolute;
     left: 0;
     top: 0;
-}
-.@{prefix}-tiplayer-box {
+    z-index: 1000;
 
     &.@{prefix}-tiplayer-embedded {
         position: static;
-        margin-top: 10px;
-    }
 
+        .@{prefix}-tiplayer-box {
+            margin-top: 10px;
+        }
+    }
+}
+.@{prefix}-tiplayer-box {
     max-width: 276px;
     background: @tiplayer-bgcolor-default;
     box-shadow: 0 -1px 4px 0 @tiplayer-box-shadow;
