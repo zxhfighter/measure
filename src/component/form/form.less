@@ -33,12 +33,10 @@
             text-overflow: ellipsis;
             white-space: nowrap;
 
-            label {
-                &::after {
-                    content: ':';
-                    margin: 0 10px 0 2px;
-                    position: relative;
-                }
+            label::after {
+                content: ':';
+                margin: 0 10px 0 2px;
+                position: relative;
             }
         }
 
@@ -51,10 +49,8 @@
                 width: 100%;
             }
 
-            .@{prefix}-chips {
-                &-wrap {
-                    width: 100%;
-                }
+            .@{prefix}-chips, .@{prefix}-chips-wrap {
+                width: 100%;
             }
 
             .@{prefix}-select {
@@ -66,7 +62,7 @@
             margin-bottom: @form-item-margin-bottom - @font-size-base * @line-height-base + 2;
         }
 
-        &-no-colon &-label label:after {
+        &-no-colon &-label label::after {
             content: '.';
         }
 
@@ -82,7 +78,7 @@
 
     .has-success,
     .has-error {
-        &.has-feedback:after {
+        &.has-feedback::after {
             width: 32px;
             height: 32px;
             position: absolute;
@@ -113,7 +109,7 @@
     .has-error {
         .form-control-validation(@brand-danger; @brand-danger;);
 
-        &.has-feedback:after {
+        &.has-feedback::after {
             content: '\f057';
             color: @brand-danger;
         }

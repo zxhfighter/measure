@@ -1,8 +1,9 @@
 import {
     Component, Input, Output, EventEmitter, ElementRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, OnChanges
 } from '@angular/core';
 import { SelectConfig } from '../select/select.config';
+import { addClass } from '../util/dom';
 
 /** default page size types */
 export type PAGE_SIZE = 'sm' | 'default';
@@ -17,7 +18,12 @@ export type PAGE_SIZE = 'sm' | 'default';
         'class': 'nb-widget nb-page'
     }
 })
-export class PageComponent implements OnInit, AfterViewInit {
+export class PageComponent implements OnInit, AfterViewInit, OnChanges {
+    /**
+     * extra theme class
+     * @default ''
+     */
+    @Input() theme: string = '';
     // 每页20条
     // count = 20;
     /**
@@ -118,9 +124,15 @@ export class PageComponent implements OnInit, AfterViewInit {
 
         this.setPage();
     }
+    ngOnChanges() {
+        this.setPage();
+    }
     ngAfterViewInit() {
         // init class list
         this.setClass();
+        if (this.theme) {
+            addClass(this._el.nativeElement, `nb-page-${this.theme}`);
+        }
     }
     /**
      * set host element classes
@@ -141,7 +153,7 @@ export class PageComponent implements OnInit, AfterViewInit {
             // 'nb-widget',
             // 'nb-page',
             `nb-page-size-${this.size || 'default'}`,
-            // `nb-page-theme-${this.theme || 'default'}`
+            `nb-page-theme-${this.theme || 'default'}`
         ].join(' ');
     }
 

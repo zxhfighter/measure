@@ -24,6 +24,6 @@ export class UploaderFileVerticalDemo {
         }
     ];
 
-    onFileBarUpload(event) {
+    onFileBarUpload() {
     }
 }

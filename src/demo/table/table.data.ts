@@ -1,4 +1,8 @@
 import { genBool, genNum, genStr } from '../util/random';
+import { Observable } from 'rxjs/Observable';
+
+import { of } from 'rxjs/observable/of';
+import { delay } from 'rxjs/operators/delay';
 
 export function genTableData(len: number = genNum(100, 200)) {
     let data: any[] = [];
@@ -25,4 +29,9 @@ export function genTableData(len: number = genNum(100, 200)) {
         });
     }
     return data;
+}
+
+export function getTableDataAsync() {
+    const data = genTableData();
+    return of(data).pipe(delay(3000));
 }

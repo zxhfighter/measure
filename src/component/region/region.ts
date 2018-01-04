@@ -283,25 +283,42 @@ export class RegionComponent implements OnInit, OnDestroy {
     /**
      * @docs-private
      */
-    onShowCity(province: RegionItem) {
-        if (this._previousProvince) {
-            this._previousProvince.showCity = false;
-        }
+    onShowCity(overlay: any, event: MouseEvent) {
 
         clearTimeout(this._timer);
-        province.showCity = true;
 
-        this._previousProvince = province;
+        if (this._previousProvince) {
+            this._previousProvince.hide();
+        }
+
+        overlay.show();
+        this._previousProvince = overlay;
+
+        event.stopImmediatePropagation();
+        event.preventDefault();
+    }
+
+    onClearTimeout() {
+        clearTimeout(this._timer);
+    }
+
+    onHideOverlay(overlay: any) {
+        this._timer = setTimeout(() => {
+            if (overlay) {
+                overlay.hide();
+            }
+        }, this._timeout);
     }
 
     /**
      * @docs-private
      */
-    onHideCity(province: RegionItem) {
+    onHideCity(overlay: any) {
 
         this._timer = setTimeout(() => {
-            province.showCity = false;
-            this._cd.markForCheck();
+            if (overlay) {
+                overlay.hide();
+            }
         }, this._timeout);
     }
 

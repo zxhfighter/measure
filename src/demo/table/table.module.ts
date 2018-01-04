@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ButtonModule } from '../../component/button';
 import { InputModule } from '../../component/input';
+import { PageModule } from '../../component/page';
 import { TableModule } from '../../component/table';
 import { BoxGroupModule } from '../../component/box-group';
 import { CodeBoxModule } from '../../component/code-box';
@@ -18,6 +19,7 @@ import { TableFixColumnDemo } from './fix-column/fix-column';
 import { TableColSpanDemo } from './colspan/table-colspan';
 import { TableExpandDemo } from './expand/table-expand';
 import { TableEditDemo } from './edit/table-edit';
+import { TablePageDemo } from './page/table-page';
 
 @NgModule({
     imports: [
@@ -27,7 +29,8 @@ import { TableEditDemo } from './edit/table-edit';
         BoxGroupModule,
         CodeBoxModule,
         CodeHighlighterModule,
-        InputModule
+        InputModule,
+        PageModule
     ],
     declarations: [
         TableDemo,
@@ -39,7 +42,8 @@ import { TableEditDemo } from './edit/table-edit';
         TableFixColumnDemo,
         TableColSpanDemo,
         TableExpandDemo,
-        TableEditDemo
+        TableEditDemo,
+        TablePageDemo
     ],
     providers: [],
     exports: []

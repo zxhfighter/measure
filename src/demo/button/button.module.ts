@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { ButtonModule } from '../../component/button';
 import { CodeBoxModule } from '../../component/code-box';
@@ -14,6 +15,7 @@ import { ButtonIconDemo } from './icon/button-icon';
 @NgModule({
     imports: [
         CommonModule,
+        RouterModule,
         ButtonModule,
         CodeBoxModule,
         CodeHighlighterModule

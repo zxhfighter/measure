@@ -25,17 +25,29 @@
 
 <h3 class="section-title">Examples</h3>
 
-<!-- <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Table Basic</h3>
     <div nb-codebox-desc>
         <p>1.<code>nb-table</code> 是一个表格组件。</p>
         <p>2.<code>nb-table</code> 核心属性为 <code>datasource</code>，此外还可以提供 <code>theme</code> 属性提供不同表格样式。</p>
+        <p>3.<code>datasource</code> 为表格的全部数据，另外表格自带分页功能，因此分页后的数据通过 <code>data</code> 属性获取，可以方便的使用模板引用变量来引用。</p>
     </div>
 
     <demo-table-basic></demo-table-basic>
-</nb-code-box> -->
+</nb-code-box>
 
-<!--
+<nb-code-box [tsCode]="tsCodePage" [htmlCode]="htmlCodePage" [lessCode]="lessCodePage">
+    <h3 nb-codebox-title>Table Page</h3>
+    <div nb-codebox-desc>
+        <p>1.表格分页。</p>
+        <p>2.表格分页可以结合 <code>nb-page</code> 组件来一起使用，表格自生提供了 <code>page</code> 和 <code>pageSize</code> 属性。</p>
+        <p>3.表格前端分页可以结合 <code>datasource</code>，<code>page</code> 和 <code>pageSize</code>一起使用。</p>
+        <p>4.表格如果使用后端分页，直接变更 <code>datasource</code> 即可。</p>
+    </div>
+
+    <demo-table-page></demo-table-page>
+</nb-code-box>
+
 <nb-code-box [tsCode]="tsCodeCheckbox" [htmlCode]="htmlCodeCheckbox" [lessCode]="lessCodeCheckbox">
     <h3 nb-codebox-title>Table With Checkbox</h3>
     <div nb-codebox-desc>
@@ -75,7 +87,7 @@
     </div>
 
     <demo-table-sort></demo-table-sort>
-</nb-code-box> -->
+</nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeResize" [htmlCode]="htmlCodeResize" [lessCode]="lessCodeResize">
     <h3 nb-codebox-title>Table Column Width Resizable</h3>
@@ -86,7 +98,7 @@
 
     <demo-table-resize></demo-table-resize>
 </nb-code-box>
-<!--
+
 <nb-code-box [tsCode]="tsCodeFixHead" [htmlCode]="htmlCodeFixHead" [lessCode]="lessCodeFixHead">
     <h3 nb-codebox-title>Fix header</h3>
     <div nb-codebox-desc>
@@ -133,7 +145,7 @@
     </div>
 
     <demo-table-edit></demo-table-edit>
-</nb-code-box> -->
+</nb-code-box>
 
 <h3 class="section-title">API</h3>
 

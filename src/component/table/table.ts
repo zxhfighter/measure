@@ -106,7 +106,11 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
      * table datasource
      * @default []
      */
-    @Input() datasource: any[] = [];
+    @OnChange(false)
+    @Input()
+    datasource: any[] = [];
+
+    datasourceChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
     /**
      * inner filterd datasource
@@ -228,6 +232,7 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
         private _cd: ChangeDetectorRef
     ) {
         this.listenSortParamChange();
+        this.listenDatasourceChange();
     }
 
     startColumnResizing() {
@@ -284,6 +289,22 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
                 orderBy: orderBy
             });
         });
+
+        self.pageChange.subscribe(() => {
+            this.data = this.getDisplayData();
+        });
+
+        self.pageSizeChange.subscribe(() => {
+            this.data = this.getDisplayData();
+        });
+    }
+
+    listenDatasourceChange() {
+        this.datasourceChange.subscribe((datasource: any[] = []) => {
+            if (datasource) {
+                this.data = this.getDisplayData();
+            }
+        });
     }
 
     ngOnInit() {
@@ -291,19 +312,19 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
     }
 
     getDisplayData() {
-        let data: any[] = [...this.datasource];
+        let data: any[] = [...(this.datasource || [])];
         const orderBy = this.orderBy;
         const order = this.order;
         const page = this.page;
         const pageSize = this.pageSize;
+        const len = data.length;
 
         if (order && orderBy) {
             data = data.sort(sortFunc(order, orderBy));
         }
 
         if (page && pageSize) {
-            data = data.slice((page - 1) * data.length, page * data.length);
-            data = data.slice(0, pageSize);
+            data = data.slice((page - 1) * pageSize, page * pageSize);
         }
 
         this.dataChange.emit(data);

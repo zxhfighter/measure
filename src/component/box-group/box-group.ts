@@ -19,10 +19,11 @@ export interface BoxGroupValue {
 
 /** box group item type */
 export interface BoxGroupItem {
-    value: string;
+    value: string | number;
     text: string;
     checked?: boolean;
     disabled?: boolean;
+    [key: string]: any;
 }
 
 
@@ -99,14 +100,16 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
     @Input() uuid: string = getUUID();
 
     /** children box components */
-    @ContentChildren(forwardRef(() => InputBoxComponent)) _boxList: QueryList<InputBoxComponent>;
+    @ContentChildren(
+        forwardRef(() => InputBoxComponent)
+    ) _contentBoxList: QueryList<InputBoxComponent>;
 
     /**
      * button toggle view children
      */
     @ViewChildren(
         forwardRef(() => InputBoxComponent)
-    ) _boxViewList: QueryList<InputBoxComponent>;
+    ) _viewBoxList: QueryList<InputBoxComponent>;
 
     constructor(private _cd: ChangeDetectorRef) {
 
@@ -122,17 +125,7 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
     }
 
     ngOnInit() {
-        // update init value
-        // if (this.value && this.datasource) {
-        //     this.datasource.forEach(item => {
-        //         item.checked = item.checked || this.value.includes(item.value);
 
-        //         // update checked value
-        //         if (item.checked) {
-        //             this.value = Array.from(new Set(this.value).add(item.value));
-        //         }
-        //     });
-        // }
     }
 
     /**
@@ -149,7 +142,7 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
 
         if (this.type === 'radio') {
             boxList.forEach(item => {
-                item.checked = item.value === value;
+                item.checked = (item.value + '') === (value + '');
             });
             this.value = [value];
             this.change.emit({
@@ -158,7 +151,7 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
             });
         }
         else if (this.type === 'checkbox') {
-            const box = boxList.find(v => v.value === value);
+            const box = boxList.find(v => (v.value + '') === (value + ''));
 
             // de-duplicate value items
             const valueSet = new Set(this.value);
@@ -241,7 +234,8 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
     }
 
     _getBoxList() {
-        return this.datasource && this.datasource ? this._boxViewList : this._boxList;
+        const hasDatasource = this.datasource && this.datasource.length;
+        return hasDatasource ? this._viewBoxList : this._contentBoxList;
     }
 
     /**
