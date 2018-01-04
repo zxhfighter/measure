@@ -28,6 +28,8 @@ import {
     trigger
 } from '@angular/core';
 import { fadeAnimation } from '../core/animation/fade-animations';
+import { OverlayComponent } from '../overlay';
+import { Placement } from '../util/position';
 
 @Component({
     selector: 'nb-tiplayer',
@@ -38,16 +40,14 @@ import { fadeAnimation } from '../core/animation/fade-animations';
     exportAs: 'nbTiplayer',
     host: {
         'class': 'nb-widget nb-tiplayer',
+        '[class.nb-tiplayer-embedded]': 'embedded',
         '(mouseenter)': 'this.onMouseEnter()',
         '(mouseleave)': 'this.onMouseLeave()'
     }
 })
 
-export class TiplayerComponent implements AfterViewInit, OnDestroy {
-
-    // @Input() content: string | TemplateRef<any>;
-
-    @ViewChild('content') content: ElementRef;
+// export class TiplayerComponent implements AfterViewInit, OnDestroy {
+export class TiplayerComponent extends OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @Input() nbTooltipTheme: string;
 
@@ -57,38 +57,26 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
 
     @Input() embedded: boolean;
 
-    @Input() positionStrategy;
+    @Output() needReposition: EventEmitter<Object> = new EventEmitter();
+
+    @Input()
+    get placement () {
+        return this._placement;
+    }
+    set placement(data) {
+        this._placement = data;
+        this.firstPlacement = this._placement.split('-')[0];
+    }
+
+    @Input() delay: number = 200;
+
+    @ViewChild('content') content: ElementRef;
+
+    _placement: Placement;
 
     visibility: boolean = true;
 
     firstPlacement: string;
-
-    private _placement: string;
-
-    placementChange: EventEmitter<string> = new EventEmitter<string>();
-    @Input() set placement(data) {
-        this._placement = data;
-        this.firstPlacement = this._placement.split('-')[0];
-        this.placementChange.emit(this._placement);
-    }
-
-    get placement () {
-        return this._placement;
-    }
-
-    @Output() needReposition: EventEmitter<Object> = new EventEmitter();
-
-    private _delay: number = 200;
-    /** The timeout ID of any current timer set to show the tooltip */
-    private _showTimeoutId: number;
-    /** The timeout ID of any current timer set to hide the tooltip */
-    private _hideTimeoutId: number;
-
-    constructor(
-        private el: ElementRef,
-        private cdRef: ChangeDetectorRef
-    ) {
-    }
 
     ngAfterViewInit() {
         this.needReposition.emit();
@@ -96,27 +84,6 @@ export class TiplayerComponent implements AfterViewInit, OnDestroy {
 
     changeContent(content) {
         this.content.nativeElement.innerHTML = content;
-    }
-
-    show() {
-        if (this._hideTimeoutId) {
-            clearTimeout(this._hideTimeoutId);
-        }
-        this._showTimeoutId = window.setTimeout(() => {
-            this.visibility = true;
-            this.cdRef.markForCheck();
-        }, this._delay);
-    }
-
-    hide() {
-        if (this._showTimeoutId) {
-            clearTimeout(this._showTimeoutId);
-        }
-
-        this._hideTimeoutId = window.setTimeout(() => {
-            this.visibility = false;
-            this.cdRef.markForCheck();
-        }, this._delay);
     }
 
     onMouseEnter() {

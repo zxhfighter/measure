@@ -63,11 +63,11 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     visibility: boolean = false;
 
-    private _delay: number = 0;
+    @Input() delay: number = 0;
     /** The timeout ID of any current timer set to show the tooltip */
-    private _showTimeoutId: number;
+    _showTimeoutId: number;
     /** The timeout ID of any current timer set to hide the tooltip */
-    private _hideTimeoutId: number;
+    _hideTimeoutId: number;
 
     /** document click listener, when click on other area, hide the overlay */
     private _documentClickListener: Function | null;
@@ -75,7 +75,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     private positionStategy: any;
 
     constructor(
-        private el: ElementRef,
+        public el: ElementRef,
         private cdRef: ChangeDetectorRef,
         private render: Renderer2,
         private overlayPositionService: OverlayPositionService
@@ -106,16 +106,18 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        if (this.container === 'body') {
-            window.document.querySelector(this.container)!.appendChild(this.el.nativeElement);
-        }
+        // if (this.container === 'body') {
+        //     window.document.querySelector(this.container)!.appendChild(this.el.nativeElement);
+        // }
         if (this.origin) {
             const positionStategy = this.overlayPositionService
                 .attachTo(this.origin.elementRef, this, this.placement);
 
             this.positionStategy = positionStategy;
-            // 等到显示的时候再定位
-            // this.overlayPositionService.updatePosition(positionStategy);
+            // 调用show方法和组件渲染完成在不同场景下的执行顺序不同，所以两处都需要重新定位。
+            // 此处定位一是因为渲染完成能够获得真实宽高，此时定位更为准确。
+            // 二是因为当show方法执行早于此方法时，show方法中并没有定位。比如Tooltip的hover场景。
+            this.overlayPositionService.updatePosition(positionStategy);
         }
     }
 
@@ -125,12 +127,14 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         this._showTimeoutId = window.setTimeout(() => {
             // TODO positionStategy应该在更早的时机赋值 此处就不需要判断了
+            // 调用show方法和组件渲染完成在不同场景下的执行顺序不同，所以两处都需要重新定位。
+            // 此处定位是因为渲染完成后计算的位置可能并不准确，比如overlay渲染完成早于overlay上方的DOM或组件渲染完成。
             if (this.positionStategy) {
                 this.overlayPositionService.updatePosition(this.positionStategy);
             }
             this.visibility = true;
             this.cdRef.markForCheck();
-        }, this._delay);
+        }, this.delay);
     }
 
     hide() {
@@ -142,7 +146,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
             this.visibility = false;
             this.onHide.emit(this);
             this.cdRef.markForCheck();
-        }, this._delay);
+        }, this.delay);
     }
 
     isVisible(): boolean {

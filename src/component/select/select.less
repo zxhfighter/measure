@@ -2,12 +2,11 @@
     display: inline-block;
     position: relative;
 
-    &-label {
-        color: @text-color-dark;
+    .@{prefix}-button {
+        padding: 0 10px;
     }
 
     &-icon {
-        color: @text-color-dark;
         margin-left: 10px;
     }
 
@@ -22,7 +21,9 @@
         margin: 3px 0;
 
         .active {
-            background-color: #f7f7f7;
+            background-color: #e7e7e7;
+            color: @text-color-dark;
+            // font-weight: bold;
         }
     }
 
@@ -50,13 +51,13 @@
         color: @text-color;
 
         &-lable {
-            padding: 0 38px 0 20px;
+            padding: 0 30px 0 10px;
         }
 
         &-lable.leaf {
             cursor: pointer;
 
-            &:hover {
+            &:hover:not(.active) {
                 background-color: #f7f7f7;
             }
         }
