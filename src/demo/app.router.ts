@@ -43,6 +43,7 @@ import { GuideComponentDemo } from './docs';
 import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
 import { SliderComponentDemo } from './slider';
+import { FormDemo } from './form';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'components/button' },
@@ -87,5 +88,6 @@ export const appRoutes: Routes = [
     { path: 'docs', component: GuideComponentDemo },
     { path: 'icons', component: IconsComponentDemo },
     { path: 'components/typography', component: TypographyDemo },
-    { path: 'components/slider', component: SliderComponentDemo }
+    { path: 'components/slider', component: SliderComponentDemo },
+    { path: 'components/form', component: FormDemo }
 ];
