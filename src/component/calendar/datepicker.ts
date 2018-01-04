@@ -87,7 +87,9 @@ export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAcces
             this._hideOverlay();
         }
         else {
-            this._showOverlay();
+            if (!this.disabled) {
+                this._showOverlay();
+            }
         }
     }
 

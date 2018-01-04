@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { ButtonConfig } from '../../component/button';
 export function getButtonConfig(): ButtonConfig {
-    return Object.assign(new ButtonConfig, { theme: 'yellow' });
+    return Object.assign(new ButtonConfig, { theme: 'default' });
 }
 
 @Component({

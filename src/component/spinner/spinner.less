@@ -31,10 +31,17 @@
             border-top-width: 0;
             border-bottom-width: 0;
             border-right-width: 0;
+            border-color: #dbdbdb;
+            border-style: solid;
 
             &:hover {
                 color: @text-color-dark;
                 background-color: #f7f7f7;
+            }
+
+            &:active {
+                border-left-color: #dbdbdb;
+                background-color: #eee;
             }
 
             .iconfont {
@@ -74,6 +81,7 @@
     .@{prefix}-spinner-input {
         background-color: #f7f7f7;
         cursor: not-allowed;
+        color: #b8b8b8;
     }
 
     .@{prefix}-spinner-button-up,

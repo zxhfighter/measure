@@ -1,6 +1,6 @@
 <form #form1="ngForm">
-    <nb-boxgroup type="radio" name="radioBox" [ngModel]="[2]" [datasource]="datasource"></nb-boxgroup> <br>
-    <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="[2]" [datasource]="datasource"></nb-boxgroup>
+    <nb-boxgroup type="radio" name="radioBox" [ngModel]="['2']" [datasource]="datasource"></nb-boxgroup> <br>
+    <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="['2']" [datasource]="datasource"></nb-boxgroup>
 </form>
 
 {{ form1.value | json }}
@@ -26,7 +26,7 @@
 <form #form3="ngForm">
 
 
-    <nb-boxgroup type="radio" name="radioBox" [ngModel]="[2]">
+    <nb-boxgroup type="radio" name="radioBox" [ngModel]="['2']">
         <ng-container *ngFor="let item of datasource">
             <nb-checkbox [value]="item.value" [checked]="item.checked">{{ item.text }}</nb-checkbox>
         </ng-container>
@@ -34,7 +34,7 @@
 
     <br>
 
-    <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="[3]">
+    <nb-boxgroup type="checkbox" name="checkboxBox" [ngModel]="['3']">
         <ng-container *ngFor="let item of datasource">
             <nb-checkbox [value]="item.value" [checked]="item.checked">{{ item.text }}</nb-checkbox>
         </ng-container>
