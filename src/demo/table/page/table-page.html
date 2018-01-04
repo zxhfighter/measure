@@ -1,4 +1,4 @@
-<table nb-table #nbTable2 [datasource]="datasource" [pageSize]="pageSize" [page]="page" (dataChange)="onDisplayDataChange($event)">
+<table nb-table #nbTable2 [datasource]="datasource" [pageSize]="pageSize" [page]="page">
     <thead nb-thead>
         <tr nb-row>
             <th *ngFor="let field of fields" [field]="field.name">

@@ -27,13 +27,19 @@ export class TableSortDemo implements OnInit {
 
     filterMap: any = {};
 
-    sortParam: any = {};
+    sortParam: any = {
+        orderBy: 'height',
+        order: 'desc'
+    };
 
     datasource: any[] = genTableData();
+    filteredDatasource: any[] = [];
 
     displayTableData: any[] = [];
 
-    pageSize = 5;
+    page = 1;
+
+    pageSize = 10;
 
     paramSubject: Subject<TableArgs> = new Subject<TableArgs>();
 
@@ -50,7 +56,7 @@ export class TableSortDemo implements OnInit {
         return {
             order: this.sortParam.order,
             orderBy: this.sortParam.orderBy,
-            page: 1,
+            page: this.page,
             pageSize: this.pageSize,
             filterMap: this.filterMap
         };
@@ -85,18 +91,17 @@ export class TableSortDemo implements OnInit {
     }
 
     ngOnInit() {
+        this.filteredDatasource = [...this.datasource];
         this.paramSubject.subscribe(params => {
             this.displayTableData = this.getDisplayDatasource(params);
         });
     }
 
     getDisplayDatasource(params: TableArgs) {
-        let data: any[] = [];
+        let data: any[] = [...this.datasource];
 
-        // sort
-        if (params.order && params.orderBy) {
-            data = this.datasource.sort(sortFunc(params.order, params.orderBy));
-        }
+        const page = params.page;
+        const pageSize = params.pageSize;
 
         // filter
         if (params.filterMap.name) {
@@ -111,13 +116,17 @@ export class TableSortDemo implements OnInit {
             data = data.filter(v => v.school.indexOf(params.filterMap.school) !== -1);
         }
 
-        // page
-        if (params.page) {
-            data = data.slice((params.page - 1) * data.length, params.page * data.length);
+        // update filted datasource
+        this.filteredDatasource = [...data];
+
+        // sort
+        if (params.order && params.orderBy) {
+            data = data.sort(sortFunc(params.order, params.orderBy));
         }
 
-        if (params.pageSize) {
-            data = data.slice(0, params.pageSize);
+        // page
+        if (page) {
+            data = data.slice((page - 1) * pageSize, page * pageSize);
         }
 
         return data;
@@ -139,6 +148,18 @@ export class TableSortDemo implements OnInit {
     onResetStatusFilter(target: any) {
         target.reset();
         this.filterMap.status = [];
+        this.refresh();
+    }
+
+    pageChange(pageEvent: any) {
+        if (pageEvent.count) {
+            this.pageSize = pageEvent.count;
+        }
+
+        if (pageEvent.currrentIndex) {
+            this.page = pageEvent.currrentIndex;
+        }
+
         this.refresh();
     }
 }

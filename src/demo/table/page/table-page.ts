@@ -8,8 +8,6 @@ import { genTableData } from '../table.data';
     encapsulation: ViewEncapsulation.None
 })
 export class TablePageDemo {
-    displayTableData: any[] = [];
-
     pageSize = 20;
     page = 1;
 
@@ -61,10 +59,6 @@ export class TablePageDemo {
     ];
 
     datasource: any[] = genTableData();
-
-    onDisplayDataChange(data: any[]) {
-        this.displayTableData = data;
-    }
 
     pageChange(pageEvent: any) {
         if (pageEvent.count) {

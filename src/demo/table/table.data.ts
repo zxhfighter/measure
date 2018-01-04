@@ -4,6 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { delay } from 'rxjs/operators/delay';
 
+/**
+ * sync generate table data at random
+ *
+ * @param {number} len - table data size
+ * @return {any[]} table data
+ */
 export function genTableData(len: number = genNum(100, 200)) {
     let data: any[] = [];
 
@@ -31,7 +37,13 @@ export function genTableData(len: number = genNum(100, 200)) {
     return data;
 }
 
-export function getTableDataAsync() {
+/**
+ * async generate table data in millis
+ *
+ * @param {number} millis - millis
+ * @return {Observable<any[]>} table data
+ */
+export function getTableDataAsync(millis: number = 3000) {
     const data = genTableData();
     return of(data).pipe(delay(3000));
 }
