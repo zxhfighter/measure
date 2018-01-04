@@ -8,9 +8,9 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.Default
 })
 export class SelectDemo {
-    tsCode: string = require('!!raw-loader!./href/select-href.ts');
-    htmlCode: string = require('!!raw-loader!./href/select-href.html');
-    lessCode: string = require('!!raw-loader!./href/select-href.less');
+    tsCode: string = require('!!raw-loader!./base/select-base.ts');
+    htmlCode: string = require('!!raw-loader!./base/select-base.html');
+    lessCode: string = require('!!raw-loader!./base/select-base.less');
 
     constructor() {
     }

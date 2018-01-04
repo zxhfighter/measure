@@ -2,12 +2,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { SelectConfig } from '../../../component/select/select.config';
 
 @Component({
-    selector: 'demo-select-href',
-    templateUrl: './select-href.html',
-    styleUrls: ['./select-href.less'],
+    selector: 'demo-select-base',
+    templateUrl: './select-base.html',
+    styleUrls: ['./select-base.less'],
     encapsulation: ViewEncapsulation.None,
 })
-export class SelectHrefDemo {
+export class SelectBaseDemo {
     selectedData1: SelectConfig;
     selectedData2: SelectConfig;
     selectedData3: number = 2;

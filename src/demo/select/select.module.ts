@@ -7,7 +7,7 @@ import { CodeBoxModule } from '../../component/code-box';
 import { CodeHighlighterModule } from '../../component/code-highlighter';
 
 import { SelectDemo } from './select';
-import { SelectHrefDemo } from './href/select-href';
+import { SelectBaseDemo } from './base/select-base';
 
 @NgModule({
     imports: [
@@ -20,7 +20,7 @@ import { SelectHrefDemo } from './href/select-href';
     ],
     declarations: [
         SelectDemo,
-        SelectHrefDemo
+        SelectBaseDemo
     ],
     providers: [],
     exports: []
