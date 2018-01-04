@@ -7,7 +7,7 @@ import { CodeBoxModule } from '../../component/code-box';
 import { CodeHighlighterModule } from '../../component/code-highlighter';
 
 import { ToastDemo } from './toast';
-import { ToastHrefDemo } from './href/toast-href';
+import { ToastBaseDemo } from './base/toast-base';
 
 @NgModule({
     imports: [
@@ -19,7 +19,7 @@ import { ToastHrefDemo } from './href/toast-href';
     ],
     declarations: [
         ToastDemo,
-        ToastHrefDemo
+        ToastBaseDemo
     ],
     providers: [],
     exports: []

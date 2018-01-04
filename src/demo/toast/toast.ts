@@ -11,9 +11,9 @@ import {
 })
 export class ToastDemo {
 
-    tsCode: string = require('!!raw-loader!./href/toast-href.ts');
-    htmlCode: string = require('!!raw-loader!./href/toast-href.html');
-    lessCode: string = require('!!raw-loader!./href/toast-href.less');
+    tsCode: string = require('!!raw-loader!./base/toast-base.ts');
+    htmlCode: string = require('!!raw-loader!./base/toast-base.html');
+    lessCode: string = require('!!raw-loader!./base/toast-base.less');
 
     constructor() {
     }
