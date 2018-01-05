@@ -1,7 +1,5 @@
 //@import "../../style/mixins/index";
 
-@prefix2: ant;
-
 // mixins for grid system
 // ------------------------
 .make-row(@gutter: @grid-gutter-width) {
@@ -14,11 +12,11 @@
 
 .make-grid-columns() {
     .col(@index) {
-        @item: ~".@{prefix2}-col-@{index}, .@{prefix2}-col-xs-@{index}, .@{prefix2}-col-sm-@{index}, .@{prefix2}-col-md-@{index}, .@{prefix2}-col-lg-@{index}";
+        @item: ~".@{prefix}-col-@{index}, .@{prefix}-col-xs-@{index}, .@{prefix}-col-sm-@{index}, .@{prefix}-col-md-@{index}, .@{prefix}-col-lg-@{index}";
         .col((@index + 1), @item);
     }
     .col(@index, @list) when (@index =< @grid-columns) {
-        @item: ~".@{prefix2}-col-@{index}, .@{prefix2}-col-xs-@{index}, .@{prefix2}-col-sm-@{index}, .@{prefix2}-col-md-@{index}, .@{prefix2}-col-lg-@{index}";
+        @item: ~".@{prefix}-col-@{index}, .@{prefix}-col-xs-@{index}, .@{prefix}-col-sm-@{index}, .@{prefix}-col-md-@{index}, .@{prefix}-col-lg-@{index}";
         .col((@index + 1), ~"@{list}, @{item}");
     }
     .col(@index, @list) when (@index > @grid-columns) {
@@ -35,11 +33,11 @@
 
 .float-grid-columns(@class) {
     .col(@index) { // initial
-        @item: ~".@{prefix2}-col@{class}-@{index}";
+        @item: ~".@{prefix}-col@{class}-@{index}";
         .col((@index + 1), @item);
     }
     .col(@index, @list) when (@index =< @grid-columns) { // general
-        @item: ~".@{prefix2}-col@{class}-@{index}";
+        @item: ~".@{prefix}-col@{class}-@{index}";
         .col((@index + 1), ~"@{list}, @{item}");
     }
     .col(@index, @list) when (@index > @grid-columns) { // terminal
@@ -53,45 +51,45 @@
 
 // lesshint false
 .loop-grid-columns(@index, @class) when (@index > 0) {
-    .@{prefix2}-col@{class}-@{index} {
+    .@{prefix}-col@{class}-@{index} {
         display: block;
         width: percentage((@index / @grid-columns));
     }
-    .@{prefix2}-col@{class}-push-@{index} {
+    .@{prefix}-col@{class}-push-@{index} {
         left: percentage((@index / @grid-columns));
     }
-    .@{prefix2}-col@{class}-pull-@{index} {
+    .@{prefix}-col@{class}-pull-@{index} {
         right: percentage((@index / @grid-columns));
     }
-    .@{prefix2}-col@{class}-offset-@{index} {
+    .@{prefix}-col@{class}-offset-@{index} {
         margin-left: percentage((@index / @grid-columns));
     }
-    .@{prefix2}-col@{class}-order-@{index} {
+    .@{prefix}-col@{class}-order-@{index} {
         order: @index;
     }
     .loop-grid-columns((@index - 1), @class);
 }
 
 .loop-grid-columns(@index, @class) when (@index = 0) {
-    .@{prefix2}-col@{class}-@{index} {
+    .@{prefix}-col@{class}-@{index} {
         display: none;
     }
-    .@{prefix2}-col-push-@{index} {
+    .@{prefix}-col-push-@{index} {
         left: auto;
     }
-    .@{prefix2}-col-pull-@{index} {
+    .@{prefix}-col-pull-@{index} {
         right: auto;
     }
-    .@{prefix2}-col@{class}-push-@{index} {
+    .@{prefix}-col@{class}-push-@{index} {
         left: auto;
     }
-    .@{prefix2}-col@{class}-pull-@{index} {
+    .@{prefix}-col@{class}-pull-@{index} {
         right: auto;
     }
-    .@{prefix2}-col@{class}-offset-@{index} {
+    .@{prefix}-col@{class}-offset-@{index} {
         margin-left: 0;
     }
-    .@{prefix2}-col@{class}-order-@{index} {
+    .@{prefix}-col@{class}-order-@{index} {
         order: 0;
     }
 }

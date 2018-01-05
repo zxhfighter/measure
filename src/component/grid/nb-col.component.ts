@@ -1,5 +1,6 @@
 import {
     Component,
+    Directive,
     Input,
     OnInit,
     ElementRef,
@@ -10,7 +11,7 @@ import {
     Host,
     Optional
 } from '@angular/core';
-import {NzRowComponent} from './nz-row.component';
+import {NbRowComponent} from './nb-row.component';
 
 export abstract class EmbeddedProperty {
     span: number;
@@ -21,38 +22,37 @@ export abstract class EmbeddedProperty {
 }
 
 @Component({
-    selector: '[nz-col]',
+    selector: '[nb-col]',
     template: `
         <ng-content></ng-content>
-    `,
-    styles: []
+    `
 })
 
-export class NzColComponent implements OnInit, OnChanges {
+export class NbColComponent implements OnInit, OnChanges {
     _classList: Array<string> = [];
     _el: HTMLElement;
-    _prefixCls = 'ant-col';
+    _prefixCls = 'nb-col';
 
     @HostBinding('style.padding-left.px')
     get paddingLeft() {
-        return this._nzRow && this._nzRow._gutter / 2;
+        return this._nbRow && this._nbRow._gutter / 2;
     }
 
     @HostBinding('style.padding-right.px')
     get paddingRight() {
-        return this._nzRow && this._nzRow._gutter / 2;
+        return this._nbRow && this._nbRow._gutter / 2;
     }
 
-    @Input() nzSpan: number;
-    @Input() nzOrder: number;
-    @Input() nzOffset: number;
-    @Input() nzPush: number;
-    @Input() nzPull: number;
-    @Input() nzXs: number | EmbeddedProperty;
-    @Input() nzSm: number | EmbeddedProperty;
-    @Input() nzMd: number | EmbeddedProperty;
-    @Input() nzLg: number | EmbeddedProperty;
-    @Input() nzXl: number | EmbeddedProperty;
+    @Input() nbSpan: number;
+    @Input() nbOrder: number;
+    @Input() nbOffset: number;
+    @Input() nbPush: number;
+    @Input() nbPull: number;
+    @Input() nbXs: number | EmbeddedProperty;
+    @Input() nbSm: number | EmbeddedProperty;
+    @Input() nbMd: number | EmbeddedProperty;
+    @Input() nbLg: number | EmbeddedProperty;
+    @Input() nbXl: number | EmbeddedProperty;
 
     /** temp solution since no method add classMap to host https://github.com/angular/angular/issues/7289*/
     setClassMap(): void {
@@ -60,11 +60,11 @@ export class NzColComponent implements OnInit, OnChanges {
             this._renderer.removeClass(this._el, _className);
         });
         this._classList = [
-            this.nzSpan && `${this._prefixCls}-${this.nzSpan}`,
-            this.nzOrder && `${this._prefixCls}-order-${this.nzOrder}`,
-            this.nzOffset && `${this._prefixCls}-offset-${this.nzOffset}`,
-            this.nzPull && `${this._prefixCls}-pull-${this.nzPull}`,
-            this.nzPush && `${this._prefixCls}-push-${this.nzPush}`,
+            this.nbSpan && `${this._prefixCls}-${this.nbSpan}`,
+            this.nbOrder && `${this._prefixCls}-order-${this.nbOrder}`,
+            this.nbOffset && `${this._prefixCls}-offset-${this.nbOffset}`,
+            this.nbPull && `${this._prefixCls}-pull-${this.nbPull}`,
+            this.nbPush && `${this._prefixCls}-push-${this.nbPush}`,
             ...this.generateClass()
         ];
         this._classList = this._classList.filter((item) => {
@@ -76,10 +76,10 @@ export class NzColComponent implements OnInit, OnChanges {
     }
 
     generateClass() {
-        const listOfSizeInputName = ['nzXs', 'nzSm', 'nzMd', 'nzLg', 'nzXl'];
+        const listOfSizeInputName = ['nbXs', 'nbSm', 'nbMd', 'nbLg', 'nbXl'];
         const listOfClassName = [];
         listOfSizeInputName.forEach(name => {
-            const sizeName = name.replace('nz', '').toLowerCase();
+            const sizeName = name.replace('nb', '').toLowerCase();
             if ((typeof(this[name]) === 'number') || (typeof (this[name]) === 'string')) {
                 listOfClassName.push(this[name] && `${this._prefixCls}-${sizeName}-${this[name]}`);
             } else {
@@ -97,7 +97,7 @@ export class NzColComponent implements OnInit, OnChanges {
         this.setClassMap();
     }
 
-    constructor(private _elementRef: ElementRef, @Optional() @Host() public _nzRow: NzRowComponent, private _renderer: Renderer2) {
+    constructor(private _elementRef: ElementRef, @Optional() @Host() public _nbRow: NbRowComponent, private _renderer: Renderer2) {
         this._el = this._elementRef.nativeElement;
     }
 

@@ -8,5 +8,5 @@ import { Component, HostBinding, Input } from '@angular/core';
 })
 
 export class NbFormItemRequiredComponent {
-    @Input() @HostBinding(`class.nb-form-item-required`) nzRequired = true;
+    @Input() @HostBinding(`class.nb-form-item-required`) nbRequired = true;
 }

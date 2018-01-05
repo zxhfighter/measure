@@ -1,69 +1,68 @@
 import {
     Component,
+    Directive,
     Input,
     OnInit,
     ElementRef,
-    ViewEncapsulation,
     Renderer2,
 } from '@angular/core';
 
-export type NzJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
-export type NzAlign = 'top' | 'middle' | 'bottom';
-export type NzType = 'flex' | null;
+export type NbJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+export type NbAlign = 'top' | 'middle' | 'bottom';
+export type NbType = 'flex' | null;
 
 @Component({
-    selector: '[nz-row]',
-    encapsulation: ViewEncapsulation.None,
+    selector: '[nb-row]',
     template: `
         <ng-content></ng-content>
     `
 })
 
-export class NzRowComponent implements OnInit {
+export class NbRowComponent implements OnInit {
     _classList: Array<string> = [];
     _el: HTMLElement;
-    _prefixCls = 'ant-row';
+    _prefixCls = 'nb-row';
     _gutter: number;
-    _type: NzType;
-    _align: NzAlign = 'top';
-    _justify: NzJustify = 'start';
+    _type: NbType;
+    _align: NbAlign = 'top';
+    _justify: NbJustify = 'start';
 
     @Input()
-    set nzType(value: NzType) {
+    set nbType(value: NbType) {
         this._type = value;
         this.setClassMap();
     }
 
-    get nzType(): NzType {
+    get nbType(): NbType {
         return this._type;
     }
 
     @Input()
-    set nzAlign(value: NzAlign) {
+    set nbAlign(value: NbAlign) {
         this._align = value;
         this.setClassMap();
     }
 
-    get nzAlign(): NzAlign {
+    get nbAlign(): NbAlign {
         return this._align;
     }
 
     @Input()
-    set nzJustify(value: NzJustify) {
+    set nbJustify(value: NbJustify) {
         this._justify = value;
         this.setClassMap();
     }
 
-    get nzJustify(): NzJustify {
+    get nbJustify(): NbJustify {
         return this._justify;
     }
 
     @Input()
-    get nzGutter(): number {
+    get nbGutter(): number {
         return this._gutter;
     };
 
-    set nzGutter(value: number) {
+    set nbGutter(value: number) {
         this._gutter = value;
         this.setStyle();
     }
@@ -73,16 +72,15 @@ export class NzRowComponent implements OnInit {
         this._renderer.setStyle(this._el, 'margin-right', `-${this._gutter / 2}px`);
     }
 
-    /** temp solution since no method add classMap to host https://github.com/angular/angular/issues/7289*/
     setClassMap(): void {
         this._classList.forEach(_className => {
             this._renderer.removeClass(this._el, _className);
         })
         this._classList = [
-            (!this.nzType) && this._prefixCls,
-            this.nzType && `${this._prefixCls}-${this.nzType}`,
-            this.nzType && this.nzAlign && `${this._prefixCls}-${this.nzType}-${this.nzAlign}`,
-            this.nzType && this.nzJustify && `${this._prefixCls}-${this.nzType}-${this.nzJustify}`
+            (!this.nbType) && this._prefixCls,
+            this.nbType && `${this._prefixCls}-${this.nbType}`,
+            this.nbType && this.nbAlign && `${this._prefixCls}-${this.nbType}-${this.nbAlign}`,
+            this.nbType && this.nbJustify && `${this._prefixCls}-${this.nbType}-${this.nbJustify}`
         ].filter((item) => {
             return !!item;
         });
