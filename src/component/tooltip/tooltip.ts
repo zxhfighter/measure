@@ -204,8 +204,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
             .attachTo(this.el, this.tiplayerInstance, this.placement);
 
         this.positionStrategy = positionStrategy;
-        this.tiplayerInstance.positionStrategy = positionStrategy;
-            this.tiplayerInstance.needReposition.subscribe(
+        this.tiplayerInstance.needReposition.subscribe(
             () => this.overlayPositionService.updatePosition(positionStrategy)
         );
     }
