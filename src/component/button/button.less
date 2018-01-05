@@ -22,7 +22,7 @@ a.@{prefix}-button {
 
     &:hover {
         background: none;
-        color: lighten(@brand-primary, 10%);
+        color: darken(@brand-primary, 10%);
     }
 }
 
@@ -166,12 +166,12 @@ a.@{prefix}-button-size-xs {
 }
 
 a.@{prefix}-button[disabled] {
-    background-color: #eee;
+    background-color: transparent;
     color: #b8b8b8;
     cursor: not-allowed;
 
     &:hover,
     &:active {
-        background-color: #eee;
+        background-color: transparent;
     }
 }

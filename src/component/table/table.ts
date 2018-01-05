@@ -184,6 +184,12 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
     @Input() theme: string = '';
 
     /**
+     * Whether the table data is loading
+     */
+    @OnChange(true)
+    @Input() loading: boolean = false;
+
+    /**
      * table head item children
      * @docs-private
      */
@@ -281,14 +287,6 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
                 }
             }
         );
-
-        self.orderByChange.subscribe((orderBy: string) => {
-            // emit sort param
-            self.sort.emit({
-                order: self.order,
-                orderBy: orderBy
-            });
-        });
 
         self.pageChange.subscribe(() => {
             this.data = this.getDisplayData();

@@ -1,16 +1,24 @@
-import { Component, ViewEncapsulation, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+    OnInit,
+    Component,
+    ViewEncapsulation,
+    ChangeDetectorRef
+} from '@angular/core';
 
+import { Field } from '../../../component/table';
 import { genTableData, getTableDataAsync } from '../table.data';
 
 @Component({
     selector: 'demo-table-basic',
     templateUrl: './table-basic.html',
-    styleUrls: ['./table-basic.less'],
-    encapsulation: ViewEncapsulation.None
+    styleUrls: ['./table-basic.less']
 })
 export class TableBasicDemo implements OnInit {
 
-    fields: any[] = [
+    /**
+     * table fields
+     */
+    fields: Field[] = [
         {
             name: 'name',
             title: '姓名',
@@ -55,17 +63,33 @@ export class TableBasicDemo implements OnInit {
         }
     ];
 
-    datasource: any[] = [];
+    /**
+     * table datasource, will change in 3 seconds
+     */
+    datasource: any[] = genTableData();
+
+    /**
+     * table loading state
+     */
+    loading = false;
 
     constructor(private _cd: ChangeDetectorRef) {}
 
     ngOnInit() {
-        const self = this;
-        getTableDataAsync().subscribe(data => {
-            self.datasource = [];
-            self.datasource = data;
-            console.log(data);
+
+        this.loading = true;
+
+        // generate table data in 3 seconds
+        getTableDataAsync(3000).subscribe(data => {
+
+            // update table datasource
+            this.datasource = data;
+            this.loading = false;
+
+            // trigger change detection
             this._cd.markForCheck();
+
+
         });
     }
 }
