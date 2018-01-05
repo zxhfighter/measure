@@ -22,13 +22,13 @@ export abstract class EmbeddedProperty {
 }
 
 @Directive({
-    selector: '[nb-col]'
+    selector: '[nbCol]'
 })
 
 export class NbColDirective implements OnInit, OnChanges {
     _classList: Array<string> = [];
     _el: HTMLElement;
-    _prefixCls = 'nb-col';
+    _prefixCls = 'nbCol';
 
     @HostBinding('style.padding-left.px')
     get paddingLeft() {
