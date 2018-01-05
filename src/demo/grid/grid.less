@@ -1,0 +1,41 @@
+@grid-columns-bg: #3998fc;
+
+.code-box-demo {
+    overflow: hidden;
+    display: block;
+
+    .ant-row > div,
+    .ant-row-flex > div {
+        text-align: center;
+        min-height: 30px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #fff;
+        line-height: 4em;
+
+        &:not(.gutter-row) {
+            background: darken(@grid-columns-bg, 3%);
+        }
+
+        &:not(.gutter-row):nth-child(2n+1) {
+            background: lighten(@grid-columns-bg, 10%);
+        }
+    }
+
+    .height-100 {
+        height: 100px;
+        line-height: 100px;
+    }
+    .height-50 {
+        height: 50px;
+        line-height: 50px;
+    }
+    .height-120 {
+        height: 120px;
+        line-height: 120px;
+    }
+    .height-80 {
+        height: 80px;
+        line-height: 80px;
+    }
+}
