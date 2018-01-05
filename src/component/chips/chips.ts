@@ -51,6 +51,12 @@ export class ChipsComponent implements ControlValueAccessor {
     @Input() disabled: boolean = false;
 
     /**
+     * placeholder
+     * @default '请输入'
+     */
+    @Input() placeholder: string = '请输入';
+
+    /**
      * 获取input输入框
      * @docs-private
      */
