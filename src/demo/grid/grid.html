@@ -2,15 +2,11 @@
 
 <p class="type-desc">
     <span>type</span>:
-    <span class="type-component">Component</span>
+    <span class="type-component">Directive</span>
 </p>
 
 <p class="type-desc">
-    <span>selector</span>: <code>nb-grid</code>
-</p>
-
-<p class="type-desc">
-    <span>exportAs</span>: <code>nbGrid</code>
+    <span>exportAs</span>: <code>nbCol、nbRow</code>
 </p>
 
 <section>
@@ -28,8 +24,8 @@
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>基础布局</h3>
     <div nb-codebox-desc>
-        <p>从堆叠到水平排列。<br>使用单一的一组 nb-row 和 nbCol 栅格组件，就可以创建一个基本的栅格系统，
-            所有列（nbCol）必须放在 nb-row 内。</p>
+        <p>从堆叠到水平排列。<br>使用单一的一组 nbRow 和 nbCol 栅格组件，就可以创建一个基本的栅格系统，
+            所有列（nbCol）必须放在 nbRow 内。</p>
     </div>
     <demo-grid-basic></demo-grid-basic>
 </nb-code-box>
@@ -37,7 +33,7 @@
 <nb-code-box [tsCode]="tsCodeGutter" [htmlCode]="htmlCodeGutter" [lessCode]="lessCodeGutter">
     <h3 nb-codebox-title>区块间隔</h3>
     <div nb-codebox-desc>
-        <p>栅格常常需要和间隔进行配合，你可以使用 nb-row 的 nbGutter 属性，我们推荐使用 (16+8n)px 作为栅格间隔。</p>
+        <p>栅格常常需要和间隔进行配合，你可以使用 nbRow 的 nbGutter 属性，我们推荐使用 (16+8n)px 作为栅格间隔。</p>
     </div>
     <demo-grid-gutter></demo-grid-gutter>
 </nb-code-box>

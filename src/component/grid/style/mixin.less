@@ -12,11 +12,11 @@
 
 .make-grid-columns() {
     .col(@index) {
-        @item: ~".@{prefix}-col-@{index}, .@{prefix}-col-xs-@{index}, .@{prefix}-col-sm-@{index}, .@{prefix}-col-md-@{index}, .@{prefix}-col-lg-@{index}";
+        @item: ~'.@{prefix}-col-@{index}, .@{prefix}-col-xs-@{index}, .@{prefix}-col-sm-@{index}, .@{prefix}-col-md-@{index}, .@{prefix}-col-lg-@{index}';
         .col((@index + 1), @item);
     }
     .col(@index, @list) when (@index =< @grid-columns) {
-        @item: ~".@{prefix}-col-@{index}, .@{prefix}-col-xs-@{index}, .@{prefix}-col-sm-@{index}, .@{prefix}-col-md-@{index}, .@{prefix}-col-lg-@{index}";
+        @item: ~'.@{prefix}-col-@{index}, .@{prefix}-col-xs-@{index}, .@{prefix}-col-sm-@{index}, .@{prefix}-col-md-@{index}, .@{prefix}-col-lg-@{index}';
         .col((@index + 1), ~"@{list}, @{item}");
     }
     .col(@index, @list) when (@index > @grid-columns) {
@@ -33,11 +33,11 @@
 
 .float-grid-columns(@class) {
     .col(@index) { // initial
-        @item: ~".@{prefix}-col@{class}-@{index}";
+        @item: ~'.@{prefix}-col@{class}-@{index}';
         .col((@index + 1), @item);
     }
     .col(@index, @list) when (@index =< @grid-columns) { // general
-        @item: ~".@{prefix}-col@{class}-@{index}";
+        @item: ~'.@{prefix}-col@{class}-@{index}';
         .col((@index + 1), ~"@{list}, @{item}");
     }
     .col(@index, @list) when (@index > @grid-columns) { // terminal

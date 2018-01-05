@@ -1,17 +1,6 @@
-import {
-    Component,
-    Directive,
-    Input,
-    OnInit,
-    ElementRef,
-    HostBinding,
-    OnChanges,
-    Renderer2,
-    SimpleChange,
-    Host,
-    Optional
-} from '@angular/core';
-import {NbRowDirective} from './row.directive';
+import { Directive, Input, OnInit, ElementRef, HostBinding,
+    OnChanges, Renderer2, SimpleChange, Host, Optional } from '@angular/core';
+import { NbRowDirective } from './row.directive';
 
 export abstract class EmbeddedProperty {
     span: number;
@@ -28,7 +17,7 @@ export abstract class EmbeddedProperty {
 export class NbColDirective implements OnInit, OnChanges {
     _classList: Array<string> = [];
     _el: HTMLElement;
-    _prefixCls = 'nbCol';
+    _prefixCls = 'nb-col';
 
     @HostBinding('style.padding-left.px')
     get paddingLeft() {
@@ -69,7 +58,7 @@ export class NbColDirective implements OnInit, OnChanges {
         });
         this._classList.forEach(_className => {
             this._renderer.addClass(this._el, _className);
-        })
+        });
     }
 
     generateClass() {

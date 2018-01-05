@@ -1,18 +1,11 @@
-import {
-    Component,
-    Directive,
-    Input,
-    OnInit,
-    ElementRef,
-    Renderer2,
-} from '@angular/core';
+import { Directive, Input, OnInit, ElementRef, Renderer2 } from '@angular/core';
 
 export type NbJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 export type NbAlign = 'top' | 'middle' | 'bottom';
 export type NbType = 'flex' | null;
 
 @Directive({
-    selector: '[nb-row]'
+    selector: '[nbRow]'
 })
 
 export class NbRowDirective implements OnInit {
@@ -57,7 +50,7 @@ export class NbRowDirective implements OnInit {
     @Input()
     get nbGutter(): number {
         return this._gutter;
-    };
+    }
 
     set nbGutter(value: number) {
         this._gutter = value;
@@ -72,7 +65,7 @@ export class NbRowDirective implements OnInit {
     setClassMap(): void {
         this._classList.forEach(_className => {
             this._renderer.removeClass(this._el, _className);
-        })
+        });
         this._classList = [
             (!this.nbType) && this._prefixCls,
             this.nbType && `${this._prefixCls}-${this.nbType}`,
@@ -83,7 +76,7 @@ export class NbRowDirective implements OnInit {
         });
         this._classList.forEach(_className => {
             this._renderer.addClass(this._el, _className);
-        })
+        });
     }
 
     constructor(private _elementRef: ElementRef,
