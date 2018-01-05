@@ -11,7 +11,7 @@ import {
     Host,
     Optional
 } from '@angular/core';
-import {NbRowComponent} from './nb-row.component';
+import {NbRowDirective} from './row.directive';
 
 export abstract class EmbeddedProperty {
     span: number;
@@ -21,14 +21,11 @@ export abstract class EmbeddedProperty {
     order: number;
 }
 
-@Component({
-    selector: '[nb-col]',
-    template: `
-        <ng-content></ng-content>
-    `
+@Directive({
+    selector: '[nb-col]'
 })
 
-export class NbColComponent implements OnInit, OnChanges {
+export class NbColDirective implements OnInit, OnChanges {
     _classList: Array<string> = [];
     _el: HTMLElement;
     _prefixCls = 'nb-col';
@@ -97,7 +94,9 @@ export class NbColComponent implements OnInit, OnChanges {
         this.setClassMap();
     }
 
-    constructor(private _elementRef: ElementRef, @Optional() @Host() public _nbRow: NbRowComponent, private _renderer: Renderer2) {
+    constructor(private _elementRef: ElementRef,
+                @Optional() @Host() public _nbRow: NbRowDirective,
+                private _renderer: Renderer2) {
         this._el = this._elementRef.nativeElement;
     }
 

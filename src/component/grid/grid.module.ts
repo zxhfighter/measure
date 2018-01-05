@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NbRowComponent} from './nb-row.component';
-import {NbColComponent} from './nb-col.component';
+import {NbRowDirective} from './row.directive';
+import {NbColDirective} from './col.directive';
 
 @NgModule({
     imports: [CommonModule],
     declarations: [
-        NbRowComponent,
-        NbColComponent],
+        NbRowDirective,
+        NbColDirective
+    ],
     exports: [
-        NbRowComponent,
-        NbColComponent
+        NbRowDirective,
+        NbColDirective
     ]
 })
 export class GridModule {

@@ -11,14 +11,11 @@ export type NbJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-bet
 export type NbAlign = 'top' | 'middle' | 'bottom';
 export type NbType = 'flex' | null;
 
-@Component({
-    selector: '[nb-row]',
-    template: `
-        <ng-content></ng-content>
-    `
+@Directive({
+    selector: '[nb-row]'
 })
 
-export class NbRowComponent implements OnInit {
+export class NbRowDirective implements OnInit {
     _classList: Array<string> = [];
     _el: HTMLElement;
     _prefixCls = 'nb-row';
@@ -89,7 +86,8 @@ export class NbRowComponent implements OnInit {
         })
     }
 
-    constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {
+    constructor(private _elementRef: ElementRef,
+                private _renderer: Renderer2) {
         this._el = this._elementRef.nativeElement;
     }
 
