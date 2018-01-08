@@ -52,6 +52,18 @@ export class TableSortDemo implements OnInit {
         this.refresh();
     }
 
+    pageChange(pageEvent: any) {
+        if (pageEvent.count) {
+            this.pageSize = pageEvent.count;
+        }
+
+        if (pageEvent.currrentIndex) {
+            this.page = pageEvent.currrentIndex;
+        }
+
+        this.refresh();
+    }
+
     getEntity() {
         return {
             order: this.sortParam.order,
@@ -67,29 +79,6 @@ export class TableSortDemo implements OnInit {
         this.paramSubject.next(entity);
     }
 
-    onFilter(value: any, filterParam: any) {
-
-        if (filterParam) {
-            const target = filterParam.target;
-            this.filterMap[target.field] = value;
-            this.refresh();
-
-            switch (target.field) {
-                case 'status':
-                    if (!value.length) {
-                        target.filtered = false;
-                    }
-                    break;
-                case 'name':
-                    if (!value.length) {
-                        target.filtered = false;
-                    }
-                    break;
-                default: break;
-            }
-        }
-    }
-
     ngOnInit() {
         this.filteredDatasource = [...this.datasource];
         this.paramSubject.subscribe(params => {
@@ -102,7 +91,7 @@ export class TableSortDemo implements OnInit {
 
         const page = params.page;
         const pageSize = params.pageSize;
-
+        debugger
         // filter
         if (params.filterMap.name) {
             data = data.filter(v => v.name.indexOf(params.filterMap.name) !== -1);
@@ -132,6 +121,29 @@ export class TableSortDemo implements OnInit {
         return data;
     }
 
+    onFilter(value: any, filterParam: any) {
+
+        if (filterParam) {
+            const target = filterParam.target;
+            this.filterMap[target.field] = value;
+            this.refresh();
+
+            switch (target.field) {
+                case 'status':
+                    if (!value.length) {
+                        target.filtered = false;
+                    }
+                    break;
+                case 'name':
+                    if (!value.length) {
+                        target.filtered = false;
+                    }
+                    break;
+                default: break;
+            }
+        }
+    }
+
     onSingleFilter(value: string, target: any) {
 
         this.filterMap.school = value;
@@ -148,18 +160,6 @@ export class TableSortDemo implements OnInit {
     onResetStatusFilter(target: any) {
         target.reset();
         this.filterMap.status = [];
-        this.refresh();
-    }
-
-    pageChange(pageEvent: any) {
-        if (pageEvent.count) {
-            this.pageSize = pageEvent.count;
-        }
-
-        if (pageEvent.currrentIndex) {
-            this.page = pageEvent.currrentIndex;
-        }
-
         this.refresh();
     }
 }
