@@ -2,10 +2,10 @@
 	<div class="nb-chips-wrap" [class.nb-chips-disabled]="disabled" (click)="inputFocus()">
 	    <ul>
 	    	<li *ngFor="let chip of value; let i=index" class="nb-chips-label">{{ chip }}
-				<i class="fa fa-times" (click)="onDelChip(i)"></i>
+				<i class="iconfont icon-close" (click)="onDelChip(i)"></i>
 			</li>
 	    	<li>
-				<input #input placeholder="请输入文字"
+				<input #input [placeholder]="placeholder"
 				(keydown)="onInputValue($event.keyCode, $event.target.value.trim())"
 				[disabled]="disabled">
 	    	</li>

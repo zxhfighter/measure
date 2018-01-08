@@ -10,7 +10,7 @@ import { Component, HostBinding } from '@angular/core';
 export class NbFormItemComponent {
     _withHelp = 0;
 
-    @HostBinding(`class.nb-form-item`) _nzFormItem = true;
+    @HostBinding(`class.nb-form-item`) _nbFormItem = true;
 
     enableHelp() {
         this._withHelp++;

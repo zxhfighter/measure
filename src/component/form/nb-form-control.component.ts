@@ -14,7 +14,7 @@ import { Component, HostBinding, Input } from '@angular/core';
 
 export class NbFormControlComponent {
     _hasFeedback = false;
-    @HostBinding(`class.nb-form-item-control-wrapper`) _nzFormItemControlWrapper = true;
+    @HostBinding(`class.nb-form-item-control-wrapper`) _nbFormItemControlWrapper = true;
 
     @Input()
     set nbHasFeedback(value: boolean | string) {

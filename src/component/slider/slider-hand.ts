@@ -8,7 +8,6 @@ import {
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 
-import { initNgModule } from '@angular/core/src/view/ng_module';
 import { SliderService } from './slider.service';
 import { TooltipDirective } from '../../component/tooltip';
 import { OnChange } from '../core/decorators';
@@ -16,7 +15,7 @@ import { OnChange } from '../core/decorators';
 @Component({
     selector: 'nb-slider-hand',
     template: ` <div #sliderHand class="nb-slider-hand" [nbTooltip]="value"
-                hasArrow="false" [placement]="placement"></div>`,
+                hasArrow="true" [placement]="placement"></div>`,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,

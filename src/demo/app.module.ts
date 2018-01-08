@@ -40,7 +40,8 @@ import {
     AccordionModule,
     UploaderModule,
     TransferModule,
-    FormModule
+    FormModule,
+    GridModule
 } from '../component';
 
 import { AppComponent } from './app.component';
@@ -88,6 +89,7 @@ import { TabsDemoModule } from './tabs';
 import { TooltipDemoModule } from './tooltip';
 import { FormDemoModule } from './form';
 import { ScheduleDemoModule } from './schedule';
+import { GridDemoModule } from './grid';
 
 
 const demoModules = [
@@ -124,7 +126,8 @@ const demoModules = [
     DialogDemoModule,
     AccordionDemoModule,
     UploaderDemoModule,
-    FormDemoModule
+    FormDemoModule,
+    GridDemoModule
 ];
 
 @NgModule({
@@ -178,6 +181,7 @@ const demoModules = [
         UploaderModule,
         TransferModule,
         FormModule,
+        GridModule,
         // demos
         ...demoModules,
         RouterModule.forRoot(appRoutes, { useHash: true })
