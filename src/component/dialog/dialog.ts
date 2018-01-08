@@ -43,9 +43,6 @@ export class DialogComponent implements OnInit {
     @OnChange(true)
     @Input() closable: boolean = true;
 
-    @OnChange(true)
-    @Input() needHideAfterDocumentClick: boolean;
-
     private mask: HTMLElement | null;
 
     /**

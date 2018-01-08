@@ -44,6 +44,7 @@ import { IconsComponentDemo } from './icons';
 import { TypographyDemo } from './typography';
 import { SliderComponentDemo } from './slider';
 import { FormDemo } from './form';
+import { GridDemo } from './grid';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'components/button' },
@@ -89,5 +90,6 @@ export const appRoutes: Routes = [
     { path: 'icons', component: IconsComponentDemo },
     { path: 'components/typography', component: TypographyDemo },
     { path: 'components/slider', component: SliderComponentDemo },
-    { path: 'components/form', component: FormDemo }
+    { path: 'components/form', component: FormDemo },
+    { path: 'components/grid', component: GridDemo }
 ];

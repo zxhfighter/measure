@@ -54,13 +54,6 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @Input() placement: Placement = 'bottom-left';
 
-    /**
-     * document区域内点击后是否隐藏，默认隐藏
-     * @default true
-     */
-    @OnChange(true)
-    @Input() needHideAfterDocumentClick: boolean = true;
-
     visibility: boolean = false;
 
     @Input() delay: number = 0;
@@ -76,23 +69,21 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(
         public el: ElementRef,
-        private cdRef: ChangeDetectorRef,
         private render: Renderer2,
+        public cdRef: ChangeDetectorRef,
         private overlayPositionService: OverlayPositionService
     ) {
     }
 
     ngOnInit() {
-        if (this.needHideAfterDocumentClick) {
-            // when click on other area, hide the overlay
-            this._documentClickListener = this.render.listen('document', 'click', () => {
-                if (this.visibility) {
-                    this.visibility = false;
-                    this.onHide.emit(this);
-                    this.cdRef.markForCheck();
-                }
-            });
-        }
+        // when click on other area, hide the overlay
+        this._documentClickListener = this.render.listen('document', 'click', () => {
+            if (this.visibility) {
+                this.visibility = false;
+                this.onHide.emit(this);
+                this.cdRef.markForCheck();
+            }
+        });
     }
 
     ngOnDestroy() {
@@ -106,9 +97,9 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        // if (this.container === 'body') {
-        //     window.document.querySelector(this.container)!.appendChild(this.el.nativeElement);
-        // }
+        if (this.container === 'body') {
+            window.document.querySelector(this.container)!.appendChild(this.el.nativeElement);
+        }
         if (this.origin) {
             const positionStategy = this.overlayPositionService
                 .attachTo(this.origin.elementRef, this, this.placement);
@@ -117,7 +108,8 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
             // 调用show方法和组件渲染完成在不同场景下的执行顺序不同，所以两处都需要重新定位。
             // 此处定位一是因为渲染完成能够获得真实宽高，此时定位更为准确。
             // 二是因为当show方法执行早于此方法时，show方法中并没有定位。比如Tooltip的hover场景。
-            this.overlayPositionService.updatePosition(positionStategy);
+            // 原因二不成立，Tooltip覆盖了此方法
+            // this.overlayPositionService.updatePosition(positionStategy);
         }
     }
 

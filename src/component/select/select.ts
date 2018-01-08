@@ -59,9 +59,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.overlay.origin = this.origin;
     }
 
-    onToggle(e) {
-        e.stopPropagation();
-
+    onToggle() {
         this.changeState();
 
         if (this.expanded) {

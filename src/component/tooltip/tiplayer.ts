@@ -1,9 +1,3 @@
-/**
- *
- * 作为overlay的内容组件要注意两个问题：
- * - [已废弃]构造函数constructor中要声明el属性，用于overlay.service.ts中将当前内容append到body中
- * - 需要重新定位的时候，将needReposition事件emit出去
- */
 import {
     NgModule,
     Input,
@@ -46,8 +40,7 @@ import { Placement } from '../util/position';
     }
 })
 
-// export class TiplayerComponent implements AfterViewInit, OnDestroy {
-export class TiplayerComponent extends OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TiplayerComponent extends OverlayComponent implements AfterViewInit, OnDestroy {
 
     @Input() nbTooltipTheme: string;
 
@@ -58,6 +51,7 @@ export class TiplayerComponent extends OverlayComponent implements OnInit, After
     @Input() embedded: boolean;
 
     @Output() needReposition: EventEmitter<Object> = new EventEmitter();
+
 
     @Input()
     get placement () {

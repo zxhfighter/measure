@@ -33,3 +33,4 @@ export * from './accordion/index';
 export * from './uploader/index';
 export * from './transfer/index';
 export * from './form/index';
+export * from './grid/index';

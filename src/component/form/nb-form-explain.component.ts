@@ -10,16 +10,16 @@ import { NbFormItemComponent } from './nb-form-item.component';
 })
 
 export class NbFormExplainComponent implements OnDestroy, OnInit {
-    @HostBinding(`class.nb-form-explain`) _nzFormExplain = true;
+    @HostBinding(`class.nb-form-explain`) _nbFormExplain = true;
 
-    constructor(private _nzFormItem: NbFormItemComponent) {
+    constructor(private _nbFormItem: NbFormItemComponent) {
     }
 
     ngOnDestroy(): any {
-        this._nzFormItem.disableHelp();
+        this._nbFormItem.disableHelp();
     }
 
     ngOnInit() {
-        this._nzFormItem.enableHelp();
+        this._nbFormItem.enableHelp();
     }
 }

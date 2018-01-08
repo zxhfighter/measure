@@ -26,6 +26,7 @@ export class OverlayPositionService {
     private overlayComponent: any;
     private _contentRef: ContentRef | null;
     private originElement: ElementRef;
+    private offsetWhenHasArrow: number = 8;
     originPos: ConnectionPosition;
     overlayPos: ConnectionPosition;
     placement: Placement;
@@ -136,33 +137,33 @@ export class OverlayPositionService {
                 // 相异为主方向
                 if (originPos.vertical !== overlayPos.vertical) {
                     if (originPos.vertical === 'top') {
-                        offsetY = -8;
+                        offsetY = -this.offsetWhenHasArrow;
                     }
                     else {
-                        offsetY = 8;
+                        offsetY = this.offsetWhenHasArrow;
                     }
                 }
                 else if (originPos.horizontal !== overlayPos.horizontal) {
                     if (originPos.horizontal === 'left') {
-                        offsetX = -8;
+                        offsetX = -this.offsetWhenHasArrow;
                     }
                     else {
-                        offsetX = 8;
+                        offsetX = this.offsetWhenHasArrow;
                     }
                 }
             }
             else  {
                 if (this.firstPlacement === 'left') {
-                    offsetX = -8;
+                    offsetX = -this.offsetWhenHasArrow;
                 }
                 else if (this.firstPlacement === 'right') {
-                    offsetX = 8;
+                    offsetX = this.offsetWhenHasArrow;
                 }
                 else if (this.firstPlacement === 'top') {
-                    offsetY = -8;
+                    offsetY = -this.offsetWhenHasArrow;
                 }
                 else if (this.firstPlacement === 'bottom') {
-                    offsetY = 8;
+                    offsetY = this.offsetWhenHasArrow;
                 }
             }
         }

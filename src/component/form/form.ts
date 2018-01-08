@@ -17,7 +17,7 @@ export class FormComponent implements OnInit {
     _el: HTMLElement;
     _prefixCls = 'nb-form';
 
-    @Input() nzLayout: 'horizontal' | 'inline' = 'horizontal';
+    @Input() nbLayout: 'horizontal' | 'inline' = 'horizontal';
 
     constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {
         this._el = this._elementRef.nativeElement;
@@ -28,6 +28,6 @@ export class FormComponent implements OnInit {
     }
 
     setClassMap(): void {
-        this._renderer.addClass(this._el, `${this._prefixCls}-${this.nzLayout}`);
+        this._renderer.addClass(this._el, `${this._prefixCls}-${this.nbLayout}`);
     }
 }
