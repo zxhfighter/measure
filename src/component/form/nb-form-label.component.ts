@@ -8,5 +8,5 @@ import { Component, HostBinding } from '@angular/core';
 })
 
 export class NbFormLabelComponent {
-    @HostBinding(`class.nb-form-item-label`) _nzFormItemLabel = true;
+    @HostBinding(`class.nb-form-item-label`) _nbFormItemLabel = true;
 }
