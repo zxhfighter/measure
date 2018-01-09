@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 
 import { coerceBooleanProperty } from '../util/coerce';
+import { dedupleClassName } from '../util/dom';
 import { ButtonConfig } from './button.config';
 import { OnChange } from '../core/decorators';
 
@@ -79,7 +80,8 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
      */
     setClass() {
         const nativeEl = this._el.nativeElement;
-        nativeEl.className = this.getClassName();
+        const nativeClassName = nativeEl.className;
+        nativeEl.className = dedupleClassName(this.getClassName() + ' ' + nativeClassName).join(' ');
     }
 
     /**

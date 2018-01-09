@@ -3,7 +3,7 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, OnChanges
 } from '@angular/core';
 import { SelectConfig } from '../select/select.config';
-import { addClass } from '../util/dom';
+import { addClass, dedupleClassName } from '../util/dom';
 
 /** default page size types */
 export type PAGE_SIZE = 'sm' | 'default';
@@ -13,10 +13,7 @@ export type PAGE_SIZE = 'sm' | 'default';
     templateUrl: './page.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    preserveWhitespaces: false,
-    host: {
-        'class': 'nb-widget nb-page'
-    }
+    preserveWhitespaces: false
 })
 export class PageComponent implements OnInit, AfterViewInit, OnChanges {
     /**
@@ -140,7 +137,8 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
      */
     setClass() {
         const nativeEl = this._el.nativeElement;
-        nativeEl.className = this.getClassName();
+        const nativeClassName = nativeEl.className;
+        nativeEl.className = dedupleClassName(this.getClassName() + ' ' + nativeClassName).join(' ');
     }
 
     /**
@@ -150,8 +148,8 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
      */
     getClassName() {
         return [
-            // 'nb-widget',
-            // 'nb-page',
+            'nb-widget',
+            'nb-page',
             `nb-page-size-${this.size || 'default'}`,
             `nb-page-theme-${this.theme || 'default'}`
         ].join(' ');
