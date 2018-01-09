@@ -167,6 +167,9 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
         for (let i = 1; i <= pageCount; i++) {
             this.pageSize.push(i);
         }
+        if (this.pageSize.length < this.currrentIndex) {
+            this.currrentIndex = 1;
+        }
     }
 
     /**

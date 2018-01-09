@@ -2,9 +2,11 @@
     nb-tiplayer-box
     nb-tiplayer-theme-{{nbTooltipTheme}}
     nb-tiplayer-{{firstPlacement}}
-    nb-tiplayer-{{placement}}"
+    nb-tiplayer-{{placement}} {{nbWidth}}"
     [class.invisible]="!visibility"
-    [@fadeAnimation]="visibility">
+    [@fadeAnimation]="visibility"
+    [style.width.px]="nbWidth"
+    [style.height.px]="hbHight">
     <div
         class="nb-tiplayer-inner">
         <div class="nb-tiplayer-arrow" *ngIf="hasArrow"></div>
