@@ -85,9 +85,9 @@ export class RatingComponent implements OnInit, ControlValueAccessor, AfterViewI
 
     /**
      * when `showTip` is set, you can use this to set tooltip message, you can use a string template
-     * where `${i}` is the star number, or you can use you own custom tooltip function
+     *  or you can use you own custom tooltip function
      */
-    @Input() tipTemplate: string | Function = '${i} 星';
+    @Input() tipTemplate: string | Function = '{i} 星';
 
     _starArray: number[] = [];
     _tempValue: number | null;
@@ -110,7 +110,7 @@ export class RatingComponent implements OnInit, ControlValueAccessor, AfterViewI
         }
 
         if (typeof this.tipTemplate === 'string') {
-            return this.tipTemplate.replace('${i}', i + '');
+            return this.tipTemplate.replace('{i}', i + '');
         }
         else if (typeof this.tipTemplate === 'function') {
             return this.tipTemplate.call(this, i);
