@@ -19,7 +19,8 @@
             display: block;
             position: absolute;
             left: 0;
-            top: 2px;
+            top: 50%;
+            transform: translateY(-@nb-checkbox-box-size / 2);
             width: @nb-checkbox-box-size;
             height: @nb-checkbox-box-size;
             border: 1px solid @text-color;
@@ -35,14 +36,14 @@
             content: '';
             display: block;
             position: absolute;
-            top: (@nb-checkbox-box-size - @nb-checkbox-inner-height) / 2;
+            top: 50%;
+            transform: translateY(-@nb-checkbox-inner-width / 2) rotate(-45deg);
             left: (@nb-checkbox-box-size - @nb-checkbox-inner-width) / 2;
             width: @nb-checkbox-inner-width;
             height: @nb-checkbox-inner-height;
             border: 2px solid @text-color;
             border-top: none;
             border-right: none;
-            transform: rotate(-45deg);
         }
     }
 }
@@ -54,7 +55,8 @@
             content: '';
             display: block;
             position: absolute;
-            top: (@nb-checkbox-box-size - @nb-checkbox-intermediate-height) / 2 + 2px;
+            top: 50%;
+            transform: translateY(-@nb-checkbox-intermediate-height / 2);
             left: (@nb-checkbox-box-size - @nb-checkbox-intermediate-width) / 2;
             width: @nb-checkbox-intermediate-width;
             height: @nb-checkbox-intermediate-height;

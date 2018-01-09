@@ -1,0 +1,40 @@
+<div class="nb-rating-container" (mouseleave)="onMouseLeave()">
+
+    <ng-container *ngIf="!allowShowTip()">
+        <div
+            class="nb-rating-item"
+            *ngFor="let i of _starArray"
+            (mouseover)="onMouseOver(i)"
+            (click)="onClick(i)">
+
+            <ng-container *ngIf="i <= (_tempValue || value) else noselected">
+                <i class="iconfont icon-collected"></i>
+            </ng-container>
+
+            <ng-template #noselected>
+                <i class="iconfont icon-collect"></i>
+            </ng-template>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="allowShowTip()">
+        <div
+            class="nb-rating-item"
+            *ngFor="let i of _starArray"
+            (mouseover)="onMouseOver(i)"
+            (click)="onClick(i)"
+            [nbTooltip]="getTip(i)"
+            placement="top"
+            hasArrow>
+
+            <ng-container *ngIf="i <= (_tempValue || value) else noselected">
+                <i class="iconfont icon-collected"></i>
+            </ng-container>
+
+            <ng-template #noselected>
+                <i class="iconfont icon-collect"></i>
+            </ng-template>
+        </div>
+    </ng-container>
+
+</div>

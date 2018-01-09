@@ -41,7 +41,8 @@ import {
     UploaderModule,
     TransferModule,
     FormModule,
-    GridModule
+    GridModule,
+    RatingModule
 } from '../component';
 
 import { AppComponent } from './app.component';
@@ -90,6 +91,7 @@ import { TooltipDemoModule } from './tooltip';
 import { FormDemoModule } from './form';
 import { ScheduleDemoModule } from './schedule';
 import { GridDemoModule } from './grid';
+import { RatingDemoModule } from './rating';
 
 
 const demoModules = [
@@ -127,7 +129,8 @@ const demoModules = [
     AccordionDemoModule,
     UploaderDemoModule,
     FormDemoModule,
-    GridDemoModule
+    GridDemoModule,
+    RatingDemoModule
 ];
 
 @NgModule({
@@ -182,6 +185,8 @@ const demoModules = [
         TransferModule,
         FormModule,
         GridModule,
+        RatingModule,
+
         // demos
         ...demoModules,
         RouterModule.forRoot(appRoutes, { useHash: true })
