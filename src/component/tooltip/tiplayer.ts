@@ -43,6 +43,16 @@ import { Placement } from '../util/position';
 
 export class TiplayerComponent extends OverlayComponent implements AfterViewInit, OnDestroy {
 
+    /**
+     * 提示框宽度
+     */
+    @Input() nbWidth: number;
+
+    /**
+     * 提示框高度
+     */
+    @Input() nbHeight: number;
+
     @Input() nbTooltipTheme: string;
 
     @Input() trigger: string;
@@ -50,9 +60,6 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
     @Input() hasArrow: boolean;
 
     @Input() embedded: boolean;
-
-    @Output() needReposition: EventEmitter<Object> = new EventEmitter();
-
 
     @Input()
     get placement () {
@@ -64,6 +71,8 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
     }
 
     @Input() delay: number = 200;
+
+    @Output() needReposition: EventEmitter<Object> = new EventEmitter();
 
     @ViewChild('content') content: ElementRef;
 
