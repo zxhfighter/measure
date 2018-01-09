@@ -38,8 +38,17 @@ import { Observable } from 'rxjs/Observable';
 export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
 
     /**
+     * 提示框宽度
+     */
+    @Input() nbWidth: number;
+
+     /**
+     * 提示框高度
+     */
+    @Input() nbHeight: number;
+
+    /**
      * 提示框的内容
-     *
      */
     @Input() nbTooltip: string | TemplateRef<any> = '';
 
@@ -192,6 +201,8 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         this.tiplayerInstance = componentRef.instance;
 
         const config = {
+            nbWidth: this.nbWidth,
+            nbHeight: this.nbHeight,
             trigger: this.trigger,
             hasArrow: this.hasArrow,
             embedded: this.embedded,
