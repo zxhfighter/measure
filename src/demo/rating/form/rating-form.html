@@ -1,0 +1,9 @@
+<form #form1="ngForm">
+    <nb-rating name="star" [ngModel]="ratingValue"></nb-rating>
+    <br> {{ form1.value | json }}
+</form>
+
+<form [formGroup]="myForm">
+    <nb-rating formControlName="star"></nb-rating>
+    <br> {{ myForm.value | json }}
+</form>
