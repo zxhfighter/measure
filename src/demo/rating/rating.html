@@ -1,0 +1,74 @@
+<h1 class="main-title">nb-rating</h1>
+
+<p class="type-desc">
+    <span>type</span>:
+    <span class="type-component">Component</span>
+</p>
+
+<p class="type-desc">
+    <span>selector</span>: <code>nb-rating</code>
+</p>
+
+<p class="type-desc">
+    <span>exportAs</span>: <code>nbRating</code>
+</p>
+
+<section>
+    <h3 class="section-title">Usage</h3>
+
+    <div class="code">
+        <nb-code-highlighter language="typescript" ngNonBindable>
+            import &#x7B;RatingModule&#x7D; from 'xdesign';
+        </nb-code-highlighter>
+    </div>
+</section>
+
+<h3 class="section-title">Examples</h3>
+
+<nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
+    <h3 nb-codebox-title>Rating Basic</h3>
+    <div nb-codebox-desc>
+        <p>1. <code>nb-rating</code>用于评分，拥有 <code>total</code>、 <code>value</code>、
+            <code>readonly</code>、 <code>disabled</code>等属性。</p>
+    </div>
+
+    <demo-rating-basic></demo-rating-basic>
+</nb-code-box>
+
+
+<nb-code-box [tsCode]="tsCodeTooltip" [htmlCode]="htmlCodeTooltip" [lessCode]="lessCodeTooltip">
+    <h3 nb-codebox-title>Tooltip</h3>
+    <div nb-codebox-desc>
+        <p>
+            可以结合 <code>showTip</code> 开启提示功能，提示的模板由 <code>tipTemplate</code> 属性提供，可以是一个字符串，或者是一个自定义函数。
+        </p>
+    </div>
+
+    <demo-rating-tooltip></demo-rating-tooltip>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeTheme" [htmlCode]="htmlCodeTheme" [lessCode]="lessCodeTheme">
+    <h3 nb-codebox-title>Themes</h3>
+    <div nb-codebox-desc>
+        <p>
+            可以使用 <code>theme</code> 属性来自定义样式。
+        </p>
+    </div>
+
+    <demo-rating-theme></demo-rating-theme>
+</nb-code-box>
+
+
+<nb-code-box [tsCode]="tsCodeForm" [htmlCode]="htmlCodeForm" [lessCode]="lessCodeForm">
+    <h3 nb-codebox-title>Forms</h3>
+    <div nb-codebox-desc>
+        <p>
+            可以和 Forms 和 ReactiveForms 无缝结合使用。
+        </p>
+    </div>
+
+    <demo-rating-form></demo-rating-form>
+</nb-code-box>
+
+<h3 class="section-title">API</h3>
+<!-- api(rating.html) -->

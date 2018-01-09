@@ -22,8 +22,8 @@ task('generate:component', sequenceTask(
     'generate:component:copy',
     'generate:component:update',
     'generate:componentless:update',
-    'generate:demo',
-    ':demo:update:html'
+    'generate:demo'
+    // ':demo:update:html'
 ));
 
 /**
