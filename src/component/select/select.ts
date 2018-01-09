@@ -41,7 +41,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @Output() onPanelShow: EventEmitter<Object> = new EventEmitter();
     @Output() onPanelHide: EventEmitter<Object> = new EventEmitter();
 
-    icon: string = 'fa-angle-down';
+    icon: string = 'icon-down';
     selectedData: SelectConfig;
     styles: OptionsStyles;
     protected expanded: boolean = false;
@@ -83,7 +83,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.toggleOverlay();
 
         this.expanded = !this.expanded;
-        this.icon = this.expanded ? 'fa-angle-up' : 'fa-angle-down';
+        this.icon = this.expanded ? 'icon-up' : 'icon-down';
         this.cd.markForCheck();
     }
 

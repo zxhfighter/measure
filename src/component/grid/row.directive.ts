@@ -9,7 +9,7 @@ export type NbType = 'flex' | null;
 })
 
 export class NbRowDirective implements OnInit {
-    _classList: Array<string> = [];
+    _classList: Array<any> = [];
     _el: HTMLElement;
     _prefixCls = 'nb-row';
     _gutter: number;

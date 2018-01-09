@@ -22,15 +22,20 @@
 
     &-headerbar {
 
+        .@{prefix}-dialog-title {
+            margin: 0;
+            float: left;
+        }
+
         .close {
-            position: absolute;
-            right: 10px;
-            top: 5px;
+            float: right;
         }
     }
 
+
     &-body {
         flex-grow: 1;
+        clear: both;
     }
 
     &-footer {
@@ -53,10 +58,6 @@
 
     &-footer-center {
         text-align: center;
-    }
-
-    &-title {
-        margin: 0;
     }
 }
 

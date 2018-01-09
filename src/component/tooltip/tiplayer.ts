@@ -52,6 +52,7 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
 
     @Output() needReposition: EventEmitter<Object> = new EventEmitter();
 
+
     @Input()
     get placement () {
         return this._placement;
@@ -59,7 +60,6 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
     set placement(data) {
         this._placement = data;
         this.firstPlacement = this._placement.split('-')[0];
-        this.cdRef.markForCheck();
     }
 
     @Input() delay: number = 200;

@@ -1,5 +1,5 @@
 import { Directive, Input, OnInit, ElementRef, HostBinding,
-    OnChanges, Renderer2, SimpleChange, Host, Optional } from '@angular/core';
+    OnChanges, Renderer2, Host, Optional } from '@angular/core';
 import { NbRowDirective } from './row.directive';
 
 export abstract class EmbeddedProperty {
@@ -15,7 +15,7 @@ export abstract class EmbeddedProperty {
 })
 
 export class NbColDirective implements OnInit, OnChanges {
-    _classList: Array<string> = [];
+    _classList: Array<any> = [];
     _el: HTMLElement;
     _prefixCls = 'nb-col';
 
@@ -63,7 +63,7 @@ export class NbColDirective implements OnInit, OnChanges {
 
     generateClass() {
         const listOfSizeInputName = ['nbXs', 'nbSm', 'nbMd', 'nbLg', 'nbXl'];
-        const listOfClassName = [];
+        const listOfClassName: any = [];
         listOfSizeInputName.forEach(name => {
             const sizeName = name.replace('nb', '').toLowerCase();
             if ((typeof(this[name]) === 'number') || (typeof (this[name]) === 'string')) {
@@ -79,7 +79,7 @@ export class NbColDirective implements OnInit, OnChanges {
         return listOfClassName;
     }
 
-    ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+    ngOnChanges() {
         this.setClassMap();
     }
 

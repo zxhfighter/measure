@@ -1,8 +1,8 @@
 <button nbOverlayOrigin nb-button
     #origin="nbOverlayOrigin"
-    type="button" theme="{{theme}}" size="{{size}}" (click)="onToggle($event)">
+    type="button" theme="{{theme}}" size="{{size}}" (click)="onToggle()">
         <span class="nb-select-label">{{ selectedData.label }}</span>
-        <i class="nb-select-icon fa {{ icon }}"></i>
+        <i class="nb-select-icon icon iconfont {{ icon }}"></i>
 </button>
 
 <nb-overlay #overlay
