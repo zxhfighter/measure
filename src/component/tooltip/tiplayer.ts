@@ -34,6 +34,7 @@ import { Placement } from '../util/position';
     exportAs: 'nbTiplayer',
     host: {
         'class': 'nb-widget nb-tiplayer',
+        '[class.invisible]': '!visibility',
         '[class.nb-tiplayer-embedded]': 'embedded',
         '(mouseenter)': 'this.onMouseEnter()',
         '(mouseleave)': 'this.onMouseLeave()'
