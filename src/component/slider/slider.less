@@ -1,3 +1,5 @@
+@nb-slider-tracker-background: #3d80fc;
+
 .@{prefix}-slider {
     position: relative;
     width: 200px;
@@ -8,7 +10,7 @@
 
     &-tracker {
         height: 100%;
-        background: #3d80fc;
+        background: @nb-slider-tracker-background;
         border-radius: 10px;
     }
 
@@ -19,7 +21,7 @@
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        border: 1px solid #3d80fc;
+        border: 1px solid @nb-slider-tracker-background;
         background-color: #fff;
         z-index: 2;
     }

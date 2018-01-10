@@ -1,10 +1,15 @@
+@nb-chips-item-background: #eee;
+@nb-chips-item-color: @text-color;
+@nb-chips-border: #dbdbdb;
+@nb-chips-border-hover: #a8a8a8;
+
 .@{prefix}-chips {
     display: block;
 
     &-wrap {
     	width: 389px;
     	min-height: 36px;
-	    border: 1px solid #dbdbdb;
+	    border: 1px solid @nb-chips-border;
 	}
 
 	&-wrap:not(.@{prefix}-chips-disabled) {
@@ -12,7 +17,7 @@
 			cursor: default;
 		}
 		&:hover {
-			border-color: #a8a8a8;
+			border-color: @nb-chips-border-hover;
 			cursor: text;
 		}
 	}
@@ -36,7 +41,8 @@
 			vertical-align: middle;
 		}
 		li.@{prefix}-chips-label {
-			background: #eee;
+			color: @nb-chips-item-color;
+			background: @nb-chips-item-background;
 			height: 24px;
 			margin: 5px 0 5px 10px;
 			line-height: 24px;

@@ -1,4 +1,4 @@
-<input 
+<input
     nbInput
     theme="default"
     #searchInput
@@ -17,7 +17,7 @@
             *ngIf="searchValue.length > 0"
             nb-button
             theme="transparent"
-            class="nb-clear iconfont icon-close"
+            class="nb-clear"
             (click)="clearSearch(searchInput)"
             [size]="_sizeBtn"
             [disabled]="disabled">
@@ -27,7 +27,7 @@
             *ngIf="type==='ico'"
             nb-button
             theme="transparent"
-            class="nb-search iconfont icon-search"
+            class="nb-search"
             (click)="search()"
             [size]="_sizeBtn"
             [disabled]="disabled">
