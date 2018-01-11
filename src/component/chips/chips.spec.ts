@@ -1,41 +1,42 @@
-import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
-import { ChipsModule } from './index';
-import { ButtonModule, ButtonComponent } from '../button';
+import { TestBed, ComponentFixture, inject, async } from '@angular/core/testing';
+import { ChipsModule } from './chips.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Component } from '@angular/core';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, DebugElement, Component } from '@angular/core';
+import { ChipsComponent } from '../index';
+import { By } from '@angular/platform-browser';
 
-describe('nb-accordion', () => {
+@Component({
+    template: '<nb-chips [value]=value></nb-chips>'
+})
+class ChipsTestComponent {
+    value = ['one', 'two'];
+}
+
+describe('nb-chips', () => {
+    let fixture: ComponentFixture<ChipsTestComponent>;
+    let component: ChipsTestComponent;
+    let de: Array<DebugElement>;
+    let el0: HTMLElement;
+    let el1: HTMLElement;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [ChipsTestComponent],
-            imports: [ChipsModule, BrowserAnimationsModule],
-            schemas: [NO_ERRORS_SCHEMA]
+            imports: [ChipsModule]
         }).compileComponents();
+
+        fixture = TestBed.createComponent(ChipsTestComponent);
+        component = fixture.componentInstance;
+        console.log(fixture.debugElement.nativeElement);
+
+        fixture.detectChanges();
+        de = fixture.debugElement.queryAll(By.css('.nb-chips-label'));
+        el0 = de[0].nativeElement;
+        el1 = de[1].nativeElement;
     });
 
-    it('should have an opening panel', () => {
-        // const fixture = TestBed.createComponent(ChipsTestComponent);
-        // fixture.detectChanges();
-
-        // const rootElement = fixture.nativeElement;
-        // const panels = getPanels(rootElement);
-
-        // const result = panels.find(panel => panel.classList.contains('nb-accordion-panel-active'));
-        // expect(result).not.toBeUndefined();
+    it('should have default chips when value is not a empty array', () => {
+        expect(el0.textContent!.trim()).toBe(component.value[0]);
+        expect(el1.textContent!.trim()).toBe(component.value[1]);
     });
 });
-
-@Component({
-    selector: 'nb-chips-test',
-    template: '<chips [value]=value></chips>'
-})
-
-class ChipsTestComponent {
-    collapsible: boolean = true;
-
-    hoverable: boolean = true;
-
-    value = ['one', 'two'];
-}
