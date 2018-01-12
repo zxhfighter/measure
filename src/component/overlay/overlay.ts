@@ -41,9 +41,19 @@ import { OverlayOriginDirective } from './overlay-origin.directive';
 })
 export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    /** the event emitted when the overlay is hide */
-    @Output() onHide: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
+    /**
+     * 弹层打开时事件 emit
+     */
+    @Output() openHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
 
+    /**
+     * 弹层关闭时事件 emit
+     */
+    @Output() closeHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
+
+    /**
+     * 设置 attach 定位的源对象
+     */
     @Input() origin: OverlayOriginDirective;
 
     /**
@@ -80,7 +90,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
         this._documentClickListener = this.render.listen('document', 'click', () => {
             if (this.visibility) {
                 this.visibility = false;
-                this.onHide.emit(this);
+                this.closeHandler.emit(this);
                 this.cdRef.markForCheck();
             }
         });
@@ -125,6 +135,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.overlayPositionService.updatePosition(this.positionStategy);
             }
             this.visibility = true;
+            this.openHandler.emit(this);
             this.cdRef.markForCheck();
         }, this.delay);
     }
@@ -136,7 +147,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this._hideTimeoutId = window.setTimeout(() => {
             this.visibility = false;
-            this.onHide.emit(this);
+            this.closeHandler.emit(this);
             this.cdRef.markForCheck();
         }, this.delay);
     }

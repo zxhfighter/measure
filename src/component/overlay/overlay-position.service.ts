@@ -94,8 +94,10 @@ export class OverlayPositionService {
     }
 
     subscribeWindowEvent(positionStrategy) {
-        this._resizeSubscription.unsubscribe();
-        this._resizeSubscription = this._viewportRuler.change().subscribe(() => this.updatePosition(positionStrategy));
+        // 不能保存到this上，否则select组件的demo上只定位最后一个
+        // 存疑：注入到overlay构造函数中，为什么会共用一个
+        // this._resizeSubscription.unsubscribe();
+        this._viewportRuler.change().subscribe(() => this.updatePosition(positionStrategy));
     }
 
     splitPlacement(placement: Placement) {
@@ -121,9 +123,11 @@ export class OverlayPositionService {
     connectedPositionRevertToPlacement(lastConnectedPosition: ConnectionPositionPair) {
         // 相异的方向为主方向
         if (lastConnectedPosition.targetX !== lastConnectedPosition.overlayX) {
+            this.overlayComponent.fallbackFirstPlacement = lastConnectedPosition.targetX;
             this.overlayComponent.placement = lastConnectedPosition.targetX + '-' + lastConnectedPosition.targetY;
         }
         else if (lastConnectedPosition.targetY !== lastConnectedPosition.overlayY) {
+            this.overlayComponent.fallbackFirstPlacement = lastConnectedPosition.targetY;
             this.overlayComponent.placement = lastConnectedPosition.targetY + '-' + lastConnectedPosition.targetX;
         }
     }

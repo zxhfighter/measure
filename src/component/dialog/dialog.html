@@ -1,4 +1,4 @@
-<nb-overlay #overlay class="nb-dialog-box">
+<div class="nb-dialog-box" [class.invisible]="!visibility">
 
     <div class="nb-dialog-mask" *ngIf="modalable"></div>
 
@@ -8,7 +8,7 @@
             <h4 class="nb-dialog-title">
                 <ng-content select="nb-dialog-header"></ng-content>
             </h4>
-            <button *ngIf="closable" type="button" class="close" (click)="close()">
+            <button *ngIf="closable" type="button" class="close" (click)="hide()">
                 <span>&times;</span>
             </button>
         </div>
@@ -23,10 +23,10 @@
             </div>
             <ng-container *ngIf="ref.children.length == 0">
                 <button nb-button (click)="confirm()">确定</button>
-                <button theme="default" nb-button (click)="close()">取消</button>
+                <button theme="default" nb-button (click)="hide()">取消</button>
             </ng-container>
         </div>
 
     </div>
 
-</nb-overlay>
+</div>
