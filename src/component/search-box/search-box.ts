@@ -109,7 +109,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     /**
      * search-box mode,default 'keyup',have two mode: 'keyup','focus'.
-     * * @default 'keyup'
+     * @default 'keyup'
      */
     @Input() mode: string = 'keyup';
 
@@ -378,50 +378,49 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      * Now `ngModel` binding is not supported in multiple selection mode.
      */
     private _onModelChange: Function;
-    
-        /**
-         * Registers a callback that will be triggered when the value has changed.
-         * Implemented as part of ControlValueAccessor.
-         * @param fn On change callback function.
-         */
-        registerOnChange(fn: Function) {
-            this._onModelChange = fn;
+    /**
+     * Registers a callback that will be triggered when the value has changed.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On change callback function.
+     */
+    registerOnChange(fn: Function) {
+        this._onModelChange = fn;
+    }
+
+    /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
+    private _onTouch: Function;
+
+    /**
+     * Registers a callback that will be triggered when the control has been touched.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On touch callback function.
+     */
+    registerOnTouched(fn: Function) {
+        this._onTouch = fn;
+    }
+
+    /**
+     * set text-line model value
+     * @docs-private
+     */
+    writeValue(value: any) {
+        this.value = value;
+        this._cd.markForCheck();
+    }
+
+    /**
+     * update form model value and mark for check
+     * @docs-private
+     */
+    _markForCheck() {
+        if (this._onModelChange) {
+            this._onModelChange(this.value);
         }
-    
-        /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
-        private _onTouch: Function;
-    
-        /**
-         * Registers a callback that will be triggered when the control has been touched.
-         * Implemented as part of ControlValueAccessor.
-         * @param fn On touch callback function.
-         */
-        registerOnTouched(fn: Function) {
-            this._onTouch = fn;
+
+        if (this._onTouch) {
+            this._onTouch(this.value);
         }
-    
-        /**
-         * set text-line model value
-         * @docs-private
-         */
-        writeValue(value: any) {
-            this.value = value;
-            this._cd.markForCheck();
-        }
-    
-        /**
-         * update form model value and mark for check
-         * @docs-private
-         */
-        _markForCheck() {
-            if (this._onModelChange) {
-                this._onModelChange(this.value);
-            }
-    
-            if (this._onTouch) {
-                this._onTouch(this.value);
-            }
-    
-            this._cd.markForCheck();
-        }
+
+        this._cd.markForCheck();
+    }
 }

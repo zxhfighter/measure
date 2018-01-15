@@ -91,7 +91,6 @@ export class TableSortDemo implements OnInit {
 
         const page = params.page;
         const pageSize = params.pageSize;
-        debugger
         // filter
         if (params.filterMap.name) {
             data = data.filter(v => v.name.indexOf(params.filterMap.name) !== -1);
