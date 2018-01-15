@@ -7,14 +7,14 @@
     [size]="_sizeIpt"
     [placeholder]="placeholder"
     [disabled]="disabled"
-    [(ngModel)]="searchValue"
+    [(ngModel)]="value"
     (focus)="onFocus(searchInput)"
     (blur)="onBlur(searchInput)"
     (keyup)="onInputValue()">
 <div class="nb-search-box-operate">
     <div class="nb-search-box-icons">
         <button
-            *ngIf="searchValue.length > 0"
+            *ngIf="value.length > 0"
             nb-button
             theme="transparent"
             class="nb-clear iconfont icon-close"
