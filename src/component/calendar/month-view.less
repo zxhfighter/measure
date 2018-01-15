@@ -1,3 +1,11 @@
+@nb-monthview-item-background: #fff;
+@nb-monthview-item-background-hover: #e8f2fe;
+@nb-monthview-item-background-selected: #c3e0fe;
+@nb-monthview-item-background-selected-hover: #afd5fd;
+
+@nb-monthview-headitem-background: #f7f7f7;
+@nb-monthview-headitem-color: #999;
+
 .@{prefix}-month-view {
     display: inline-block;
 
@@ -11,8 +19,8 @@
         }
 
         .@{prefix}-month-view-th {
-            color: #999;
-            background-color: #f7f7f7;
+            color: @nb-monthview-headitem-color;
+            background-color: @nb-monthview-headitem-background;
             font-weight: normal;
         }
 
@@ -33,10 +41,10 @@
             }
 
             &.selected {
-                background-color: #c3e0fe;
+                background-color: @nb-monthview-item-background-selected;
 
                 &:hover:not(.disabled) {
-                    background-color: #afd5fd;
+                    background-color: @nb-monthview-item-background-selected-hover;
                 }
             }
 
@@ -51,7 +59,7 @@
             }
 
             &:hover:not(.disabled) {
-                background-color: #e8f2fe;
+                background-color: @nb-monthview-item-background-hover;
             }
         }
     }

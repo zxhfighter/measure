@@ -1,3 +1,6 @@
+@nb-select-selected-background: #e7e7e7;
+@nb-select-selected-color: @text-color-dark;
+
 .@{prefix}-select {
     display: inline-block;
     position: relative;
@@ -22,8 +25,8 @@
         margin: 3px 0;
 
         .active {
-            background-color: #e7e7e7;
-            color: @text-color-dark;
+            background-color: @nb-select-selected-background;
+            color: @nb-select-selected-color;
             // font-weight: bold;
         }
     }

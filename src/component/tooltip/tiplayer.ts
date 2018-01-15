@@ -34,9 +34,11 @@ import { Placement } from '../util/position';
     exportAs: 'nbTiplayer',
     host: {
         'class': 'nb-widget nb-tiplayer',
+        '[class.invisible]': '!visibility',
         '[class.nb-tiplayer-embedded]': 'embedded',
         '(mouseenter)': 'this.onMouseEnter()',
-        '(mouseleave)': 'this.onMouseLeave()'
+        '(mouseleave)': 'this.onMouseLeave()',
+        '(click)': '_preventDefault($event)',
     }
 })
 
@@ -111,5 +113,9 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
 
     isVisible(): boolean {
         return this.visibility;
+    }
+
+    _preventDefault(event: MouseEvent) {
+        event.stopPropagation();
     }
 }

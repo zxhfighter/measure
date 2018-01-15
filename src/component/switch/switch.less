@@ -1,3 +1,8 @@
+@nb-switch-track-background: #bbb;
+@nb-switch-track-background-checked: @brand-primary;
+@nb-switch-track-background-checked-disabled: #c3e0fe;
+@nb-switch-bar-background: #fff;
+
 .@{prefix}-switch {
     display: inline-block;
 
@@ -17,7 +22,7 @@
                 }
 
                 &.checked {
-                    background-color: #c3e0fe;
+                    background-color: @nb-switch-track-background-checked-disabled;
                 }
             }
         }
@@ -30,7 +35,7 @@
         width: 50px;
         height: 24px;
         border-radius: 24px;
-        background-color: #bbb;
+        background-color: @nb-switch-track-background;
         transition: background-color 300ms ease-in;
 
         .@{prefix}-switch-inner {
@@ -41,12 +46,12 @@
             top: 2px;
             left: 2px;
             transform: translate3d(0, 0, 0);
-            background-color: #fff;
+            background-color: @nb-switch-bar-background;
             transition: transform 80ms linear;
         }
 
         &.checked {
-            background-color: @brand-primary;
+            background-color: @nb-switch-track-background-checked;
 
             .@{prefix}-switch-inner {
                 transform: translate3d(26px, 0, 0);

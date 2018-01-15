@@ -18,7 +18,7 @@
     }
 }
 .@{prefix}-tiplayer-box {
-    width: 276px;
+    max-width: 276px;
     background: @tiplayer-bgcolor-default;
     box-shadow: 0 0 4px 0 @tiplayer-box-shadow;
     border-radius: @border-radius-small;
@@ -114,19 +114,19 @@
         }
     }
 
-    .@{prefix}-tiplayer-bottom {
+    &.@{prefix}-tiplayer-bottom {
         .@{prefix}-tiplayer-arrow {
             .arrow(4px, @nb-white, top, 1px, rgba(0, 0, 0, 0.1));
         }
     }
 
-    .@{prefix}-tiplayer-right {
+    &.@{prefix}-tiplayer-right {
         .@{prefix}-tiplayer-arrow {
             .arrow(4px, @nb-white, left, 1px, rgba(0, 0, 0, 0.1));
         }
     }
 
-    .@{prefix}-tiplayer-left {
+    &.@{prefix}-tiplayer-left {
         .@{prefix}-tiplayer-arrow {
             .arrow(4px, @nb-white, right, 1px, rgba(0, 0, 0, 0.1));
         }

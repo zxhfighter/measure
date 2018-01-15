@@ -1,10 +1,16 @@
+@nb-button-default-background-color: #f7f7f7;
+@nb-button-default-background-color-active: #e7e7e7;
+
+@nb-button-neutral-background-color: #e7e7e7;
+@nb-button-neutral-background-color-active: #dbdbdb;
+
 // --- layout ---
 .@{prefix}-button {
     border-radius: @border-radius;
     user-select: none;
     padding: 0 20px;
     box-sizing: border-box;
-    border: 1px solid #dbdbdb;
+    border: 1px solid @border-color;
     cursor: pointer;
 
     &:focus,
@@ -62,7 +68,7 @@ a.@{prefix}-button-size-xs {
 
 // themes
 .@{prefix}-button-theme-primary {
-    color: #fff;
+    color: @nb-white;
     background-color: @brand-primary;
     border-color: @brand-primary;
 
@@ -76,16 +82,16 @@ a.@{prefix}-button-size-xs {
 }
 
 .@{prefix}-button-theme-default {
-    background-color: #fff;
-    border-color: #dbdbdb;
+    background-color: @nb-white;
+    border-color: @border-color;
 
     &:hover {
-        background-color: #f7f7f7;
+        background-color: @nb-button-default-background-color;
         color: @text-color-dark;
     }
 
     &:active {
-        background-color: #e7e7e7;
+        background-color: @nb-button-default-background-color-active;
         color: @text-color-dark;
     }
 
@@ -99,12 +105,12 @@ a.@{prefix}-button-size-xs {
     border-color: #eee;
 
     &:hover {
-        background-color: #e7e7e7;
+        background-color: @nb-button-neutral-background-color;
         color: @text-color-dark;
     }
 
     &:active {
-        background-color: #dbdbdb;
+        background-color: @nb-button-neutral-background-color-active;
         color: @text-color-dark;
     }
 
@@ -120,7 +126,7 @@ a.@{prefix}-button-size-xs {
 
 .@{prefix}-button-theme-yellow {
     background-color: #ff0;
-    color: #000;
+    color: @nb-black;
     border-color: #ff0;
 
     &:hover {
@@ -139,7 +145,7 @@ a.@{prefix}-button-size-xs {
     border-radius: 48px;
 
     font-weight: 600;
-    color: #fff;
+    color: @nb-white;
     background-color: @brand-primary;
     border-color: @brand-primary;
 

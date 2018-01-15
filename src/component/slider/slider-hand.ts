@@ -1,7 +1,14 @@
 import {
-    Component, Input, Output, EventEmitter,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy,
-    ViewChild, Renderer2, ElementRef,
+    Component,
+    Input,
+    Output,
+    EventEmitter,
+    OnInit,
+    ViewEncapsulation,
+    ChangeDetectionStrategy,
+    ViewChild,
+    Renderer2,
+    ElementRef,
     SimpleChanges
 } from '@angular/core';
 
@@ -9,8 +16,9 @@ import { fromEvent } from 'rxjs/observable/fromEvent';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { SliderService } from './slider.service';
-import { TooltipDirective } from '../../component/tooltip';
+import { TooltipDirective } from '../index';
 import { OnChange } from '../core/decorators';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'nb-slider-hand',
@@ -24,7 +32,6 @@ import { OnChange } from '../core/decorators';
     },
     exportAs: 'nbSliderHand'
 })
-
 export class SliderHandComponent implements OnInit {
     /**
      * The range of dragging, width or height of the component
@@ -74,10 +81,7 @@ export class SliderHandComponent implements OnInit {
 
     @ViewChild(TooltipDirective) tooltip: TooltipDirective;
 
-    constructor(
-        private render: Renderer2,
-        private service: SliderService
-    ) {
+    constructor(private render: Renderer2, private service: SliderService) {
         this.render = render;
     }
 
@@ -103,28 +107,32 @@ export class SliderHandComponent implements OnInit {
         const hand = this._hand.nativeElement as HTMLElement;
         const mouseDown$ = fromEvent(hand, 'mousedown');
 
-        mouseDown$.pipe(
-            map((event: MouseEvent) => {
-                const target = event.target as HTMLElement;
+        mouseDown$
+            .pipe(
+                map((event: MouseEvent) => {
+                    const target = event.target as HTMLElement;
 
-                let initPos = me.orientation
-                    ? parseInt(target.style.left as string)
-                    : parseInt(target.style.bottom as string);
-                return {
-                    // 返回mousedown时的hand位置
-                    initPos,
-                    event
-                };
-            }),
-            switchMap(initState => me.moveUntilUp(initState))
-        ).subscribe(pos => me.updateHand(pos));
+                    let initPos = me.orientation
+                        ? parseInt(target.style.left as string)
+                        : parseInt(target.style.bottom as string);
+                    return {
+                        // 返回mousedown时的hand位置
+                        initPos,
+                        event
+                    };
+                }),
+                switchMap(initState => {
+                    return me.moveUntilUp(initState);
+                })
+            )
+            .subscribe(pos => me.updateHand(pos));
     }
 
     /**
      * mousemove事件流
      * @param initialState mousedown时的位置信息
      */
-    moveUntilUp(initialState) {
+    moveUntilUp(initialState): Observable<object> {
         const me = this;
         const mouseMove$ = fromEvent(document, 'mousemove');
         const mouseUp$ = fromEvent(document, 'mouseup');
@@ -134,26 +142,28 @@ export class SliderHandComponent implements OnInit {
         const { clientX, clientY } = initialState.event;
         const target = initialState.event.target as HTMLElement;
         const initPos = initialState.initPos;
-        return mouseMove$.pipe(map((moveEvent: MouseEvent) => {
-            // 鼠标移动的距离
-            let move: number;
-            if (this.orientation) {
-                move = moveEvent.clientX - clientX;
-            }
-            else {
-                move = clientY - moveEvent.clientY;
-            }
-            let endPos = move / me.limitMove * 100 + initPos;
+        return mouseMove$.pipe(
+            map((moveEvent: MouseEvent) => {
+                // 鼠标移动的距离
+                let move: number;
+                if (this.orientation) {
+                    move = moveEvent.clientX - clientX;
+                } else {
+                    move = clientY - moveEvent.clientY;
+                }
+                let endPos = move / me.limitMove * 100 + initPos;
 
-            return {
-                // hand的新位置
-                endPos,
-                // hand每一次移动前的位置
-                initPos: me.orientation
-                    ? parseFloat(target.style.left as string)
-                    : parseFloat(target.style.bottom as string)
-            };
-        }), takeUntil(mouseUp$));
+                return {
+                    // hand的新位置
+                    endPos,
+                    // hand每一次移动前的位置
+                    initPos: me.orientation
+                        ? parseFloat(target.style.left as string)
+                        : parseFloat(target.style.bottom as string)
+                };
+            }),
+            takeUntil(mouseUp$)
+        );
     }
 
     /**
@@ -176,14 +186,16 @@ export class SliderHandComponent implements OnInit {
         // 重置hand
         if (Math.abs(Math.abs(move) - step) < 0) {
             return;
-        }
-        else {
+        } else {
             move = Math.round(move / step) * step;
         }
         endPos = initPos + move;
         endPos = endPos > 0 ? endPos : 0;
         me.updateStyle(endPos);
-        me.change.emit({ endPos, initPos });
+        me.change.emit({
+            endPos,
+            initPos
+        });
     }
 
     /**

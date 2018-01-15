@@ -1,7 +1,11 @@
+@nb-schedule-item-selected-background: #c4e0fe;
+@nb-schedule-item-background: #fff;
+@nb-schedule-item-background-weekday: #f1fff8;
+@nb-schedule-item-background-night: #f1f8ff;
+
 .@{prefix}-schedule {
     display: block;
     width: 653px;
-    color: #f00;
     border: 1px solid #eee;
     .hour-select {
         padding: 10px 20px;
@@ -25,13 +29,13 @@
                 width: 8px;
                 height: 8px;
                 content: '';
-                background-color: #c4e0fe;
+                background-color: @nb-schedule-item-selected-background;
             }
         }
         li:last-child {
             &::before {
                 border: 1px solid @nb-gray-5;
-                background-color: #f1fff8;
+                background-color: @nb-schedule-item-background-weekday;
             }
         }
         &-label {
@@ -87,7 +91,7 @@
         td:nth-last-child(3),
         td:nth-last-child(4) {
             button {
-                background-color: #f1f8ff;
+                background-color: @nb-schedule-item-background-night;
             }
 
         }
@@ -114,16 +118,16 @@
             /* Safari 4.0 - 8.0 */
             @-webkit-keyframes example {
                 from {background-color: #fff;}
-                to {background-color: #c4e0fe;}
+                to {background-color: @nb-schedule-item-selected-background;}
             }
 
             /* Standard syntax */
             @keyframes example {
                 from {background-color: #fff;}
-                to {background-color: #c4e0fe;}
+                to {background-color: @nb-schedule-item-selected-background;}
             }
             button.selected {
-                background-color: #c4e0fe;
+                background-color: @nb-schedule-item-selected-background;
                 -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
                 -webkit-animation-duration: 200ms; /* Safari 4.0 - 8.0 */
                 animation-name: example;

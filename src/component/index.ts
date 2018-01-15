@@ -35,3 +35,4 @@ export * from './transfer/index';
 export * from './form/index';
 export * from './grid/index';
 export * from './rating/index';
+export * from './slider/index';

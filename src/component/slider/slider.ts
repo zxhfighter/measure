@@ -12,7 +12,6 @@ import { Hand, Info, Scope, CoreValue } from './slider.config';
 import { SliderService } from './slider.service';
 import { TooltipDirective } from '../../component/tooltip/tooltip';
 
-import * as _ from 'lodash';
 import { OnChange } from '../core/decorators';
 
 /*
@@ -195,7 +194,6 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
 
     ngAfterViewInit() {
         setTimeout(() => {
-            // this.sliderHands = this.afterView();
             this.afterView();
         }, 0);
     }
@@ -206,7 +204,10 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
      * @docs-private
      */
     afterView() {
-        this.sliderHands = _.clone(this._hands);
+        this.sliderHands = Object.assign({}, {
+            first: this._hands.first,
+            last: this._hands.last
+        });
     }
 
     /**

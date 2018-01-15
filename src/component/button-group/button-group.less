@@ -1,3 +1,8 @@
+@nb-togglebutton-background: #fff;
+@nb-togglebutton-background-checked: #e7e7e7;
+@nb-togglebutton-color: @text-color;
+@nb-togglebutton-color-checked: @text-color-dark;
+
 // button-toggle
 .@{prefix}-button-toggle {
     display: inline-block;
@@ -11,12 +16,12 @@
     line-height: 36px;
     font-size: 14px;
 
-    background-color: #fff;
+    background-color: @nb-togglebutton-background;
     cursor: pointer;
 
     &-checked {
-        background-color: #e7e7e7;
-        color: @text-color-dark;
+        background-color: @nb-togglebutton-background-checked;
+        color: @nb-togglebutton-color-checked;
     }
 
     &-disabled {
