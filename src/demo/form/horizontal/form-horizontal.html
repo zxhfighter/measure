@@ -1,12 +1,12 @@
 <form nb-form [nbLayout]="'horizontal'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>推广计划名称</label>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control nbHasFeedback [nbValidateStatus]="getFormControl('planName')">
                     <input nbInput formControlName="planName">
                     <div nb-form-explain *ngIf="getFormControl('planName').dirty&&getFormControl('planName').hasError('required')">推广计划名称不能为空</div>
@@ -16,13 +16,13 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>关键词</label>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control nbHasFeedback [nbValidateStatus]="getFormControl('keyword')">
                     <nb-chips formControlName="keyword"></nb-chips>
                     <div nb-form-explain *ngIf="getFormControl('keyword').dirty&&getFormControl('keyword').hasError('required')">关键词不能为空</div>
@@ -32,13 +32,13 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>计费方式</label>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control [nbValidateStatus]="getFormControl('chargeType')">
                     <nb-boxgroup type="radio" formControlName="chargeType">
                         <ng-container *ngFor="let item of chargeOpts">
@@ -51,14 +51,14 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>关联订单</label>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div nb-form-control nbHasFeedback [nbValidateStatus]="getFormControl('orderId')">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
+                <div nb-form-control [nbValidateStatus]="getFormControl('orderId')">
                     <nb-select formControlName="orderId" [datasource]="orderData" [searchable]="true"
                                [defaultLabel]="'请选择订单'"></nb-select>
                 </div>
@@ -67,13 +67,13 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>单元价格</label>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control [nbValidateStatus]="getFormControl('price')">
                     <nb-spinner formControlName="price"></nb-spinner>
                     <div nb-form-explain *ngIf="getFormControl('price').dirty&&getFormControl('price').hasError('min')">请输入大于0的数字</div>
@@ -83,13 +83,13 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>选择性别</label>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control [nbValidateStatus]="getFormControl('gender')">
                     <nb-boxgroup type="checkbox" formControlName="gender">
                         <ng-container *ngFor="let item of genderOpts">
@@ -102,13 +102,13 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>自动下线</label>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control [nbValidateStatus]="getFormControl('autoOffline')">
                     <nb-switch formControlName="autoOffline"></nb-switch>
                 </div>
@@ -117,13 +117,13 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>创意类型</label>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control [nbValidateStatus]="getFormControl('creativeType')">
                     <nb-button-group type="radio" formControlName="creativeType">
                         <ng-container *ngFor="let item of creativeOpts">
@@ -136,13 +136,13 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="4">
                 <div nb-form-label>
                     <label nb-form-required>备注</label>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control [nbValidateStatus]="getFormControl('remark')">
                     <textarea nbTextarea theme="default" formControlName="remark">
     </textarea>
@@ -153,8 +153,8 @@
     </div>
 
     <div nb-form-item>
-        <div class="row">
-            <div class="col-lg-5 col-lg-offset-2">
+        <div nbRow>
+            <div nbCol [nbSpan]="6" [nbOffset]="5">
                 <button nb-button [disabled]="!validateForm.valid" theme="primary">提交</button>
             </div>
         </div>
