@@ -33,7 +33,7 @@ const TEXTLINE_VALUE_ACCESSOR = {
 @Component({
     selector: 'nb-text-line',
     templateUrl: './text-line.html',
-    encapsulation: ViewEncapsulation.None,
+    encapsulation: ViewEncapsulation.Emulated,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     providers: [TEXTLINE_VALUE_ACCESSOR],
