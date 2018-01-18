@@ -22,6 +22,18 @@ suggest：
     </nb-search-box>
 </p>
 
+<p>
+    <nb-search-box 
+        placeholder="联想搜索" 
+        isSuggestion="true" 
+        [mode]='mode'
+        (onSearchSuggestion)="searchSuggestion($event)" 
+        [suggestionValue]="suggestionValue"
+        (onSearch)="search($event)" 
+        size="default">
+    </nb-search-box>
+</p>
+
 no suggest：
 <br>
 <p>

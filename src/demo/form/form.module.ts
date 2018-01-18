@@ -14,6 +14,7 @@ import { SelectModule } from '../../component/select';
 import { ChipsModule } from '../../component/chips';
 import { SpinnerModule } from '../../component/spinner';
 import { TextareaModule } from '../../component/textarea';
+import { GridModule } from '../../component/grid';
 
 import { FormDemo } from './form';
 import { FormInlineDemo } from './inline/form-inline';
@@ -36,7 +37,8 @@ import { FormHorizontalDemo } from './horizontal/form-horizontal';
         SelectModule,
         ChipsModule,
         SpinnerModule,
-        TextareaModule
+        TextareaModule,
+        GridModule
     ],
     declarations: [
         FormDemo,

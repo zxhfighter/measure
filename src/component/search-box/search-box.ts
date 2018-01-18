@@ -1,15 +1,22 @@
 import {
     Component,
+    ChangeDetectorRef,
     Input,
     Output,
     EventEmitter,
+    forwardRef,
     OnInit,
     ViewEncapsulation,
+    ViewChild,
     ChangeDetectionStrategy,
     OnDestroy,
     ElementRef,
     NgZone
 } from '@angular/core';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { fromEvent } from 'rxjs/observable/fromEvent';
@@ -26,10 +33,21 @@ export type SEARCH_TYPE = 'ico' | 'btn' | string;
 export type IS_SUGGESTION = 'true' | 'false';
 
 /** Time in ms to throttle the resize|scroll events by default. */
-export const DEFAULT_DELAY_TIME = 50;
+export const DEFAULT_DELAY_TIME = 100;
 
 /** default search-box size types */
 export type SIZE = 'long' | 'default' | 'short' | string;
+
+/*
+ * Provider Expression that allows component to register as a ControlValueAccessor.
+ * This allows it to support [(ngModel)].
+ * @docs-private
+ */
+const SEARCHBOX_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => SearchBoxComponent),
+    multi: true
+};
 
 @Component({
     selector: 'nb-search-box',
@@ -37,6 +55,7 @@ export type SIZE = 'long' | 'default' | 'short' | string;
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
+    providers: [SEARCHBOX_VALUE_ACCESSOR],
     host: {
         'class': 'nb-widget nb-search-box',
         '[class.nb-search-box-disabled]': 'disabled',
@@ -89,10 +108,16 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     @Input() disabled: boolean = false;
 
     /**
+     * search-box mode,default 'keyup',have two mode: 'keyup','focus'.
+     * @default 'keyup'
+     */
+    @Input() mode: string = 'keyup';
+
+    /**
      * search-box value
      * @default ''
      */
-    @Input() searchValue: string = '';
+    @Input() value: string = '';
 
     /**
      * search-box suggest search value
@@ -136,7 +161,22 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      */
     _sizeBtn = 'default';
 
+    /**
+     * input blur event
+     * @docs-private
+     */
+    _inputBlur: Observable<Event>;
+
+    /**
+     * 计时器
+     * @docs-private
+     */
+    _timer = Subscription.EMPTY;
+
+    @ViewChild('searchInput') searchInput: ElementRef;
+
     constructor(
+        private _cd: ChangeDetectorRef,
         private el: ElementRef,
         private ngZone: NgZone
     ) {
@@ -146,9 +186,17 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        let self = this;
         if (this.isSuggestion !== 'false') {
+            // window resize or scroll
             this._resizeSubscription = this.change().subscribe(() => this.positionSuggestionLayer(this));
+
+            // // suggestionLayer close timeout
+            let searchIpt = this.searchInput.nativeElement;
+            this._inputBlur = fromEvent(searchIpt, 'blur');
+            this._timer = this.blurInput().subscribe(() => this.closeSuggestionLayer(this));
         }
+
         switch (this.size) {
             case 'small':
                 this._sizeIpt = 'short-middle';
@@ -162,11 +210,13 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
                 this._sizeIpt = 'default';
                 this._sizeBtn = 'default';
         }
+
         this.setClass();
     }
 
     ngOnDestroy() {
         this._resizeSubscription.unsubscribe();
+        this._timer.unsubscribe();
     }
 
     /**
@@ -187,6 +237,24 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         return className + ' ' + `nb-search-box-size-${this.size || 'default'}`;
     }
 
+    /**
+     * return a stream that emits whenever the input blur event happen
+     * @param throttleTime
+     * @docs-private
+     */
+    blurInput(throttleTime: number = DEFAULT_DELAY_TIME): Observable<Event> {
+        return throttleTime > 0 ? this._inputBlur.pipe(delay(throttleTime)) : this._inputBlur;
+    }
+
+    /**
+     * close suggestion layer
+     * @param self
+     * @docs-private
+     */
+    closeSuggestionLayer(self) {
+        self.isOpen = false;
+        self._cd.markForCheck();
+    }
 
     /**
      * Returns a stream that emits whenever the size of the viewport change|scroll.
@@ -235,14 +303,22 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      * @docs-private
      */
     onInputValue() {
-        if (this.isSuggestion !== 'false' && this.searchValue && !this._composing) {
-            this.positionSuggestionLayer(this);
-            this.onSearchSuggestion.emit(this.searchValue);
-            this.isOpen = true;
+        if (this.isSuggestion !== 'false' && this.value && !this._composing) {
+            this.fnSugguestValue();
         }
-        if (!this.searchValue) {
+        if (!this.value) {
             this.isOpen = false;
         }
+    }
+
+    /**
+     * realize search-box suggest function
+     * @docs-private
+     */
+    fnSugguestValue() {
+        this.positionSuggestionLayer(this);
+        this.onSearchSuggestion.emit(this.value);
+        this.isOpen = true;
     }
 
     /**
@@ -251,10 +327,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      * @docs-private
      */
     clearSearch(ipt) {
-        this.isOpen = false;
-        this.searchValue = '';
+        this.value = '';
         ipt.placeholder = this.placeholder;
-        this.onClear.emit(this.searchValue);
+        this.onClear.emit(this.value);
     }
 
     /**
@@ -262,8 +337,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      * @docs-private
      */
     search() {
-        this.isOpen = false;
-        this.onSearch.emit(this.searchValue);
+        this.onSearch.emit(this.value);
+        this._markForCheck();
     }
 
     /**
@@ -271,8 +346,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      * @docs-private
      */
     selectSuggestionValue(suggestionItem: string) {
-        this.searchValue = suggestionItem;
-        this.isOpen = false;
+        this.value = suggestionItem;
     }
 
     /**
@@ -282,6 +356,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      */
     onFocus(ipt) {
         ipt.placeholder = '';
+        if (this.mode === 'focus') {
+            this.fnSugguestValue();
+        }
     }
 
     /**
@@ -294,7 +371,56 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         if (!ipt.value) {
             ipt.placeholder = this.placeholder;
         }
-        // todo delay close
-        // this.isOpen = false;
+    }
+
+    /**
+     * The method to be called in order to update ngModel.
+     * Now `ngModel` binding is not supported in multiple selection mode.
+     */
+    private _onModelChange: Function;
+    /**
+     * Registers a callback that will be triggered when the value has changed.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On change callback function.
+     */
+    registerOnChange(fn: Function) {
+        this._onModelChange = fn;
+    }
+
+    /** onTouch function registered via registerOnTouch (ControlValueAccessor). */
+    private _onTouch: Function;
+
+    /**
+     * Registers a callback that will be triggered when the control has been touched.
+     * Implemented as part of ControlValueAccessor.
+     * @param fn On touch callback function.
+     */
+    registerOnTouched(fn: Function) {
+        this._onTouch = fn;
+    }
+
+    /**
+     * set text-line model value
+     * @docs-private
+     */
+    writeValue(value: any) {
+        this.value = value;
+        this._cd.markForCheck();
+    }
+
+    /**
+     * update form model value and mark for check
+     * @docs-private
+     */
+    _markForCheck() {
+        if (this._onModelChange) {
+            this._onModelChange(this.value);
+        }
+
+        if (this._onTouch) {
+            this._onTouch(this.value);
+        }
+
+        this._cd.markForCheck();
     }
 }

@@ -13,6 +13,7 @@ import {
 export class SearchBoxSuggestDemo {
 
     suggestionValue = ['qwe', 'asd', 'zxc'];
+    mode = 'focus';
 
     search(value) {
         console.log(value);
@@ -20,6 +21,6 @@ export class SearchBoxSuggestDemo {
 
     searchSuggestion(value) {
         console.log(value);
-        this.suggestionValue = ['poi', 'hgf', 'gyuywr'];
+        this.suggestionValue = ['poi', 'hgf', 'gyuywr', 'fdasf', 'rqewr', 'gdfgafdh'];
     }
 }
