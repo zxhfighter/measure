@@ -46,6 +46,13 @@ export class DialogComponent extends OverlayComponent implements OnInit {
     @Output() confirmEvent: EventEmitter<Object> = new EventEmitter();
 
     /**
+     * 覆盖overlay的OnInit方法，不响应document click事件
+     */
+    ngOnInit() {
+
+    }
+
+    /**
      * Dialog确定按钮的点击响应
      */
     confirm() {

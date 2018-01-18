@@ -11,14 +11,7 @@ import { Event } from '@angular/router/src/events';
     template: '<ng-content></ng-content>',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    preserveWhitespaces: false,
-    host: {
-        'class': 'nb-dialog-body'
-    }
+    preserveWhitespaces: false
 })
 
-export class DialogBodyComponent {
-    constructor() {
-    }
-
-}
+export class DialogBodyComponent {}
