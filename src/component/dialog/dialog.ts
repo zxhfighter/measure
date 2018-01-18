@@ -1,3 +1,4 @@
+/* tslint:disable:no-access-missing-member */
 import {
     Component, Input, Output, EventEmitter, AfterViewInit, AfterContentInit, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, ContentChild,
@@ -9,6 +10,7 @@ import { DialogBodyComponent } from './dialog-body';
 import { DialogFooterComponent } from './dialog-footer';
 import { slideAnimation } from '../core/animation/slide-animations';
 import { OverlayComponent } from '../overlay';
+
 
 @Component({
     selector: 'nb-dialog',

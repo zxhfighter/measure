@@ -8,9 +8,12 @@
             <h4 class="nb-dialog-title">
                 <ng-content select="nb-dialog-header"></ng-content>
             </h4>
-            <button *ngIf="closable" type="button" class="close" (click)="hide()">
-                <span>&times;</span>
-            </button>
+            <a href="javascript:void(0)"
+                *ngIf="closable"
+                class="close"
+                (click)="hide()">
+                <i class="iconfont icon-close"></i>
+            </a>
         </div>
 
         <div class="nb-dialog-body">

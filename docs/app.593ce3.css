@@ -12982,6 +12982,8 @@ a.nb-button[disabled]:active {
 }
 .nb-dialog-headerbar .close {
   float: right;
+  margin-top: -15px;
+  margin-right: -10px;
 }
 .nb-dialog-body {
   flex-grow: 1;
@@ -18704,4 +18706,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.324fc8.bundle.map*/
+/*# sourceMappingURL=app.6646f4.bundle.map*/
