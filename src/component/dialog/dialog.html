@@ -4,13 +4,13 @@
 
     <div class="nb-dialog" [@slideAnimation]="visibility">
 
-        <div class="nb-dialog-headerbar">
-            <h4 class="nb-dialog-title">
+        <div class="nb-dialog-header-wrapper">
+            <h4 class="nb-dialog-header-title">
                 <ng-content select="nb-dialog-header"></ng-content>
             </h4>
             <a href="javascript:void(0)"
+                class="nb-dialog-header-close"
                 *ngIf="closable"
-                class="close"
                 (click)="hide()">
                 <i class="iconfont icon-close"></i>
             </a>
@@ -25,8 +25,8 @@
                 <ng-content select="nb-dialog-footer"></ng-content>
             </div>
             <ng-container *ngIf="ref.children.length == 0">
-                <button nb-button (click)="confirm()">确定</button>
-                <button theme="default" nb-button (click)="hide()">取消</button>
+                <button nb-button class="nb-dialog-footer-control-button" (click)="confirm()">确定</button>
+                <button nb-button class="nb-dialog-footer-control-button" (click)="hide()" theme="default">取消</button>
             </ng-container>
         </div>
 

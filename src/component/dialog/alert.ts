@@ -4,7 +4,6 @@ import {
     ViewChild
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
-import { futimesSync } from 'fs';
 import { Event } from '@angular/router/src/events';
 import { DialogComponent } from './dialog';
 
@@ -18,7 +17,7 @@ export type AlertType = 'info' | 'error' | 'success';
     preserveWhitespaces: false,
     exportAs: 'nbAlert',
     host: {
-        'class': 'nb-widget nb-alert'
+        'class': 'nb-widget'
     }
 })
 
