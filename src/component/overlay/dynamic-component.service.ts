@@ -1,5 +1,4 @@
 import {
-    Inject,
     Injector,
     Injectable,
     TemplateRef,
@@ -8,50 +7,57 @@ import {
     EmbeddedViewRef,
     ViewContainerRef,
     Renderer2,
-    NgZone,
-    Host,
-    SkipSelf,
     ComponentRef,
     ComponentFactory,
     ComponentFactoryResolver
 } from '@angular/core';
-import { ConnectionPosition, HorizontalConnectionPos, VerticalConnectionPos, ConnectionPositionPair, Placement } from '../util/position';
-import { ConnectedPositionStrategy } from '../util/connected-position.strategy';
-// import { OverlayPositionService } from './overlay-position.service';
+import { ConnectionPosition } from './position.interface';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { auditTime } from 'rxjs/operators';
-import { merge } from 'rxjs/observable/merge';
-import { ViewportRuler } from './scroll-strategy';
 
+/**
+ * Class that allows for inserting Text or TemplateRef.
+ */
 export class ContentRef {
-    constructor(public nodes: any[], public viewRef?: ViewRef, public componentRef?: ComponentRef<any>) { }
+    constructor(public nodes: any[], public viewRef?: ViewRef, public _componentRef?: ComponentRef<any>) { }
 }
 
 @Injectable()
 export class DynamicComponentService<T> {
-    // private _windowFactory: ComponentFactory<T>;
-    private componentRef: ComponentRef<T> | null;
-    private overlayComponent: any;
+
+    /** created component reference */
+    private _componentRef: ComponentRef<T> | null;
+
+    /** places a new component as the content */
     private _contentRef: ContentRef | null;
-    private positionStrategy: ConnectedPositionStrategy;
-    private originElement: ElementRef;
-    originPos: ConnectionPosition;
-    overlayPos: ConnectionPosition;
-    placement: string;
 
     /** Subscription to viewport resize events. */
-    _resizeSubscription = Subscription.EMPTY;
+    private _resizeSubscription = Subscription.EMPTY;
+
+    /** attachment element's calculated position */
+    originPos: ConnectionPosition;
+
+    /** overlay element's calculated position */
+    overlayPos: ConnectionPosition;
+
+    /** overlay element's original position such as 'bottom-top' */
+    placement: string;
 
     constructor(
         private _injector: Injector,
         private _renderer: Renderer2,
         private _viewContainerRef: ViewContainerRef,
-        // // private overlayPositionService: OverlayPositionService,
         private _componentFactoryResolver: ComponentFactoryResolver) {
     }
 
+    /**
+     * create the given component or text to DOM element using the ComponentFactoryResolver.
+     *
+     * @param { any } type
+     * @param { string | TemplateRef<any> } content
+     * @param { Element } hostDomElement
+     * @param { any } context
+     * @return { ComponentRef<T> } _componentRef
+     */
     createDynamicComponent(
         type: any,
         content: string | TemplateRef<any>,
@@ -59,25 +65,28 @@ export class DynamicComponentService<T> {
         context?: any): ComponentRef<T> {
 
         let windowFactory: ComponentFactory<T>;
-        if (!this.componentRef) {
+        if (!this._componentRef) {
             this._contentRef = this._getContentRef(content, context);
             windowFactory = this._componentFactoryResolver.resolveComponentFactory<T>(type);
-            this.componentRef =
+            this._componentRef =
                 this._viewContainerRef.createComponent(windowFactory, 0, this._injector, this._contentRef.nodes);
         }
 
         if (hostDomElement) {
-            let overlayRootNode = this.getComponentRootNode(this.componentRef);
+            let overlayRootNode = this.getComponentRootNode(this._componentRef);
             hostDomElement.appendChild(overlayRootNode);
         }
 
-        return this.componentRef;
+        return this._componentRef;
     }
 
-    close() {
-        if (this.componentRef) {
-            this._viewContainerRef.remove(this._viewContainerRef.indexOf(this.componentRef.hostView));
-            this.componentRef = null;
+    /**
+     * dispose the created component and remove from the body and unsubscribe event
+     */
+    dispose() {
+        if (this._componentRef) {
+            this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
+            this._componentRef = null;
 
             let viewRef = this._contentRef!.viewRef;
             if (viewRef) {
@@ -88,6 +97,12 @@ export class DynamicComponentService<T> {
         this._resizeSubscription.unsubscribe();
     }
 
+    /**
+     * get content from given content
+     * @param { string | TemplateRef<any> } content
+     * @param { any } context
+     * @return { ContentRef }
+     */
     private _getContentRef(content?: string | TemplateRef<any>, context?: any): ContentRef {
         if (!content) {
             return new ContentRef([]);
@@ -99,8 +114,12 @@ export class DynamicComponentService<T> {
         }
     }
 
-    getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
-        return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    /**
+     * get component's root node for appending given element
+     * @param { string | TemplateRef<any> } content
+     * @return { HTMLElement }
+     */
+    getComponentRootNode(_componentRef: ComponentRef<any>): HTMLElement {
+        return (_componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     }
 }
-

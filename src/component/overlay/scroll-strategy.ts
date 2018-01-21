@@ -44,6 +44,7 @@ export class ViewportRuler implements OnDestroy {
     /**
      * Returns a stream that emits whenever the size of the viewport changes.
      * @param throttle Time in milliseconds to throttle the stream.
+     * @return { Subscription }
      */
     change(throttleTime: number = DEFAULT_RESIZE_TIME): Observable<Event> {
         return throttleTime > 0 ? this._change.pipe(auditTime(throttleTime)) : this._change;

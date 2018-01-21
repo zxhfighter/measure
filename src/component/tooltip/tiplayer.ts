@@ -95,8 +95,8 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
         if (this.trigger !== 'hover') {
             return;
         }
-        if (this._hideTimeoutId) {
-            clearTimeout(this._hideTimeoutId);
+        if (this.hideTimeoutId) {
+            clearTimeout(this.hideTimeoutId);
         }
     }
 
