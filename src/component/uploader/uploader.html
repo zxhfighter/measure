@@ -6,7 +6,7 @@
     <div class="nb-uploader-image">
         <ul *ngIf="files.length" class="image-list">
             <li *ngFor="let file of files" class="image-item">
-                <div class="img-progress-start {{ progressMode }}" [class.hidden]="file.state!=='uploading'">
+                <div class="img-progress-start" [class.hidden]="file.state!=='uploading'">
                     <span *ngIf="progressMode==='text'">
                         {{ file.progress || '正在上传中' }}<label [class.hidden]="!file.progress">%</label>
                     </span>

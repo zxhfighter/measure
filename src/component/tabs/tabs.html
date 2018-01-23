@@ -3,7 +3,6 @@
     [class.nb-tabs-splitline]="splitline">
 
     <nb-tab-header *ngFor="let tab of tabs; let index = index"
-        class="item"
         [class.active]="tab.active"
         [class.disabled]="tab.disabled"
         (click)="setActive(tab, index)">
