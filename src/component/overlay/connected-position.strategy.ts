@@ -252,6 +252,7 @@ export class ConnectedPositionStrategy {
         offsetY?: number): this {
 
         this._preferredPositions.push(new ConnectionPositionPair(originPos, overlayPos, offsetX, offsetY));
+        this._lastConnectedPosition = this._preferredPositions[0];
         return this;
     }
 
