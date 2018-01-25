@@ -86,7 +86,6 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
      * 提示框主题色
      * 可选值为 'default' | white' | 'pink' | 'yellow'
      * @default default
-     *
      */
     @Input() nbTooltipTheme: string = 'default';
 
@@ -178,7 +177,6 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
     /**
      * 处理宿主元素上的点击
      * @param { Event } event - click event
-     *
      */
     _handleHostClick(event) {
         this.toggle();
@@ -188,7 +186,6 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
     /**
      * 打开一个宿主元素的提示时，动态创建一个提示框组件
      * 根据是否为嵌入方式，决定创建在当前元素的container内还是挂载到body下面
-     *
      */
     _createTiplayer() {
         let hostElement;
@@ -249,7 +246,6 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
 
     /**
      * 处理body区域内的点击
-     *
      */
     handleBodyInteraction() {
         if (this.trigger === 'click') {

@@ -1,36 +1,38 @@
 
-// --- variable ---
 @accordion-panel-bottom-margin: 0.2em;
 @accordion-panel-header-padding: 0.5em 0.5em 0.5em 1em;
 @accordion-panel-header-border-radius: 0;
+@accordion-panel-header-transition-time: 0.24s;
 
-// --- layout ---
 .@{prefix}-accordion {
     display: block;
-}
 
-.@{prefix}-accordion-panel {
-    margin-bottom: @accordion-panel-bottom-margin;
-}
+    &-panel {
+        margin-bottom: @accordion-panel-bottom-margin;
+    }
 
-.@{prefix}-accordion-header {
-    cursor: pointer;
-    padding: @accordion-panel-header-padding;
-    position: relative;
-    border-radius: @accordion-panel-header-border-radius;
+    &-panel-header {
+        cursor: pointer;
+        padding: @accordion-panel-header-padding;
+        position: relative;
+        border-radius: @accordion-panel-header-border-radius;
 
-    .iconfont {
-        display: inline-block;
-        transition: transform 0.24s, -webkit-transform 0.24s;
-        transform: rotate(0);
-        -webkit-transform: rotate(0);
+        .icon-right {
+            display: inline-block;
+            transition: transform @accordion-panel-header-transition-time,
+                -webkit-transform @accordion-panel-header-transition-time;
+            transform: rotate(0);
+            -webkit-transform: rotate(0);
+        }
+    }
+
+    &-panel-active {
+        .icon-right {
+            transform: rotate(90deg);
+        }
     }
 }
 
-.@{prefix}-accordion-panel-active {
-    .iconfont {
-        transform: rotate(90deg);
-    }
-}
+
 
 

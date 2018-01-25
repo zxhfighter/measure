@@ -1,8 +1,9 @@
-import {
-    Directive,
-    ElementRef
-  } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 
+/**
+ * Directive applied to an element to make it usable as an origin for an Overlay using a
+ * ConnectedPositionStrategy.
+ */
 @Directive({
   selector: '[nbOverlayOrigin]',
   exportAs: 'nbOverlayOrigin'

@@ -1,19 +1,27 @@
-import {
-    Point,
-    OverlayPoint,
-    ConnectionPosition,
-    ConnectionPositionPair
-} from './position';
 import { ElementRef, Injectable } from '@angular/core';
+import { Point, OverlayPoint, ConnectionPosition, ConnectionPositionPair } from './position.interface';
 
 export class ConnectedPositionStrategy {
 
+    /** X-axis attachment point to be offset */
     private _offsetX: number = 0;
+
+    /** X-axis attachment point to be offset */
     private _offsetY: number = 0;
+
+    /** the target which overlay to be attached to */
     private _targetEl: HTMLElement;
+
+    /** overlay element */
     private _overlayEl: HTMLElement;
+
+    /** preferred position, include user setted the position and the oppsite of that position */
     private _preferredPositions: ConnectionPositionPair[] = [];
+
+    /** store overlay's rect to avoid recalcuting while showing again */
     private _lastOverlayRect: ClientRect;
+
+    /** final position */
     private _lastConnectedPosition: ConnectionPositionPair;
 
     constructor(
@@ -24,16 +32,34 @@ export class ConnectedPositionStrategy {
         this._overlayEl = this._overlaytRef.nativeElement;
     }
 
+    /**
+     * set X-axis attachment point to be offset
+     *
+     * @param {number} offset
+     * @return {object} this
+     */
     withOffsetX(offset: number): this {
         this._offsetX = offset;
         return this;
     }
 
+    /**
+     * set Y-axis attachment point to be offset
+     *
+     * @param {number} offset
+     * @return {object} this
+     */
     withOffsetY(offset: number): this {
         this._offsetY = offset;
         return this;
     }
 
+    /**
+     * apply position strategy
+     *
+     * @param {Function} callback
+     * @return {lastConnectedPosition} lastConnectedPosition
+     */
     apply(callback: Function) {
         let lastConnectedPosition = this.position();
 
@@ -48,6 +74,11 @@ export class ConnectedPositionStrategy {
         return lastConnectedPosition;
     }
 
+    /**
+     * positioning
+     *
+     * @return {ConnectionPositionPair} fallbackPosition
+     */
     position(): ConnectionPositionPair {
         const targetRect = this._targetEl.getBoundingClientRect();
         let overlayRect = this._overlayEl.getBoundingClientRect();
@@ -91,55 +122,72 @@ export class ConnectedPositionStrategy {
         return fallbackPosition!;
     }
 
-    private _getTargetConnectionPoint(targetRect: ClientRect, pos: ConnectionPositionPair): Point {
+    /**
+     * get target's point according to the target's rect and position
+     *
+     * @param { ClientRect } targetRect
+     * @param { ConnectionPositionPair } position
+     * @return { Point } { x, y }
+     */
+    private _getTargetConnectionPoint(
+        targetRect: ClientRect,
+        position: ConnectionPositionPair): Point {
+
         const targetStartX = targetRect.left;
         const targetEndX = targetRect.right;
 
         let x: number;
-        if (pos.targetX === 'center') {
+        if (position.targetX === 'center') {
             x = targetStartX + (targetRect.width / 2);
         } else {
-            x = pos.targetX === 'left' ? targetStartX : targetEndX;
+            x = position.targetX === 'left' ? targetStartX : targetEndX;
         }
 
         let y: number;
-        if (pos.targetY === 'center') {
+        if (position.targetY === 'center') {
             y = targetRect.top + (targetRect.height / 2);
         } else {
-            y = pos.targetY === 'top' ? targetRect.top : targetRect.bottom;
+            y = position.targetY === 'top' ? targetRect.top : targetRect.bottom;
         }
 
         return { x, y };
     }
 
+    /**
+     * get overlay's point according to the overlay's rect and position
+     *
+     * @param { ClientRect } targetRect
+     * @param { ConnectionPositionPair } position
+     * @return { Point } { x, y }
+     */
     private _getOverlayPoint(
         targetPoint: Point,
         overlayRect: ClientRect,
         viewportRect: ClientRect,
-        pos: ConnectionPositionPair): OverlayPoint {
+        position: ConnectionPositionPair): OverlayPoint {
 
         let overlayStartX: number;
-        if (pos.overlayX === 'center') {
+        if (position.overlayX === 'center') {
             overlayStartX = -overlayRect.width / 2;
         }
-        else if (pos.overlayX === 'left') {
+        else if (position.overlayX === 'left') {
             overlayStartX = 0;
         } else {
             overlayStartX = -overlayRect.width;
         }
 
         let overlayStartY: number;
-        if (pos.overlayY === 'center') {
+        if (position.overlayY === 'center') {
             overlayStartY = -overlayRect.height / 2;
         } else {
-            overlayStartY = pos.overlayY === 'top' ? 0 : -overlayRect.height;
+            overlayStartY = position.overlayY === 'top' ? 0 : -overlayRect.height;
         }
 
         // The (x, y) offsets of the overlay based on the current position.
-        let offsetX = typeof pos.offsetX === 'undefined' ? this._offsetX : pos.offsetX;
-        let offsetY = typeof pos.offsetY === 'undefined' ? this._offsetY : pos.offsetY;
+        let offsetX = typeof position.offsetX === 'undefined' ? this._offsetX : position.offsetX;
+        let offsetY = typeof position.offsetY === 'undefined' ? this._offsetY : position.offsetY;
 
-        // overlay的坐标
+        // overlay's coordinate
         let x = targetPoint.x + overlayStartX + offsetX;
         let y = targetPoint.y + overlayStartY + offsetY;
 
@@ -160,6 +208,13 @@ export class ConnectedPositionStrategy {
         return { x, y, fitsInViewport, visibleArea };
     }
 
+    /**
+     * Subtracts the amount that an element is overflowing on an axis from it's length
+     *
+     * @param { number } length
+     * @param { number[] } ...overflows
+     * @return { number }
+     */
     private _subtractOverflows(length: number, ...overflows: number[]): number {
 
         return overflows.reduce((currentValue: number, currentOverflow: number) => {
@@ -167,6 +222,12 @@ export class ConnectedPositionStrategy {
         }, length);
     }
 
+    /**
+     * Physically positions the overlay element to the given coordinate
+     *
+     * @param { HTMLElement } element
+     * @param { Point } overlayPoint
+     */
     private _setElementPosition(
         element: HTMLElement,
         overlayPoint: Point) {
@@ -179,6 +240,11 @@ export class ConnectedPositionStrategy {
         element.style['left'] = `${x}px`;
     }
 
+    /**
+     * Adds a new preferred fallback position.
+     * @param originPos
+     * @param overlayPos
+     */
     withFallbackPosition(
         originPos: ConnectionPosition,
         overlayPos: ConnectionPosition,
@@ -186,9 +252,15 @@ export class ConnectedPositionStrategy {
         offsetY?: number): this {
 
         this._preferredPositions.push(new ConnectionPositionPair(originPos, overlayPos, offsetX, offsetY));
+        this._lastConnectedPosition = this._preferredPositions[0];
         return this;
     }
 
+    /**
+     * Gets a ClientRect for the viewport's bounds
+     *
+     * @return ClientRect
+     */
     getViewportRect(): ClientRect {
         let documentRect = document.documentElement.getBoundingClientRect();
         const top = -documentRect!.top || document.body.scrollTop || window.scrollY ||

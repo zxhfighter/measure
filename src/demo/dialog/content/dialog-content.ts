@@ -11,18 +11,18 @@ export class DialogContentDemo {
     @ViewChild('customFooterDialog') customFooterDialog: DialogComponent;
 
     openCustomFooterDialog() {
-        this.customFooterDialog.open();
+        this.customFooterDialog.show();
     }
 
     close() {
-        this.customFooterDialog.close();
+        this.customFooterDialog.hide();
     }
 
     clickYes() {
-        this.customFooterDialog.close();
+        this.customFooterDialog.hide();
     }
 
     clickNo() {
-        this.customFooterDialog.close();
+        this.customFooterDialog.hide();
     }
 }

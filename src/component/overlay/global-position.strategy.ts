@@ -1,7 +1,5 @@
-
 export class GlobalPositionStrategy {
 
-    private _cssPosition: string = 'static';
     private _topOffset: string = '';
     private _bottomOffset: string = '';
     private _leftOffset: string = '';

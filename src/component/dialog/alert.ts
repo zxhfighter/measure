@@ -4,7 +4,6 @@ import {
     ViewChild
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
-import { futimesSync } from 'fs';
 import { Event } from '@angular/router/src/events';
 import { DialogComponent } from './dialog';
 
@@ -18,11 +17,11 @@ export type AlertType = 'info' | 'error' | 'success';
     preserveWhitespaces: false,
     exportAs: 'nbAlert',
     host: {
-        'class': 'nb-widget nb-alert'
+        'class': 'nb-widget'
     }
 })
 
-export class AlertComponent implements OnInit, AfterViewInit {
+export class AlertComponent {
 
     @ViewChild(DialogComponent) dialog;
 
@@ -30,17 +29,11 @@ export class AlertComponent implements OnInit, AfterViewInit {
     @Input() title: string = '';
     @Input() content: string = '';
 
-    @Input() appendTo: any = 'body';
-
     @OnChange(true)
     @Input() modalable: boolean = false;
 
     @OnChange(true)
     @Input() closable: boolean = true;
-
-    visiblity: boolean = false;
-    mask: HTMLElement | null;
-    maskClickListener: Function;
 
     @Output() confirmEvent: EventEmitter<Object> = new EventEmitter();
     @Output() cancelEvent: EventEmitter<Object> = new EventEmitter();
@@ -51,33 +44,17 @@ export class AlertComponent implements OnInit, AfterViewInit {
         public renderer: Renderer2) {
     }
 
-    ngOnInit() {
-    }
-
-    ngAfterViewInit() {
-        // document.body.appendChild(this.el.nativeElement);
-    }
-
     open() {
-        this.dialog.open();
-        // this.visiblity = true;
-        this.cdRef.markForCheck();
+        this.dialog.show();
     }
 
     close() {
-        this.dialog.close();
+        this.dialog.hide();
         this.cancelEvent.emit();
-        // this.visiblity = false;
-        this.cdRef.markForCheck();
-
-        if (this.mask) {
-            this.mask.remove();
-            this.mask = null;
-        }
     }
 
     ok() {
-        this.confirmEvent.emit();
         this.close();
+        this.confirmEvent.emit();
     }
 }
