@@ -1,26 +1,7 @@
-import {
-    NgModule,
-    Input,
-    Component,
-    OnInit,
-    SimpleChanges,
-    ViewEncapsulation,
-    ChangeDetectionStrategy,
-    AfterContentInit,
-    AfterViewInit,
-    ElementRef,
-    TemplateRef,
-    Injector,
-    ComponentFactoryResolver,
-    ViewContainerRef,
-    OnDestroy,
-    Output,
-    EventEmitter,
-    ChangeDetectorRef,
-    NgZone,
-    Renderer2
+import { Input, Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy,
+    AfterViewInit, ElementRef, OnDestroy, Output, EventEmitter, ChangeDetectorRef, Renderer2
 } from '@angular/core';
-import { Placement } from '../util/position';
+import { Placement } from './position.interface';
 import { OnChange } from '../core/decorators';
 import { ViewportRuler } from './scroll-strategy';
 import { OverlayPositionService } from './overlay-position.service';
@@ -41,36 +22,44 @@ import { OverlayOriginDirective } from './overlay-origin.directive';
 })
 export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    /** the event emitted when the overlay is hide */
-    @Output() onHide: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
+    /** the event of opening the overlay */
+    @Output() openHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
 
+    /** the event of closing the overlay */
+    @Output() closeHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
+
+    /** * attached origin element */
     @Input() origin: OverlayOriginDirective;
 
-    /**
-     * A selector specifying the element the popover should be appended to.
-     * Currently only supports "body".
-     */
+    /** A selector specifying the element the popover should be appended to. */
+    /** Currently only supports "body".*/
     @Input() container: string = 'body';
 
+    /** overlay element's original position such as 'bottom-top' */
     @Input() placement: Placement = 'bottom-left';
 
+    /** the delay of changing visibility */
+    @Input() delay: number = 0;
+
+    /** overlay state about visibility */
     visibility: boolean = false;
 
-    @Input() delay: number = 0;
     /** The timeout ID of any current timer set to show the tooltip */
-    _showTimeoutId: number;
+    showTimeoutId: number;
+
     /** The timeout ID of any current timer set to hide the tooltip */
-    _hideTimeoutId: number;
+    hideTimeoutId: number;
 
     /** document click listener, when click on other area, hide the overlay */
     private _documentClickListener: Function | null;
 
-    private positionStategy: any;
+    /** A strategy for positioning overlays */
+    private _positionStategy: any;
 
     constructor(
         public el: ElementRef,
-        private render: Renderer2,
         public cdRef: ChangeDetectorRef,
+        private render: Renderer2,
         private overlayPositionService: OverlayPositionService
     ) {
     }
@@ -80,7 +69,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
         this._documentClickListener = this.render.listen('document', 'click', () => {
             if (this.visibility) {
                 this.visibility = false;
-                this.onHide.emit(this);
+                this.closeHandler.emit(this);
                 this.cdRef.markForCheck();
             }
         });
@@ -101,50 +90,63 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
             window.document.querySelector(this.container)!.appendChild(this.el.nativeElement);
         }
         if (this.origin) {
-            const positionStategy = this.overlayPositionService
+            this._positionStategy = this.overlayPositionService
                 .attachTo(this.origin.elementRef, this, this.placement);
 
-            this.positionStategy = positionStategy;
             // 调用show方法和组件渲染完成在不同场景下的执行顺序不同，所以两处都需要重新定位。
             // 此处定位一是因为渲染完成能够获得真实宽高，此时定位更为准确。
             // 二是因为当show方法执行早于此方法时，show方法中并没有定位。比如Tooltip的hover场景。
             // 原因二不成立，Tooltip覆盖了此方法
-            // this.overlayPositionService.updatePosition(positionStategy);
+            // this.overlayPositionService.updatePosition(_positionStategy);
         }
     }
 
+    /**
+     * position the overlay element and show it
+     */
     show() {
-        if (this._hideTimeoutId) {
-            clearTimeout(this._hideTimeoutId);
+        if (this.hideTimeoutId) {
+            clearTimeout(this.hideTimeoutId);
         }
-        this._showTimeoutId = window.setTimeout(() => {
-            // TODO positionStategy应该在更早的时机赋值 此处就不需要判断了
+        this.showTimeoutId = window.setTimeout(() => {
             // 调用show方法和组件渲染完成在不同场景下的执行顺序不同，所以两处都需要重新定位。
             // 此处定位是因为渲染完成后计算的位置可能并不准确，比如overlay渲染完成早于overlay上方的DOM或组件渲染完成。
-            if (this.positionStategy) {
-                this.overlayPositionService.updatePosition(this.positionStategy);
+            if (this._positionStategy) {
+                this.overlayPositionService.updatePosition(this._positionStategy);
             }
             this.visibility = true;
+            this.openHandler.emit(this);
             this.cdRef.markForCheck();
         }, this.delay);
     }
 
+    /**
+     * hide the overlay element
+     */
     hide() {
-        if (this._showTimeoutId) {
-            clearTimeout(this._showTimeoutId);
+        if (this.showTimeoutId) {
+            clearTimeout(this.showTimeoutId);
         }
 
-        this._hideTimeoutId = window.setTimeout(() => {
+        this.hideTimeoutId = window.setTimeout(() => {
             this.visibility = false;
-            this.onHide.emit(this);
+            this.closeHandler.emit(this);
             this.cdRef.markForCheck();
         }, this.delay);
     }
 
+    /**
+     * check the visibility of the overlay
+     * @param { boolean } this.visibility
+     */
     isVisible(): boolean {
         return this.visibility;
     }
 
+    /**
+     * prevent default when click the overlay itself
+     * @param { MouseEvent } event
+     */
     _preventDefault(event: MouseEvent) {
         event.stopPropagation();
     }

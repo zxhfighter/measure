@@ -1,111 +1,119 @@
-@mask-background: rgba(red(@nb-gray-1), green(@nb-gray-1), blue(@nb-gray-1), 0.5);
+@dialog-zindex: 1001;
+@dialog-padding: 20px;
+@dialog-min-width: 280px;
+@dialog-min-height: 210px;
+@dialog-transform-scale: 0.9;
+@dialog-box-shadow: 0 1px 4px 0;;
+@dialog-mask-zindex: 1000;
+@dialog-header-wrapper-close-margin: -15px -15px 0 0;
+@dialog-header-fontsize: 16px;
+@dialog-footer-padding: 30px 20px 20px;
+@dialog-footer-control-button: 0 10px;
+@dialog-mask-background: rgba(red(@nb-gray-1), green(@nb-gray-1), blue(@nb-gray-1), 0.5);
+@dialog-alert-severity-fontsize: 30px;
 
-@{prefix}-overlay.@{prefix}-dialog-box {
-    position: fixed;
+.@{prefix}-dialog-box {
+    display: flex;
     width: 100%;
     height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.@{prefix}-dialog {
-    z-index: 101;
-    left: 50%;
-    top: 50%;
-    padding: 20px;
-    min-width: 280px;
-    min-height: 210px;
-    background: @nb-white;
-    box-shadow: 0 1px 4px 0;
-    transform: translate3d(0, 25%, 0) scale(0.9);
-
-    &-headerbar {
-
-        .@{prefix}-dialog-title {
-            margin: 0;
-            float: left;
-        }
-
-        .close {
-            float: right;
-        }
-    }
-
-
-    &-body {
-        flex-grow: 1;
-        clear: both;
-    }
-
-    &-footer {
-        padding: 30px 20px 20px;
-        text-align: center;
-
-        button[nb-button] {
-            margin: 0 10px;
-        }
-    }
-
-    &-footer-left {
-        text-align: left;
-
-    }
-
-    &-footer-right {
-        text-align: right;
-    }
-
-    &-footer-center {
-        text-align: center;
-    }
-}
-
-.@{prefix}-dialog-mask {
     position: fixed;
-    top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    background: @mask-background;
+    top: 0;
+
+    .@{prefix}-dialog-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: @dialog-mask-zindex;
+        background: @dialog-mask-background;
+    }
+
+    .@{prefix}-dialog {
+        z-index: @dialog-zindex;
+        padding: @dialog-padding;
+        min-width: @dialog-min-width;
+        min-height: @dialog-min-height;
+        background-color: @nb-white;
+        box-shadow: @dialog-box-shadow;
+        transform: translate3d(0, 25%, 0) scale(@dialog-transform-scale);
+
+        &-header-wrapper {
+
+            .@{prefix}-dialog-header {
+                display: block;
+                margin-bottom: @dialog-padding;
+                font-size: @dialog-header-fontsize;
+            }
+
+            .@{prefix}-dialog-header-title {
+                float: left;
+                margin: 0;
+            }
+
+            .@{prefix}-dialog-header-close {
+                float: right;
+                color: @text-color;
+                text-decoration: none;
+                margin: @dialog-header-wrapper-close-margin;
+            }
+        }
+
+        &-body {
+            flex-grow: 1;
+            clear: both;
+            padding: 20px 0;
+        }
+
+        &-footer {
+            padding: @dialog-footer-padding;
+            text-align: center;
+
+            .@{prefix}-dialog-footer-control-button {
+                margin: @dialog-footer-control-button;
+            }
+
+            .@{prefix}-dialog-footer-left {
+                text-align: left;
+            }
+
+            .@{prefix}-dialog-footer-right {
+                text-align: right;
+            }
+
+            .@{prefix}-dialog-footer-center {
+                text-align: center;
+            }
+        }
+    }
 }
 
 .@{prefix}-alert-box {
-    text-align: center;
 
-    .iconfont {
-        font-size: 30px;
-    }
-    .icon-chenggong {
-        color: @brand-success;
-    }
-    .icon-cuowu {
-        color: @brand-danger;
-    }
-    .icon-jinggao {
-        color: @brand-info;
+    .@{prefix}-dialog-body {
+        padding: 0;
     }
 
-    &-title {
-        color: #333;
-        font-weight: 400;
-        margin-top: 20px;
-        margin-bottom: 14px;
-        line-height: 1;
-        font-size: 16px;
-    }
+    .@{prefix}-alert-severity {
+        text-align: center;
 
-    &-content {
-        color: #666;
-        font-size: 14px;
-    }
-}
+        .iconfont {
+            font-size: @dialog-alert-severity-fontsize;
+        }
 
-@{prefix}-dialog-header {
-    display: block;
-    margin-bottom: 20px;
-    font-size: 16px;
+        .icon-check_c {
+            color: @brand-success;
+        }
+        .icon-close_c {
+            color: @brand-danger;
+        }
+        .icon-info_c {
+            color: @brand-info;
+        }
+    }
 }

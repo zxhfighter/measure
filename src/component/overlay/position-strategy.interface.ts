@@ -1,19 +1,7 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
-// import { OverlayRef } from '../overlay-ref';
-
-
 /** Strategy for setting the position on an overlay. */
 export interface PositionStrategy {
 
     /** Attaches this position strategy to an overlay. */
-    // TODO OverlayRef考虑怎么实现一下,暂时使用any替代一下
     attach(overlay: any): void;
 
     /** Updates the position of the overlay element. */

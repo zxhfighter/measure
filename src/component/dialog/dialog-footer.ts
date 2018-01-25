@@ -8,16 +8,8 @@ import {
     template: '<ng-content></ng-content>',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    preserveWhitespaces: false,
-    host: {
-        'class': 'nb-dialog-footer'
-    }
+    preserveWhitespaces: false
 })
 
-export class DialogFooterComponent {
-
-    constructor() {
-
-    }
-}
+export class DialogFooterComponent {}
 

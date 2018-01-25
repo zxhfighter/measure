@@ -1,4 +1,4 @@
-import { PositionStrategy } from '../util//position-strategy.interface';
+import { PositionStrategy } from './position-strategy.interface';
 
 /** Initial configuration used when creating an overlay. */
 export class OverlayConfig {

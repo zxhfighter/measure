@@ -11,10 +11,10 @@ export class DialogBasicDemo {
     @ViewChild('unmodalDialog') unmodalDialog: DialogComponent;
 
     openModalDialog() {
-        this.modalDialog.open();
+        this.modalDialog.show();
     }
 
     openUnmodalDialog() {
-        this.unmodalDialog.open();
+        this.unmodalDialog.show();
     }
 }

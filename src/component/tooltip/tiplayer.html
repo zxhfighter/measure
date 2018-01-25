@@ -1,16 +1,17 @@
 <div class="
     nb-tiplayer-box
     nb-tiplayer-theme-{{nbTooltipTheme}}
-    nb-tiplayer-{{firstPlacement}}
-    nb-tiplayer-{{placement}} {{nbWidth}}"
+    nb-tiplayer-{{placement}}
+    nb-tiplayer-{{firstPlacement}}"
     [class.invisible]="!visibility"
     [@fadeAnimation]="visibility"
     [style.width.px]="nbWidth"
     [style.max-width.px]="nbWidth"
     [style.height.px]="nbHeight">
-    <div
-        class="nb-tiplayer-inner">
+        <!-- 箭头 -->
         <div class="nb-tiplayer-arrow" *ngIf="hasArrow"></div>
-        <div class="nb-tiplayer-content" #content><ng-content></ng-content></div>
-    </div>
+        <!-- 内容 -->
+        <div class="nb-tiplayer-content" #content>
+            <ng-content></ng-content>
+        </div>
 </div>

@@ -1,3 +1,29 @@
+@uploader-image-width: 140px;
+@uploader-image-height: 140px;
+@uploader-image-margin: 10px 0;
+@uploader-image-item-margin: 0 10px 10px 0;
+@uploader-image-add-icon-size: 85px;
+@uploader-image-add-icon-weight: 100;
+@uploader-image-progress-start-margin: 10px 0;
+@uploader-image-progress-error-margin: 10px 0;
+@uploader-image-photo-control-background: rgba(0, 0, 0, 0.1);
+@uploader-image-icon-close-width: 24px;
+@uploader-image-icon-close-height: 24px;
+@uploader-image-icon-close-background: rgba(0, 0, 0, 0.8);;
+@uploader-image-icon-close-border: 1px solid hsla(0, 0%, 100%, 0.2);
+@uploader-image-fileinput-width: 88px;
+@uploader-image-fileinput-height: 28px;
+@uploader-image-fileinput-top: calc(50% - 14px);
+@uploader-image-fileinput-left: calc(50% - 30px);
+@uploader-file-padding: 10px 0;
+@uploader-file-list-margin: 10px 0;
+@uploader-file-item-height: 28px;
+@uploader-file-progress-error-reupload-margin: 0 15px;
+@uploader-file-icon-close-right: 5px;
+@uploader-file-icon-paperclip-margin: 4px 5px 0;
+@uploader-file-icon-paperclip-fontsize: 12px;
+@uploader-horizontal-file-width: 300px;
+
 .@{prefix}-uploader {
     display: block;
 
@@ -5,11 +31,11 @@
         margin: 0;
         padding: 0;
         clear: both;
-        color: @brand-danger;
         list-style: none;
+        color: @brand-danger;
     }
     .progress-error-msg {
-        color: #fc5a0a;
+        color: @brand-danger;
     }
     .icon-close {
         cursor: pointer;
@@ -18,26 +44,18 @@
 
 .@{prefix}-uploader-image {
     margin: 0 auto;
-    padding: 10px 0;
+    padding: @uploader-image-margin;
     overflow: hidden;
-    margin-right: -12px;
-    zoom: 1;
-
 
     .image-add {
-        width: 140px;
-        height: 140px;
-        margin-right: 7px;
-        margin-bottom: 10px;
-        position: relative;
-        float: left;
-        text-align: center;
-        zoom: 1;
-        background-color: #fff;
-        overflow: hidden;
-        border: 1px solid @border-color;
         display: table;
         vertical-align: middle;
+        width: @uploader-image-width;
+        height: @uploader-image-height;
+        border: 1px solid @border-color;
+        position: relative;
+        text-align: center;
+        overflow: hidden;
 
         &:hover {
             background-color: @nb-gray-8;
@@ -48,22 +66,19 @@
         }
 
         .image-add-icon {
-            font-size: 85px;
+            font-weight: @uploader-image-add-icon-weight;
+            font-size: @uploader-image-add-icon-size;
             color: @text-color-normal;
-            font-weight: 100;
-        }
-        .blue_btn_mid {
-            width: 87px;
         }
 
         .fileinput {
-            opacity: 0;
-            cursor: pointer;
             position: absolute;
-            width: 140px;
-            height: 140px;
             left: 0;
             top: 0;
+            width: @uploader-image-width;
+            height: @uploader-image-height;
+            cursor: pointer;
+            opacity: 0;
         }
     }
 
@@ -71,48 +86,40 @@
         margin: 0;
         padding: 0;
     }
-    .image-item {
 
+    .image-item {
         display: table;
-        width: 140px;
-        height: 140px;
+        width: @uploader-image-width;
+        height: @uploader-image-height;
         border: 1px solid @border-color;
-        margin-right: 7px;
-        margin-bottom: 10px;
+        margin: @uploader-image-item-margin;
         position: relative;
         text-align: center;
-        zoom: 1;
-        background-color: #fff;
         overflow: hidden;
 
         .img-progress-start {
             width: 100%;
-            // height: 100%;
             height: 100%;
-            // line-height: 180px;
-            font-size: 12px;
             display: table-cell;
             vertical-align: middle;
 
             span {
                 display: block;
-                margin: 10px 0;
-                height: 17px;
+                margin: @uploader-image-progress-start-margin;
             }
         }
         .img-progress-error {
             display: table-cell;
             vertical-align: middle;
 
-
             .progress-error-msg {
                 display: block;
-                margin: 10px 0;
+                margin: @uploader-image-progress-error-margin;
             }
 
             .icon-close {
-                background-color: transparent;
                 color: @text-color;
+                background-color: transparent;
             }
         }
         .img-progress-finish {
@@ -120,11 +127,11 @@
             width: 100%;
             height: 100%;
 
+            &:hover .photo-control {
+                display: block;
+            }
         }
 
-        .img-progress-finish:hover .photo-control {
-            display: block;
-        }
         .photo_bigger_mark {
             display: table-cell;
             width: 100%;
@@ -136,11 +143,6 @@
             height: auto;
             max-width: 100%;
             max-height: 100%;
-            // border: 1px solid #DDD;
-            // display: inline-block;
-            text-align: center;
-            vertical-align: middle;
-            // overflow: hidden;
         }
         .photo-control {
             position: absolute;
@@ -148,66 +150,61 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.1);
             display: none;
+            background-color: @uploader-image-photo-control-background;
         }
         .icon-close {
             position: absolute;
             right: 0;
             top: 0;
-            width: 24px;
-            height: 24px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid hsla(0, 0%, 100%, 0.2);
-            font-size: 14px;
-            color: #fff;
+            width: @uploader-image-icon-close-width;
+            height: @uploader-image-icon-close-height;
+            border: @uploader-image-icon-close-border;
+            line-height: @uploader-image-icon-close-height;
+            background-color: @uploader-image-icon-close-background;
+            color: @nb-white;
             text-align: center;
-            line-height: 24px;
         }
         .edit_mark {
             position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
-            border: 1px solid hsla(0, 0%, 100%, 0.2);
-            color: #fff;
-            font-size: 14px;
+            width: @uploader-image-fileinput-width;
+            height: @uploader-image-fileinput-height;
+            top: @uploader-image-fileinput-top;
+            left: @uploader-image-fileinput-left;
+            background-color: @uploader-image-icon-close-background;
+            line-height: @uploader-image-fileinput-height;
+            border: @uploader-image-icon-close-border;
+            color: @nb-white;
             cursor: pointer;
-            top: calc(50% - 14px);
-            left: calc(50% - 30px);
-            width: 88px;
-            height: 28px;
-            line-height: 26px;
         }
 
         .fileinput {
             position: absolute;
+            width: @uploader-image-fileinput-width;
+            height: @uploader-image-fileinput-height;
+            top: @uploader-image-fileinput-top;
+            left: @uploader-image-fileinput-left;
             opacity: 0;
-            width: 88px;
-            height: 28px;
-            top: calc(50% - 14px);
-            left: calc(50% - 30px);
         }
     }
 }
 
 .nb-uploader-file {
-    padding: 10px 0;
+    padding: @uploader-file-padding;
 
     .file-list {
         list-style: none;
         overflow: hidden;
         padding: 0;
-        margin: 10px 0;
+        margin: @uploader-file-list-margin;
 
         .file-item {
-            // display: flex;
-            // flex-direction: row;
-            // width: 185px;
-            height: 28px;
-            line-height: 28px;
+            height: @uploader-file-item-height;
+            line-height: @uploader-file-item-height;
 
             .icon-paperclip {
-                margin: 4px 5px 0;
-                font-size: 12px;
+                margin: @uploader-file-icon-paperclip-margin;
+                font-size: @uploader-file-icon-paperclip-fontsize;
             }
         }
 
@@ -225,7 +222,7 @@
             .icon-close {
                 position: absolute;
                 top: 0;
-                right: 5px;
+                right: @uploader-file-icon-close-right;
                 display: none;
             }
         }
@@ -249,7 +246,7 @@
         }
 
         .progress-error-reupload {
-            margin: 0 15px;
+            margin: @uploader-file-progress-error-reupload-margin;
             cursor: pointer;
         }
     }
@@ -260,29 +257,28 @@
         cursor: pointer;
 
         .fileinput {
-            opacity: 0;
             position: absolute;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
+            opacity: 0;
         }
     }
 
     .file-add-disabled {
-        color: red;
+        color: @brand-danger;
 
         &::after {
-            content: '';
-            background-color: @nb-gray-7;
-            cursor: not-allowed;
             position: absolute;
             width: 100%;
             height: 100%;
             left: 0;
             opacity: 0;
+            content: '';
+            background-color: @nb-gray-7;
+            cursor: not-allowed;
         }
-
     }
 }
 
@@ -292,6 +288,6 @@
     }
     .file-item {
         float: left;
-        width: 300px;
+        width: @uploader-horizontal-file-width;
     }
 }

@@ -16,7 +16,7 @@ import { OnChange } from '../core/decorators';
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'nbTab',
     host: {
-        'class': 'nb-widget nb-tab',
+        'class': 'nb-widget nb-tab-content',
         '[class.active]': 'active',
     }
 })
