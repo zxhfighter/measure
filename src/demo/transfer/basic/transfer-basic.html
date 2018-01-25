@@ -1,6 +1,13 @@
 <h3 class="section-title">Default State</h3>
 <p>
     <nb-transfer 
+        [candidateData]="candidateDataEmpty" 
+        [selectedData]="selectedDataEmpty" 
+        (getValue)="getValue($event)"></nb-transfer>
+</p>
+
+<p>
+    <nb-transfer 
         [candidateData]="candidateData" 
         [selectedData]="selectedData" 
         (getValue)="getValue($event)"></nb-transfer>

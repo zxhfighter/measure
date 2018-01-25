@@ -4,6 +4,7 @@ import {
     Output,
     EventEmitter,
     OnInit,
+    OnChanges,
     AfterViewInit,
     ViewEncapsulation,
     ChangeDetectionStrategy,
@@ -55,7 +56,7 @@ const TRANSFER_VALUE_ACCESSOR = {
     exportAs: 'nbTransfer'
 })
 
-export class TransferComponent implements OnInit, AfterViewInit {
+export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
 
     /** get selected value event */
     @Output() getValue: EventEmitter<number[] | string[]> = new EventEmitter<number[] | string[]>();
@@ -145,6 +146,22 @@ export class TransferComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngOnInit() {
+        this.initTransfer();
+    }
+
+    ngOnChanges() {
+        this.initTransfer();
+    }
+
+    ngAfterViewInit() {
+        this.getValue.emit(this.value);
+    }
+
+    /**
+     * init transfer
+     * @docs-private
+     */
+    initTransfer() {
         this.initTree(this.candidateData, 'candidate');
         this.initTree(this.selectedData, 'selected');
         this.countOptsStateValue(this.candidateData);
@@ -154,10 +171,6 @@ export class TransferComponent implements OnInit, AfterViewInit {
         this.originalselectedData = deepClone(this.selectedData);
         this.transferTreeToList(this.originalCandidateData, 'candidate');
         this.transferTreeToList(this.originalselectedData, 'selected');
-    }
-
-    ngAfterViewInit() {
-        this.getValue.emit(this.value);
     }
 
     /**
