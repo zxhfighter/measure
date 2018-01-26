@@ -1,15 +1,16 @@
 <h3 class="section-title">Default State</h3>
 <p>
     <nb-transfer 
-        [candidateData]="candidateDataEmpty" 
-        [selectedData]="selectedDataEmpty" 
+        [candidateData]="candidateData" 
+        [selectedData]="selectedData" 
         (getValue)="getValue($event)"></nb-transfer>
 </p>
 
+<h3 class="section-title">Async Get Init Data</h3>
 <p>
     <nb-transfer 
-        [candidateData]="candidateData" 
-        [selectedData]="selectedData" 
+        [candidateData]="candidateDataEmpty" 
+        [selectedData]="selectedDataEmpty" 
         (getValue)="getValue($event)"></nb-transfer>
 </p>
 
