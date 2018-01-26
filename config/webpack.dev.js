@@ -29,11 +29,17 @@ module.exports = webpackMerge(webpackCommonConfig, {
 
             {
                 test: /\.less$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'less-loader'
-                ],
+                use: [{
+                    loader: "style-loader"
+                }, {
+                    loader: "css-loader", options: {
+                        sourceMap: true
+                    }
+                }, {
+                    loader: "less-loader", options: {
+                        sourceMap: true
+                    }
+                }],
                 include: [helper.root('src/asset/less')]
             }
         ]
