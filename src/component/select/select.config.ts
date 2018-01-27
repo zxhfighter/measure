@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SelectConfig {
-    value?: number | null;
+    value?: any;
     label: string;
     children?: any[];
 }
