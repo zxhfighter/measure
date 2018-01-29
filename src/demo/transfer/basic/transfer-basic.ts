@@ -1,9 +1,11 @@
 import {
     Component,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    OnInit
 } from '@angular/core';
 
 import {
+    candidateDataEmpty,
     candidateData,
     selectedData
 } from '../transfer-test-data';
@@ -16,11 +18,22 @@ import {
     changeDetection: ChangeDetectionStrategy.Default
 })
 
-export class TransferBasicDemo {
+export class TransferBasicDemo implements OnInit {
 
     candidateData = candidateData;
 
     selectedData = selectedData;
+
+    candidateDataEmpty = [];
+
+    selectedDataEmpty = [];
+
+    ngOnInit() {
+        setTimeout(() => {
+            this.candidateDataEmpty = candidateDataEmpty;
+            this.selectedDataEmpty = JSON.parse(JSON.stringify(candidateData));
+        }, 1000);
+    }
 
     disabled = true;
 
