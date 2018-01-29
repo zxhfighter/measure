@@ -149,6 +149,11 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
             this._createTiplayer();
         }
         this.tiplayerInstance!.show();
+        this.tiplayerInstance!.openHandler.subscribe(() => {
+            // tiplayer组件root元素初始化层级为-1，定位之后再恢复层级
+            // 避免tiplayer组件的定位跳动
+            this.tiplayerInstance!.el.nativeElement.style.zIndex = 1000;
+        });
     }
 
     /**
