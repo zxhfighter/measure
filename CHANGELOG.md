@@ -1,5 +1,5 @@
 <a name="1.1.70"></a>
-## [1.1.70](https://github.com/zxhfighter/measure/compare/1.1.69...1.1.70) (2018-01-27)
+## [1.1.70](https://github.com/zxhfighter/measure/compare/1.1.62...1.1.70) (2018-01-29)
 
 
 
