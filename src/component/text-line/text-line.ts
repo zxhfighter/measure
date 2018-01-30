@@ -52,6 +52,19 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
     @Input() value: string = '';
 
     /**
+     * text-line placeholder
+     * @default ''
+     */
+    @Input() placeholder: string = '';
+
+    /**
+     * Whether the text-line is disabled
+     * @default false
+     */
+    @OnChange(true)
+    @Input() disabled: boolean = false;
+
+    /**
      * order dom
      * @docs-private
      */
@@ -68,13 +81,6 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
      * @docs-private
      */
     txtOrder: string = '';
-
-    /**
-     * Whether the text-line is disabled
-     * @default false
-     */
-    @OnChange(true)
-    @Input() disabled: boolean = false;
 
     constructor(
         private _cd: ChangeDetectorRef,

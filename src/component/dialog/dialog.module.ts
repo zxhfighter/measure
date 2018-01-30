@@ -12,7 +12,8 @@ import { ButtonModule } from '../button';
 @NgModule({
     imports: [CommonModule, ButtonModule, OverlayModule],
     declarations: [DialogComponent, DialogHeaderComponent, DialogBodyComponent, DialogFooterComponent, AlertComponent],
-    exports: [DialogComponent, DialogHeaderComponent, DialogBodyComponent, DialogFooterComponent, DialogService, AlertComponent],
-    entryComponents: [AlertComponent]
+    exports: [DialogComponent, DialogHeaderComponent, DialogBodyComponent, DialogFooterComponent, AlertComponent],
+    entryComponents: [AlertComponent],
+    providers: [DialogService]
 })
 export class DialogModule { }

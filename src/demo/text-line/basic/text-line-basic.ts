@@ -9,4 +9,5 @@ import { Component } from '@angular/core';
 export class TextLineBasicDemo {
     disabled = false;
     value = 'fadsfaf';
+    placeholder = "自定义placeholder";
 }
