@@ -101,8 +101,6 @@ export class SwitchComponent implements AfterViewInit, ControlValueAccessor {
     }
 
     _onInputClick(event: MouseEvent) {
-        console.log(this._dragging);
-
         if (this._dragging) {
             event.preventDefault();
         }
