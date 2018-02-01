@@ -290,4 +290,8 @@ export class ChartBasicDemo {
     barOptions1: any = chartOptions.bar1;
     barOptions2: any = chartOptions.bar2;
     barOptions3: any = chartOptions.bar3;
+
+    onClick(eventParams: any) {
+        console.log(eventParams);
+    }
 }

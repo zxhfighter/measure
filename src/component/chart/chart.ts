@@ -25,6 +25,17 @@ const echarts: any = (echartsLib as any).default ? (echartsLib as any).default :
 export class ChartComponent implements AfterViewInit, OnDestroy {
 
     /**
+     * chart event
+     */
+    @Output() chartEvent: EventEmitter<any> = new EventEmitter<any>();
+
+    /**
+     * chart event name
+     * @default click
+     */
+    @Input() eventName: string = 'click';
+
+    /**
      * chart width, can be a number(400) or a percent(30%)
      * @default 600
      */
@@ -90,6 +101,15 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
                 }
 
                 this._chartInstance.setOption(options, true);
+
+                if (this.eventName) {
+                    this._chartInstance.on(this.eventName, (params: any) => {
+                        this.chartEvent.emit({
+                            target: this._chartInstance,
+                            params: params
+                        });
+                    });
+                }
             }
             catch {
                 throw new Error('chart component may not work in web work or universal apps');
