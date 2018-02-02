@@ -312,6 +312,17 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * listen enter keydown event in search-box
+     * @param event
+     * @docs-private
+     */
+    onKeydown(event) {
+        if (event.keyCode === 13) {
+            this.onSearch.emit(this.value);
+        }
+    }
+
+    /**
      * realize search-box suggest function
      * @docs-private
      */
@@ -347,6 +358,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      */
     selectSuggestionValue(suggestionItem: string) {
         this.value = suggestionItem;
+        this.onSearch.emit(this.value);
     }
 
     /**

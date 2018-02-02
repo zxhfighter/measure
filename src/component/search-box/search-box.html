@@ -10,7 +10,8 @@
     [(ngModel)]="value"
     (focus)="onFocus(searchInput)"
     (blur)="onBlur(searchInput)"
-    (keyup)="onInputValue()">
+    (keyup)="onInputValue()"
+    (keydown)="onKeydown($event)">
 <div class="nb-search-box-operate">
     <div class="nb-search-box-icons">
         <button
