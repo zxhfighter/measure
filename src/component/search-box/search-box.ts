@@ -319,6 +319,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     onKeydown(event) {
         if (event.keyCode === 13) {
             this.onSearch.emit(this.value);
+            this._cd.markForCheck();
         }
     }
 
@@ -330,6 +331,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.positionSuggestionLayer(this);
         this.onSearchSuggestion.emit(this.value);
         this.isOpen = true;
+        this._cd.markForCheck();
     }
 
     /**
@@ -341,6 +343,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.value = '';
         ipt.placeholder = this.placeholder;
         this.onClear.emit(this.value);
+        this._cd.markForCheck();
     }
 
     /**
@@ -359,6 +362,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     selectSuggestionValue(suggestionItem: string) {
         this.value = suggestionItem;
         this.onSearch.emit(this.value);
+        this._cd.markForCheck();
+        this._markForCheck();
     }
 
     /**
