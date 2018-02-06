@@ -43,7 +43,12 @@
         &-control {
             line-height: @form-component-height;
             position: relative;
-            .clearfix();
+
+            &::before {
+                position: absolute;
+                left: -15px;
+                top: 12px;
+            }
 
             .@{prefix}-input {
                 width: 100%;
