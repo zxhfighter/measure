@@ -24,11 +24,22 @@
 
 
 .page-turn .arrow {
+    display: inline-block;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    color: #666;
+    text-align: center;
     border: 1px solid @nb-gray-5;
 }
 .page-turn {
     .arrow-disable {
-        background-color: @nb-gray-6;
+        color: #d8d8d8;
+        background-color: #eee;
+        &:hover {
+            color: #d8d8d8;
+            background-color: #eee;
+        }   
     }
     .nb-button {
         margin-right: 20px;
@@ -39,7 +50,7 @@
     margin: 0 2px;
     padding: 4px 10px;
     // font: 12px/30px 'Microsoft Yahei';
-    color: @nb-gray-10;
+    color: #999;
     // background-color: #f8f8f8;
     // border-radius: 2px;
     // border: 1px solid #d8d8d8;
@@ -49,10 +60,18 @@
     -ms-user-select: none;
     user-select: none;
 }
+.page-turn > span:hover {
+    color: #333;
+    background-color: #f7f7f7;
+}
 
 .page-turn .turn-on {
-    color: #989a9c;
-    background-color: @nb-gray-7;
+    color: #333;
+    background-color: #eee;
+    &:hover {
+        color: #333;
+        background-color: #eee;
+    }
     // border-color: #2f82f5;
 }
 
@@ -72,4 +91,12 @@
 .page-turn .go-page {
     margin: 0 5px;
     font-style: normal;
+}
+.page-turn {
+    .total-page {
+        &:hover {
+            color: #999;
+            background-color: #fff;
+        }
+    }
 }
