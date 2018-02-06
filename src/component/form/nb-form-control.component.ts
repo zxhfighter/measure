@@ -4,6 +4,7 @@ import { Component, HostBinding, Input } from '@angular/core';
     selector: '[nb-form-control]',
     template: `
         <div class="nb-form-item-control"
+             [class.nb-form-item-required]="nbRequired"
              [class.has-error]="isError"
              [class.has-success]="isSuccess"
              [class.has-feedback]="hasFeedBack">
@@ -26,6 +27,7 @@ export class NbFormControlComponent {
     }
 
     @Input() nbValidateStatus;
+    @Input() nbRequired;
 
     get isError(): boolean {
         return this._isDirtyAndError('error')
