@@ -24,6 +24,8 @@ export class UploaderBasicDemo {
         }
     ];
 
+    params = {token: '123456789'};
+
     onImageUpload(event) {
         const responseObject = JSON.parse(event.xhr.response);
         // event.file = responseObject.data.files[0];

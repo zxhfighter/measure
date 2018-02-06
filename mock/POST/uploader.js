@@ -1,4 +1,5 @@
 module.exports = query => {
+    console.log(query);
     return {
         "data": {
             "files": [
