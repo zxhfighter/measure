@@ -45,6 +45,11 @@ export class UploaderComponent implements OnInit {
     @Input() url: string;
 
     /**
+     * 上传提交需要传递的其他参数
+     */
+    @Input() params: object = {};
+
+    /**
      * 上传模式包括图片上传和文件上传
      * @default 'image'
      */
@@ -268,7 +273,9 @@ export class UploaderComponent implements OnInit {
 
         xhr.withCredentials = this.withCredentials;
 
-        xhr.send(file);
+        const params = Object.assign({file: file}, this.params);
+
+        xhr.send(params);
     }
 
     /**
