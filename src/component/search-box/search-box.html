@@ -10,12 +10,14 @@
     [(ngModel)]="value"
     (focus)="onFocus(searchInput)"
     (blur)="onBlur(searchInput)"
-    (keyup)="onInputValue()">
+    (keyup)="onInputValue()"
+    (keydown)="onKeydown($event)">
 <div class="nb-search-box-operate">
     <div class="nb-search-box-icons">
         <button
             *ngIf="value.length > 0"
             nb-button
+            type="button"
             theme="transparent"
             class="nb-clear"
             (click)="clearSearch(searchInput)"
@@ -26,6 +28,7 @@
         <button
             *ngIf="type==='ico'"
             nb-button
+            type="button"
             theme="transparent"
             class="nb-search"
             (click)="search()"
@@ -36,6 +39,7 @@
         <button
             *ngIf="type==='btn'"
             nb-button
+            type="button"
             theme="primary"
             (click)="search()"
             [size]="_sizeBtn"

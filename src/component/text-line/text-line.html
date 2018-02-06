@@ -2,7 +2,7 @@
 <textarea
     #txtContent
     class="nb-text-line-content"
-    placeholder="请在此输入"
+    [placeholder]="placeholder"
     [disabled]="disabled"
     [value]="value"
     (scroll)="scrollHandler($event, txtOrder)"

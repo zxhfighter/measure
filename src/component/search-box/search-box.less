@@ -42,6 +42,25 @@
     bottom: 0;
     left: 0;
     pointer-events: none;
+
+    .@{prefix}-clear i {
+        font-size: 12px;
+        transform: scale(0.7,0.7);
+        -webkit-transform: scale(0.7,0.7);
+        -moz-transform: scale(0.7,0.7);
+        -ms-transform: scale(0.7,0.7);
+        -o-transform: scale(0.7,0.7);
+
+        &:hover {
+            color: #333;
+        }
+    }
+
+    // .@{prefix}-search i {
+    //     &:hover {
+    //         color: #333;
+    //     }
+    // }
 }
 
 .@{prefix}-search-box-size-default .@{prefix}-search-box-operate {
@@ -96,7 +115,7 @@
     position: absolute;
     top: 37px;
     left: 0;
-    z-index: 2;
+    z-index: 101;
     width: 100%;
     border: 1px solid #eee;
     background-color: #fff;

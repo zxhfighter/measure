@@ -107,7 +107,7 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
      * 提示框的可见性
      * @default true
      */
-    visibility: boolean = true;
+    visibility: boolean = false;
 
     ngAfterViewInit() {
         this.needReposition.emit();

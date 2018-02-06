@@ -32,6 +32,7 @@ import {
     CalendarModule,
     RegionModule,
     DialogModule,
+    DialogService,
     ChipsModule,
     CodeHighlighterModule,
     CodeBoxModule,
@@ -191,7 +192,7 @@ const demoModules = [
         ...demoModules,
         RouterModule.forRoot(appRoutes, { useHash: true })
     ],
-    providers: [ToastService],
+    providers: [ToastService, DialogService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
