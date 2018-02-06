@@ -1,13 +1,13 @@
 <form nb-form [nbLayout]="'horizontal'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
-                    <label nb-form-required>推广计划名称</label>
+                    <label>推广计划名称</label>
                 </div>
             </div>
             <div nbCol [nbSpan]="10" [nbOffset]="1">
-                <div nb-form-control nbHasFeedback [nbValidateStatus]="getFormControl('planName')">
+                <div nb-form-control nbHasFeedback [nbRequired]="true" [nbValidateStatus]="getFormControl('planName')">
                     <input nbInput formControlName="planName">
                     <div nb-form-explain *ngIf="getFormControl('planName').dirty&&getFormControl('planName').hasError('required')">推广计划名称不能为空</div>
                 </div>
@@ -17,13 +17,13 @@
 
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
                     <label nb-form-required>关键词</label>
                 </div>
             </div>
             <div nbCol [nbSpan]="10" [nbOffset]="1">
-                <div nb-form-control nbHasFeedback [nbValidateStatus]="getFormControl('keyword')">
+                <div nb-form-control nbHasFeedback [nbRequired]="true" [nbValidateStatus]="getFormControl('keyword')">
                     <nb-chips formControlName="keyword"></nb-chips>
                     <div nb-form-explain *ngIf="getFormControl('keyword').dirty&&getFormControl('keyword').hasError('required')">关键词不能为空</div>
                 </div>
@@ -33,7 +33,7 @@
 
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
                     <label nb-form-required>计费方式</label>
                 </div>
@@ -52,15 +52,14 @@
 
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
                     <label nb-form-required>关联订单</label>
                 </div>
             </div>
             <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control [nbValidateStatus]="getFormControl('orderId')">
-                    <nb-select formControlName="orderId" [datasource]="orderData" [searchable]="true"
-                               [defaultLabel]="'请选择订单'"></nb-select>
+                    <nb-select formControlName="orderId" [datasource]="orderData" [searchable]="true" [defaultLabel]="'请选择订单'"></nb-select>
                 </div>
             </div>
         </div>
@@ -68,7 +67,7 @@
 
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
                     <label nb-form-required>单元价格</label>
                 </div>
@@ -84,7 +83,7 @@
 
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
                     <label nb-form-required>选择性别</label>
                 </div>
@@ -103,7 +102,7 @@
 
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
                     <label nb-form-required>自动下线</label>
                 </div>
@@ -118,7 +117,7 @@
 
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
                     <label nb-form-required>创意类型</label>
                 </div>
@@ -137,15 +136,15 @@
 
     <div nb-form-item>
         <div nbRow>
-            <div nbCol [nbSpan]="4">
+            <div nbCol [nbSpan]="3" [nbOffset]="1">
                 <div nb-form-label>
                     <label nb-form-required>备注</label>
                 </div>
             </div>
             <div nbCol [nbSpan]="10" [nbOffset]="1">
                 <div nb-form-control [nbValidateStatus]="getFormControl('remark')">
-                    <textarea nbTextarea theme="default" formControlName="remark">
-    </textarea>
+          <textarea nbTextarea theme="default" formControlName="remark">
+          </textarea>
                     <div nb-form-explain *ngIf="getFormControl('remark').dirty&&getFormControl('remark').hasError('required')">备注不能为空</div>
                 </div>
             </div>
