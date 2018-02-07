@@ -1,3 +1,8 @@
+<a name="1.1.86"></a>
+## [1.1.86](https://github.com/zxhfighter/measure/compare/1.1.84...1.1.86) (2018-02-07)
+
+
+
 <a name="1.1.85"></a>
 ## [1.1.85](https://github.com/zxhfighter/measure/compare/1.1.84...1.1.85) (2018-02-07)
 
