@@ -51,7 +51,7 @@
         <!-- 选择文件 -->
         <div class="file-add"
             [class.file-add-disabled]="disabled">
-            <button nb-button theme="default" [disabled]="disabled"><i class="fa fa-upload"></i> 选择文件</button>
+            <button nb-button theme="default" [disabled]="disabled"><i class="fa fa-upload"></i> 文件上传</button>
             <input (change)="onFileSelect($event)"
                 type="file" multiple="multiple" name="myFile" class="fileinput"
                 accept="{{ accept }}">
