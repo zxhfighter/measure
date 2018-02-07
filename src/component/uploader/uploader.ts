@@ -45,11 +45,6 @@ export class UploaderComponent implements OnInit {
     @Input() url: string;
 
     /**
-     * 上传提交需要传递的其他参数
-     */
-    @Input() params: object = {};
-
-    /**
      * 上传模式包括图片上传和文件上传
      * @default 'image'
      */
@@ -233,6 +228,9 @@ export class UploaderComponent implements OnInit {
             'file': file
         });
 
+        let formData = new FormData();
+        formData.append('file', file, file.name);
+
         xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
             if (e.lengthComputable) {
                 file.progress = Math.round((e.loaded * 100) / e.total);
@@ -263,8 +261,6 @@ export class UploaderComponent implements OnInit {
         };
 
         xhr.open(this._method, this.url, true);
-        xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-        xhr.setRequestHeader('x-requested-with', 'XMLHttpRequest');
 
         this.onBeforeSend.emit({
             'xhr': xhr,
@@ -273,9 +269,7 @@ export class UploaderComponent implements OnInit {
 
         xhr.withCredentials = this.withCredentials;
 
-        const params = Object.assign({file: file}, this.params);
-
-        xhr.send(params);
+        xhr.send(formData);
     }
 
     /**
