@@ -1,3 +1,43 @@
+<a name="1.1.85"></a>
+## [1.1.85](https://github.com/zxhfighter/measure/compare/1.1.84...1.1.85) (2018-02-07)
+
+
+
+<a name="1.1.84"></a>
+## [1.1.84](https://github.com/zxhfighter/measure/compare/1.1.83...1.1.84) (2018-02-07)
+
+
+
+<a name="1.1.83"></a>
+## [1.1.83](https://github.com/zxhfighter/measure/compare/1.1.82...1.1.83) (2018-02-07)
+
+
+
+<a name="1.1.82"></a>
+## [1.1.82](https://github.com/zxhfighter/measure/compare/1.1.81...1.1.82) (2018-02-07)
+
+
+
+<a name="1.1.79"></a>
+## [1.1.79](https://github.com/zxhfighter/measure/compare/1.1.78...1.1.79) (2018-02-06)
+
+
+
+<a name="1.1.78"></a>
+## [1.1.78](https://github.com/zxhfighter/measure/compare/1.1.75...1.1.78) (2018-02-02)
+
+
+
+<a name="1.1.79"></a>
+## [1.1.79](https://github.com/zxhfighter/measure/compare/1.1.78...1.1.79) (2018-02-06)
+
+
+
+<a name="1.1.78"></a>
+## [1.1.78](https://github.com/zxhfighter/measure/compare/1.1.75...1.1.78) (2018-02-02)
+
+
+
 <a name="1.1.80"></a>
 ## [1.1.80](https://github.com/zxhfighter/measure/compare/1.1.81...1.1.80) (2018-02-06)
 
