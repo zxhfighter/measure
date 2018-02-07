@@ -35,5 +35,8 @@ export class TextLineFormDemo implements OnInit {
             ]
         });
 
+        setTimeout(() => {
+            this.form.controls['textline'].setValue('aaaa\nbbbb\nccc');
+        }, 5000);
     }
 }
