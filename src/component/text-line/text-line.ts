@@ -167,7 +167,12 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
     writeValue(value: any) {
         this.value = value;
 
-        
+        if (value) {
+            let objTxtOrder = this.el.nativeElement.getElementsByClassName('nb-text-line-order');
+            value = value.replace(/\r/gi, '');
+            value = value.split('\n');
+            this.computeLine(value.length, objTxtOrder[0]);
+        }
 
         this._cd.markForCheck();
     }
