@@ -1,7 +1,7 @@
 import {
     Component, Input, ElementRef, Output, EventEmitter, forwardRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ViewChild, ViewChildren,
-    ContentChildren, QueryList, AfterContentInit, AfterViewInit, ChangeDetectorRef
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ViewChild, ViewChildren, AfterViewChecked,
+    ContentChildren, QueryList, AfterContentInit, AfterViewInit, ChangeDetectorRef, AfterContentChecked
 } from '@angular/core';
 import { TabComponent } from './tab';
 import { InkBarComponent } from './ink-bar';
@@ -22,7 +22,7 @@ export type TABS_SIZE = 'default' | 'large' | string;
     },
     exportAs: 'nbTabs'
 })
-export class TabsComponent implements OnInit, AfterViewInit {
+export class TabsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     /**
      * Tabs尺寸, 'default' | 'large'
@@ -56,6 +56,10 @@ export class TabsComponent implements OnInit, AfterViewInit {
 
     @ViewChildren(TabHeaderComponent) tabHeader: QueryList<TabHeaderComponent>;
 
+    activeIndex: number;
+
+    initializeActiveIndexChange: boolean;
+
     constructor(
         private cdRef: ChangeDetectorRef
     ) {
@@ -69,14 +73,14 @@ export class TabsComponent implements OnInit, AfterViewInit {
             return ;
         }
         /** 是否有某个Tab是选中状态，如果没有的话，选中第一个 */
-        let activeTab = this.tabs.filter(item => item.active === true);
-        if (activeTab.length === 0) {
-            setTimeout(() => {
-                this.tabs.toArray()[0].active = true;
-                this.cdRef.markForCheck();
+        let activeIndex = this.tabs.toArray().findIndex(item => item.active === true);
+        this.activeIndex = activeIndex === -1 ? 0 : activeIndex;
+        this.initializeActiveIndexChange = true;
+    }
 
-                this.alignInkBar(0);
-            });
+    ngAfterViewChecked(): void {
+        if (this.initializeActiveIndexChange) {
+            this.alignInkBar();
         }
     }
 
@@ -93,10 +97,12 @@ export class TabsComponent implements OnInit, AfterViewInit {
         if (tab.active) {
             return;
         }
+        this.activeIndex = index;
+        this.initializeActiveIndexChange = false;
         this.tabs.toArray().forEach((t) => t.active = false);
         tab.active = true;
 
-        this.alignInkBar(index);
+        this.alignInkBar();
 
         this.change.emit({
             activeIndex: index
@@ -108,8 +114,10 @@ export class TabsComponent implements OnInit, AfterViewInit {
      *
      * @param {number} index - 当前Tab的索引
      */
-    alignInkBar(index: number): void {
-        const activeTitle = this.tabHeader.toArray()[index];
-        this.inkBar.alignToElement(activeTitle.elementRef.nativeElement);
+    alignInkBar(): void {
+        const activeTitle = this.tabHeader.toArray()[this.activeIndex];
+        if (activeTitle) {
+            this.inkBar.alignToElement(activeTitle.elementRef.nativeElement);
+        }
     }
 }
