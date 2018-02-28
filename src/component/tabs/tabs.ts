@@ -75,6 +75,9 @@ export class TabsComponent implements OnInit, AfterViewInit, AfterViewChecked {
         /** 是否有某个Tab是选中状态，如果没有的话，选中第一个 */
         let activeIndex = this.tabs.toArray().findIndex(item => item.active === true);
         this.activeIndex = activeIndex === -1 ? 0 : activeIndex;
+        setTimeout(() => {
+            this.tabs.toArray()[this.activeIndex].active = true;
+        });
         this.initializeActiveIndexChange = true;
     }
 
