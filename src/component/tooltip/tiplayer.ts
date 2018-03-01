@@ -78,6 +78,7 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
     set placement(data) {
         this._placement = data;
         this.firstPlacement = this._placement.split('-')[0];
+        this.cdRef.markForCheck();
     }
 
     _placement: Placement;
