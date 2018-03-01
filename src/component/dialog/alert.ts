@@ -33,7 +33,7 @@ export class AlertComponent {
     @Input() modalable: boolean = false;
 
     @OnChange(true)
-    @Input() closable: boolean = true;
+    @Input() closable: boolean = false;
 
     @Output() confirmEvent: EventEmitter<Object> = new EventEmitter();
     @Output() cancelEvent: EventEmitter<Object> = new EventEmitter();

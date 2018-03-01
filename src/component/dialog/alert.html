@@ -1,4 +1,4 @@
-<nb-dialog class="nb-alert-box">
+<nb-dialog class="nb-alert-box" [closable]="closable">
     <nb-dialog-body>
         <div [ngSwitch]="type" class="nb-alert-severity">
             <i *ngSwitchCase="'success'" class="iconfont icon-check_c"></i>

@@ -11,10 +11,6 @@ import { DynamicComponentService } from '../../../component/overlay/dynamic-comp
 })
 export class DialogDynamicDemo {
 
-    @ViewChild(AlertComponent) errorAlert: AlertComponent;
-    @ViewChild('infoAlert') infoAlert: AlertComponent;
-    @ViewChild('successAlert') successAlert: AlertComponent;
-
     constructor(
         private _renderer: Renderer2,
         private viewContainerRef: ViewContainerRef,
@@ -23,17 +19,5 @@ export class DialogDynamicDemo {
 
     openSpecialDialog(type, content, title) {
         this.dialogService[type](content, title);
-    }
-
-    openAlertError() {
-        this.errorAlert.open();
-    }
-
-    openAlertInfo() {
-        this.infoAlert.open();
-    }
-
-    openAlertSuccess() {
-        this.successAlert.open();
     }
 }
