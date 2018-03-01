@@ -1,9 +1,9 @@
-<button theme="default" nb-button (click)="openSpecialDialog('info', 'you\'ve got a new message', 'Message')">
-    InfoBox
+<button theme="default" nb-button (click)="openSpecialDialog('success', '恭喜你，你的资料已经提交成功！', '创建条目成功')">
+    SuccessBox
 </button>
-<button theme="default" nb-button (click)="openSpecialDialog('error', 'you\'ve got an error', 'Error')">
+<button theme="default" nb-button (click)="openSpecialDialog('error', '请完善你的资料，保证内容真实。', '创建条目失败')">
     ErrorBox
 </button>
-<button theme="default" nb-button (click)="openSpecialDialog('success', 'Congratulations! Everything is ok!', 'Success')">
-    SuccessBox
+<button theme="default" nb-button (click)="openSpecialDialog('info', '请完善你的资料，保证内容真实。', '创建条目提醒')">
+    InfoBox
 </button>

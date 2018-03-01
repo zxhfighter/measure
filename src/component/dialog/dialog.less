@@ -3,12 +3,13 @@
 @dialog-min-width: 280px;
 @dialog-min-height: 210px;
 @dialog-transform-scale: 0.9;
-@dialog-box-shadow: 0 1px 4px 0;;
+@dialog-box-shadow: 0 1px 4px 0;
 @dialog-mask-zindex: 1000;
 @dialog-header-wrapper-close-margin: -15px -15px 0 0;
 @dialog-header-fontsize: 16px;
 @dialog-footer-padding: 30px 20px 20px;
-@dialog-footer-control-button: 0 10px;
+@dialog-footer-button: 0 3px;
+@dialog-footer-control-button: 0 5px;
 @dialog-mask-background: rgba(red(@nb-gray-1), green(@nb-gray-1), blue(@nb-gray-1), 0.5);
 @dialog-alert-severity-fontsize: 30px;
 
@@ -35,6 +36,8 @@
     }
 
     .@{prefix}-dialog {
+        display: flex;
+        flex-direction: column;
         z-index: @dialog-zindex;
         padding: @dialog-padding;
         min-width: @dialog-min-width;
@@ -71,8 +74,11 @@
         }
 
         &-footer {
-            padding: @dialog-footer-padding;
             text-align: center;
+
+            .@{prefix}-button {
+                margin: @dialog-footer-button;
+            }
 
             .@{prefix}-dialog-footer-control-button {
                 margin: @dialog-footer-control-button;
@@ -94,13 +100,22 @@
 }
 
 .@{prefix}-alert-box {
+    .@{prefix}-dialog {
+        width: 350px;
+        height: 220px;
+    }
 
     .@{prefix}-dialog-body {
         padding: 0;
+        text-align: center;
+
+        .nb-alert-title {
+            font-weight: normal;
+            margin: 20px 0 14px;
+        }
     }
 
     .@{prefix}-alert-severity {
-        text-align: center;
 
         .iconfont {
             font-size: @dialog-alert-severity-fontsize;
