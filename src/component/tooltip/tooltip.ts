@@ -48,6 +48,11 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
     @Input() nbHeight: number;
 
     /**
+     * 提示框
+     */
+    @Input() nbTooltipClass: string;
+
+    /**
      * 提示框的内容
      */
     @Input() nbTooltip: string | TemplateRef<any> = '';
@@ -209,6 +214,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
             hasArrow: this.hasArrow,
             embedded: this.embedded,
             placement: this.placement,
+            nbTooltipClass: this.nbTooltipClass,
             nbTooltipTheme: this.nbTooltipTheme
         };
         Object.keys(config).forEach(key => this.tiplayerInstance![key] = config[key]);

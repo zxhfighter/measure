@@ -45,6 +45,11 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
     @Input() nbHeight: number;
 
     /**
+     * 提示框
+     */
+    @Input() nbTooltipClass: string;
+
+    /**
      * 提示框主题色
      * 可选值为 'default' | white' | 'pink' | 'yellow'
      */
