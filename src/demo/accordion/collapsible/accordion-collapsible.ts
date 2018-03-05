@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Panel } from '../../../component/accordion/panel';
+import { Panel } from '../../../component/accordion';
 
 @Component({
     selector: 'demo-accordion-collapsible',

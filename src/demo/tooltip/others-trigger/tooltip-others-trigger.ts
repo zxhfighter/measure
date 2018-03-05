@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { TooltipDirective } from '../../../component/tooltip/tooltip';
+import { TooltipDirective } from '../../../component/tooltip';
 
 @Component({
     selector: 'demo-tooltip-others-trigger',

@@ -1,7 +1,7 @@
 import { Component, ViewChild, Renderer2, ViewContainerRef } from '@angular/core';
-import { AlertComponent } from '../../../component/dialog/alert';
-import { DialogService } from '../../../component/dialog/dialog.service';
-import { DynamicComponentService } from '../../../component/overlay/dynamic-component.service';
+import { AlertComponent } from '../../../component/dialog';
+import { DialogService } from '../../../component/dialog';
+import { DynamicComponentService } from '../../../component/overlay';
 
 @Component({
     selector: 'demo-dialog-dynamic',

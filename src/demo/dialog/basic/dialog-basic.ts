@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { DialogComponent } from '../../../component/dialog/dialog';
+import { DialogComponent } from '../../../component/dialog';
 
 @Component({
     selector: 'demo-dialog-basic',

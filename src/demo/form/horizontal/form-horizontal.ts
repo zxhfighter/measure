@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { SelectConfig } from '../../../component/select/select.config';
+import { SelectConfig } from '../../../component/select';
 
 export class GroupBoxItem {
     name: string;

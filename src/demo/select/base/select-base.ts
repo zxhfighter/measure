@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { SelectConfig } from '../../../component/select/select.config';
+import { SelectConfig } from '../../../component/select';
 
 @Component({
     selector: 'demo-select-base',

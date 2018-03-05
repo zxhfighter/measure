@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { DialogComponent } from '../../../component/dialog/dialog';
-// import { TooltipDirective } from '../../../component/tooltip/tooltip';
+import { DialogComponent } from '../../../component/dialog';
 
 @Component({
     selector: 'demo-dialog-content',
