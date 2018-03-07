@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { BoxGroupValue } from '../../../component/box-group';
 
 const barValue = [
@@ -290,6 +290,15 @@ export class ChartBasicDemo {
     barOptions1: any = chartOptions.bar1;
     barOptions2: any = chartOptions.bar2;
     barOptions3: any = chartOptions.bar3;
+
+    constructor(private _cd: ChangeDetectorRef) {
+        setTimeout(() => {
+            this.lineHeight = 300;
+            this._cd.markForCheck();
+        }, 2000);
+    }
+
+    lineHeight = 600;
 
     onClick(eventParams: any) {
         console.log(eventParams);

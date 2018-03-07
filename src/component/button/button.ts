@@ -24,7 +24,7 @@ export type BUTTON_SIZE = 'xs' | 'sm' | 'default' | 'lg' | string;
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
-        // because the button has the orignal disabled property, we can just use [disabled]
+        // because the button has the original disabled property, we can just use [disabled]
         // otherwise use [attr.disabled]
         '[disabled]': 'disabled || null'
     },
@@ -106,6 +106,9 @@ export class ButtonComponent implements OnChanges, AfterViewInit {
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
     host: {
+        // For non-interactive, focusable elements set -1
+        // otherwize set to 0, using the default sequential focus navigation order
+        // see https://www.w3.org/TR/html5/editing.html#the-tabindex-attribute
         '[attr.tabindex]': 'disabled ? -1 : 0',
 
         // because <a> don't have native disabled property, we neet set [attr.disabled]

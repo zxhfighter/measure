@@ -39,13 +39,19 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
      * chart width, can be a number(400) or a percent(30%)
      * @default 600
      */
+    @OnChange()
     @Input() width: number | string = 600;
+
+    widthChange: EventEmitter<number | string> =  new EventEmitter<number | string>();
 
     /**
      * chart height, can be a number(400) or a percent(30%)
      * @default 400
      */
+    @OnChange()
     @Input() height: number | string = 400;
+
+    heightChange: EventEmitter<number | string> =  new EventEmitter<number | string>();
 
     /**
      * chart title
@@ -113,6 +119,30 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
             }
             catch {
                 throw new Error('chart component may not work in web work or universal apps');
+            }
+        });
+
+        this.heightChange.subscribe(height => {
+            if (this._chartInstance) {
+                const container = this._chartContainer.nativeElement;
+                const heightUnit = (height + '').indexOf('%') === -1 ? 'px' : '';
+                this._renderer.setStyle(container, 'height', height + heightUnit);
+
+                this._chartInstance.resize({
+                    height
+                });
+            }
+        });
+
+        this.widthChange.subscribe(width => {
+            if (this._chartInstance) {
+                const container = this._chartContainer.nativeElement;
+                const widthUnit = (width + '').indexOf('%') === -1 ? 'px' : '';
+                this._renderer.setStyle(container, 'width', width + widthUnit);
+
+                this._chartInstance.resize({
+                    width
+                });
             }
         });
     }
