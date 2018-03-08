@@ -1,0 +1,22 @@
+<button nbOverlayOrigin #origin="nbOverlayOrigin"
+     nb-button theme="default"
+     (click)="onToggle()">customize content</button>
+
+<nb-tiplayer #overlay
+    placement="top"
+    nbTooltipTheme="white"
+    nbWidth="250"
+    nbHeight="250"
+    trigger="click"
+    hasArrow>
+    <p>
+        固定宽高：250 X 250<br/>
+        永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》
+    </p>
+    <a class="nb-breadcrumb-text"
+        href="javascript:void(0)"
+        (click)="onIknowthat()">
+        我知道了
+    </a>
+</nb-tiplayer>
+

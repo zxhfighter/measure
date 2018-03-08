@@ -30,4 +30,8 @@ export class TooltipDemo {
     tsCodeThemes: string = require('!!raw-loader!./themes/tooltip-themes.ts');
     htmlCodeThemes: string = require('!!raw-loader!./themes/tooltip-themes.html');
     lessCodeThemes: string = require('!!raw-loader!./themes/tooltip-themes.less');
+
+    tsCodeStatically: string = require('!!raw-loader!./statically/tooltip-statically.ts');
+    htmlCodeStatically: string = require('!!raw-loader!./statically/tooltip-statically.html');
+    lessCodeStatically: string = require('!!raw-loader!./statically/tooltip-statically.less');
 }

@@ -8,9 +8,11 @@ import {
     AfterViewInit,
     ElementRef,
     OnDestroy,
+    OnInit,
     Output,
     EventEmitter
 } from '@angular/core';
+import { OnChange } from '../core/decorators';
 import { fadeAnimation } from '../core/animation/fade-animations';
 import { OverlayComponent } from '../overlay';
 import { Placement } from '../overlay/position.interface';
@@ -32,7 +34,7 @@ import { Placement } from '../overlay/position.interface';
     }
 })
 
-export class TiplayerComponent extends OverlayComponent implements AfterViewInit, OnDestroy {
+export class TiplayerComponent extends OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /**
      * 提示框宽度
@@ -63,8 +65,10 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
 
     /**
      * 是否有箭头
+     * @default false
      */
-    @Input() hasArrow: boolean;
+    @OnChange(true)
+    @Input() hasArrow: boolean = false;
 
     /**
      * 浮层模式还是嵌入模式
@@ -83,7 +87,6 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
     set placement(data) {
         this._placement = data;
         this.firstPlacement = this._placement.split('-')[0];
-        this.cdRef.markForCheck();
     }
 
     _placement: Placement;
@@ -109,14 +112,14 @@ export class TiplayerComponent extends OverlayComponent implements AfterViewInit
      */
     @ViewChild('content') content: ElementRef;
 
-    /**
-     * 提示框的可见性
-     * @default true
-     */
-    visibility: boolean = false;
-
-    ngAfterViewInit() {
-        this.needReposition.emit();
+    ngOnInit() {
+        super.ngOnInit();
+        this.container = this.embedded ? '' : 'body';
+        this.openHandler.subscribe(() => {
+            // tiplayer组件root元素初始化层级为-1，定位之后再恢复层级
+            // 避免tiplayer组件的定位跳动
+            this.el.nativeElement.style.zIndex = 1000;
+        });
     }
 
     /**

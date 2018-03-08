@@ -64,7 +64,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
      * @default bottom
      */
     @OnChange()
-    @Input() placement: Placement = 'bottom';
+    @Input() placement: Placement;
 
     /**
      * 浮层模式还是嵌入模式
@@ -104,7 +104,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
     private positionStrategy;
 
     constructor(
-        private el: ElementRef,
+        public el: ElementRef,
         private renderer: Renderer2,
         private viewContainerRef: ViewContainerRef,
         private injector: Injector,
@@ -154,11 +154,6 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
             this._createTiplayer();
         }
         this.tiplayerInstance!.show();
-        this.tiplayerInstance!.openHandler.subscribe(() => {
-            // tiplayer组件root元素初始化层级为-1，定位之后再恢复层级
-            // 避免tiplayer组件的定位跳动
-            this.tiplayerInstance!.el.nativeElement.style.zIndex = 1000;
-        });
     }
 
     /**
@@ -208,6 +203,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         this.tiplayerInstance = componentRef.instance;
 
         const config = {
+            origin: this,
             nbWidth: this.nbWidth,
             nbHeight: this.nbHeight,
             trigger: this.trigger,
@@ -218,15 +214,6 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
             nbTooltipTheme: this.nbTooltipTheme
         };
         Object.keys(config).forEach(key => this.tiplayerInstance![key] = config[key]);
-
-        const positionStrategy = this.overlayPositionService
-            .attachTo(this.el, this.tiplayerInstance, this.placement);
-
-        this.positionStrategy = positionStrategy;
-        // this.tiplayerInstance.positionStrategy = positionStrategy;
-        this.tiplayerInstance.needReposition.subscribe(
-            () => this.overlayPositionService.updatePosition(positionStrategy)
-        );
     }
 
     /**
