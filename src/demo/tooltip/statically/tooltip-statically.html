@@ -1,6 +1,10 @@
 <button nbOverlayOrigin #origin="nbOverlayOrigin"
      nb-button theme="default"
-     (click)="onToggle()">customize content</button>
+     (click)="showTooltip($event, origin)">customize content11</button>
+
+<button nbOverlayOrigin #origin1="nbOverlayOrigin"
+     nb-button theme="primary"
+     (click)="showTooltip($event, origin1)">another customize content</button>
 
 <nb-tiplayer #overlay
     placement="top"

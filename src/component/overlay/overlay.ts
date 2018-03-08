@@ -1,5 +1,5 @@
-import { Input, Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy,
-    AfterViewInit, ElementRef, OnDestroy, Output, EventEmitter, ChangeDetectorRef, Renderer2
+import { Input, Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges,
+    AfterViewInit, ElementRef, OnDestroy, Output, EventEmitter, ChangeDetectorRef, Renderer2, OnChanges
 } from '@angular/core';
 import { Placement } from './position.interface';
 import { OnChange } from '../core/decorators';
@@ -21,7 +21,7 @@ import { TooltipDirective } from '../tooltip/tooltip';
     },
     exportAs: 'nbOverlay'
 })
-export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
+export class OverlayComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
     /** the event of opening the overlay */
     @Output() openHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
@@ -30,7 +30,17 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     @Output() closeHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
 
     /** * attached origin element */
-    @Input() origin: OverlayOriginDirective | TooltipDirective;
+    @Input()
+    get origin () {
+        return this._origin;
+    }
+    set origin(origin) {
+        this._origin = origin;
+        this._positionStategy = this.overlayPositionService
+                .attachTo(this.origin.el, this, this.placement);
+    }
+
+    _origin:  OverlayOriginDirective | TooltipDirective;
 
     /** A selector specifying the element the popover should be appended to. */
     /** Currently only supports "body".*/
@@ -97,7 +107,9 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
         // 调用show方法和组件渲染完成在不同场景下的执行顺序不同，所以两处都需要重新定位。
         // 此处定位一是因为渲染完成能够获得真实宽高，此时定位更为准确。
         // 二是因为当show方法执行早于此方法时，show方法中并没有定位。比如Tooltip的hover场景。
-        this.overlayPositionService.updatePosition(this._positionStategy);
+        if (this._positionStategy) {
+            this.overlayPositionService.updatePosition(this._positionStategy);
+        }
     }
 
     /**
