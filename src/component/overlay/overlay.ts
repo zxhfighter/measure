@@ -21,7 +21,7 @@ import { TooltipDirective } from '../tooltip/tooltip';
     },
     exportAs: 'nbOverlay'
 })
-export class OverlayComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /** the event of opening the overlay */
     @Output() openHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
