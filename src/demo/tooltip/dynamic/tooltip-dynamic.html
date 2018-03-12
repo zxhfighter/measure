@@ -1,0 +1,21 @@
+<button nb-button
+    theme="default"
+    [nbTooltip]="tipAttention"
+    placement="top"
+    nbTooltipTheme="white"
+    nbWidth="260"
+    trigger="click"
+    hasArrow>
+    动态渲染
+</button>
+
+<ng-template #tipAttention>
+    <div class="tip-content">
+        帮助内容提示弹窗控件多行显示情况。
+        帮助内容提示弹窗控件多行显示情况。
+        帮助内容提示弹窗控件多行显示情况。
+    </div>
+    <a href="javascript:void(0)" (click)="onIknowthat()">
+        我知道了
+    </a>
+</ng-template>

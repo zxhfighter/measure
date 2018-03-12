@@ -1,6 +1,7 @@
 import {
     NgModule,
     Input,
+    ChangeDetectorRef,
     Component,
     ViewChild,
     ViewEncapsulation,
@@ -9,11 +10,13 @@ import {
     ElementRef,
     OnDestroy,
     OnInit,
+    Renderer2,
     Output,
     EventEmitter
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
 import { fadeAnimation } from '../core/animation/fade-animations';
+import { OverlayPositionService } from '../overlay/overlay-position.service';
 import { OverlayComponent } from '../overlay';
 import { Placement } from '../overlay/position.interface';
 
@@ -22,6 +25,7 @@ import { Placement } from '../overlay/position.interface';
     templateUrl: './tiplayer.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [OverlayPositionService],
     animations: [ fadeAnimation ],
     exportAs: 'nbTiplayer',
     host: {
@@ -34,7 +38,7 @@ import { Placement } from '../overlay/position.interface';
     }
 })
 
-export class TiplayerComponent extends OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TiplayerComponent extends OverlayComponent implements OnInit, OnDestroy {
 
     /**
      * 提示框宽度
@@ -76,27 +80,6 @@ export class TiplayerComponent extends OverlayComponent implements OnInit, After
     @Input() embedded: boolean;
 
     /**
-     * 提示框位置信息，默认为目标元素的底部
-     * 可选值为 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |
-     * 'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'
-     */
-    @Input()
-    get placement () {
-        return this._placement;
-    }
-    set placement(data) {
-        this._placement = data;
-        this.firstPlacement = this._placement.split('-')[0];
-    }
-
-    _placement: Placement;
-
-    /**
-     * 位置信息中的第一级位置
-     */
-    firstPlacement: string;
-
-    /**
      * 变更可见性时的延迟时间
      * @default 200
      */
@@ -115,11 +98,7 @@ export class TiplayerComponent extends OverlayComponent implements OnInit, After
     ngOnInit() {
         super.ngOnInit();
         this.container = this.embedded ? '' : 'body';
-        this.openHandler.subscribe(() => {
-            // tiplayer组件root元素初始化层级为-1，定位之后再恢复层级
-            // 避免tiplayer组件的定位跳动
-            this.el.nativeElement.style.zIndex = 1000;
-        });
+        this.el.nativeElement.style.zIndex = 1000;
     }
 
     /**

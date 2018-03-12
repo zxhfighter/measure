@@ -1,0 +1,22 @@
+<button nbOverlayOrigin #origin="nbOverlayOrigin"
+     nb-button theme="default"
+     (click)="showTooltip($event, origin)">预渲染</button>
+
+<nb-tiplayer
+    id="tableStatic"
+    [origin]="origin"
+    placement="top"
+    nbTooltipTheme="white"
+    nbWidth="260"
+    trigger="click"
+    hasArrow>
+    <div class="tip-content">
+        帮助内容提示弹窗控件多行显示情况。
+        帮助内容提示弹窗控件多行显示情况。
+        帮助内容提示弹窗控件多行显示情况。
+    </div>
+    <a href="javascript:void(0)" (click)="onIknowthat()">
+        我知道了
+    </a>
+</nb-tiplayer>
+

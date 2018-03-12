@@ -13,6 +13,7 @@ import { TooltipDirective } from '../tooltip/tooltip';
     templateUrl: './overlay.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [OverlayPositionService],
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-overlay',
@@ -30,17 +31,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     @Output() closeHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
 
     /** * attached origin element */
-    @Input()
-    get origin () {
-        return this._origin;
-    }
-    set origin(origin) {
-        this._origin = origin;
-        this._positionStategy = this.overlayPositionService
-                .attachTo(this.origin.el, this, this.placement);
-    }
-
-    _origin:  OverlayOriginDirective | TooltipDirective;
+    @Input() origin: OverlayOriginDirective | TooltipDirective;
 
     /** A selector specifying the element the popover should be appended to. */
     /** Currently only supports "body".*/
@@ -69,7 +60,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(
         public el: ElementRef,
-        public cdRef: ChangeDetectorRef,
+        private cdRef: ChangeDetectorRef,
         private render: Renderer2,
         private overlayPositionService: OverlayPositionService
     ) {
@@ -160,5 +151,17 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
      */
     _preventDefault(event: MouseEvent) {
         event.stopPropagation();
+    }
+
+    /**
+     * 变更提示框的内容，e.g slider的提示
+     * @param { string } content
+     */
+    changeOrigin(origin) {
+        if (this.origin !== origin) {
+            this._positionStategy = this.overlayPositionService
+                .attachTo(origin.el, this, this.placement);
+        }
+        this.origin = origin;
     }
 }

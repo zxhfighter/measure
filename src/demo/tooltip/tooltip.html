@@ -28,32 +28,58 @@
 <nb-code-box [tsCode]="tsCodeBasic" [htmlCode]="htmlCodeBasic" [lessCode]="lessCodeBasic">
     <h3 nb-codebox-title>Tooltip Basic</h3>
     <div nb-codebox-desc>
+        <p><strong>Tooltip的使用方式有两种，预渲染和动态渲染。</strong></p>
+        <p><strong>预渲染【推荐】：预渲染指页面初始化后提示框的DOM结构已经存在。</strong></p>
+        <p>适用场景：</p>
+        <p>- 大多数场景都可以使用预渲染</p>
+        <p>- 多个触发元素共享一个提示框时，必须使用预渲染</p>
+        <br/>
+        <p><strong>动态渲染：动态渲染指页面初始化后提示框的DOM结构并不存在，当触发显示时才动态地创建组件。</strong></p>
+        <p>适用场景：</p>
+        <p>- 提示内容为简单纯文本。在触发元素的属性上设置文本内容即可。</p>
+        <p>- 提示内容比较复杂或者被使用的概率较小，需要优化为延迟渲染的场景。提示内容使用<code>ng-template标记</code>包装</p>
+        <br/>
+        <p>当前示例为动态渲染</p>
+        <p></p>
+        <p>通用功能：</p>
         <p>1. 通过 <code>placement</code> 设置提示框的位置，支持的方向有： <code>'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |
             'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom'</code> 默认为 bottom 底部显示</p>
         <p>2. 通过 <code>trigger</code> 设置提示框的触发类型，可选值为 <code>'click' | 'hover' | 'focus'</code> ，默认为 hover 触发</p>
         <p>3. 通过 <code>hasArrow</code >设置是否有箭头</p>
         <p>4. 通过 <code>nbTooltipClass</code >设置提示框的 className ，因为提示框是挂载到body下面，可以通过设置className区分提示框的展示形式</p>
+        <p>5. 通过 <code>nbWidth</code >、<code>nbHeight</code >固定提示框的宽高</p>
     </div>
 
     <demo-tooltip-basic></demo-tooltip-basic>
 </nb-code-box>
 
-<nb-code-box [tsCode]="tsCodeStatically" [htmlCode]="htmlCodeStatically" [lessCode]="lessCodeStatically">
-    <h3 nb-codebox-title>Tooltip Statically</h3>
+<nb-code-box [tsCode]="tsCodeDynamic" [htmlCode]="htmlCodeDynamic" [lessCode]="lessCodeDynamic">
+    <h3 nb-codebox-title>Tooltip Dynamic</h3>
     <div nb-codebox-desc>
-        <p>静态渲染</p>
+        <p>假设此示例的提示内容比较复杂或者被使用的概率较小，需要按需渲染</p>
+        <p>提示框的属性（比如定位、宽高）都设置在<strong>触发元素上</strong></p>
+        <p>提示框内容支持任意HTML片段、Angular组件、指令</p>
     </div>
 
-    <demo-tooltip-statically></demo-tooltip-statically>
+    <demo-tooltip-dynamic></demo-tooltip-dynamic>
 </nb-code-box>
 
-<nb-code-box [tsCode]="tsCodeContent" [htmlCode]="htmlCodeContent" [lessCode]="lessCodeContent">
-    <h3 nb-codebox-title>Tooltip Content</h3>
+<nb-code-box [tsCode]="tsCodeStatic" [htmlCode]="htmlCodeStatic" [lessCode]="lessCodeStatic">
+    <h3 nb-codebox-title>Tooltip Static</h3>
     <div nb-codebox-desc>
-        <p>支持任意HTML片段、Angular组件、指令</p>
+        <p>提示框的属性（比如定位、宽高）都设置在<strong>提示框元素本身</strong></p>
     </div>
 
-    <demo-tooltip-content></demo-tooltip-content>
+    <demo-tooltip-static></demo-tooltip-static>
+</nb-code-box>
+
+<nb-code-box [tsCode]="tsCodeShare" [htmlCode]="htmlCodeShare" [lessCode]="lessCodeShare">
+    <h3 nb-codebox-title>Tooltip Share</h3>
+    <div nb-codebox-desc>
+        <p>预渲染，列表中多条记录的修改使用同一个提示框</p>
+    </div>
+
+    <demo-tooltip-share></demo-tooltip-share>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeEmbedded" [htmlCode]="htmlCodeEmbedded" [lessCode]="lessCodeEmbedded">

@@ -11,9 +11,17 @@ export class TooltipDemo {
     htmlCodeBasic: string = require('!!raw-loader!./basic/tooltip-basic.html');
     lessCodeBasic: string = require('!!raw-loader!./basic/tooltip-basic.less');
 
-    tsCodeContent: string = require('!!raw-loader!./content/tooltip-content.ts');
-    htmlCodeContent: string = require('!!raw-loader!./content/tooltip-content.html');
-    lessCodeContent: string = require('!!raw-loader!./content/tooltip-content.less');
+    tsCodeDynamic: string = require('!!raw-loader!./dynamic/tooltip-dynamic.ts');
+    htmlCodeDynamic: string = require('!!raw-loader!./dynamic/tooltip-dynamic.html');
+    lessCodeDynamic: string = require('!!raw-loader!./dynamic/tooltip-dynamic.less');
+
+    tsCodeStatic: string = require('!!raw-loader!./static/tooltip-static.ts');
+    htmlCodeStatic: string = require('!!raw-loader!./static/tooltip-static.html');
+    lessCodeStatic: string = require('!!raw-loader!./static/tooltip-static.less');
+
+    tsCodeShare: string = require('!!raw-loader!./share/tooltip-share.ts');
+    htmlCodeShare: string = require('!!raw-loader!./share/tooltip-share.html');
+    lessCodeShare: string = require('!!raw-loader!./share/tooltip-share.less');
 
     tsCodeEmbedded: string = require('!!raw-loader!./embedded/tooltip-embedded.ts');
     htmlCodeEmbedded: string = require('!!raw-loader!./embedded/tooltip-embedded.html');
@@ -31,7 +39,4 @@ export class TooltipDemo {
     htmlCodeThemes: string = require('!!raw-loader!./themes/tooltip-themes.html');
     lessCodeThemes: string = require('!!raw-loader!./themes/tooltip-themes.less');
 
-    tsCodeStatically: string = require('!!raw-loader!./statically/tooltip-statically.ts');
-    htmlCodeStatically: string = require('!!raw-loader!./statically/tooltip-statically.html');
-    lessCodeStatically: string = require('!!raw-loader!./statically/tooltip-statically.less');
 }
