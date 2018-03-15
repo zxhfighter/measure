@@ -45,5 +45,5 @@ export function genTableData(len: number = genNum(100, 200)) {
  */
 export function getTableDataAsync(millis: number = 3000) {
     const data = genTableData();
-    return of(data).pipe(delay(3000));
+    return of(data).pipe(delay(millis));
 }

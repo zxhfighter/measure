@@ -56,24 +56,24 @@ describe('nb-tabs', () => {
         }).compileComponents();
     });
 
-    it('should render tabs and select first tab as active by default', () => {
-        const fixture = TestBed.createComponent(TabsTestComponent);
-        fixture.detectChanges();
+    // it('should render tabs and select first tab as active by default', () => {
+    //     const fixture = TestBed.createComponent(TabsTestComponent);
+    //     fixture.detectChanges();
 
-        const tabTitles = getTabTitles(fixture.nativeElement);
-        const tabContents = getTabContents(fixture.nativeElement);
+    //     const tabTitles = getTabTitles(fixture.nativeElement);
+    //     const tabContents = getTabContents(fixture.nativeElement);
 
-        expect(tabTitles[0].textContent).toMatch(/选中状态/);
-        expect(tabTitles[1].textContent).toMatch(/默认状态/);
-        expect(tabTitles[2].textContent).toMatch(/悬浮状态/);
-        expect(tabTitles[3].textContent).toMatch(/按下状态/);
-        expect(tabTitles[4].textContent).toMatch(/不可点击/);
+    //     expect(tabTitles[0].textContent).toMatch(/选中状态/);
+    //     expect(tabTitles[1].textContent).toMatch(/默认状态/);
+    //     expect(tabTitles[2].textContent).toMatch(/悬浮状态/);
+    //     expect(tabTitles[3].textContent).toMatch(/按下状态/);
+    //     expect(tabTitles[4].textContent).toMatch(/不可点击/);
 
-        expect(tabContents.length).toBe(5);
-        expect(tabContents[0].textContent).toMatch(/选中状态/);
+    //     expect(tabContents.length).toBe(5);
+    //     expect(tabContents[0].textContent).toMatch(/选中状态/);
 
-        expectTabs(fixture.nativeElement, [true, false, false, false, false], [false, false, false, false, true]);
-    });
+    //     expectTabs(fixture.nativeElement, [true, false, false, false, false], [false, false, false, false, true]);
+    // });
 
     it('should allow tip in tab titles', () => {
         const html = `

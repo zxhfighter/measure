@@ -13,7 +13,7 @@ const httpRewrite = require('http-rewrite-middleware');
 
 /** If the string passed in is a glob, returns it, otherwise append '**\/*' to it. */
 function _globify(maybeGlob: string, suffix = '**/*') {
-    if (maybeGlob.indexOf('*') != -1) {
+    if (maybeGlob.indexOf('*') !== -1) {
         return maybeGlob;
     }
     try {
@@ -71,7 +71,7 @@ export function execTask(binPath: string, args: string[], options: ExecTaskOptio
             if (options.failOnStderr && stderrData.length) {
                 done(stderrData.join('\n'));
             } else {
-                code != 0 ? done(options.errMessage || `Process failed with code ${code}`) : done();
+                code !== 0 ? done(options.errMessage || `Process failed with code ${code}`) : done();
             }
         });
     };
