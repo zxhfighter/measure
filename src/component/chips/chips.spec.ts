@@ -27,7 +27,6 @@ describe('nb-chips', () => {
 
         fixture = TestBed.createComponent(ChipsTestComponent);
         component = fixture.componentInstance;
-        console.log(fixture.debugElement.nativeElement);
 
         fixture.detectChanges();
         de = fixture.debugElement.queryAll(By.css('.nb-chips-label'));
@@ -36,8 +35,7 @@ describe('nb-chips', () => {
     });
 
     it('should have default chips when value is not a empty array', () => {
-        // expect(el0.textContent!.trim()).toBe(component.value[0]);
-        // expect(el1.textContent!.trim()).toBe(component.value[1]);
-        expect('a').toBe('a');
+        expect(el0.textContent!.trim()).toBe(component.value[0]);
+        expect(el1.textContent!.trim()).toBe(component.value[1]);
     });
 });

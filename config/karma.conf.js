@@ -10,7 +10,7 @@ module.exports = config => {
         },
         logLevel: config.LOG_INFO,
         browsers: [
-            'Chrome'
+            'ChromeHeadlessLocal'
         ],
         frameworks: [
             'jasmine'
@@ -19,14 +19,13 @@ module.exports = config => {
             './config/spec-bundle.js'
         ],
         preprocessors: {
-            ['./config/spec-bundle.js']: [
-                'webpack'
-            ]
+            './config/spec-bundle.js': ['webpack']
         },
-        reporters: ['progress', 'coverage', 'kjhtml'],
+        reporters: ['dots'],
         coverageReporter: {
-            type: 'html',
-            dir: 'coverage/'
+            type: 'json-summary',
+            dir: 'coverage/',
+            subdir: '.'
         },
         webpack: require('./webpack.test')(),
         webpackMiddleware: {
@@ -38,6 +37,26 @@ module.exports = config => {
             require('karma-chrome-launcher'),
             require('karma-webpack'),
             require('karma-jasmine-html-reporter')
-        ]
+        ],
+
+        customLaunchers: {
+            ChromeHeadlessLocal: {
+                base: 'ChromeHeadless',
+                flags: [
+                    '--window-size=1024,768'
+                ]
+            }
+        },
+
+        browserDisconnectTimeout: 20000,
+        browserNoActivityTimeout: 240000,
+        captureTimeout: 120000,
+
+        client: {
+            jasmine: {
+                // TODO(jelbourn): re-enable random test order once we can de-flake existing issues.
+                random: false
+            }
+        }
     })
 }
