@@ -15,9 +15,9 @@ const yargs = require('yargs');
 
 const branch = 'develop';
 
-
 task('commit', sequenceTask(
     'lint',
+    'test:once',
     'build',
     'bump-version',
     'changelog',

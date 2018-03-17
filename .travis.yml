@@ -4,6 +4,11 @@ sudo: false
 
 node_js:
   - '8'
+  - '7'
+  - '6'
+
+git:
+  depth: 3
 
 branches:
   only:
@@ -13,6 +18,7 @@ install:
   - npm install
 
 script:
+  - npm run test
   - npm run build
 
 cache:
