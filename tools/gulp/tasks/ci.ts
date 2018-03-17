@@ -29,7 +29,7 @@ task('commit', sequenceTask(
 
 task('bump-version', () => {
     return src('./package.json')
-        .pipe(bump({type: 'patch'})).on('error', gutil.log)
+        .pipe(bump({type: 'minor'})).on('error', gutil.log)
         .pipe(dest('./'));
 });
 
