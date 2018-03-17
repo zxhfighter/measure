@@ -1,17 +1,19 @@
-import { Input, Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy,
-    AfterViewInit, ElementRef, OnDestroy, Output, EventEmitter, ChangeDetectorRef, Renderer2
+import { Input, Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges,
+    AfterViewInit, ElementRef, OnDestroy, Output, EventEmitter, ChangeDetectorRef, Renderer2, OnChanges
 } from '@angular/core';
 import { Placement } from './position.interface';
 import { OnChange } from '../core/decorators';
 import { ViewportRuler } from './scroll-strategy';
 import { OverlayPositionService } from './overlay-position.service';
 import { OverlayOriginDirective } from './overlay-origin.directive';
+import { TooltipDirective } from '../tooltip/tooltip';
 
 @Component({
     selector: 'nb-overlay',
     templateUrl: './overlay.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [OverlayPositionService],
     preserveWhitespaces: false,
     host: {
         'class': 'nb-widget nb-overlay',
@@ -29,7 +31,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     @Output() closeHandler: EventEmitter<OverlayComponent> = new EventEmitter<OverlayComponent>();
 
     /** * attached origin element */
-    @Input() origin: OverlayOriginDirective;
+    @Input() origin: OverlayOriginDirective | TooltipDirective;
 
     /** A selector specifying the element the popover should be appended to. */
     /** Currently only supports "body".*/
@@ -58,7 +60,7 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(
         public el: ElementRef,
-        public cdRef: ChangeDetectorRef,
+        private cdRef: ChangeDetectorRef,
         private render: Renderer2,
         private overlayPositionService: OverlayPositionService
     ) {
@@ -91,13 +93,13 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         if (this.origin) {
             this._positionStategy = this.overlayPositionService
-                .attachTo(this.origin.elementRef, this, this.placement);
-
-            // 调用show方法和组件渲染完成在不同场景下的执行顺序不同，所以两处都需要重新定位。
-            // 此处定位一是因为渲染完成能够获得真实宽高，此时定位更为准确。
-            // 二是因为当show方法执行早于此方法时，show方法中并没有定位。比如Tooltip的hover场景。
-            // 原因二不成立，Tooltip覆盖了此方法
-            // this.overlayPositionService.updatePosition(_positionStategy);
+                .attachTo(this.origin.el, this, this.placement);
+        }
+        // 调用show方法和组件渲染完成在不同场景下的执行顺序不同，所以两处都需要重新定位。
+        // 此处定位一是因为渲染完成能够获得真实宽高，此时定位更为准确。
+        // 二是因为当show方法执行早于此方法时，show方法中并没有定位。比如Tooltip的hover场景。
+        if (this._positionStategy) {
+            this.overlayPositionService.updatePosition(this._positionStategy);
         }
     }
 
@@ -149,5 +151,17 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
      */
     _preventDefault(event: MouseEvent) {
         event.stopPropagation();
+    }
+
+    /**
+     * 变更提示框的内容，e.g slider的提示
+     * @param { string } content
+     */
+    changeOrigin(origin) {
+        if (this.origin !== origin) {
+            this._positionStategy = this.overlayPositionService
+                .attachTo(origin.el, this, this.placement);
+        }
+        this.origin = origin;
     }
 }

@@ -155,13 +155,12 @@ export class OverlayPositionService {
     connectedPositionRevertToPlacement(lastConnectedPosition: ConnectionPositionPair) {
         // 相异的方向为主方向
         if (lastConnectedPosition.targetX !== lastConnectedPosition.overlayX) {
-            this.overlayComponent.fallbackFirstPlacement = lastConnectedPosition.targetX;
             this.overlayComponent.placement = lastConnectedPosition.targetX + '-' + lastConnectedPosition.targetY;
         }
         else if (lastConnectedPosition.targetY !== lastConnectedPosition.overlayY) {
-            this.overlayComponent.fallbackFirstPlacement = lastConnectedPosition.targetY;
             this.overlayComponent.placement = lastConnectedPosition.targetY + '-' + lastConnectedPosition.targetX;
         }
+        this.overlayComponent.cdRef.markForCheck();
     }
 
     /**
@@ -245,7 +244,7 @@ export class OverlayPositionService {
             vertical = seconedPlacement;
         }
 
-        if (seconedPlacement == null) {
+        if (seconedPlacement == null || seconedPlacement === 'center') {
             if (firstPlacement === 'top' || firstPlacement === 'bottom') {
                 horizontal = 'center';
             }
@@ -308,7 +307,7 @@ export class OverlayPositionService {
             vertical = seconedPlacement;
         }
 
-        if (seconedPlacement == null) {
+        if (seconedPlacement == null || seconedPlacement === 'center') {
             if (firstPlacement === 'top' || firstPlacement === 'bottom') {
                 horizontal = 'center';
             }

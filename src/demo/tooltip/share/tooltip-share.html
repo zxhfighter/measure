@@ -1,0 +1,39 @@
+<table nb-table #nbTable1 [datasource]="datasource">
+    <thead nb-thead>
+        <tr nb-row>
+            <th *ngFor="let field of fields" [field]="field.name">
+                <span class="field-title">{{ field.title }}</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody nb-tbody>
+        <tr nb-row *ngFor="let item of nbTable1.data">
+            <td nb-td>
+                {{ item.name }}
+                <i class="iconfont icon-edit"
+                    nbOverlayOrigin
+                    #origin="nbOverlayOrigin"
+                    (click)="showTooltip($event, origin, item.name)">
+                </i>
+            </td>
+            <td nb-td>
+                <a href="javascript:;">删除</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<nb-tiplayer
+    class="edit-overlay"
+    nbTooltipTheme="white"
+    trigger="click"
+    placement="top"
+    nbWidth="418"
+    hasArrow>
+    <input nbInput type="text" theme="default" size="flat" [value]="currValue">
+    <button nb-button (click)="confirm()" class="edit-confirm" size="xs">确定</button>
+    <button nb-button (click)="close()" class="edit-cancel" size="xs" theme="default">取消</button>
+    <p *ngIf="dictNameChecked" class="word-edit-err-msg"></p>
+</nb-tiplayer>
+
