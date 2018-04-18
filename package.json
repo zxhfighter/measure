@@ -8,6 +8,7 @@
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development gulp serve",
     "test": "gulp test",
+    "test-once": "gulp test:once",
     "watch:test": "npm run test -- --auto-watch --no-single-run",
     "rm": "rm -rf aot && rm -rf dist",
     "build": "gulp build && npm run build:demo:aot",
