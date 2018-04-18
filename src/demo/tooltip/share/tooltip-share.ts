@@ -16,6 +16,8 @@ export class TooltipShareDemo {
 
     currValue: string = '';
 
+    dictNameChecked: boolean = true;
+
     fields: Field[] = [
         {
             name: 'name',

@@ -40,6 +40,8 @@ testing.TestBed.initTestEnvironment(
  * Using that regex we are saying look in ../src then find
  * any file that ends with spec.ts and get its path. By passing in true
  * we say do this recursively
+ *
+ * see https://webpack.js.org/guides/dependency-management/#require-context
  */
 var testContext = require.context('../src/component', true, /\.spec\.ts/);
 
@@ -47,6 +49,8 @@ var testContext = require.context('../src/component', true, /\.spec\.ts/);
  * Get all the files, for each file, call the context function
  * that will require the file and load it up here. Context will
  * loop and require those spec files here
+ *
+ * see https://webpack.js.org/guides/dependency-management/#context-module-api
  */
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);

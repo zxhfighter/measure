@@ -1,5 +1,4 @@
-import { task, src, dest } from 'gulp';
-import { spawnSync } from 'child_process';
+import { task } from 'gulp';
 import { join } from 'path';
 
 import { config } from '../utils/config';

@@ -28,8 +28,17 @@ task('commit', sequenceTask(
 ));
 
 task('bump-version', () => {
+    let bumpType = 'patch';
+
+    if (yargs.argv.major) {
+        bumpType = 'major';
+    }
+    else if (yargs.argv.minor) {
+        bumpType = 'minor';
+    }
+
     return src('./package.json')
-        .pipe(bump({type: 'minor'})).on('error', gutil.log)
+        .pipe(bump({type: bumpType})).on('error', gutil.log)
         .pipe(dest('./'));
 });
 
