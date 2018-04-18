@@ -22,7 +22,7 @@ export class TooltipStaticDemo {
         this.overlay.hide();
     }
 
-    showTooltip(event, origin) {
+    showTooltip(event) {
         this.overlay.show();
 
         // 需要阻止默认事件，否则会响应overlay组件中对document的事件绑定。

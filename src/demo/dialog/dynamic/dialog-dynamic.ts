@@ -14,7 +14,7 @@ export class DialogDynamicDemo {
     constructor(
         private _renderer: Renderer2,
         private viewContainerRef: ViewContainerRef,
-        private dialogService: DialogService<AlertComponent>) {
+        private dialogService: DialogService) {
     }
 
     openSpecialDialog(type, content, title) {

@@ -5,7 +5,7 @@ import { AlertComponent } from './alert';
 import { DynamicComponentService } from '../overlay/dynamic-component.service';
 
 @Injectable()
-export class DialogService<T> {
+export class DialogService {
 
     private dialogInstance: AlertComponent;
 
