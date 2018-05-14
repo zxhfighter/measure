@@ -1,3 +1,10 @@
+/**
+ * xdesign
+ *
+ * @file date range picker
+ * @author csu.zengxiaohui@gmail.com
+ */
+
 import {
     Component, Input, Output, EventEmitter, Renderer2, OnDestroy, ViewChild, ElementRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, forwardRef
@@ -121,6 +128,11 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
     @OnChange(true)
     @Input()
     disabled: boolean = false;
+
+    /**
+     * the strategy function which used to check weather the date is disabled
+     */
+    @Input() disabledStrategy: (date: Date) => boolean;
 
     /**
      * get the text show in input box

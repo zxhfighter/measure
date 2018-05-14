@@ -148,6 +148,11 @@ export class MonthViewComponent implements OnInit {
     @Input() disabledDates: string[] = [];
 
     /**
+     * the strategy function which used to check weather the date is disabled
+     */
+    @Input() disabledStrategy: (date: Date) => boolean;
+
+    /**
      * whether the month view is disabled
      * @default false
      */
@@ -323,10 +328,18 @@ export class MonthViewComponent implements OnInit {
      * @docs-private
      */
     checkIsDisabled(date: Moment): boolean {
-        return this.disabledDates.some((d: string) => {
-            const disabledDate = moment(d);
-            return date.isSame(disabledDate, 'day');
-        });
+
+        if (this.disabledStrategy && typeof this.disabledStrategy === 'function') {
+            return this.disabledStrategy(date.toDate());
+        }
+        else if (this.disabledDates) {
+            return this.disabledDates.some((d: string) => {
+                const disabledDate = moment(d);
+                return date.isSame(disabledDate, 'day');
+            });
+        }
+
+        return false;
     }
 
     /**

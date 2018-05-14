@@ -67,6 +67,11 @@ export class CalendarComponent {
     disabled: boolean = false;
 
     /**
+     * the strategy function which used to check weather the date is disabled
+     */
+    @Input() disabledStrategy: (date: Date) => boolean;
+
+    /**
      * calendar actived month date value
      * @docs-private
      */
