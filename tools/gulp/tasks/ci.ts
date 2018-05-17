@@ -22,9 +22,9 @@ task('commit', sequenceTask(
     'bump-version',
     'changelog',
     'commit-changes',
-    'push-changes',
-    'create-new-tag',
-    'github-release'
+    'push-changes'
+    // 'create-new-tag',
+    // 'github-release'
 ));
 
 task('bump-version', () => {
