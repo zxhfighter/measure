@@ -3,12 +3,8 @@
  * @author zengxiaohui(csu.zengxiaohui@gmail.com)
  */
 
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
-const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ngcWebpack = require('ngc-webpack');
 const {CheckerPlugin} = require('awesome-typescript-loader');
 const helper = require('./helper');
@@ -46,12 +42,7 @@ module.exports = {
                         }
                     },
                     {
-                        loader: 'awesome-typescript-loader',
-                        options: {
-                            configFileName: isAOT
-                                ? helper.root('tsconfig-aot.json')
-                                : helper.root('src/demo/tsconfig.json')
-                        }
+                        loader: '@ngtools/webpack'
                     },
                     {
                         loader: 'angular2-template-loader'
@@ -102,48 +93,48 @@ module.exports = {
         ]
     },
 
+    optimization: {
+        splitChunks: {
+            chunks: 'initial',
+            cacheGroups: {
+                // 创建一个 commons 块，用于包含所有入口模块共用的代码
+                commons: {
+                    name: 'commons',
+                    chunks: 'initial',
+                    minChunks: 2,
+                    priority: 9
+                }
+            }
+        }
+    },
+
     plugins: [
         new CheckerPlugin(),
 
-        new CommonsChunkPlugin({
-            name: 'polyfills',
-            chunks: ['polyfills']
-        }),
-
-        new CommonsChunkPlugin({
-            name: 'vendor',
-            chunks: ['app'],
-            minChunks: module => /node_modules/.test(module.resource)
-        }),
-
-        new CommonsChunkPlugin({
-            name: ['polyfills', 'vendor'].reverse()
-        }),
-
-        new ContextReplacementPlugin(
+        new webpack.ContextReplacementPlugin(
             /angular(\\|\/)core(\\|\/)@angular/,
             helper.root('app/src'),
             {}
         ),
 
         // Fix Angular 2
-        new NormalModuleReplacementPlugin(
+        new webpack.NormalModuleReplacementPlugin(
             /facade(\\|\/)async/,
             helper.root('node_modules/@angular/core/src/facade/async.js')
         ),
-        new NormalModuleReplacementPlugin(
+        new webpack.NormalModuleReplacementPlugin(
             /facade(\\|\/)collection/,
             helper.root('node_modules/@angular/core/src/facade/collection.js')
         ),
-        new NormalModuleReplacementPlugin(
+        new webpack.NormalModuleReplacementPlugin(
             /facade(\\|\/)errors/,
             helper.root('node_modules/@angular/core/src/facade/errors.js')
         ),
-        new NormalModuleReplacementPlugin(
+        new webpack.NormalModuleReplacementPlugin(
             /facade(\\|\/)lang/,
             helper.root('node_modules/@angular/core/src/facade/lang.js')
         ),
-        new NormalModuleReplacementPlugin(
+        new webpack.NormalModuleReplacementPlugin(
             /facade(\\|\/)math/,
             helper.root('node_modules/@angular/core/src/facade/math.js')
         ),
@@ -155,17 +146,15 @@ module.exports = {
             hash: true
         }),
 
-        new LoaderOptionsPlugin({}),
-
-        new DefinePlugin({
+        new webpack.DefinePlugin({
             SERVER_API: JSON.stringify(helper.getBuildConfig().apiPrefix),
             NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
             ENV: JSON.stringify(process.env.NODE_ENV || 'development')
         }),
 
         new ngcWebpack.NgcWebpackPlugin({
-            disabled: !isAOT,
-            tsConfig: isAOT ? helper.root('tsconfig-aot.json') : helper.root('src/demo/tsconfig.json'),
+            AOT: isAOT,
+            tsConfigPath: isAOT ? helper.root('tsconfig-aot.json') : helper.root('src/demo/tsconfig.json'),
             resourceOverride: helper.root('config/resource-override.js')
         })
     ]

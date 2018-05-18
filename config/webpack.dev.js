@@ -9,6 +9,7 @@ const webpackCommonConfig = require('./webpack.common');
 const helper = require('./helper');
 
 module.exports = webpackMerge(webpackCommonConfig, {
+    mode: 'development',
     devtool: 'cheap-module-source-map',
 
     output: {

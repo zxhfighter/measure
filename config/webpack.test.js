@@ -3,8 +3,8 @@
  * @author wanlingfeng(wanlingfeng@baidu.com)
  */
 
+const webpack = require('webpack');
 const helper = require('./helper');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 module.exports = function () {
     return {
@@ -86,7 +86,7 @@ module.exports = function () {
         },
 
         plugins: [
-            new ContextReplacementPlugin(
+            new webpack.ContextReplacementPlugin(
                 /angular(\\|\/)core(\\|\/)@angular/,
                 helper.root('src'),
                 {}
