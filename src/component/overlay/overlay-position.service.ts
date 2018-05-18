@@ -3,7 +3,7 @@ import { Placement, ConnectionPosition, HorizontalConnectionPos,
     VerticalConnectionPos, ConnectionPositionPair } from './position.interface';
 import { ConnectedPositionStrategy } from './connected-position.strategy';
 import { GlobalPositionStrategy } from './global-position.strategy';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ViewportRuler } from './scroll-strategy';
 import { OverlayComponent } from './overlay';
 

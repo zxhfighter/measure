@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit, ChangeDetectionStrategy } from '@
 import { genTableData } from '../table.data';
 import { sortFunc } from '../../../component/table';
 
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 interface TableArgs {
     order: string;

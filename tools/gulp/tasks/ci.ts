@@ -59,11 +59,11 @@ task('commit-changes', () => {
         .pipe(git.commit(commitMsg || '【Prerelease】Bumped version number'));
 });
 
-task('push-changes', cb => {
+task('push-changes', (cb: any) => {
     git.push('origin', branch, cb);
 });
 
-task('create-new-tag', cb => {
+task('create-new-tag', (cb: any) => {
     const version = require(join(config.projectPath, 'package.json')).version;
     git.tag(version, 'Created Tag for version: ' + version, (error: any) => {
         if (error) {
@@ -73,7 +73,7 @@ task('create-new-tag', cb => {
     });
 });
 
-task('github-release', done => {
+task('github-release', (done: any) => {
     conventionalGithubReleaser({
         type: 'oauth',
         token: process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN

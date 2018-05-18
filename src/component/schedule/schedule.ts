@@ -3,11 +3,7 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, forwardRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-// import { Subscription } from 'rxjs/Subscription';
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/operator/debounceTime';
-// import 'rxjs/add/observable/fromEvent';
-// import 'rxjs/add/operator/map';
+
 import { SelectConfig } from '../select/select.config';
 
 @Component({

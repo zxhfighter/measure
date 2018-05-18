@@ -12,13 +12,12 @@ import {
     SimpleChanges
 } from '@angular/core';
 
-import { fromEvent } from 'rxjs/observable/fromEvent';
+import { fromEvent, Observable } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { SliderService } from './slider.service';
 import { TooltipDirective } from '../index';
 import { OnChange } from '../core/decorators';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'nb-slider-hand',

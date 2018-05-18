@@ -1,10 +1,6 @@
 import { Injectable, Optional, SkipSelf, NgZone, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { merge } from 'rxjs/observable/merge';
+import { Observable, fromEvent, merge, Subscription, of as observableOf } from 'rxjs';
 import { auditTime } from 'rxjs/operators';
-import { Subscription } from 'rxjs/Subscription';
-import { of as observableOf } from 'rxjs/observable/of';
 
 /** Time in ms to throttle the resize events by default. */
 export const DEFAULT_RESIZE_TIME = 20;

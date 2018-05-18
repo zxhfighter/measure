@@ -1,8 +1,6 @@
 import { genBool, genNum, genStr } from '../util/random';
-import { Observable } from 'rxjs/Observable';
-
-import { of } from 'rxjs/observable/of';
-import { delay } from 'rxjs/operators/delay';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 /**
  * sync generate table data at random

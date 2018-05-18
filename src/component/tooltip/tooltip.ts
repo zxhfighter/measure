@@ -24,7 +24,7 @@ import { TiplayerComponent } from './tiplayer';
 import { ConnectionPosition, Placement } from '../util/position';
 import { OverlayPositionService } from '../overlay/overlay-position.service';
 import { DynamicComponentService } from '../overlay/dynamic-component.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Directive({
     selector: '[nbTooltip]',
