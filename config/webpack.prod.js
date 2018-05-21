@@ -3,7 +3,7 @@
  * @author zengxiaohui(csu.zengxiaohui@gmail.com)
  */
 
-// const webpack = require('webpack');
+const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const webpackCommonConfig = require('./webpack.common');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -45,35 +45,30 @@ module.exports = webpackMerge(webpackCommonConfig, {
     plugins: [
         new UglifyJsPlugin({
             uglifyOptions: {
-                beautify: false,
+                warnings: false,
                 output: {
-                comments: false
+                    comments: false,
+                    beautify: false
                 },
                 mangle: {
-                screw_ie8: true
+                    ie8: false
                 },
                 compress: {
-                screw_ie8: true,
-                warnings: false,
-                conditionals: true,
-                unused: true,
-                comparisons: true,
-                sequences: true,
-                dead_code: true,
-                evaluate: true,
-                if_return: true,
-                join_vars: true,
-                negate_iife: false
+                    ie8: false,
+                    conditionals: true,
+                    unused: true,
+                    comparisons: true,
+                    sequences: true,
+                    dead_code: true,
+                    evaluate: true,
+                    if_return: true,
+                    join_vars: true,
+                    negate_iife: false
                 }
             }
         }),
 
-        new ExtractTextPlugin('[name].[contenthash:6].css'),
-
-        new webpack.NormalModuleReplacementPlugin(
-            /angular2-hmr/,
-            helper.root('config/empty.js')
-        ),
+        new ExtractTextPlugin('[name].css'),
 
         new webpack.NormalModuleReplacementPlugin(
             /zone\.js(\\|\/)dist(\\|\/)long-stack-trace-zone/,

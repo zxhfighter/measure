@@ -9,7 +9,6 @@ const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const helper = require('./helper');
-const isAOT = helper.isAOT();
 
 module.exports = {
     entry: {
@@ -32,10 +31,7 @@ module.exports = {
             {
                 // (?:x) 非捕获括号，匹配 x 但是不记住匹配项
                 test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-                use: [
-                    '@ngtools/webpack',
-                    'angular2-template-loader'
-                ],
+                loader: '@ngtools/webpack',
                 exclude: [/\.(spec|e2e)\.ts$/, 'scafford', 'tools', 'src/demo/main-aot.ts']
             },
             {
@@ -44,6 +40,7 @@ module.exports = {
                 test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
                 parser: { system: true }
             },
+
             {
                 test: /\.css$/,
                 use: [
@@ -101,10 +98,12 @@ module.exports = {
     },
 
     plugins: [
+        // remove docs
         new CleanWebpackPlugin([helper.root('docs')], {
             root: helper.root('.')
         }),
 
+        // generate html with webpack buddles
         new HtmlWebpackPlugin({
             template: './src/demo/index.html',
             inject: 'body',
