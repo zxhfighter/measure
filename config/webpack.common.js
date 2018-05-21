@@ -5,17 +5,15 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ngcWebpack = require('ngc-webpack');
-const {CheckerPlugin} = require('awesome-typescript-loader');
-const helper = require('./helper');
+const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 
+const helper = require('./helper');
 const isAOT = helper.isAOT();
-const isBuild = helper.isBuild();
 
 module.exports = {
     entry: {
-        app: isAOT ? [helper.root('src/demo/main-aot.ts')] : [helper.root('src/demo/main.ts')],
-        polyfills: helper.root('src/demo/polyfills')
+        polyfills: helper.root('src/demo/polyfills'),
+        app: isAOT ? [helper.root('src/demo/main-aot.ts')] : [helper.root('src/demo/main.ts')]
     },
 
     output: {
@@ -31,7 +29,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
                 use: [
                     {
                         loader: 'ng-router-loader',
@@ -41,16 +39,17 @@ module.exports = {
                             aot: isAOT
                         }
                     },
-                    {
-                        loader: '@ngtools/webpack'
-                    },
-                    {
-                        loader: 'angular2-template-loader'
-                    }
+                    '@ngtools/webpack',
+                    'angular2-template-loader'
                 ],
                 exclude: [/\.(spec|e2e)\.ts$/, 'scafford', 'tools', 'src/demo/main-aot.ts']
             },
-
+            {
+                // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
+                // Removing this will cause deprecation warnings to appear.
+                test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
+                parser: { system: true }
+            },
             {
                 test: /\.css$/,
                 use: [
@@ -97,48 +96,24 @@ module.exports = {
         splitChunks: {
             chunks: 'initial',
             cacheGroups: {
-                // 创建一个 commons 块，用于包含所有入口模块共用的代码
-                commons: {
-                    name: 'commons',
-                    chunks: 'initial',
-                    minChunks: 2,
-                    priority: 9
-                }
+                default: false,
+                vendors: {
+                    name: 'vendors',
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: 10
+                },
+                // polyfills: {
+                //     name: 'polyfills',
+                //     test(module, chunks) {
+                //         console.log(module, chunks);
+                //         return true;
+                //     }
+                // }
             }
         }
     },
 
     plugins: [
-        new CheckerPlugin(),
-
-        new webpack.ContextReplacementPlugin(
-            /angular(\\|\/)core(\\|\/)@angular/,
-            helper.root('app/src'),
-            {}
-        ),
-
-        // Fix Angular 2
-        new webpack.NormalModuleReplacementPlugin(
-            /facade(\\|\/)async/,
-            helper.root('node_modules/@angular/core/src/facade/async.js')
-        ),
-        new webpack.NormalModuleReplacementPlugin(
-            /facade(\\|\/)collection/,
-            helper.root('node_modules/@angular/core/src/facade/collection.js')
-        ),
-        new webpack.NormalModuleReplacementPlugin(
-            /facade(\\|\/)errors/,
-            helper.root('node_modules/@angular/core/src/facade/errors.js')
-        ),
-        new webpack.NormalModuleReplacementPlugin(
-            /facade(\\|\/)lang/,
-            helper.root('node_modules/@angular/core/src/facade/lang.js')
-        ),
-        new webpack.NormalModuleReplacementPlugin(
-            /facade(\\|\/)math/,
-            helper.root('node_modules/@angular/core/src/facade/math.js')
-        ),
-
         new HtmlWebpackPlugin({
             template: './src/demo/index.html',
             inject: 'body',
@@ -152,10 +127,10 @@ module.exports = {
             ENV: JSON.stringify(process.env.NODE_ENV || 'development')
         }),
 
-        new ngcWebpack.NgcWebpackPlugin({
-            AOT: isAOT,
-            tsConfigPath: isAOT ? helper.root('tsconfig-aot.json') : helper.root('src/demo/tsconfig.json'),
-            resourceOverride: helper.root('config/resource-override.js')
+        new AngularCompilerPlugin({
+            tsConfigPath: helper.root('src/demo/tsconfig.json'),
+            mainPath: helper.root('src/demo/main.ts'),
+            sourceMap: true
         })
     ]
 }
