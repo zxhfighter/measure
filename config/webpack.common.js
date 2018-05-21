@@ -6,6 +6,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const helper = require('./helper');
 const isAOT = helper.isAOT();
@@ -13,7 +14,7 @@ const isAOT = helper.isAOT();
 module.exports = {
     entry: {
         polyfills: helper.root('src/demo/polyfills'),
-        app: isAOT ? [helper.root('src/demo/main-aot.ts')] : [helper.root('src/demo/main.ts')]
+        app: [helper.root('src/demo/main.ts')]
     },
 
     output: {
@@ -29,16 +30,9 @@ module.exports = {
     module: {
         rules: [
             {
+                // (?:x) 非捕获括号，匹配 x 但是不记住匹配项
                 test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
                 use: [
-                    {
-                        loader: 'ng-router-loader',
-                        options: {
-                            loader: 'async-import',
-                            genDir: 'compiled',
-                            aot: isAOT
-                        }
-                    },
                     '@ngtools/webpack',
                     'angular2-template-loader'
                 ],
@@ -101,19 +95,16 @@ module.exports = {
                     name: 'vendors',
                     test: /[\\/]node_modules[\\/]/,
                     priority: 10
-                },
-                // polyfills: {
-                //     name: 'polyfills',
-                //     test(module, chunks) {
-                //         console.log(module, chunks);
-                //         return true;
-                //     }
-                // }
+                }
             }
         }
     },
 
     plugins: [
+        new CleanWebpackPlugin([helper.root('docs')], {
+            root: helper.root('.')
+        }),
+
         new HtmlWebpackPlugin({
             template: './src/demo/index.html',
             inject: 'body',

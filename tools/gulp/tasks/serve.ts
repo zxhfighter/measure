@@ -3,7 +3,6 @@ import { join } from 'path';
 
 import { config } from '../utils/config';
 import { sequenceTask } from '../utils/sequence-task';
-import { tsBuildTask, copyTask } from '../utils/task_helpers';
 
 import { readFileSync, writeFileSync } from 'fs';
 
