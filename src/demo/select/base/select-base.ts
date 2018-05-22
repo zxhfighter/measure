@@ -87,4 +87,9 @@ export class SelectBaseDemo {
 
     constructor() {
     }
+
+    clear(ui) {
+        this.selectedData3 = null;
+        ui.clear();
+    }
 }

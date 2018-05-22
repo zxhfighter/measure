@@ -101,6 +101,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.cd.markForCheck();
     }
 
+    clear() {
+        this.selectedData = { value: null, label: this.defaultLabel || '请选择' };
+        this.cd.markForCheck();
+    }
+
     bindEvents() {
 
     }

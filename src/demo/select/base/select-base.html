@@ -24,13 +24,14 @@
 <p>
     设置默认值
     <br>
-    <nb-select [datasource]="datasource"
+    <nb-select #select1 [datasource]="datasource"
                [value]="selectedData3"
                [(ngModel)]="selectedData3">
     </nb-select>
     <span class="code">
         <pre *ngIf="selectedData3">{{ selectedData3 | json }}</pre>
     </span>
+    <a (click)="clear(select1)">清除已选的值</a>
 </p>
 
 <p>
