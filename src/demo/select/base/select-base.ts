@@ -10,7 +10,7 @@ import { SelectConfig } from '../../../component/select';
 export class SelectBaseDemo {
     selectedData1: SelectConfig;
     selectedData2: SelectConfig;
-    selectedData3: number = 2;
+    selectedData3: any = 2;
     selectedData4: SelectConfig;
     selectedData5: SelectConfig;
     datasource: SelectConfig[] = [
