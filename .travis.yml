@@ -6,7 +6,6 @@ addons:
 
 node_js:
   - '8'
-  - '7'
 
 git:
   depth: 3
