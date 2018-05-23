@@ -6,7 +6,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const helper = require('./helper');
 
@@ -98,11 +97,6 @@ module.exports = {
     },
 
     plugins: [
-        // remove docs
-        new CleanWebpackPlugin([helper.root('docs')], {
-            root: helper.root('.')
-        }),
-
         // generate html with webpack buddles
         new HtmlWebpackPlugin({
             template: './src/demo/index.html',

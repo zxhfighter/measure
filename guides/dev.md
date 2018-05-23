@@ -5,7 +5,7 @@
 ## 第一步：生成最新官网
 
 ```
-gulp build:demo
+./node_modules/.bin/gulp build:demo
 ```
 
 生成最新的官网（`docs` 目录）。
@@ -13,7 +13,7 @@ gulp build:demo
 ## 第二步：提交并发布 develop 分支
 
 ```
-gulp commit -m 'commit message'
+./node_modules/.bin/gulp commit -m 'commit message'
 ```
 
 还可以视情况，加入不同参数，更改版本号:

@@ -8,6 +8,8 @@ const webpackMerge = require('webpack-merge');
 const webpackCommonConfig = require('./webpack.common');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const helper = require('./helper');
 
 module.exports = webpackMerge(webpackCommonConfig, {
@@ -43,6 +45,11 @@ module.exports = webpackMerge(webpackCommonConfig, {
     },
 
     plugins: [
+        // remove docs
+        new CleanWebpackPlugin([helper.root('docs')], {
+            root: helper.root('.')
+        }),
+
         new UglifyJsPlugin({
             uglifyOptions: {
                 warnings: false,
