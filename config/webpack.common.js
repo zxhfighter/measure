@@ -5,8 +5,6 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const helper = require('./helper');
 
@@ -98,11 +96,6 @@ module.exports = {
     },
 
     plugins: [
-        // remove docs
-        new CleanWebpackPlugin([helper.root('docs')], {
-            root: helper.root('.')
-        }),
-
         // generate html with webpack buddles
         new HtmlWebpackPlugin({
             template: './src/demo/index.html',
@@ -115,12 +108,6 @@ module.exports = {
             SERVER_API: JSON.stringify(helper.getBuildConfig().apiPrefix),
             NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
             ENV: JSON.stringify(process.env.NODE_ENV || 'development')
-        }),
-
-        new AngularCompilerPlugin({
-            tsConfigPath: helper.root('src/demo/tsconfig.json'),
-            mainPath: helper.root('src/demo/main.ts'),
-            sourceMap: true
         })
     ]
 }
