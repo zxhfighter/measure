@@ -5,6 +5,7 @@
 
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
+const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const webpackCommonConfig = require('./webpack.common');
 const helper = require('./helper');
 
@@ -41,6 +42,13 @@ module.exports = webpackMerge(webpackCommonConfig, {
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+
+        new AngularCompilerPlugin({
+            tsConfigPath: helper.root('src/demo/tsconfig.json'),
+            mainPath: helper.root('src/demo/main.ts'),
+            sourceMap: true,
+            skipCodeGeneration: true
+        })
     ]
 });

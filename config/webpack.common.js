@@ -5,7 +5,6 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 
 const helper = require('./helper');
 
@@ -109,12 +108,6 @@ module.exports = {
             SERVER_API: JSON.stringify(helper.getBuildConfig().apiPrefix),
             NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
             ENV: JSON.stringify(process.env.NODE_ENV || 'development')
-        }),
-
-        new AngularCompilerPlugin({
-            tsConfigPath: helper.root('src/demo/tsconfig.json'),
-            mainPath: helper.root('src/demo/main.ts'),
-            sourceMap: true
         })
     ]
 }

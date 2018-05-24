@@ -12838,6 +12838,7 @@ a.nb-button[disabled]:active {
   background-color: #eee;
   border: none;
   cursor: pointer;
+  font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', Arial, Helvetica, Verdana;
 }
 .nb-datepicker .nb-datepicker-input-area .nb-datepicker-input.disabled {
   background-color: #eee;
@@ -12853,7 +12854,11 @@ a.nb-button[disabled]:active {
   content: '\E68C';
   position: absolute;
   right: 10px;
-  top: 8px;
+  height: 20px;
+  top: 50%;
+  margin-top: -10px;
+  cursor: pointer;
+  line-height: 1.4285;
 }
 .nb-datepicker .nb-datepicker-input-area.disabled::after {
   color: #b8b8b8;
@@ -12879,6 +12884,7 @@ a.nb-button[disabled]:active {
   background-color: #eee;
   border: none;
   cursor: pointer;
+  font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', Arial, Helvetica, Verdana;
 }
 .nb-rangedatepicker .nb-rangedatepicker-input-area::after {
   font-family: 'iconfont' !important;
@@ -12888,8 +12894,12 @@ a.nb-button[disabled]:active {
   -moz-osx-font-smoothing: grayscale;
   content: '\E68C';
   position: absolute;
+  height: 20px;
+  top: 50%;
+  margin-top: -10px;
   right: 10px;
-  top: 8px;
+  cursor: pointer;
+  line-height: 1.4285;
 }
 .nb-rangedatepicker.disabled .nb-rangedatepicker-input-area .nb-rangedatepicker-input {
   background-color: #eee;
@@ -18995,4 +19005,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.c202ea.bundle.map*/
+/*# sourceMappingURL=app.6e2989.bundle.map*/
