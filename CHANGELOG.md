@@ -1,3 +1,8 @@
+<a name="2.0.8"></a>
+## [2.0.8](https://github.com/zxhfighter/measure/compare/1.3.1...2.0.8) (2018-05-25)
+
+
+
 <a name="2.0.7"></a>
 ## [2.0.7](https://github.com/zxhfighter/measure/compare/2.0.4...2.0.7) (2018-05-24)
 

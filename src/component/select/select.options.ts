@@ -1,17 +1,25 @@
 import {
-    Component, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2, AfterViewChecked,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, AfterViewInit
+    Component, Input, Output, EventEmitter, forwardRef, ElementRef, AfterViewChecked,
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { SelectConfig } from './select.config';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+
+export const SELECT_OPTIONS_ACCESSOR: any = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => SelectOptionsComponent),
+    multi: true
+};
 
 @Component({
     selector: 'nb-select-options',
     templateUrl: './select.options.html',
+    providers: [SELECT_OPTIONS_ACCESSOR],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false
 })
-export class SelectOptionsComponent implements OnInit, AfterViewChecked {
+export class SelectOptionsComponent implements ControlValueAccessor, OnInit, AfterViewChecked {
     @Input() data: SelectConfig[] = [];
     @Input() value: number | null | undefined;
     @Input() searchable: boolean;
@@ -19,9 +27,10 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
     @Input() styles: SelectConfig[] = [];
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
     @Output() needReposition: EventEmitter<Object> = new EventEmitter();
+    onModelChange: Function = () => {};
+    onModelTouched: Function = () => {};
 
     private _data: SelectConfig[] = [];
-
     constructor(protected cd: ChangeDetectorRef,
                 protected el: ElementRef) {
     }
@@ -47,6 +56,8 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
         }
 
         this.value = data.value;
+        this.onModelChange(data);
+        this.onModelTouched();
         this.onChange.emit(data);
         this.cd.markForCheck();
     }
@@ -79,6 +90,18 @@ export class SelectOptionsComponent implements OnInit, AfterViewChecked {
         }
 
         this.cd.markForCheck();
+    }
+
+    writeValue(value: any): void {
+        this.value = value;
+    }
+
+    registerOnChange(fn: Function): void {
+        this.onModelChange = fn;
+    }
+
+    registerOnTouched(fn: Function): void {
+        this.onModelTouched = fn;
     }
 
     private static _clone(data: SelectConfig[]) {
