@@ -1,6 +1,6 @@
 import {
-    Component, Input, Output, EventEmitter, forwardRef, ElementRef, AfterViewChecked,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
+    Component, Input, Output, EventEmitter, forwardRef, ElementRef,
+    OnChanges, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { SelectConfig } from './select.config';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
@@ -19,7 +19,7 @@ export const SELECT_OPTIONS_ACCESSOR: any = {
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false
 })
-export class SelectOptionsComponent implements ControlValueAccessor, OnInit, AfterViewChecked {
+export class SelectOptionsComponent implements ControlValueAccessor, OnChanges {
     @Input() data: SelectConfig[] = [];
     @Input() value: number | null | undefined;
     @Input() searchable: boolean;
@@ -35,12 +35,8 @@ export class SelectOptionsComponent implements ControlValueAccessor, OnInit, Aft
                 protected el: ElementRef) {
     }
 
-    ngOnInit() {
+    ngOnChanges() {
         this.render();
-    }
-
-    ngAfterViewChecked() {
-        // this.render();
     }
 
     render() {
@@ -105,6 +101,6 @@ export class SelectOptionsComponent implements ControlValueAccessor, OnInit, Aft
     }
 
     private static _clone(data: SelectConfig[]) {
-        return JSON.parse(JSON.stringify(data));
+        return (data && data.length) && JSON.parse(JSON.stringify(data));
     }
 }
