@@ -17,7 +17,7 @@ import { SelectOptionsComponent } from './select.options';
         SelectComponent,
         SelectOptionsComponent
     ],
-    exports: [SelectComponent],
+    exports: [SelectComponent, SelectOptionsComponent],
     entryComponents: [SelectOptionsComponent]
 })
 export class SelectModule { }

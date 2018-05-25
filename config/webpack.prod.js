@@ -5,11 +5,12 @@
 
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const webpackCommonConfig = require('./webpack.common');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const webpackCommonConfig = require('./webpack.common');
 const helper = require('./helper');
 
 module.exports = webpackMerge(webpackCommonConfig, {
@@ -80,6 +81,12 @@ module.exports = webpackMerge(webpackCommonConfig, {
         new webpack.NormalModuleReplacementPlugin(
             /zone\.js(\\|\/)dist(\\|\/)long-stack-trace-zone/,
             helper.root('config/empty.js')
-        )
+        ),
+
+        new AngularCompilerPlugin({
+            tsConfigPath: helper.root('src/demo/tsconfig.json'),
+            mainPath: helper.root('src/demo/main.ts'),
+            sourceMap: true
+        })
     ]
 });
