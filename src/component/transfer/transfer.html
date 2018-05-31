@@ -48,7 +48,7 @@
     <div class="nb-transfer-tree-wrap">
         <nb-tree
             *ngIf="selectedCount"
-            [treeData]="selectedData"
+            [treeData]="candidateData"
             selectionMode="selected"
             [disabled]="disabled"
             (onNodeSelect)="transNode($event, 'candidate')">

@@ -59,7 +59,8 @@ const TRANSFER_VALUE_ACCESSOR = {
 export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
 
     /** get selected value event */
-    @Output() getValue: EventEmitter<number[] | string[]> = new EventEmitter<number[] | string[]>();
+    @Output() getValue: EventEmitter<number[] | string[] | object[]> 
+        = new EventEmitter<number[] | string[] | object[]>();
 
     /**
      * candidate list data
@@ -137,7 +138,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
      * selected options's id as list
      * @docs-private
      */
-    private value: Array<string> = [];
+    private value: Array<object> = [];
 
     constructor(
         private _cd: ChangeDetectorRef,
@@ -255,7 +256,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         if (tree.length) {
             tree.forEach((node: TreeNode) => {
                 if (node.selectable && node.isSelected && this.hasChildren(node)) {
-                    this.value.push(node.id);
+                    this.value.push(node);
                 }
                 if (node.children && node.children.length) {
                     this.getSelectedData(node.children);
