@@ -168,10 +168,12 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         this.countOptsStateValue(this.candidateData);
         this.getSelectedData(this.candidateData);
 
-        this.originalCandidateData = deepClone(this.candidateData);
-        this.originalselectedData = deepClone(this.selectedData);
-        this.transferTreeToList(this.originalCandidateData, 'candidate');
-        this.transferTreeToList(this.originalselectedData, 'selected');
+        // this.originalCandidateData = deepClone(this.candidateData);
+        // this.originalselectedData = deepClone(this.selectedData);
+        // this.transferTreeToList(this.originalCandidateData, 'candidate');
+        // this.transferTreeToList(this.originalselectedData, 'selected');
+        this.transferTreeToList(this.candidateData, 'candidate');
+        this.transferTreeToList(this.selectedData, 'selected');
     }
 
     /**
@@ -197,7 +199,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
     transferTreeToList(treeData: TreeNode[], mode: string) {
         if (treeData.length) {
             treeData.forEach((node: TreeNode) => {
-                node.show = false;
+                // node.show = false;
                 if (mode === 'candidate') {
                     this._candidateNodeList.push(node);
                 }
@@ -206,6 +208,27 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
                 }
                 if (node.children && node.children.length) {
                     this.transferTreeToList(node.children, mode);
+                }
+            });
+        }
+    }
+
+    /**
+     * set the show attribute to false, for fitler
+     * @docs-private
+     */
+    transferTreeToListForSearch(treeData: TreeNode[], mode: string) {
+        if (treeData.length) {
+            treeData.forEach((node: TreeNode) => {
+                node.show = false;
+                if (mode === 'candidate') {
+                    this._candidateNodeList.push(node);
+                }
+                if (mode === 'selected') {
+                    this._selectedNodeList.push(node);
+                }
+                if (node.children && node.children.length) {
+                    this.transferTreeToListForSearch(node.children, mode);
                 }
             });
         }
@@ -299,16 +322,17 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
          */
         if (!event) {
             if (mode === 'candidate') {
-                this.initTree(this.originalCandidateData, 'candidate');
-                this.candidateData = this.originalCandidateData;
+                this.initTree(this.candidateData, 'candidate');
+                // this.candidateData = this.originalCandidateData;
                 this.initCount();
                 this.countOptsStateValue(this.candidateData);
                 return;
             }
 
             if (mode === 'selected') {
-                this.initTree(this.originalselectedData, 'selected');
-                this.selectedData = this.originalselectedData;
+                // this.initTree(this.originalselectedData, 'selected');
+                // this.selectedData = this.originalselectedData;
+                this.initTree(this.selectedData, 'selected');
                 return;
             }
         }
@@ -347,7 +371,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
             this._selectedNodeList = [];
         }
         let treeData = mode === 'candidate' ? this.candidateData : this.selectedData;
-        this.transferTreeToList(treeData, mode);
+        this.transferTreeToListForSearch(treeData, mode);
     }
 
     /**

@@ -31,7 +31,7 @@ function getDataType(data: any) {
 }
 
 export function deepClone(data: any) {
-    let dataType = this.getDataType(data);
+    let dataType = getDataType(data);
     let result;
     if (dataType === 'Object') {
         result = {};
@@ -44,12 +44,12 @@ export function deepClone(data: any) {
     if (dataType === 'Object') {
         for (let key in data) {
             if(data.hasOwnProperty(key)) {
-                result[key] = this.clone(data[key]);
+                result[key] = this.deepClone(data[key]);
             }
         }
     } else if (dataType === 'Array') {
         for (let i = 0, len = data.length; i < len; i++) {
-            result.push(this.clone(data[i]));
+            result.push(this.deepClone(data[i]));
         }
     }
 
