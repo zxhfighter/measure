@@ -24,6 +24,10 @@ export class TransferBasicDemo implements OnInit {
 
     selectedData = selectedData;
 
+    allSelectLink = false;
+
+    allDeleteLink = true;
+
     candidateDataEmpty: any = [];
 
     selectedDataEmpty = [];

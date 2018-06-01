@@ -2,6 +2,7 @@
     <div class="nb-transfer-title">
         <span>备选列表({{ candidateCount }})</span>
         <a
+            *ngIf="allSelectLink"
             nb-button
             theme="transparent"
             [disabled]="disabled"
@@ -30,6 +31,7 @@
     <div class="nb-transfer-title">
         <span>已选列表({{ selectedCount }}/{{ candidateCount }})</span>
         <a
+            *ngIf="allDeleteLink"
             nb-button
             theme="transparent"
             [disabled]="disabled"
