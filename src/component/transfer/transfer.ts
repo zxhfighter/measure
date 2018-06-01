@@ -90,6 +90,11 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
      */
     @Input() disabled: boolean = false;
 
+    @Input() allSelectLink: boolean = true;
+
+    @Input() allDeleteLink: boolean = true;
+    
+
     /**
      * original candidate data
      * @docs-private
