@@ -93,7 +93,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() allSelectLink: boolean = true;
 
     @Input() allDeleteLink: boolean = true;
-    
+
 
     /**
      * original candidate data
