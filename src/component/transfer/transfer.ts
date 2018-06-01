@@ -59,7 +59,7 @@ const TRANSFER_VALUE_ACCESSOR = {
 export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
 
     /** get selected value event */
-    @Output() getValue: EventEmitter<number[] | string[] | object[]> 
+    @Output() getValue: EventEmitter<number[] | string[] | object[]>
         = new EventEmitter<number[] | string[] | object[]>();
 
     /**

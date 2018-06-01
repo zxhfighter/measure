@@ -43,7 +43,7 @@ export function deepClone(data: any) {
 
     if (dataType === 'Object') {
         for (let key in data) {
-            if(data.hasOwnProperty(key)) {
+            if (data.hasOwnProperty(key)) {
                 result[key] = this.deepClone(data[key]);
             }
         }
