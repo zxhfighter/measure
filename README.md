@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/zxhfighter/measure.svg?branch=master)](https://travis-ci.org/zxhfighter/)
 
-Examples can be see here: https://zxhfighter.github.io/measure/.
+Examples can be see here : https://zxhfighter.github.io/measure/.
 
 ## start
 
