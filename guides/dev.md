@@ -40,3 +40,9 @@ git push origin master
 发布之后，可以去 [travis](https://travis-ci.org/zxhfighter/measure) 查看最新的发布情况。
 
 如果没有问题，过几分钟后，travis 任务会自动推送最新的版本到 npm。
+
+## FAQ
+
+- 为什么要运行 `gulp commit` 而不是 `git commit`?
+
+使用 `gulp commit` 可以用来保证代码规范以及规避构建过程中可能出现的错误。
