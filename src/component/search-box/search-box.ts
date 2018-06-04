@@ -315,6 +315,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      */
     onKeydown(event) {
         if (event.keyCode === 13) {
+            event.stopPropagation();
             this.onSearch.emit(this.value);
             this._cd.markForCheck();
         }
