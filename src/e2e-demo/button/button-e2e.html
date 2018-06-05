@@ -1,0 +1,5 @@
+<section>
+    <span id="counter">{{ count }}</span>
+    <button nb-button [disabled]="isDisabled" id="test-button" (click)="count = count + 1">测试按钮</button>
+    <button nb-button (click)="isDisabled=!isDisabled" id="disabled-button">置灰按钮</button>
+</section>
