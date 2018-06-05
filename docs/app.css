@@ -13550,6 +13550,7 @@ a.nb-button[disabled]:active {
 .nb-tree-content span {
   position: relative;
   z-index: 1;
+  margin-right: 5px;
 }
 .nb-tree-node-name {
   display: inline-block;
@@ -13560,7 +13561,7 @@ a.nb-button[disabled]:active {
   vertical-align: bottom;
 }
 .nb-tree-no-child {
-  margin-left: 12px;
+  margin-left: 19px;
 }
 .nb-tree-selectable .nb-tree-content::before,
 .nb-tree-selectable .nb-tree-content::after {
@@ -13581,6 +13582,7 @@ a.nb-button[disabled]:active {
 .nb-tree-selectable .nb-tree-content:hover,
 .nb-tree-node-toggle {
   cursor: pointer;
+  color: #666;
 }
 .nb-tree-selectable .nb-tree-node-unselectable:hover,
 .nb-tree-node-unselectable:hover::before {
@@ -13592,7 +13594,6 @@ a.nb-button[disabled]:active {
 }
 .nb-tree-mode-candidate .nb-tree-content:hover .nb-tree-node-selection-candidate-icon,
 .nb-tree-mode-selected .nb-tree-content:hover .nb-tree-node-selection-selected-icon {
-  display: inline-block;
   float: right;
   margin-right: 10px;
 }
@@ -14223,7 +14224,6 @@ a.nb-button[disabled]:active {
   width: 190px;
 }
 .nb-transfer-candidate .nb-tree {
-  padding-left: 15px;
   padding-right: 15px;
 }
 .nb-transfer-selected {
@@ -14240,7 +14240,6 @@ a.nb-button[disabled]:active {
   width: 190px;
 }
 .nb-transfer-selected .nb-tree {
-  padding-left: 15px;
   padding-right: 15px;
 }
 .nb-slider {
@@ -19005,4 +19004,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.b6dd5a.bundle.map*/
+/*# sourceMappingURL=app.4fc1ae.bundle.map*/
