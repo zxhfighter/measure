@@ -21,6 +21,7 @@
     span {
         position: relative;
         z-index: 1;
+        margin-right: 5px;
     }
 }
 
@@ -34,7 +35,7 @@
 }
 
 .@{prefix}-tree-no-child {
-    margin-left: 12px;
+    margin-left: 19px;
 }
 
 .@{prefix}-tree-selectable .@{prefix}-tree-content::before, 
@@ -60,6 +61,7 @@
 // 展开|折叠箭头
 .@{prefix}-tree-node-toggle {
     cursor: pointer;
+    color: #666;
 }
 
 .@{prefix}-tree-selectable .@{prefix}-tree-node-unselectable:hover,
@@ -78,7 +80,6 @@
 .@{prefix}-tree-mode-selected 
 .@{prefix}-tree-content:hover 
 .@{prefix}-tree-node-selection-selected-icon {
-    display: inline-block;
     float: right;
     margin-right: 10px;
 }
