@@ -3,7 +3,6 @@ import {
     Input,
     Output,
     EventEmitter,
-    OnInit,
     OnChanges,
     AfterViewInit,
     ViewEncapsulation,
@@ -11,7 +10,8 @@ import {
     forwardRef,
     ChangeDetectorRef,
     ElementRef,
-    Renderer2
+    Renderer2,
+    SimpleChanges
 } from '@angular/core';
 
 import {
@@ -56,7 +56,7 @@ const TRANSFER_VALUE_ACCESSOR = {
     exportAs: 'nbTransfer'
 })
 
-export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
+export class TransferComponent implements OnChanges, AfterViewInit {
 
     /** get selected value event */
     @Output() getValue: EventEmitter<number[] | string[] | object[]>
@@ -100,6 +100,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
      * @docs-private
      */
     private originalCandidateData: TreeNode[] = [];
+
     /**
      * original selected data
      * @docs-private
@@ -111,6 +112,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
      * @docs-private
      */
     candidateCount: number = 0;
+
     /**
      * all selected options count
      * @docs-private
@@ -151,12 +153,10 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         private _render: Renderer2
     ) { }
 
-    ngOnInit() {
-        this.initTransfer();
-    }
-
-    ngOnChanges() {
-        this.initTransfer();
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['candidateData'] || changes['selectedData']) {
+            this.initTransfer();
+        }
     }
 
     ngAfterViewInit() {
@@ -173,10 +173,6 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         this.countOptsStateValue(this.candidateData);
         this.getSelectedData(this.candidateData);
 
-        // this.originalCandidateData = deepClone(this.candidateData);
-        // this.originalselectedData = deepClone(this.selectedData);
-        // this.transferTreeToList(this.originalCandidateData, 'candidate');
-        // this.transferTreeToList(this.originalselectedData, 'selected');
         this.transferTreeToList(this.candidateData, 'candidate');
         this.transferTreeToList(this.selectedData, 'selected');
     }
@@ -206,10 +202,12 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
             treeData.forEach((node: TreeNode) => {
                 // node.show = false;
                 if (mode === 'candidate') {
-                    this._candidateNodeList.push(node);
+                    // this._candidateNodeList.push(node);
+                    this._candidateNodeList[node.id] = node;
                 }
                 if (mode === 'selected') {
-                    this._selectedNodeList.push(node);
+                    // this._selectedNodeList.push(node);
+                    this._selectedNodeList[node.id] = node;
                 }
                 if (node.children && node.children.length) {
                     this.transferTreeToList(node.children, mode);
@@ -227,10 +225,12 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
             treeData.forEach((node: TreeNode) => {
                 node.show = false;
                 if (mode === 'candidate') {
-                    this._candidateNodeList.push(node);
+                    // this._candidateNodeList.push(node);
+                    this._candidateNodeList[node.id] = node;
                 }
                 if (mode === 'selected') {
-                    this._selectedNodeList.push(node);
+                    // this._selectedNodeList.push(node);
+                    this._selectedNodeList[node.id] = node;
                 }
                 if (node.children && node.children.length) {
                     this.transferTreeToListForSearch(node.children, mode);
@@ -328,15 +328,10 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         if (!event) {
             if (mode === 'candidate') {
                 this.initTree(this.candidateData, 'candidate');
-                // this.candidateData = this.originalCandidateData;
-                this.initCount();
-                this.countOptsStateValue(this.candidateData);
                 return;
             }
 
             if (mode === 'selected') {
-                // this.initTree(this.originalselectedData, 'selected');
-                // this.selectedData = this.originalselectedData;
                 this.initTree(this.selectedData, 'selected');
                 return;
             }
@@ -346,18 +341,34 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
 
         if (mode === 'candidate') {
             this._candidateSearchNodeList = [];
-            for (let node of this._candidateNodeList) {
-                if (node.name && node.name.search(event) !== -1) {
-                    this.searchNodes(node, mode);
+            // for (let node of this._candidateNodeList) {
+            //     if (node.name && node.name.search(event) !== -1) {
+            //         this.searchNodes(node, mode);
+            //     }
+            // }
+            for (const key in this._candidateNodeList) {
+                if (this._candidateNodeList.hasOwnProperty(key)) {
+                    let node = this._candidateNodeList[key];
+                    if (node.name && node.name.search(event) !== -1) {
+                        this.searchNodes(node, mode);
+                    }
                 }
             }
             this.candidateData = this.resetTreeData(mode);
         }
         if (mode === 'selected') {
             this._selectedSearchNodeList = [];
-            for (let node of this._selectedNodeList) {
-                if (node.name && node.name.search(event) !== -1 && node.isSelected) {
-                    this.searchNodes(node, mode);
+            // for (let node of this._selectedNodeList) {
+            //     if (node.name && node.name.search(event) !== -1 && node.isSelected) {
+            //         this.searchNodes(node, mode);
+            //     }
+            // }
+            for (const key in this._selectedNodeList) {
+                if (this._selectedNodeList.hasOwnProperty(key)) {
+                    let node = this._selectedNodeList[key];
+                    if (node.name && node.name.search(event) !== -1) {
+                        this.searchNodes(node, mode);
+                    }
                 }
             }
             this.selectedData = this.resetTreeData(mode);
@@ -403,7 +414,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         this.setSearchNodes(node, mode);
         if (node.parent) {
             let nodeParent: TreeNode | undefined;
-            nodeParent = this.getParentNode(node.parent, mode);
+            nodeParent = this.getTargetNode(node.parent, mode);
             if (nodeParent) {
                 if (nodeParent.parent) {
                     this.searchNodes(nodeParent, mode);
@@ -415,16 +426,14 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     /**
-     * get node's parent node
+     * get target node in xxNodeList
      * @docs-private
      */
-    getParentNode(parent: TreeNodeParent, mode): TreeNode | undefined {
-        let parentNode: TreeNode | undefined;
+    getTargetNode(treeNode: TreeNode, mode: string): TreeNode | undefined {
+        let targetNode: TreeNode | undefined;
         let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
-        parentNode = nodeList.find((node: TreeNode) => {
-            return parent.id === node.id;
-        });
-        return parentNode;
+        targetNode = nodeList[treeNode.id];
+        return targetNode;
     }
 
     /**
@@ -511,9 +520,9 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
     transNode(event: TreeNode, mode: string) {
         let data = mode === 'selected' ? this.selectedData : this.candidateData;
         let chkVal = mode === 'selected' ? true : false;
-        this._selectedNodeList = [];
-        this._candidateNodeList = [];
-        this.transferTreeToList(data, mode);
+        // this._selectedNodeList = [];
+        // this._candidateNodeList = [];
+        // this.transferTreeToList(data, mode);
 
         let targetNode: TreeNode | undefined = this.getTargetNode(event, mode);
         if (targetNode) {
@@ -533,19 +542,6 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         this.getSelectedData(this.candidateData);
         this.getValue.emit(this.value);
         this._markForCheck();
-    }
-
-    /**
-     * get target node in xxNodeList
-     * @docs-private
-     */
-    getTargetNode(compareNode: TreeNode, mode: string): TreeNode | undefined {
-        let targetNode: TreeNode | undefined;
-        let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
-        targetNode = nodeList.find((node: TreeNode) => {
-            return compareNode.id === node.id;
-        });
-        return targetNode;
     }
 
     /**
@@ -571,7 +567,7 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         node.isSelected = chkVal;
         let nodeParent: TreeNode | undefined;
         if (node.parent) {
-            nodeParent = this.getParentNode(node.parent, mode);
+            nodeParent = this.getTargetNode(node.parent, mode);
             if (nodeParent) {
                 if (nodeParent.parent) {
                     this.propagateUp(nodeParent, chkVal, mode);
