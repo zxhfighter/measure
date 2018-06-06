@@ -3,7 +3,6 @@ import {
     Input,
     Output,
     EventEmitter,
-    OnInit,
     OnChanges,
     AfterViewInit,
     ViewEncapsulation,
@@ -56,7 +55,7 @@ const TRANSFER_VALUE_ACCESSOR = {
     exportAs: 'nbTransfer'
 })
 
-export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
+export class TransferComponent implements OnChanges, AfterViewInit {
 
     /** get selected value event */
     @Output() getValue: EventEmitter<number[] | string[] | object[]>
@@ -150,10 +149,6 @@ export class TransferComponent implements OnInit, OnChanges, AfterViewInit {
         private el: ElementRef,
         private _render: Renderer2
     ) { }
-
-    ngOnInit() {
-        this.initTransfer();
-    }
 
     ngOnChanges() {
         this.initTransfer();
