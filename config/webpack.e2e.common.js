@@ -84,13 +84,28 @@ module.exports = {
 
     optimization: {
         splitChunks: {
-            chunks: 'initial',
+            chunks: 'all',
             cacheGroups: {
-                default: false,
+                polyfills: {
+                    name: 'polyfills',
+                    priority: -10,
+                    chunks: chunk => ['polyfills'].includes(chunk.name),
+                    test (module) {
+                        const polyfillsIndexes = [
+                            'core-js', 'zone.js', 'prismjs', 'hammerjs'
+                        ];
+
+                        if (module.resource) {
+                            return polyfillsIndexes.some(v => module.resource.indexOf(`/node_modules/${v}/'`) > 0);
+                        }
+                        return false;
+                    }
+                },
+
                 vendors: {
                     name: 'vendors',
                     test: /[\\/]node_modules[\\/]/,
-                    priority: 10
+                    priority: -20
                 }
             }
         }
