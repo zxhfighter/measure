@@ -13594,8 +13594,8 @@ a.nb-button[disabled]:active {
 }
 .nb-tree-mode-candidate .nb-tree-content:hover .nb-tree-node-selection-candidate-icon,
 .nb-tree-mode-selected .nb-tree-content:hover .nb-tree-node-selection-selected-icon {
-  float: right;
-  margin-right: 10px;
+  display: inline-block;
+  margin-right: 0;
 }
 .nb-tree-mode-candidate .nb-tree-content {
   display: none;
@@ -19004,4 +19004,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.4fc1ae.bundle.map*/
+/*# sourceMappingURL=app.715c63.bundle.map*/

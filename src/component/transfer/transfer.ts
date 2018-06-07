@@ -153,10 +153,15 @@ export class TransferComponent implements OnChanges, AfterViewInit {
         private _render: Renderer2
     ) { }
 
+<<<<<<< HEAD
     ngOnChanges(changes: SimpleChanges) {
         if (changes['candidateData'] || changes['selectedData']) {
             this.initTransfer();
         }
+=======
+    ngOnChanges() {
+        this.initTransfer();
+>>>>>>> develop
     }
 
     ngAfterViewInit() {
