@@ -123,12 +123,12 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * candidate trans to list data
      * @docs-private
      */
-    private _candidateNodeList: TreeNode[] = [];
+    private _candidateNodeList: Object = {};
     /**
      * selected trans to list data
      * @docs-private
      */
-    private _selectedNodeList: TreeNode[] = [];
+    private _selectedNodeList: Object = {};
 
     /**
      * candidate searched data as list
@@ -327,11 +327,13 @@ export class TransferComponent implements OnChanges, AfterViewInit {
          */
         if (!event) {
             if (mode === 'candidate') {
+                this.candidateData = this.getRootNodes(this._candidateNodeList);
                 this.initTree(this.candidateData, 'candidate');
                 return;
             }
 
             if (mode === 'selected') {
+                this.selectedData = this.getRootNodes(this._selectedNodeList);
                 this.initTree(this.selectedData, 'selected');
                 return;
             }
@@ -354,7 +356,8 @@ export class TransferComponent implements OnChanges, AfterViewInit {
                     }
                 }
             }
-            this.candidateData = this.resetTreeData(mode);
+            // this.candidateData = this.resetTreeData(mode);
+            this.candidateData = this.setTreeForSearch(mode);
         }
         if (mode === 'selected') {
             this._selectedSearchNodeList = [];
@@ -366,14 +369,45 @@ export class TransferComponent implements OnChanges, AfterViewInit {
             for (const key in this._selectedNodeList) {
                 if (this._selectedNodeList.hasOwnProperty(key)) {
                     let node = this._selectedNodeList[key];
-                    if (node.name && node.name.search(event) !== -1) {
+                    if (node.name && node.name.search(event) !== -1 && node.isSelected) {
                         this.searchNodes(node, mode);
                     }
                 }
             }
-            this.selectedData = this.resetTreeData(mode);
+            // this.selectedData = this.resetTreeData(mode);
+            this.selectedData = this.setTreeForSearch(mode);
         }
     }
+
+    setTreeForSearch(mode: string) {
+        let tree: TreeNode[]
+            = mode === 'candidate'
+                ? this.getRootNodes(this._candidateNodeList)
+                : this.getRootNodes(this._selectedNodeList);
+        let searchNodeList: TreeNode[]
+            = mode === 'candidate' ? this._candidateSearchNodeList : this._selectedSearchNodeList;
+        for (let i = 0, len = searchNodeList.length; i < len; i++) {
+            let node = searchNodeList[i];
+            this.findMatchNode(tree, node);
+        }
+        return tree;
+    }
+
+    findMatchNode(treeData: TreeNode[], targetNode: TreeNode) {
+        if (treeData.length) {
+            treeData.forEach((node: TreeNode) => {
+                if (targetNode.id === node.id) {
+                    node.show = true;
+                    return;
+                }
+                if (node.children && node.children.length) {
+                    this.findMatchNode(node.children, targetNode);
+                }
+            });
+        }
+    }
+
+    
 
     /**
      * reset candidate or selected node list
@@ -381,10 +415,10 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      */
     resetNodeList(mode: string) {
         if (mode === 'candidate') {
-            this._candidateNodeList = [];
+            this._candidateNodeList = {};
         }
         if (mode === 'selected') {
-            this._selectedNodeList = [];
+            this._selectedNodeList = {};
         }
         let treeData = mode === 'candidate' ? this.candidateData : this.selectedData;
         this.transferTreeToListForSearch(treeData, mode);
@@ -474,8 +508,8 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * get target node root node
      * @docs-private
      */
-    getRootNodes(nodes: TreeNode[]) {
-        return nodes.filter((node: TreeNode) => {
+    getRootNodes(nodes: Object) {
+        return (<any>Object).values(nodes).filter((node: TreeNode) => {
             return !node.parent;
         });
     }
@@ -518,7 +552,7 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     transNode(event: TreeNode, mode: string) {
-        let data = mode === 'selected' ? this.selectedData : this.candidateData;
+        // let data = mode === 'selected' ? this.selectedData : this.candidateData;
         let chkVal = mode === 'selected' ? true : false;
         // this._selectedNodeList = [];
         // this._candidateNodeList = [];
