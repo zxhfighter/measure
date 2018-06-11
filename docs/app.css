@@ -12378,7 +12378,9 @@ a.nb-button[disabled]:active {
 }
 .nb-page {
   display: block;
-  font: 14px/30px 'HelveticaNeue,Helvetica,Arial,sans-serif';
+  font-family: 'HelveticaNeue,Helvetica,Arial,sans-serif';
+  font-size: 14px;
+  line-height: 30px;
 }
 .nb-page .total {
   padding: 0 3px;
@@ -12388,7 +12390,6 @@ a.nb-button[disabled]:active {
   height: 32px;
   font-size: 12px;
 }
-/*翻页*/
 .page-turn .arrow {
   display: inline-block;
   padding: 0;
