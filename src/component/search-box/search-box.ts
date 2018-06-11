@@ -315,7 +315,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      */
     onKeydown(event) {
         if (event.keyCode === 13) {
-            // event.stopPropagation();
+            // 阻止input回车时的默认事件，以免search-box应用在表单时响应回车事件提交表单
             event.preventDefault();
             this.onSearch.emit(this.value);
             this._cd.markForCheck();
