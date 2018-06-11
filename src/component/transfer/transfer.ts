@@ -62,6 +62,9 @@ export class TransferComponent implements OnChanges, AfterViewInit {
     @Output() getValue: EventEmitter<number[] | string[] | object[]>
         = new EventEmitter<number[] | string[] | object[]>();
 
+    /** search event */
+    @Output() searchValue: EventEmitter<string> = new EventEmitter<string>();
+
     /**
      * candidate list data
      * @default []
@@ -272,6 +275,9 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     searchByKeyWord(event: string, mode: string) {
+        // 向组件外部暴露搜索事件
+        this.searchValue.emit(event);
+
         /**
          * when the keyword is null, show the all list data
          * @docs-private
