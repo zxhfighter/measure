@@ -129,17 +129,6 @@ export class TransferComponent implements OnChanges, AfterViewInit {
     private _selectedNodeList: Object = {};
 
     /**
-     * candidate searched data as list
-     * @docs-private
-     */
-    private _candidateSearchNodeList: TreeNode[] = [];
-    /**
-     * selected searched data as list
-     * @docs-private
-     */
-    private _selectedSearchNodeList: TreeNode[] = [];
-
-    /**
      * selected options's id as list
      * @docs-private
      */
@@ -298,7 +287,6 @@ export class TransferComponent implements OnChanges, AfterViewInit {
         this.resetNodeList(mode);
 
         if (mode === 'candidate') {
-            this._candidateSearchNodeList = [];
             for (const key in this._candidateNodeList) {
                 if (this._candidateNodeList.hasOwnProperty(key)) {
                     let node = this._candidateNodeList[key];
@@ -310,7 +298,6 @@ export class TransferComponent implements OnChanges, AfterViewInit {
             this.candidateData = (<any>[]).concat(this.candidateData);
         }
         if (mode === 'selected') {
-            this._selectedSearchNodeList = [];
             for (const key in this._selectedNodeList) {
                 if (this._selectedNodeList.hasOwnProperty(key)) {
                     let node = this._selectedNodeList[key];
@@ -373,35 +360,10 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     setSearchNodes(node: TreeNode, mode: string) {
-        if (mode === 'candidate') {
-            if (!this.isExistRepetition(node, mode)) {
-                node.show = true;
-                this._candidateSearchNodeList.push(node);
-            }
+        if (mode === 'selected' && node.isSelected) {
+            node.show = true;
         }
-        if (mode === 'selected') {
-            if (!this.isExistRepetition(node, mode) && node.isSelected) {
-                node.show = true;
-                this._selectedSearchNodeList.push(node);
-            }
-        }
-    }
-
-    /**
-     * judge node whether have in xxSearchNodeList
-     * @docs-private
-     */
-    isExistRepetition(targetNode: TreeNode, mode) {
-        let nodeListSearched = mode === 'candidate' ? this._candidateSearchNodeList : this._selectedSearchNodeList;
-        if (nodeListSearched.length === 0) {
-            return false;
-        } else {
-            let nodeFinded: TreeNode | undefined;
-            nodeFinded = nodeListSearched.find((node: TreeNode) => {
-                return targetNode.id === node.id;
-            });
-            return nodeFinded ? true : false;
-        }
+        node.show = true;
     }
 
     /**
