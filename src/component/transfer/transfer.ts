@@ -307,7 +307,7 @@ export class TransferComponent implements OnChanges, AfterViewInit {
                     }
                 }
             }
-            this.candidateData = this.setTreeForSearch(mode);
+            this.candidateData = (<any>[]).concat(this.candidateData);
         }
         if (mode === 'selected') {
             this._selectedSearchNodeList = [];
@@ -319,43 +319,7 @@ export class TransferComponent implements OnChanges, AfterViewInit {
                     }
                 }
             }
-            this.selectedData = this.setTreeForSearch(mode);
-        }
-    }
-
-    /**
-     * reset tree for search
-     * @docs-private
-     */
-    setTreeForSearch(mode: string) {
-        let tree: TreeNode[]
-            = mode === 'candidate'
-                ? this.getRootNodes(this._candidateNodeList)
-                : this.getRootNodes(this._selectedNodeList);
-        let searchNodeList: TreeNode[]
-            = mode === 'candidate' ? this._candidateSearchNodeList : this._selectedSearchNodeList;
-        for (let i = 0, len = searchNodeList.length; i < len; i++) {
-            let node = searchNodeList[i];
-            this.findMatchNode(tree, node);
-        }
-        return tree;
-    }
-
-    /**
-     * find match node and set node show
-     * @docs-private
-     */
-    findMatchNode(treeData: TreeNode[], targetNode: TreeNode) {
-        if (treeData.length) {
-            treeData.forEach((node: TreeNode) => {
-                if (targetNode.id === node.id) {
-                    node.show = true;
-                    return;
-                }
-                if (node.children && node.children.length) {
-                    this.findMatchNode(node.children, targetNode);
-                }
-            });
+            this.selectedData = (<any>[]).concat(this.selectedData);
         }
     }
 
@@ -411,11 +375,13 @@ export class TransferComponent implements OnChanges, AfterViewInit {
     setSearchNodes(node: TreeNode, mode: string) {
         if (mode === 'candidate') {
             if (!this.isExistRepetition(node, mode)) {
+                node.show = true;
                 this._candidateSearchNodeList.push(node);
             }
         }
         if (mode === 'selected') {
             if (!this.isExistRepetition(node, mode) && node.isSelected) {
+                node.show = true;
                 this._selectedSearchNodeList.push(node);
             }
         }
