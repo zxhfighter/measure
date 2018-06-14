@@ -40,103 +40,16 @@
     }
 }
 
-.@{prefix}-tiplayer-top-left {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, bottom);
-        left: @tiplayer-arrow-horizontal-offset;
-        bottom: 0;
-    }
+.@{prefix}-tiplayer-arrow {
+    .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, bottom);
 }
 
-.@{prefix}-tiplayer-top,
-.@{prefix}-tiplayer-top-center {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, bottom);
-        left: 50%;
-        bottom: 0;
-    }
-}
+.@{prefix}-tiplayer-theme-white {
+    background: @nb-white;
+    color: @text-color-normal;
 
-.@{prefix}-tiplayer-top-right {
     .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, bottom);
-        right: @tiplayer-arrow-horizontal-offset;
-        bottom: 0;
-    }
-}
-
-.@{prefix}-tiplayer-bottom-left {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, top);
-        top: 0;
-        left: @tiplayer-arrow-horizontal-offset;
-    }
-}
-
-.@{prefix}-tiplayer-bottom,
-.@{prefix}-tiplayer-bottom-center {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, top);
-        top: 0;
-        left: 50%;
-    }
-}
-
-.@{prefix}-tiplayer-bottom-right {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, top);
-        top: 0;
-        right: @tiplayer-arrow-horizontal-offset;
-    }
-}
-
-.@{prefix}-tiplayer-left-top {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, right);
-        top: @tiplayer-arrow-vertical-offset;
-        right: 0;
-    }
-}
-
-.@{prefix}-tiplayer-left,
-.@{prefix}-tiplayer-left-center {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, right);
-        top: 50%;
-        right: 0;
-    }
-}
-
-.@{prefix}-tiplayer-left-bottom {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, right);
-        bottom: @tiplayer-arrow-vertical-offset;
-        right: 0;
-    }
-}
-
-.@{prefix}-tiplayer-right-top {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, left);
-        top: @tiplayer-arrow-vertical-offset;
-        left: 0;
-    }
-}
-
-.@{prefix}-tiplayer-right,
-.@{prefix}-tiplayer-right-center {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, left);
-        top: 50%;
-        left: 0;
-    }
-}
-
-.@{prefix}-tiplayer-right-bottom {
-    .@{prefix}-tiplayer-arrow {
-        .arrow(@tiplayer-arrow-size, @tiplayer-bgcolor-default, left);
-        bottom: @tiplayer-arrow-vertical-offset;
-        left: 0;
+        .arrow(@tiplayer-arrow-size, @nb-white, bottom, 1px, @tiplayer-arrow-white-theme-border);
     }
 }
 
@@ -149,45 +62,4 @@
 .@{prefix}-tiplayer-theme-yellow {
     background: @nb-yellow-10;
     color: @text-color-normal;
-}
-
-.@{prefix}-tiplayer-theme-white {
-    background: @nb-white;
-    color: @text-color-normal;
-
-    &.@{prefix}-tiplayer-top-left,
-    &.@{prefix}-tiplayer-top,
-    &.@{prefix}-tiplayer-top-center,
-    &.@{prefix}-tiplayer-top-right {
-        .@{prefix}-tiplayer-arrow {
-            .arrow(@tiplayer-arrow-size, @nb-white, bottom, 1px, @tiplayer-arrow-white-theme-border);
-        }
-    }
-
-    &.@{prefix}-tiplayer-bottom-left,
-    &.@{prefix}-tiplayer-bottom,
-    &.@{prefix}-tiplayer-bottom-center,
-    &.@{prefix}-tiplayer-bottom-right {
-        .@{prefix}-tiplayer-arrow {
-            .arrow(@tiplayer-arrow-size, @nb-white, top, 1px, @tiplayer-arrow-white-theme-border);
-        }
-    }
-
-    &.@{prefix}-tiplayer-right-top,
-    &.@{prefix}-tiplayer-right,
-    &.@{prefix}-tiplayer-right-center,
-    &.@{prefix}-tiplayer-right-bottom {
-        .@{prefix}-tiplayer-arrow {
-            .arrow(@tiplayer-arrow-size, @nb-white, left, 1px, @tiplayer-arrow-white-theme-border);
-        }
-    }
-
-    &.@{prefix}-tiplayer-left-top,
-    &.@{prefix}-tiplayer-left,
-    &.@{prefix}-tiplayer-left-center,
-    &.@{prefix}-tiplayer-left-bottom, {
-        .@{prefix}-tiplayer-arrow {
-            .arrow(@tiplayer-arrow-size, @nb-white, right, 1px, @tiplayer-arrow-white-theme-border);
-        }
-    }
 }
