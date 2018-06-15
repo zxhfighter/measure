@@ -395,8 +395,8 @@ export class TransferComponent implements OnChanges, AfterViewInit {
             this.selectedData = rootNodes;
         }
         this.initCount();
-        this.countSelectedNodes(this.candidateData);
         this.clearDataListSelected();
+        this.countSelectedNodes(this.candidateData);
         this.getValue.emit(this.value);
         this._markForCheck();
     }
@@ -491,8 +491,8 @@ export class TransferComponent implements OnChanges, AfterViewInit {
         this.selectedData = rootSelectedNodes;
 
         this.initCount();
-        this.countSelectedNodes(this.candidateData);
         this.clearDataListSelected();
+        this.countSelectedNodes(this.candidateData);
         this.getValue.emit(this.value);
         this._markForCheck();
     }
