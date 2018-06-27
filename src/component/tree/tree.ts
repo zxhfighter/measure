@@ -27,6 +27,9 @@ export class TreeComponent implements OnInit {
 
     /** tree node selection event */
     @Output() onNodeSelect = new EventEmitter();
+    
+    /** tree node expand event */
+    @Output() onExpandNode = new EventEmitter();
 
     /**
      * input tree-nodes value
@@ -84,6 +87,14 @@ export class TreeComponent implements OnInit {
                 }
             });
         }
+    }
+
+    /**
+     * tree node expand event
+     * @docs-private
+     */
+    expandNode(event: TreeNode) {
+        this.onExpandNode.emit(event);
     }
 
     /**

@@ -31,6 +31,11 @@ export class TreeNodeComponent implements OnInit {
      */
     @Input() node: TreeNode;
 
+    /**
+     * tree node expand event
+     */
+    @Output() onExpandNode = new EventEmitter();
+
     constructor( @Inject(forwardRef(() => TreeComponent)) public tree: TreeComponent) { }
 
     ngOnInit() { }
@@ -50,5 +55,16 @@ export class TreeNodeComponent implements OnInit {
     toggle(event: Event) {
         event.stopPropagation();
         this.node.isExpanded = !this.node.isExpanded;
+        if (this.node.isExpanded) {
+            this.onExpandNode.emit(this.node);
+        }
+    }
+
+    /**
+     * tree node expand event
+     * @docs-private
+     */
+    expandNode(event: TreeNode) {
+        this.onExpandNode.emit(event);
     }
 }

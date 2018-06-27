@@ -22,6 +22,7 @@
             [treeData]="candidateData"
             selectionMode="candidate"
             [disabled]="disabled"
+            (onExpandNode)="expandNode($event)"
             (onNodeSelect)="transNode($event, 'selected')">
         </nb-tree>
     </div>

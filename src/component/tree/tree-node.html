@@ -29,7 +29,8 @@
         [style.display]="node.isExpanded ? 'block' : 'none'">
         <nb-tree-node
             *ngFor="let childNode of node.children"
-            [node]="childNode">
+            [node]="childNode"
+            (onExpandNode)="expandNode($event)">
         </nb-tree-node>
     </ul>
 </li>

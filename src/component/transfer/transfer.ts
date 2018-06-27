@@ -65,6 +65,9 @@ export class TransferComponent implements OnChanges, AfterViewInit {
     /** search event */
     @Output() searchValue: EventEmitter<string> = new EventEmitter<string>();
 
+    /** tree node expand event */
+    @Output() onExpandNode: EventEmitter<object> = new EventEmitter<object>();
+
     /**
      * candidate list data
      * @default []
@@ -375,6 +378,14 @@ export class TransferComponent implements OnChanges, AfterViewInit {
         return (<any>Object).values(nodes).filter((node: TreeNode) => {
             return !node.parent;
         });
+    }
+
+    /**
+     * tree node expand event
+     * @docs-private
+     */
+    expandNode(event: TreeNode) {
+        this.onExpandNode.emit(event);
     }
 
     /**
