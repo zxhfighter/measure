@@ -43,6 +43,5 @@ export class TabsContentDemo implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.tabsSelected);
     }
 }
