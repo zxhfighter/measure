@@ -37,13 +37,13 @@
     <demo-tabs-basic></demo-tabs-basic>
 </nb-code-box>
 
-<nb-code-box [tsCode]="tsCodeTipable" [htmlCode]="htmlCodeTipable" [lessCode]="lessCodeTipable">
-    <h3 nb-codebox-title>Tabs Tipable</h3>
+<nb-code-box [tsCode]="tsCodeCustomTitle" [htmlCode]="htmlCodeCustomTitle" [lessCode]="lessCodeCustomTitle">
+    <h3 nb-codebox-title>Tabs Custom Title</h3>
     <div nb-codebox-desc>
-        <p>标签上支持问号提示，在需要提示的tab上增加 <code>tipable</code>属性，并将提示内容用「 tip-content 」class名包裹起来</p>
+        <p>标签支持任意HTML片段、Angular组件、指令，自定义标签写在<code>&lt;ng-template nbTabTitle&gt;&lt;/ng-template&gt;</code>标记内，以文字+问号提示为例说明</p>
     </div>
 
-    <demo-tabs-tipable></demo-tabs-tipable>
+    <demo-tabs-custom-title></demo-tabs-custom-title>
 </nb-code-box>
 
 <nb-code-box [tsCode]="tsCodeContent" [htmlCode]="htmlCodeContent" [lessCode]="lessCodeContent">

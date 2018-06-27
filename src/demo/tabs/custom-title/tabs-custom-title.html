@@ -1,0 +1,38 @@
+<nb-tabs underline>
+    <nb-tab>
+        <!-- tab的自定义标题 -->
+        <ng-template nbTabTitle>
+            <!-- 问号提示内容 -->
+            <ng-template #tipContent>
+                <span>选中状态</span>
+                <p>选中状态是给用户的一种反馈提示</p>
+            </ng-template>
+            <!-- 问号提示 -->
+            <i class="iconfont icon-help"
+                [nbTooltip]="tipContent"
+                placement="right">
+            </i>
+            选中状态
+        </ng-template>
+
+        <!-- tab的内容写在这里 -->
+    </nb-tab>
+    <nb-tab title="默认状态">
+        <ng-template nbTabTitle>
+            <ng-template #tipContent>
+                <span>默认状态</span>
+                <p>系统有很多默认状态和操作，即默示承认</p>
+            </ng-template>
+            <i class="iconfont icon-help"
+                [nbTooltip]="tipContent"
+                placement="right">
+            </i>
+            默认状态
+        </ng-template>
+    </nb-tab>
+    <nb-tab title="悬浮状态"></nb-tab>
+    <nb-tab title="按下状态"></nb-tab>
+    <nb-tab title="不可点击" disabled></nb-tab>
+</nb-tabs>
+
+
