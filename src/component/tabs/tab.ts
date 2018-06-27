@@ -5,9 +5,11 @@ import {
     ElementRef,
     ViewEncapsulation,
     ChangeDetectionStrategy,
-    Input
+    Input,
+    ContentChild
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
+import { TabTitleDirective } from './tab-title.directive';
 
 @Component({
     selector: 'nb-tab',
@@ -20,7 +22,10 @@ import { OnChange } from '../core/decorators';
         '[class.active]': 'active',
     }
 })
-export class TabComponent implements OnInit {
+export class TabComponent {
+
+    @ContentChild(TabTitleDirective) templateTitle: TabTitleDirective;
+
     @Input() title: string;
 
     @OnChange(true)
@@ -33,10 +38,6 @@ export class TabComponent implements OnInit {
     @Input() tipable: boolean = false;
 
     constructor(public elementRef: ElementRef) {
-    }
-
-    ngOnInit () {
-
     }
 }
 
