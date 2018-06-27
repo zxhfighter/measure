@@ -68,7 +68,8 @@ export class OverlayPositionService {
             this.splitPlacement(placement);
             this.overlayComponent = overlayComponent;
 
-            const positionStrategy = new ConnectedPositionStrategy(targetRef, this.overlayComponent.el);
+            const positionStrategy = new ConnectedPositionStrategy(
+                targetRef, this.overlayComponent);
             this.withPosition(positionStrategy);
             this.subscribeWindowEvent(positionStrategy);
 
@@ -132,35 +133,7 @@ export class OverlayPositionService {
      * @param positionStrategy
      */
     updatePosition(positionStrategy) {
-        positionStrategy.apply(this.positionChangeHandler());
-    }
-
-    /**
-     * Callback after posititoning the overlay and placement changed
-     * @return function
-     */
-    positionChangeHandler() {
-        return (lastConnectedPosition: ConnectionPositionPair) => {
-            // 非嵌入的情况下处理溢出反馈
-            if (!this.overlayComponent.embedded) {
-                this.connectedPositionRevertToPlacement(lastConnectedPosition);
-            }
-        };
-    }
-
-    /**
-     * Revert postion to placement again to update overlay's properties
-     * @param ConnectionPositionPair
-     */
-    connectedPositionRevertToPlacement(lastConnectedPosition: ConnectionPositionPair) {
-        // 相异的方向为主方向
-        if (lastConnectedPosition.targetX !== lastConnectedPosition.overlayX) {
-            this.overlayComponent.placement = lastConnectedPosition.targetX + '-' + lastConnectedPosition.targetY;
-        }
-        else if (lastConnectedPosition.targetY !== lastConnectedPosition.overlayY) {
-            this.overlayComponent.placement = lastConnectedPosition.targetY + '-' + lastConnectedPosition.targetX;
-        }
-        this.overlayComponent.cdRef.markForCheck();
+        positionStrategy.apply();
     }
 
     /**

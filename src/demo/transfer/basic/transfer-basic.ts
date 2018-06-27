@@ -44,4 +44,8 @@ export class TransferBasicDemo implements OnInit {
     getValue(event) {
         console.log(event);
     }
+
+    searchValue(event) {
+        console.log(event);
+    }
 }

@@ -62,6 +62,9 @@ export class TransferComponent implements OnChanges, AfterViewInit {
     @Output() getValue: EventEmitter<number[] | string[] | object[]>
         = new EventEmitter<number[] | string[] | object[]>();
 
+    /** search event */
+    @Output() searchValue: EventEmitter<string> = new EventEmitter<string>();
+
     /**
      * candidate list data
      * @default []
@@ -124,17 +127,6 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     private _selectedNodeList: Object = {};
-
-    /**
-     * candidate searched data as list
-     * @docs-private
-     */
-    private _candidateSearchNodeList: TreeNode[] = [];
-    /**
-     * selected searched data as list
-     * @docs-private
-     */
-    private _selectedSearchNodeList: TreeNode[] = [];
 
     /**
      * selected options's id as list
@@ -272,6 +264,9 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     searchByKeyWord(event: string, mode: string) {
+        // 向组件外部暴露搜索事件
+        this.searchValue.emit(event);
+
         /**
          * when the keyword is null, show the all list data
          * @docs-private
@@ -292,7 +287,6 @@ export class TransferComponent implements OnChanges, AfterViewInit {
         this.resetNodeList(mode);
 
         if (mode === 'candidate') {
-            this._candidateSearchNodeList = [];
             for (const key in this._candidateNodeList) {
                 if (this._candidateNodeList.hasOwnProperty(key)) {
                     let node = this._candidateNodeList[key];
@@ -301,10 +295,9 @@ export class TransferComponent implements OnChanges, AfterViewInit {
                     }
                 }
             }
-            this.candidateData = this.setTreeForSearch(mode);
+            this.candidateData = (<any>[]).concat(this.candidateData);
         }
         if (mode === 'selected') {
-            this._selectedSearchNodeList = [];
             for (const key in this._selectedNodeList) {
                 if (this._selectedNodeList.hasOwnProperty(key)) {
                     let node = this._selectedNodeList[key];
@@ -313,43 +306,7 @@ export class TransferComponent implements OnChanges, AfterViewInit {
                     }
                 }
             }
-            this.selectedData = this.setTreeForSearch(mode);
-        }
-    }
-
-    /**
-     * reset tree for search
-     * @docs-private
-     */
-    setTreeForSearch(mode: string) {
-        let tree: TreeNode[]
-            = mode === 'candidate'
-                ? this.getRootNodes(this._candidateNodeList)
-                : this.getRootNodes(this._selectedNodeList);
-        let searchNodeList: TreeNode[]
-            = mode === 'candidate' ? this._candidateSearchNodeList : this._selectedSearchNodeList;
-        for (let i = 0, len = searchNodeList.length; i < len; i++) {
-            let node = searchNodeList[i];
-            this.findMatchNode(tree, node);
-        }
-        return tree;
-    }
-
-    /**
-     * find match node and set node show
-     * @docs-private
-     */
-    findMatchNode(treeData: TreeNode[], targetNode: TreeNode) {
-        if (treeData.length) {
-            treeData.forEach((node: TreeNode) => {
-                if (targetNode.id === node.id) {
-                    node.show = true;
-                    return;
-                }
-                if (node.children && node.children.length) {
-                    this.findMatchNode(node.children, targetNode);
-                }
-            });
+            this.selectedData = (<any>[]).concat(this.selectedData);
         }
     }
 
@@ -403,33 +360,10 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     setSearchNodes(node: TreeNode, mode: string) {
-        if (mode === 'candidate') {
-            if (!this.isExistRepetition(node, mode)) {
-                this._candidateSearchNodeList.push(node);
-            }
+        if (mode === 'selected' && node.isSelected) {
+            node.show = true;
         }
-        if (mode === 'selected') {
-            if (!this.isExistRepetition(node, mode) && node.isSelected) {
-                this._selectedSearchNodeList.push(node);
-            }
-        }
-    }
-
-    /**
-     * judge node whether have in xxSearchNodeList
-     * @docs-private
-     */
-    isExistRepetition(targetNode: TreeNode, mode) {
-        let nodeListSearched = mode === 'candidate' ? this._candidateSearchNodeList : this._selectedSearchNodeList;
-        if (nodeListSearched.length === 0) {
-            return false;
-        } else {
-            let nodeFinded: TreeNode | undefined;
-            nodeFinded = nodeListSearched.find((node: TreeNode) => {
-                return targetNode.id === node.id;
-            });
-            return nodeFinded ? true : false;
-        }
+        node.show = true;
     }
 
     /**
@@ -461,8 +395,8 @@ export class TransferComponent implements OnChanges, AfterViewInit {
             this.selectedData = rootNodes;
         }
         this.initCount();
-        this.countSelectedNodes(this.candidateData);
         this.clearDataListSelected();
+        this.countSelectedNodes(this.candidateData);
         this.getValue.emit(this.value);
         this._markForCheck();
     }
@@ -557,8 +491,8 @@ export class TransferComponent implements OnChanges, AfterViewInit {
         this.selectedData = rootSelectedNodes;
 
         this.initCount();
-        this.countSelectedNodes(this.candidateData);
         this.clearDataListSelected();
+        this.countSelectedNodes(this.candidateData);
         this.getValue.emit(this.value);
         this._markForCheck();
     }
