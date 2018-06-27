@@ -3,8 +3,6 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, NgZone,
     ContentChildren, QueryList, AfterContentInit, AfterViewInit, ChangeDetectorRef
 } from '@angular/core';
-import { TabComponent } from './tab';
-import { OnChange } from '../core/decorators';
 
 @Component({
     selector: 'nb-ink-bar',
