@@ -92,6 +92,11 @@ export class TiplayerComponent extends OverlayComponent implements OnInit, OnDes
     @Output() needReposition: EventEmitter<Object> = new EventEmitter();
 
     /**
+     * 箭头元素
+     */
+    @ViewChild('arrow') arrow: ElementRef;
+
+    /**
      * 提示内容子视图，用于变更内容用。e.g slider的提示
      */
     @ViewChild('content') content: ElementRef;
