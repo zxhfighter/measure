@@ -1563,10 +1563,5 @@ export class ReactiveRegionFormComponent implements OnInit {
         this.formGroup = this.fb.group({
             region: this.fb.control(values)
         });
-
-        setTimeout(() => {
-            this.formGroup.get('region').setValue( [ 378, 379, 3, 1002, 34, 35, 36 ] );
-            this.cd.markForCheck();
-        }, 3000);
     }
 }
