@@ -73,6 +73,6 @@ export class TreeNodeComponent implements OnInit {
      * @docs-private
      */
     judgeOverLong(event: TreeNode) {
-        return event.level ? event.name.length + event.level >= 10 ? true : false : false;
+        return event.level ? event.name && event.name.length + event.level >= 10 ? true : false : false;
     }
 }
