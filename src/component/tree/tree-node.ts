@@ -68,6 +68,10 @@ export class TreeNodeComponent implements OnInit {
         this.onExpandNode.emit(event);
     }
 
+    /**
+     * judge text length whether is over long or not
+     * @docs-private
+     */
     judgeOverLong(event: TreeNode) {
         return event.level ? event.name.length + event.level >= 10 ? true : false : false;
     }
