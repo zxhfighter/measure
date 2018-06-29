@@ -61,7 +61,7 @@ const REGION_VALUE_ACCESSOR = {
     },
     exportAs: 'nbRegion'
 })
-export class RegionComponent implements OnInit, OnDestroy {
+export class RegionComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
     /** region value change event, emit an array of ids */
     @Output() change: EventEmitter<number[] | string[]> = new EventEmitter<number[] | string[]>();
@@ -109,6 +109,9 @@ export class RegionComponent implements OnInit, OnDestroy {
     /** previous shown province */
     _previousProvince: any;
 
+    /** value map */
+    _valueMap = {};
+
     constructor(private _cd: ChangeDetectorRef) {
         const self = this;
         self.valueChange.subscribe((newValue: number[]) => {
@@ -119,10 +122,11 @@ export class RegionComponent implements OnInit, OnDestroy {
             // set default region value
             self.walkDatasource(self.datasource, (item: RegionItem) => {
                 const checked = newValue.indexOf(+item.id) !== -1;
-                if (checked) {
-                    self.updateNode(item, checked);
-                }
+                self.updateNode(item, checked);
             });
+
+            self.datasource = [...self.datasource];
+            this._cd.markForCheck();
         });
     }
 
@@ -146,6 +150,7 @@ export class RegionComponent implements OnInit, OnDestroy {
      */
     onToggleNode(item: RegionItem, checked: boolean) {
         this.updateNode(item, checked);
+        this.getSelectedValue();
     }
 
     /**
@@ -154,6 +159,14 @@ export class RegionComponent implements OnInit, OnDestroy {
     updateNode(node: RegionItem, checked: boolean) {
         node.intermediate = false;
         node.selected = checked;
+
+        if (node.selected) {
+            this._valueMap[node.id] = true;
+        }
+        else {
+            delete this._valueMap[node.id];
+        }
+
         this.setChildren(node.children || [], checked);
 
         let parentNode = this.findParentNode(node.id);
@@ -164,8 +177,6 @@ export class RegionComponent implements OnInit, OnDestroy {
 
             this.updateParent(parentNode, checked);
         }
-
-        this.getSelectedValue();
     }
 
     /**
@@ -177,6 +188,14 @@ export class RegionComponent implements OnInit, OnDestroy {
             children.forEach(v => {
                 v.intermediate = false;
                 v.selected = checked;
+
+                if (v.selected) {
+                    this._valueMap[v.id] = true;
+                }
+                else {
+                    delete this._valueMap[v.id];
+                }
+
                 self.setChildren(v.children || [], checked);
             });
         }
@@ -204,6 +223,13 @@ export class RegionComponent implements OnInit, OnDestroy {
                 currentNode.intermediate = false;
             }
 
+            if (currentNode.selected) {
+                this._valueMap[currentNode.id] = true;
+            }
+            else {
+                delete this._valueMap[currentNode.id];
+            }
+
             let parentNode = self.findParentNode(currentNode.id);
             if (parentNode) {
                 if (currentNode.intermediate) {
@@ -218,31 +244,8 @@ export class RegionComponent implements OnInit, OnDestroy {
      * @docs-private
      */
     getSelectedValue() {
-        let selected: number[] = [];
-
-        let cloneDatasource = deepClone(this.datasource);
-        this.walkDatasource(cloneDatasource, (item: RegionItem) => {
-            if (item.selected) {
-                if (item.children) {
-                    const isAllChecked = item.children.every(v => !!v.selected);
-
-                    if (isAllChecked && this.gather) {
-                        selected.push(item.id);
-                        item.children = [];
-                    }
-                    else {
-                        selected.push(item.id);
-                    }
-                }
-                else {
-                    selected.push(item.id);
-                }
-            }
-        });
-
-        this.value = selected;
+        this.value = Object.keys(this._valueMap).map(v => +v);
         this._markForCheck();
-
         this.change.emit(this.value);
     }
 
@@ -383,7 +386,10 @@ export class RegionComponent implements OnInit, OnDestroy {
      * @param value Value to be set to the model.
      */
     writeValue(value: any) {
-        this.value = value;
+
+        if (value != null) {
+            this.value = value;
+        }
     }
 
     /**
