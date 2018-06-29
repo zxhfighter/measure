@@ -1,3 +1,28 @@
+<a name="2.0.33"></a>
+## [2.0.33](https://github.com/zxhfighter/measure/compare/2.0.4...2.0.33) (2018-06-29)
+
+
+
+<a name="2.0.32"></a>
+## [2.0.32](https://github.com/zxhfighter/measure/compare/1.3.1...2.0.32) (2018-06-27)
+
+
+
+<a name="2.0.31"></a>
+## [2.0.31](https://github.com/zxhfighter/measure/compare/1.3.1...2.0.31) (2018-06-27)
+
+
+
+<a name="2.0.30"></a>
+## [2.0.30](https://github.com/zxhfighter/measure/compare/1.3.1...2.0.30) (2018-06-27)
+
+
+
+<a name="2.0.29"></a>
+## [2.0.29](https://github.com/zxhfighter/measure/compare/1.3.1...2.0.29) (2018-06-27)
+
+
+
 <a name="2.0.28"></a>
 ## [2.0.28](https://github.com/zxhfighter/measure/compare/1.3.1...2.0.28) (2018-06-15)
 

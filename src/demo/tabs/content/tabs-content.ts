@@ -5,9 +5,9 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './tabs-content.html',
     styleUrls: ['./tabs-content.less']
 })
-export class TabsContentDemo {
+export class TabsContentDemo implements OnInit {
 
-    tabsSelected: [
+    tabsSelected = [
         { title: '第一项目', content: 'This is the About tab' },
         { title: '第二项目', content: 'This is our blog' },
         { title: '第三项目', content: 'Contact us here' },
@@ -15,7 +15,7 @@ export class TabsContentDemo {
         { title: '第五项目', content: 'Contact us here' }
     ];
 
-    tabsDefault: [
+    tabsDefault = [
         { title: '第一项目', content: 'This is the About tab' },
         { title: '第二项目', content: 'This is our blog', active: true },
         { title: '第三项目', content: 'Contact us here' },
@@ -23,7 +23,7 @@ export class TabsContentDemo {
         { title: '第五项目', content: 'Contact us here' }
     ];
 
-    tabsHover: [
+    tabsHover = [
         { title: '第一项目', content: 'This is the About tab' },
         { title: '第二项目', content: 'This is our blog' },
         { title: '第三项目', content: 'Contact us here', active: true },
@@ -31,7 +31,7 @@ export class TabsContentDemo {
         { title: '第五项目', content: 'Contact us here' }
     ];
 
-    tabsPress: [
+    tabsPress = [
         { title: '第一项目', content: 'This is the About tab' },
         { title: '第二项目', content: 'This is our blog' },
         { title: '第三项目', content: 'Contact us here' },
@@ -40,5 +40,8 @@ export class TabsContentDemo {
     ];
 
     constructor() {
+    }
+
+    ngOnInit() {
     }
 }

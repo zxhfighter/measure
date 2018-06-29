@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { TabsComponent } from './tabs';
 import { TabComponent } from './tab';
 import { TabHeaderComponent } from './tab-header';
+import { TabTitleDirective } from './tab-title.directive';
+import { AttachDirective } from './attach.directive';
 import { InkBarComponent } from './ink-bar';
-import { TooltipModule } from '../tooltip';
 import { ButtonModule } from '../button';
 
 @NgModule({
-    imports: [CommonModule, TooltipModule, ButtonModule],
-    declarations: [TabsComponent, TabComponent, InkBarComponent, TabHeaderComponent],
-    exports: [TabsComponent, TabComponent, InkBarComponent, TabHeaderComponent]
+    imports: [CommonModule, ButtonModule],
+    declarations: [TabsComponent, TabComponent, InkBarComponent, TabHeaderComponent, TabTitleDirective, AttachDirective],
+    exports: [TabsComponent, TabComponent, InkBarComponent, TabHeaderComponent, TabTitleDirective, AttachDirective]
 })
 export class TabsModule { }

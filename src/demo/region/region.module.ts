@@ -9,6 +9,7 @@ import { CodeHighlighterModule } from '../../component/code-highlighter';
 import { RegionDemo } from './region';
 import { RegionBasicDemo } from './basic/region-basic';
 import { RegionFormDemo } from './form/region-form';
+import { ReactiveRegionFormComponent } from './reactive-form/reactive-form.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { RegionFormDemo } from './form/region-form';
     declarations: [
         RegionDemo,
         RegionBasicDemo,
-        RegionFormDemo
+        RegionFormDemo,
+        ReactiveRegionFormComponent
     ],
     providers: [],
     exports: []

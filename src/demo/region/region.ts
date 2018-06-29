@@ -19,4 +19,9 @@ export class RegionDemo {
     tsCodeForm: string = require('!!raw-loader!./form/region-form.ts');
     htmlCodeForm: string = require('!!raw-loader!./form/region-form.html');
     lessCodeForm: string = require('!!raw-loader!./form/region-form.less');
+
+    // theme sources
+    tsCodeReactiveForm: string = require('!!raw-loader!./reactive-form/reactive-form.component.ts');
+    htmlCodeReactiveForm: string = require('!!raw-loader!./reactive-form/reactive-form.component.html');
+    lessCodeReactiveForm: string = require('!!raw-loader!./reactive-form/reactive-form.component.less');
 }
