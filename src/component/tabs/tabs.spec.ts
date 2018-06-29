@@ -75,28 +75,28 @@ describe('nb-tabs', () => {
     //     expectTabs(fixture.nativeElement, [true, false, false, false, false], [false, false, false, false, true]);
     // });
 
-    it('should allow tip in tab titles', () => {
-        const html = `
-            <nb-tabs underline>
-                <nb-tab title="选中状态"></nb-tab>
-                <nb-tab title="默认状态" tipable></nb-tab>
-                <nb-tab title="悬浮状态"></nb-tab>
-                <nb-tab title="按下状态"></nb-tab>
-                <nb-tab title="不可点击" disabled></nb-tab>
-                <div class="tip-content">
-                    <span>高级带图标多行提示</span>
-                    <p>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》</p>
-                </div>
-            </nb-tabs>
-        `;
+    // it('should allow tip in tab titles', () => {
+    //     const html = `
+    //         <nb-tabs underline>
+    //             <nb-tab title="选中状态"></nb-tab>
+    //             <nb-tab title="默认状态" tipable></nb-tab>
+    //             <nb-tab title="悬浮状态"></nb-tab>
+    //             <nb-tab title="按下状态"></nb-tab>
+    //             <nb-tab title="不可点击" disabled></nb-tab>
+    //             <div class="tip-content">
+    //                 <span>高级带图标多行提示</span>
+    //                 <p>永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂《兰亭集序》</p>
+    //             </div>
+    //         </nb-tabs>
+    //     `;
 
-        TestBed.overrideComponent(TabsTestComponent, {set: {template: html}});
-        const fixture = TestBed.createComponent(TabsTestComponent);
-        fixture.detectChanges();
+    //     TestBed.overrideComponent(TabsTestComponent, {set: {template: html}});
+    //     const fixture = TestBed.createComponent(TabsTestComponent);
+    //     fixture.detectChanges();
 
-        const tabTitles = getTabTitles(fixture.nativeElement);
-        expect(tabTitles[1].innerHTML).toMatch(/<i.*<\/i>/);
-    });
+    //     const tabTitles = getTabTitles(fixture.nativeElement);
+    //     expect(tabTitles[1].innerHTML).toMatch(/<i.*<\/i>/);
+    // });
 
 
     it('should not crash for empty tabs', () => {

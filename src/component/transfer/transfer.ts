@@ -65,6 +65,9 @@ export class TransferComponent implements OnChanges, AfterViewInit {
     /** search event */
     @Output() searchValue: EventEmitter<string> = new EventEmitter<string>();
 
+    /** tree node expand event */
+    @Output() onExpandNode: EventEmitter<object> = new EventEmitter<object>();
+
     /**
      * candidate list data
      * @default []
@@ -157,6 +160,7 @@ export class TransferComponent implements OnChanges, AfterViewInit {
     initTransfer() {
         this.initTree(this.candidateData, 'candidate');
         this.initTree(this.selectedData, 'selected');
+        this.initCount();
         this.countSelectedNodes(this.candidateData);
         this.transferTreeToList(this.candidateData, 'candidate');
         this.transferTreeToList(this.selectedData, 'selected');
@@ -167,7 +171,7 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     initTree(treeData: TreeNode[], mode: string) {
-        if (treeData.length) {
+        if (treeData && treeData.length) {
             treeData.forEach((node: TreeNode) => {
                 node.show = mode === 'candidate' ? true : node.isSelected;
                 node.isExpanded = mode === 'candidate' ? false : node.isSelected;
@@ -183,7 +187,7 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     transferTreeToList(treeData: TreeNode[], mode: string, isForSearch?: boolean) {
-        if (treeData.length) {
+        if (treeData && treeData.length) {
             treeData.forEach((node: TreeNode) => {
                 node.show = !isForSearch ? node.show : false;
                 if (mode === 'candidate') {
@@ -221,7 +225,7 @@ export class TransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     countSelectedNodes(tree: TreeNode[]) {
-        if (tree.length) {
+        if (tree && tree.length) {
             tree.forEach((node: TreeNode) => {
                 if (node.isSelected && node.selectable && this.hasChildren(node)) {
                     this.selectedCount++;
@@ -374,6 +378,14 @@ export class TransferComponent implements OnChanges, AfterViewInit {
         return (<any>Object).values(nodes).filter((node: TreeNode) => {
             return !node.parent;
         });
+    }
+
+    /**
+     * tree node expand event
+     * @docs-private
+     */
+    expandNode(event: TreeNode) {
+        this.onExpandNode.emit(event);
     }
 
     /**

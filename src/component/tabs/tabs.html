@@ -6,18 +6,12 @@
         [class.active]="tab.active"
         [class.disabled]="tab.disabled"
         (click)="setActive(tab, index)">
-
-        <ng-container *ngIf="tab.tipable">
-            <ng-template #tipContent>
-                <ng-content select=".tip-content"></ng-content>
-            </ng-template>
-            <i class="iconfont icon-help"
-                [nbTooltip]="tipContent"
-                placement="right">
-            </i>
-        </ng-container>
-
-        {{ tab.title }}
+        <ng-template [ngIf]="tab.templateTitle">
+            <div [nbAttach]="tab.templateTitle"></div>
+        </ng-template>
+        <ng-template [ngIf]="!tab.templateTitle">
+            {{ tab.title }}
+        </ng-template>
     </nb-tab-header>
     <nb-ink-bar></nb-ink-bar>
 </div>
