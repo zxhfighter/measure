@@ -13028,7 +13028,7 @@ a.nb-button[disabled]:active {
 }
 .nb-tree-node-name {
   display: inline-block;
-  width: 70%;
+  width: 72%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -13659,7 +13659,8 @@ a.nb-button[disabled]:active {
   width: 100%;
   height: 70%;
   margin-top: 20px;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 .nb-transfer-no-tree {
   display: block;
@@ -18478,4 +18479,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.f26a9f.bundle.map*/
+/*# sourceMappingURL=app.9fe97d.bundle.map*/
