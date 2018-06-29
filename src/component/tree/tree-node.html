@@ -10,8 +10,19 @@
             (click)="toggle($event)">
         </span>
         <span
+            *ngIf="!judgeOverLong(node)"
             class="nb-tree-node-name"
             [ngClass]="{'nb-tree-no-child': !node.children}">
+            {{ node.name }}
+        </span>
+        <span
+            *ngIf="judgeOverLong(node)"
+            class="nb-tree-node-name"
+            [ngClass]="{'nb-tree-no-child': !node.children}"
+            nbTooltip="{{node.name}}"
+            nbTooltipClass="customize-classname"
+            placement="bottom-left"
+            hasArrow>
             {{ node.name }}
         </span>
         <span

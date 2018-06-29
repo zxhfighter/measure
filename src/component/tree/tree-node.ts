@@ -67,4 +67,8 @@ export class TreeNodeComponent implements OnInit {
     expandNode(event: TreeNode) {
         this.onExpandNode.emit(event);
     }
+
+    judgeOverLong(event: TreeNode) {
+        return event.level ? event.name.length + event.level >= 10 ? true : false : false;
+    }
 }

@@ -2233,10 +2233,11 @@ export const candidateData = [
 export const selectedData = [
     {
         id: '1',
-        name: '中国2',
+        name: '中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国',
         selectable: true,
         isExpanded: true,
         isSelected: true,
+        level: 1,
         ico: 'custom',
         expandedIco: 'expanded',
         collapsedIco: 'collapsed',
@@ -2244,10 +2245,11 @@ export const selectedData = [
         children: [
             {
                 id: '01',
-                name: '华北',
+                name: '华北华北华北华北华北华北华北华北华北华北华北华北华北华北',
                 selectable: true,
                 isExpanded: true,
                 isSelected: true,
+                level: 2,
                 parent: { id: '1' },
                 ico: 'custom',
                 expandedIco: 'expanded',
@@ -2256,10 +2258,11 @@ export const selectedData = [
                 children: [
                     {
                         id: '0101',
-                        name: '北京',
+                        name: '北京北京北京北京北京北京北京北京北京北京北京',
                         selectable: true,
                         isExpanded: true,
                         isSelected: true,
+                        level: 3,
                         ico: 'custom',
                         expandedIco: 'expanded',
                         collapsedIco: 'collapsed',
@@ -2268,10 +2271,11 @@ export const selectedData = [
                         children: [
                             {
                                 id: '010101',
-                                name: '东城区',
+                                name: '东城区东城区东城区东城区东城区',
                                 selectable: true,
                                 isExpanded: true,
                                 isSelected: true,
+                                level: 4,
                                 ico: 'custom',
                                 expandedIco: 'expanded',
                                 collapsedIco: 'collapsed',
@@ -2280,10 +2284,11 @@ export const selectedData = [
                             },
                             {
                                 id: '010102',
-                                name: '西城区',
+                                name: 'testte',
                                 selectable: true,
                                 isExpanded: true,
                                 isSelected: true,
+                                level: 4,
                                 ico: 'custom',
                                 expandedIco: 'expanded',
                                 collapsedIco: 'collapsed',
@@ -2293,6 +2298,7 @@ export const selectedData = [
                             {
                                 id: '010103',
                                 name: '朝阳区',
+                                level: 4,
                                 selectable: true,
                                 isExpanded: true,
                                 isSelected: true,
@@ -2309,6 +2315,7 @@ export const selectedData = [
                                 isExpanded: true,
                                 isSelected: true,
                                 ico: 'custom',
+                                level: 4,
                                 expandedIco: 'expanded',
                                 collapsedIco: 'collapsed',
                                 styleClass: 'selfStyle',

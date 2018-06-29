@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TreeComponent } from './tree';
 import { TreeNodeComponent } from './tree-node';
+import { TooltipModule } from '../tooltip';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        TooltipModule
     ],
     declarations: [
         TreeComponent,
