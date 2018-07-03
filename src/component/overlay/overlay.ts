@@ -44,7 +44,8 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     @Input() delay: number = 0;
 
     /** overlay state about visibility */
-    visibility: boolean = false;
+    @OnChange(true)
+    @Input() visibility: boolean = false;
 
     /** The timeout ID of any current timer set to show the tooltip */
     showTimeoutId: number;
