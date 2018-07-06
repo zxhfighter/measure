@@ -1,5 +1,5 @@
 
-import { Directive, ElementRef, TemplateRef } from '@angular/core';
+import { Directive, TemplateRef, Input } from '@angular/core';
 
 /**
  * 自定义标签指令
@@ -10,8 +10,13 @@ import { Directive, ElementRef, TemplateRef } from '@angular/core';
 })
 
 export class TabTitleDirective {
-  constructor(
-        public elementRef: ElementRef,
+
+    /**
+     * 标签标题
+     */
+    @Input() nbTabTitle: string;
+
+    constructor(
         public templateRef: TemplateRef<any>) {}
 }
 

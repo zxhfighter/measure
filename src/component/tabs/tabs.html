@@ -6,13 +6,14 @@
         [class.active]="tab.active"
         [class.disabled]="tab.disabled"
         (click)="setActive(tab, index)">
-        <ng-template [ngIf]="tab.templateTitle">
+        <ng-template [ngIf]="tab.templateTitle && tab.templateTitle.nbTabTitle === tab.title">
             <div [nbAttach]="tab.templateTitle"></div>
         </ng-template>
-        <ng-template [ngIf]="!tab.templateTitle">
+        <ng-template [ngIf]="!(tab.templateTitle && tab.templateTitle.nbTabTitle === tab.title)">
             {{ tab.title }}
         </ng-template>
     </nb-tab-header>
+
     <nb-ink-bar></nb-ink-bar>
 </div>
 
