@@ -11465,9 +11465,6 @@ a.nb-button[disabled]:active {
 .nb-tabs-underline {
   border-bottom: 1px solid #e7e7e7;
 }
-.nb-tabs-splitline .nb-tab-header {
-  display: flex;
-}
 .nb-tabs-splitline .nb-tab-header::after {
   content: '|';
   position: relative;
@@ -18479,4 +18476,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.d0d75f.bundle.map*/
+/*# sourceMappingURL=app.adfbcd.bundle.map*/

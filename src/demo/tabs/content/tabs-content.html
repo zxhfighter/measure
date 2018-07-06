@@ -1,11 +1,43 @@
 
 <nb-tabs size="large" underline>
     <nb-tab title="选中状态">
+         <!-- 自定义标题 -->
+            <ng-template nbTabTitle="选中状态">
+                <!-- 问号提示内容 -->
+                <ng-template #tipContent1>
+                    <span>选中状态</span>
+                </ng-template>
+                <!-- 问号提示 -->
+                <i class="iconfont icon-help"
+                    [nbTooltip]="tipContent1"
+                    placement="right">
+                </i>
+                选中状态
+            </ng-template>
+
         <nb-tabs splitline>
             <nb-tab
              *ngFor="let tab of tabsSelected"
              [title]="tab.title"
              [active]="tab.active">
+
+             <!-- 自定义标题 -->
+            <ng-container *ngIf="tab.tipable">
+                <ng-template [nbTabTitle]="tab.title">
+                    <!-- 问号提示内容 -->
+                    <ng-template #tipContent>
+                        <span>第一项目</span>
+                    </ng-template>
+                    <!-- 问号提示 -->
+                    <i class="iconfont icon-help"
+                        [nbTooltip]="tipContent"
+                        placement="right">
+                    </i>
+                    {{ tab.title }}
+
+                </ng-template>
+            </ng-container>
+
             {{ tab.content }}
             </nb-tab>
         </nb-tabs>

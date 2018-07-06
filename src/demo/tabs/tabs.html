@@ -40,7 +40,10 @@
 <nb-code-box [tsCode]="tsCodeCustomTitle" [htmlCode]="htmlCodeCustomTitle" [lessCode]="lessCodeCustomTitle">
     <h3 nb-codebox-title>Tabs Custom Title</h3>
     <div nb-codebox-desc>
-        <p>标签支持任意HTML片段、Angular组件、指令，自定义标签写在<code>&lt;ng-template nbTabTitle&gt;&lt;/ng-template&gt;</code>标记内，以文字+问号提示为例说明</p>
+        <p>标签支持任意HTML片段、Angular组件、指令，自定义标签写在<code>&lt;ng-template nbTabTitle="XXX"&gt;&lt;/ng-template&gt;</code>标记内，以文字+问号提示为例说明</p>
+        <p><strong>特别需要注意的是:</strong></p>
+        <p>尽管标签是自定义的，仍然需要在tab上配置title="XXX"，值与nbTabTitle的值相同。各个Tab的title是唯一的，不能相同。</p>
+        <p>使用这个策略的原因是要支持这样的场景：嵌套Tab中含有自定义模版，为了区分自定义的模版属于哪一层级的Tab，需要进行title匹配</p>
     </div>
 
     <demo-tabs-custom-title></demo-tabs-custom-title>
