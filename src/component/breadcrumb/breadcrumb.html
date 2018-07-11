@@ -11,7 +11,8 @@
         <ng-container *ngIf="item.path && !item.href">
             <a class="nb-breadcrumb-text"
                 [class.last]="isLast"
-                [routerLink]="[item.path]">{{ item.text }}</a>
+                [routerLink]="[item.path]"
+                [queryParams]="item.queryParams || queryParams || {}">{{ item.text }}</a>
         </ng-container>
 
         <ng-container *ngIf="isLast || (!item.path && !item.href)">

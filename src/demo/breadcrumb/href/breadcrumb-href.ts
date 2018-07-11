@@ -15,8 +15,8 @@ export class BreadcrumbHrefDemo {
     ];
 
     data2: BreadcrumbItem[] = [
-        { text: 'One', path: '/button' },
-        { text: 'Two', path: '/breadcrumb' },
+        { text: 'One', path: '/components/button', queryParams: { userId: 10 } },
+        { text: 'Two', path: '/components/breadcrumb' },
         { text: 'Three' }
     ];
 
@@ -29,4 +29,8 @@ export class BreadcrumbHrefDemo {
         { text: 'Two' },
         { text: 'Three' }
     ];
+
+    commonQueryParams = {
+        userId: 22
+    };
 }

@@ -18,6 +18,11 @@ export type BreadcrumbItem = {
      * href has high priority.
      */
     href?: string;
+
+    /**
+     * breadcrumb path query params
+     */
+    queryParams?: any;
 };
 
 /**
@@ -41,6 +46,12 @@ export class BreadcrumbComponent {
      * @default []
      */
     @Input() datasource: BreadcrumbItem[] = [];
+
+    /**
+     * the common query params for every router link
+     * @type {*}
+     */
+    @Input() queryParams: any;
 
     /**
      * set trackby function for `ngFor`
