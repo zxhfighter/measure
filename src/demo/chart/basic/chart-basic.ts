@@ -294,6 +294,7 @@ export class ChartBasicDemo {
     constructor(private _cd: ChangeDetectorRef) {
         setTimeout(() => {
             this.lineHeight = 300;
+            this.barOptions1 = { ...this.barOptions1 };
             this._cd.markForCheck();
         }, 2000);
     }
@@ -301,6 +302,10 @@ export class ChartBasicDemo {
     lineHeight = 600;
 
     onClick(eventParams: any) {
+        console.log(eventParams);
+    }
+
+    onBarClick(eventParams: any) {
         console.log(eventParams);
     }
 }

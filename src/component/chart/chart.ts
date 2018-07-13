@@ -82,6 +82,9 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     /** chart auto resize when window resize */
     _resizeListener: any;
 
+    /** if chart event is binded */
+    _eventBinded: boolean = false;
+
     constructor(private _el: ElementRef, private _renderer: Renderer2) {
         this.setOptionsChangeListener();
     }
@@ -108,13 +111,16 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
 
                 this._chartInstance.setOption(options, true);
 
-                if (this.eventName) {
+                // if the event is binded, don't bind it again, otherwise their will be multi events
+                if (this.eventName && !this._eventBinded) {
                     this._chartInstance.on(this.eventName, (params: any) => {
                         this.chartEvent.emit({
                             target: this._chartInstance,
                             params: params
                         });
                     });
+
+                    this._eventBinded = true;
                 }
             }
             catch {

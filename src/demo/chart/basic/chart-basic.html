@@ -7,7 +7,7 @@
 <p>
     bar:
     <br>
-    <nb-chart width="100%" height="600" [options]="barOptions1"></nb-chart>
+    <nb-chart width="100%" height="600" [options]="barOptions1" eventName="click" (chartEvent)="onBarClick($event)"></nb-chart>
 </p>
 
 <p>
