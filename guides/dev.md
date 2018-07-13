@@ -13,7 +13,7 @@
 ## 第二步：提交并发布 develop 分支
 
 ```
-./node_modules/.bin/gulp commit -m 'commit message'
+./node_modules/.bin/gulp commit -m '[auto]publish to develop branch'
 ```
 
 还可以视情况，加入不同参数，更改版本号:
