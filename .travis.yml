@@ -3,23 +3,23 @@ sudo: required
 addons:
   chrome: stable
 node_js:
-- '8'
+  - '8'
 git:
   depth: 3
 branches:
   only:
-  - master
+    - master
 install:
-- npm install
+  - npm install
 script:
-- npm run test-once
-- npm run build
+  - npm run test-once
+  - npm run build
 cache:
   npm: true
   directories:
-  - ./node_modules/
+    - ./node_modules/
 before_deploy:
-- cd dist/packages
+  - cd dist/packages
 deploy:
   provider: npm
   email: 369749456@qq.com
@@ -27,5 +27,5 @@ deploy:
     secure: LQ7mAmM9eyNmL1FrRFUw65h3736+NdUweO3b7Eoh3jd3si0ca0a9byaVTdhOnBctzQDgsBut0fofbEQEzhqanoFcxj/y/JhufFxFp7t5fvpOprSpqRz2zfxbutiJJiPJGOknbrCXenzMd87yXlWY/PkZRTlkK82ySswDr/E0/lujs7eMXYJCagH70jW9zax5l4O1Goeb12SJZ15O2PRx9FDXD+qE9LvGsAFDvuscp9N81g+b0NQnD/tkA81MRHxjI8vjTe49BXt0/UUSf9VrjxKLa9SQzo8nVf7MXGJOcsNqTjsdC3qy64qSY9JueU7QliMGyRr2NrDNQpLCOiDA7I7nNwhlsiTnM2TsUG4lxnaljniKcPC41pyeSpb4oGeeU6c5lj0abujEsvhxfYUQfgSfSJhu4T3OtjSMKLLvWcChp4MySbE9I2WOj7+0Qi2etpS6eMNPJ0SYRk7A0URWsMfEIRqThEOWjOBIJOQZAsHZL0yjca7W43TcSebVZM4Er/m/8vmuYVp6whJ20hKa62m08Rw+UYsGBmYnX+R8EkzfPW40AwVCIHFODAX5kjA/lpAzKjH3lRzWiEoN129Je46CbWJOCWMqXNInSeXL2fFsfWF1HhXqOtBd7aNA1+LycGT2hX4inPtMyqOoy/EEUIUvT3j+dEFr0hyxg/ppoHI=
   on:
     branches:
-    - master
-    - /^v\d+(\.\d+)+$/
+      - master
+      - /^v\d+(\.\d+)+$/
