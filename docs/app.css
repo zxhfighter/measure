@@ -136,15 +136,15 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
-pre.line-numbers {
+pre[class*="language-"].line-numbers {
 	position: relative;
 	padding-left: 3.8em;
 	counter-reset: linenumber;
 }
 
-pre.line-numbers > code {
+pre[class*="language-"].line-numbers > code {
 	position: relative;
-    white-space: inherit;
+	white-space: inherit;
 }
 
 .line-numbers .line-numbers-rows {
@@ -176,7 +176,8 @@ pre.line-numbers > code {
 			display: block;
 			padding-right: 0.8em;
 			text-align: right;
-		}/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+		}
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -13716,7 +13717,8 @@ a.nb-button[disabled]:active {
 }
 .nb-slider {
   position: relative;
-  width: 200px;
+  width: 100%;
+  min-width: 200px;
   height: 4px;
   border-radius: 10px;
   background: #dbdbdb;
@@ -13730,17 +13732,25 @@ a.nb-button[disabled]:active {
 .nb-slider-hand {
   position: absolute;
   left: 0;
-  margin: -7px 0 -7px -3px;
-  width: 10px;
-  height: 10px;
+  margin: -10px 0px -7px -5px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  border: 1px solid #3d80fc;
+  border: 2px solid #3d80fc;
   background-color: #fff;
   z-index: 2;
 }
+.nb-slider .nb-spinner {
+  position: relative;
+  float: right;
+  top: -20px;
+  left: 130px;
+}
 .nb-slider-vertical {
   width: 4px;
-  height: 200px;
+  height: 100%;
+  min-height: 200px;
+  min-width: 4px;
 }
 .nb-slider-vertical .nb-slider-tracker {
   width: 100%;
@@ -18476,4 +18486,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.bd75fb.bundle.map*/
+/*# sourceMappingURL=app.67ebd2.bundle.map*/

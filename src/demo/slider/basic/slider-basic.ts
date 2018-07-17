@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 @Component({
     selector: 'demo-slider-basic',
     templateUrl: './slider-basic.html',
+    styleUrls: ['./slider-basic.less'],
     encapsulation: ViewEncapsulation.None
 })
 export class SliderBasicDemo implements OnInit {

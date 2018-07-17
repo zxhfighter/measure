@@ -48,6 +48,9 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     @OnChange(true)
     @Input() input: boolean = false;
 
+    @OnChange(true)
+    @Input() spinner: boolean = false;
+
     /**
      * Min value of slider
      * @default 0
@@ -263,10 +266,6 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         this.setDefaultValue();
         this.inputValidate();
 
-        // 设置hand能移动的范围值
-        const slider = this._slider.nativeElement as HTMLElement;
-        this.limitMove = this.orientation ? slider.clientWidth : slider.clientHeight;
-
         // 根据输入值设置hand, tracker初始值
         if (this.range) {
             this.trackerSelected = this.getWidthFromValue(this.value);
@@ -358,10 +357,15 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         if (this.disabled) {
             return;
         }
+
+        // 设置hand能移动的范围值
+        const slider = this._slider.nativeElement as HTMLElement;
+        this.limitMove = this.orientation ? slider.clientWidth : slider.clientHeight;
+
         let endOffset = this.orientation ? e.offsetX : (this.limitMove - e.offsetY);
         let endPos = endOffset / this.limitMove * 100;
         let step = this.step / (this.max - this.min) * 100;
-        endPos = Math.floor(endPos / step) * step;
+        endPos = Math.round(endPos / step) * step;
 
         this.updateSlider({
             initPos: endPos,
@@ -475,7 +479,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     writeValue(value: CoreValue) {
         if (value) {
             this.value = value;
-            // this._cd.markForCheck();
+            this._cd.markForCheck();
         }
     }
 

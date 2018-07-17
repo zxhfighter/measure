@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
     selector: 'demo-slider-form',
     templateUrl: './slider-form.html',
-    // styleUrls: ['./slider-form.less'],
+    styleUrls: ['./slider-form.less'],
     encapsulation: ViewEncapsulation.None
 })
 export class SliderFormDemo implements OnInit {

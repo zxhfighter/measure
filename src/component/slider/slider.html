@@ -12,3 +12,5 @@
         [limitMove]="limitMove" [disabled]="disabled" (change)="updateSlider($event)">
     </nb-slider-hand>
 </div>
+
+<nb-spinner [maxValue]="max" [(ngModel)]="value" [minValue]="min" *ngIf="!range && spinner" (change)="inputValue($event)"></nb-spinner>

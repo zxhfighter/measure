@@ -7,9 +7,10 @@ import { SliderComponent } from './slider';
 import { SliderHandComponent } from './slider-hand';
 import { SliderTrackerComponent } from './slider-tracker';
 import { SliderService } from './slider.service';
+import { SpinnerModule } from '../index';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, TooltipModule],
+    imports: [CommonModule, FormsModule, TooltipModule, SpinnerModule],
     providers: [SliderService],
     declarations: [SliderComponent, SliderHandComponent, SliderTrackerComponent],
     exports: [SliderComponent, SliderHandComponent, SliderTrackerComponent]

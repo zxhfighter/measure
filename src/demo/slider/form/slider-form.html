@@ -1,14 +1,16 @@
-<p>Template-driven form</p>
-<form #frm="ngForm">
-    <nb-slider [(ngModel)]="value1" name="slider" [min]=0 [max]=200 [range]="false"></nb-slider>
-</form>
-<p>
-    {{ frm.value | json }}
-</p>
-<p>Model-driven form</p>
-<form [formGroup]="form">
-    <nb-slider formControlName="slider" [min]=0 [max]=100 [range]="true"></nb-slider>
-</form>
-<p>
-    {{ form.value | json }}
-</p>
+<div class="slider-width">
+    <p>Template-driven form</p>
+    <form #frm="ngForm">
+        <nb-slider [(ngModel)]="value1" name="slider" [min]=0 [max]=200 [range]="false"></nb-slider>
+    </form>
+    <p>
+        {{ frm.value | json }}
+    </p>
+    <p>Model-driven form</p>
+    <form [formGroup]="form">
+        <nb-slider formControlName="slider" [min]=0 [max]=100 [range]="true"></nb-slider>
+    </form>
+    <p>
+        {{ form.value | json }}
+    </p>
+</div>

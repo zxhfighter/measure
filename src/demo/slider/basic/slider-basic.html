@@ -1,10 +1,14 @@
-<div>
+<div class="slider-width">
     <p>default: {{ valueDefault }}</p>
     <nb-slider name="slider" (change)="onDefaultChange($event)"></nb-slider>
     <br>
     <p>use input box: {{ valueInput }}</p>
     <nb-slider name="slider" [input]="true" (change)="onInputChange($event)"></nb-slider>
     <br>
+    <p>use spinner</p>
+    <nb-slider [spinner]="true" name="slider" [min]=3 [max]=15 [range]="false" [input]="false">
+    </nb-slider>
+    <br><br>
     <p>step: {{ valueStep }}</p>
     <nb-slider name="slider" [step]=10 (change)="onStepChange($event)"></nb-slider>
     <br>
@@ -19,14 +23,16 @@
 </div>
 
 <br>
-<div style="float:left">
-    <p>vertical: {{ valueVertical }}</p>
-    <nb-slider name="slider" [min]=0 [max]=30 [value]="20" [range]="false" [input]="false" [orientation]="vertical" (change)="onVerticalChange($event)">
-    </nb-slider>
+<div class="slider-height">
+    <div style="float:left">
+        <p>vertical: {{ valueVertical }}</p>
+        <nb-slider name="slider" [min]=0 [max]=30 [value]="20" [range]="false" [input]="false" [orientation]="vertical" (change)="onVerticalChange($event)">
+        </nb-slider>
+    </div>
+    <div style="float:left;margin-left:100px">
+        <p>vertical && range: {{ valueVerticalRange0 }} ~ {{ valueVerticalRange1 }}</p>
+        <nb-slider name="slider" [min]=0 [max]=200 [range]="true" [input]="false" [orientation]="vertical" (change)="onVerticalRangeChange($event)">
+        </nb-slider>
+    </div>
+    <div style="clear:both"></div>
 </div>
-<div style="float:left;margin-left:100px">
-    <p>vertical && range: {{ valueVerticalRange0 }} ~ {{ valueVerticalRange1 }}</p>
-    <nb-slider name="slider" [min]=0 [max]=200 [range]="true" [input]="false" [orientation]="vertical" (change)="onVerticalRangeChange($event)">
-    </nb-slider>
-</div>
-<div style="clear:both"></div>

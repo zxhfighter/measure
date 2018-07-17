@@ -2,7 +2,8 @@
 
 .@{prefix}-slider {
     position: relative;
-    width: 200px;
+    width: 100%;
+    min-width: 200px;
     height: 4px;
     border-radius: 10px;
     background: #dbdbdb;
@@ -17,18 +18,27 @@
     &-hand {
         position: absolute;
         left: 0;
-        margin: -7px 0 -7px -3px;
-        width: 10px;
-        height: 10px;
+        margin: -10px 0 -7px -5px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
-        border: 1px solid @nb-slider-tracker-background;
+        border: 2px solid @nb-slider-tracker-background;
         background-color: #fff;
         z-index: 2;
+    }
+
+    .nb-spinner {
+        position: relative;
+        float: right;
+        top: -20px;
+        left: 130px;
     }
 }
 .@{prefix}-slider-vertical {
     width: 4px;
-    height: 200px;
+    height: 100%;
+    min-height: 200px;
+    min-width: 4px;
 
     .@{prefix}-slider-tracker {
         width: 100%;
