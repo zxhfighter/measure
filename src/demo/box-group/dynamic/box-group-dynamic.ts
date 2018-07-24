@@ -20,6 +20,16 @@ export class BoxGroupDynamicDemo implements OnInit {
         {value: '4', text: 'orange', checked: false, disabled: false}
     ];
 
+    datasource2 = [
+
+        {value: '1', text: 'apple', checked: false, disabled: false},
+        {value: '2', text: 'banana', checked: false, disabled: false},
+        {value: '3', text: 'lemon', checked: false, disabled: false},
+        {value: '4', text: 'orange', checked: false, disabled: false}
+    ];
+
+    data2: any = [];
+
     constructor(private fb: FormBuilder) { }
 
     ngOnInit() {
@@ -31,5 +41,9 @@ export class BoxGroupDynamicDemo implements OnInit {
                 { value: ['1', '4'], disabled: false }
             ]
         });
+
+        setTimeout(() => {
+            this.data2 = ['3'];
+        }, 2000);
     }
 }

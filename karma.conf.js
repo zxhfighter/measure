@@ -1,6 +1,6 @@
 /**
  * @file karma config
- * @author wanlingfeng(wanlingfeng@baidu.com)
+ * @author wanlingfeng
  */
 
 module.exports = require('./config/karma.conf.js');

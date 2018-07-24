@@ -189,7 +189,7 @@ task('build:bundle', async () => {
     };
 
     const bundle = await rollup.rollup(inputOptions);
-    const { code, map } = await bundle.generate(outputOptions);
+    // const { code, map } = await bundle.generate(outputOptions);
 
     await bundle.write(outputOptions);
 });
