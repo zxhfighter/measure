@@ -160,9 +160,10 @@ export class TransferComponent implements OnChanges, AfterViewInit {
     initTransfer() {
         this.initTree(this.candidateData, 'candidate');
         this.initTree(this.selectedData, 'selected');
-        this.initCount();
         this.countSelectedNodes(this.candidateData);
+        this._candidateNodeList = {};
         this.transferTreeToList(this.candidateData, 'candidate');
+        this._selectedNodeList = {};
         this.transferTreeToList(this.selectedData, 'selected');
     }
 
