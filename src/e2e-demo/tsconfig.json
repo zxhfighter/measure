@@ -1,0 +1,24 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": false,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es2016",
+            "dom"
+        ],
+        "typeRoots": [
+            "../../node_modules/@types"
+        ]
+    },
+    "exclude": [
+        "../../aot/**/*.ts",
+        "../../dist/**/*.ts"
+    ]
+}

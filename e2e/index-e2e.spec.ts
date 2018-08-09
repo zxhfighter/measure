@@ -5,7 +5,7 @@ describe('hello, protractor', () => {
         browser.get('/');
 
         it('should have a title', () => {
-            expect<any>(browser.getTitle()).toBe('XDesign');
+            expect<any>(browser.getTitle()).toBe('One Design E2E Tests');
         });
     });
 });
