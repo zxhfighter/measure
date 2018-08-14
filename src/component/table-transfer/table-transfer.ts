@@ -35,8 +35,8 @@ const TABLE_TRANSFER_VALUE_ACCESSOR = {
 };
 
 interface TableConfig {
-    headData: any,
-    colWidth: any
+    headData: any[];
+    colWidth: any[];
 }
 
 @Component({
