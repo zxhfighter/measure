@@ -7,7 +7,7 @@ import { ButtonModule } from '../button/button.module';
 import { SearchBoxModule } from '../search-box/search-box.module';
 import { TreeModule } from '../tree/tree.module';
 import { TransferService } from './transfer.service';
- 
+
 @NgModule({
     imports: [
         CommonModule,

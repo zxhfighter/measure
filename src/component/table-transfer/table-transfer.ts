@@ -35,8 +35,8 @@ const TABLE_TRANSFER_VALUE_ACCESSOR = {
 };
 
 interface TableConfig {
-    headData: any[],
-    colWidth: any[]
+    headData: any,
+    colWidth: any
 }
 
 @Component({
@@ -230,7 +230,6 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
 
     /**
      * selected row
-     * 
      * @param element selected row
      * @docs-private
      */
@@ -251,7 +250,6 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
 
     /**
      * remove row
-     * 
      * @param element remove row
      * @docs-private
      */
