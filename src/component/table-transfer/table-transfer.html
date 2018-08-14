@@ -1,7 +1,7 @@
 <nb-transfer
     (searchValue)="searchByKeyWord($event)"
     (onTransAll)="transAll($event)"
-    (onExtendData)="extendData($event)"
+    (onExtendData)="extendData()"
     [ngClass]="'customClass-' + customClass"
     [allSelectLink]="allSelectLink" 
     [allDeleteLink]="allDeleteLink"
@@ -16,7 +16,7 @@
                 <thead nb-thead>
                     <tr nb-row>
                         <th *ngFor="let head of tableConfig.headData" width="{{head.width}}" field="">
-                            <span class="field-title">{{head.name}}</span>
+                            <span class="field-title">{{ head.name }}</span>
                         </th>
                     </tr>
                 </thead>
@@ -43,7 +43,7 @@
                         <ng-container *ngFor="let key of objectKeys(row)">
                             <td *ngIf="key!=='id' && key!=='selected'" nb-td>
                                 <div class="nb-td-{{key}}">
-                                    {{row[key]}}
+                                    {{ row[key] }}
                                 </div>
                             </td>
                         </ng-container>

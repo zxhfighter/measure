@@ -23,8 +23,8 @@ import {
     TreeNode
 } from './tree-transfer.interface';
 
-import { 
-    TransferService 
+import {
+    TransferService
 } from '../transfer/transfer.service';
 
 /*
@@ -494,10 +494,8 @@ export class TreeTransferComponent implements OnChanges, AfterViewInit {
         if (this.disabled) {
             return;
         }
-        
         const mode = e.mode;
         const chkVal = e.chkVal;
-        
         // 当是‘candidate’mode，并且没有任何选中，禁止再次执行取消全部选中的操作过程
         if (mode === 'candidate' && this.selectedCount === 0) {
             return;

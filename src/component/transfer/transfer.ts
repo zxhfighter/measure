@@ -127,7 +127,7 @@ export class TransferComponent implements OnDestroy {
     constructor(
         private _cd: ChangeDetectorRef,
         private service: TransferService
-    ) { 
+    ) {
         this.subscription = this.service.getMsg().subscribe(msg => {
             this.candidateCount = msg.candidateCount;
             this.selectedCount = msg.selectedCount;

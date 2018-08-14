@@ -7,7 +7,7 @@ export class TransferService {
 
     /**
      * subject send message to observer
-     * @param countObj 
+     * @param countObj send message
      * @docs-private
      */
     sendMsg(countObj) {

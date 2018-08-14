@@ -19,8 +19,8 @@ import {
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
-import { 
-    TransferService 
+import {
+    TransferService
 } from '../transfer/transfer.service';
 
 /*
@@ -33,6 +33,11 @@ const TABLE_TRANSFER_VALUE_ACCESSOR = {
     useExisting: forwardRef(() => TableTransferComponent),
     multi: true
 };
+
+interface TableConfig {
+    headData: any[],
+    colWidth: any[]
+}
 
 @Component({
     selector: 'nb-table-transfer',
@@ -66,7 +71,7 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
      * candidate list data
      * @default []
      */
-    @Input() 
+    @Input()
     set candidateData(val: any) {
         this._datasource = val;
         this._allDatasource = [...val];
@@ -86,7 +91,7 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
      * table head list data
      * @default []
      */
-    @Input() tableConfig: any[] = [];
+    @Input() tableConfig: TableConfig;
 
     /**
      * Whether the transfer is disabled
@@ -155,7 +160,7 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
      * return method make object formatter to array
      * @docs-private
      */
-    private selectedDatasource: any[] = [];
+    selectedDatasource: any[] = [];
 
     /**
      * return method make object formatter to array
@@ -298,7 +303,7 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
         if (mode === 'candidate') {
             this._datasource = this._allDatasource.filter(element => element.name.indexOf(searchText) !== -1);
         } else {
-            this.selectedDatasource 
+            this.selectedDatasource
                 = this._selectedDatasource.filter(element => element.name.indexOf(searchText) !== -1);
         }
     }

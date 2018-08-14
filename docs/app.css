@@ -13659,13 +13659,27 @@ a.nb-button[disabled]:active {
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.nb-transfer-no-tree {
+.nb-transfer-tree-have-add-link-wrap {
+  height: 67%;
+}
+.nb-transfer-tree-no-search-wrap {
+  height: 80%;
+}
+.nb-transfer-no-data {
   display: block;
   width: 100%;
   height: 36px;
   padding-left: 20px;
   line-height: 36px;
   color: #bbb;
+}
+.nb-transfer-add-link {
+  height: 12px;
+  line-height: 12px !important;
+  font-size: 12px;
+}
+.nb-transfer-add-link:hover {
+  text-decoration: none;
 }
 .nb-transfer-candidate .nb-transfer-title .nb-button-theme-transparent,
 .nb-transfer-selected .nb-transfer-title .nb-button-theme-transparent {
@@ -13682,37 +13696,82 @@ a.nb-button[disabled]:active {
 .nb-transfer-selected .nb-transfer-title .nb-button-theme-transparent:hover {
   text-decoration: none;
 }
-.nb-transfer-candidate {
-  display: inline-block;
-  width: 230px;
-  height: 360px;
-  margin: 15px;
-  border: 1px solid #ddd;
-}
-.nb-transfer-candidate .nb-search-box {
-  margin-left: 20px;
-}
-.nb-transfer-candidate .nb-input {
-  width: 190px;
-}
-.nb-transfer-candidate .nb-tree {
-  padding-right: 15px;
-}
+.nb-transfer-candidate,
 .nb-transfer-selected {
   display: inline-block;
   width: 230px;
   height: 360px;
+  padding-bottom: 20px;
   margin: 15px;
   border: 1px solid #ddd;
 }
+.nb-transfer-candidate .nb-search-box,
 .nb-transfer-selected .nb-search-box {
+  display: block;
   margin-left: 20px;
+  margin-right: 20px;
 }
+.nb-transfer-candidate .nb-input,
 .nb-transfer-selected .nb-input {
-  width: 190px;
+  width: 100%;
 }
+.nb-transfer-candidate .nb-tree,
 .nb-transfer-selected .nb-tree {
   padding-right: 15px;
+}
+.icon-arrow-right,
+.icon-check {
+  display: none;
+}
+.nb-table-row {
+  cursor: pointer;
+}
+.nb-table-row:hover:not(.nb-table-row-selected) .icon-arrow-right {
+  display: inline-block;
+}
+.nb-table-row-selected {
+  cursor: default;
+  color: #999;
+}
+.nb-table-row-selected .icon-check {
+  display: inline-block;
+}
+.nb-table-row-disabled {
+  cursor: default;
+  color: #999;
+}
+.selected-item {
+  position: relative;
+  padding-left: 20px;
+  line-height: 36px;
+}
+.selected-item .group-name {
+  float: left;
+  max-width: 250px;
+}
+.selected-item .icon-close {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  padding-right: 20px;
+  line-height: 12px;
+  visibility: hidden;
+  transform: translateY(-6px);
+}
+.selected-item:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+.selected-item:hover .icon-close {
+  visibility: visible;
+}
+.nb-table-row-selected {
+  color: #999;
+}
+.nb-table-row-selected:hover {
+  cursor: default;
 }
 .nb-slider {
   position: relative;
@@ -18485,4 +18544,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.170ecc.bundle.map*/
+/*# sourceMappingURL=app.dd190c.bundle.map*/
