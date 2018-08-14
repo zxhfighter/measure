@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CodeBoxModule } from '../../component/code-box';
 import { CodeHighlighterModule } from '../../component/code-highlighter';
-import { TransferModule } from '../../component/transfer';
+import { TreeTransferModule } from '../../component/tree-transfer';
+import { TableTransferModule } from '../../component/table-transfer';
 
 import { TransferDemo } from './transfer';
 import { TransferBasicDemo } from './basic/transfer-basic';
@@ -13,7 +14,8 @@ import { TransferBasicDemo } from './basic/transfer-basic';
         CommonModule,
         CodeBoxModule,
         CodeHighlighterModule,
-        TransferModule
+        TreeTransferModule,
+        TableTransferModule
     ],
     declarations: [
         TransferDemo,

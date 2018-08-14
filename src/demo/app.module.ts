@@ -41,6 +41,8 @@ import {
     AccordionModule,
     UploaderModule,
     TransferModule,
+    TreeTransferModule,
+    TableTransferModule,
     FormModule,
     GridModule,
     RatingModule
@@ -184,6 +186,8 @@ const demoModules = [
         AccordionModule,
         UploaderModule,
         TransferModule,
+        TreeTransferModule,
+        TableTransferModule,
         FormModule,
         GridModule,
         RatingModule,

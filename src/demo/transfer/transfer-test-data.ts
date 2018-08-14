@@ -3308,3 +3308,65 @@ export const selectedData = [
         styleClass: 'selfStyle',
     }
 ];
+
+export const tableConfig = {
+    headData: [
+        {
+            name: '人群名称',
+            width: 140
+        },
+        {
+            name: '人群数量',
+            width: 90
+        },
+        {
+            name: '计算状态',
+            width: 80
+        },
+        {
+            name: '类型',
+            width: 120
+        }
+    ],
+    colWidth: [140, 90, 80, 80]
+};
+
+export const tableData = [
+    {
+        id: 1,
+        name: '搜索人群 0 寒固珠燕中枝',
+        groupCount: '5,263',
+        groupStatus: '计算中',
+        groupType: '视频人群'
+    },
+    {
+        id: 2,
+        name: '搜索人群 1 晓枝慧淑有洁',
+        groupCount: '5,744',
+        groupStatus: '计算失败',
+        groupType: '基础人群'
+    },
+    {
+        id: 3,
+        name: '搜索人群 2 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+        groupCount: '6,364',
+        groupStatus: '计算完成',
+        groupType: 'feed人群'
+    },
+    {
+        id: 4,
+        name: '搜索人群 3 元茜志卿菲娜伦青凡心茗致',
+        groupCount: '6,705',
+        groupStatus: '计算中',
+        groupType: '媒体人群'
+    },
+    {
+        id: 5,
+        name: '搜索人群 4 莲康鸣育琴春若峰梅九',
+        groupCount: '9,767',
+        groupStatus: '计算完成',
+        groupType: '搜索人群'
+    },
+];
+
+export const selectedIds = [1, 2, 5];

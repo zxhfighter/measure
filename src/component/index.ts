@@ -32,6 +32,8 @@ export * from './schedule/index';
 export * from './accordion/index';
 export * from './uploader/index';
 export * from './transfer/index';
+export * from './tree-transfer/index';
+export * from './table-transfer/index';
 export * from './form/index';
 export * from './grid/index';
 export * from './rating/index';

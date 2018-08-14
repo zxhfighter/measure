@@ -7,7 +7,10 @@ import {
 import {
     candidateDataEmpty,
     candidateData,
-    selectedData
+    selectedData,
+    tableData,
+    selectedIds,
+    tableConfig
 } from '../transfer-test-data';
 
 @Component({
@@ -20,6 +23,7 @@ import {
 
 export class TransferBasicDemo implements OnInit {
 
+    // tree
     candidateData = candidateData;
 
     selectedData = selectedData;
@@ -31,6 +35,29 @@ export class TransferBasicDemo implements OnInit {
     candidateDataEmpty: any = [];
 
     selectedDataEmpty = [];
+
+    // table
+    datasource = tableData;
+
+    selectedIds = selectedIds;
+
+    tableConfig = tableConfig;
+
+    customClass = 'table-transfer-style';
+
+    // addLink
+    addLink = {
+        text: '补量人群包',
+        flag: true
+    };
+
+    // search
+    candidateSearch = false;
+    selectedSearch = false;
+
+    // title
+    candidateTitle = '热门推荐';
+    selectedTitle = '已选推荐';
 
     ngOnInit() {
         setTimeout(() => {
@@ -51,5 +78,9 @@ export class TransferBasicDemo implements OnInit {
 
     expandNode(event) {
         console.log(event);
+    }
+
+    extendData() {
+        console.log(1);
     }
 }

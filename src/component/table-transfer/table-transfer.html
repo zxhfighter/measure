@@ -1,0 +1,76 @@
+<nb-transfer
+    (searchValue)="searchByKeyWord($event)"
+    (onTransAll)="transAll($event)"
+    (onExtendData)="extendData($event)"
+    [ngClass]="'customClass-' + customClass"
+    [allSelectLink]="allSelectLink" 
+    [allDeleteLink]="allDeleteLink"
+    [candidateSearch]="candidateSearch"
+    [selectedSearch]="selectedSearch"
+    [candidateTitle]="candidateTitle"
+    [selectedTitle]="selectedTitle"
+    [addLink]="addLink">
+    <nb-transfer-candidate>
+        <div class="origin-table-fixhead">
+            <table nb-table theme="small">
+                <thead nb-thead>
+                    <tr nb-row>
+                        <th *ngFor="let head of tableConfig.headData" width="{{head.width}}" field="">
+                            <span class="field-title">{{head.name}}</span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="origin-table-body">
+            <table nb-table #nbTable theme="small" [datasource]="candidateData">
+
+                <colgroup>
+                    <ng-container *ngFor="let col of tableConfig.colWidth">
+                        <col [ngStyle]="{'width': col + 'px'}">
+                    </ng-container>
+                    <col>
+                </colgroup>
+
+                <tbody nb-tbody *ngIf="candidateData.length">
+                    <tr 
+                        nb-row 
+                        *ngFor="let row of candidateData" 
+                        [class.nb-table-row-selected]="row.selected" 
+                        [class.nb-table-row-disabled]="disabled" 
+                        (click)="onSelect(row)">
+                        <ng-container *ngFor="let key of objectKeys(row)">
+                            <td *ngIf="key!=='id' && key!=='selected'" nb-td>
+                                <div class="nb-td-{{key}}">
+                                    {{row[key]}}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <td nb-td>
+                            <i class="iconfont icon-arrow-right"></i>
+                            <i class="iconfont icon-check"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </nb-transfer-candidate>
+    <nb-transfer-selected>
+        <div *ngIf="selectedDatasource.length" class="selected-list-content">
+            <div 
+                *ngFor="let item of selectedDatasource" 
+                class="selected-item clearfix" 
+                [class.nb-table-row-selected]="disabled" 
+                (click)="onRemove(item)">
+                <div class="group-name">{{ item.name }}</div>
+                <i class="iconfont icon-close"></i>
+            </div>
+        </div>
+        <div
+            *ngIf="!selectedDatasource.length"
+            class="nb-transfer-no-data">
+            请从左侧选择内容
+        </div>
+    </nb-transfer-selected>
+</nb-transfer>
