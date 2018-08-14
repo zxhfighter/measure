@@ -1,6 +1,6 @@
 {
   "name": "xdesign",
-  "version": "2.0.41",
+  "version": "2.0.42",
   "description": "xdesign - A enterprize angular ui component library",
   "main": "./bundle/xdesign.umd.min.js",
   "sideEffects": false,
@@ -126,6 +126,7 @@
     "ts-node": "^3.3.0",
     "tsconfig-paths": "^2.3.0",
     "tslint": "^5.7.0",
+    "tsutils": "^3.0.0",
     "typescript": "~2.7.2",
     "uglify-js": "^3.1.4",
     "uglifyjs-webpack-plugin": "^1.2.5",

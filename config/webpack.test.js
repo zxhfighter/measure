@@ -1,6 +1,6 @@
 /**
  * @file webpack test config
- * @author wanlingfeng(wanlingfeng@baidu.com)
+ * @author wanlingfeng
  */
 
 const webpack = require('webpack');

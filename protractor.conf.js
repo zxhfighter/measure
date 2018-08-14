@@ -10,7 +10,7 @@ const config = {
     framework: 'jasmine',
     useAllAngular2AppRoots: true,
     specs: [path.join(__dirname, './e2e/**/*.spec.ts')],
-    baseUrl: 'http://localhost:49152',
+    baseUrl: 'http://localhost:9019',
     allScriptsTimeout: 120000,
     jasmineNodeOpts: {
         showColors: true,
@@ -30,4 +30,3 @@ const config = {
 };
 
 exports.config = config;
-

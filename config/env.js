@@ -11,15 +11,15 @@ module.exports = {
         // rd 代理环境
         rd: {
             prefix: '/api',
-            host: 'http://cp01-top-db00.cp01.baidu.com',
-            path: 'qianjing_cmo/web/index.php',
+            host: 'http://yourwebsite.com',
+            path: 'web/index.php',
             port: 8080
         },
 
         // qa 代理环境
         qa: {
             prefix: '/qa',
-            host: 'http://insight.baidu.com',
+            host: 'http://yourwebsite.com',
             port: 8081
         }
     },
@@ -44,7 +44,7 @@ module.exports = {
 
         // 线上环境构建
         online: {
-            apiPrefix: 'http://insight.baidu.com/'
+            apiPrefix: 'http://yourwebsite.com'
         }
     }
 }

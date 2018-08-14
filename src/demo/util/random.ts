@@ -1,6 +1,6 @@
 /**
  * @file 随机数据生成器
- * @author zengxiaohui(zengxiaohui@baidu.com)
+ * @author zengxiaohui
  */
 
 /**
