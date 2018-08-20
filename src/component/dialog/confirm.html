@@ -1,0 +1,10 @@
+<nb-dialog class="nb-confirm-box" [closable]="closable">
+    <nb-dialog-header>{{ title }}</nb-dialog-header>
+    <nb-dialog-body>
+        <div class="nb-confirm-content">{{ content }}</div>
+    </nb-dialog-body>
+    <nb-dialog-footer>
+        <button nb-button (click)="confirm()" theme="primary">确定</button>
+        <button nb-button (click)="cancel()" theme="default">取消</button>
+    </nb-dialog-footer>
+</nb-dialog>

@@ -12908,6 +12908,16 @@ a.nb-button[disabled]:active {
 .nb-alert-box .nb-alert-severity .icon-info_c {
   color: #3998fc;
 }
+.nb-confirm-box .nb-dialog {
+  width: 350px;
+  height: 220px;
+}
+.nb-confirm-box .nb-dialog-body {
+  padding: 0;
+}
+.nb-confirm-box .nb-dialog-body .nb-confirm-content {
+  margin: 20px 0;
+}
 .nb-chips {
   display: block;
 }
@@ -18544,4 +18554,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.b3be3f.bundle.map*/
+/*# sourceMappingURL=app.4e856b.bundle.map*/

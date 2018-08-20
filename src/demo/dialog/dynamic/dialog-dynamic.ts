@@ -20,4 +20,17 @@ export class DialogDynamicDemo {
     openSpecialDialog(type, content, title) {
         this.dialogService[type](content, title);
     }
+
+    clickConfirmBox() {
+        this.dialogService['confirm']('是否需要保存已修改内容？', '关闭确认')
+            .then(this.onConfirm, this.onCancel);
+    }
+
+    onConfirm() {
+        console.log('确定');
+    }
+
+    onCancel() {
+        console.log('取消');
+    }
 }
