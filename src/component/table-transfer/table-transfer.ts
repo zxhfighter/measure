@@ -34,7 +34,7 @@ const TABLE_TRANSFER_VALUE_ACCESSOR = {
     multi: true
 };
 
-interface TableConfig {
+export interface TableConfig {
     headData: any[];
     colWidth: any[];
 }
