@@ -1,24 +1,22 @@
 <li [ngClass]="['nb-tree-node', node.styleClass || '']">
+    <span
+        *ngIf="node.children && node.children.length"
+        class="nb-tree-node-toggle iconfont"
+        [ngClass]="{'icon-down': node.isExpanded, 'icon-right': !node.isExpanded, 'nb-tree-node-show': node.show}"
+        (click)="toggle($event)">
+    </span>
     <div
         class="nb-tree-content"
         [ngClass]="{'nb-tree-node-selected': node.isSelected, 'nb-tree-node-unselectable': !node.selectable, 'nb-tree-node-show': node.show}"
         (click)="onNodeClick()">
         <span
-            *ngIf="node.children && node.children.length"
-            class="nb-tree-node-toggle iconfont"
-            [ngClass]="{'icon-down': node.isExpanded, 'icon-right': !node.isExpanded}"
-            (click)="toggle($event)">
-        </span>
-        <span
             *ngIf="!judgeOverLong(node)"
-            class="nb-tree-node-name"
-            [ngClass]="{'nb-tree-no-child': !node.children}">
+            class="nb-tree-node-name">
             {{ node.name }}
         </span>
         <span
             *ngIf="judgeOverLong(node)"
             class="nb-tree-node-name"
-            [ngClass]="{'nb-tree-no-child': !node.children}"
             nbTooltip="{{node.name}}"
             nbTooltipClass="customize-classname"
             placement="bottom-left"

@@ -1,0 +1,28 @@
+.@{prefix}-tree-transfer {
+    .@{prefix}-tree-content {
+        width: 90%;
+    
+        span {
+            margin-right: 0;
+            padding-left: 3px;
+        }
+    }
+
+    .@{prefix}-tree-node-name {
+        width: 86%;
+    }
+
+    .@{prefix}-tree-selectable .@{prefix}-tree-content::before, 
+    .@{prefix}-tree-selectable .@{prefix}-tree-content::after {
+        display: none;
+    }
+
+    .@{prefix}-tree-selectable .@{prefix}-tree-content:hover {
+        background-color: #f1f1f1;
+    }
+
+    .@{prefix}-tree-selectable .@{prefix}-tree-content:active {
+        background-color: #e7e7e7;
+    }
+}
+
