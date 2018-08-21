@@ -42,7 +42,16 @@
                         (click)="onSelect(row)">
                         <ng-container *ngFor="let key of objectKeys(row)">
                             <td *ngIf="key!=='id' && key!=='selected'" nb-td>
-                                <div class="nb-td-{{key}}">
+                                <div *ngIf="key!=='name' || !judgeOverLong(row[key])" class="nb-td-{{key}}">
+                                    {{ row[key] }}
+                                </div>
+                                <div 
+                                    *ngIf="key==='name' && judgeOverLong(row[key])" 
+                                    class="nb-td-{{key}}" 
+                                    nbTooltip="{{row[key]}}"
+                                    nbTooltipClass="customize-classname"
+                                    placement="bottom-left"
+                                    hasArrow>
                                     {{ row[key] }}
                                 </div>
                             </td>

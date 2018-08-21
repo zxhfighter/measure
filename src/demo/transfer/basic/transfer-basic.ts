@@ -59,6 +59,9 @@ export class TransferBasicDemo implements OnInit {
     candidateTitle = '热门推荐';
     selectedTitle = '已选推荐';
 
+    // name length limit
+    nameLenLimit = 7;
+
     ngOnInit() {
         setTimeout(() => {
             this.candidateDataEmpty = candidateDataEmpty;

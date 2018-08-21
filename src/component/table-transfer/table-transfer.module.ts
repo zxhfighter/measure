@@ -6,6 +6,7 @@ import { SearchBoxModule } from '../search-box/search-box.module';
 import { TreeModule } from '../tree/tree.module';
 import { TableModule } from '../table/table.module';
 import { TransferModule } from '../transfer/transfer.module';
+import { TooltipModule } from '../tooltip';
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { TransferModule } from '../transfer/transfer.module';
         SearchBoxModule,
         TreeModule,
         TableModule,
-        TransferModule
+        TransferModule,
+        TooltipModule
     ],
     declarations: [
         TableTransferComponent

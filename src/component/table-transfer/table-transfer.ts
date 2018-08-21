@@ -145,6 +145,11 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
     @Input() addLink: any;
 
     /**
+     * name length limit value
+     */
+    @Input() nameLenLimit: number = 6;
+
+    /**
      * return method make object formatter to array
      * @docs-private
      */
@@ -320,6 +325,14 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
      */
     extendData() {
         this.onExtendData.emit();
+    }
+
+    /**
+     * judge text length whether is over long or not
+     * @docs-private
+     */
+    judgeOverLong(event: string) {
+        return event.length >= this.nameLenLimit ? true : false;
     }
 
     /**

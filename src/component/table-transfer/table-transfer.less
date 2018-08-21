@@ -3,16 +3,16 @@
     display: none;
 }
 
-.nb-table-row {
+.@{prefix}-table-row {
     cursor: pointer;
-    &:hover:not(.nb-table-row-selected) {
+    &:hover:not(.@{prefix}-table-row-selected) {
         .icon-arrow-right {
             display: inline-block;
         }
     }
 }
 
-.nb-table-row-selected {
+.@{prefix}-table-row-selected {
     cursor: default;
     color: #999;
     .icon-check {
@@ -20,9 +20,16 @@
     }
 }
 
-.nb-table-row-disabled {
+.@{prefix}-table-row-disabled {
     cursor: default;
     color: #999;
+}
+
+.@{prefix}-td-name {
+    width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .selected-item {
@@ -57,7 +64,7 @@
     }
 }
 
-.nb-table-row-selected {
+.@{prefix}-table-row-selected {
     color: #999;
     &:hover {
         cursor: default;

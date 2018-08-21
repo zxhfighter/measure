@@ -3334,7 +3334,7 @@ export const tableConfig = {
 export const tableData = [
     {
         id: 1,
-        name: '搜索人群 0 寒固珠燕中枝',
+        name: '搜索人群 0',
         groupCount: '5,263',
         groupStatus: '计算中',
         groupType: '视频人群'
