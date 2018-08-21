@@ -70,7 +70,7 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
      */
     lines: any[] = [];
 
-    @ViewChild('txtContent') txtContent: ElementRef
+    @ViewChild('txtContent') txtContent: ElementRef;
 
     constructor(
         private _cd: ChangeDetectorRef,
