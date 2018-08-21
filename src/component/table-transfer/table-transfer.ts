@@ -341,7 +341,7 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
     }
 
     /**
-     * set text-line model value
+     * set table-transfer model value
      * @docs-private
      */
     writeValue(value: any) {
