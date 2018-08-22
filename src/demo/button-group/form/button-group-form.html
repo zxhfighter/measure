@@ -28,4 +28,17 @@
     </p>
 </form>
 
+
 {{ form.value | json }}
+
+<hr >
+
+<form [formGroup]="formGroup">
+    <nb-button-group
+        type="radio"
+        [datasource]="datasource"
+        formControlName="fruits">
+    </nb-button-group>
+</form>
+
+{{ formGroup.value | json }}

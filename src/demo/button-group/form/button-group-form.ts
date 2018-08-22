@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
-import { ButtonGroupValue } from '../../../component/button-group';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'demo-button-group-form',
@@ -8,6 +8,22 @@ import { ButtonGroupValue } from '../../../component/button-group';
     styleUrls: ['./button-group-form.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class ButtonGroupFormDemo {
+export class ButtonGroupFormDemo implements OnInit {
+    formGroup: FormGroup;
 
+    datasource: any[] = [
+        {value: 'apple', text: 'apple <b>a</b>'},
+        {value: 'book', text: 'book', checked: true },
+        {value: 'falsh', text: 'flash' }
+    ];
+
+    constructor(private fb: FormBuilder) {
+
+    }
+
+    ngOnInit() {
+        this.formGroup = this.fb.group({
+            fruits: [['book']]
+        });
+    }
 }
