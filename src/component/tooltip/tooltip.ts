@@ -112,6 +112,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         private componentFactoryResolver: ComponentFactoryResolver,
         private dynamicComponentService: DynamicComponentService<TiplayerComponent>,
         private overlayPositionService: OverlayPositionService) {
+            this.dynamicComponentService.attachTo(this.viewContainerRef);
     }
 
     ngOnInit() {

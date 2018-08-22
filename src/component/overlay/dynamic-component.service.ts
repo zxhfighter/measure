@@ -7,6 +7,7 @@ import {
     EmbeddedViewRef,
     ViewContainerRef,
     Renderer2,
+    RendererFactory2,
     ComponentRef,
     ComponentFactory,
     ComponentFactoryResolver
@@ -24,11 +25,17 @@ export class ContentRef {
 @Injectable()
 export class DynamicComponentService<T> {
 
+    /** It’s not a good idea to inject Renderer2 in Service. so create it in constructor */
+    private _renderer: Renderer2;
+
     /** created component reference */
     private _componentRef: ComponentRef<T> | null;
 
     /** places a new component as the content */
     private _contentRef: ContentRef | null;
+
+    /** places a new component at this container */
+    private _viewContainerRef: ViewContainerRef;
 
     /** Subscription to viewport resize events. */
     private _resizeSubscription = Subscription.EMPTY;
@@ -44,9 +51,13 @@ export class DynamicComponentService<T> {
 
     constructor(
         private _injector: Injector,
-        private _renderer: Renderer2,
-        private _viewContainerRef: ViewContainerRef,
+        private rendererFactory: RendererFactory2,
         private _componentFactoryResolver: ComponentFactoryResolver) {
+            this._renderer = this.rendererFactory.createRenderer(null, null);
+    }
+
+    attachTo(viewContainerRef) {
+        this._viewContainerRef = viewContainerRef;
     }
 
     /**

@@ -1,5 +1,6 @@
 import {
-    Injectable
+    Injectable,
+    ViewContainerRef
 } from '@angular/core';
 import { AlertComponent } from './alert';
 import { ConfirmComponent } from './confirm';
@@ -11,7 +12,9 @@ export class DialogService {
     private dialogInstance: AlertComponent | ConfirmComponent;
 
     constructor(
+        private viewContainerRef: ViewContainerRef,
         private dynamicComponentService: DynamicComponentService<AlertComponent | ConfirmComponent>) {
+            this.dynamicComponentService.attachTo(this.viewContainerRef);
     }
 
     createOverlay(type, content, title) {

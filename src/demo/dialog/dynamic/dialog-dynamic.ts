@@ -1,18 +1,16 @@
-import { Component, ViewChild, Renderer2, ViewContainerRef } from '@angular/core';
-import { AlertComponent } from '../../../component/dialog';
+import { Component, ViewContainerRef } from '@angular/core';
 import { DialogService } from '../../../component/dialog';
-import { DynamicComponentService } from '../../../component/overlay';
 
 @Component({
     selector: 'demo-dialog-dynamic',
     templateUrl: './dialog-dynamic.html',
     styleUrls: ['./dialog-dynamic.less'],
-    providers: [DialogService, DynamicComponentService]
+    providers: [DialogService]
 })
 export class DialogDynamicDemo {
 
     constructor(
-        private _renderer: Renderer2,
+        // 必须声明viewContainerRef，dialogService中会使用到
         private viewContainerRef: ViewContainerRef,
         private dialogService: DialogService) {
     }
