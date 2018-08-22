@@ -149,6 +149,11 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
      */
     select(value: any) {
         const buttonList = this._getButtonList();
+        if (!buttonList) {
+            console.error('无法进行选择操作，此时所有按钮组还未生成。');
+            return;
+        }
+
         if (this.type === 'radio') {
             buttonList.forEach(item => {
                 item.checked = item.value === value;
