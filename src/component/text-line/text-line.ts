@@ -1,15 +1,14 @@
 import {
     Component,
     Input,
-    Output,
-    EventEmitter,
     ChangeDetectorRef,
     Renderer2,
     OnInit,
     ViewEncapsulation,
     ChangeDetectionStrategy,
     ElementRef,
-    forwardRef
+    forwardRef,
+    ViewChild
 } from '@angular/core';
 
 import {
@@ -64,76 +63,48 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
     @OnChange(true)
     @Input() disabled: boolean = false;
 
-    /**
-     * order dom
-     * @docs-private
-     */
-    domOrder: string;
 
     /**
      * content dom
      * @docs-private
      */
-    domContent: any;
+    lines: any[] = [];
 
-    /**
-     * order content
-     * @docs-private
-     */
-    txtOrder: string = '';
+    @ViewChild('txtContent') txtContent: ElementRef;
 
     constructor(
         private _cd: ChangeDetectorRef,
-        private el: ElementRef,
         private _render: Renderer2
     ) { }
 
     ngOnInit() {
-        let objTxtOrder = this.el.nativeElement.getElementsByClassName('nb-text-line-order');
-        let objTxtContent = this.el.nativeElement.getElementsByClassName('nb-text-line-content');
-        let value = objTxtContent[0].value;
-        value = value.replace(/\r/gi, '');
-        value = value.split('\n');
-
-        this.computeLine(value.length, objTxtOrder[0]);
+        this.lines = this.value.replace(/\r/gi, '').split('\n').map(line => line || `\u200b${line}`);
+        this._markForCheck();
     }
 
     /**
      * in text-line content region input string
      * @docs-private
      */
-    onInputKeyup(event, txtOrder) {
+    onInput(event, txtContent, txtLines) {
         let value = event.target.value;
-        value = value.replace(/\r/gi, '');
-        value = value.split('\n');
+        this.lines = value = value.replace(/\r/gi, '').split('\n');
 
         this.value = event.target.value;
-        this.computeLine(value.length, txtOrder);
         this._markForCheck();
-    }
 
-    /**
-     * compute text-line content how many line
-     * @docs-private
-     */
-    computeLine(n, txtOrder) {
-        for (let i = 1; i < n + 1; i++) {
-            if (document.all) {
-                this.txtOrder += i + '\r\n';
-            } else {
-                this.txtOrder += i + '\n';
-            }
-        }
-        this._render.setProperty(txtOrder, 'value', this.txtOrder);
-        this.txtOrder = '';
+        setTimeout(() => {
+            this._render.setProperty(txtContent, 'scrollTop', txtContent.scrollTop);
+            this._render.setProperty(txtLines, 'scrollTop', txtContent.scrollTop);
+        }, 0);
     }
 
     /**
      * listen text-line content region scroll event
      * @docs-private
      */
-    scrollHandler(event, txtOrder) {
-        this._render.setProperty(txtOrder, 'scrollTop', event.target.scrollTop);
+    scrollHandler(event, txtLines) {
+        this._render.setProperty(txtLines, 'scrollTop', event.target.scrollTop);
     }
 
     /**
@@ -166,14 +137,9 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
     /** set text-line model value */
     writeValue(value: any) {
         this.value = value;
-
         if (value) {
-            let objTxtOrder = this.el.nativeElement.getElementsByClassName('nb-text-line-order');
-            value = value.replace(/\r/gi, '');
-            value = value.split('\n');
-            this.computeLine(value.length, objTxtOrder[0]);
+            this.lines = value.replace(/\r/gi, '').split('\n');
         }
-
         this._cd.markForCheck();
     }
 

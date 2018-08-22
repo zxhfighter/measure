@@ -34,7 +34,7 @@ const TABLE_TRANSFER_VALUE_ACCESSOR = {
     multi: true
 };
 
-interface TableConfig {
+export interface TableConfig {
     headData: any[];
     colWidth: any[];
 }
@@ -341,7 +341,7 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
     }
 
     /**
-     * set text-line model value
+     * set table-transfer model value
      * @docs-private
      */
     writeValue(value: any) {

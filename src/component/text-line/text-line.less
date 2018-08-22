@@ -1,12 +1,18 @@
 // --- layout ---
 .@{prefix}-text-line {
+    position: relative;
     display: inline-block;
     width: 300px;
-    height: 140px;
-    color: #666;
-    border-radius: @border-radius;
+    height: 200px;
+    min-height: 150px;
+    padding: 0;
     border: 1px solid #dbdbdb;
-    background-color: #fff;
+    overflow: hidden;
+    line-height: 28px;
+    font-size: 14px;
+    color: #666;
+    background-color: #eee;
+    transition: border-color 0.3s,color 0.3s;
 
     &:hover {
         border-color: darken(#dbdbdb, 20%);
@@ -17,27 +23,47 @@
     }
 }
 
-.@{prefix}-text-line-order,
-.@{prefix}-text-line-content {
-    float: left;
-    height: 138px;
-    border: 0 none;
-    line-height: 26px;
-    resize: none;
-}
-
-.@{prefix}-text-line-order {
-    width: 36px;
-    padding: 0;
-    text-align: center;
+.@{prefix}-text-line-measurer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     overflow: hidden;
-    background-color: #eee;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #999;
 }
 
-.@{prefix}-text-line-content {
+.@{prefix}-text-line-measurer-line {
+    overflow: hidden;
+}
+
+.@{prefix}-text-line-measurer-line-number {
+    float: left;
+    min-width: 36px;
+    text-align: center;
+}
+
+.@{prefix}-text-line-measurer-line-content {
+    padding-right: 10px;
+    padding-left: 10px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+// textarea
+.@{prefix}-text-line-textarea {
+    position: relative;
+    z-index: 1;
+    float: right;
     width: 262px;
+    height: 200px;
     padding: 0 10px;
-    white-space: pre;
+    border: none;
+    outline: none;
+    overflow-y: scroll;
+    resize: none;
 }
 
 // themes
@@ -57,7 +83,7 @@
 
 .@{prefix}-text-line-error {
     color: #666;
-    background-color: #fff;
+    background-color: #eee;
     border-color: @brand-danger;
     
     &:hover {

@@ -569,7 +569,7 @@ export class TreeTransferComponent implements OnChanges, AfterViewInit {
     }
 
     /**
-     * set text-line model value
+     * set tree-transfer model value
      * @docs-private
      */
     writeValue(value: any) {

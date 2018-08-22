@@ -11966,13 +11966,19 @@ a.nb-button[disabled]:active {
   opacity: 0.7;
 }
 .nb-text-line {
+  position: relative;
   display: inline-block;
   width: 300px;
-  height: 140px;
-  color: #666;
-  border-radius: 0;
+  height: 200px;
+  min-height: 150px;
+  padding: 0;
   border: 1px solid #dbdbdb;
-  background-color: #fff;
+  overflow: hidden;
+  line-height: 28px;
+  font-size: 14px;
+  color: #666;
+  background-color: #eee;
+  transition: border-color 0.3s, color 0.3s;
 }
 .nb-text-line:hover {
   border-color: #a8a8a8;
@@ -11980,25 +11986,42 @@ a.nb-button[disabled]:active {
 .nb-text-line:focus {
   color: #333;
 }
-.nb-text-line-order,
-.nb-text-line-content {
-  float: left;
-  height: 138px;
-  border: 0 none;
-  line-height: 26px;
-  resize: none;
-}
-.nb-text-line-order {
-  width: 36px;
-  padding: 0;
-  text-align: center;
+.nb-text-line-measurer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   overflow: hidden;
-  background-color: #eee;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #999;
 }
-.nb-text-line-content {
+.nb-text-line-measurer-line {
+  overflow: hidden;
+}
+.nb-text-line-measurer-line-number {
+  float: left;
+  min-width: 36px;
+  text-align: center;
+}
+.nb-text-line-measurer-line-content {
+  padding-right: 10px;
+  padding-left: 10px;
+  overflow: hidden;
+  visibility: hidden;
+}
+.nb-text-line-textarea {
+  position: relative;
+  z-index: 1;
+  float: right;
   width: 262px;
+  height: 200px;
   padding: 0 10px;
-  white-space: pre;
+  border: none;
+  outline: none;
+  overflow-y: scroll;
+  resize: none;
 }
 .nb-text-line-default {
   color: #666;
@@ -12013,7 +12036,7 @@ a.nb-button[disabled]:active {
 }
 .nb-text-line-error {
   color: #666;
-  background-color: #fff;
+  background-color: #eee;
   border-color: #ff5b5b;
 }
 .nb-text-line-error:hover {
@@ -18554,4 +18577,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.0a6eb3.bundle.map*/
+/*# sourceMappingURL=app.279e0e.bundle.map*/

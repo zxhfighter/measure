@@ -1,10 +1,16 @@
-<textarea #txtOrder class="nb-text-line-order" disabled></textarea>
+<div #txtLines class="nb-text-line-measurer">
+    <div *ngFor="let line of lines; let i = index;" class="nb-text-line-measurer-line">
+        <div class="nb-text-line-measurer-line-number">{{ i + 1 }}</div>
+        <div class="nb-text-line-measurer-line-content">{{ line }}</div>
+    </div>
+</div>
+
 <textarea
     #txtContent
-    class="nb-text-line-content"
+    class="nb-text-line-textarea"
     [placeholder]="placeholder"
     [disabled]="disabled"
     [value]="value"
-    (scroll)="scrollHandler($event, txtOrder)"
-    (keyup)="onInputKeyup($event, txtOrder)">
+    (scroll)="scrollHandler($event, txtLines)"
+    (input)="onInput($event, txtContent, txtLines)">
 </textarea>

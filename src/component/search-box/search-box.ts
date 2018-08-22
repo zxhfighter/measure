@@ -416,7 +416,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * set text-line model value
+     * set search-box model value
      * @docs-private
      */
     writeValue(value: any) {
