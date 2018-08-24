@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, OnDestroy } from '@angular/core';
 import { DialogService } from '../../../component/dialog';
 
 @Component({
@@ -7,7 +7,7 @@ import { DialogService } from '../../../component/dialog';
     styleUrls: ['./dialog-dynamic.less'],
     providers: [DialogService]
 })
-export class DialogDynamicDemo {
+export class DialogDynamicDemo implements OnDestroy {
 
     constructor(
         // 必须声明viewContainerRef，dialogService中会使用到
@@ -31,4 +31,9 @@ export class DialogDynamicDemo {
     onCancel() {
         console.log('取消');
     }
+
+    ngOnDestroy() {
+        this.dialogService.dispose();
+    }
+
 }

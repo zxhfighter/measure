@@ -71,4 +71,8 @@ export class DialogService {
     confirm(content: string, title: string) {
         return this.createConfirmOverlay(content, title);
     }
+
+    dispose() {
+        this.dynamicComponentService.dispose();
+    }
 }
