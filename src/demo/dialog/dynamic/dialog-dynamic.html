@@ -1,10 +1,10 @@
-<button theme="default" nb-button (click)="openSpecialDialog('success', '恭喜你，你的资料已经提交成功！', '创建条目成功')">
+<button theme="default" nb-button (click)="clickSuccessBox()">
     SuccessBox
 </button>
-<button theme="default" nb-button (click)="openSpecialDialog('error', '请完善你的资料，保证内容真实。', '创建条目失败')">
+<button theme="default" nb-button (click)="clickErrorBox()">
     ErrorBox
 </button>
-<button theme="default" nb-button (click)="openSpecialDialog('info', '请完善你的资料，保证内容真实。', '创建条目提醒')">
+<button theme="default" nb-button (click)="clickInfoBox()">
     InfoBox
 </button>
 <button theme="default" nb-button (click)="clickConfirmBox()">

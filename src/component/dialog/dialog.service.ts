@@ -30,6 +30,14 @@ export class DialogService {
         Object.keys(config).forEach(key => this.dialogInstance![key] = config[key]);
 
         this.dialogInstance.open();
+
+        return new Promise((resolve) => {
+
+            this.dialogInstance.confirmEvent.subscribe(() => {
+                resolve(this.dialogInstance);
+                this.dynamicComponentService.dispose();
+            });
+        });
     }
 
     createConfirmOverlay(content, title) {
@@ -48,24 +56,26 @@ export class DialogService {
         return new Promise((resolve, reject) => {
 
             this.dialogInstance.confirmEvent.subscribe(() => {
-                resolve();
+                resolve(this.dialogInstance);
+                this.dynamicComponentService.dispose();
             });
             this.dialogInstance.cancelEvent.subscribe(() => {
-                reject();
+                reject(this.dialogInstance);
+                this.dynamicComponentService.dispose();
             });
         });
     }
 
     info(content: string, title: string) {
-        this.createOverlay('info', content, title);
+        return this.createOverlay('info', content, title);
     }
 
     error(content: string, title: string) {
-        this.createOverlay('error', content, title);
+        return this.createOverlay('error', content, title);
     }
 
     success(content: string, title: string) {
-        this.createOverlay('success', content, title);
+        return this.createOverlay('success', content, title);
     }
 
     confirm(content: string, title: string) {
