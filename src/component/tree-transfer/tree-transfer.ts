@@ -44,7 +44,7 @@ const TREE_TRANSFER_VALUE_ACCESSOR = {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    providers: [TREE_TRANSFER_VALUE_ACCESSOR],
+    providers: [TREE_TRANSFER_VALUE_ACCESSOR, TransferService],
     host: {
         'class': 'nb-widget nb-tree-transfer'
     },
@@ -573,8 +573,10 @@ export class TreeTransferComponent implements OnChanges, AfterViewInit {
      * @docs-private
      */
     writeValue(value: any) {
-        this.value = value;
-        this._cd.markForCheck();
+        if (value != null) {
+            this.value = value;
+            this._cd.markForCheck();
+        }
     }
 
     /**

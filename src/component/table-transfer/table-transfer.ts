@@ -45,7 +45,7 @@ export interface TableConfig {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     preserveWhitespaces: false,
-    providers: [TABLE_TRANSFER_VALUE_ACCESSOR],
+    providers: [TABLE_TRANSFER_VALUE_ACCESSOR, TransferService],
     host: {
         'class': 'nb-widget nb-table-transfer'
     },
