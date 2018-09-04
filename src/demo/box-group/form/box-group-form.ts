@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { BoxGroupValue } from '../../../component/box-group';
@@ -9,7 +9,7 @@ import { BoxGroupValue } from '../../../component/box-group';
     styleUrls: ['./box-group-form.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class BoxGroupFormDemo implements OnInit {
+export class BoxGroupFormDemo implements OnInit, AfterViewInit {
     form: FormGroup;
 
     rememberMe: boolean = true;
@@ -30,7 +30,16 @@ export class BoxGroupFormDemo implements OnInit {
             ],
             checkboxBox: [
                 { value: ['apple', 'grape'], disabled: false }
+            ],
+            detailMarketType: [
+                { value: ['any'], disabled: false }
             ]
         });
+    }
+
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.form.get('detailMarketType').setValue(['market']);
+        }, 2000);
     }
 }
