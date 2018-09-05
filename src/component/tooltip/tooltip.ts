@@ -112,7 +112,6 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         private componentFactoryResolver: ComponentFactoryResolver,
         private dynamicComponentService: DynamicComponentService<TiplayerComponent>,
         private overlayPositionService: OverlayPositionService) {
-            this.dynamicComponentService.attachTo(this.viewContainerRef);
     }
 
     ngOnInit() {
@@ -200,7 +199,7 @@ export class TooltipDirective implements OnInit, OnChanges, OnDestroy {
         }
 
         let componentRef = this.dynamicComponentService.createDynamicComponent(
-            TiplayerComponent, this.nbTooltip, hostElement);
+            this.viewContainerRef, TiplayerComponent, this.nbTooltip, hostElement);
         this.tiplayerInstance = componentRef.instance;
 
         const config = {

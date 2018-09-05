@@ -56,10 +56,6 @@ export class DynamicComponentService<T> {
             this._renderer = this.rendererFactory.createRenderer(null, null);
     }
 
-    attachTo(viewContainerRef) {
-        this._viewContainerRef = viewContainerRef;
-    }
-
     /**
      * create the given component or text to DOM element using the ComponentFactoryResolver.
      *
@@ -70,11 +66,13 @@ export class DynamicComponentService<T> {
      * @return { ComponentRef<T> } _componentRef
      */
     createDynamicComponent(
+        viewContainerRef: ViewContainerRef,
         type: any,
         content: string | TemplateRef<any>,
         hostDomElement?: Element,
         context?: any): ComponentRef<T> {
 
+        this._viewContainerRef = viewContainerRef;
         let windowFactory: ComponentFactory<T>;
         if (!this._componentRef) {
             this._contentRef = this._getContentRef(content, context);

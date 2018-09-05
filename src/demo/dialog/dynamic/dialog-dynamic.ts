@@ -44,6 +44,7 @@ export class DialogDynamicDemo implements OnDestroy {
     }
 
     ngOnDestroy() {
+        // 必须销毁dialogService
         this.dialogService.dispose();
     }
 

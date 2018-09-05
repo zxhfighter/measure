@@ -14,11 +14,11 @@ export class DialogService {
     constructor(
         private viewContainerRef: ViewContainerRef,
         private dynamicComponentService: DynamicComponentService<AlertComponent | ConfirmComponent>) {
-            this.dynamicComponentService.attachTo(this.viewContainerRef);
     }
 
     createOverlay(type, content, title) {
-        let componentRef = this.dynamicComponentService.createDynamicComponent(AlertComponent, '', window.document.body);
+        let componentRef = this.dynamicComponentService.createDynamicComponent(
+            this.viewContainerRef, AlertComponent, '', window.document.body);
 
         this.dialogInstance = componentRef.instance;
 
@@ -41,7 +41,8 @@ export class DialogService {
     }
 
     createConfirmOverlay(content, title) {
-        let componentRef = this.dynamicComponentService.createDynamicComponent(ConfirmComponent, '', window.document.body);
+        let componentRef = this.dynamicComponentService.createDynamicComponent(
+            this.viewContainerRef, ConfirmComponent, '', window.document.body);
 
         this.dialogInstance = componentRef.instance;
 

@@ -47,6 +47,7 @@
 <nb-code-box [tsCode]="tsCodeDynamic" [htmlCode]="htmlCodeDynamic" [lessCode]="lessCodeDynamic">
     <h3 nb-codebox-title>Dialog Dynamic</h3>
     <div nb-codebox-desc>
+        <p><code>动态创建对话框时，必须注意：1.构造函数必须声明viewContainerRef；2.必须在OnDestroy方法中销毁dialogService</code></p>
         <p>动态加载，通过事件绑定的方式 <code>(click)="openSpecialDialog('error', 'you\'ve got an error', 'Error')"</code>动态创建三种对话框，分别是info、error、success</p>
     </div>
 
