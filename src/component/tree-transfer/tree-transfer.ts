@@ -4,7 +4,6 @@ import {
     Output,
     EventEmitter,
     OnChanges,
-    AfterViewInit,
     ViewEncapsulation,
     ChangeDetectionStrategy,
     forwardRef,
@@ -51,7 +50,7 @@ const TREE_TRANSFER_VALUE_ACCESSOR = {
     exportAs: 'nbTreeTransfer'
 })
 
-export class TreeTransferComponent implements OnChanges, AfterViewInit {
+export class TreeTransferComponent implements OnChanges {
 
     /** get selected value event */
     @Output() getValue: EventEmitter<number[] | string[] | object[]>
@@ -159,10 +158,6 @@ export class TreeTransferComponent implements OnChanges, AfterViewInit {
         if (changes['candidateData'] || changes['selectedData']) {
             this.initTransfer();
         }
-    }
-
-    ngAfterViewInit() {
-        this.getValue.emit(this.value);
     }
 
     /**
@@ -578,6 +573,14 @@ export class TreeTransferComponent implements OnChanges, AfterViewInit {
             this.value = value;
             this._cd.markForCheck();
         }
+    }
+
+    /**
+     * Toggles the disabled state of the component. Implemented as part of ControlValueAccessor.
+     * @param isDisabled Whether the component should be disabled.
+     */
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
     }
 
     /**

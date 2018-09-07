@@ -4,7 +4,6 @@ import {
     Output,
     EventEmitter,
     OnChanges,
-    AfterViewInit,
     ViewEncapsulation,
     ChangeDetectionStrategy,
     forwardRef,
@@ -52,7 +51,7 @@ export interface TableConfig {
     exportAs: 'nbTableTransfer'
 })
 
-export class TableTransferComponent implements OnChanges, AfterViewInit, ControlValueAccessor {
+export class TableTransferComponent implements OnChanges, ControlValueAccessor {
 
     /** get selected value event */
     @Output() getValue: EventEmitter<number[] | string[] | object[]>
@@ -215,10 +214,6 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
         }
     }
 
-    ngAfterViewInit() {
-        this.getValue.emit(this.selectedDatasource);
-    }
-
     /**
      * linsten model change
      * @docs-private
@@ -365,6 +360,14 @@ export class TableTransferComponent implements OnChanges, AfterViewInit, Control
                 .filter(v => this.selectedData.includes(v.id));
         }
         // this._cd.markForCheck();
+    }
+
+    /**
+     * Toggles the disabled state of the component. Implemented as part of ControlValueAccessor.
+     * @param isDisabled Whether the component should be disabled.
+     */
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
     }
 
     // /**
