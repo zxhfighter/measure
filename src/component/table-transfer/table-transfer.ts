@@ -319,6 +319,9 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
      * @docs-private
      */
     extendData() {
+        if (this.disabled) {
+            return;
+        }
         this.onExtendData.emit();
     }
 

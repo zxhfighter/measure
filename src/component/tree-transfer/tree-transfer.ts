@@ -534,6 +534,9 @@ export class TreeTransferComponent implements OnChanges {
      * throw out extend data event
      */
     extendData() {
+        if (this.disabled) {
+            return;
+        }
         this.onExtendData.emit();
     }
 
