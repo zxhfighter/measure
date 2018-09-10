@@ -13784,12 +13784,12 @@ a.nb-button[disabled]:active {
 .nb-tree-transfer .nb-tree-selectable .nb-tree-content:active {
   background-color: #e7e7e7;
 }
-.icon-arrow-right,
-.icon-check {
-  display: none;
-}
 .nb-table-row {
   cursor: pointer;
+}
+.nb-table-row .icon-arrow-right,
+.nb-table-row .icon-check {
+  display: none;
 }
 .nb-table-row:hover:not(.nb-table-row-selected) .icon-arrow-right {
   display: inline-block;
@@ -18615,4 +18615,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.aa2a54.bundle.map*/
+/*# sourceMappingURL=app.6ff170.bundle.map*/

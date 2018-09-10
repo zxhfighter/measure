@@ -38,8 +38,6 @@ export class BoxGroupFormDemo implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            this.form.get('detailMarketType').setValue(['market']);
-        }, 2000);
+
     }
 }
