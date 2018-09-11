@@ -13087,6 +13087,7 @@ a.nb-button[disabled]:active {
   color: #666;
 }
 .nb-tree-node-toggle {
+  display: none;
   position: absolute;
   z-index: 1;
   margin-top: 8px;
@@ -13106,7 +13107,8 @@ a.nb-button[disabled]:active {
   display: inline-block;
   margin-right: 0;
 }
-.nb-tree-mode-candidate .nb-tree-content {
+.nb-tree-mode-candidate .nb-tree-content,
+.nb-tree-mode-candidate .nb-tree-node-toggle {
   display: none;
 }
 .nb-tree-mode-candidate .nb-tree-node-show {
@@ -18615,4 +18617,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.aa2a54.bundle.map*/
+/*# sourceMappingURL=app.60ed50.bundle.map*/
