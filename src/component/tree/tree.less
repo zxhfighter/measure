@@ -62,7 +62,8 @@
     color: #666;
 }
 
-.@{prefix}-tree-node-toggle{
+.@{prefix}-tree-node-toggle {
+    display: none;
     position: absolute;
     z-index: 1;
     margin-top: 8px;
@@ -91,7 +92,8 @@
 }
 
 // candidate模式
-.@{prefix}-tree-mode-candidate .@{prefix}-tree-content {
+.@{prefix}-tree-mode-candidate .@{prefix}-tree-content,
+.@{prefix}-tree-mode-candidate .@{prefix}-tree-node-toggle {
     display: none;
 }
 .@{prefix}-tree-mode-candidate .@{prefix}-tree-node-show {

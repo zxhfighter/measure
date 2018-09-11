@@ -1077,7 +1077,36 @@ export const candidateDataEmpty = [
         ico: 'custom',
         expandedIco: 'expanded',
         collapsedIco: 'collapsed',
-        styleClass: 'selfStyle'
+        styleClass: 'selfStyle',
+        children: [
+            {
+                id: '21',
+                name: '华盛顿',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            },
+            {
+                id: '22',
+                name: '纽约',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            },
+            {
+                id: '23',
+                name: '洛杉矶',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            }
+        ]
     },
     {
         id: '3',
@@ -2193,7 +2222,36 @@ export const candidateData = [
         ico: 'custom',
         expandedIco: 'expanded',
         collapsedIco: 'collapsed',
-        styleClass: 'selfStyle'
+        styleClass: 'selfStyle',
+        children: [
+            {
+                id: '21',
+                name: '华盛顿',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            },
+            {
+                id: '22',
+                name: '纽约',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            },
+            {
+                id: '23',
+                name: '洛杉矶',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            }
+        ]
     },
     {
         id: '3',
@@ -3273,6 +3331,35 @@ export const selectedData = [
         expandedIco: 'expanded',
         collapsedIco: 'collapsed',
         styleClass: 'selfStyle',
+        children: [
+            {
+                id: '21',
+                name: '华盛顿',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            },
+            {
+                id: '22',
+                name: '纽约',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            },
+            {
+                id: '23',
+                name: '洛杉矶',
+                selectable: true,
+                isExpanded: false,
+                isSelected: false,
+                parent: { id: '2' },
+                ico: 'custom',
+            }
+        ]
     },
     {
         id: '3',
