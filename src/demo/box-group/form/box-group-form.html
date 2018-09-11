@@ -34,6 +34,12 @@
             <nb-checkbox value="kiwi">kiwi</nb-checkbox>
         </nb-boxgroup>
         <br>
+
+        <nb-boxgroup type="radio" formControlName="detailMarketType">
+            <nb-checkbox value="any">不限</nb-checkbox>
+            <nb-checkbox value="market">选择细分市场</nb-checkbox>
+        </nb-boxgroup>
+
         {{ form.value | json }}
     </form>
 </section>
