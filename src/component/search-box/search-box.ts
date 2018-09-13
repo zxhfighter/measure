@@ -320,6 +320,13 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
             this.onSearch.emit(this.value);
             this._cd.markForCheck();
         }
+        if (event.keyCode === 8 && this.value.length === 1) {
+            event.preventDefault();
+            this.value = '';
+            this.searchInput.nativeElement.placeholder = this.placeholder;
+            this.onSearch.emit(this.value);
+            this._cd.markForCheck();    
+        }
     }
 
     /**
