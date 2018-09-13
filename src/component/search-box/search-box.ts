@@ -325,7 +325,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
             this.value = '';
             this.searchInput.nativeElement.placeholder = this.placeholder;
             this.onSearch.emit(this.value);
-            this._cd.markForCheck();    
+            this._cd.markForCheck();
         }
     }
 
