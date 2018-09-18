@@ -13728,19 +13728,20 @@ a.nb-button[disabled]:active {
 .nb-transfer-add-link:hover {
   text-decoration: none;
 }
+.nb-transfer-candidate .icon-check {
+  font-size: 20px;
+}
 .nb-transfer-candidate .nb-transfer-title .nb-button-theme-transparent,
 .nb-transfer-selected .nb-transfer-title .nb-button-theme-transparent {
   float: right;
   padding: 0;
+  color: #666;
   background-color: transparent;
 }
 .nb-transfer-candidate .nb-transfer-title .nb-button-theme-transparent:hover,
 .nb-transfer-selected .nb-transfer-title .nb-button-theme-transparent:hover {
+  color: #4d4d4d;
   background-color: transparent;
-  text-decoration: none;
-}
-.nb-transfer-candidate .nb-transfer-title .nb-button-theme-transparent:hover,
-.nb-transfer-selected .nb-transfer-title .nb-button-theme-transparent:hover {
   text-decoration: none;
 }
 .nb-transfer-candidate,
@@ -13772,6 +13773,12 @@ a.nb-button[disabled]:active {
 .nb-tree-transfer .nb-tree-content span {
   margin-right: 0;
   padding-left: 3px;
+}
+.nb-tree-transfer .nb-transfer-candidate .nb-tree-node-selected .nb-tree-node-selection-candidate-icon {
+  position: absolute;
+  right: 22px;
+  display: inline-block;
+  margin-right: 0;
 }
 .nb-tree-transfer .nb-tree-node-name {
   width: 86%;
