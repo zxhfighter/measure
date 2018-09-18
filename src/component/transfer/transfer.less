@@ -38,18 +38,20 @@
     }
 }
 
+.@{prefix}-transfer-candidate .icon-check {
+    font-size: 20px;
+}
+
 .@{prefix}-transfer-candidate .@{prefix}-transfer-title .@{prefix}-button-theme-transparent,
 .@{prefix}-transfer-selected .@{prefix}-transfer-title .@{prefix}-button-theme-transparent {
     float: right;
     padding: 0;
+    color: #666;
     background-color: transparent;
 
     &:hover {
+        color: darken(#666, 10%);
         background-color: transparent;
-        text-decoration: none;
-    }
-
-    &:hover {
         text-decoration: none;
     }
 }
