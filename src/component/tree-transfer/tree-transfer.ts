@@ -367,7 +367,7 @@ export class TreeTransferComponent implements OnChanges {
     }
 
     /**
-     * push filtered by word word node into xxSearchNodeList
+     * set searchnode is show or not
      * @docs-private
      */
     setSearchNodes(node: TreeNode, mode: string) {
@@ -377,6 +377,10 @@ export class TreeTransferComponent implements OnChanges {
         node.show = true;
     }
 
+    /**
+     * set searchnode's children node is show or not
+     * @docs-private
+     */
     setSearchNodesChildren(nodeChildren: TreeNode[], mode: string) {
         nodeChildren.forEach(child => {
             if (child.children) {
@@ -384,8 +388,9 @@ export class TreeTransferComponent implements OnChanges {
             }
             if (mode === 'selected' && child.isSelected) {
                 child.show = true;
+            } else if (mode === 'candidate') {
+                child.show = true;
             }
-            child.show = true;
         });
     }
 
