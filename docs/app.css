@@ -13094,7 +13094,7 @@ a.nb-button[disabled]:active {
 }
 .nb-tree-selectable .nb-tree-node-unselectable:hover,
 .nb-tree-node-unselectable:hover::before {
-  cursor: not-allowed;
+  cursor: default;
 }
 .nb-tree-content .nb-tree-node-selection-candidate-icon,
 .nb-tree-content .nb-tree-node-selection-selected-icon {
@@ -13155,10 +13155,10 @@ a.nb-button[disabled]:active {
   left: 0;
   right: 0;
   height: 36px;
-  cursor: not-allowed;
+  cursor: default;
 }
 .nb-tree-disabled .nb-tree-content:hover {
-  cursor: not-allowed;
+  cursor: default;
 }
 .nb-side-bar-content {
   display: inline-block;
