@@ -38,9 +38,6 @@ export class BoxGroupFormDemo implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            this.form.get('radioBox').setValue(['grape']);
-            this.form.get('checkboxBox').setValue(['apple', 'banana']);
-        }, 2000);
+
     }
 }
