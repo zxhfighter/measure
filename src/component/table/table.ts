@@ -291,10 +291,6 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
         self.pageChange.subscribe(() => {
             this.data = this.getDisplayData();
         });
-
-        self.pageSizeChange.subscribe(() => {
-            this.data = this.getDisplayData();
-        });
     }
 
     listenDatasourceChange() {
