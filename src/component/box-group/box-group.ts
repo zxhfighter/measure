@@ -206,10 +206,32 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
             this.value = value;
 
             // when init, set children toggle button state
-            this.value.forEach(item => {
-                this.select(item);
+            this._forceUpdateValue(value);
+        }
+    }
+
+    /**
+     * force update box group value
+     *
+     * @param {any[]} value
+     * @returns
+     */
+    _forceUpdateValue(value: any[]) {
+        const boxList = this._getBoxList();
+        if (!boxList) {
+            return;
+        }
+
+        if (this.type === 'radio') {
+            boxList.forEach(item => {
+                item.checked = (item.value + '') === (value + '');
             });
         }
+        else if (this.type === 'checkbox') {
+            boxList.forEach(v => v.checked = value.includes(v.value + ''));
+        }
+
+        this._cd.markForCheck();
     }
 
     /**
