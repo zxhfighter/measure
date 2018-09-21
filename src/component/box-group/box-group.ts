@@ -232,6 +232,12 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
             boxList.forEach(v => v.checked = value.includes(v.value + ''));
         }
 
+        // emit change value
+        this.change.emit({
+            currentValue: value,
+            value: this.value
+        });
+
         this._cd.markForCheck();
     }
 
