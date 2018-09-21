@@ -228,6 +228,7 @@ export class BoxGroupComponent implements ControlValueAccessor, OnInit {
             });
         }
         else if (this.type === 'checkbox') {
+            value = value.map(v => v + '');
             boxList.forEach(v => v.checked = value.includes(v.value + ''));
         }
 
