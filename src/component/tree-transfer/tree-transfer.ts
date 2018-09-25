@@ -490,7 +490,7 @@ export class TreeTransferComponent implements OnChanges {
      * render target's root node and root's children the 'isExpanded' and 'isSelected' attribute
      * @docs-private
      */
-    renderTransTree(root: TreeNode, mode: string) {        
+    renderTransTree(root: TreeNode, mode: string) {
         if (mode === 'selected') {
             root.show = root.isSelected;
             root.isExpanded = root.isSelected;
