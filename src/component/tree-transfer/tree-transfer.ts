@@ -299,7 +299,7 @@ export class TreeTransferComponent implements OnChanges {
                 if (this._candidateNodeList.hasOwnProperty(key)) {
                     let node = this._candidateNodeList[key];
                     if (node.name && node.name.search(event) !== -1) {
-                        this.searchNodes(node, mode);
+                        this.searchNodes(node, mode, event);
                     }
                 }
             }
@@ -310,7 +310,7 @@ export class TreeTransferComponent implements OnChanges {
                 if (this._selectedNodeList.hasOwnProperty(key)) {
                     let node = this._selectedNodeList[key];
                     if (node.name && node.name.search(event) !== -1 && node.isSelected) {
-                        this.searchNodes(node, mode);
+                        this.searchNodes(node, mode, event);
                     }
                 }
             }
@@ -337,14 +337,17 @@ export class TreeTransferComponent implements OnChanges {
      * get node the searched by key word
      * @docs-private
      */
-    searchNodes(node: TreeNode, mode: string) {
+    searchNodes(node: TreeNode, mode: string, keyword: string) {
         this.setSearchNodes(node, mode);
+        if (node.children && node.name && node.name.search(keyword) !== -1) {
+            this.setSearchNodesChildren(node.children, mode);
+        }
         if (node.parent) {
             let nodeParent: TreeNode | undefined;
             nodeParent = this.getTargetNode(node.parent, mode);
             if (nodeParent) {
                 if (nodeParent.parent) {
-                    this.searchNodes(nodeParent, mode);
+                    this.searchNodes(nodeParent, mode, keyword);
                 } else {
                     this.setSearchNodes(nodeParent, mode);
                 }
@@ -364,7 +367,7 @@ export class TreeTransferComponent implements OnChanges {
     }
 
     /**
-     * push filtered by word word node into xxSearchNodeList
+     * set searchnode is show or not
      * @docs-private
      */
     setSearchNodes(node: TreeNode, mode: string) {
@@ -372,6 +375,23 @@ export class TreeTransferComponent implements OnChanges {
             node.show = true;
         }
         node.show = true;
+    }
+
+    /**
+     * set searchnode's children node is show or not
+     * @docs-private
+     */
+    setSearchNodesChildren(nodeChildren: TreeNode[], mode: string) {
+        nodeChildren.forEach(child => {
+            if (child.children) {
+                this.setSearchNodesChildren(child.children, mode);
+            }
+            if (mode === 'selected' && child.isSelected) {
+                child.show = true;
+            } else if (mode === 'candidate') {
+                child.show = true;
+            }
+        });
     }
 
     /**
@@ -470,9 +490,9 @@ export class TreeTransferComponent implements OnChanges {
      * render target's root node and root's children the 'isExpanded' and 'isSelected' attribute
      * @docs-private
      */
-    renderTransTree(root: TreeNode, mode: string) {
-        root.show = mode === 'candidate' ? true : root.isSelected;
+    renderTransTree(root: TreeNode, mode: string) {        
         if (mode === 'selected') {
+            root.show = root.isSelected;
             root.isExpanded = root.isSelected;
         }
         if (root.children && root.children.length) {
