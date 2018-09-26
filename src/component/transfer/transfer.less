@@ -56,6 +56,22 @@
     }
 }
 
+.@{prefix}-transfer-candidate .@{prefix}-transfer-title .@{prefix}-transfer-title-link,
+.@{prefix}-transfer-selected .@{prefix}-transfer-title .@{prefix}-transfer-title-link,
+.@{prefix}-transfer-candidate .@{prefix}-transfer-title-link {
+    color: #999;
+    cursor: default !important;
+    
+    &:hover {
+        color: darken(#999, 10%);
+    }
+}
+
+.@{prefix}-search-box-disabled .@{prefix}-input,
+.@{prefix}-search-box-disabled .@{prefix}-button {
+    cursor: default !important;
+}
+
 // candidate | selected
 .@{prefix}-transfer-candidate,
 .@{prefix}-transfer-selected {
