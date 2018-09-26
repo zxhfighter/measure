@@ -13148,14 +13148,9 @@ a.nb-button[disabled]:active {
 .nb-tree-disabled .nb-tree-node-show {
   color: #999;
 }
-.nb-tree-disabled .nb-tree-node-show::before {
+.nb-tree-disabled .icon-arrow-right::before,
+.nb-tree-disabled .icon-close::before {
   content: '';
-  position: absolute;
-  display: block;
-  left: 0;
-  right: 0;
-  height: 36px;
-  cursor: default;
 }
 .nb-tree-disabled .nb-tree-content:hover {
   cursor: default;
@@ -13743,6 +13738,21 @@ a.nb-button[disabled]:active {
   color: #4d4d4d;
   background-color: transparent;
   text-decoration: none;
+}
+.nb-transfer-candidate .nb-transfer-title .nb-transfer-title-link,
+.nb-transfer-selected .nb-transfer-title .nb-transfer-title-link,
+.nb-transfer-candidate .nb-transfer-title-link {
+  color: #999;
+  cursor: default !important;
+}
+.nb-transfer-candidate .nb-transfer-title .nb-transfer-title-link:hover,
+.nb-transfer-selected .nb-transfer-title .nb-transfer-title-link:hover,
+.nb-transfer-candidate .nb-transfer-title-link:hover {
+  color: #808080;
+}
+.nb-search-box-disabled .nb-input,
+.nb-search-box-disabled .nb-button {
+  cursor: default !important;
 }
 .nb-transfer-candidate,
 .nb-transfer-selected {
@@ -18624,4 +18634,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.7e1240.bundle.map*/
+/*# sourceMappingURL=app.a296a9.bundle.map*/
