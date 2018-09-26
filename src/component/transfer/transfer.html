@@ -6,6 +6,7 @@
             nb-button
             theme="transparent"
             [disabled]="disabled"
+            [class.nb-transfer-title-link]="disabled"
             (click)="transAll('selected', true)">
             全部添加
         </a>
@@ -28,7 +29,8 @@
         *ngIf="addLink && addLink.flag" 
         nb-button 
         theme="transparent" 
-        [disabled]="disabled" 
+        [disabled]="disabled"
+        [class.nb-transfer-title-link]="disabled"
         class="nb-transfer-add-link"
         (click)="extendData()">
         {{ addLink.text }}
@@ -43,6 +45,7 @@
             nb-button
             theme="transparent"
             [disabled]="disabled"
+            [class.nb-transfer-title-link]="disabled"
             (click)="transAll('candidate', false)">
             全部删除
         </a>
