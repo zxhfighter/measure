@@ -76,11 +76,11 @@ export class SpinnerComponent implements ControlValueAccessor {
      * add a step value
      * @docs-private
      */
-    up() {
+    up(event) {
         if (this.disabled) {
             return;
         }
-
+        event.preventDefault();
         const nextValue = this.value + this.step;
         const isMaxValue = typeof this.maxValue === 'number' && nextValue > this.maxValue;
         this.value = isMaxValue ? this.maxValue : nextValue;
@@ -93,11 +93,11 @@ export class SpinnerComponent implements ControlValueAccessor {
      * subtract a step value
      * @docs-private
      */
-    down() {
+    down(event) {
         if (this.disabled) {
             return;
         }
-
+        event.preventDefault();
         const nextValue = this.value - this.step;
         const isMinValue = typeof this.minValue === 'number' && nextValue < this.minValue;
         this.value = isMinValue ? this.minValue : nextValue;
@@ -155,13 +155,13 @@ export class SpinnerComponent implements ControlValueAccessor {
      * use keyboard up and down arrow
      * @docs-private
      */
-    onInputKeyup(keyCode: number) {
-        if (keyCode === UP_ARROW) {
-            this.up();
+    onInputKeyup(event) {
+        if (event.keyCode === UP_ARROW) {
+            this.up(event);
         }
 
-        if (keyCode === DOWN_ARROW) {
-            this.down();
+        if (event.keyCode === DOWN_ARROW) {
+            this.down(event);
         }
     }
 

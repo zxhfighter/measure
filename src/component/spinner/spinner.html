@@ -3,14 +3,14 @@
     type="text"
     [value]="value"
     [disabled]="disabled"
-    (keyup)="onInputKeyup($event.keyCode)"
+    (keyup)="onInputKeyup($event)"
     (input)="onInputCheck(ipt.value, ipt)">
 
 <div class="nb-spinner-button-group">
-    <button class="nb-spinner-button-up" (click)="up()">
+    <button class="nb-spinner-button-up" (click)="up($event)">
         <i class="iconfont icon-up"></i>
     </button>
-    <button class="nb-spinner-button-down" (click)="down()">
+    <button class="nb-spinner-button-down" (click)="down($event)">
         <i class="iconfont icon-down"></i>
     </button>
 </div>
