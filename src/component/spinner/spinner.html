@@ -3,7 +3,7 @@
     type="text"
     [value]="value"
     [disabled]="disabled"
-    (keyup)="onInputKeyup($event)"
+    (keyup)="onInputKeyup($event.keyCode)"
     (input)="onInputCheck(ipt.value, ipt)">
 
 <div class="nb-spinner-button-group">
