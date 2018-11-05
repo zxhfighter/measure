@@ -193,7 +193,7 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
         this._showPanel = true;
     }
 
-    onFilterPanelHide() {
+    onFilterPanelHide(_panel: any) {
         this._showPanel = false;
     }
 
@@ -268,7 +268,7 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
     onConfirm() {
         this._exchangeValueIfNesscery(this.value);
         this.change.emit(this.value);
-        
+
         // reset highlight range start
         this._startDate = this.value.startDate;
         this._endDate = this.value.endDate;
@@ -278,8 +278,8 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
     }
 
     /**
-     * make sure startDate is less than endDate 
-     * @param value 
+     * make sure startDate is less than endDate
+     * @param value
      */
     _exchangeValueIfNesscery(value: RangeDatePickerValue) {
         const startDate = +value.startDate;

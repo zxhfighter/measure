@@ -10,7 +10,7 @@
         [disabled]="disabled">
 </div>
 
-<nb-overlay #overlay placement="bottom-left" (closeHandler)="onFilterPanelHide()">
+<nb-overlay #overlay placement="bottom-left" (closeHandler)="onFilterPanelHide($event)">
     <div class="nb-datepicker-calendar-panel">
         <nb-calendar
             [disabled]="disabled"
