@@ -9,12 +9,13 @@
         [disabled]="disabled">
 </div>
 
-<nb-overlay #overlay placement="bottom-left" (onHide)="onFilterPanelHide()">
+<nb-overlay #overlay placement="bottom-left" (closeHandler)="onFilterPanelHide()">
     <div class="nb-rangedatepicker-calendar-panel">
         <div class="nb-rangedatepicker-quicklinks">
             <div
                 *ngFor="let quicklink of quickLinks"
                 class="nb-rangedatepicker-quicklink"
+                [class.nb-rangedatepicker-quicklink-selected]="quicklink.selected"
                 (click)="onClickQuickLink(quicklink)">
                 {{ quicklink.text }}
             </div>

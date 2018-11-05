@@ -40,7 +40,7 @@
     </div>
 </ng-template>
 
-<nb-overlay #overlay placement="bottom-left" (onHide)="onFilterPanelHide($event)">
+<nb-overlay #overlay placement="bottom-left" (closeHandler)="onFilterPanelHide($event)">
     <div class="table-filter-panel">
         <ng-container *ngTemplateOutlet="filter"></ng-container>
     </div>
