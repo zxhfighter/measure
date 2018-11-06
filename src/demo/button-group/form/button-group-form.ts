@@ -30,8 +30,8 @@ export class ButtonGroupFormDemo implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            this.formGroup.get('fruits').setValue(['falsh']);
-        }, 2000);
+        // setTimeout(() => {
+        //     this.formGroup.get('fruits').setValue(['falsh']);
+        // }, 2000);
     }
 }
