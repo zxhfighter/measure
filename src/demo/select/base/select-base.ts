@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { SelectConfig } from '../../../component/select';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'demo-select-base',
@@ -7,7 +8,8 @@ import { SelectConfig } from '../../../component/select';
     styleUrls: ['./select-base.less'],
     encapsulation: ViewEncapsulation.None,
 })
-export class SelectBaseDemo {
+export class SelectBaseDemo implements AfterViewInit {
+    formGroup: FormGroup;
     selectedData1: SelectConfig;
     selectedData2: SelectConfig;
     selectedData3: any = 2;
@@ -85,7 +87,24 @@ export class SelectBaseDemo {
         }
     ];
 
-    constructor() {
+    crowds = [
+        { label: '人群1', value: 1 },
+        { label: '人群2', value: 2 },
+        { label: '人群3', value: 3 }
+    ];
+
+    constructor(
+        private fb: FormBuilder
+    ) {
+        this.formGroup = this.fb.group({
+            crowd: [null]
+        });
+    }
+
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.formGroup.get('crowd').setValue(3);
+        }, 2000);
     }
 
     clear(ui) {
