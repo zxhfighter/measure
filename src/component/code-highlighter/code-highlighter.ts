@@ -84,14 +84,18 @@ export class CodeHighlighterComponent implements AfterViewInit {
                 // get custom `<ng-content>` content
                 const contentText = contentEl.innerText.trim();
 
-                // if no rawCode, highlight custom content text
-                this.render.setProperty(codeEl, 'innerText', this.rawCode || contentText);
-
                 // highlight code element
-                prism.highlightElement(codeEl);
+                const htmlCode = prism.highlight(this.rawCode || contentText, prism.languages[this.language]);
+
+                // if no rawCode, highlight custom content text
+                this.render.setProperty(codeEl, 'innerHTML', htmlCode);
+
+                // prism.highlightElement(codeEl, true, () => {
+                //     console.log('highlight-done');
+                // });
 
                 // remove extra ng-content child from dom
-                this.render.removeChild(contentEl.parentNode, contentEl);
+                // this.render.removeChild(contentEl.parentNode, contentEl);
             }
         }
         catch (e) {

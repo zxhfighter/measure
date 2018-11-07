@@ -26,10 +26,10 @@
                 <nb-code-highlighter linenumbers language="markup" [rawCode]="htmlCode"></nb-code-highlighter>
             </nb-tab>
             <nb-tab title="TS" *ngIf="tsCode && tsCode.length">
-                <nb-code-highlighter linenumbers language="typescript" [rawCode]="tsCode"></nb-code-highlighter>
+                <nb-code-highlighter linenumbers language="js" [rawCode]="tsCode"></nb-code-highlighter>
             </nb-tab>
             <nb-tab title="LESS" *ngIf="lessCode && lessCode.length">
-                <nb-code-highlighter linenumbers language="less" [rawCode]="lessCode"></nb-code-highlighter>
+                <nb-code-highlighter linenumbers language="css" [rawCode]="lessCode"></nb-code-highlighter>
             </nb-tab>
         </nb-tabs>
     </div>
