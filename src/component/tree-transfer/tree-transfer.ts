@@ -184,7 +184,7 @@ export class TreeTransferComponent implements OnChanges {
         if (treeData && treeData.length) {
             treeData.forEach((node: TreeNode) => {
                 node.show = mode === 'candidate' ? true : node.isSelected;
-                node.isExpanded = mode === 'candidate' ? false : node.isSelected;
+                node.isExpanded = mode === 'candidate' ? node.isExpanded : node.isSelected;
                 if (node.children && node.children.length) {
                     this.initTree(node.children, mode);
                 }
