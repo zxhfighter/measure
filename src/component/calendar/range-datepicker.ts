@@ -49,6 +49,7 @@ export interface QuickLinkValue {
     text: string;
     startDate: Date;
     endDate: Date;
+    selected?: boolean;
 }
 
 /**
@@ -192,7 +193,7 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
         this._showPanel = true;
     }
 
-    onFilterPanelHide() {
+    onFilterPanelHide(_panel: any) {
         this._showPanel = false;
     }
 
@@ -248,6 +249,9 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
             return;
         }
 
+        this.quickLinks.forEach(v => v.selected = false);
+        quickLink.selected = true;
+
         // set selection range
         this._startDate = quickLink.startDate;
         this._endDate = quickLink.endDate;
@@ -262,10 +266,28 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
      * @docs-private
      */
     onConfirm() {
+        this._exchangeValueIfNesscery(this.value);
         this.change.emit(this.value);
-        this._hideOverlay();
 
+        // reset highlight range start
+        this._startDate = this.value.startDate;
+        this._endDate = this.value.endDate;
+
+        this._hideOverlay();
         this._markForCheck();
+    }
+
+    /**
+     * make sure startDate is less than endDate
+     * @param value
+     */
+    _exchangeValueIfNesscery(value: RangeDatePickerValue) {
+        const startDate = +value.startDate;
+        const endDate = +value.endDate;
+        const max = Math.max(startDate, endDate);
+        const min = Math.min(startDate, endDate);
+        this.value.startDate = new Date(min);
+        this.value.endDate = new Date(max);
     }
 
     /**

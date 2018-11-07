@@ -12523,6 +12523,9 @@ a.nb-button[disabled]:active {
   color: #b8b8b8;
   cursor: not-allowed;
 }
+.nb-rangedatepicker-calendar-panel .nb-rangedatepicker-quicklinks .nb-rangedatepicker-quicklink-selected {
+  background-color: #e7e7e7;
+}
 .nb-rangedatepicker-calendar-panel .nb-rangedatepicker-buttons {
   padding: 16px 0 16px 16px;
 }
@@ -18634,4 +18637,4 @@ label {
   font-size: 16px;
 }
 
-/*# sourceMappingURL=app.b8ac83.bundle.map*/
+/*# sourceMappingURL=app.897be0.bundle.map*/

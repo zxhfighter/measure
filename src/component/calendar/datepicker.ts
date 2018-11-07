@@ -116,7 +116,7 @@ export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAcces
         this._markForCheck();
     }
 
-    onFilterPanelHide() {
+    onFilterPanelHide(_panel: any) {
         this._showPanel = false;
     }
 

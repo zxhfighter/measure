@@ -106,3 +106,17 @@
                (onChange)="selectedData1 = $event">
     </nb-select>
 </p>
+
+
+    <h1>表单</h1>
+
+    <form [formGroup]="formGroup">
+        <nb-select
+            formControlName="crowd"
+            [datasource]="crowds"
+            [defaultLabel]="'选择人群'"
+            [searchable]="true">
+        </nb-select>
+    </form>
+
+    {{ formGroup.value | json }}

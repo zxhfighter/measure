@@ -1,6 +1,6 @@
 import {
     Component, Input, Output, ContentChildren, OnInit, ViewChildren,
-    ViewEncapsulation, ChangeDetectionStrategy,
+    ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef,
     QueryList, Optional, forwardRef, EventEmitter, AfterContentInit
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -101,6 +101,8 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
         forwardRef(() => ButtonToggleComponent)
     ) _viewButtonList: QueryList<ButtonToggleComponent>;
 
+    constructor(private _cd: ChangeDetectorRef) { }
+
     ngOnInit() {
         const self = this;
 
@@ -156,12 +158,12 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
 
         if (this.type === 'radio') {
             buttonList.forEach(item => {
-                item.checked = item.value === value;
+                item.checked = (item.value + '') === (value + '');
             });
             this.value = [value];
         }
         else if (this.type === 'checkbox') {
-            const button = buttonList.find(v => v.value === value);
+            const button = buttonList.find(v => (v.value + '') === (value + ''));
             const valueSet = new Set(this.value);
             if (button) {
                 button.checked = !button.checked;
@@ -213,9 +215,7 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
             this.value = value;
 
             // when init, set children toggle button state
-            this.value.forEach(item => {
-                this.select(item);
-            });
+            this._forceUpdateValue(value);
         }
     }
 
@@ -233,6 +233,37 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
     _updateFormModel() {
         if (this._onModelChange) { this._onModelChange(this.value); }
         if (this._onTouch) { this._onTouch(this.value); }
+    }
+
+    /**
+     * force update box group value
+     *
+     * @param {any[]} value
+     * @returns
+     */
+    _forceUpdateValue(value: any[]) {
+        const boxList = this._getButtonList();
+        if (!boxList) {
+            return;
+        }
+
+        if (this.type === 'radio') {
+            boxList.forEach(item => {
+                item.checked = (item.value + '') === (value + '');
+            });
+        }
+        else if (this.type === 'checkbox') {
+            value = value.map(v => v + '');
+            boxList.forEach(v => v.checked = value.includes(v.value + ''));
+        }
+
+        // emit change value
+        this.change.emit({
+            currentValue: value,
+            value: this.value
+        });
+
+        this._cd.markForCheck();
     }
 }
 

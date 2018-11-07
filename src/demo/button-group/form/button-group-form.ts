@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, AfterViewInit } from '@angular/core';
 
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
     styleUrls: ['./button-group-form.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class ButtonGroupFormDemo implements OnInit {
+export class ButtonGroupFormDemo implements OnInit, AfterViewInit {
     formGroup: FormGroup;
 
     datasource: any[] = [
@@ -25,5 +25,13 @@ export class ButtonGroupFormDemo implements OnInit {
         this.formGroup = this.fb.group({
             fruits: [['book']]
         });
+
+
+    }
+
+    ngAfterViewInit() {
+        // setTimeout(() => {
+        //     this.formGroup.get('fruits').setValue(['falsh']);
+        // }, 2000);
     }
 }
