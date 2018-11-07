@@ -13034,6 +13034,9 @@ a.nb-button[disabled]:active {
   width: 100px;
   text-align: center;
 }
+.nb-codebox-source .nb-tabs .nb-tab-header {
+  padding: 0.5em 2em;
+}
 .nb-codebox-content {
   padding: 20px;
 }
@@ -18636,5 +18639,8 @@ label {
   padding-left: 5px;
   font-size: 16px;
 }
+pre.line-numbers {
+  padding-left: 1em;
+}
 
-/*# sourceMappingURL=app.897be0.bundle.map*/
+/*# sourceMappingURL=app.ec079e.bundle.map*/
