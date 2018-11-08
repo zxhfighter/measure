@@ -105,6 +105,6 @@ export class SelectOptionsComponent implements ControlValueAccessor, OnChanges, 
     }
 
     private static _clone(data: SelectConfig[]) {
-        return (data && data.length) && JSON.parse(JSON.stringify(data));
+        return JSON.parse(JSON.stringify(data));
     }
 }

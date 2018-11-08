@@ -4,8 +4,6 @@ import {
 } from '@angular/core';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-import { deepClone } from '../util/clone';
 import { OnChange } from '../core/decorators';
 
 /**
@@ -71,14 +69,6 @@ export class RegionComponent implements OnInit, OnDestroy, ControlValueAccessor 
      * @default []
      */
     @Input() datasource: RegionItem[] = [];
-
-    /**
-     * whether use the gather value, if set to true, when region node's children is all selected,
-     * only use the region node id
-     * @default false
-     */
-    @OnChange(true)
-    @Input() gather: boolean = false;
 
     /**
      * region value, an array of numbers
@@ -190,10 +180,10 @@ export class RegionComponent implements OnInit, OnDestroy, ControlValueAccessor 
                 v.selected = checked;
 
                 if (v.selected) {
-                    this._valueMap[v.id] = true;
+                    self._valueMap[v.id] = true;
                 }
                 else {
-                    delete this._valueMap[v.id];
+                    delete self._valueMap[v.id];
                 }
 
                 self.setChildren(v.children || [], checked);

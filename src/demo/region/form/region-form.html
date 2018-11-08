@@ -1,21 +1,10 @@
 <p>
-    using gather feature
+   It can be used in Forms and ReactiveForms.
 </p>
 <form #frm1="ngForm">
-    <nb-region name="region" [datasource]="regionSource1" [ngModel]="regionValue" gather></nb-region>
+    <nb-region name="region" [datasource]="regionSource1" [ngModel]="regionValue"></nb-region>
 
     <p>
         {{ frm1.value | json }}
-    </p>
-</form>
-
-<p>
-    not using gather feature
-</p>
-<form #frm2="ngForm">
-    <nb-region name="region" [datasource]="regionSource2" [ngModel]="regionValue"></nb-region>
-
-    <p>
-        {{ frm2.value | json }}
     </p>
 </form>
