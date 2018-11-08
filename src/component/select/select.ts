@@ -146,6 +146,14 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.cd.markForCheck();
     }
 
+    /**
+     * Toggles the disabled state of the component. Implemented as part of ControlValueAccessor.
+     * @param isDisabled Whether the component should be disabled.
+     */
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+    }
+
     ngOnDestroy() {
         this.unbindEvents();
     }

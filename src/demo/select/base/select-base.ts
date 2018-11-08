@@ -104,6 +104,7 @@ export class SelectBaseDemo implements AfterViewInit {
     ngAfterViewInit() {
         // setTimeout(() => {
         //     this.formGroup.get('crowd').setValue(3);
+        //     this.formGroup.get('crowd').disable();
         // }, 2000);
     }
 
