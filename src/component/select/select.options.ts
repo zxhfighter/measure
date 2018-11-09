@@ -1,5 +1,5 @@
 import {
-    Component, Input, Output, EventEmitter, forwardRef, ElementRef,
+    Component, Input, Output, EventEmitter, forwardRef, ElementRef, TemplateRef,
     OnChanges, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnInit
 } from '@angular/core';
 import { SelectConfig } from './select.config';
@@ -25,6 +25,7 @@ export class SelectOptionsComponent implements ControlValueAccessor, OnChanges, 
     @Input() searchable: boolean;
     @Input() disabled: boolean;
     @Input() styles: SelectConfig[] = [];
+    @Input() optionTpl: TemplateRef<any>;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
     @Output() needReposition: EventEmitter<Object> = new EventEmitter();
     onModelChange: Function = () => {};

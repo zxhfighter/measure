@@ -115,8 +115,28 @@
             formControlName="crowd"
             [datasource]="crowds"
             [defaultLabel]="'选择人群'"
+            [optionTpl]="optionTpl"
             [searchable]="true">
         </nb-select>
+
+        <ng-template #optionTpl let-item>
+            {{ item.label }}
+
+            <i
+                class="fa fa-upload"
+                theme="default"
+                [nbTooltip]="tipContentEmbedded"
+                placement="top"
+                nbTooltipTheme="white"
+                trigger="hover">
+            </i>
+
+            <ng-template #tipContentEmbedded>
+                <h2>标题</h2>
+                <p>当前项的值为：{{ item.value }}</p>
+            </ng-template>
+
+        </ng-template>
     </form>
 
     {{ formGroup.value | json }}

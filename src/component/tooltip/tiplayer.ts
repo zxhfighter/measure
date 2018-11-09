@@ -104,7 +104,9 @@ export class TiplayerComponent extends OverlayComponent implements OnInit, OnDes
     ngOnInit() {
         super.ngOnInit();
         this.container = this.embedded ? '' : 'body';
-        this.el.nativeElement.style.zIndex = 1000;
+
+        // 由于tooltip可能出现在 select 选项中，因此要比 overlay 高
+        this.el.nativeElement.style.zIndex = 1002;
     }
 
     /**

@@ -88,7 +88,7 @@ export class SelectBaseDemo implements AfterViewInit {
     ];
 
     crowds = [
-        { label: '人群1', value: 1 },
+        { label: '人群1 <button>HE</button>', value: 1 },
         { label: '人群2', value: 2 },
         { label: '人群3', value: 3 }
     ];

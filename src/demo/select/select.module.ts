@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule } from '../../component/select';
 import { CodeBoxModule } from '../../component/code-box';
 import { CodeHighlighterModule } from '../../component/code-highlighter';
+import { TooltipModule } from '../../component/tooltip';
 
 import { SelectDemo } from './select';
 import { SelectBaseDemo } from './base/select-base';
@@ -16,7 +17,8 @@ import { SelectBaseDemo } from './base/select-base';
         ReactiveFormsModule,
         SelectModule,
         CodeBoxModule,
-        CodeHighlighterModule
+        CodeHighlighterModule,
+        TooltipModule
     ],
     declarations: [
         SelectDemo,

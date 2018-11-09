@@ -1,5 +1,5 @@
 import {
-    Component, Input, Output, EventEmitter, ViewChild, forwardRef, Renderer2,
+    Component, Input, Output, EventEmitter, ViewChild, forwardRef, TemplateRef,
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef,
 } from '@angular/core';
 import { SelectConfig, OptionsStyles } from './select.config';
@@ -37,6 +37,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @Input() searchable: boolean = false;
     @Input() disabled: boolean = false;
     @Input() value: number | null | undefined;
+    @Input() optionTpl: TemplateRef<any>;
     @Output() onChange: EventEmitter<SelectConfig> = new EventEmitter();
     @Output() onPanelShow: EventEmitter<Object> = new EventEmitter();
     @Output() onPanelHide: EventEmitter<Object> = new EventEmitter();
