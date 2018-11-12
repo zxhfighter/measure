@@ -88,7 +88,9 @@ export class SelectBaseDemo implements AfterViewInit {
     ];
 
     crowds = [
-
+        { label: '人群1 <button>HE</button>', value: 1 },
+        { label: '人群2', value: 2 },
+        { label: '人群3', value: 3 }
     ];
 
     constructor(
@@ -100,13 +102,15 @@ export class SelectBaseDemo implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            this.crowds = [{ label: '人群1 <button>HE</button>', value: 1 },
-            { label: '人群2', value: 2 },
-            { label: '人群3', value: 3 }];
-        //     this.formGroup.get('crowd').setValue(3);
-        //     this.formGroup.get('crowd').disable();
-        }, 2000);
+        // setTimeout(() => {
+            // this.crowds = [
+                // { label: '人群1 <button>HE</button>', value: 1 },
+                // { label: '人群2', value: 2 },
+                // { label: '人群3', value: 3 }
+            // ];
+            //     this.formGroup.get('crowd').setValue(3);
+            //     this.formGroup.get('crowd').disable();
+        // }, 2000);
     }
 
     clear(ui) {
