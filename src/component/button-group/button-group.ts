@@ -161,6 +161,10 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
                 item.checked = (item.value + '') === (value + '');
             });
             this.value = [value];
+            this.change.emit({
+                currentValue: value,
+                value: this.value
+            });
         }
         else if (this.type === 'checkbox') {
             const button = buttonList.find(v => (v.value + '') === (value + ''));
@@ -169,13 +173,15 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
                 button.checked = !button.checked;
                 button.checked ? valueSet.add(value) : valueSet.delete(value);
                 this.value = Array.from(valueSet);
+
+                this.change.emit({
+                    currentValue: value,
+                    value: this.value
+                });
             }
         }
 
-        this.change.emit({
-            currentValue: value,
-            value: this.value
-        });
+        this._cd.markForCheck();
         this._updateFormModel();
     }
 

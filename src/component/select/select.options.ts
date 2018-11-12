@@ -1,6 +1,6 @@
 import {
     Component, Input, Output, EventEmitter, forwardRef, ElementRef, TemplateRef,
-    OnChanges, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnInit
+    OnChanges, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, SimpleChanges
 } from '@angular/core';
 import { SelectConfig } from './select.config';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
@@ -36,8 +36,13 @@ export class SelectOptionsComponent implements ControlValueAccessor, OnChanges, 
                 protected el: ElementRef) {
     }
 
-    ngOnChanges() {
+    ngOnChanges(simpleChanges: SimpleChanges) {
         // this.render();
+        if ('data' in simpleChanges) {
+            const current = simpleChanges['data'].currentValue;
+            this._data = SelectOptionsComponent._clone(this.data);
+            this.cd.markForCheck();
+        }
     }
 
     ngOnInit() {
