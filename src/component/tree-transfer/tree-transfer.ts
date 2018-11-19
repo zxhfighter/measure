@@ -10,7 +10,8 @@ import {
     ChangeDetectorRef,
     ElementRef,
     Renderer2,
-    SimpleChanges
+    SimpleChanges,
+    TemplateRef
 } from '@angular/core';
 
 import {
@@ -117,6 +118,11 @@ export class TreeTransferComponent implements OnChanges {
     @Input() selectedTitle: string = '已选列表';
 
     @Input() addLink: any;
+
+    /**
+     * support custom template
+     */
+    @Input() optionTpl: TemplateRef<any>;
 
     /**
      * all options count

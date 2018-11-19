@@ -5,7 +5,8 @@ import {
     EventEmitter,
     OnInit,
     ViewEncapsulation,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    TemplateRef
 } from '@angular/core';
 
 import { TreeNode } from './treenode';
@@ -60,6 +61,11 @@ export class TreeComponent implements OnInit {
      * @default true
      */
     @Input() propagateSelectionDown: boolean = true;
+
+    /**
+     * support custom template
+     */
+    @Input() optionTpl: TemplateRef<any>;
 
     /** private variable tree-list
      *  @docs-private

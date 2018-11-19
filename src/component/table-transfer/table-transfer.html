@@ -43,17 +43,32 @@
                         (click)="onSelect(row)">
                         <ng-container *ngFor="let key of objectKeys(row)">
                             <td *ngIf="key!=='id' && key!=='selected'" nb-td>
-                                <div *ngIf="key!=='name' || !judgeOverLong(row[key])" class="nb-td-{{key}}">
+                                <div *ngIf="key!=='name'" class="nb-td-{{key}}">
                                     {{ row[key] }}
                                 </div>
                                 <div 
-                                    *ngIf="key==='name' && judgeOverLong(row[key])" 
+                                    *ngIf="key==='name' && judgeOverLong(row[key]) && !optionTplLeft" 
                                     class="nb-td-{{key}}" 
                                     nbTooltip="{{row[key]}}"
                                     nbTooltipClass="customize-classname"
                                     placement="bottom-left"
                                     hasArrow>
                                     {{ row[key] }}
+                                </div>
+                                <div 
+                                    *ngIf="key==='name' && judgeOverLong(row[key]) && optionTplLeft" 
+                                    class="nb-td-{{key}}" 
+                                    nbTooltip="{{row[key]}}"
+                                    nbTooltipClass="customize-classname"
+                                    placement="bottom-left"
+                                    hasArrow>
+                                    <ng-container *ngTemplateOutlet="optionTplLeft;context: {$implicit: row}"></ng-container>
+                                </div>
+                                <div *ngIf="key==='name' && !judgeOverLong(row[key]) && !optionTplLeft" class="nb-td-{{key}}">
+                                    {{ row[key] }}
+                                </div>
+                                <div *ngIf="key==='name' && !judgeOverLong(row[key]) && optionTplLeft" class="nb-td-{{key}}">
+                                    <ng-container *ngTemplateOutlet="optionTplLeft;context: {$implicit: row}"></ng-container>
                                 </div>
                             </td>
                         </ng-container>
@@ -73,7 +88,10 @@
                 class="selected-item clearfix" 
                 [class.nb-table-row-selected]="disabled" 
                 (click)="onRemove(item)">
-                <div class="group-name">{{ item.name }}</div>
+                <div *ngIf="!optionTplRight" class="group-name">{{ item.name }}</div>
+                <div *ngIf="optionTplRight">
+                    <ng-container *ngTemplateOutlet="optionTplRight;context: {$implicit: item}"></ng-container>
+                </div>
                 <i class="iconfont icon-close"></i>
             </div>
         </div>

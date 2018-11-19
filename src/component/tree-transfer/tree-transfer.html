@@ -16,7 +16,8 @@
             selectionMode="candidate"
             [disabled]="disabled"
             (onExpandNode)="expandNode($event)"
-            (onNodeSelect)="transNode($event, 'selected')">
+            (onNodeSelect)="transNode($event, 'selected')"
+            [optionTpl]="optionTpl">
         </nb-tree>
     </nb-transfer-candidate>
     <nb-transfer-selected>
@@ -25,7 +26,8 @@
             [treeData]="selectedData"
             selectionMode="selected"
             [disabled]="disabled"
-            (onNodeSelect)="transNode($event, 'candidate')">
+            (onNodeSelect)="transNode($event, 'candidate')"
+            [optionTpl]="optionTpl">
         </nb-tree>
         <div
             *ngIf="!selectedCount"

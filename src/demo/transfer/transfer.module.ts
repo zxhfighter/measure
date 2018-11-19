@@ -5,6 +5,7 @@ import { CodeBoxModule } from '../../component/code-box';
 import { CodeHighlighterModule } from '../../component/code-highlighter';
 import { TreeTransferModule } from '../../component/tree-transfer';
 import { TableTransferModule } from '../../component/table-transfer';
+import { TooltipModule } from '../../component/tooltip';
 
 import { TransferDemo } from './transfer';
 import { TransferBasicDemo } from './basic/transfer-basic';
@@ -15,7 +16,8 @@ import { TransferBasicDemo } from './basic/transfer-basic';
         CodeBoxModule,
         CodeHighlighterModule,
         TreeTransferModule,
-        TableTransferModule
+        TableTransferModule,
+        TooltipModule
     ],
     declarations: [
         TransferDemo,

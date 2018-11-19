@@ -10,7 +10,8 @@ import {
     ChangeDetectorRef,
     ElementRef,
     Renderer2,
-    SimpleChanges
+    SimpleChanges,
+    TemplateRef
 } from '@angular/core';
 
 import {
@@ -147,6 +148,16 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
      * name length limit value
      */
     @Input() nameLenLimit: number = 6;
+
+    /**
+     * support custom template
+     */
+    @Input() optionTplLeft: TemplateRef<any>;
+
+    /**
+     * support custom template
+     */
+    @Input() optionTplRight: TemplateRef<any>;
 
     /**
      * return method make object formatter to array

@@ -6,10 +6,12 @@
         [candidateTitle]="candidateTitle"
         [selectedTitle]="selectedTitle"
         [addLink]="addLink"
+        [optionTpl]="optionTpl"
         (getValue)="getValue($event)"
         (searchValue)="searchValue($event)"
         (onExtendData)="extendData()"
-        (onExpandNode)="expandNode($event)"></nb-tree-transfer>
+        (onExpandNode)="expandNode($event)">
+    </nb-tree-transfer>
 </p>
 
 <h3 class="section-title">Async Get Init Data</h3>
@@ -21,7 +23,8 @@
         [allDeleteLink]="allDeleteLink" 
         [candidateSearch]="candidateSearch"
         [selectedSearch]="selectedSearch"
-        (getValue)="getValue($event)"></nb-tree-transfer>
+        (getValue)="getValue($event)">
+    </nb-tree-transfer>
 </p>
 
 <h3 class="section-title">Disabled State</h3>
@@ -31,7 +34,40 @@
         [selectedData]="selectedData" 
         (getValue)="getValue($event)" 
         [addLink]="addLink"
-        [disabled]="disabled"></nb-tree-transfer>
+        [disabled]="disabled">
+    </nb-tree-transfer>
+</p>
+
+<h3 class="section-title">Custom Template State</h3>
+<p>
+    <nb-tree-transfer 
+        [candidateData]="candidateDataEmpty" 
+        [selectedData]="selectedDataEmpty" 
+        [allSelectLink]="allSelectLink" 
+        [allDeleteLink]="allDeleteLink" 
+        [candidateSearch]="candidateSearch"
+        [selectedSearch]="selectedSearch"
+        [optionTpl]="optionTpl"
+        (getValue)="getValue($event)">
+    </nb-tree-transfer>
+
+    <ng-template #optionTpl let-node>
+            <span class="tree-transfer-label">
+                {{ node.name }}
+            </span>
+            <i
+                *ngIf="node.children && node.children.length"
+                class="icon iconfont icon-share tree-transfer-icon-share"
+                theme="default"
+                [nbTooltip]="tipContentEmbedded"
+                placement="top"
+                nbTooltipTheme="white"
+                trigger="hover">
+            </i>
+            <ng-template #tipContentEmbedded>
+                <span>当前项的值为：{{ node.name }}</span>
+            </ng-template>
+    </ng-template>
 </p>
 
 <h3 class="section-title">Table Transfer</h3>
@@ -49,10 +85,47 @@
         [selectedSearch]="selectedSearch"
         [addLink]="addLink"
         [nameLenLimit]="nameLenLimit"
+        [optionTplLeft]="optionTplLeft"
+        [optionTplRight]="optionTplRight"
         (getValue)="getValue($event)"
         (searchValue)="searchValue($event)"
         (onExtendData)="extendData()"
-        (onExpandNode)="expandNode($event)"></nb-table-transfer>
+        (onExpandNode)="expandNode($event)">
+    </nb-table-transfer>
+
+    <ng-template #optionTplLeft let-row>
+        <span class="table-transfer-left-label">
+            {{ row.name }}
+        </span>
+        <i
+            class="icon iconfont icon-share table-transfer-left-icon-share"
+            theme="default"
+            [nbTooltip]="tipContentEmbedded"
+            placement="top"
+            nbTooltipTheme="white"
+            trigger="hover">
+        </i>
+        <ng-template #tipContentEmbedded>
+            <span>当前项的值为：{{ row.name }}</span>
+        </ng-template>
+    </ng-template>
+
+    <ng-template #optionTplRight let-item>
+        <span class="table-transfer-right-label">
+            {{ item.name }}
+        </span>
+        <i
+            class="icon iconfont icon-share table-transfer-right-icon-share"
+            theme="default"
+            [nbTooltip]="tipContentEmbedded"
+            placement="top"
+            nbTooltipTheme="white"
+            trigger="hover">
+        </i>
+        <ng-template #tipContentEmbedded>
+            <span>当前项的值为：{{ item.name }}</span>
+        </ng-template>
+    </ng-template>
 </p>
 
 <h3 class="section-title">Disabled State</h3>

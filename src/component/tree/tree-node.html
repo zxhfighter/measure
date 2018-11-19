@@ -10,18 +10,32 @@
         [ngClass]="{'nb-tree-node-selected': node.isSelected, 'nb-tree-node-unselectable': !node.selectable, 'nb-tree-node-show': node.show}"
         (click)="onNodeClick()">
         <span
-            *ngIf="!judgeOverLong(node)"
+            *ngIf="!judgeOverLong(node) && !optionTpl"
             class="nb-tree-node-name">
             {{ node.name }}
         </span>
         <span
-            *ngIf="judgeOverLong(node)"
+            *ngIf="!judgeOverLong(node) && optionTpl"
+            class="nb-tree-node-name">
+            <ng-container *ngTemplateOutlet="optionTpl;context: {$implicit: node}"></ng-container>
+        </span>
+        <span
+            *ngIf="judgeOverLong(node) && !optionTpl"
             class="nb-tree-node-name"
             nbTooltip="{{node.name}}"
             nbTooltipClass="customize-classname"
             placement="bottom-left"
             hasArrow>
             {{ node.name }}
+        </span>
+        <span
+            *ngIf="judgeOverLong(node) && optionTpl"
+            class="nb-tree-node-name"
+            nbTooltip="{{node.name}}"
+            nbTooltipClass="customize-classname"
+            placement="bottom-left"
+            hasArrow>
+            <ng-container *ngTemplateOutlet="optionTpl;context: {$implicit: node}"></ng-container>
         </span>
         <span
             *ngIf="node.selectable"
@@ -39,7 +53,8 @@
         <nb-tree-node
             *ngFor="let childNode of node.children"
             [node]="childNode"
-            (onExpandNode)="expandNode($event)">
+            (onExpandNode)="expandNode($event)"
+            [optionTpl]="optionTpl">
         </nb-tree-node>
     </ul>
 </li>

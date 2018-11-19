@@ -7,7 +7,8 @@ import {
     ViewEncapsulation,
     ChangeDetectionStrategy,
     Inject,
-    forwardRef
+    forwardRef,
+    TemplateRef
 } from '@angular/core';
 import { TreeNode } from './treenode';
 import { TreeComponent } from './tree';
@@ -30,6 +31,11 @@ export class TreeNodeComponent implements OnInit {
      * @docs-private
      */
     @Input() node: TreeNode;
+
+    /**
+     * support custom template
+     */
+    @Input() optionTpl: TemplateRef<any>;
 
     /**
      * tree node expand event
