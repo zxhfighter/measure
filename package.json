@@ -1,6 +1,6 @@
 {
   "name": "xdesign",
-  "version": "2.1.12",
+  "version": "2.1.13",
   "description": "xdesign - A enterprize angular ui component library",
   "main": "./bundle/xdesign.umd.min.js",
   "sideEffects": false,
