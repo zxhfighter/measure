@@ -52,21 +52,21 @@
     </nb-tree-transfer>
 
     <ng-template #optionTpl let-node>
-            <span class="tree-transfer-label">
-                {{ node.name }}
-            </span>
-            <i
-                *ngIf="node.children && node.children.length"
-                class="icon iconfont icon-share tree-transfer-icon-share"
-                theme="default"
-                [nbTooltip]="tipContentEmbedded"
-                placement="top"
-                nbTooltipTheme="white"
-                trigger="hover">
-            </i>
-            <ng-template #tipContentEmbedded>
-                <span>当前项的值为：{{ node.name }}</span>
-            </ng-template>
+        <span class="tree-transfer-label">
+            {{ node.name }}
+        </span>
+        <i
+            *ngIf="node.children && node.children.length"
+            class="icon iconfont icon-share tree-transfer-icon-share"
+            theme="default"
+            [nbTooltip]="tipContentEmbedded"
+            placement="top"
+            nbTooltipTheme="white"
+            trigger="hover">
+        </i>
+        <ng-template #tipContentEmbedded>
+            <span>当前项的值为：{{ node.name }}</span>
+        </ng-template>
     </ng-template>
 </p>
 

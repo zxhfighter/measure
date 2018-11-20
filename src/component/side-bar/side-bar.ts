@@ -5,7 +5,8 @@ import {
     EventEmitter,
     OnInit,
     ViewEncapsulation,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    TemplateRef
 } from '@angular/core';
 
 import {
@@ -38,6 +39,8 @@ export class SideBarComponent implements OnInit {
 
     /** side-bar default selected node */
     @Input() selectedNodeId: string;
+
+    @Input() optionTpl: TemplateRef<any>;
 
     /**
      * storage tree-nodes as list

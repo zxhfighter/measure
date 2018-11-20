@@ -11,8 +11,26 @@
     <nb-side-bar 
         [data]="data" 
         [selectedNodeId]="selectedNodeId"
+        [optionTpl]="optionTpl"
         (onNavi)="onNavi($event)">
     </nb-side-bar>
+    <ng-template #optionTpl let-node>
+        <span class="side-bar-label">
+            {{ node.name }}
+        </span>
+        <i
+            *ngIf="node.children && node.children.length"
+            class="icon iconfont icon-share side-bar-icon-share"
+            theme="default"
+            [nbTooltip]="tipContentEmbedded"
+            placement="top"
+            nbTooltipTheme="white"
+            trigger="hover">
+        </i>
+        <ng-template #tipContentEmbedded>
+            <span>当前项的值为：{{ node.name }}</span>
+        </ng-template>
+    </ng-template>
 </p>
 
 <p>

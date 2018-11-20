@@ -29,6 +29,7 @@
     <nb-tree
         *ngIf="hasTreeData"
         [treeData]="changeTree()"
+        [optionTpl]="optionTpl"
         selectionMode="navigation"
         (onNodeSelect)="nodeSelect($event)">
     </nb-tree>
