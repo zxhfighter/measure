@@ -1,6 +1,6 @@
 import {
     Component, Input, ElementRef, SimpleChanges, AfterViewInit,
-    OnChanges, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef
+    OnChanges, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
 import { coerceBooleanProperty } from '../util/coerce';

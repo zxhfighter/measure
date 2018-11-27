@@ -93,7 +93,7 @@ export class MonthViewComponent implements OnInit {
     set value(v: any) {
         this._value = v;
         this._month = v;
-        this._buildWeeks();
+        // this._buildWeeks();
     }
     private _value: Date = new Date();
 
@@ -248,7 +248,7 @@ export class MonthViewComponent implements OnInit {
 
             // add a week
             date.add(1, 'w');
-            done = (count++) > 4;
+            done = (count++) > 5;
         }
 
         // if first row week days all belong to last month, remove it
@@ -282,8 +282,8 @@ export class MonthViewComponent implements OnInit {
                 title: date.format('YYYY-MM-DD'),
                 isCurrent: date.isSame(new Date, 'day'),
                 isSelected: needCheckSelected ? this.checkIsSelected(date) : date.isSame(this.value, 'day'),
-                isLastMonth: date.month() < month.month(),
-                isNextMonth: date.month() > month.month()
+                isLastMonth: (date.month() < month.month()) || (date.month() > month.month() && date.year() < month.year()),
+                isNextMonth: (date.month() > month.month()) || (date.month() < month.month() && date.year() > month.year())
             });
             date = date.clone();
 
@@ -403,8 +403,6 @@ export class MonthViewComponent implements OnInit {
             }
         }
         else {
-            this._buildWeeks();
-
             // emit the selected date
             this.select.emit(this.value);
         }

@@ -1,9 +1,13 @@
 import { coerceBooleanProperty } from '../util/coerce';
 
 /**
- * decorate input properties whit get and set method
+ * decorate input properties with get and set method, it does two things:
+ *
+ * - enable boolean input property shorthand
+ * - enable listening input property change
  *
  * @param {boolean?} isBooleanProperty - whether the property is a boolean property like disabled
+ * @param {boolean?} force force trigger property event(only when the event is defined)
  */
 export function OnChange(isBooleanProperty?: boolean, force?: boolean): any {
     const sufix = 'Change';
