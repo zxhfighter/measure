@@ -121,7 +121,7 @@ export class ConnectedPositionStrategy {
         let overlayPointPoint = this._pushOverlayOnScreen(fallbackPoint!, overlayRect);
 
         // 从屏幕外拉到屏幕内后还需要与源元素对齐，计算对齐所需要的位移
-        const documentWidth = document.documentElement.clientWidth;
+        const documentWidth = (document.documentElement || document.body).clientWidth;
         if (fallbackPosition!.overlayX === 'left') {
             this.changePositionFromLeftToRight(
                 overlayPointPoint, fallbackPosition, documentWidth, targetRect);
@@ -461,11 +461,12 @@ export class ConnectedPositionStrategy {
      * @return ClientRect
      */
     getViewportRect(): ClientRect {
-        let documentRect = document.documentElement.getBoundingClientRect();
+        const doc = (document.documentElement || document.body);
+        let documentRect = doc.getBoundingClientRect();
         const top = -documentRect!.top || document.body.scrollTop || window.scrollY ||
-            document.documentElement.scrollTop || 0;
+            doc.scrollTop || 0;
         const left = -documentRect!.left || document.body.scrollLeft || window.scrollX ||
-            document.documentElement.scrollLeft || 0;
+            doc.scrollLeft || 0;
         const height = window.innerHeight;
         const width = window.innerWidth;
 

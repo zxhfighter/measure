@@ -30,7 +30,7 @@ export class ViewportRuler implements OnDestroy {
 
     /** Caches the latest client rectangle of the document element. */
     _cacheViewportGeometry() {
-        this._documentRect = document.documentElement.getBoundingClientRect();
+        this._documentRect = (document.documentElement || document.body).getBoundingClientRect();
     }
 
     ngOnDestroy() {
