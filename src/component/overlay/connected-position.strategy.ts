@@ -117,32 +117,40 @@ export class ConnectedPositionStrategy {
             this._calculateElementArrowPosition(this._overlayArrowEl, fallbackPosition!);
             return fallbackPosition!;
         }
+
+        // 这段代码有问题，先注释
         // 当所有备选方向都不能在屏幕内显示时，强行拉动。目前只在水平方向上拉动
-        let overlayPointPoint = this._pushOverlayOnScreen(fallbackPoint!, overlayRect);
+        // const overflowLeft = overlayRect.left < 0;
+        // const overflowRight = overlayRect.right > window.innerWidth;
 
-        // 从屏幕外拉到屏幕内后还需要与源元素对齐，计算对齐所需要的位移
-        const documentWidth = (document.documentElement || document.body).clientWidth;
-        if (fallbackPosition!.overlayX === 'left') {
-            this.changePositionFromLeftToRight(
-                overlayPointPoint, fallbackPosition, documentWidth, targetRect);
-        }
-        else if (fallbackPosition!.overlayX === 'right') {
-            this.changePositionFromRightToLeft(
-                overlayPointPoint, fallbackPosition, targetRect);
-        }
-        else {
-            if (overlayPointPoint.x > fallbackPoint!.x) {
-                this.changePositionFromRightToLeft(
-                    overlayPointPoint, fallbackPosition, targetRect);
-            }
-            else {
-                this.changePositionFromLeftToRight(
-                    overlayPointPoint, fallbackPosition, documentWidth, targetRect);
-            }
-        }
+        // if (overflowLeft || overflowRight) {
+        //     const overlayPointPoint = this._pushOverlayOnScreen(fallbackPoint!, overlayRect);
 
-        // 设置overlay的位置
-        this._setElementPosition(this._overlayEl, overlayPointPoint!);
+        //     // 从屏幕外拉到屏幕内后还需要与源元素对齐，计算对齐所需要的位移
+        //     const documentWidth = (document.documentElement || document.body).clientWidth;
+        //     if (fallbackPosition!.overlayX === 'left') {
+        //         this.changePositionFromLeftToRight(
+        //             overlayPointPoint, fallbackPosition, documentWidth, targetRect);
+        //     }
+        //     else if (fallbackPosition!.overlayX === 'right') {
+        //         this.changePositionFromRightToLeft(
+        //             overlayPointPoint, fallbackPosition, targetRect);
+        //     }
+        //     else {
+        //         if (overlayPointPoint.x > fallbackPoint!.x) {
+        //             this.changePositionFromRightToLeft(
+        //                 overlayPointPoint, fallbackPosition, targetRect);
+        //         }
+        //         else {
+        //             this.changePositionFromLeftToRight(
+        //                 overlayPointPoint, fallbackPosition, documentWidth, targetRect);
+        //         }
+        //     }
+
+        //     // 设置overlay的位置
+        //     this._setElementPosition(this._overlayEl, overlayPointPoint!);
+        // }
+
         // 设置箭头的位置
         this._calculateElementArrowPosition(this._overlayArrowEl, fallbackPosition!);
 
@@ -488,5 +496,5 @@ function isElementScrolledOutsideView(element: ClientRect) {
     const outsideRight = element.left > window.innerWidth;
 
     return outsideAbove || outsideBelow || outsideLeft || outsideRight;
-  }
+}
 
