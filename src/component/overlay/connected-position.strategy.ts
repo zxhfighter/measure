@@ -150,6 +150,7 @@ export class ConnectedPositionStrategy {
         //     // 设置overlay的位置
         //     this._setElementPosition(this._overlayEl, overlayPointPoint!);
         // }
+        // 提交后未重新生成版本
 
         // 设置箭头的位置
         this._calculateElementArrowPosition(this._overlayArrowEl, fallbackPosition!);
