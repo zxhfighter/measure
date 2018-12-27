@@ -51,31 +51,6 @@ module.exports = webpackMerge(webpackCommonConfig, {
             root: helper.root('.')
         }),
 
-        new UglifyJsPlugin({
-            uglifyOptions: {
-                warnings: false,
-                output: {
-                    comments: false,
-                    beautify: false
-                },
-                mangle: {
-                    ie8: false
-                },
-                compress: {
-                    ie8: false,
-                    conditionals: true,
-                    unused: true,
-                    comparisons: true,
-                    sequences: true,
-                    dead_code: true,
-                    evaluate: true,
-                    if_return: true,
-                    join_vars: true,
-                    negate_iife: false
-                }
-            }
-        }),
-
         new ExtractTextPlugin('[name].css'),
 
         new webpack.NormalModuleReplacementPlugin(
@@ -88,5 +63,13 @@ module.exports = webpackMerge(webpackCommonConfig, {
             mainPath: helper.root('src/demo/main.ts'),
             sourceMap: true
         })
-    ]
+    ],
+
+    optimization: {
+        minimizer: [new UglifyJsPlugin({
+            cache: true,
+            sourceMap: true,
+            parallel: true
+        })]
+    }
 });
