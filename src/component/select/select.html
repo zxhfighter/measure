@@ -2,11 +2,11 @@
     #origin="nbOverlayOrigin"
     type="button" theme="{{theme}}" size="{{size}}" (click)="onToggle()">
         <span class="nb-select-label">{{ selectedData.label }}</span>
-        <i class="nb-select-icon icon iconfont {{ icon }}"></i>
+        <i class="nb-select-icon {{ direction }}"></i>
 </button>
 
 <nb-overlay #overlay class="nb-select-overlay"
-    placement="bottom-left">
+    placement="bottom-left" (closeHandler)="onClosePanel($event)">
     <nb-select-options
                     (onChange)="onSelectedOption($event)"
                     [styles]="styles"

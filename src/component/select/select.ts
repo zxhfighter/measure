@@ -9,6 +9,11 @@ import { Placement } from '../util/position';
 import { BUTTON_THEME, BUTTON_SIZE } from '../button';
 import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
 
+enum Direction {
+    up = 'up',
+    down = 'down'
+}
+
 @Component({
     selector: 'nb-select',
     templateUrl: './select.html',
@@ -42,7 +47,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     @Output() onPanelShow: EventEmitter<Object> = new EventEmitter();
     @Output() onPanelHide: EventEmitter<Object> = new EventEmitter();
 
-    icon: string = 'icon-down';
+    direction: string = Direction.down;
     selectedData: SelectConfig;
     styles: OptionsStyles;
     protected expanded: boolean = false;
@@ -69,10 +74,12 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
     }
 
     show() {
+        this.direction = Direction.up;
         this.overlay.show();
     }
 
     hide() {
+        this.direction = Direction.down;
         this.overlay.hide();
     }
 
@@ -84,7 +91,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.toggleOverlay();
 
         this.expanded = !this.expanded;
-        this.icon = this.expanded ? 'icon-up' : 'icon-down';
         this.cd.markForCheck();
     }
 
@@ -153,6 +159,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
      */
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
+    }
+
+    onClosePanel(_panel: any) {
+        this.direction = Direction.down;
     }
 
     ngOnDestroy() {
