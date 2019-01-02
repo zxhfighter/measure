@@ -33,7 +33,7 @@
         </ul>
         <div class="image-add" *ngIf="!disabled">
             <span class="image-add-icon">+</span>
-            <input id="fileInput" (change)="onFileSelect($event)"
+            <input id="fileInput" (change)="onFileSelect($event)" #uploadInput
                 type="file" multiple="multiple" name="myFile" class="fileinput"
                 accept="{{ accept }}">
         </div>
@@ -52,7 +52,7 @@
         <div class="file-add"
             [class.file-add-disabled]="disabled">
             <button type="button" nb-button theme="default" [disabled]="disabled"><i class="fa fa-upload"></i> 文件上传</button>
-            <input (change)="onFileSelect($event)"
+            <input (change)="onFileSelect($event)" #uploadInput
                 type="file" multiple="multiple" name="myFile" class="fileinput"
                 accept="{{ accept }}">
         </div>

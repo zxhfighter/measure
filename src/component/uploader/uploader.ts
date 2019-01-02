@@ -1,6 +1,6 @@
 import {
     Component, Input, Output, EventEmitter, ChangeDetectorRef, forwardRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ViewChild, ElementRef
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -146,6 +146,12 @@ export class UploaderComponent implements OnInit {
     @Output() onProgress: EventEmitter<any> = new EventEmitter();
 
     /**
+     * Input上传控件
+     * @default false
+     */
+    @ViewChild('uploadInput') uploadInput: ElementRef;
+
+    /**
      * 错误信息集合
      *
      * @docs-private
@@ -214,12 +220,25 @@ export class UploaderComponent implements OnInit {
     }
 
     /**
+     * 清空上传Input所持有的文件，避免上传同一文件不触发change事件
+     *
+     * @param {object} files - 待上传文件
+     */
+    clearInputElement() {
+        if (this.uploadInput && this.uploadInput.nativeElement) {
+            this.uploadInput.nativeElement.value = '';
+        }
+    }
+
+    /**
      * 上传文件
      *
      * @param {object} files - 待上传文件
      */
     private upload(file) {
         file.state = 'uploading';
+        this.clearInputElement();
+
         let xhr = new XMLHttpRequest();
         file.xhr = xhr;
 
