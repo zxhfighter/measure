@@ -5,7 +5,7 @@
     <nb-tab-header *ngFor="let tab of tabs; let index = index"
         [class.active]="tab.active"
         [class.disabled]="tab.disabled"
-        (click)="setActive(tab, index)">
+        (click)="setActive(index)">
         <ng-template [ngIf]="tab.templateTitle && tab.templateTitle.nbTabTitle === tab.title">
             <div [nbAttach]="tab.templateTitle"></div>
         </ng-template>

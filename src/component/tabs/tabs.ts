@@ -90,10 +90,10 @@ export class TabsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     /**
      * 设置当前Tab为选中状态
      *
-     * @param {TabComponent} tab - 当前Tab
      * @param {number} index - 当前Tab的索引
      */
-    setActive(tab: TabComponent, index: number): void {
+    setActive(index: number): void {
+        const tab  = this.tabs.toArray()[index];
         if (tab.disabled) {
             return;
         }
@@ -115,7 +115,6 @@ export class TabsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     /**
      * 设置选中线的位置
      *
-     * @param {number} index - 当前Tab的索引
      */
     alignInkBar(): void {
         const activeTitle = this.tabHeader.toArray()[this.activeIndex];
