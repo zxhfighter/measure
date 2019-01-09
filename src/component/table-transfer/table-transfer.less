@@ -38,6 +38,10 @@
     padding-left: 20px;
     line-height: 36px;
 
+    .selected-children-item {
+        margin-left: 20px;
+    }
+
     .group-name {
         float: left;
         max-width: 250px;
@@ -69,5 +73,13 @@
     color: #999;
     &:hover {
         cursor: default;
+    }
+}
+
+.@{prefix}-table-row-parent {
+    border-bottom: none;
+    .icon-wrapper {
+        cursor: pointer;
+        margin-left: -20px;
     }
 }

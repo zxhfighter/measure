@@ -10,7 +10,8 @@ import {
     selectedData,
     tableData,
     selectedIds,
-    tableConfig
+    tableConfig,
+    multiTableData
 } from '../transfer-test-data';
 
 @Component({
@@ -39,6 +40,8 @@ export class TransferBasicDemo implements OnInit {
     // table
     datasource = tableData;
 
+    multiTableData = multiTableData;
+
     selectedIds = selectedIds;
 
     tableConfig = tableConfig;
@@ -56,8 +59,8 @@ export class TransferBasicDemo implements OnInit {
     selectedSearch = false;
 
     // title
-    candidateTitle = '热门推荐';
-    selectedTitle = '已选推荐';
+    candidateTitle = '人群列表';
+    selectedTitle = '已选人群';
 
     // name length limit
     nameLenLimit = 7;

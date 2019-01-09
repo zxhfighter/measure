@@ -1,8 +1,8 @@
 <h3 class="section-title">Tree Transfer</h3>
 <p>
-    <nb-tree-transfer 
-        [candidateData]="candidateData" 
-        [selectedData]="selectedData" 
+    <nb-tree-transfer
+        [candidateData]="candidateData"
+        [selectedData]="selectedData"
         [candidateTitle]="candidateTitle"
         [selectedTitle]="selectedTitle"
         [addLink]="addLink"
@@ -16,11 +16,11 @@
 
 <h3 class="section-title">Async Get Init Data</h3>
 <p>
-    <nb-tree-transfer 
-        [candidateData]="candidateDataEmpty" 
-        [selectedData]="selectedDataEmpty" 
-        [allSelectLink]="allSelectLink" 
-        [allDeleteLink]="allDeleteLink" 
+    <nb-tree-transfer
+        [candidateData]="candidateDataEmpty"
+        [selectedData]="selectedDataEmpty"
+        [allSelectLink]="allSelectLink"
+        [allDeleteLink]="allDeleteLink"
         [candidateSearch]="candidateSearch"
         [selectedSearch]="selectedSearch"
         (getValue)="getValue($event)">
@@ -29,10 +29,10 @@
 
 <h3 class="section-title">Disabled State</h3>
 <p>
-    <nb-tree-transfer 
-        [candidateData]="candidateData" 
-        [selectedData]="selectedData" 
-        (getValue)="getValue($event)" 
+    <nb-tree-transfer
+        [candidateData]="candidateData"
+        [selectedData]="selectedData"
+        (getValue)="getValue($event)"
         [addLink]="addLink"
         [disabled]="disabled">
     </nb-tree-transfer>
@@ -40,11 +40,11 @@
 
 <h3 class="section-title">Custom Template State</h3>
 <p>
-    <nb-tree-transfer 
-        [candidateData]="candidateDataEmpty" 
-        [selectedData]="selectedDataEmpty" 
-        [allSelectLink]="allSelectLink" 
-        [allDeleteLink]="allDeleteLink" 
+    <nb-tree-transfer
+        [candidateData]="candidateDataEmpty"
+        [selectedData]="selectedDataEmpty"
+        [allSelectLink]="allSelectLink"
+        [allDeleteLink]="allDeleteLink"
         [candidateSearch]="candidateSearch"
         [selectedSearch]="selectedSearch"
         [optionTpl]="optionTpl"
@@ -72,15 +72,15 @@
 
 <h3 class="section-title">Table Transfer</h3>
 <p>
-    <nb-table-transfer 
-        [candidateData]="datasource" 
-        [selectedData]="selectedIds" 
+    <nb-table-transfer
+        [candidateData]="datasource"
+        [selectedData]="selectedIds"
         [tableConfig]="tableConfig"
         [customClass]="customClass"
         [candidateTitle]="candidateTitle"
         [selectedTitle]="selectedTitle"
-        [allSelectLink]="allSelectLink" 
-        [allDeleteLink]="allDeleteLink" 
+        [allSelectLink]="allSelectLink"
+        [allDeleteLink]="allDeleteLink"
         [candidateSearch]="candidateSearch"
         [selectedSearch]="selectedSearch"
         [addLink]="addLink"
@@ -130,16 +130,34 @@
 
 <h3 class="section-title">Disabled State</h3>
 <p>
-    <nb-table-transfer 
-        [candidateData]="datasource" 
-        [selectedData]="selectedIds" 
+    <nb-table-transfer
+        [candidateData]="datasource"
+        [selectedData]="selectedIds"
         [tableConfig]="tableConfig"
         [customClass]="customClass"
         [candidateTitle]="candidateTitle"
         [selectedTitle]="selectedTitle"
-        [allSelectLink]="allSelectLink" 
-        [allDeleteLink]="allDeleteLink" 
+        [allSelectLink]="allSelectLink"
+        [allDeleteLink]="allDeleteLink"
         [disabled]="disabled"
+        (getValue)="getValue($event)"
+        (searchValue)="searchValue($event)"
+        (onExpandNode)="expandNode($event)"></nb-table-transfer>
+</p>
+
+<h3 class="section-title">Level Table State</h3>
+<p>
+    <nb-table-transfer
+        [candidateData]="multiTableData"
+        [selectedData]="selectedIds"
+        [tableConfig]="tableConfig"
+        [customClass]="customClass"
+        [candidateTitle]="candidateTitle"
+        [selectedTitle]="selectedTitle"
+        [allSelectLink]="true"
+        [allDeleteLink]="allDeleteLink"
+        [selectedSearch]="false"
+        [disabled]="false"
         (getValue)="getValue($event)"
         (searchValue)="searchValue($event)"
         (onExpandNode)="expandNode($event)"></nb-table-transfer>

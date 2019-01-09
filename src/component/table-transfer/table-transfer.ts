@@ -37,6 +37,7 @@ const TABLE_TRANSFER_VALUE_ACCESSOR = {
 export interface TableConfig {
     headData: any[];
     colWidth: any[];
+    hideCol: any[];
 }
 
 @Component({
@@ -214,13 +215,50 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
     ngOnChanges(changes: SimpleChanges) {
         if (changes['selectedData']) {
             const ids: any[] = changes['selectedData'].currentValue;
-            this.selectedDatasource = this._datasource.filter(v => ids.includes(v.id));
-            this.copySelectedData();
-            this._datasource.forEach(v => {
-                v.selected = ids.includes(v.id);
+            let datasourceLen = 0;
+            let selectedLen = 0;
+
+            // 根据已选id数组，从备选当中过滤出已选的数据，同时计算已选length
+            this.selectedDatasource = this.copy(this._datasource).filter(v => {
+
+                // 有二级节点
+                if (v.children) {
+                    v.children = v.children.filter(child => {
+                        return ids.includes(child.id);
+                    });
+                    selectedLen += v.children.length;
+                    return v.children.length;
+                }
+
+                else {
+                    const exist = ids.includes(v.id);
+                    if (exist) {
+                        selectedLen += 1;
+                    }
+                    return exist;
+                }
             });
+
+            this.copySelectedData();
+
+            // 计算备选length
+            datasourceLen = this.leftCountChange(this._datasource);
+
+            // 更新备选数据为选中状态
+            this._datasource.forEach(v => {
+                // 有二级节点
+                if (v.children) {
+                    v.children.forEach(child => {
+                        child.selected = ids.includes(child.id);
+                    });
+                }
+                else {
+                    v.selected = ids.includes(v.id);
+                }
+            });
+
             this.service.sendMsg(
-                { candidateCount: this._allDatasource.length, selectedCount: this.selectedDatasource.length }
+                { candidateCount: datasourceLen, selectedCount: selectedLen }
             );
         }
     }
@@ -230,13 +268,59 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
      * @docs-private
      */
     onModelChange() {
-        this.selectedData = this.selectedDatasource.map(v => v.id);
+        const datasourceLen = this.leftCountChange();
+        const selectedLen = this.rightCountChange();
+
+        this.noticeCountChange(datasourceLen, selectedLen);
+    }
+
+    /**
+     * 更新已选值，并将备选及已选数组length push给basic transfer
+     */
+    noticeCountChange(datasourceLen, selectedLen) {
         if (this._onModelChange) {
             this._onModelChange(this.selectedData);
         }
         this.service.sendMsg(
-            { candidateCount: this._allDatasource.length, selectedCount: this.selectedDatasource.length }
+            { candidateCount: datasourceLen, selectedCount: selectedLen }
         );
+    }
+
+    /**
+     * 计算备选数据length
+     * @param data 备选数据，默认为全量备选数据
+     */
+    leftCountChange(data = this._allDatasource) {
+        let datasourceLen = 0;
+        data.forEach(v => {
+            if (v.children) {
+                datasourceLen += v.children.length;
+                return;
+            }
+            datasourceLen += 1;
+        });
+
+        return datasourceLen;
+    }
+
+    /**
+     * 计算已选数据length
+     */
+    rightCountChange() {
+        let selectedLen = 0;
+        let selectedData = [];
+        this._selectedDatasource.forEach(v => {
+            if (v.children) {
+                selectedLen += v.children.length;
+                selectedData.concat(v.children.map(child => child.id));
+                return;
+            }
+            selectedLen += 1;
+            selectedData.concat(v.id);
+        });
+        this.selectedData = selectedData;
+
+        return selectedLen;
     }
 
     /**
@@ -245,18 +329,63 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
      * @docs-private
      */
     onSelect(element: any) {
-        if (this.disabled || element.selected) {
+        if (this.disabled || element.selected || element.disabled) {
             return;
         }
 
         const exists = this.selectedDatasource.some(item => item.id === element.id);
+
         if (!exists) {
             this.selectedDatasource = [...this.selectedDatasource, element];
+            this._selectedDatasource = [...this._selectedDatasource, element];
             element.selected = true;
-            this.copySelectedData();
+            this._allDatasource.forEach( item => {
+                item.selected = item.id === element.id ? true : item.selected;
+            });
             this.getValue.emit(this.selectedDatasource);
-            this.onModelChange();
+            this.noticeCountChange(null, this.rightCountChange());
         }
+    }
+
+    /**
+     * select child node
+     * @param node current node
+     */
+    onSelectChildNode(parent, element) {
+        if (this.disabled || element.selected || element.disabled) {
+            return;
+        }
+
+        // 判断当前选中节点在已选中是否有parent节点
+        const exsit = this.selectedDatasource.filter(data => data.name === parent);
+
+        if (exsit.length) {
+            this.selectedDatasource.forEach(v => {
+                if (v.name === parent) {
+                    v.children = v.children.concat(element);
+                }
+            });
+        }
+        else {
+            this.selectedDatasource = this.selectedDatasource.concat({
+                name: parent,
+                children: [element]
+            });
+        }
+
+        element.selected = true;
+
+        this._allDatasource.forEach( item => {
+            if (item.children) {
+                item.children.forEach( child => {
+                    child.selected = child.id === element.id ? true : child.selected;
+                });
+            }
+        });
+
+        this.copySelectedData();
+        this.getValue.emit(this.selectedDatasource);
+        this.noticeCountChange(null, this.rightCountChange());
     }
 
     /**
@@ -268,16 +397,70 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
         if (this.disabled) {
             return;
         }
-
+        const selected = ['selectedDatasource', '_selectedDatasource'];
+        const candidate = [this._datasource, this._allDatasource];
         const dataItem = this._datasource.find(v => v.id === element.id);
+
         if (dataItem) {
             dataItem.selected = false;
         }
 
-        this.selectedDatasource = this.selectedDatasource.filter(item => item.id !== element.id);
-        this.copySelectedData();
+        selected.forEach(data => {
+            this[data] = this[data].filter(item => item.id !== element.id);
+        });
+
+        candidate.forEach(data => {
+            data.forEach(item => {
+                if (item.id === element.id) {
+                    item.selected = false;
+                }
+            });
+        });
+
         this.getValue.emit(this.selectedDatasource);
-        this.onModelChange();
+        this.noticeCountChange(null, this.rightCountChange());
+    }
+
+    /**
+     * 删除选中的子节点
+     * @param parent 父节点
+     * @param element 子节点
+     */
+    onRemoveChildNode(parent, element) {
+        if (this.disabled) {
+            return;
+        }
+
+        const candidate = [this._datasource, this._allDatasource];
+        const selected = ['selectedDatasource', '_selectedDatasource'];
+
+        selected.forEach( data => {
+            this[data] = this.copy(this[data]).filter(item => {
+                if (item.name === parent) {
+                    item.children = item.children.filter(child => child.id !== element.id);
+                }
+                return item.children.length;
+            });
+        });
+
+        candidate.forEach(data => {
+            data.forEach(item => {
+                if (item.name === parent) {
+                    item.children.forEach( child => {
+                        if (child.id === element.id) {
+                            child.selected = false;
+                        }
+                    });
+                }
+            });
+        });
+
+        this.getValue.emit(this.selectedDatasource);
+        this.noticeCountChange(null, this.rightCountChange());
+    }
+
+    copy(data) {
+        return JSON.parse(JSON.stringify(data));
     }
 
     /**
@@ -291,14 +474,42 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
         }
         const chkVal = e.chkVal;
 
-        this._datasource.forEach(v => {
-            v.selected = chkVal ? true : false;
-        });
-        this.selectedDatasource = chkVal ? [...this._datasource] : [];
-        this.copySelectedData();
+        this.dataIterator(this._datasource, chkVal ? true : false);
+        this.dataIterator(this._allDatasource, chkVal ? true : false);
 
+        // 已选数据需要过滤掉备选中disabled的数据
+        this.selectedDatasource = chkVal
+            ? this.copy(this._allDatasource).filter(v => {
+                if (v.children) {
+                    v.children = v.children.filter(child => {
+                        return !child.disabled;
+                    });
+                    return v.children.length;
+                }
+                return !v.disabled;
+            })
+            : [];
+
+        this.copySelectedData();
         this.getValue.emit(this.selectedDatasource);
-        this.onModelChange();
+        this.noticeCountChange(null, this.rightCountChange());
+    }
+
+    /**
+     * 数据遍历器
+     * @param origin 待遍历的数据
+     * @param bool
+     */
+    dataIterator(origin, bool) {
+        origin.forEach(v => {
+            if (v.children) {
+                v.children.forEach(child => {
+                    child.selected = bool;
+                });
+                return;
+            }
+            v.selected = bool;
+        });
     }
 
     /**
@@ -310,10 +521,25 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
         const searchText = e.event;
         const mode = e.mode;
         if (mode === 'candidate') {
-            this._datasource = this._allDatasource.filter(element => element.name.indexOf(searchText) !== -1);
+            this._datasource = this.copy(this._allDatasource).filter(v => {
+                if (v.children) {
+                    v.children = v.children.filter(child => {
+                        return child.name.indexOf(searchText) !== -1;
+                    });
+                    return v.children.length;
+                }
+                return v.name.indexOf(searchText) !== -1;
+            });
         } else {
-            this.selectedDatasource
-                = this._selectedDatasource.filter(element => element.name.indexOf(searchText) !== -1);
+            this.selectedDatasource = this.copy(this._selectedDatasource).filter(v => {
+                if (v.children) {
+                    v.children = v.children.filter(child => {
+                        return child.name.indexOf(searchText) !== -1;
+                    });
+                    return v.children.length;
+                }
+                return v.name.indexOf(searchText) !== -1;
+            });
         }
     }
 
@@ -342,6 +568,13 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
      */
     judgeOverLong(event: string) {
         return event.length >= this.nameLenLimit ? true : false;
+    }
+
+    /**
+     * toggle parent node, expand or shrink
+     */
+    onToggle(item: any) {
+        item.shrink = !item.shrink;
     }
 
     /**
@@ -383,20 +616,4 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
-
-    // /**
-    //  * update form model value and mark for check
-    //  * @docs-private
-    //  */
-    // _markForCheck() {
-    //     if (this._onModelChange) {
-    //         this._onModelChange(this.value);
-    //     }
-
-    //     if (this._onTouch) {
-    //         this._onTouch(this.value);
-    //     }
-
-    //     this._cd.markForCheck();
-    // }
 }

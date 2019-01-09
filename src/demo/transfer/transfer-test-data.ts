@@ -3415,7 +3415,8 @@ export const tableConfig = {
             width: 120
         }
     ],
-    colWidth: [140, 90, 80, 80]
+    colWidth: [140, 90, 80, 80],
+    hideCol: ['id', 'disabled']
 };
 
 export const tableData = [
@@ -3456,4 +3457,46 @@ export const tableData = [
     },
 ];
 
-export const selectedIds = [1, 2, 5];
+export const multiTableData = [
+    {
+        name: '美妆护肤人群',
+        children: [
+            {
+                id: 1,
+                disabled: true,
+                name: '欧莱雅',
+                groupCount: '5,263',
+                groupStatus: '计算中',
+                groupType: '视频人群',
+            },
+            {
+                id: 2,
+                name: 'dior',
+                groupCount: '5,744',
+                groupStatus: '计算失败',
+                groupType: '基础人群'
+            },
+        ]
+    },
+    {
+        name: '美妆保湿',
+        children: [
+            {
+                id: 22,
+                name: '人群1',
+                groupCount: '5,263',
+                groupStatus: '计算中',
+                groupType: 'LBS人群'
+            },
+            {
+                id: 23,
+                name: '人群2',
+                groupCount: '5,744',
+                groupStatus: '计算失败',
+                groupType: '基础人群'
+            },
+        ]
+    }
+];
+
+export const selectedIds = [22, 23];

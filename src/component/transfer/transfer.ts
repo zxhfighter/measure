@@ -129,8 +129,12 @@ export class TransferComponent implements OnDestroy {
         private service: TransferService
     ) {
         this.subscription = this.service.getMsg().subscribe(msg => {
-            this.candidateCount = msg.candidateCount;
-            this.selectedCount = msg.selectedCount;
+            if (typeof msg.candidateCount === 'number') {
+                this.candidateCount = msg.candidateCount;
+            }
+            if (typeof msg.selectedCount === 'number') {
+                this.selectedCount = msg.selectedCount;
+            }
             this._cd.markForCheck();
         });
     }
