@@ -57,7 +57,7 @@
                                 <td nb-td [colSpan]="tableConfig.headData.length + 1">
                                     <div #toggleDivs class="icon-wrapper">
                                         <i class="iconfont" [class.icon-right]="data.shrink" [class.icon-down]="!data.shrink"></i>
-                                        {{data.name}}
+                                        {{ data.name }}
                                     </div>
                                 </td>
                             </tr>
@@ -97,7 +97,7 @@
                         (click)="onToggle(item)">
                         <div #toggleDivs class="icon-wrapper">
                             <i class="iconfont" [class.icon-right]="item.shrink" [class.icon-down]="!item.shrink"></i>
-                            {{item.name}}
+                            {{ item.name }}
                         </div>
                     </div>
                     <ng-container *ngIf="!item.shrink">

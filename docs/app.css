@@ -136,15 +136,15 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
-pre.line-numbers {
+pre[class*="language-"].line-numbers {
 	position: relative;
 	padding-left: 3.8em;
 	counter-reset: linenumber;
 }
 
-pre.line-numbers > code {
+pre[class*="language-"].line-numbers > code {
 	position: relative;
-    white-space: inherit;
+	white-space: inherit;
 }
 
 .line-numbers .line-numbers-rows {
@@ -176,7 +176,8 @@ pre.line-numbers > code {
 			display: block;
 			padding-right: 0.8em;
 			text-align: right;
-		}/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+		}
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -13785,6 +13786,7 @@ a.nb-button[disabled]:active {
 .nb-transfer-candidate,
 .nb-transfer-selected {
   display: inline-block;
+  vertical-align: middle;
   width: 230px;
   height: 360px;
   padding-bottom: 20px;
@@ -13863,6 +13865,9 @@ a.nb-button[disabled]:active {
   padding-left: 20px;
   line-height: 36px;
 }
+.selected-item .selected-children-item {
+  margin-left: 20px;
+}
 .selected-item .group-name {
   float: left;
   max-width: 250px;
@@ -13890,6 +13895,13 @@ a.nb-button[disabled]:active {
 }
 .nb-table-row-selected:hover {
   cursor: default;
+}
+.nb-table-row-parent {
+  border-bottom: none;
+}
+.nb-table-row-parent .icon-wrapper {
+  cursor: pointer;
+  margin-left: -20px;
 }
 .nb-slider {
   position: relative;
@@ -18665,4 +18677,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.05ee60.bundle.map*/
+/*# sourceMappingURL=app.0147a3.bundle.map*/

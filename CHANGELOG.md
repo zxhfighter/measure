@@ -1,3 +1,8 @@
+<a name="7.0.7"></a>
+## [7.0.7](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.7) (2019-01-09)
+
+
+
 <a name="7.0.6"></a>
 ## [7.0.6](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.6) (2019-01-07)
 
