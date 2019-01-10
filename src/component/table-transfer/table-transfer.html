@@ -74,6 +74,19 @@
                         </ng-container>
                     </ng-container>
                 </tbody>
+                <tbody nb-tbody *ngIf="!candidateData.length">
+                    <tr nb-row class="nb-table-row-empty">
+                        <td nb-td colspan="3">
+                            <ng-container *ngIf="emptyTpl else defaultEmpty">
+                                <ng-container *ngTemplateOutlet="emptyTpl;context: {$implicit: item}"></ng-container>
+                            </ng-container>
+
+                            <ng-template #defaultEmpty>
+                                {{ emptyMessage }}
+                            </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </nb-transfer-candidate>

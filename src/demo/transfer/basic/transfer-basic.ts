@@ -13,6 +13,7 @@ import {
     tableConfig,
     multiTableData
 } from '../transfer-test-data';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'demo-transfer-basic',
@@ -65,6 +66,10 @@ export class TransferBasicDemo implements OnInit {
     // name length limit
     nameLenLimit = 7;
 
+    constructor(
+        private router: Router
+    ) {}
+
     ngOnInit() {
         setTimeout(() => {
             this.candidateDataEmpty = candidateDataEmpty;
@@ -76,6 +81,10 @@ export class TransferBasicDemo implements OnInit {
 
     getValue(event) {
         console.log(event);
+    }
+
+    jump() {
+        this.router.navigate(['/components/table']);
     }
 
     searchValue(event) {

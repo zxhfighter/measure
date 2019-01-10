@@ -74,8 +74,9 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
      */
     @Input()
     set candidateData(val: any) {
-        this._datasource = val;
-        this._allDatasource = [...val];
+        const value = val || [];
+        this._datasource = value;
+        this._allDatasource = [...value];
     }
 
     get candidateData() {
@@ -161,6 +162,16 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
     @Input() optionTplRight: TemplateRef<any>;
 
     /**
+     * 空数据模板
+     */
+    @Input() emptyTpl: TemplateRef<any>;
+
+    /**
+     * 空数据字符串
+     */
+    @Input() emptyMessage: string = '暂无数据';
+
+    /**
      * return method make object formatter to array
      * @docs-private
      */
@@ -213,53 +224,65 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
     ) { }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes['selectedData']) {
-            const ids: any[] = changes['selectedData'].currentValue;
+        const candidate = changes['candidateData'];
+        const selected = changes['selectedData'];
+        const candidateVal = candidate && candidate.currentValue;
+        const selectedVal = selected && selected.currentValue;
+
+        if ((selected && selectedVal && selectedVal.length)
+            || (candidate && candidateVal && candidateVal.length)) {
+
             let datasourceLen = 0;
             let selectedLen = 0;
 
+            const ids: any[] = selectedVal ? selectedVal : this.selectedData;
+
+            const datasource = candidateVal ? candidateVal : this._datasource;
+
             // 根据已选id数组，从备选当中过滤出已选的数据，同时计算已选length
-            this.selectedDatasource = this.copy(this._datasource).filter(v => {
+            if (datasource && datasource.length) {
+                this.selectedDatasource = this.copy(datasource).filter(v => {
 
-                // 有二级节点
-                if (v.children) {
-                    v.children = v.children.filter(child => {
-                        return ids.includes(child.id);
-                    });
-                    selectedLen += v.children.length;
-                    return v.children.length;
-                }
-
-                else {
-                    const exist = ids.includes(v.id);
-                    if (exist) {
-                        selectedLen += 1;
+                    // 有二级节点
+                    if (v.children) {
+                        v.children = v.children.filter(child => {
+                            return ids.includes(child.id);
+                        });
+                        selectedLen += v.children.length;
+                        return v.children.length;
                     }
-                    return exist;
-                }
-            });
 
-            this.copySelectedData();
+                    else {
+                        const exist = ids.includes(v.id);
+                        if (exist) {
+                            selectedLen += 1;
+                        }
+                        return exist;
+                    }
+                });
 
-            // 计算备选length
-            datasourceLen = this.leftCountChange(this._datasource);
+                this.copySelectedData();
 
-            // 更新备选数据为选中状态
-            this._datasource.forEach(v => {
-                // 有二级节点
-                if (v.children) {
-                    v.children.forEach(child => {
-                        child.selected = ids.includes(child.id);
-                    });
-                }
-                else {
-                    v.selected = ids.includes(v.id);
-                }
-            });
+                // 计算备选length
+                datasourceLen = this.leftCountChange(datasource);
 
-            this.service.sendMsg(
-                { candidateCount: datasourceLen, selectedCount: selectedLen }
-            );
+                // 更新备选数据为选中状态
+                datasource.forEach(v => {
+                    // 有二级节点
+                    if (v.children) {
+                        v.children.forEach(child => {
+                            child.selected = ids.includes(child.id);
+                        });
+                    }
+                    else {
+                        v.selected = ids.includes(v.id);
+                    }
+                });
+
+                this.service.sendMsg(
+                    { candidateCount: datasourceLen, selectedCount: selectedLen }
+                );
+            }
         }
     }
 
@@ -308,15 +331,18 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
      */
     rightCountChange() {
         let selectedLen = 0;
-        let selectedData = [];
+        let selectedData: any[] = [];
+
         this._selectedDatasource.forEach(v => {
             if (v.children) {
                 selectedLen += v.children.length;
-                selectedData.concat(v.children.map(child => child.id));
+                v.children.forEach(child => {
+                    selectedData.push(child.id);
+                });
                 return;
             }
+            selectedData.push(v.id);
             selectedLen += 1;
-            selectedData.concat(v.id);
         });
         this.selectedData = selectedData;
 

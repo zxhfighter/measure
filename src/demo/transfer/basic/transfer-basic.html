@@ -159,6 +159,11 @@
         [selectedSearch]="false"
         [disabled]="false"
         (getValue)="getValue($event)"
+        [emptyTpl]="empty"
         (searchValue)="searchValue($event)"
         (onExpandNode)="expandNode($event)"></nb-table-transfer>
 </p>
+
+<ng-template #empty>
+    您账户下目前无有效人群，前往 <a class="main-link" (click)="jump()">添加人群</a>
+</ng-template>
