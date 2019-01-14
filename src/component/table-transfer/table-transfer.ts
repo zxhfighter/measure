@@ -279,9 +279,7 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
                     }
                 });
 
-                this.service.sendMsg(
-                    { candidateCount: datasourceLen, selectedCount: selectedLen }
-                );
+                this.noticeCountChange(datasourceLen, selectedLen);
             }
         }
     }
@@ -530,7 +528,9 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
         origin.forEach(v => {
             if (v.children) {
                 v.children.forEach(child => {
-                    child.selected = bool;
+                    if (!child.disabled) {
+                        child.selected = bool;
+                    }
                 });
                 return;
             }

@@ -13838,6 +13838,7 @@ a.nb-button[disabled]:active {
 .nb-table-row .icon-arrow-right,
 .nb-table-row .icon-check {
   display: none;
+  line-height: 0;
 }
 .nb-table-row:hover:not(.nb-table-row-selected) .icon-arrow-right {
   display: inline-block;
@@ -18679,4 +18680,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.191c0d.bundle.map*/
+/*# sourceMappingURL=app.5cf234.bundle.map*/
