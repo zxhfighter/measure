@@ -274,9 +274,7 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
                 if (self._headItems) {
                     // reset other head item order status
                     self._headItems.forEach(v => {
-                        if (v.field !== self.orderBy) {
-                            v.order = '';
-                        }
+                        v.order = (v.field !== self.orderBy ? '' : order);
                     });
 
                     // emit sort param
