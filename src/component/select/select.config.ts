@@ -5,6 +5,7 @@ export class SelectConfig {
     value?: any;
     label: string;
     children?: any[];
+    init?: boolean;
 }
 
 export class OptionsStyles {

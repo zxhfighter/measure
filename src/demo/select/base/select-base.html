@@ -35,6 +35,15 @@
 </p>
 
 <p>
+    设置默认值
+    <br>
+    <nb-select #select2 [datasource]="datasource"
+               [value]="selectedData3">
+    </nb-select>
+    <a (click)="clear(select2)">清除已选的值</a>
+</p>
+
+<p>
     支持搜索
     <br>
     <nb-select [datasource]="datasource"

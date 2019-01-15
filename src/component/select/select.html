@@ -1,18 +1,23 @@
-<button nbOverlayOrigin nb-button
+<button 
+    nbOverlayOrigin 
+    nb-button
     #origin="nbOverlayOrigin"
-    type="button" theme="{{theme}}" size="{{size}}" (click)="onToggle()">
-        <span class="nb-select-label">{{ selectedData.label }}</span>
-        <i class="nb-select-icon {{ direction }}"></i>
+    type="button" 
+    theme="{{theme}}" 
+    size="{{size}}" 
+    (click)="onToggle()">
+    <span class="nb-select-label">{{ selectedData.label }}</span>
+    <i class="nb-select-icon {{ direction }}"></i>
 </button>
 
 <nb-overlay #overlay class="nb-select-overlay"
     placement="bottom-left" (closeHandler)="onClosePanel($event)">
     <nb-select-options
-                    (onChange)="onSelectedOption($event)"
-                    [styles]="styles"
-                    [value]="value"
-                    [searchable]="searchable"
-                    [optionTpl]="optionTpl"
-                    [data]="datasource">
+        (onChange)="onSelectedOption($event)"
+        [styles]="styles"
+        [value]="value"
+        [searchable]="searchable"
+        [optionTpl]="optionTpl"
+        [data]="datasource">
     </nb-select-options>
 </nb-overlay>

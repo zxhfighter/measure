@@ -12,7 +12,7 @@ export class SelectBaseDemo implements AfterViewInit {
     formGroup: FormGroup;
     selectedData1: SelectConfig;
     selectedData2: SelectConfig;
-    selectedData3: any = 2;
+    selectedData3: any;
     selectedData4: SelectConfig;
     selectedData5: SelectConfig;
     datasource: SelectConfig[] = [
@@ -99,6 +99,10 @@ export class SelectBaseDemo implements AfterViewInit {
         this.formGroup = this.fb.group({
             crowd: [null]
         });
+
+        setTimeout(() => {
+            this.selectedData3 = 2;
+        }, 1000);
     }
 
     ngAfterViewInit() {
