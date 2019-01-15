@@ -1,6 +1,6 @@
 import {
     Component, Input, Output, EventEmitter, ElementRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, 
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy,
     AfterViewInit, OnChanges
 } from '@angular/core';
 import { SelectConfig } from '../select/select.config';
@@ -135,7 +135,7 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
 
         this.setPage();
     }
-    
+
     ngAfterViewInit() {
         // init class list
         this.setClass();
