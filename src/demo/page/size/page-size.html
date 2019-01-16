@@ -1,5 +1,29 @@
-<nb-page [total]="total" [count]="count" [list]="list" (pageChange)="pageChange($event)"></nb-page>
+<nb-page 
+    [total]="total" 
+    [count]="count1"
+    [curIndex]="curIndex1" 
+    [list]="list" 
+    (pageChange)="pageChange($event)">
+</nb-page>
+
 <br>
-<nb-page [total]="total" [count]="count" [list]="list" (pageChange)="pageChange($event)" size="sm"></nb-page>
+
+<nb-page 
+    [total]="total" 
+    [count]="count2" 
+    [curIndex]="curIndex2" 
+    [list]="list" 
+    (pageChange)="pageChange($event)" 
+    size="sm">
+</nb-page>
+
 <br>
-<nb-page [total]="total" [count]="count" [list]="list" (pageChange)="pageChange($event)" theme="xxl"></nb-page>
+
+<nb-page 
+    [total]="total" 
+    [count]="count3" 
+    [curIndex]="curIndex3" 
+    [list]="list" 
+    (pageChange)="pageChange($event)" 
+    theme="xxl">
+</nb-page>

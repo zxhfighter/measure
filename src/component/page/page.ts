@@ -1,6 +1,7 @@
 import {
     Component, Input, Output, EventEmitter, ElementRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, OnChanges
+    OnInit, ViewEncapsulation, ChangeDetectionStrategy,
+    AfterViewInit, OnChanges
 } from '@angular/core';
 import { SelectConfig } from '../select/select.config';
 import { addClass, dedupleClassName } from '../util/dom';
@@ -21,6 +22,7 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
      * @default ''
      */
     @Input() theme: string = '';
+
     // 每页20条
     // count = 20;
     /**
@@ -28,6 +30,14 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
      * @default default
      */
     @Input() count: number = 20;
+
+    // 第几页
+    // curIndex = 1;
+    /**
+     * page curIndex
+     * @default default
+     */
+    @Input() curIndex: number = 1;
 
     /**
      * total count
@@ -108,6 +118,10 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
 
     }
 
+    ngOnChanges() {
+        this.setPage();
+    }
+
     ngOnInit() {
         if (this.list && this.list.length > 0) {
             this.selectData = [];
@@ -121,9 +135,7 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
 
         this.setPage();
     }
-    ngOnChanges() {
-        this.setPage();
-    }
+
     ngAfterViewInit() {
         // init class list
         this.setClass();
@@ -167,6 +179,8 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
         for (let i = 1; i <= pageCount; i++) {
             this.pageSize.push(i);
         }
+
+        this.currrentIndex = this.curIndex;
         if (this.pageSize.length < this.currrentIndex) {
             this.currrentIndex = 1;
         }
