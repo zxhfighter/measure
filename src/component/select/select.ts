@@ -98,12 +98,13 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
         this.selectedData = data;
         const initState = this.selectedData.init;
         this.value = this.selectedData.value;
-        this.onChange.emit({
-            value: this.selectedData.value,
-            label: this.selectedData.label
-        });
+        
         this.onModelChange(this.selectedData);
         if (!initState) {
+            this.onChange.emit({
+                value: this.selectedData.value,
+                label: this.selectedData.label
+            });
             this.changeState();
         }
         this.onModelTouched();

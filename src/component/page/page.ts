@@ -220,7 +220,7 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
      */
     setCount(event) {
         this.count = event.value;
-        this.currrentIndex = 1;
+        this.currrentIndex = this.curIndex;
         this.pageChange.emit({
             currrentIndex: this.currrentIndex,
             count: this.count
