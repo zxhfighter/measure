@@ -20,7 +20,7 @@
     <h3>with reactive forms:</h3>
     <form [formGroup]="form">
 
-        <nb-boxgroup type="radio" formControlName="radioBox">
+        <nb-boxgroup type="radio" formControlName="radioBox" (change)="onRadioChange($event)">
             <nb-checkbox value="apple">apple</nb-checkbox>
             <nb-checkbox value="banana">banana</nb-checkbox>
             <nb-checkbox value="grape">grape</nb-checkbox>
