@@ -3,6 +3,7 @@
         <span class="total-page">共<span class="total">{{ total }}</span>条</span>
         <span class="total-page">每页条数</span>
         <nb-select 
+            [(ngModel)]="count"
             [datasource]="selectData" 
             [defaultLabel]="count" 
             [value]="count"
