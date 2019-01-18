@@ -31,15 +31,15 @@ export class PageSizeDemo {
     count3 = 30;
 
     constructor() {
-        // setTimeout(() => {
-        //     this.curIndex1 = 1;
-        //     this.curIndex2 = 2;
-        //     this.curIndex3 = 3;
+        setTimeout(() => {
+            this.curIndex1 = 2;
+            // this.curIndex2 = 2;
+            // this.curIndex3 = 3;
 
-        //     this.count1 = 10;
-        //     this.count2 = 20;
-        //     this.count3 = 30;
-        // });
+            this.count1 = 20;
+            // this.count2 = 20;
+            // this.count3 = 30;
+        }, 1000);
     }
 
     pageChange(event) {

@@ -42,15 +42,15 @@ export class SelectOptionsComponent implements ControlValueAccessor, OnChanges, 
             this._data = SelectOptionsComponent._clone(this.data);
             this.cd.markForCheck();
         }
-        if ('value' in simpleChanges) {
-            const currentValue = simpleChanges['value'].currentValue;
-            if (currentValue) {
-                const selectedData = this._data.filter(item => item.value === currentValue);
-                if (selectedData.length) {
-                    this.onChange.emit({...selectedData[0], ...{init: true}});
-                }
-            }
-        }
+        // if ('value' in simpleChanges) {
+        //     const currentValue = simpleChanges['value'].currentValue;
+        //     if (currentValue) {
+        //         const selectedData = this._data.filter(item => item.value === currentValue);
+        //         if (selectedData.length) {
+        //             this.onChange.emit({...selectedData[0], ...{init: true}});
+        //         }
+        //     }
+        // }
     }
 
     ngOnInit() {
