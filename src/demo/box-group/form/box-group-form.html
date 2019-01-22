@@ -35,9 +35,10 @@
         </nb-boxgroup>
         <br>
 
-        <nb-boxgroup type="radio" formControlName="detailMarketType">
+        <nb-boxgroup type="radio" formControlName="detailMarketType" (change)="onDetailMarketTypeChange($event)">
             <nb-checkbox value="any">不限</nb-checkbox>
             <nb-checkbox value="market">选择细分市场</nb-checkbox>
+            <nb-checkbox hidden value="xyz">3</nb-checkbox>
         </nb-boxgroup>
 
         {{ form.value | json }}

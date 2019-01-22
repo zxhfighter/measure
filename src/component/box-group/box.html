@@ -6,7 +6,8 @@
         class="visually-hidden"
         [checked]="checked"
         [disabled]="disabled"
-        (change)="onChange(checkbox.checked, $event)">
+        (click)="onChange(checkbox.checked, $event)"
+        (change)="onInputChange($event)">
 
     <ng-content></ng-content>
 </label>
