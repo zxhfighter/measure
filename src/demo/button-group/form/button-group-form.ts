@@ -34,4 +34,8 @@ export class ButtonGroupFormDemo implements OnInit, AfterViewInit {
         //     this.formGroup.get('fruits').setValue(['falsh']);
         // }, 2000);
     }
+
+    onButtonGroupChange(params: any) {
+        console.log(params);
+    }
 }

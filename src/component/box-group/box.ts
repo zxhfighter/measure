@@ -160,7 +160,17 @@ export class InputBoxComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
 
     /**
-     * Prevent default change event
+     * Prevent input default change event
+     *
+     * @param {Event} event - original change event, to prevent input default change event
+     * @docs-private
+     */
+    onInputChange(event: Event) {
+        this.preventCheckboxDefaultEvent(event);
+    }
+
+    /**
+     * Prevent default click event
      *
      * @param {Event} event - original change event, to prevent input default change event
      * @docs-private

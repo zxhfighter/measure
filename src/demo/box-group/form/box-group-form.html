@@ -20,7 +20,7 @@
     <h3>with reactive forms:</h3>
     <form [formGroup]="form">
 
-        <nb-boxgroup type="radio" formControlName="radioBox">
+        <nb-boxgroup type="radio" formControlName="radioBox" (change)="onRadioChange($event)">
             <nb-checkbox value="apple">apple</nb-checkbox>
             <nb-checkbox value="banana">banana</nb-checkbox>
             <nb-checkbox value="grape">grape</nb-checkbox>
@@ -35,9 +35,10 @@
         </nb-boxgroup>
         <br>
 
-        <nb-boxgroup type="radio" formControlName="detailMarketType">
+        <nb-boxgroup type="radio" formControlName="detailMarketType" (change)="onDetailMarketTypeChange($event)">
             <nb-checkbox value="any">不限</nb-checkbox>
             <nb-checkbox value="market">选择细分市场</nb-checkbox>
+            <nb-checkbox hidden value="xyz">3</nb-checkbox>
         </nb-boxgroup>
 
         {{ form.value | json }}

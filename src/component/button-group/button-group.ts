@@ -217,6 +217,10 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
      * @param value Value to be set to the model.
      */
     writeValue(value: any[]) {
+        if (value && !Array.isArray(value)) {
+            throw new Error('使用表单赋值时，button-group 的值必须传入数组形式，即使单选框也一样');
+        }
+
         if (value) {
             this.value = value;
 
@@ -263,9 +267,10 @@ export class ButtonGroupComponent implements ControlValueAccessor, AfterContentI
             boxList.forEach(v => v.checked = value.includes(v.value + ''));
         }
 
+        const currentValue = Array.isArray(value) && value.length ? value[value.length - 1] : '';
         // emit change value
         this.change.emit({
-            currentValue: value,
+            currentValue,
             value: this.value
         });
 
