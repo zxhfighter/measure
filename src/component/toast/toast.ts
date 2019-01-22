@@ -24,6 +24,12 @@ export class ToastComponent {
     // Create a new toast
     createToast(toastData: any): void {
         toastData.options = this._mergeOptions(toastData.options);
+        // prevent duplicate
+        const existToast = this.toasts.find(toast =>
+            toast.type === toastData.type && toast.content === toastData.content);
+        if (existToast) {
+            return;
+        }
         this.toasts.push(toastData);
         this.cd.markForCheck();
     }
