@@ -36,6 +36,7 @@
 <form [formGroup]="formGroup">
     <nb-button-group
         type="radio"
+        (change)="onButtonGroupChange($event)"
         [datasource]="datasource"
         formControlName="fruits">
     </nb-button-group>

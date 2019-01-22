@@ -165,7 +165,7 @@ export class CalendarComponent {
         this.mode = 'month';
 
         // update temp year
-        this.tempYear = moment(this.value).year();
+        // this.tempYear = moment(this.value).year();
     }
 
     onReturnCalendar() {
@@ -214,6 +214,7 @@ export class CalendarComponent {
             date.add(1, 'M');
 
             this.month = date.toDate();
+            this.tempYear = date.year();
         }
     }
 
@@ -229,6 +230,8 @@ export class CalendarComponent {
 
         // update currently show month date
         this.month = date.toDate();
+
+        this.tempYear = year;
 
         // return to calendar mode
         this.mode = 'calendar';
