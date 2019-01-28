@@ -79,7 +79,10 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.el.nativeElement.remove();
+        const nativeElement = this.el.nativeElement;
+        if (nativeElement && nativeElement.parentNode) {
+            nativeElement.parentNode.removeChild(nativeElement);
+        }
 
         // remove document click listener
         if (this._documentClickListener) {
