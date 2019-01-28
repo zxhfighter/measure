@@ -140,6 +140,9 @@ export class TiplayerComponent extends OverlayComponent implements OnInit, OnDes
     }
 
     ngOnDestroy() {
-        this.el.nativeElement.remove();
+        const nativeElement = this.el.nativeElement;
+        if (nativeElement && nativeElement.parentNode) {
+            nativeElement.parentNode.removeChild(nativeElement);
+        }
     }
 }
