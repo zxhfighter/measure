@@ -200,8 +200,10 @@
         margin: @uploader-file-list-margin;
 
         .file-item {
+            width: @uploader-horizontal-file-width;
             height: @uploader-file-item-height;
             line-height: @uploader-file-item-height;
+            padding-right: @uploader-horizontal-file-gap;
 
             .icon-paperclip {
                 margin: @uploader-file-icon-paperclip-margin;
@@ -286,7 +288,5 @@
     }
     .file-item {
         float: left;
-        width: @uploader-horizontal-file-width;
-        padding-right: @uploader-horizontal-file-gap;
     }
 }
