@@ -211,12 +211,17 @@ export class UploaderComponent implements OnInit {
                     else {
                         this.files.push(file);
                     }
-                    this.upload(file);
-
-                    this._updateFormModel();
                 }
             }
         }
+
+        this._updateFormModel();
+
+        this.files.forEach(file => {
+            if (file.state === 'toBeUpload') {
+              this.upload(file);
+            }
+        });
     }
 
     /**
