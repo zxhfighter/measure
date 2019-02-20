@@ -33,7 +33,7 @@ const SLIDER_VALUE_ACCESSOR = {
     preserveWhitespaces: false,
     providers: [SLIDER_VALUE_ACCESSOR],
     host: {
-        'class': 'nb-widget nb-slider'
+        'class': 'nb-widget'
     },
     exportAs: 'nbSlider'
 })
@@ -190,15 +190,17 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
     }
 
     ngOnInit() {
-        setTimeout(() => {
-            this.initSlider();
-        }, 0);
+        this.initSlider();
     }
 
     ngAfterViewInit() {
+        this.afterView();
+
         setTimeout(() => {
-            this.afterView();
-        }, 0);
+            // 设置hand能移动的范围值
+            const slider = this._slider.nativeElement as HTMLElement;
+            this.limitMove = this.orientation ? slider.clientWidth : slider.clientHeight;
+        }, 500);
     }
 
     /**
@@ -357,10 +359,6 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
         if (this.disabled) {
             return;
         }
-
-        // 设置hand能移动的范围值
-        const slider = this._slider.nativeElement as HTMLElement;
-        this.limitMove = this.orientation ? slider.clientWidth : slider.clientHeight;
 
         let endOffset = this.orientation ? e.offsetX : (this.limitMove - e.offsetY);
         let endPos = endOffset / this.limitMove * 100;
