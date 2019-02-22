@@ -20,9 +20,10 @@
 @uploader-file-item-height: 28px;
 @uploader-file-progress-error-reupload-margin: 0 15px;
 @uploader-file-icon-close-right: 5px;
-@uploader-file-icon-paperclip-margin: 4px 5px 0;
+@uploader-file-icon-paperclip-margin: 1px 5px 0;
 @uploader-file-icon-paperclip-fontsize: 12px;
-@uploader-horizontal-file-width: 300px;
+@uploader-horizontal-file-width: 350px;
+@uploader-horizontal-file-gap: 50px;
 
 .@{prefix}-uploader {
     display: block;
@@ -199,31 +200,14 @@
         margin: @uploader-file-list-margin;
 
         .file-item {
+            width: @uploader-horizontal-file-width;
             height: @uploader-file-item-height;
             line-height: @uploader-file-item-height;
+            padding-right: @uploader-horizontal-file-gap;
 
             .icon-paperclip {
                 margin: @uploader-file-icon-paperclip-margin;
                 font-size: @uploader-file-icon-paperclip-fontsize;
-            }
-        }
-
-        .file-progress-finish {
-            position: relative;
-
-            &:hover {
-                background-color: @disabled-background;
-            }
-
-            &:hover .icon-close {
-                display: block;
-            }
-
-            .icon-close {
-                position: absolute;
-                top: 0;
-                right: @uploader-file-icon-close-right;
-                display: none;
             }
         }
 
@@ -236,12 +220,24 @@
             }
         }
 
-        .file-progress-error {
+        .file-progress-error,.file-progress-finish {
             display: flex;
             flex-direction: row;
+            > span,
+            > i {
+                flex-shrink: 0;
+            }
 
-            .progress-error-msg {
+            &:hover {
+                background-color: @disabled-background;
+            }
+
+            .file-name {
                 flex-grow: 1;
+                flex-shrink: 1;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
             }
         }
 
@@ -292,6 +288,5 @@
     }
     .file-item {
         float: left;
-        width: @uploader-horizontal-file-width;
     }
 }

@@ -13640,27 +13640,14 @@ a.nb-button[disabled]:active {
   margin: 10px 0;
 }
 .nb-uploader-file .file-list .file-item {
+  width: 350px;
   height: 28px;
   line-height: 28px;
+  padding-right: 50px;
 }
 .nb-uploader-file .file-list .file-item .icon-paperclip {
-  margin: 4px 5px 0;
+  margin: 1px 5px 0;
   font-size: 12px;
-}
-.nb-uploader-file .file-list .file-progress-finish {
-  position: relative;
-}
-.nb-uploader-file .file-list .file-progress-finish:hover {
-  background-color: #f7f7f7;
-}
-.nb-uploader-file .file-list .file-progress-finish:hover .icon-close {
-  display: block;
-}
-.nb-uploader-file .file-list .file-progress-finish .icon-close {
-  position: absolute;
-  top: 0;
-  right: 5px;
-  display: none;
 }
 .nb-uploader-file .file-list .file-progress-start {
   display: flex;
@@ -13669,12 +13656,28 @@ a.nb-button[disabled]:active {
 .nb-uploader-file .file-list .file-progress-start .file-progress-bar {
   flex-grow: 1;
 }
-.nb-uploader-file .file-list .file-progress-error {
+.nb-uploader-file .file-list .file-progress-error,
+.nb-uploader-file .file-list .file-progress-finish {
   display: flex;
   flex-direction: row;
 }
-.nb-uploader-file .file-list .file-progress-error .progress-error-msg {
+.nb-uploader-file .file-list .file-progress-error > span,
+.nb-uploader-file .file-list .file-progress-finish > span,
+.nb-uploader-file .file-list .file-progress-error > i,
+.nb-uploader-file .file-list .file-progress-finish > i {
+  flex-shrink: 0;
+}
+.nb-uploader-file .file-list .file-progress-error:hover,
+.nb-uploader-file .file-list .file-progress-finish:hover {
+  background-color: #f7f7f7;
+}
+.nb-uploader-file .file-list .file-progress-error .file-name,
+.nb-uploader-file .file-list .file-progress-finish .file-name {
   flex-grow: 1;
+  flex-shrink: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .nb-uploader-file .file-list .progress-error-reupload {
   margin: 0 15px;
@@ -13715,7 +13718,6 @@ a.nb-button[disabled]:active {
 }
 .nb-uploader-horizontal .file-item {
   float: left;
-  width: 300px;
 }
 .nb-transfer-title {
   height: 36px;
@@ -13931,7 +13933,7 @@ a.nb-button[disabled]:active {
   background-color: #fff;
   z-index: 2;
 }
-.nb-slider .nb-spinner {
+.nb-spinner {
   position: relative;
   float: right;
   top: -20px;
@@ -18680,4 +18682,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.b136c1.bundle.map*/
+/*# sourceMappingURL=app.677d46.bundle.map*/

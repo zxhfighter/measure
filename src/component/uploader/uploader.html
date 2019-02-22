@@ -76,7 +76,9 @@
                         <i class="iconfont icon-close" title="Close" (click)="onCancelFile(file)"></i>
                     </div>
                     <div class="file-progress-error" [class.hidden]="file.state!=='error'">
-                        <span class="progress-error-msg">{{ file.name }}&nbsp;&nbsp;上传失败</span>
+                        <span class="iconfont icon-paperclip"></span>
+                        <span class="file-name" title="{{ file.name }}">{{ file.name }}</span>
+                        <span class="progress-error-msg">上传失败</span>
                         <span class="progress-error-reupload" (click)="onReuploadFile(file)">
                             <i class="iconfont icon-redo"></i>
                             重试
@@ -85,7 +87,7 @@
                     </div>
                     <div class="file-progress-finish" [class.hidden]="file.state!=='success'">
                         <span class="iconfont icon-paperclip"></span>
-                        <span class="file-name">{{ file.name }}</span>
+                        <span class="file-name" title="{{ file.name }}">{{ file.name }}</span>
                         <i class="iconfont icon-close" title="Close" (click)="onRemoveFile(file)"></i>
                     </div>
             </li>
