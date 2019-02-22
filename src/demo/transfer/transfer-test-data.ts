@@ -3,7 +3,7 @@ export const candidateDataEmpty = [
         id: '1',
         name: '中国1',
         selectable: true,
-        isExpanded: true,
+        isExpanded: false,
         isSelected: false,
         ico: 'custom',
         expandedIco: 'expanded',
@@ -1072,7 +1072,7 @@ export const candidateDataEmpty = [
         id: '2',
         name: '美国',
         selectable: true,
-        isExpanded: true,
+        isExpanded: false,
         isSelected: false,
         ico: 'custom',
         expandedIco: 'expanded',
@@ -1146,7 +1146,7 @@ export const candidateDataEmpty = [
 export const candidateData = [
     {
         id: '1',
-        name: '中国1',
+        name: '中国',
         selectable: true,
         isExpanded: true,
         isSelected: false,
@@ -1181,7 +1181,7 @@ export const candidateData = [
                         children: [
                             {
                                 id: '010101',
-                                name: '东城区',
+                                name: '东城区东城区东城区',
                                 selectable: true,
                                 isExpanded: false,
                                 isSelected: true,
@@ -2291,7 +2291,7 @@ export const candidateData = [
 export const selectedData = [
     {
         id: '1',
-        name: '中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国',
+        name: '中国',
         selectable: true,
         isExpanded: true,
         isSelected: true,
@@ -2303,7 +2303,7 @@ export const selectedData = [
         children: [
             {
                 id: '01',
-                name: '华北华北华北华北华北华北华北华北华北华北华北华北华北华北',
+                name: '华北',
                 selectable: true,
                 isExpanded: true,
                 isSelected: true,
@@ -2316,7 +2316,7 @@ export const selectedData = [
                 children: [
                     {
                         id: '0101',
-                        name: '北京北京北京北京北京北京北京北京北京北京北京',
+                        name: '北京',
                         selectable: true,
                         isExpanded: true,
                         isSelected: true,
@@ -2329,7 +2329,7 @@ export const selectedData = [
                         children: [
                             {
                                 id: '010101',
-                                name: '东城区东城区东城区东城区东城区',
+                                name: '东城区东城区东城区',
                                 selectable: true,
                                 isExpanded: true,
                                 isSelected: true,
@@ -3464,7 +3464,7 @@ export const multiTableData = [
             {
                 id: 1,
                 disabled: true,
-                name: '欧莱雅',
+                name: '仁慧红八林瑗婵清义',
                 groupCount: '5,263',
                 groupStatus: '计算中',
                 groupType: '视频人群',
