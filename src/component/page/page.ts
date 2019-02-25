@@ -52,7 +52,7 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
      * showCount count
      * @default default
      */
-    @Input() 
+    @Input()
     get showCount(): number {
         return this._showCount;
     }

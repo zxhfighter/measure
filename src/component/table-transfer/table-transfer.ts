@@ -546,25 +546,27 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
     searchByKeyWord(e: any) {
         const searchText = e.event;
         const mode = e.mode;
+        const key = new RegExp(searchText.trim(), 'i');
+
         if (mode === 'candidate') {
             this._datasource = this.copy(this._allDatasource).filter(v => {
                 if (v.children) {
                     v.children = v.children.filter(child => {
-                        return child.name.indexOf(searchText) !== -1;
+                        return child.name && child.name.match(key);
                     });
                     return v.children.length;
                 }
-                return v.name.indexOf(searchText) !== -1;
+                return v.name && v.name.match(key);
             });
         } else {
             this.selectedDatasource = this.copy(this._selectedDatasource).filter(v => {
                 if (v.children) {
                     v.children = v.children.filter(child => {
-                        return child.name.indexOf(searchText) !== -1;
+                        return child.name && child.name.match(key);
                     });
                     return v.children.length;
                 }
-                return v.name.indexOf(searchText) !== -1;
+                return v.name && v.name.match(key);
             });
         }
     }

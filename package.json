@@ -1,6 +1,6 @@
 {
   "name": "xdesign",
-  "version": "7.0.23",
+  "version": "7.0.24",
   "description": "xdesign - A enterprize angular ui component library",
   "main": "./bundle/xdesign.umd.min.js",
   "sideEffects": false,
@@ -13,7 +13,7 @@
     "watch:test": "npm run test -- --auto-watch --no-single-run",
     "rm": "rm -rf aot && rm -rf dist",
     "build": "gulp build",
-    "build:demo": "gulp build:demo",
+    "build:demo": "node --max-old-space-size=8192 ./node_modules/.bin/gulp build:demo",
     "lint": "gulp lint",
     "e2e": "gulp e2e",
     "clean": "gulp clean",
