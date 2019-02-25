@@ -118,7 +118,15 @@ export class SideBarComponent implements OnInit {
             }
         }
     }
-
+    /**
+     * @param {string} keyWord 搜索的字符串片段
+     * @param {string} fullWord 完整的字符串
+     * @returns boolean 字符串片段在字符串中的位置
+     */
+    ignoreCapSearch(keyWord: string, fullWord: string) {
+        const key = new RegExp(keyWord.trim(), 'i');
+        return fullWord.match(key);
+    }
     /**
      * init tree node property
      * @docs-private
@@ -221,7 +229,7 @@ export class SideBarComponent implements OnInit {
              * matching node that conform to key word
              * @docs-private
              */
-            if (node.name && node.name.search(event) !== -1) {
+            if (node.name && this.ignoreCapSearch(event, node.name)) {
                 listMatchedTreeNodes.push(node);
             }
             if (listMatchedTreeNodes.length === lengthMaxNodes) {
@@ -290,7 +298,7 @@ export class SideBarComponent implements OnInit {
         this._listSearchNodes = [];
         // get all matched keyword tree-nodes
         for (let node of this._listTreeNodes) {
-            if (node.name && node.name.search(event) !== -1) {
+            if (node.name && this.ignoreCapSearch(event, node.name)) {
                 this.searchNodes(node);
             }
         }
