@@ -174,6 +174,7 @@ export class TreeTransferComponent implements OnChanges {
         this.initTree(this.candidateData, 'candidate');
         this.initTree(this.selectedData, 'selected');
         this.initCount();
+        this.clearDataListSelected();
         this.countSelectedNodes(this.candidateData);
         this.service.sendMsg({ candidateCount: this.candidateCount, selectedCount: this.selectedCount });
         this._candidateNodeList = {};
