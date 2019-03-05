@@ -1,26 +1,48 @@
-import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { routerList } from './app.config';
 import '../asset/less/demo.less';
-
 @Component({
     selector: 'nb-app-root',
     templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+    @ViewChild('input') input: ElementRef;
     title = 'app';
-    isDocs = false;
+    isOpen = false;
+    routerList = routerList;
 
-    constructor(private router: Router) {
-        this.router.events.subscribe((event: any) => {
-            if (event instanceof NavigationEnd) {
-                this.isDocs = event.url.indexOf('/docs') !== -1 || event.url.indexOf('/icons') !== -1;
+    value = '';
+    suggestionList: { 'text': string; 'routerLink': string; 'routerLinkActive': string; 'class': string; }[];
+    constructor(private router: Router) { }
+    ngOnInit() {
+        document.addEventListener('click', e => {
+            e.stopPropagation();
+            let value = e.target && e.target['classList'] && e.target['classList'].value;
+            if (value.indexOf('search') === -1 && value.indexOf('suggestion-item') === -1) {
+                this.isOpen = false;
             }
         });
     }
-
-    onNavi(event: any) {
-        const url = `/components/${event.name}`;
-        this.router.navigate([url]);
+    search() {
+        setTimeout(() => {
+            let keyWord = this.input.nativeElement.value;
+            if (!keyWord) {
+                this.suggestionList = [];
+            } else {
+                let key = new RegExp(keyWord, 'i');
+                this.suggestionList = this.routerList.filter(suggestion => {
+                    return suggestion.text && suggestion.text.match(key);
+                });
+            }
+        }, 0);
+    }
+    onFocus() {
+        this.isOpen = true;
+        this.search();
+    }
+    selectSuggestionValue(item) {
+        this.router.navigate([item.routerLink]);
+        this.isOpen = false;
     }
 }
