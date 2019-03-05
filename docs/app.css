@@ -18439,6 +18439,16 @@ a.nb-button[disabled]:active {
 /* Border color */
 /* Border-radius size */
 /* Font */
+@keyframes slider {
+  from {
+    left: 50%;
+    width: 0;
+  }
+  to {
+    left: 0;
+    width: 100%;
+  }
+}
 button:focus,
 input:focus,
 ul:focus,
@@ -18570,7 +18580,7 @@ body {
   position: relative;
 }
 .demo-app .app-body .app-aside .app-aside-list .list-item:hover:after {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   left: 0;
@@ -18578,9 +18588,10 @@ body {
   width: 100%;
   height: 2px;
   bottom: 2px;
+  animation: .2s slider;
 }
 .demo-app .app-body .app-aside .app-aside-list .currentRouter:after {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   left: 0;
@@ -18588,6 +18599,7 @@ body {
   width: 100%;
   height: 2px;
   bottom: 2px;
+  animation: .2s slider;
 }
 .demo-app .app-body .app-aside .app-aside-list .list-item-desc {
   color: #333;

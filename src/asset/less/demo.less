@@ -7,7 +7,10 @@
 
 @header-height: 25px;
 @aside-width: 200px;
-
+@keyframes slider {
+    from {left:50%;width: 0;}
+    to {left:0;width:100%;}
+}
 button:focus,
 input:focus,
 ul:focus,
@@ -172,6 +175,7 @@ body {
                             width: 100%;
                             height: 2px;
                             bottom: 2px;
+                            animation: 0.2s slider;
                         }
                     }
                 }
@@ -186,6 +190,7 @@ body {
                         width: 100%;
                         height: 2px;
                         bottom: 2px;
+                        animation: 0.2s slider;
                     }
                 }
 
