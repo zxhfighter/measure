@@ -12,7 +12,7 @@
                     </a>
                 </section>
                 <section class="filter">
-                    <input #input class="search" placeholder="search" [(ngModel)]="value" (focus)="onFocus()" (keydown)="search()"/>
+                    <input #input class="search" placeholder="search" (focus)="onFocus()" (keydown)="search()"/>
                     <div [hidden]="!isOpen || suggestionList.length === 0">
                         <ul class="suggestion-list">
                             <li *ngFor="let item of suggestionList" class="suggestion-item" (click)="selectSuggestionValue(item)">

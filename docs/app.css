@@ -18489,13 +18489,21 @@ body {
   color: #333;
 }
 .demo-app .app-header .main-menu-item:after {
+<<<<<<< HEAD
   content: "";
+=======
+  content: '';
+>>>>>>> develop
   position: absolute;
   bottom: 2px;
   left: 50%;
   width: 0;
   height: 2px;
+<<<<<<< HEAD
   transition: width .2s, left .2s;
+=======
+  transition: width 0.2s, left 0.2s;
+>>>>>>> develop
 }
 .demo-app .app-body {
   padding-top: 25px;
@@ -18732,4 +18740,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.422739.bundle.map*/
+/*# sourceMappingURL=app.46e23d.bundle.map*/

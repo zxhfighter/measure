@@ -12,8 +12,7 @@ export class AppComponent implements OnInit {
     isOpen = false;
     routerList = routerList;
 
-    value = '';
-    suggestionList: { 'text': string; 'routerLink': string; 'routerLinkActive': string; 'class': string; }[];
+    suggestionList: { 'text': string; 'routerLink': string; 'routerLinkActive': string; 'class': string; }[] = [];
     constructor(private router: Router) { }
     ngOnInit() {
         document.addEventListener('click', e => {
@@ -32,7 +31,7 @@ export class AppComponent implements OnInit {
             } else {
                 let key = new RegExp(keyWord, 'i');
                 this.suggestionList = this.routerList.filter(suggestion => {
-                    return suggestion.text && suggestion.text.match(key);
+                    return suggestion.routerLink && suggestion.text && suggestion.text.match(key);
                 });
             }
         }, 0);
