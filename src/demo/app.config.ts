@@ -10,7 +10,7 @@ export const routerList = [{
     'class': 'list-item list-item-desc'
 }, {
     'text': 'typography',
-    'routerLink': '/components/typography',
+    'routerLink': '/typography',
     'routerLinkActive': 'active',
     'class': 'list-item'
 }, {
