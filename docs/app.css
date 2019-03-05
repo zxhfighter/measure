@@ -18489,21 +18489,12 @@ body {
   color: #333;
 }
 .demo-app .app-header .main-menu-item:after {
-<<<<<<< HEAD
   content: "";
-=======
-  content: '';
->>>>>>> develop
   position: absolute;
   bottom: 2px;
-  left: 50%;
-  width: 0;
+  left: 0;
+  width: 100%;
   height: 2px;
-<<<<<<< HEAD
-  transition: width .2s, left .2s;
-=======
-  transition: width 0.2s, left 0.2s;
->>>>>>> develop
 }
 .demo-app .app-body {
   padding-top: 25px;
@@ -18574,9 +18565,29 @@ body {
   color: #333;
   font-weight: 400;
   padding: 9px 0;
+  margin-left: 10px;
+  display: inline-block;
+  position: relative;
 }
-.demo-app .app-body .app-aside .app-aside-list .list-item:hover {
-  background-color: #fffdee;
+.demo-app .app-body .app-aside .app-aside-list .list-item:hover:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  background-color: #999;
+  width: 100%;
+  height: 2px;
+  bottom: 2px;
+}
+.demo-app .app-body .app-aside .app-aside-list .currentRouter:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  background-color: #999;
+  width: 100%;
+  height: 2px;
+  bottom: 2px;
 }
 .demo-app .app-body .app-aside .app-aside-list .list-item-desc {
   color: #333;
@@ -18584,6 +18595,7 @@ body {
   font-size: 14px;
   padding: 9px 0;
   pointer-events: none;
+  margin-left: 0;
 }
 .demo-app .app-body .app-content {
   margin-left: 200px;
@@ -18740,4 +18752,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.46e23d.bundle.map*/
+/*# sourceMappingURL=app.d694d7.bundle.map*/
