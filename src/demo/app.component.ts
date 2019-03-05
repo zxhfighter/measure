@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { routerList } from './app.config';
 import '../asset/less/demo.less';
 @Component({
@@ -11,9 +11,23 @@ export class AppComponent implements OnInit {
     title = 'app';
     isOpen = false;
     routerList = routerList;
+    currentIndex = 0;
+    suggestionList: { 'text': string, 'routerLink': string, 'routerLinkActive': string, 'class': string, currentRouter: boolean }[] = [];
+    constructor(private router: Router) {
+        this.router.events.subscribe((event: any) => {
+            if (event instanceof NavigationEnd) {
+                for (let i = 0; i < this.routerList.length; i++) {
+                    if (this.routerList[i].routerLink === event.url) {
+                        this.routerList[i].currentRouter = true;
+                        this.routerList[this.currentIndex].currentRouter = false;
+                        this.currentIndex = i;
+                        break;
+                    }
+                }
 
-    suggestionList: { 'text': string; 'routerLink': string; 'routerLinkActive': string; 'class': string; }[] = [];
-    constructor(private router: Router) { }
+            }
+        });
+    }
     ngOnInit() {
         document.addEventListener('click', e => {
             e.stopPropagation();

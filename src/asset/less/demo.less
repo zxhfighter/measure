@@ -121,7 +121,7 @@ body {
                 .filter {
                     .suggestion-list {
                         background-color: #fff;
-                        border:#ccc 1px solid;
+                        border: #ccc 1px solid;
                         padding: 0;
                         display: block;
                         width: 154px;
@@ -158,14 +158,34 @@ body {
                     color: #333;
                     font-weight: 400;
                     padding: 9px 0;
+                    margin-left: 10px;
+                    display: inline-block;
+                    position: relative;
 
                     &:hover {
-                        background-color: #fffdee;
+                        &:after {
+                            content: ' ';
+                            display: block;
+                            position: absolute;
+                            left: 0;
+                            background-color: #999;
+                            width: 100%;
+                            height: 2px;
+                            bottom: 2px;
+                        }
                     }
+                }
 
-                    &.active {
-                        // background-color: @brand-primary;
-                        // color: #fff;
+                .currentRouter {
+                    &:after {
+                        content: ' ';
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        background-color: #999;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 2px;
                     }
                 }
 
@@ -175,6 +195,7 @@ body {
                     font-size: 14px;
                     padding: 9px 0;
                     pointer-events: none;
+                    margin-left: 0;
                 }
             }
         }

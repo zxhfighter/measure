@@ -23,8 +23,8 @@
                 </section>
             </div>
             <ul class="app-aside-list">
-                <li *ngFor="let router of routerList" [class]="router.class" [routerLinkActive]="router.routerLinkActive"
-                    [routerLink]="router.routerLink">{{ router.text }}</li>
+                <li *ngFor="let router of routerList" [routerLinkActive]="router.routerLinkActive"
+                    [routerLink]="router.routerLink"><span [class.currentRouter]="router.currentRouter" [class]="router.class">{{ router.text }}</span></li>
             </ul>
         </aside>
 

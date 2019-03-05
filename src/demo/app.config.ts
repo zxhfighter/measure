@@ -1,266 +1,325 @@
 export const routerList = [{
     'text': 'start',
+    'routerLink': '',
+    'routerLinkActive': '',
+    'class': 'list-item list-item-desc',
+    'currentRouter': false,
+}, {
+    'text': 'start',
     'routerLink': '/start',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'typography',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'typography',
     'routerLink': '/typography',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'icons',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'icons',
     'routerLink': '/icons',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Data Entry',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'box-group',
     'routerLink': '/components/box-group',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'calendar',
     'routerLink': '/components/calendar',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'chips',
     'routerLink': '/components/chips',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'input',
     'routerLink': '/components/input',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'region',
     'routerLink': '/components/region',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'select',
     'routerLink': '/components/select',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'schedule',
     'routerLink': '/components/schedule',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'search-box',
     'routerLink': '/components/search-box',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'slider',
     'routerLink': '/components/slider',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'spinner',
     'routerLink': '/components/spinner',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'switch',
     'routerLink': '/components/switch',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'textarea',
     'routerLink': '/components/textarea',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'text-line',
     'routerLink': '/components/text-line',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'transfer',
     'routerLink': '/components/transfer',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'rating',
     'routerLink': '/components/rating',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Navigation',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'breadcrumb',
     'routerLink': '/components/breadcrumb',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'page',
     'routerLink': '/components/page',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'side-bar',
     'routerLink': '/components/side-bar',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'step',
     'routerLink': '/components/step',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'tabs',
     'routerLink': '/components/tabs',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'tree',
     'routerLink': '/components/tree',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Button',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'button',
     'routerLink': '/components/button',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'button-group',
     'routerLink': '/components/button-group',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Chart',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'chart',
     'routerLink': '/components/chart',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Data',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'table',
     'routerLink': '/components/table',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Grid',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'grid',
     'routerLink': '/components/grid',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Overlay',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'dialog',
     'routerLink': '/components/dialog',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'toast',
     'routerLink': '/components/toast',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'tooltip',
     'routerLink': '/components/tooltip',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Containers',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'accordion',
     'routerLink': '/components/accordion',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'card',
     'routerLink': '/components/card',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Uploader',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'uploader',
     'routerLink': '/components/uploader',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Utilities',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'code-highlighter',
     'routerLink': '/components/code-highlighter',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'code-box',
     'routerLink': '/components/code-box',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'carousel',
     'routerLink': '/components/carousel',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'progress-bar',
     'routerLink': '/components/progress-bar',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }, {
     'text': 'Form',
     'routerLink': '',
     'routerLinkActive': '',
-    'class': 'list-item list-item-desc'
+    'class': 'list-item list-item-desc',
+    'currentRouter': false
 }, {
     'text': 'form',
     'routerLink': '/components/form',
     'routerLinkActive': 'active',
-    'class': 'list-item'
+    'class': 'list-item',
+    'currentRouter': false
 }];
