@@ -48,7 +48,9 @@ import { GridDemo } from './grid';
 import { RatingDemo } from './rating';
 
 export const appRoutes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'components/button' },
+    { path: '', pathMatch: 'full', redirectTo: 'start' },
+    { path: 'start', component: GuideComponentDemo },
+    { path: 'icons', component: IconsComponentDemo },
     { path: 'components', pathMatch: 'full', redirectTo: 'components/button' },
     { path: 'components/button', component: ButtonDemo },
     { path: 'components/breadcrumb', component: BreadcrumbDemo },
@@ -87,8 +89,6 @@ export const appRoutes: Routes = [
     { path: 'components/accordion', component: AccordionDemo },
     { path: 'components/uploader', component: UploaderDemo },
     { path: 'components/transfer', component: TransferDemo },
-    { path: 'docs', component: GuideComponentDemo },
-    { path: 'icons', component: IconsComponentDemo },
     { path: 'components/typography', component: TypographyDemo },
     { path: 'components/slider', component: SliderComponentDemo },
     { path: 'components/form', component: FormDemo },
