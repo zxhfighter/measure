@@ -18617,7 +18617,7 @@ body {
   margin-top: 0;
   font-size: 30px;
   font-weight: 500;
-  color: #3998fc;
+  color: #333;
 }
 .demo-app .app-body .app-content .type-desc .type-directive {
   display: inline-block;
@@ -18636,7 +18636,7 @@ body {
 }
 .demo-app .app-body .app-content .section-title {
   font-size: 24px;
-  color: #3998fc;
+  color: #333;
   font-style: italic;
   margin: 50px 0 10px;
   padding: 5px 0;
@@ -18649,7 +18649,7 @@ body {
   display: block;
   width: 4px;
   height: 100%;
-  background-color: #3998fc;
+  background-color: #333;
   left: 0;
   top: 0;
 }
