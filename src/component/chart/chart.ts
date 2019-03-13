@@ -2,11 +2,8 @@ import {
     Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewChild,
     ViewEncapsulation, ChangeDetectionStrategy, AfterViewInit, OnDestroy
 } from '@angular/core';
-
-import * as echartsLib from 'echarts';
+import { EChartOption, ECharts, init } from 'echarts';
 import { OnChange } from '../core/decorators';
-
-const echarts: any = (echartsLib as any).default ? (echartsLib as any).default : echartsLib;
 
 /**
  * Chart Component, depends on [Echarts](http://echarts.baidu.com/)
@@ -23,6 +20,11 @@ const echarts: any = (echartsLib as any).default ? (echartsLib as any).default :
     exportAs: 'nbChart'
 })
 export class ChartComponent implements AfterViewInit, OnDestroy {
+
+    /**
+     * chart init event
+     */
+    @Output() chartInit: EventEmitter<ECharts> = new EventEmitter<ECharts>();
 
     /**
      * chart event
@@ -63,7 +65,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
      * chart options, see [echarts options](http://echarts.baidu.com/option.html)
      */
     @OnChange()
-    @Input() options: any;
+    @Input() options: EChartOption;
 
     /**
      * callback when chart options change
@@ -106,7 +108,8 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
                     this._renderer.setStyle(container, 'width', width + widthUnit);
                     this._renderer.setStyle(container, 'height', height + heightUnit);
 
-                    this._chartInstance = echarts.init(container);
+                    this._chartInstance = init(container);
+                    this.chartInit.emit(this._chartInstance);
                 }
 
                 this._chartInstance.setOption(options, true);
@@ -160,8 +163,10 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this._chartInstance = null;
-        delete this._chartInstance;
+        if (this._chartInstance) {
+            this._chartInstance.dispose();
+            this._chartInstance = null;
+        }
 
         if (this._resizeListener) {
             this._resizeListener();
