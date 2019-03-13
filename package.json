@@ -1,6 +1,6 @@
 {
   "name": "xdesign",
-  "version": "7.0.32",
+  "version": "7.0.33",
   "description": "xdesign - A enterprize angular ui component library",
   "main": "./bundle/xdesign.umd.min.js",
   "sideEffects": false,
@@ -50,6 +50,7 @@
     "@ngtools/webpack": "^7.1.2",
     "@types/chalk": "^0.4.31",
     "@types/del": "^3.0.0",
+    "@types/echarts": "^4.1.5",
     "@types/glob": "^5.0.33",
     "@types/gulp": "^3.8.35",
     "@types/jasmine": "^2.6.2",
