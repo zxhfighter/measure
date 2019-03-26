@@ -144,27 +144,27 @@
                 {{ row[key] }}
             </div>
             <div
-                *ngIf="key==='name' && judgeOverLong(row[key]) && !optionTplLeft"
+                *ngIf="key==='name' && row.description && !optionTplLeft"
                 class="nb-td-{{key}}"
-                nbTooltip="{{row[key]}}"
+                nbTooltip="{{row.description}}"
                 nbTooltipClass="customize-classname"
                 placement="bottom-left"
                 hasArrow>
                 {{ row[key] }}
             </div>
             <div
-                *ngIf="key==='name' && judgeOverLong(row[key]) && optionTplLeft"
+                *ngIf="key==='name' && row.description && optionTplLeft"
                 class="nb-td-{{key}}"
-                nbTooltip="{{row[key]}}"
+                nbTooltip="{{row.description}}"
                 nbTooltipClass="customize-classname"
                 placement="bottom-left"
                 hasArrow>
                 <ng-container *ngTemplateOutlet="optionTplLeft;context: {$implicit: row}"></ng-container>
             </div>
-            <div *ngIf="key==='name' && !judgeOverLong(row[key]) && !optionTplLeft" class="nb-td-{{key}}">
+            <div *ngIf="key==='name' && !row.description && !optionTplLeft" class="nb-td-{{key}}">
                 {{ row[key] }}
             </div>
-            <div *ngIf="key==='name' && !judgeOverLong(row[key]) && optionTplLeft" class="nb-td-{{key}}">
+            <div *ngIf="key==='name' && !row.description && optionTplLeft" class="nb-td-{{key}}">
                 <ng-container *ngTemplateOutlet="optionTplLeft;context: {$implicit: row}"></ng-container>
             </div>
         </td>

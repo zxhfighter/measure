@@ -10,6 +10,22 @@
     margin-top: 20px;
     overflow-x: hidden;
     overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 70px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        width: 4px;
+        height: 70px;
+        border-radius: 4px;
+        background: #e7e7e7;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
 }
 
 .@{prefix}-transfer-tree-have-add-link-wrap {

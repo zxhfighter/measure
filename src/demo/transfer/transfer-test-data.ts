@@ -3,7 +3,7 @@ export const candidateDataEmpty = [
         id: '1',
         name: '中国1',
         selectable: true,
-        isExpanded: true,
+        isExpanded: false,
         isSelected: false,
         ico: 'custom',
         expandedIco: 'expanded',
@@ -1072,7 +1072,7 @@ export const candidateDataEmpty = [
         id: '2',
         name: '美国',
         selectable: true,
-        isExpanded: true,
+        isExpanded: false,
         isSelected: false,
         ico: 'custom',
         expandedIco: 'expanded',
@@ -1146,7 +1146,7 @@ export const candidateDataEmpty = [
 export const candidateData = [
     {
         id: '1',
-        name: '中国1',
+        name: '中国',
         selectable: true,
         isExpanded: true,
         isSelected: false,
@@ -1181,7 +1181,7 @@ export const candidateData = [
                         children: [
                             {
                                 id: '010101',
-                                name: '东城区',
+                                name: '东城区东城区东城区',
                                 selectable: true,
                                 isExpanded: false,
                                 isSelected: true,
@@ -2291,7 +2291,7 @@ export const candidateData = [
 export const selectedData = [
     {
         id: '1',
-        name: '中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国',
+        name: '中国',
         selectable: true,
         isExpanded: true,
         isSelected: true,
@@ -2303,7 +2303,7 @@ export const selectedData = [
         children: [
             {
                 id: '01',
-                name: '华北华北华北华北华北华北华北华北华北华北华北华北华北华北',
+                name: '华北',
                 selectable: true,
                 isExpanded: true,
                 isSelected: true,
@@ -2316,7 +2316,7 @@ export const selectedData = [
                 children: [
                     {
                         id: '0101',
-                        name: '北京北京北京北京北京北京北京北京北京北京北京',
+                        name: '北京',
                         selectable: true,
                         isExpanded: true,
                         isSelected: true,
@@ -2329,7 +2329,7 @@ export const selectedData = [
                         children: [
                             {
                                 id: '010101',
-                                name: '东城区东城区东城区东城区东城区',
+                                name: '东城区东城区东城区',
                                 selectable: true,
                                 isExpanded: true,
                                 isSelected: true,
@@ -3416,7 +3416,7 @@ export const tableConfig = {
         }
     ],
     colWidth: [140, 90, 80, 80],
-    hideCol: ['id', 'disabled']
+    hideCol: ['id', 'disabled', 'description']
 };
 
 export const tableData = [
@@ -3425,35 +3425,120 @@ export const tableData = [
         name: '搜索人群 0',
         groupCount: '5,263',
         groupStatus: '计算中',
-        groupType: '视频人群'
+        groupType: '视频人群',
+        // description: 'description-搜索人群 0',
     },
     {
         id: 2,
         name: '搜索人群 1 晓枝慧淑有洁',
         groupCount: '5,744',
         groupStatus: '计算失败',
-        groupType: '基础人群'
+        groupType: '基础人群',
+        description: 'description-搜索人群 1 晓枝慧淑有洁',
     },
     {
         id: 3,
         name: '搜索人群 2 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
         groupCount: '6,364',
         groupStatus: '计算完成',
-        groupType: 'feed人群'
+        groupType: 'feed人群',
+        description: 'description-搜索人群 2 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
     },
     {
         id: 4,
         name: '搜索人群 3 元茜志卿菲娜伦青凡心茗致',
         groupCount: '6,705',
         groupStatus: '计算中',
-        groupType: '媒体人群'
+        groupType: '媒体人群',
+        description: 'description-搜索人群 3 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
     },
     {
         id: 5,
         name: '搜索人群 4 莲康鸣育琴春若峰梅九',
         groupCount: '9,767',
         groupStatus: '计算完成',
-        groupType: '搜索人群'
+        groupType: '搜索人群',
+        description: 'description-搜索人群 4 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+    },
+    {
+        id: 1,
+        name: '搜索人群 0',
+        groupCount: '5,263',
+        groupStatus: '计算中',
+        groupType: '视频人群',
+        // description: 'description-搜索人群 0',
+    },
+    {
+        id: 2,
+        name: '搜索人群 1 晓枝慧淑有洁',
+        groupCount: '5,744',
+        groupStatus: '计算失败',
+        groupType: '基础人群',
+        description: 'description-搜索人群 1 晓枝慧淑有洁',
+    },
+    {
+        id: 3,
+        name: '搜索人群 2 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+        groupCount: '6,364',
+        groupStatus: '计算完成',
+        groupType: 'feed人群',
+        description: 'description-搜索人群 2 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+    },
+    {
+        id: 4,
+        name: '搜索人群 3 元茜志卿菲娜伦青凡心茗致',
+        groupCount: '6,705',
+        groupStatus: '计算中',
+        groupType: '媒体人群',
+        description: 'description-搜索人群 3 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+    },
+    {
+        id: 5,
+        name: '搜索人群 4 莲康鸣育琴春若峰梅九',
+        groupCount: '9,767',
+        groupStatus: '计算完成',
+        groupType: '搜索人群',
+        description: 'description-搜索人群 4 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+    },
+    {
+        id: 1,
+        name: '搜索人群 0',
+        groupCount: '5,263',
+        groupStatus: '计算中',
+        groupType: '视频人群',
+        // description: 'description-搜索人群 0',
+    },
+    {
+        id: 2,
+        name: '搜索人群 1 晓枝慧淑有洁',
+        groupCount: '5,744',
+        groupStatus: '计算失败',
+        groupType: '基础人群',
+        description: 'description-搜索人群 1 晓枝慧淑有洁',
+    },
+    {
+        id: 3,
+        name: '搜索人群 2 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+        groupCount: '6,364',
+        groupStatus: '计算完成',
+        groupType: 'feed人群',
+        description: 'description-搜索人群 2 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+    },
+    {
+        id: 4,
+        name: '搜索人群 3 元茜志卿菲娜伦青凡心茗致',
+        groupCount: '6,705',
+        groupStatus: '计算中',
+        groupType: '媒体人群',
+        description: 'description-搜索人群 3 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+    },
+    {
+        id: 5,
+        name: '搜索人群 4 莲康鸣育琴春若峰梅九',
+        groupCount: '9,767',
+        groupStatus: '计算完成',
+        groupType: '搜索人群',
+        description: 'description-搜索人群 4 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
     },
 ];
 
@@ -3464,17 +3549,19 @@ export const multiTableData = [
             {
                 id: 1,
                 disabled: true,
-                name: '欧莱雅',
+                name: '仁慧红八林瑗婵清义',
                 groupCount: '5,263',
                 groupStatus: '计算中',
                 groupType: '视频人群',
+                // description: 'description-搜索人群 1 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
             },
             {
                 id: 2,
                 name: 'dior',
                 groupCount: '5,744',
                 groupStatus: '计算失败',
-                groupType: '基础人群'
+                groupType: '基础人群',
+                description: 'description-搜索人群 2 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
             },
         ]
     },
@@ -3486,14 +3573,79 @@ export const multiTableData = [
                 name: '人群1',
                 groupCount: '5,263',
                 groupStatus: '计算中',
-                groupType: 'LBS人群'
+                groupType: 'LBS人群',
+                description: 'description-搜索人群 3 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
             },
             {
                 id: 23,
                 name: '人群2',
                 groupCount: '5,744',
                 groupStatus: '计算失败',
-                groupType: '基础人群'
+                groupType: '基础人群',
+                description: 'description-搜索人群 4 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+            },
+        ]
+    },
+    {
+        name: '美妆保湿',
+        children: [
+            {
+                id: 22,
+                name: '人群1',
+                groupCount: '5,263',
+                groupStatus: '计算中',
+                groupType: 'LBS人群',
+                description: 'description-搜索人群 3 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+            },
+            {
+                id: 23,
+                name: '人群2',
+                groupCount: '5,744',
+                groupStatus: '计算失败',
+                groupType: '基础人群',
+                description: 'description-搜索人群 4 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+            },
+        ]
+    },
+    {
+        name: '美妆保湿',
+        children: [
+            {
+                id: 22,
+                name: '人群1',
+                groupCount: '5,263',
+                groupStatus: '计算中',
+                groupType: 'LBS人群',
+                description: 'description-搜索人群 3 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+            },
+            {
+                id: 23,
+                name: '人群2',
+                groupCount: '5,744',
+                groupStatus: '计算失败',
+                groupType: '基础人群',
+                description: 'description-搜索人群 4 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+            },
+        ]
+    },
+    {
+        name: '美妆保湿',
+        children: [
+            {
+                id: 22,
+                name: '人群1',
+                groupCount: '5,263',
+                groupStatus: '计算中',
+                groupType: 'LBS人群',
+                description: 'description-搜索人群 3 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
+            },
+            {
+                id: 23,
+                name: '人群2',
+                groupCount: '5,744',
+                groupStatus: '计算失败',
+                groupType: '基础人群',
+                description: 'description-搜索人群 4 仁慧红八林瑗婵清义诚超诚筠姣琰信亚翠全青泽',
             },
         ]
     }

@@ -13731,6 +13731,19 @@ a.nb-button[disabled]:active {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+.nb-transfer-tree-wrap::-webkit-scrollbar {
+  width: 4px;
+  height: 70px;
+}
+.nb-transfer-tree-wrap::-webkit-scrollbar-thumb {
+  width: 4px;
+  height: 70px;
+  border-radius: 4px;
+  background: #e7e7e7;
+}
+.nb-transfer-tree-wrap::-webkit-scrollbar-track {
+  background: #fff;
+}
 .nb-transfer-tree-have-add-link-wrap {
   height: 67%;
 }
@@ -18764,4 +18777,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.54fa26.bundle.map*/
+/*# sourceMappingURL=app.b4d45f.bundle.map*/
