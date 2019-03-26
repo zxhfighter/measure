@@ -25,10 +25,12 @@ export class PageSizeDemo {
     curIndex1 = 1;
     curIndex2 = 2;
     curIndex3 = 3;
+    curIndex4 = 4;
 
     count1 = 10;
     count2 = 20;
     count3 = 30;
+    count4 = 20;
 
     constructor() {
         setTimeout(() => {

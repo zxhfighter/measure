@@ -26,6 +26,34 @@ export const sigleDataSideBar = {
     ]
 };
 
+export const sigleDataSideBarEnglish = {
+    title: 'World directory',
+    expanded: false,
+    root: 'All country',
+    tree: [
+        {
+            id: '1',
+            name: 'China'
+        },
+        {
+            id: '2',
+            name: 'American',
+        },
+        {
+            id: '3',
+            name: 'Japan',
+        },
+        {
+            id: '4',
+            name: 'Germany',
+        },
+        {
+            id: '5',
+            name: 'Other',
+        }
+    ]
+};
+
 export const changeDataSideBar = {
     title: '互联网公司目录',
     expanded: true,

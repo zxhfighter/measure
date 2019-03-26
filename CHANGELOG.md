@@ -1,3 +1,53 @@
+<a name="7.0.33"></a>
+## [7.0.33](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.33) (2019-03-13)
+
+
+
+<a name="7.0.32"></a>
+## [7.0.32](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.32) (2019-03-05)
+
+
+
+<a name="7.0.31"></a>
+## [7.0.31](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.31) (2019-03-05)
+
+
+
+<a name="7.0.30"></a>
+## [7.0.30](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.30) (2019-03-05)
+
+
+
+<a name="7.0.29"></a>
+## [7.0.29](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.29) (2019-03-05)
+
+
+
+<a name="7.0.28"></a>
+## [7.0.28](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.28) (2019-03-05)
+
+
+
+<a name="7.0.27"></a>
+## [7.0.27](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.27) (2019-03-05)
+
+
+
+<a name="7.0.26"></a>
+## [7.0.26](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.26) (2019-03-05)
+
+
+
+<a name="7.0.25"></a>
+## [7.0.25](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.25) (2019-03-03)
+
+
+
+<a name="7.0.24"></a>
+## [7.0.24](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.24) (2019-02-25)
+
+
+
 <a name="7.0.23"></a>
 ## [7.0.23](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.23) (2019-02-20)
 
@@ -50,16 +100,6 @@
 
 <a name="7.0.13"></a>
 ## [7.0.13](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.13) (2019-01-16)
-
-
-
-<a name="7.0.14"></a>
-## [7.0.14](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.14) (2019-01-15)
-
-
-
-<a name="7.0.13"></a>
-## [7.0.13](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.13) (2019-01-15)
 
 
 

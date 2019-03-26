@@ -5,6 +5,7 @@ import {
 
 import {
     sigleDataSideBar,
+    sigleDataSideBarEnglish,
     dataSideBar,
     changeDataSideBar
 } from '../side-bar-test-data';
@@ -20,6 +21,8 @@ import {
 export class SideBarBasicDemo {
 
     sigleData = sigleDataSideBar;
+
+    sigleDataEnglish = sigleDataSideBarEnglish;
 
     data = dataSideBar;
 

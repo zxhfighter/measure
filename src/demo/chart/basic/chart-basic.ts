@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { BoxGroupValue } from '../../../component/box-group';
+import { ECharts, EChartOption } from 'echarts';
 
 const barValue = [
     [749, 1752, 1145, 1912, 1363, 2242, 1538, 2663, 1942, 2838],
@@ -277,6 +278,80 @@ const options = {
         }
     ]
 };
+const sunburstData = [{
+    name: '搜索',
+    value: 100,
+    itemStyle: {
+        color: '#60ACFC'
+    },
+    children: [
+        {
+            name: '知道',
+            value: 10,
+            itemStyle: {
+                color: '#27A1EA'
+            },
+            children: [
+                {
+                    name: '图片',
+                    value: 20,
+                    itemStyle: {
+                        color: '#9CDC82'
+                    },
+                    children: [
+                        {
+                            name: '离开',
+                            value: 10,
+                            itemStyle: {
+                                color: '#BDC3C7'
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: '贴吧',
+            value: 15,
+            itemStyle: {
+                color: '#63D5B2'
+            },
+            children: [
+                {
+                    name: '离开',
+                    value: 10,
+                    itemStyle: {
+                        color: '#BDC3C7'
+                    }
+                }
+            ]
+        },
+        {
+            name: '离开',
+            value: 20,
+            itemStyle: {
+                color: '#BDC3C7'
+            }
+        }
+    ]
+}];
+const sbOptions = {
+    series: {
+        type: 'sunburst',
+        radius: ['15%', '80%'],
+        highlightPolicy: 'ancestor',
+        data: sunburstData,
+        nodeClick: false,
+        label: {
+            show: false
+        },
+        downplay: {
+            itemStyle: {
+                opacity: 0.2
+            }
+        }
+    }
+};
 
 @Component({
     selector: 'demo-chart-basic',
@@ -290,6 +365,8 @@ export class ChartBasicDemo {
     barOptions1: any = chartOptions.bar1;
     barOptions2: any = chartOptions.bar2;
     barOptions3: any = chartOptions.bar3;
+
+    sunburstOptions: any = sbOptions;
 
     constructor(private _cd: ChangeDetectorRef) {
         setTimeout(() => {
@@ -307,5 +384,9 @@ export class ChartBasicDemo {
 
     onBarClick(eventParams: any) {
         console.log(eventParams);
+    }
+
+    onChartInit(chartInstance: ECharts) {
+        console.log(chartInstance);
     }
 }

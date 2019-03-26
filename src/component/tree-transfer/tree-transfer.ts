@@ -174,6 +174,7 @@ export class TreeTransferComponent implements OnChanges {
         this.initTree(this.candidateData, 'candidate');
         this.initTree(this.selectedData, 'selected');
         this.initCount();
+        this.clearDataListSelected();
         this.countSelectedNodes(this.candidateData);
         this.service.sendMsg({ candidateCount: this.candidateCount, selectedCount: this.selectedCount });
         this._candidateNodeList = {};
@@ -270,7 +271,15 @@ export class TreeTransferComponent implements OnChanges {
         }
         return false;
     }
-
+    /**
+     * @param   {string} part     搜索的字符串片段
+     * @param   {string} complete 完整的字符串
+     * @returns boolean 字符串片段在字符串中的位置
+     */
+    search(keyWord: string, fullWord: string) {
+        const key = new RegExp(keyWord.trim(), 'i');
+        return fullWord.match(key);
+    }
     /**
      * fitler candidate or selected list by key word
      * @docs-private
@@ -304,7 +313,7 @@ export class TreeTransferComponent implements OnChanges {
             for (const key in this._candidateNodeList) {
                 if (this._candidateNodeList.hasOwnProperty(key)) {
                     let node = this._candidateNodeList[key];
-                    if (node.name && node.name.search(event) !== -1) {
+                    if (node.name && this.search(event, node.name)) {
                         this.searchNodes(node, mode, event);
                     }
                 }
@@ -315,7 +324,7 @@ export class TreeTransferComponent implements OnChanges {
             for (const key in this._selectedNodeList) {
                 if (this._selectedNodeList.hasOwnProperty(key)) {
                     let node = this._selectedNodeList[key];
-                    if (node.name && node.name.search(event) !== -1 && node.isSelected) {
+                    if (node.name && this.search(event, node.name) && node.isSelected) {
                         this.searchNodes(node, mode, event);
                     }
                 }
@@ -345,7 +354,7 @@ export class TreeTransferComponent implements OnChanges {
      */
     searchNodes(node: TreeNode, mode: string, keyword: string) {
         this.setSearchNodes(node, mode);
-        if (node.children && node.name && node.name.search(keyword) !== -1) {
+        if (node.children && node.name && this.search(keyword, node.name)) {
             this.setSearchNodesChildren(node.children, mode);
         }
         if (node.parent) {

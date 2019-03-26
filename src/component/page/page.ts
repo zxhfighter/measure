@@ -49,6 +49,24 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
     // 可选填参数
 
     /**
+     * showCount count
+     * @default default
+     */
+    @Input()
+    get showCount(): number {
+        return this._showCount;
+    }
+    set showCount(value: number) {
+        this._showCount = Number.isInteger(value) && value > 0 ? value : 2;
+        this.showCountArr = [];
+        for (let i = this._showCount; i > 0; i--) {
+            this.showCountArr.push(i);
+        }
+    }
+    // 页码较多时, 当前页码前后单一边显示的页码数
+    // 可选填参数
+
+    /**
      * page list selected
      * @default default
      */
@@ -75,11 +93,6 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
     // 每页显示条数可选列表
 
     /**
-     * 前4页
-     * @docs-private
-     */
-    firstPages = [1, 2, 3, 4];
-    /**
      * 当前页
      * @docs-private
      */
@@ -89,6 +102,18 @@ export class PageComponent implements OnInit, AfterViewInit, OnChanges {
      * @docs-private
      */
     lastIndex = 1;
+
+    /**
+     * 页码较多时, 当前页码前后单一边显示的页码数
+     * @docs-private
+     */
+    _showCount: number = 2;
+
+    /**
+     * 页码较多时, 当前页码前后单一边显示的页码数数组
+     * @docs-private
+     */
+    showCountArr: Array<number> = [2, 1];
 
     // selectedData1: SelectConfig;
     /**
