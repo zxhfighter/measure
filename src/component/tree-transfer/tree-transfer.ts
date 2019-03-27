@@ -458,7 +458,7 @@ export class TreeTransferComponent implements OnChanges {
      * @docs-private
      */
     propagateDown(node: TreeNode, chkVal: boolean) {
-        if (node.selectable || (node.children && node.children.length)) {
+        if ((node.selectable || (node.children && node.children.length)) && node.show) {
             node.isSelected = chkVal;
         }
         if (node.children && node.children.length) {
@@ -541,7 +541,7 @@ export class TreeTransferComponent implements OnChanges {
         this.candidateData = rootCandidateNodes;
 
         let rootSelectedNodes: TreeNode[] = [];
-        rootSelectedNodes = this.renderRootNodes(this.selectedData, mode, chkVal);
+        rootSelectedNodes = this.renderRootNodes(this.candidateData, mode, chkVal);
         this.selectedData = rootSelectedNodes;
 
         this.initCount();
