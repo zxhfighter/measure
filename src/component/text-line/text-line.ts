@@ -99,6 +99,11 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
         }, 0);
     }
 
+    onBlur() {
+        this.value = this.value.split('\n').map(word => word.trim()).filter(item => item).join('\n');
+        this._markForCheck();
+    }
+
     /**
      * listen text-line content region scroll event
      * @docs-private

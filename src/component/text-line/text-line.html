@@ -12,5 +12,6 @@
     [disabled]="disabled"
     [value]="value"
     (scroll)="scrollHandler($event, txtLines)"
-    (input)="onInput($event, txtContent, txtLines)">
+    (input)="onInput($event, txtContent, txtLines)"
+    (blur)="onBlur()">
 </textarea>
