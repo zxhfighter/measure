@@ -3,14 +3,12 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { format } from 'date-fns';
 
 import { OverlayComponent } from '../overlay';
 import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
 
-import * as momentLib from 'moment';
 import { OnChange } from '../core/decorators';
-
-const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -64,7 +62,7 @@ export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAcces
      * @docs-private
      */
     get valueText() {
-        return moment(this.value).format('YYYY-MM-DD');
+        return format(this.value, 'YYYY-MM-DD');
     }
 
     /** whether the panel is show */

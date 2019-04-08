@@ -3,13 +3,11 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
 
-import * as momentLib from 'moment';
-import { Moment } from 'moment';
-import 'moment/locale/zh-cn';
 import { OnChange } from '../core/decorators';
-
-const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
-
+import {
+    format, addWeeks, isSameDay, isWithinRange, addDays, setDay, setDate
+} from 'date-fns';
+import { getDayNames, Weekday, resetTime, cloneDate } from '../util/date';
 
 /** day item cell type */
 export interface DayItem {
@@ -18,7 +16,7 @@ export interface DayItem {
     text: string;
 
     /** cell date */
-    date: Moment;
+    date: Date;
 
     /** whether cell is disabled */
     disabled: boolean;
@@ -46,17 +44,6 @@ export interface WeekItem {
 
 /** nullable date type */
 export type DateType = Date | null;
-
-/** weekdays */
-export enum Weekday {
-    Sunday,
-    Monday,
-    Tuesday,
-    Wensday,
-    Thursday,
-    Friday,
-    Saturday
-}
 
 /**
  * Month View Component
@@ -93,7 +80,6 @@ export class MonthViewComponent implements OnInit {
     set value(v: any) {
         this._value = v;
         this._month = v;
-        // this._buildWeeks();
     }
     private _value: Date = new Date();
 
@@ -180,7 +166,7 @@ export class MonthViewComponent implements OnInit {
     /**
      * the last mouse over day cell
      */
-    _lastMouseOverDay: Moment;
+    _lastMouseOverDay: Date;
 
     /** whether the range selection is done */
     _isDone: boolean = false;
@@ -191,9 +177,6 @@ export class MonthViewComponent implements OnInit {
     constructor(private cd: ChangeDetectorRef) { }
 
     ngOnInit() {
-        // set locale to zh-cn
-        moment.locale(this._locale);
-
         // set weekday names
         this._weekNames = this._getWeekNames();
 
@@ -208,46 +191,41 @@ export class MonthViewComponent implements OnInit {
      * get locale week day names
      */
     _getWeekNames() {
-        let weekdays: string[] = moment.weekdaysMin();
-        return this.shiftArray(weekdays, this.firstDayOfWeek);
+        return getDayNames(this.firstDayOfWeek);
     }
 
     /**
      * build month weeks according to the month
      */
     _buildWeeks() {
-        this._weeks = this._buildMonthWeeks(moment(this.month));
+        this._weeks = this._buildMonthWeeks(this.month);
     }
 
     /**
      * build month weeks
-     * @param {Moment?} d - moment
-     * @return {WeekItem[]} month weeks
+     * @param d? - current date
+     * @return month weeks
      */
-    _buildMonthWeeks(d?: Moment): WeekItem[] {
-        if (!d) {
-            // no date info, set today
-            d = moment();
-        }
-
+    _buildMonthWeeks(d?: Date): WeekItem[] {
+        d = d || new Date();
         const weeks: WeekItem[] = [];
-        const rawDate = this._resetTime(d || moment());
+        const rawDate = resetTime(d);
 
         // get the first day of the first week of the month
-        const start = rawDate.clone().date(1).day(this.firstDayOfWeek - 7);
-        const month = rawDate.clone();
-        const date = start.clone();
+        const start = setDay(setDate(d, 1), -6, { weekStartsOn: 1 });
+        const month = cloneDate(rawDate);
+        let date = cloneDate(start);
 
         let done = false;
         let count = 0;
 
         while (!done) {
             weeks.push({
-                days: this._buildWeek(date.clone(), month)
+                days: this._buildWeek(cloneDate(date), month)
             });
 
             // add a week
-            date.add(1, 'w');
+            date = addWeeks(date, 1);
             done = (count++) > 5;
         }
 
@@ -267,39 +245,49 @@ export class MonthViewComponent implements OnInit {
 
     /**
      * get week day items
-     * @param {Moment} date - current date
-     * @param {Moment} month - current date
+     * @param date - current date
+     * @param {Date} month - current date
      * @return {DayItem[]} week day items
      */
-    _buildWeek(date: Moment, month: Moment): DayItem[] {
+    _buildWeek(date: Date, month: Date): DayItem[] {
         const days: DayItem[] = [];
         const needCheckSelected = this.multiple || (this.startDate && this.endDate);
         for (let i = 0; i < 7; i++) {
             days.push({
-                text: date.date() + '',
+                text: date.getDate() + '',
                 date,
                 disabled: this.checkIsDisabled(date),
-                title: date.format('YYYY-MM-DD'),
-                isCurrent: date.isSame(new Date, 'day'),
-                isSelected: needCheckSelected ? this.checkIsSelected(date) : date.isSame(this.value, 'day'),
-                isLastMonth: (date.month() < month.month()) || (date.month() > month.month() && date.year() < month.year()),
-                isNextMonth: (date.month() > month.month()) || (date.month() < month.month() && date.year() > month.year())
+                title: format(date, 'YYYY-MM-DD'),
+                isCurrent: isSameDay(date, new Date()),
+                isSelected: needCheckSelected ? this.checkIsSelected(date) : isSameDay(date, this.value),
+                isLastMonth:
+                    (date.getMonth() < month.getMonth())
+                    || (
+                        date.getMonth() > month.getMonth()
+                        && date.getFullYear() < month.getFullYear()
+                    ),
+                isNextMonth:
+                    (date.getMonth() > month.getMonth())
+                    || (
+                        date.getMonth() < month.getMonth()
+                        && date.getFullYear() > month.getFullYear()
+                    )
             });
-            date = date.clone();
+            date = cloneDate(date);
 
             // add a day
-            date.add(1, 'd');
+            date = addDays(date, 1);
         }
         return days;
     }
 
     /**
      * in multiple mode, check the day item's selected state
-     * @param {Moment} date - current day item
+     * @param {Date} date - current day item
      * @return {boolean} whether the day item is selected
      * @docs-private
      */
-    checkIsSelected(date: Moment): boolean {
+    checkIsSelected(date: Date): boolean {
         // if the day item is disabled, return false
         if (this.checkIsDisabled(date)) {
             return false;
@@ -312,9 +300,9 @@ export class MonthViewComponent implements OnInit {
             const max = Math.max(+this.startDate, +endDate);
             const min = Math.min(+this.startDate, +endDate);
 
-            return date.isSame(moment(min), 'day')
-                || date.isSame(moment(max), 'day')
-                || date.isBetween(moment(min), moment(max));
+            return isSameDay(date, min)
+                || isSameDay(date, max)
+                || isWithinRange(date, min, max);
         }
 
         return false;
@@ -323,44 +311,23 @@ export class MonthViewComponent implements OnInit {
 
     /**
      * Check whether the day item is disabled
-     * @param {Moment} date - current day item
+     * @param date - current day item
      * @return {boolean} true if disabled
      * @docs-private
      */
-    checkIsDisabled(date: Moment): boolean {
+    checkIsDisabled(date: Date): boolean {
 
         if (this.disabledStrategy && typeof this.disabledStrategy === 'function') {
-            return this.disabledStrategy(date.toDate());
+            return this.disabledStrategy(date);
         }
         else if (this.disabledDates) {
             return this.disabledDates.some((d: string) => {
-                const disabledDate = moment(d);
-                return date.isSame(disabledDate, 'day');
+                const disabledDate = new Date(d);
+                return isSameDay(date, disabledDate);
             });
         }
 
         return false;
-    }
-
-    /**
-     * reset date hour、minute and so on
-     * @param {Moment} date - current day item
-     */
-    _resetTime(date: Moment) {
-        return date.hour(0).minute(0).second(0).millisecond(0);
-    }
-
-    /**
-     * adjust the first day of the week
-     * @param {T[]} t - array
-     * @param {number} distance - the distance for the shift
-     * @docs-private
-     */
-    shiftArray<T>(t: T[], distance: number): T[] {
-        const headArray = t.slice(0, distance);
-        const tailArray = t.slice(distance);
-
-        return [...tailArray, ...headArray];
     }
 
     /**
@@ -374,7 +341,7 @@ export class MonthViewComponent implements OnInit {
         }
 
         // update the selected date
-        this.value = day.date.toDate();
+        this.value = day.date;
 
         // in multiple range selection mode
         if (this.multiple) {
@@ -424,7 +391,7 @@ export class MonthViewComponent implements OnInit {
 
             // if it's the last cell day, just return
             if (this._lastMouseOverDay) {
-                if (this._lastMouseOverDay.isSame(day.date, 'day')) {
+                if (isSameDay(this._lastMouseOverDay, day.date)) {
                     return;
                 }
             }
@@ -433,7 +400,7 @@ export class MonthViewComponent implements OnInit {
             if (this.startDate && !this._isDone) {
                 this._lastMouseOverDay = day.date;
 
-                this._tempEndDate = day.date.toDate();
+                this._tempEndDate = day.date;
                 this._buildWeeks();
             }
         }

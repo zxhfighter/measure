@@ -1,12 +1,12 @@
 import {
     Component, Input, Output, EventEmitter,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy
+    ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
+import {
+    subMonths, addMonths, setYear, setMonth
+} from 'date-fns';
 
-import * as momentLib from 'moment';
 import { OnChange } from '../core/decorators';
-
-const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
 
 /** calendar show mode */
 export type CalendarMode = 'calendar' | 'year' | 'month';
@@ -163,9 +163,6 @@ export class CalendarComponent {
 
     onShowMonthPanel() {
         this.mode = 'month';
-
-        // update temp year
-        // this.tempYear = moment(this.value).year();
     }
 
     onReturnCalendar() {
@@ -184,12 +181,12 @@ export class CalendarComponent {
         }
         else if (this.mode === 'month') {
             this.tempYear = this.tempYear - 1;
+            this.yearArray = this.getCurrentDecade(new Date(this.tempYear, 0, 1));
         }
         else {
-            const current = moment(this.month);
-            current.subtract(1, 'M');
-
-            this.month = current.toDate();
+            this.month = subMonths(this.month, 1);
+            this.tempYear = this.month.getFullYear();
+            this.yearArray = this.getCurrentDecade(this.month);
         }
     }
 
@@ -208,13 +205,12 @@ export class CalendarComponent {
         }
         else if (this.mode === 'month') {
             this.tempYear = this.tempYear + 1;
+            this.yearArray = this.getCurrentDecade(new Date(this.tempYear, 0, 1));
         }
         else {
-            const date = moment(this.month);
-            date.add(1, 'M');
-
-            this.month = date.toDate();
-            this.tempYear = date.year();
+            this.month = addMonths(this.month, 1);
+            this.tempYear = this.month.getFullYear();
+            this.yearArray = this.getCurrentDecade(this.month);
         }
     }
 
@@ -225,12 +221,11 @@ export class CalendarComponent {
      */
     onSelectYear(year: number) {
         // currently show month date
-        const date = moment(this.month);
-        date.year(year);
+        const date = this.month;
+        const yearDate = setYear(date, year);
 
         // update currently show month date
-        this.month = date.toDate();
-
+        this.month = yearDate;
         this.tempYear = year;
 
         // return to calendar mode
@@ -244,11 +239,12 @@ export class CalendarComponent {
      */
     onSelectMonth(month: number) {
         // currently show month date
-        const date = moment(this.month);
-        date.year(this.tempYear).month(month - 1);
+        const date = this.month;
+        const yearDate = setYear(date, this.tempYear);
+        const monthDate = setMonth(yearDate, month - 1);
 
         // update currently show month date
-        this.month = date.toDate();
+        this.month = monthDate;
 
         // return to calendar mode
         this.mode = 'calendar';
@@ -265,10 +261,10 @@ export class CalendarComponent {
     }
 
     isCurrentYear(year: number) {
-        return moment(this.month).year() === year;
+        return this.month.getFullYear() === year;
     }
 
     isCurrentMonth(month: number) {
-        return (moment(this.month).month() + 1) === month;
+        return (this.month.getMonth() + 1) === month;
     }
 }

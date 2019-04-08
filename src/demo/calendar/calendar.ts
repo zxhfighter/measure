@@ -2,8 +2,6 @@ import {
     Component, OnInit, ChangeDetectionStrategy
 } from '@angular/core';
 
-import * as moment from 'moment';
-
 @Component({
     selector: 'demo-calendar',
     templateUrl: './calendar.html',

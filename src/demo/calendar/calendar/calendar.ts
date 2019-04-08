@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as moment from 'moment';
+import { addDays, addMonths } from 'date-fns';
 
 @Component({
     selector: 'demo-calendar-inner',
@@ -8,6 +8,6 @@ import * as moment from 'moment';
 })
 export class CalendarInnerDemo {
     startDate = new Date();
-    endDate = moment().add(7, 'd').toDate();
-    selectedDate: Date = moment().add(1, 'month').toDate();
+    endDate = addDays(new Date(), 7);
+    selectedDate: Date = addMonths(new Date(), 1);
 }

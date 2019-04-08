@@ -155,7 +155,6 @@ task('build:bundle', async () => {
             '@angular/forms',
             '@angular/router',
             '@angular/http',
-            'moment',
             'echarts',
             'prismjs'
         ],
@@ -179,7 +178,6 @@ task('build:bundle', async () => {
             '@angular/forms': 'ng.forms',
             '@angular/router': 'ng.router',
             '@angular/http': 'ng.http',
-            'moment': 'moment',
             'echarts': 'echarts',
             'prismjs': 'prismjs'
         },

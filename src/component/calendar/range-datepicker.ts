@@ -10,18 +10,12 @@ import {
     OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { format, subDays, setDate, lastDayOfMonth, subWeeks, lastDayOfWeek, setDay } from 'date-fns';
 
 import { OverlayComponent } from '../overlay';
 import { OverlayOriginDirective } from '../overlay/overlay-origin.directive';
 
-import { Moment } from 'moment';
-import * as momentLib from 'moment';
-
 import { OnChange } from '../core/decorators';
-
-// fix rollup bundle bug, see
-// https://stackoverflow.com/questions/39519823/using-rollup-for-angular-2s-aot-compiler-and-importing-moment-js
-const moment = (momentLib as any).default ? (momentLib as any).default : momentLib;
 
 /*
  * Provider Expression that allows component to register as a ControlValueAccessor.
@@ -99,8 +93,8 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
     @Input() quickLinks: QuickLinkValue[] = [
         {
             text: '昨天',
-            startDate: moment().subtract(1, 'd').toDate(),
-            endDate: moment().subtract(1, 'd').toDate()
+            startDate: subDays(new Date(), 1),
+            endDate: subDays(new Date(), 1)
         },
         {
             text: '今天',
@@ -110,18 +104,18 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
         {
             // not include today
             text: '最近7天',
-            startDate: moment().subtract(7, 'd').toDate(),
-            endDate: moment().subtract(1, 'd').toDate(),
+            startDate: subDays(new Date(), 7),
+            endDate: subDays(new Date(), 1)
         },
         {
             text: '上周',
-            startDate: moment().subtract(1, 'w').day(1).toDate(),
-            endDate: moment().subtract(1, 'w').day(7).toDate()
+            startDate: setDay(subWeeks(new Date(), 1), 1, { weekStartsOn: 1 }),
+            endDate: lastDayOfWeek(subWeeks(new Date(), 1), { weekStartsOn: 1})
         },
         {
             text: '本月',
-            startDate: moment().date(1).toDate(),
-            endDate: moment().add(1, 'month').date(1).subtract(1, 'd').toDate()
+            startDate: setDate(new Date(), 1),
+            endDate: lastDayOfMonth(new Date())
         }
     ];
 
@@ -142,9 +136,9 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
      */
     get valueText() {
         return [
-            moment(this.value.startDate).format(this.formatter),
+            format(this.value.startDate, this.formatter),
             ' ' + this.splitter + ' ',
-            moment(this.value.endDate).format(this.formatter)
+            format(this.value.endDate, this.formatter)
         ].join('');
     }
 
