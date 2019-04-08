@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { addDays, subDays, isWithinRange } from 'date-fns';
+import { addDays, subDays, isWithinInterval } from 'date-fns';
 
 @Component({
     selector: 'demo-monthview',
@@ -28,6 +28,6 @@ export class MonthViewDemo {
         const currDate = date;
 
         // 如果不再这个区间，disabled 掉
-        return !isWithinRange(currDate, startDate, endDate);
+        return !isWithinInterval(currDate, {start: startDate, end: endDate});
     }
 }

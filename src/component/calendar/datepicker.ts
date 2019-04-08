@@ -62,7 +62,7 @@ export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAcces
      * @docs-private
      */
     get valueText() {
-        return format(this.value, 'YYYY-MM-DD');
+        return format(this.value, 'yyyy-MM-dd');
     }
 
     /** whether the panel is show */

@@ -2,9 +2,9 @@
  * Date-fns utilities.
  */
 
-import * as zh from 'date-fns/locale/zh_cn';
+import { zhCN } from 'date-fns/esm/locale';
 import {
-    format, eachDay, startOfWeek, endOfWeek, startOfDay
+    format, startOfWeek, endOfWeek, startOfDay, eachDayOfInterval
 } from 'date-fns';
 
 export type WeekStarts = 0 | 1 | 2 | 3 | 4 | 5 | 6;
@@ -26,17 +26,16 @@ export enum Weekday {
 export function getDayNames(weekStartsOn: Weekday): string[] {
     return this
         .getCurrentWeekArray(new Date(), weekStartsOn)
-        .map((day: Date) => format(day, 'dd', { locale: zh }));
+        .map((day: Date) => format(day, 'EEEEE', { locale: zhCN }));
 }
 
 /*
  * get current date's week start date and end date
  */
 export function getCurrentWeekArray(day: Date, weekStartsOn: Weekday): Date[] {
-    return eachDay(
-        startOfWeek(day, { weekStartsOn }),
-        endOfWeek(day, { weekStartsOn }),
-        1
+    return eachDayOfInterval(
+        { start: startOfWeek(day, { weekStartsOn }), end: endOfWeek(day, { weekStartsOn })},
+        { step: 1 }
     );
 }
 

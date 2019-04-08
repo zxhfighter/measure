@@ -87,7 +87,7 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
     @Input() splitter = '~';
 
     /** the format date show */
-    @Input() formatter = 'YYYY-MM-DD';
+    @Input() formatter = 'yyyy-MM-dd';
 
     /** the quick links array */
     @Input() quickLinks: QuickLinkValue[] = [

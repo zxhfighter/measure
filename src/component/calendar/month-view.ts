@@ -5,7 +5,7 @@ import {
 
 import { OnChange } from '../core/decorators';
 import {
-    format, addWeeks, isSameDay, isWithinRange, addDays, setDay, setDate
+    format, addWeeks, isSameDay, addDays, setDay, setDate, isWithinInterval
 } from 'date-fns';
 import { getDayNames, Weekday, resetTime, cloneDate } from '../util/date';
 
@@ -257,7 +257,7 @@ export class MonthViewComponent implements OnInit {
                 text: date.getDate() + '',
                 date,
                 disabled: this.checkIsDisabled(date),
-                title: format(date, 'YYYY-MM-DD'),
+                title: format(date, 'yyyy-MM-dd'),
                 isCurrent: isSameDay(date, new Date()),
                 isSelected: needCheckSelected ? this.checkIsSelected(date) : isSameDay(date, this.value),
                 isLastMonth:
@@ -302,7 +302,7 @@ export class MonthViewComponent implements OnInit {
 
             return isSameDay(date, min)
                 || isSameDay(date, max)
-                || isWithinRange(date, min, max);
+                || isWithinInterval(date, {start: min, end: max});
         }
 
         return false;

@@ -2,10 +2,7 @@ import {
     Component, Input, Output, EventEmitter,
     ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
-import {
-    subMonths, addMonths, setYear, setMonth
-} from 'date-fns';
-
+import { subMonths, addMonths, setYear, setMonth } from 'date-fns';
 import { OnChange } from '../core/decorators';
 
 /** calendar show mode */
