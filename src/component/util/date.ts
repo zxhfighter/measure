@@ -24,8 +24,7 @@ export enum Weekday {
  * get week day names, such as '日'，'一'， '二'，'六'
  */
 export function getDayNames(weekStartsOn: Weekday): string[] {
-    return this
-        .getCurrentWeekArray(new Date(), weekStartsOn)
+    return getCurrentWeekArray(new Date(), weekStartsOn)
         .map((day: Date) => format(day, 'EEEEE', { locale: zhCN }));
 }
 
