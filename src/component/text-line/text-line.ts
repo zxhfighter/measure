@@ -100,6 +100,9 @@ export class TextLineComponent implements OnInit, ControlValueAccessor {
     }
 
     onBlur() {
+        if (!this.value) {
+            return;
+        }
         this.value = this.value.split('\n').map(word => word.trim()).filter(item => item).join('\n');
         this.lines = this.value.replace(/\r/gi, '').split('\n');
         this._markForCheck();
