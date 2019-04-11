@@ -12297,7 +12297,7 @@ a.nb-button[disabled]:active {
   background-color: #fff;
 }
 .nb-textarea {
-  width: 300px;
+  width: 100%;
   height: 150px;
   padding: 8px 10px;
   color: #666;
@@ -14176,11 +14176,14 @@ a.nb-button[disabled]:active {
 .nb-transfer-selected {
   display: inline-block;
   vertical-align: middle;
-  width: 230px;
+  width: 48%;
+  min-width: 230px;
   height: 360px;
   padding-bottom: 20px;
-  margin: 15px;
   border: 1px solid #ddd;
+}
+.nb-transfer-candidate {
+  margin-right: 20px;
 }
 .nb-transfer-candidate .nb-search-box,
 .nb-transfer-selected .nb-search-box {
@@ -14196,8 +14199,14 @@ a.nb-button[disabled]:active {
 .nb-transfer-selected .nb-tree {
   padding-right: 15px;
 }
+.nb-tree-transfer {
+  display: inline-block;
+  width: 100%;
+  min-width: 500px;
+  max-width: 985px;
+}
 .nb-tree-transfer .nb-tree-content {
-  width: 90%;
+  width: 100%;
 }
 .nb-tree-transfer .nb-tree-content span {
   margin-right: 0;
@@ -14214,7 +14223,12 @@ a.nb-button[disabled]:active {
 }
 .nb-tree-transfer .nb-tree-selectable .nb-tree-content::before,
 .nb-tree-transfer .nb-tree-selectable .nb-tree-content::after {
-  display: none;
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  height: 36px;
 }
 .nb-tree-transfer .nb-tree-selectable .nb-tree-content:hover {
   background-color: #f1f1f1;
@@ -19153,4 +19167,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.091932.bundle.map*/
+/*# sourceMappingURL=app.9cecc0.bundle.map*/
