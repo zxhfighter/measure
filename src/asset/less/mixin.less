@@ -130,3 +130,278 @@
         border-right-color: @border-color;
     }
 }
+
+
+/**
+ * 系统背景颜色处理器
+ *
+ * @param {string} @bg-color 背景颜色
+ * @param {number} @lt-percent lt百分比
+ * @param {number} @lter-percent lter百分比
+ * @param {number} @dk-percent dk百分比
+ * @param {number} @dker-percent dker百分比
+ */
+ .color-variant(@bg-color: #555, @lt-percent: 10%, @lter-percent: 15%, @dk-percent: 10%, @dker-percent: 15%) {
+    background-color: @bg-color;
+    &.lt,
+    .lt {
+        .color-schema(@bg-color, -@lt-percent, -2.5%);
+    }
+    &.lter,
+    .lter {
+        .color-schema(@bg-color, -@lter-percent, -5%);
+    }
+    &.dk,
+    .dk {
+        .color-schema(@bg-color, @dk-percent, 2.5%);
+    }
+    &.dker,
+    .dker {
+        .color-schema(@bg-color, @dker-percent, 5%);
+    }
+    &.bg,
+    .bg {
+        background-color: @bg-color;
+    }
+}
+
+/**
+ * 背景颜色
+ *
+ * @param {string} @bg-color 背景颜色
+ * @param {number} @percent 百分比
+ * @param {number} @sat-percent 饱和度
+ */
+.color-schema(@bg-color: #555, @percent: 15%, @sat-percent) {
+    background-color: saturate(darken(@bg-color, @percent), @sat-percent);
+}
+
+/**
+ * 系统字体颜色处理器
+ *
+ * @param {string} @bg-color 背景颜色
+ */
+.font-variant(@bg-color) {
+    @font-color: desaturate(lighten(@bg-color, 40%), 10%);
+    @link-color: desaturate(lighten(@bg-color, 50%), 10%);
+    @hover-color: #fff;
+    color: @font-color;
+    a {
+        color: @link-color;
+        &:hover {
+            color: @hover-color;
+        }
+        &.list-group-item {
+            &:hover,
+            &:focus {
+                background-color: inherit;
+            }
+        }
+    }
+    .nav {
+        > li {
+            &:hover,
+            &:focus,
+            &.active {
+                > a {
+                    color: @hover-color;
+                    .color-schema(@bg-color, 5%, 2.5%);
+                }
+            }
+            > a {
+                color: darken(@link-color, 5%);
+                &:hover,
+                &:focus {
+                    .color-schema(@bg-color, 3%, 2.5%);
+                }
+            }
+        }
+        .open > a {
+            .color-schema(@bg-color, 5%, 2.5%);
+        }
+    }
+    .caret {
+        border-top-color: @font-color;
+        border-bottom-color: @font-color;
+    }
+    &.navbar .nav {
+        > li.active > a {
+            color: @hover-color;
+            .color-schema(@bg-color, 5%, 2.5%);
+        }
+    }
+    .open > a {
+        &,
+        &:hover,
+        &:focus {
+            color: @hover-color;
+        }
+    }
+    .text-muted {
+        color: darken(@font-color, 10%) !important;
+    }
+    .text-lt {
+        color: lighten(@font-color, 25%) !important;
+    }
+    &.auto,
+    .auto {
+        .list-group-item {
+            border-color: darken(@bg-color, 5%) !important;
+            background-color: transparent;
+            &:hover,
+            &:focus,
+            &:active,
+            &.active {
+                .color-schema(@bg-color, 5%, 2.5%) !important;
+            }
+        }
+    }
+}
+
+/**
+ * 系统文字颜色处理器
+ *
+ * @param {string} @bg-color 背景颜色
+ * @param {string} @name 颜色名称
+ */
+.text-wariant(@bg-color, @name) {
+    a.bg-@{name}:hover {
+        color: lighten(@bg-color, 65%);
+        background-color: darken(@bg-color, 5%);
+        text-decoration: none;
+    }
+    a.text-@{name}:hover {
+        color: darken(@bg-color, 25%);
+    }
+    .text-@{name} {
+        color: @bg-color !important;
+    }
+    .text-@{name}-lt {
+        color: lighten(@bg-color, 5%);
+    }
+    .text-@{name}-lter {
+        color: lighten(@bg-color, 10%);
+    }
+    .text-@{name}-dk {
+        color: darken(@bg-color, 5%);
+    }
+    .text-@{name}-dker {
+        color: darken(@bg-color, 10%);
+    }
+}
+
+/**
+ * 系统按钮处理器
+ *
+ * @param {string} @color 字体颜色
+ * @param {string} @background 背景颜色
+ * @param {string} @border 边框颜色
+ */
+.button-variant(@color; @background; @border) {
+    color: @color !important;
+    background-color: @background;
+    border-color: @border;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open .dropdown-toggle& {
+        color: @color !important;
+        background-color: darken(@background, 5%);
+        border-color: darken(@border, 8%);
+    }
+    &:active,
+    &.active,
+    .open .dropdown-toggle& {
+        background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            background-color: @background;
+            border-color: @border
+        }
+    }
+}
+
+/**
+ * transition
+ *
+ * @param {string} @value
+ */
+.transition(@value) {
+    -webkit-transition: @value;
+    -moz-transition: @value;
+    -ms-transition: @value;
+    -o-transition: @value;
+    transition: @value;
+}
+
+.perspective (@val:800px){
+    -webkit-perspective:@val;
+    -moz-perspective:@val;
+    -o-perspective:@val;
+    -ms-perspective:@val;
+    perspective:@val;
+}
+
+.transform-style(){
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.animate (@val:name 2s linear 1s infinite){
+    -webkit-animation: @val;
+    -moz-animation: @val;
+    -o-animation: @val;
+    -ms-animation: @val;
+    animation: @val;
+}
+
+.transition (@val:all .2s ease-in-out 0s){
+    -webkit-transition: @val;
+    -moz-transition: @val;
+    -ms-transition: @val;
+    -o-transition: @val;
+    transition: @val;
+}
+
+.transform (@val){
+    -webkit-transform:@val;
+    -moz-transform:@val;
+    -ms-transform:@val;
+    -o-transform:@val;
+    transform:@val;
+}
+
+.transformOrigin (@val){
+    -webkit-transform-origin:@val;
+    -moz-transform-origin:@val;
+    -o-transform-origin:@val;
+    -ms-transform-origin:@val;
+    transform-origin:@val;
+}
+
+.keyframes(@name; @arguments) {
+    @-o-keyframes @name { @arguments(); }
+	@-moz-keyframes @name { @arguments(); }
+    @-webkit-keyframes @name { @arguments(); }
+    @-ms-keyframes @name { @arguments(); }
+	@keyframes @name { @arguments(); }
+}
+
+.responsive-zone() {
+    // 当页面小于1280px时，整个页面不做缩放，保持横向滑动查看；
+    // 当页面大于1920px时，白色卡片保持不动；
+    // min-width: 1280px;
+    max-width: 1920px;
+}
