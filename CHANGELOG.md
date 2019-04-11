@@ -1,5 +1,9 @@
 <a name="7.0.42"></a>
+<<<<<<< HEAD
 ## [7.0.42](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.42) (2019-04-09)
+=======
+## [7.0.42](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.42) (2019-04-11)
+>>>>>>> [auto]publish to develop branch
 
 
 
