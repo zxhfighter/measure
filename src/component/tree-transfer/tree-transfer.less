@@ -1,6 +1,12 @@
 .@{prefix}-tree-transfer {
+
+    display: inline-block;
+    width: 100%;
+    min-width: 500px;
+    max-width: 985px;
+
     .@{prefix}-tree-content {
-        width: 90%;
+        width: 100%;
     
         span {
             margin-right: 0;
@@ -21,7 +27,12 @@
 
     .@{prefix}-tree-selectable .@{prefix}-tree-content::before, 
     .@{prefix}-tree-selectable .@{prefix}-tree-content::after {
-        display: none;
+        content: "";
+        position: absolute;
+        display: block;
+        left: 0;
+        right: 0;
+        height: 36px;
     }
 
     .@{prefix}-tree-selectable .@{prefix}-tree-content:hover {
