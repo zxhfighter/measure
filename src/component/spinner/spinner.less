@@ -15,6 +15,10 @@
         border: 1px solid #dbdbdb;
     }
 
+    .@{prefix}-spinner-button-group {
+        display: none;
+    }
+
     .@{prefix}-spinner-button {
         position: absolute;
         right: 0;
@@ -71,6 +75,10 @@
     &:hover:not(.@{prefix}-spinner-disabled) {
         .@{prefix}-spinner-input {
             border-color: #999;
+        }
+
+        .@{prefix}-spinner-button-group {
+            display: block;
         }
     }
 }
