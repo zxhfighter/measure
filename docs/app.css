@@ -11185,6 +11185,9 @@ a.nb-button[disabled]:active {
   padding-right: 30px;
   border: 1px solid #dbdbdb;
 }
+.nb-spinner .nb-spinner-button-group {
+  display: none;
+}
 .nb-spinner .nb-spinner-button {
   position: absolute;
   right: 0;
@@ -11234,6 +11237,9 @@ a.nb-button[disabled]:active {
 }
 .nb-spinner:hover:not(.nb-spinner-disabled) .nb-spinner-input {
   border-color: #999;
+}
+.nb-spinner:hover:not(.nb-spinner-disabled) .nb-spinner-button-group {
+  display: block;
 }
 .nb-spinner-disabled {
   cursor: not-allowed;
@@ -12397,6 +12403,7 @@ a.nb-button[disabled]:active {
   outline: none;
   overflow-y: scroll;
   resize: none;
+  line-height: 28px;
 }
 .nb-text-line-default {
   color: #666;
@@ -12505,6 +12512,7 @@ a.nb-button[disabled]:active {
   background-color: transparent;
 }
 .nb-search-box-icons button.nb-button-theme-primary:disabled .nb-button-inner {
+  line-height: 36px;
   display: inline-block;
   width: 70px;
   height: 34px;
@@ -12778,7 +12786,6 @@ a.nb-button[disabled]:active {
   color: #b8b8b8;
 }
 .nb-rangedatepicker-calendar-panel {
-  width: 505px;
   background: #fff;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 1px;
@@ -14223,7 +14230,7 @@ a.nb-button[disabled]:active {
 }
 .nb-tree-transfer .nb-tree-selectable .nb-tree-content::before,
 .nb-tree-transfer .nb-tree-selectable .nb-tree-content::after {
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   left: 0;
@@ -14310,6 +14317,12 @@ a.nb-button[disabled]:active {
 .nb-table-row-empty {
   text-align: center;
 }
+.nb-slider-inner .nb-spinner {
+  position: relative;
+  float: right;
+  top: -20px;
+  left: 130px;
+}
 .nb-slider {
   position: relative;
   width: 100%;
@@ -14334,12 +14347,6 @@ a.nb-button[disabled]:active {
   border: 2px solid #3d80fc;
   background-color: #fff;
   z-index: 2;
-}
-.nb-spinner {
-  position: relative;
-  float: right;
-  top: -20px;
-  left: 130px;
 }
 .nb-slider-vertical {
   width: 4px;
@@ -19167,4 +19174,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.9cecc0.bundle.map*/
+/*# sourceMappingURL=app.f31519.bundle.map*/
