@@ -11,10 +11,15 @@
 
         .@{prefix}-breadcrumb-text {
             color: @brand-primary;
+            font-size: 16px;
             text-decoration: none;
 
             &:hover {
-                color: lighten(@brand-primary, 10%);
+                color: darken(@brand-primary, 10%);
+            }
+
+            &:active {
+                color:  darken(@brand-primary, 20%);
             }
 
             &.last {
