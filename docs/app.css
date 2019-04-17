@@ -10903,10 +10903,14 @@ a.nb-button[disabled]:active {
 }
 .nb-breadcrumb-list .nb-breadcrumb-item .nb-breadcrumb-text {
   color: #3998fc;
+  font-size: 16px;
   text-decoration: none;
 }
 .nb-breadcrumb-list .nb-breadcrumb-item .nb-breadcrumb-text:hover {
-  color: #6bb2fd;
+  color: #077efb;
+}
+.nb-breadcrumb-list .nb-breadcrumb-item .nb-breadcrumb-text:active {
+  color: #0365cc;
 }
 .nb-breadcrumb-list .nb-breadcrumb-item .nb-breadcrumb-text.last {
   color: inherit;
@@ -11929,6 +11933,7 @@ a.nb-button[disabled]:active {
   border-collapse: collapse;
 }
 .nb-table-row {
+  cursor: default;
   border-bottom: 1px solid #eee;
 }
 .nb-table-row .nb-table-td:first-of-type {
@@ -11956,6 +11961,7 @@ a.nb-button[disabled]:active {
   font-weight: normal;
   display: inline-block;
   font-size: 12px;
+  cursor: pointer;
 }
 .nb-table-head .icon-help {
   margin-left: 8px;
@@ -13005,6 +13011,7 @@ a.nb-button[disabled]:active {
 .nb-select .nb-button > span {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .nb-select-icon {
   display: inline-block;
