@@ -480,7 +480,8 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
             node.isSelected = chkVal;
         }
         // 已选树，单点穿梭
-        if (mode === 'selected' && currentTree === 'selectedTree' && (node.selectable || this.hasChildren(node)) && transType === 'single') {
+        if (mode === 'selected' && currentTree === 'selectedTree' 
+            && (node.selectable || this.hasChildren(node)) && transType === 'single') {
             node.isSelected = chkVal;
         }
         // 已选树，全穿梭
@@ -492,7 +493,8 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
             node.isSelected = chkVal;
         }
         // 备选树，带搜索内容
-        if (currentTree === 'candidateTree' && node.selectable && node.show && (this.search(this.keyword, node.name) || node.parent && this.getTargetNode(node.parent, 'candidate').isSelected)) {
+        if (currentTree === 'candidateTree' && node.selectable && node.show 
+            && (this.search(this.keyword, node.name) || node.parent && this.getTargetNode(node.parent, 'candidate').isSelected)) {
             node.isSelected = chkVal;
         }
         if (node.children && node.children.length) {
@@ -544,7 +546,7 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
             root.show = root.isSelected;
         }
         root.isExpanded = root.show;
-        
+
         if (root.children && root.children.length) {
             for (let child of root.children) {
                 this.renderTransTree(child, mode, currentTree);
