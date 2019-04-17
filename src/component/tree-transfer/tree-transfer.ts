@@ -8,8 +8,6 @@ import {
     ChangeDetectionStrategy,
     forwardRef,
     ChangeDetectorRef,
-    ElementRef,
-    Renderer2,
     SimpleChanges,
     TemplateRef
 } from '@angular/core';
@@ -51,7 +49,7 @@ const TREE_TRANSFER_VALUE_ACCESSOR = {
     exportAs: 'nbTreeTransfer'
 })
 
-export class TreeTransferComponent implements OnChanges {
+export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
 
     /** get selected value event */
     @Output() getValue: EventEmitter<number[] | string[] | object[]>
@@ -153,10 +151,14 @@ export class TreeTransferComponent implements OnChanges {
      */
     private value: Array<object> = [];
 
+    /**
+     * the search keyword
+     * @docs-private
+     */
+    private keyword: string = '';
+
     constructor(
         private _cd: ChangeDetectorRef,
-        private el: ElementRef,
-        private _render: Renderer2,
         private service: TransferService
     ) { }
 
@@ -244,11 +246,11 @@ export class TreeTransferComponent implements OnChanges {
     countSelectedNodes(tree: TreeNode[]) {
         if (tree && tree.length) {
             tree.forEach((node: TreeNode) => {
-                if (node.isSelected && node.selectable && this.hasChildren(node)) {
+                if (node.isSelected && node.selectable && !this.hasChildren(node)) {
                     this.selectedCount++;
                     this.value.push(node);
                 }
-                if (node.selectable && this.hasChildren(node)) {
+                if (node.selectable && !this.hasChildren(node)) {
                     this.candidateCount++;
                 }
                 if (node.children && node.children.length) {
@@ -263,14 +265,12 @@ export class TreeTransferComponent implements OnChanges {
      * @docs-private
      */
     hasChildren(node: TreeNode) {
-        if (!node.children) {
-            return true;
-        }
-        if (node.children && node.children.length === 0) {
+        if (node.children && node.children.length) {
             return true;
         }
         return false;
     }
+
     /**
      * @param   {string} part     搜索的字符串片段
      * @param   {string} complete 完整的字符串
@@ -280,12 +280,13 @@ export class TreeTransferComponent implements OnChanges {
         const key = new RegExp(keyWord.trim(), 'i');
         return fullWord.match(key);
     }
+
     /**
      * fitler candidate or selected list by key word
      * @docs-private
      */
     searchByKeyWord(e: any) {
-        const event = e.event;
+        const event = this.keyword = e.event;
         const mode = e.mode;
         // 向组件外部暴露搜索事件
         this.searchValue.emit(event);
@@ -352,17 +353,17 @@ export class TreeTransferComponent implements OnChanges {
      * get node the searched by key word
      * @docs-private
      */
-    searchNodes(node: TreeNode, mode: string, keyword: string) {
+    searchNodes(node: TreeNode, mode: string, keyword: string, type?: string) {
         this.setSearchNodes(node, mode);
         if (node.children && node.name && this.search(keyword, node.name)) {
-            this.setSearchNodesChildren(node.children, mode);
+            this.setSearchNodesChildren(node.children, mode, type);
         }
         if (node.parent) {
             let nodeParent: TreeNode | undefined;
             nodeParent = this.getTargetNode(node.parent, mode);
             if (nodeParent) {
                 if (nodeParent.parent) {
-                    this.searchNodes(nodeParent, mode, keyword);
+                    this.searchNodes(nodeParent, mode, keyword, type);
                 } else {
                     this.setSearchNodes(nodeParent, mode);
                 }
@@ -386,23 +387,26 @@ export class TreeTransferComponent implements OnChanges {
      * @docs-private
      */
     setSearchNodes(node: TreeNode, mode: string) {
-        if (mode === 'selected' && node.isSelected) {
-            node.show = true;
-        }
         node.show = true;
+        node.isExpanded = true;
     }
 
     /**
      * set searchnode's children node is show or not
      * @docs-private
      */
-    setSearchNodesChildren(nodeChildren: TreeNode[], mode: string) {
+    setSearchNodesChildren(nodeChildren: TreeNode[], mode: string, type: string) {
         nodeChildren.forEach(child => {
             if (child.children) {
-                this.setSearchNodesChildren(child.children, mode);
+                this.setSearchNodesChildren(child.children, mode, type);
             }
-            if (mode === 'selected' && child.isSelected) {
-                child.show = true;
+            if (mode === 'selected') {
+                if (type === 'transAll') {
+                    child.show = true;
+                }
+                if (child.isSelected) {
+                    child.show = true;
+                }
             } else if (mode === 'candidate') {
                 child.show = true;
             }
@@ -435,11 +439,25 @@ export class TreeTransferComponent implements OnChanges {
         let chkVal = mode === 'selected' ? true : false;
         let targetNode: TreeNode | undefined = this.getTargetNode(event, mode);
         if (targetNode) {
-            this.propagateDown(targetNode, chkVal);
+            this.propagateDown(targetNode, chkVal, mode, 'selectedTree', 'single');
             this.propagateUp(targetNode, chkVal, mode);
         }
 
-        let rootNodes: TreeNode[] = this.renderTargetNode(mode);
+        // 备选树
+        if (this.keyword) {
+            this.resetNodeList('candidate');
+            for (const key in this._candidateNodeList) {
+                if (this._candidateNodeList.hasOwnProperty(key)) {
+                    let node = this._candidateNodeList[key];
+                    if (node.name && this.search(this.keyword, node.name)) {
+                        this.searchNodes(node, 'candidate', this.keyword);
+                    }
+                }
+            }
+            this.candidateData = (<any>[]).concat(this.candidateData);
+        }
+
+        let rootNodes: TreeNode[] = this.renderTargetNode(mode, mode === 'selected' ? 'selectedTree' : 'candidateTree');
         if (mode === 'candidate') {
             this.candidateData = rootNodes;
         } else {
@@ -457,13 +475,29 @@ export class TreeTransferComponent implements OnChanges {
      * propagate down node 'isSelected' value
      * @docs-private
      */
-    propagateDown(node: TreeNode, chkVal: boolean) {
-        if (node.selectable || (node.children && node.children.length)) {
+    propagateDown(node: TreeNode, chkVal: boolean, mode: string, currentTree: string, transType?: string) {
+        if (mode === 'selected' && !this.keyword && (node.selectable || this.hasChildren(node))) {
             node.isSelected = chkVal;
         }
-        if (node.children && node.children.length) {
+        // 已选树，单点穿梭
+        if (mode === 'selected' && currentTree === 'selectedTree' && (node.selectable || this.hasChildren(node)) && transType === 'single') {
+            node.isSelected = chkVal;
+        }
+        // 已选树，全穿梭
+        if (currentTree === 'selectedTree' && (node.selectable || this.hasChildren(node)) && node.show) {
+            node.isSelected = chkVal;
+        }
+        // 备选树
+        if (currentTree === 'candidateTree' && !chkVal) {
+            node.isSelected = chkVal;
+        }
+        // 备选树，带搜索内容
+        if (currentTree === 'candidateTree' && node.selectable && node.show && (this.search(this.keyword, node.name) || node.parent && this.getTargetNode(node.parent, 'candidate').isSelected)) {
+            node.isSelected = chkVal;
+        }
+        if (this.hasChildren(node)) {
             for (let child of node.children) {
-                this.propagateDown(child, chkVal);
+                this.propagateDown(child, chkVal, mode, currentTree, transType);
             }
         }
     }
@@ -491,12 +525,12 @@ export class TreeTransferComponent implements OnChanges {
      * render target node 'isExpanded' and 'isSelected' attribute
      * @docs-private
      */
-    renderTargetNode(mode: string) {
+    renderTargetNode(mode: string, currentTree: string) {
         let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
         let rootNodes: TreeNode[] = [];
         rootNodes = this.getRootNodes(nodeList);
         for (let root of rootNodes) {
-            this.renderTransTree(root, mode);
+            this.renderTransTree(root, mode, currentTree);
         }
         return rootNodes;
     }
@@ -505,14 +539,15 @@ export class TreeTransferComponent implements OnChanges {
      * render target's root node and root's children the 'isExpanded' and 'isSelected' attribute
      * @docs-private
      */
-    renderTransTree(root: TreeNode, mode: string) {
-        if (mode === 'selected') {
+    renderTransTree(root: TreeNode, mode: string, currentTree: string) {
+        if (currentTree === 'selectedTree') {
             root.show = root.isSelected;
-            root.isExpanded = root.isSelected;
         }
+        root.isExpanded = root.show;
+        
         if (root.children && root.children.length) {
             for (let child of root.children) {
-                this.renderTransTree(child, mode);
+                this.renderTransTree(child, mode, currentTree);
             }
         }
     }
@@ -536,12 +571,26 @@ export class TreeTransferComponent implements OnChanges {
             return;
         }
 
+        // 备选树
         let rootCandidateNodes: TreeNode[] = [];
-        rootCandidateNodes = this.renderRootNodes(this.candidateData, mode, chkVal);
+        rootCandidateNodes = this.renderRootNodes(this.candidateData, mode, chkVal, 'candidateTree');
         this.candidateData = rootCandidateNodes;
 
+        // 已选树
         let rootSelectedNodes: TreeNode[] = [];
-        rootSelectedNodes = this.renderRootNodes(this.selectedData, mode, chkVal);
+        if (this.keyword && chkVal) {
+            this.resetNodeList('selected');
+            for (const key in this._selectedNodeList) {
+                if (this._selectedNodeList.hasOwnProperty(key)) {
+                    let node = this._selectedNodeList[key];
+                    if (node.name && this.search(this.keyword, node.name)) {
+                        this.searchNodes(node, 'selected', this.keyword, 'transAll');
+                    }
+                }
+            }
+            this.selectedData = (<any>[]).concat(this.selectedData);
+        }
+        rootSelectedNodes = this.renderRootNodes(this.selectedData, mode, chkVal, 'selectedTree');
         this.selectedData = rootSelectedNodes;
 
         this.initCount();
@@ -556,11 +605,11 @@ export class TreeTransferComponent implements OnChanges {
      * render root nodes and root's children the 'isExpanded' and 'isSelected' attribute
      * @docs-private
      */
-    renderRootNodes(treeData: TreeNode[], mode: string, chkVal: boolean) {
+    renderRootNodes(treeData: TreeNode[], mode: string, chkVal: boolean, currentTree: string) {
         let rootNodes: TreeNode[] = this.getRootNodes(treeData);
         for (let root of rootNodes) {
-            this.propagateDown(root, chkVal);
-            this.renderTransTree(root, mode);
+            this.propagateDown(root, chkVal, mode, currentTree);
+            this.renderTransTree(root, mode, currentTree);
         }
         return rootNodes;
     }
@@ -603,7 +652,7 @@ export class TreeTransferComponent implements OnChanges {
     }
 
     /**
-     * set tree-transfer model value
+     * set tree-transfer model value. Implemented as part of ControlValueAccessor.
      * @docs-private
      */
     writeValue(value: any) {
