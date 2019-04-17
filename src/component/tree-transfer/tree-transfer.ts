@@ -276,9 +276,9 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
      * @param   {string} complete 完整的字符串
      * @returns boolean 字符串片段在字符串中的位置
      */
-    search(keyWord: string, fullWord: string) {
+    search(keyWord: string, fullWord: string | undefined) {
         const key = new RegExp(keyWord.trim(), 'i');
-        return fullWord.match(key);
+        return fullWord ? fullWord.match(key) : false;
     }
 
     /**
@@ -354,7 +354,7 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
      * @docs-private
      */
     searchNodes(node: TreeNode, mode: string, keyword: string, type?: string) {
-        this.setSearchNodes(node, mode);
+        this.setSearchNodes(node);
         if (node.children && node.name && this.search(keyword, node.name)) {
             this.setSearchNodesChildren(node.children, mode, type);
         }
@@ -365,7 +365,7 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
                 if (nodeParent.parent) {
                     this.searchNodes(nodeParent, mode, keyword, type);
                 } else {
-                    this.setSearchNodes(nodeParent, mode);
+                    this.setSearchNodes(nodeParent);
                 }
             }
         }
@@ -375,8 +375,8 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
      * get target node in xxNodeList
      * @docs-private
      */
-    getTargetNode(treeNode: TreeNode, mode: string): TreeNode | undefined {
-        let targetNode: TreeNode | undefined;
+    getTargetNode(treeNode: TreeNode, mode: string): TreeNode  {
+        let targetNode: TreeNode;
         let nodeList = mode === 'candidate' ? this._candidateNodeList : this._selectedNodeList;
         targetNode = nodeList[treeNode.id];
         return targetNode;
@@ -386,7 +386,7 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
      * set searchnode is show or not
      * @docs-private
      */
-    setSearchNodes(node: TreeNode, mode: string) {
+    setSearchNodes(node: TreeNode) {
         node.show = true;
         node.isExpanded = true;
     }
@@ -395,7 +395,7 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
      * set searchnode's children node is show or not
      * @docs-private
      */
-    setSearchNodesChildren(nodeChildren: TreeNode[], mode: string, type: string) {
+    setSearchNodesChildren(nodeChildren: TreeNode[], mode: string, type: string | undefined) {
         nodeChildren.forEach(child => {
             if (child.children) {
                 this.setSearchNodesChildren(child.children, mode, type);
@@ -495,7 +495,7 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
         if (currentTree === 'candidateTree' && node.selectable && node.show && (this.search(this.keyword, node.name) || node.parent && this.getTargetNode(node.parent, 'candidate').isSelected)) {
             node.isSelected = chkVal;
         }
-        if (this.hasChildren(node)) {
+        if (node.children && node.children.length) {
             for (let child of node.children) {
                 this.propagateDown(child, chkVal, mode, currentTree, transType);
             }
@@ -595,7 +595,7 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
 
         this.initCount();
         this.clearDataListSelected();
-        this.countSelectedNodes(this.candidateData);
+        this.countSelectedNodes(this.selectedData);
         this.service.sendMsg({ candidateCount: this.candidateCount, selectedCount: this.selectedCount });
         this.getValue.emit(this.value);
         this._markForCheck();
