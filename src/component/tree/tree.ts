@@ -148,7 +148,7 @@ export class TreeComponent implements OnInit {
      * @docs-private
      */
     clickSelected(node: TreeNode) {
-        if (node.isSelected) {
+        if (node.isSelected || node.isPartSelected) {
             if (this.propagateSelectionDown) {
                 this.propagateDown(node, false);
             }
