@@ -61,9 +61,7 @@ export class TreeNodeComponent implements OnInit {
     toggle(event: Event) {
         event.stopPropagation();
         this.node.isExpanded = !this.node.isExpanded;
-        if (this.node.isExpanded) {
-            this.onExpandNode.emit(this.node);
-        }
+        this.onExpandNode.emit(this.node);
     }
 
     /**
