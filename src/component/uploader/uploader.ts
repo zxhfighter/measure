@@ -211,6 +211,8 @@ export class UploaderComponent implements OnInit {
                     else {
                         this.files.push(file);
                     }
+                } else {
+                    this.validateFileCount([]);
                 }
             }
         }
@@ -358,6 +360,7 @@ export class UploaderComponent implements OnInit {
     private isFileTypeValid(file: File): boolean {
         let acceptableTypes = this.accept.split(',');
         for (let type of acceptableTypes) {
+            type = type.trim();
             let acceptable = this.isWildcard(type) ?
                 this.getTypeClass(file.type) === this.getTypeClass(type) :
                 file.type === type || this.getFileExtension(file) === type;
