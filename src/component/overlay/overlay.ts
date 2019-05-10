@@ -108,6 +108,13 @@ export class OverlayComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     /**
+     * show or hide
+     */
+    toggle() {
+        this.visibility ? this.hide() : this.show();
+    }
+
+    /**
      * position the overlay element and show it
      */
     show() {
