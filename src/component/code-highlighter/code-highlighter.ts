@@ -1,6 +1,6 @@
 import {
     Component, Input, ElementRef, ViewChild, AfterViewInit,
-    ViewEncapsulation, ChangeDetectionStrategy, Renderer2
+    ViewEncapsulation, ChangeDetectionStrategy, Renderer2, OnChanges, SimpleChanges
 } from '@angular/core';
 
 import * as prismLib from 'prismjs';
@@ -22,7 +22,7 @@ const prism: any = (prismLib as any).default ? (prismLib as any).default : prism
     },
     exportAs: 'nbCodeHighlighter'
 })
-export class CodeHighlighterComponent implements AfterViewInit {
+export class CodeHighlighterComponent implements AfterViewInit, OnChanges {
 
     /**
      * code language, see http://prismjs.com/index.html#languages-list
@@ -66,6 +66,8 @@ export class CodeHighlighterComponent implements AfterViewInit {
         this.highlight();
     }
 
+
+
     /**
      * @docs-private
      */
@@ -100,6 +102,12 @@ export class CodeHighlighterComponent implements AfterViewInit {
         }
         catch (e) {
             throw new Error('cannot highlight code, see error: ' + e);
+        }
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if ('rawCode' in changes) {
+            this.highlight();
         }
     }
 }
