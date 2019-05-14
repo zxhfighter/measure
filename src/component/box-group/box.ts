@@ -122,7 +122,7 @@ export class InputBoxComponent implements OnInit, AfterViewInit, ControlValueAcc
             this.disabled = this.disabled || this._parentBox.disabled;
 
             const value = (this._parentBox.value || []) as any[];
-            this.checked = value.indexOf(this.value) !== -1;
+            this.checked = value.indexOf(this.value) !== -1 || this.checked;
         }
     }
 
