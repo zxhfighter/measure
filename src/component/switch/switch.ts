@@ -190,6 +190,7 @@ export class SwitchComponent implements AfterViewInit, ControlValueAccessor {
      */
     writeValue(value: any) {
         this.checked = coerceBooleanProperty(value);
+        this._cd.markForCheck();
     }
 
     /**
