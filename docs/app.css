@@ -12411,6 +12411,19 @@ a.nb-button[disabled]:active {
   resize: none;
   line-height: 28px;
 }
+.nb-text-line-textarea::-webkit-scrollbar {
+  width: 3px;
+  height: 70px;
+}
+.nb-text-line-textarea::-webkit-scrollbar-thumb {
+  width: 3px;
+  height: 70px;
+  border-radius: 3px;
+  background: #e7e7e7;
+}
+.nb-text-line-textarea::-webkit-scrollbar-track {
+  background: #fff;
+}
 .nb-text-line-default {
   color: #666;
   background-color: #fff;
