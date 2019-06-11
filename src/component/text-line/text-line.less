@@ -65,6 +65,22 @@
     overflow-y: scroll;
     resize: none;
     line-height: 28px;
+
+    &::-webkit-scrollbar {
+        width: 3px;
+        height: 70px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        width: 3px;
+        height: 70px;
+        border-radius: 3px;
+        background: #e7e7e7;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
 }
 
 // themes
