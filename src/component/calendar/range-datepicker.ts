@@ -151,8 +151,8 @@ export class RangeDatePickerComponent implements OnInit, OnDestroy, ControlValue
     /** the end date(the max date of the two dates) */
     _endDate: Date | null;
 
-    @ViewChild('origin') origin: OverlayOriginDirective;
-    @ViewChild('overlay') overlay: OverlayComponent;
+    @ViewChild('origin', {static: true}) origin: OverlayOriginDirective;
+    @ViewChild('overlay', {static: true}) overlay: OverlayComponent;
 
     constructor(private render: Renderer2, private cd: ChangeDetectorRef, private el: ElementRef) {
 

@@ -7,7 +7,7 @@ import { DialogComponent } from '../../../component/dialog';
     styleUrls: ['./dialog-content.less']
 })
 export class DialogContentDemo {
-    @ViewChild('customFooterDialog') customFooterDialog: DialogComponent;
+    @ViewChild('customFooterDialog', {static: false}) customFooterDialog: DialogComponent;
 
     openCustomFooterDialog() {
         this.customFooterDialog.show();

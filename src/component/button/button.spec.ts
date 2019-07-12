@@ -7,7 +7,7 @@ import { ButtonModule } from './button.module';
     template: '<button nb-button #button> OK </button>'
 })
 class ButtonTestComponent {
-    @ViewChild('button') button;
+    @ViewChild('button' {static: false}) button;
 }
 
 describe('nb-button', () => {

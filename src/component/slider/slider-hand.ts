@@ -76,9 +76,9 @@ export class SliderHandComponent implements OnInit {
      */
     @Output() change: EventEmitter<object> = new EventEmitter<object>();
 
-    @ViewChild('sliderHand') _hand: ElementRef;
+    @ViewChild('sliderHand', {static: true}) _hand: ElementRef;
 
-    @ViewChild(TooltipDirective) tooltip: TooltipDirective;
+    @ViewChild(TooltipDirective, {static: true}) tooltip: TooltipDirective;
 
     constructor(private render: Renderer2, private service: SliderService) {
         this.render = render;

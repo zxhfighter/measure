@@ -60,7 +60,7 @@ export class ChipsComponent implements ControlValueAccessor {
      * 获取input输入框
      * @docs-private
      */
-    @ViewChild('input') liInput: ElementRef;
+    @ViewChild('input', {static: false}) liInput: ElementRef;
 
     /**
      * 获取已输入的chips list

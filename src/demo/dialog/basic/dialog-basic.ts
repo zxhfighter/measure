@@ -7,8 +7,8 @@ import { DialogComponent } from '../../../component/dialog';
     styleUrls: ['./dialog-basic.less']
 })
 export class DialogBasicDemo {
-    @ViewChild('modalDialog') modalDialog: DialogComponent;
-    @ViewChild('unmodalDialog') unmodalDialog: DialogComponent;
+    @ViewChild('modalDialog', {static: false}) modalDialog: DialogComponent;
+    @ViewChild('unmodalDialog', {static: false}) unmodalDialog: DialogComponent;
 
     openModalDialog() {
         this.modalDialog.show();

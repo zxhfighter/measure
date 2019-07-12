@@ -55,10 +55,10 @@ export class CodeHighlighterComponent implements AfterViewInit, OnChanges {
     @Input() rawCode: string = '';
 
     /** code element */
-    @ViewChild('code') _code: ElementRef;
+    @ViewChild('code', {static: true}) _code: ElementRef;
 
     /** ng-content wrapper element */
-    @ViewChild('content') _content: ElementRef;
+    @ViewChild('content', {static: true}) _content: ElementRef;
 
     constructor(private el: ElementRef, private render: Renderer2) { }
 

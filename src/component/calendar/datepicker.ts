@@ -68,8 +68,8 @@ export class DatePickerComponent implements OnInit, OnDestroy, ControlValueAcces
     /** whether the panel is show */
     _showPanel: boolean = false;
 
-    @ViewChild('origin') origin: OverlayOriginDirective;
-    @ViewChild('overlay') overlay: OverlayComponent;
+    @ViewChild('origin', {static: true}) origin: OverlayOriginDirective;
+    @ViewChild('overlay', {static: true}) overlay: OverlayComponent;
 
     constructor(
         private render: Renderer2,

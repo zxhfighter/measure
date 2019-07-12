@@ -103,8 +103,8 @@ export class TableHeaderItemComponent implements OnInit, OnDestroy, AfterViewIni
      */
     @Input() align: 'left' | 'center' | 'right' = 'left';
 
-    @ViewChild('origin') origin: OverlayOriginDirective;
-    @ViewChild('overlay') overlay: OverlayComponent;
+    @ViewChild('origin', {static: true}) origin: OverlayOriginDirective;
+    @ViewChild('overlay', {static: true}) overlay: OverlayComponent;
 
     /**
      * column order(sort) type, can be 'asc' or 'desc' or ''
