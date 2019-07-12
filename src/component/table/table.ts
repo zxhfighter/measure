@@ -201,7 +201,7 @@ export class TableComponent implements OnInit, AfterContentInit, AfterViewInit, 
      * resize indicator line
      * @docs-private
      */
-    @ViewChild('resizeLine') _resizeLine: ElementRef;
+    @ViewChild('resizeLine', {static: false}) _resizeLine: ElementRef;
 
     /**
      * cache table position

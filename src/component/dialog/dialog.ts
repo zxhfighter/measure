@@ -1,13 +1,7 @@
 /* tslint:disable:no-access-missing-member */
 import {
-    Component, Input, Output, EventEmitter, AfterViewInit, AfterContentInit, ElementRef,
-    OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, ContentChild,
-    ViewChild
-} from '@angular/core';
+    Component, Input, Output, EventEmitter, OnInit, ViewEncapsulation, ChangeDetectionStrategy} from '@angular/core';
 import { OnChange } from '../core/decorators';
-import { DialogHeaderComponent } from './dialog-header';
-import { DialogBodyComponent } from './dialog-body';
-import { DialogFooterComponent } from './dialog-footer';
 import { slideAnimation } from '../core/animation/slide-animations';
 import { OverlayComponent } from '../overlay';
 

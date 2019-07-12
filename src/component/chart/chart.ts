@@ -73,7 +73,7 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
      */
     optionsChange: EventEmitter<any> = new EventEmitter<any>();
 
-    @ViewChild('chartContainer') _chartContainer: ElementRef;
+    @ViewChild('chartContainer', {static: true}) _chartContainer: ElementRef;
 
     /**
      * chart instance

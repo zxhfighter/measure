@@ -12,7 +12,7 @@ import { Field } from '../../../component/table';
 })
 export class TooltipShareDemo {
 
-    @ViewChild(TiplayerComponent) overlay: TiplayerComponent;
+    @ViewChild(TiplayerComponent, {static: false}) overlay: TiplayerComponent;
 
     currValue: string = '';
 

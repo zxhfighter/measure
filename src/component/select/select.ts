@@ -33,8 +33,8 @@ enum Direction {
     }]
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy {
-    @ViewChild('origin') origin: OverlayOriginDirective;
-    @ViewChild('overlay') overlay: OverlayComponent;
+    @ViewChild('origin', {static: true}) origin: OverlayOriginDirective;
+    @ViewChild('overlay', {static: true}) overlay: OverlayComponent;
     @Input() datasource: SelectConfig[] = [];
     @Input() theme: BUTTON_THEME = 'default';
     @Input() size: BUTTON_SIZE = 'default';

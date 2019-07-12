@@ -24,7 +24,7 @@ import { TabTitleDirective } from './tab-title.directive';
 })
 export class TabComponent {
 
-    @ContentChild(TabTitleDirective) templateTitle: TabTitleDirective;
+    @ContentChild(TabTitleDirective, {static: false}) templateTitle: TabTitleDirective;
 
     @Input() title: string;
 

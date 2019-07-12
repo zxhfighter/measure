@@ -170,7 +170,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      */
     _timer = Subscription.EMPTY;
 
-    @ViewChild('searchInput') searchInput: ElementRef;
+    @ViewChild('searchInput', {static: true}) searchInput: ElementRef;
 
     constructor(
         private _cd: ChangeDetectorRef,

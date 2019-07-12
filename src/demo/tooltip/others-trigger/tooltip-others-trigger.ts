@@ -8,7 +8,7 @@ import { TooltipDirective } from '../../../component/tooltip';
 })
 export class TooltipOthersTriggerDemo {
 
-    @ViewChild('genuineOrigin') tooltip: TooltipDirective;
+    @ViewChild('genuineOrigin', {static: false}) tooltip: TooltipDirective;
 
     showIsolateTip() {
         const isVisible = this.tooltip.isTooltipVisible();

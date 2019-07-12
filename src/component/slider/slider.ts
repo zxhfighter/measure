@@ -165,13 +165,13 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
      * Slider Component
      * @docs-private
      */
-    @ViewChild('slider') _slider: ElementRef;
+    @ViewChild('slider', {static: false}) _slider: ElementRef;
 
     /**
      * slider-tracker Component
      * @docs-private
      */
-    @ViewChild(SliderTrackerComponent) _tracker: SliderTrackerComponent;
+    @ViewChild(SliderTrackerComponent, {static: false}) _tracker: SliderTrackerComponent;
 
     /**
      * slider-hand Components
