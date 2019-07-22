@@ -22,7 +22,7 @@ export type AlertType = 'info' | 'error' | 'success';
 
 export class AlertComponent {
 
-    @ViewChild(DialogComponent, {static: false}) dialog;
+    @ViewChild(DialogComponent, {static: true}) dialog;
 
     @Input() type: AlertType;
     @Input() title: string = '';
