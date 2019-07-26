@@ -94,7 +94,7 @@ export class TiplayerComponent extends OverlayComponent implements OnInit, OnDes
     /**
      * 箭头元素
      */
-    @ViewChild('arrow', {static: true}) arrow: ElementRef;
+    @ViewChild('arrow', {static: false}) arrow: ElementRef;
 
     /**
      * 提示内容子视图，用于变更内容用。e.g slider的提示
