@@ -78,7 +78,7 @@
                     <tr nb-row class="nb-table-row-empty">
                         <td nb-td colspan="3">
                             <ng-container *ngIf="emptyTpl else defaultEmpty">
-                                <ng-container *ngTemplateOutlet="emptyTpl;context: {$implicit: item}"></ng-container>
+                                <ng-container *ngTemplateOutlet="emptyTpl;context: {$implicit: emptyMessage}"></ng-container>
                             </ng-container>
 
                             <ng-template #defaultEmpty>

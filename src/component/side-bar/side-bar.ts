@@ -278,7 +278,7 @@ export class SideBarComponent implements OnInit {
      * listen search-box filter tree-node event
      * @docs-private
      */
-    search(event?: string) {
+    search(event: string) {
         /**
          * when the keyword is null, show the all navi item
          * @docs-private
