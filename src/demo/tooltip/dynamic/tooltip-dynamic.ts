@@ -8,7 +8,7 @@ import { TooltipDirective } from '../../../component/tooltip';
 })
 export class TooltipDynamicDemo {
 
-    @ViewChild(TooltipDirective) tooltip: TooltipDirective;
+    @ViewChild(TooltipDirective, {static: false}) tooltip: TooltipDirective;
 
     constructor() {
     }

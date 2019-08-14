@@ -1,3 +1,93 @@
+<a name="8.0.7"></a>
+## [8.0.7](https://github.com/zxhfighter/measure/compare/1.3.1...8.0.7) (2019-08-14)
+
+
+### Bug Fixes
+
+* **code-highlighter:** 修复 code-highlighter 重新设置 rawCode 不生效的问题 ([b118dce](https://github.com/zxhfighter/measure/commit/b118dce))
+
+
+### Features
+
+* **box-group:** boxgroup 设置 datasource 时,支持 checked 属性 ([fa04395](https://github.com/zxhfighter/measure/commit/fa04395))
+
+
+
+<a name="8.0.6"></a>
+## [8.0.6](https://github.com/zxhfighter/measure/compare/1.3.1...8.0.6) (2019-08-14)
+
+
+### Bug Fixes
+
+* **code-highlighter:** 修复 code-highlighter 重新设置 rawCode 不生效的问题 ([b118dce](https://github.com/zxhfighter/measure/commit/b118dce))
+
+
+### Features
+
+* **box-group:** boxgroup 设置 datasource 时,支持 checked 属性 ([fa04395](https://github.com/zxhfighter/measure/commit/fa04395))
+
+
+
+<a name="8.0.5"></a>
+## [8.0.5](https://github.com/zxhfighter/measure/compare/1.3.1...8.0.5) (2019-07-26)
+
+
+### Bug Fixes
+
+* **code-highlighter:** 修复 code-highlighter 重新设置 rawCode 不生效的问题 ([b118dce](https://github.com/zxhfighter/measure/commit/b118dce))
+
+
+### Features
+
+* **box-group:** boxgroup 设置 datasource 时,支持 checked 属性 ([fa04395](https://github.com/zxhfighter/measure/commit/fa04395))
+
+
+
+<a name="8.0.4"></a>
+## [8.0.4](https://github.com/zxhfighter/measure/compare/1.3.1...8.0.4) (2019-07-22)
+
+
+### Bug Fixes
+
+* **code-highlighter:** 修复 code-highlighter 重新设置 rawCode 不生效的问题 ([b118dce](https://github.com/zxhfighter/measure/commit/b118dce))
+
+
+### Features
+
+* **box-group:** boxgroup 设置 datasource 时,支持 checked 属性 ([fa04395](https://github.com/zxhfighter/measure/commit/fa04395))
+
+
+
+<a name="8.0.3"></a>
+## [8.0.3](https://github.com/zxhfighter/measure/compare/1.3.1...8.0.3) (2019-07-22)
+
+
+### Bug Fixes
+
+* **code-highlighter:** 修复 code-highlighter 重新设置 rawCode 不生效的问题 ([b118dce](https://github.com/zxhfighter/measure/commit/b118dce))
+
+
+### Features
+
+* **box-group:** boxgroup 设置 datasource 时,支持 checked 属性 ([fa04395](https://github.com/zxhfighter/measure/commit/fa04395))
+
+
+
+<a name="8.0.2"></a>
+## [8.0.2](https://github.com/zxhfighter/measure/compare/1.3.1...8.0.2) (2019-07-12)
+
+
+### Bug Fixes
+
+* **code-highlighter:** 修复 code-highlighter 重新设置 rawCode 不生效的问题 ([b118dce](https://github.com/zxhfighter/measure/commit/b118dce))
+
+
+### Features
+
+* **box-group:** boxgroup 设置 datasource 时,支持 checked 属性 ([fa04395](https://github.com/zxhfighter/measure/commit/fa04395))
+
+
+
 <a name="7.0.53"></a>
 ## [7.0.53](https://github.com/zxhfighter/measure/compare/1.3.1...7.0.53) (2019-06-11)
 

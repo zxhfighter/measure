@@ -53,10 +53,10 @@ export class CardComponent implements OnInit, AfterViewInit {
      */
     @Input() theme: string = '';
 
-    @ContentChild('title') _title: TemplateRef<any>;
-    @ContentChild('operation') _operation: TemplateRef<any>;
-    @ContentChild('body') _body: TemplateRef<any>;
-    @ContentChild('foot') _foot: TemplateRef<any>;
+    @ContentChild('title', {static: false}) _title: TemplateRef<any>;
+    @ContentChild('operation', {static: false}) _operation: TemplateRef<any>;
+    @ContentChild('body', {static: false}) _body: TemplateRef<any>;
+    @ContentChild('foot', {static: false}) _foot: TemplateRef<any>;
 
     constructor(private _el: ElementRef, private _render: Renderer2) {
         this.registerWidthChange();

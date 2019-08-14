@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
 import { futimesSync } from 'fs';
-import { Event } from '@angular/router/src/events';
 
 @Component({
     selector: 'nb-transfer-candidate',

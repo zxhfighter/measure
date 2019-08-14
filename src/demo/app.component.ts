@@ -7,7 +7,7 @@ import '../asset/less/demo.less';
     templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-    @ViewChild('input') input: ElementRef;
+    @ViewChild('input', {static: false}) input: ElementRef;
     title = 'app';
     isOpen = false;
     routerList = routerList;

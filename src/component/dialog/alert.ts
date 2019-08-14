@@ -4,7 +4,6 @@ import {
     ViewChild
 } from '@angular/core';
 import { OnChange } from '../core/decorators';
-import { Event } from '@angular/router/src/events';
 import { DialogComponent } from './dialog';
 
 export type AlertType = 'info' | 'error' | 'success';
@@ -23,7 +22,7 @@ export type AlertType = 'info' | 'error' | 'success';
 
 export class AlertComponent {
 
-    @ViewChild(DialogComponent) dialog;
+    @ViewChild(DialogComponent, {static: true}) dialog;
 
     @Input() type: AlertType;
     @Input() title: string = '';

@@ -149,7 +149,7 @@ export class UploaderComponent implements OnInit {
      * Input上传控件
      * @default false
      */
-    @ViewChild('uploadInput') uploadInput: ElementRef;
+    @ViewChild('uploadInput', {static: false}) uploadInput: ElementRef;
 
     /**
      * 错误信息集合

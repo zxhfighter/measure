@@ -61,9 +61,9 @@ export class SwitchComponent implements AfterViewInit, ControlValueAccessor {
      */
     @Input() theme: string = '';
 
-    @ViewChild('checkbox') _checkbox: ElementRef;
-    @ViewChild('innerbar') _innerbar: ElementRef;
-    @ViewChild('outerbar') _outerbar: ElementRef;
+    @ViewChild('checkbox', {static: false}) _checkbox: ElementRef;
+    @ViewChild('innerbar', {static: false}) _innerbar: ElementRef;
+    @ViewChild('outerbar', {static: false}) _outerbar: ElementRef;
 
     _dragging: boolean = false;
     _outerbarWidth: number;

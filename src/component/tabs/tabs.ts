@@ -52,7 +52,7 @@ export class TabsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
-    @ViewChild(InkBarComponent) inkBar: InkBarComponent;
+    @ViewChild(InkBarComponent, {static: false}) inkBar: InkBarComponent;
 
     @ViewChildren(TabHeaderComponent) tabHeader: QueryList<TabHeaderComponent>;
 

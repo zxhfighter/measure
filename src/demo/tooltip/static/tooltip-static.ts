@@ -12,7 +12,7 @@ export class TooltipStaticDemo {
 
     @ViewChildren(OverlayOriginDirective) originList: QueryList<OverlayOriginDirective>;
 
-    @ViewChild(TiplayerComponent) overlay: TiplayerComponent;
+    @ViewChild(TiplayerComponent, {static: false}) overlay: TiplayerComponent;
 
     constructor() {
 
