@@ -59,7 +59,7 @@ const SEARCHBOX_VALUE_ACCESSOR = {
         '[class.nb-search-box-ico]': 'type == "ico"',
         '[class.nb-search-box-btn]': 'type == "btn"',
         '(compositionstart)': '_compositionStart()',
-        '(compositionend)': '_compositionEnd($event.target.value)'
+        '(compositionend)': '_compositionEnd()'
     }
 })
 
