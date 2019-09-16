@@ -1,6 +1,6 @@
 <div class="image-container" [style.width.px]="width">
 
-    <div class="image-container-inner" [style.width.px]="width * 3" [style.left.px]="leftPos">
+    <div class="image-container-inner" [style.width.px]="width * datasource.length" [style.left.px]="leftPos">
         <div class="image-item" *ngFor="let image of datasource">
             <ng-container *ngIf="image.link">
                 <a href="{{image.link}}" target="_blank">
