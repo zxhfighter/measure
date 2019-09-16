@@ -139,6 +139,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, OnDestroy 
 
     writeValue(value: number) {
         if (value === null) {
+            this.clear();
             return;
         }
 
