@@ -13520,7 +13520,7 @@ a.nb-button[disabled]:active {
   display: none;
   position: absolute;
   z-index: 1;
-  margin-top: 8px;
+  line-height: 36px;
 }
 .nb-tree-selectable .nb-tree-node-unselectable:hover,
 .nb-tree-node-unselectable:hover::before {
@@ -19194,4 +19194,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.e64326.bundle.map*/
+/*# sourceMappingURL=app.eef7d3.bundle.map*/
