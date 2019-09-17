@@ -1,3 +1,20 @@
+<a name="8.0.10"></a>
+## [8.0.10](https://github.com/zxhfighter/measure/compare/1.3.1...8.0.10) (2019-09-17)
+
+
+### Bug Fixes
+
+* **code-highlighter:** 修复 code-highlighter 重新设置 rawCode 不生效的问题 ([f35e1b1](https://github.com/zxhfighter/measure/commit/f35e1b1))
+* **code-highlighter:** 修复 code-highlighter 重新设置 rawCode 不生效的问题 ([b118dce](https://github.com/zxhfighter/measure/commit/b118dce))
+
+
+### Features
+
+* **box-group:** boxgroup 设置 datasource 时,支持 checked 属性 ([bae08c8](https://github.com/zxhfighter/measure/commit/bae08c8))
+* **box-group:** boxgroup 设置 datasource 时,支持 checked 属性 ([fa04395](https://github.com/zxhfighter/measure/commit/fa04395))
+
+
+
 <a name="8.0.9"></a>
 ## [8.0.9](https://github.com/zxhfighter/measure/compare/1.3.1...8.0.9) (2019-09-16)
 
