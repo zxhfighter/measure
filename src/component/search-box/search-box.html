@@ -10,7 +10,7 @@
     [(ngModel)]="value"
     (focus)="onFocus(searchInput)"
     (blur)="onBlur(searchInput)"
-    (keyup)="onInputValue()"
+    (keyup)="onInputValue($event)"
     (keydown)="onKeydown($event)">
 <div class="nb-search-box-operate">
     <div class="nb-search-box-icons">
@@ -48,7 +48,7 @@
         </button>
     </div>
 </div>
-<div [hidden]="isSuggestion === 'false' || !isOpen" class="nb-search-box-suggestion-layer">
+<div *ngIf="isOpen" class="nb-search-box-suggestion-layer" [class.nb-search-box-suggest-empty]="suggestionValue.length === 0">
     <ul class="nb-search-box-suggestion-list">
         <li
             *ngFor="let item of suggestionValue"

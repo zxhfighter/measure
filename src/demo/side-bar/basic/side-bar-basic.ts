@@ -28,6 +28,10 @@ export class SideBarBasicDemo {
 
     selectedNodeId = '010102';
 
+    searchPlaceholder = '搜索国家英文名称';
+
+    isSuggestion = false;
+
     onNavi(event) {
         console.log(event);
     }

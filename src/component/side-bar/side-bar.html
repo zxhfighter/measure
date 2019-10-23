@@ -11,8 +11,8 @@
         </button>
     </div>
     <nb-search-box
-        placeholder="联想搜索"
-        isSuggestion="true"
+        [placeholder]="searchPlaceholder"
+        [isSuggestion]="isSuggestion"
         size="small"
         (onSearchSuggestion)="searchSuggestion($event)"
         [suggestionValue]="suggestionValue"
