@@ -119,13 +119,13 @@ export class SideBarComponent implements OnInit {
         }
     }
     /**
+     * side-bar static search fuzzy match
      * @param {string} keyWord 搜索的字符串片段
      * @param {string} fullWord 完整的字符串
      * @returns boolean 字符串片段在字符串中的位置
      */
-    ignoreCapSearch(keyWord: string, fullWord: string) {
-        const key = new RegExp(keyWord.trim(), 'i');
-        return fullWord.match(key);
+    fuzzySearch(keyWord: string, fullWord: string) {
+        return fullWord.toLowerCase().includes(keyWord.trim().toLowerCase());
     }
     /**
      * init tree node property
@@ -225,11 +225,7 @@ export class SideBarComponent implements OnInit {
         let listMatchedTreeNodes: TreeNode[] = [];
         let lengthMaxNodes = this._listTreeNodes.length > 3 ? 3 : this._listTreeNodes.length;
         for (let node of this._listTreeNodes) {
-            /**
-             * matching node that conform to key word
-             * @docs-private
-             */
-            if (node.name && this.ignoreCapSearch(event, node.name)) {
+            if (node.name && this.fuzzySearch(event, node.name)) {
                 listMatchedTreeNodes.push(node);
             }
             if (listMatchedTreeNodes.length === lengthMaxNodes) {
@@ -298,7 +294,7 @@ export class SideBarComponent implements OnInit {
         this._listSearchNodes = [];
         // get all matched keyword tree-nodes
         for (let node of this._listTreeNodes) {
-            if (node.name && this.ignoreCapSearch(event, node.name)) {
+            if (node.name && this.fuzzySearch(event, node.name)) {
                 this.searchNodes(node);
             }
         }
