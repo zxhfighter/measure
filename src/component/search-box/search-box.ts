@@ -90,7 +90,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
      * Whether the search-box is suggest search: either true or false
      * @default 'false'
      */
-    @Input() isSuggestion: IS_SUGGESTION = 'false';
+    @Input() isSuggestion: boolean = false;
 
     /**
      * search-box default placeholder
@@ -184,7 +184,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         let self = this;
-        if (this.isSuggestion !== 'false') {
+        if (this.isSuggestion !== false) {
             // window resize or scroll
             this._resizeSubscription = this.change().subscribe(() => this.positionSuggestionLayer(this));
 
@@ -275,7 +275,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
              */
             let pos = window.scrollY + window.innerHeight - self.el.nativeElement.offsetTop - 156 > 0
                 ? 'bottom' : 'top';
-            elLayer[0].className = 'nb-search-box-suggestion-layer' + ' ' + 'nb-search-box-suggestion-layer-' + pos;
+            elLayer[0].className += ' nb-search-box-suggestion-layer-' + pos;
         }
     }
 
@@ -297,10 +297,11 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     /**
      * listen keyword input in search-box
+     * @param event
      * @docs-private
      */
-    onInputValue() {
-        if (this.isSuggestion !== 'false' && this.value && !this._composing) {
+    onInputValue(event) {
+        if (this.isSuggestion !== false && event.keyCode !== 13 && this.value && !this._composing) {
             this.fnSugguestValue();
         }
         if (!this.value) {
@@ -317,6 +318,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         if (event.keyCode === 13) {
             // 阻止input回车时的默认事件，以免search-box应用在表单时响应回车事件提交表单
             event.preventDefault();
+            this.isOpen = false;
             this.onSearch.emit(this.value);
             this._cd.markForCheck();
         }

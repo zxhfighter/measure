@@ -14,6 +14,7 @@ import {
     TreeNode,
     TreeNodeParent
 } from './side-bar-interface';
+import { IS_SUGGESTION } from './side-bar.config';
 
 @Component({
     selector: 'nb-side-bar',
@@ -41,6 +42,13 @@ export class SideBarComponent implements OnInit {
     @Input() selectedNodeId: string;
 
     @Input() optionTpl: TemplateRef<any>;
+
+    // search-box option
+    /** search-box placeholder */
+    @Input() searchPlaceholder: string = '联想搜索';
+    
+    /** Use search recommendation or not */
+    @Input() isSuggestion: boolean = true;
 
     /**
      * storage tree-nodes as list
@@ -210,11 +218,7 @@ export class SideBarComponent implements OnInit {
     searchSuggestion(event: string) {
         let suggestionNodes: TreeNode[] = [];
         suggestionNodes = this.getSuggestionNodes(event);
-        if (suggestionNodes && suggestionNodes.length) {
-            this.suggestionValue = suggestionNodes.map((node: TreeNode) => {
-                return node.name;
-            });
-        }
+        this.suggestionValue = suggestionNodes.length ? suggestionNodes.map((node: TreeNode) => node.name) : [];
     }
 
     /**
@@ -223,27 +227,12 @@ export class SideBarComponent implements OnInit {
      */
     getSuggestionNodes(event: string) {
         let listMatchedTreeNodes: TreeNode[] = [];
-        let lengthMaxNodes = this._listTreeNodes.length > 3 ? 3 : this._listTreeNodes.length;
         for (let node of this._listTreeNodes) {
             if (node.name && this.fuzzySearch(event, node.name)) {
                 listMatchedTreeNodes.push(node);
             }
-            if (listMatchedTreeNodes.length === lengthMaxNodes) {
-                return listMatchedTreeNodes;
-            }
         }
-
-        /**
-         * when keyword filter results amount less than lengthMaxNodes, completion the lengthMaxNodes results.
-         * @docs-private
-         */
-        if (listMatchedTreeNodes.length < lengthMaxNodes) {
-            listMatchedTreeNodes = listMatchedTreeNodes.concat(
-                this._listTreeNodes.slice(0, lengthMaxNodes - listMatchedTreeNodes.length)
-            );
-        }
-
-        return listMatchedTreeNodes;
+        return listMatchedTreeNodes.slice(0, 5);
     }
 
     /**
