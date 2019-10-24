@@ -46,7 +46,7 @@ export class SideBarComponent implements OnInit {
     // search-box option
     /** search-box placeholder */
     @Input() searchPlaceholder: string = '联想搜索';
-    
+        
     /** Use search recommendation or not */
     @Input() isSuggestion: boolean = true;
 
