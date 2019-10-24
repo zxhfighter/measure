@@ -12559,6 +12559,9 @@ a.nb-button[disabled]:active {
   cursor: pointer;
   background-color: #eee;
 }
+.nb-search-box-suggest-empty {
+  display: none;
+}
 .nb-search-box-suggestion-layer-top {
   top: -111px;
 }
@@ -19194,4 +19197,4 @@ pre.line-numbers {
   padding-left: 1em;
 }
 
-/*# sourceMappingURL=app.78263b.bundle.map*/
+/*# sourceMappingURL=app.4ef81f.bundle.map*/
