@@ -42,6 +42,7 @@ git push origin master
 如果没有问题，过几分钟后，travis 任务会自动推送最新的版本到 npm。
 
 Tips: 检查发布是否成功，未成功版本号不变。
+
 ## FAQ
 
 - 为什么要运行 `gulp commit` 而不是 `git commit`?
