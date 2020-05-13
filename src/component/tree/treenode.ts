@@ -10,6 +10,7 @@ export interface TreeNode  {
     level?: number;
     show?: boolean;
     parent?: TreeNodeParent;
+    hasChild?: boolean;
     children?: TreeNode[];
     leaf?: boolean;
     styleClass?: string;
