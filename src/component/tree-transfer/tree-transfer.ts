@@ -115,6 +115,11 @@ export class TreeTransferComponent implements OnChanges, ControlValueAccessor {
      */
     @Input() selectedTitle: string = '已选列表';
 
+    /**
+     * 右侧提示文案
+     */
+    @Input() rightNotice: string = '请从左侧选择内容';
+
     @Input() addLink: any;
 
     /**

@@ -162,6 +162,11 @@ export class TableTransferComponent implements OnChanges, ControlValueAccessor {
     @Input() optionTplRight: TemplateRef<any>;
 
     /**
+     * 右侧提示文案
+     */
+    @Input() rightNotice: string = '请从左侧选择内容';
+
+    /**
      * 空数据模板
      */
     @Input() emptyTpl: TemplateRef<any>;
